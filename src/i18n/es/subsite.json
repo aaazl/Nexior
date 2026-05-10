@@ -79,6 +79,10 @@
     "message": "Error al crear el subdominio, por favor intenta de nuevo más tarde.",
     "description": "Error en la creación"
   },
+  "message.slugTaken": {
+    "message": "El subdominio {origin} ya está en uso, por favor elige otro e inténtalo de nuevo.",
+    "description": "Al crear un subsitio, el slug ya está ocupado (el backend devuelve code=duplication)"
+  },
   "message.loadFailed": {
     "message": "Error al cargar la lista de subdominios.",
     "description": "Error al cargar la lista"
@@ -154,6 +158,10 @@
   "message.domainCreateFailed": {
     "message": "Error al crear el dominio, por favor intenta de nuevo más tarde.",
     "description": "Error en la creación"
+  },
+  "message.domainTaken": {
+    "message": "El dominio {hostname} ya ha sido añadido. Por favor, utiliza un dominio diferente.",
+    "description": "Se muestra cuando el nombre de host elegido ya está vinculado a un sitio (el backend devuelve code=duplication)."
   },
   "message.domainsLoadFailed": {
     "message": "Error al cargar la lista de dominios.",

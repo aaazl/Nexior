@@ -79,6 +79,10 @@
     "message": "創建分站失敗，請稍後重試。",
     "description": "創建失敗"
   },
+  "message.slugTaken": {
+    "message": "子域名 {origin} 已被使用，请換一個再試。",
+    "description": "創建分站時，slug 已被占用（後端返回 code=duplication）"
+  },
   "message.loadFailed": {
     "message": "加載分站列表失敗。",
     "description": "拉列表失敗"
@@ -154,6 +158,10 @@
   "message.domainCreateFailed": {
     "message": "創建域名失敗，請稍後重試。",
     "description": "創建失敗"
+  },
+  "message.domainTaken": {
+    "message": "域名 {hostname} 已經添加過了，請換一個域名再試。",
+    "description": "所選域名已被綁定到某個站點時顯示（後端返回 code=duplication）。"
   },
   "message.domainsLoadFailed": {
     "message": "加載域名列表失敗。",

@@ -79,6 +79,10 @@
     "message": "Nie udało się utworzyć subdomeny, spróbuj ponownie później.",
     "description": "Błąd podczas tworzenia"
   },
+  "message.slugTaken": {
+    "message": "Poddomena {origin} jest już używana, wybierz inną i spróbuj ponownie.",
+    "description": "Podczas tworzenia podstrony, podany slug jest już zajęty (backend zwraca kod=duplication)"
+  },
   "message.loadFailed": {
     "message": "Nie udało się załadować listy subdomen.",
     "description": "Błąd podczas ładowania listy"
@@ -154,6 +158,10 @@
   "message.domainCreateFailed": {
     "message": "Nie udało się utworzyć domeny, spróbuj ponownie później.",
     "description": "Błąd podczas tworzenia"
+  },
+  "message.domainTaken": {
+    "message": "Domena {hostname} została już dodana. Użyj innej domeny.",
+    "description": "Wyświetlane, gdy wybrana nazwa hosta jest już powiązana z witryną (backend zwraca code=duplication)."
   },
   "message.domainsLoadFailed": {
     "message": "Nie udało się załadować listy domen.",

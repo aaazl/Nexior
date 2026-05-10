@@ -79,6 +79,10 @@
     "message": "Kreiranje poddomene nije uspelo, molimo pokušajte ponovo kasnije.",
     "description": "Kreiranje nije uspelo"
   },
+  "message.slugTaken": {
+    "message": "Poddomen {origin} je već zauzet, pokušajte sa drugim.",
+    "description": "Prilikom kreiranja podstranice, slug je već zauzet (backend vraća code=duplication)"
+  },
   "message.loadFailed": {
     "message": "Učitavanje liste poddomena nije uspelo.",
     "description": "Učitavanje liste nije uspelo"
@@ -154,6 +158,10 @@
   "message.domainCreateFailed": {
     "message": "Kreiranje domena nije uspelo, molimo pokušajte ponovo kasnije.",
     "description": "Kreiranje nije uspelo"
+  },
+  "message.domainTaken": {
+    "message": "Domen {hostname} je već dodat. Molimo koristite drugi domen.",
+    "description": "Prikazuje se kada je izabrano ime hosta već povezano sa sajtom (backend vraća code=duplication)."
   },
   "message.domainsLoadFailed": {
     "message": "Učitavanje liste domena nije uspelo.",

@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHistory, type RouteLocationGeneric } from 'vue-router';
 import store from '@/store';
 import auth from './auth';
 import console from './console';
@@ -29,7 +29,7 @@ import seedream from './seedream';
 import seedance from './seedance';
 import serp from './serp';
 import wan from './wan';
-import site from './site';
+import settings from './settings';
 import profile from './profile';
 
 import {
@@ -280,7 +280,7 @@ const getDefaultRoute = (): { name: string } => {
 const routes = [
   {
     path: '/',
-    redirect: () => getDefaultRoute()
+    redirect: (to: RouteLocationGeneric) => ({ ...getDefaultRoute(), query: to.query })
   },
   {
     path: '/chat/oauth/callback',
@@ -317,7 +317,7 @@ const routes = [
   midjourney,
   distribution,
   download,
-  site,
+  settings,
   profile,
   {
     path: '/:pathMatch(.*)*',

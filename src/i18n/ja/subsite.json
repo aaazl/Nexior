@@ -79,6 +79,10 @@
     "message": "サブサイトの作成に失敗しました。後でもう一度お試しください。",
     "description": "作成失敗"
   },
+  "message.slugTaken": {
+    "message": "サブドメイン {origin} はすでに使用されています。別のものを試してください。",
+    "description": "サブサイト作成時に、slug がすでに使用されている場合（バックエンドから code=duplication が返された場合）"
+  },
   "message.loadFailed": {
     "message": "サブサイトリストの読み込みに失敗しました。",
     "description": "リストの取得失敗"
@@ -154,6 +158,10 @@
   "message.domainCreateFailed": {
     "message": "ドメインの作成に失敗しました。後でもう一度お試しください。",
     "description": "作成失敗"
+  },
+  "message.domainTaken": {
+    "message": "ドメイン {hostname} はすでに追加されています。別のドメインを使用してください。",
+    "description": "選択したホスト名がすでにサイトに紐付けられている場合に表示されます（バックエンドが code=duplication を返した場合）。"
   },
   "message.domainsLoadFailed": {
     "message": "ドメインリストの読み込みに失敗しました。",
