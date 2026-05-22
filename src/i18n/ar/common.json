@@ -63,6 +63,10 @@
     "message": "إغلاق",
     "description": "النص في الزر، المستخدم لإغلاق مربع الحوار أو اللوحة"
   },
+  "button.expand": {
+    "message": "توسيع",
+    "description": "نص زر يشير إلى فتح محرر إدخال النص في وضع ملء الشاشة"
+  },
   "button.alert": {
     "message": "تحذير",
     "description": "النص في الزر، المستخدم لإصدار تحذير"
@@ -495,6 +499,10 @@
     "message": "Producer",
     "description": "النص في شريط التنقل للموقع، لعرض صفحة Producer، يجب عدم ترجمة هذا الحقل، يجب أن يبقى 'Producer'"
   },
+  "nav.fish": {
+    "message": "Fish Audio",
+    "description": "نص في شريط التنقل بالموقع لعرض صفحة Fish Audio، يرجى عدم ترجمة هذا الحقل، يجب أن يظل 'Fish Audio'"
+  },
   "nav.kimi": {
     "message": "Kimi",
     "description": "النص في شريط التنقل للموقع، لعرض صفحة Kimi، يجب عدم ترجمة هذا الحقل، يجب أن يبقى 'Kimi'"
@@ -502,6 +510,10 @@
   "nav.serp": {
     "message": "SERP",
     "description": "النص في شريط التنقل للموقع، لعرض صفحة SERP، يجب عدم ترجمة هذا الحقل، يجب أن يبقى 'SERP'"
+  },
+  "nav.webextrator": {
+    "message": "WebExtrator",
+    "description": "Text in the website navigation bar to display the WebExtrator page, must remain as 'WebExtrator'"
   },
   "nav.image": {
     "message": "صورة",
@@ -707,6 +719,10 @@
     "message": "إعدادات الوظائف",
     "description": "عنوان قسم إعدادات الوظائف في صفحة الإعدادات"
   },
+  "settings.auth": {
+    "message": "طرق تسجيل الدخول",
+    "description": "عنوان علامة التبويب 'طرق تسجيل الدخول' في شريط الجانب لصفحة الإعدادات - يتيح تكوين طرق تسجيل الدخول المسموح بها للموقع وطريقة تسجيل الدخول الافتراضية، مرئية فقط لمسؤولي الموقع."
+  },
   "settings.apiKey": {
     "message": "مفتاح API",
     "description": "علامة مفتاح API في الشريط الجانبي لصفحة الإعدادات - إدارة مفتاح API لمزود الخدمة العلوي (BYOK)"
@@ -811,6 +827,14 @@
     "message": "مواقعي الفرعية",
     "description": "عنوان علامة تبويب إدارة المواقع الفرعية في نافذة الإعدادات. يظهر فقط في الموقع الرسمي، المواقع الفرعية لا تظهر."
   },
+  "settings.adminOnlyHint": {
+    "message": "هذا القسم مرئي فقط للمسؤولين عن الموقع، ولا يمكن للمستخدمين العاديين الوصول إليه.",
+    "description": "رسالة تظهر في الجزء العلوي من إعدادات الموقع / إعدادات SEO / إعدادات التوزيع / إعدادات الميزات، تشير إلى أن هذه الإعدادات مرئية فقط للمسؤولين."
+  },
+  "settings.officialOnlyHint": {
+    "message": "هذا القسم مرئي فقط للموقع الرئيسي، ولن يظهر في المواقع الفرعية.",
+    "description": "رسالة تظهر في الجزء العلوي من علامة تبويب 'مواقعي الفرعية'، توضح أن هذا المدخل يظهر فقط في الموقع الرئيسي."
+  },
   "settings.customDomain": {
     "message": "نطاق مخصص",
     "description": "Title for the custom-domain management tab in the settings popup. Visible only on subsites (non-main-official hosts) for site admins."
@@ -874,5 +898,33 @@
   "button.goBack": {
     "message": "العودة إلى الصفحة السابقة",
     "description": "نص الزر للعودة إلى الصفحة السابقة في تاريخ التصفح"
+  },
+  "title.apiCode": {
+    "message": "API code for this request",
+    "description": "Title of the dialog that shows the equivalent API code (curl / Python / Node) that would reproduce a result generated inside the product"
+  },
+  "message.viewCodeHint": {
+    "message": "Show API code for this request",
+    "description": "Tooltip text on the View Code button shown alongside result-card action buttons (U1/U2/Download/Extend/...). Clicking the button opens a dialog with curl / Python / Node snippets that reproduce the same generation via the public API."
+  },
+  "button.viewCode": {
+    "message": "View code",
+    "description": "Button text that opens a dialog with the equivalent API code (curl / Python / Node) for the current result, similar to the OpenAI Playground 'View code' affordance"
+  },
+  "button.getApiKey": {
+    "message": "Get an API key",
+    "description": "Link text in the API code dialog footer that opens the platform console page where users can create an API key"
+  },
+  "button.apiPlatform": {
+    "message": "API Platform",
+    "description": "API code dialog footer button label. Clicking opens https://platform.acedata.cloud/ in a new tab so users can manage their API keys, balance and usage."
+  },
+  "message.apiCodeIntro": {
+    "message": "Run this from your own code to produce the same result. Replace <YOUR_API_KEY> with a key from your platform console.",
+    "description": "Helper text shown above the code tabs in the API code dialog, explaining how to use the snippet"
+  },
+  "message.uploadInProgress": {
+    "message": "لا تزال عمليات رفع المراجع جارية — يُرجى الانتظار قليلاً.",
+    "description": "Toast shown when the user clicks the Generate button while one or more reference uploads are still in flight. Asks them to wait for uploads to complete before retrying."
   }
 }

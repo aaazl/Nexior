@@ -63,6 +63,10 @@
     "message": "Zatvori",
     "description": "Tekst u dugmetu, koji se koristi za zatvaranje dijaloga ili panela"
   },
+  "button.expand": {
+    "message": "Проширити",
+    "description": "Текст на дугмету који се користи за отварање уређивача у целом екрану за унос подстицаја."
+  },
   "button.alert": {
     "message": "Upozorenje",
     "description": "Tekst u dugmetu, koji se koristi za slanje upozorenja"
@@ -495,6 +499,10 @@
     "message": "Producer",
     "description": "网站导航栏中的文本，用于显示Producer页面，请不要翻译此字段，必须保持为'Producer'"
   },
+  "nav.fish": {
+    "message": "Fish Audio",
+    "description": "Текст у навигационом менију веб сајта, који се користи за приказивање странице Fish Audio, молимо вас да не преводите ово поље, мора остати 'Fish Audio'"
+  },
   "nav.kimi": {
     "message": "Kimi",
     "description": "网站导航栏中的文本，用于显示Kimi页面，请不要翻译此字段，必须保持为'Kimi'"
@@ -502,6 +510,10 @@
   "nav.serp": {
     "message": "SERP",
     "description": "网站导航栏中的文本，用于显示SERP页面，请不要翻译此字段，必须保持为'SERP'"
+  },
+  "nav.webextrator": {
+    "message": "WebExtrator",
+    "description": "Text in the website navigation bar to display the WebExtrator page, must remain as 'WebExtrator'"
   },
   "nav.image": {
     "message": "Slika",
@@ -707,6 +719,10 @@
     "message": "Podešavanja funkcija",
     "description": "Naslov dela sa podešavanjima funkcija na stranici sa podešavanjima"
   },
+  "settings.auth": {
+    "message": "Način prijave",
+    "description": "Naslov taba 'Način prijave' na stranici sa podešavanjima — omogućava konfiguraciju načina prijave koji su dozvoljeni na sajtu i podrazumevanog načina prijave, vidljivo samo administratorima sajta."
+  },
   "settings.apiKey": {
     "message": "API Ključ",
     "description": "Oznaka API Ključa u bočnoj traci stranice sa podešavanjima - upravljanje API ključem dobavljača usluga (BYOK)"
@@ -811,6 +827,14 @@
     "message": "Moje podstranice",
     "description": "Naslov taba za upravljanje podstranicama u prozoru sa podešavanjima. Vidljivo samo na zvaničnoj glavnoj stranici, podstranice se ne prikazuju."
   },
+  "settings.adminOnlyHint": {
+    "message": "Ова секција је видљива само администраторима сајта, обични корисници не могу да је приступе.",
+    "description": "Ово је порука која се приказује на врху таба подешавања сајта / SEO подешавања / подешавања дистрибуције / подешавања функција, која је видљива само администраторима."
+  },
+  "settings.officialOnlyHint": {
+    "message": "Ова секција је видљива само на главном сајту, подсајтови неће бити приказани.",
+    "description": "Ово је порука која се приказује на врху таба 'Моји подсајтови', објашњавајући да је овај улаз доступан само на званичном главном сајту."
+  },
   "settings.customDomain": {
     "message": "Прилагођени домен",
     "description": "Title for the custom-domain management tab in the settings popup. Visible only on subsites (non-main-official hosts) for site admins."
@@ -874,5 +898,33 @@
   "button.goBack": {
     "message": "Povratak na prethodnu stranicu",
     "description": "Tekst dugmeta za povratak na prethodnu stranicu u istoriji pregleda"
+  },
+  "title.apiCode": {
+    "message": "API code for this request",
+    "description": "Title of the dialog that shows the equivalent API code (curl / Python / Node) that would reproduce a result generated inside the product"
+  },
+  "message.viewCodeHint": {
+    "message": "Show API code for this request",
+    "description": "Tooltip text on the View Code button shown alongside result-card action buttons (U1/U2/Download/Extend/...). Clicking the button opens a dialog with curl / Python / Node snippets that reproduce the same generation via the public API."
+  },
+  "button.viewCode": {
+    "message": "View code",
+    "description": "Button text that opens a dialog with the equivalent API code (curl / Python / Node) for the current result, similar to the OpenAI Playground 'View code' affordance"
+  },
+  "button.getApiKey": {
+    "message": "Get an API key",
+    "description": "Link text in the API code dialog footer that opens the platform console page where users can create an API key"
+  },
+  "button.apiPlatform": {
+    "message": "API Platform",
+    "description": "API code dialog footer button label. Clicking opens https://platform.acedata.cloud/ in a new tab so users can manage their API keys, balance and usage."
+  },
+  "message.apiCodeIntro": {
+    "message": "Run this from your own code to produce the same result. Replace <YOUR_API_KEY> with a key from your platform console.",
+    "description": "Helper text shown above the code tabs in the API code dialog, explaining how to use the snippet"
+  },
+  "message.uploadInProgress": {
+    "message": "Otpremanje referentnih datoteka je još u toku — sačekajte trenutak.",
+    "description": "Toast shown when the user clicks the Generate button while one or more reference uploads are still in flight. Asks them to wait for uploads to complete before retrying."
   }
 }

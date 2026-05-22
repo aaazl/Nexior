@@ -23,6 +23,10 @@
     "message": "Favicon witryny",
     "description": "Wyświetlane w tytule edytora"
   },
+  "field.primaryColor": {
+    "message": "Kolor motywu",
+    "description": "Tytuł wyświetlany w polu edycji"
+  },
   "field.qr": {
     "message": "Kod QR",
     "description": "Wyświetlane w tytule edytora"
@@ -42,6 +46,34 @@
   "field.distributionForceInviterId": {
     "message": "ID wymuszonego zapraszającego",
     "description": "Wyświetlane w tytule edytora"
+  },
+  "field.authEnabledProviders": {
+    "message": "Włączone sposoby logowania",
+    "description": "Tytuł zakładki Ustawienia witryny / Sposób logowania: zaznacz, które sposoby logowania mogą być używane przez użytkowników na stronie logowania"
+  },
+  "field.authDefaultProvider": {
+    "message": "Domyślny sposób logowania",
+    "description": "Tytuł zakładki Ustawienia witryny / Sposób logowania: domyślnie wybrany sposób logowania, gdy otwiera się strona logowania"
+  },
+  "field.authProvider_email": {
+    "message": "E-mail",
+    "description": "Nazwa sposobu logowania: e-mail (e-mail + hasło lub kod weryfikacyjny)"
+  },
+  "field.authProvider_phone": {
+    "message": "Numer telefonu",
+    "description": "Nazwa sposobu logowania: numer telefonu (kod weryfikacyjny SMS)"
+  },
+  "field.authProvider_google": {
+    "message": "Google",
+    "description": "Nazwa sposobu logowania: logowanie przez Google"
+  },
+  "field.authProvider_github": {
+    "message": "GitHub",
+    "description": "Nazwa sposobu logowania: logowanie przez GitHub"
+  },
+  "field.authProvider_wechat": {
+    "message": "WeChat",
+    "description": "Nazwa sposobu logowania: logowanie przez WeChat"
   },
   "field.featuresChat": {
     "message": "Czat",
@@ -143,6 +175,14 @@
     "message": "SERP",
     "description": "Wyświetlane w tytule edytora"
   },
+  "field.featuresFish": {
+    "message": "Dźwięk ryb",
+    "description": "Tytuł wyświetlany w polu edycji"
+  },
+  "field.featuresWebextrator": {
+    "message": "WebExtrator",
+    "description": "Displayed as the title in the editing box"
+  },
   "field.featuresSupport": {
     "message": "Wsparcie klienta",
     "description": "Wyświetlane w tytule edytora"
@@ -239,6 +279,10 @@
     "message": "Wprowadź ID wymuszonego zapraszającego",
     "description": "Wyświetlane w edytorze"
   },
+  "placeholder.authDefaultProvider": {
+    "message": "Wybierz domyślny sposób logowania",
+    "description": "Placeholder w rozwijanym menu domyślnego sposobu logowania w zakładce Sposób logowania"
+  },
   "message.uploadImageExceed": {
     "message": "Przekroczono limit rozmiaru obrazu",
     "description": "Komunikat o przekroczeniu limitu rozmiaru obrazu"
@@ -323,6 +367,18 @@
     "message": "ID użytkownika wymuszonego zapraszającego. Jeśli to ID jest ustawione, niezależnie od tego, czy link dystrybucji zawiera parametr inviter_id, zawsze użyje tego ID jako zapraszającego.",
     "description": "Wskazówki dotyczące wymuszonego ID zapraszającego"
   },
+  "message.authEnabledProvidersTip": {
+    "message": "Zaznacz sposoby logowania, które mogą być używane na stronie logowania. Musisz pozostawić przynajmniej jeden, w przeciwnym razie użytkownicy nie będą mogli się zalogować.",
+    "description": "Tekst wyjaśniający w zakładce Sposób logowania 'Włączone sposoby logowania'"
+  },
+  "message.authDefaultProviderTip": {
+    "message": "Domyślny sposób logowania, gdy użytkownik wchodzi na stronę logowania, musi być jednym z włączonych sposobów logowania.",
+    "description": "Tekst wyjaśniający w zakładce Sposób logowania 'Domyślny sposób logowania'"
+  },
+  "message.authProvidersAtLeastOne": {
+    "message": "Musisz pozostawić przynajmniej jeden sposób logowania",
+    "description": "Ostrzeżenie, gdy użytkownik próbuje odznaczyć wszystkie sposoby logowania"
+  },
   "message.originTip": {
     "message": "Domena strony, konfiguracja strony jest powiązana z domeną, domena strony nie może być zmieniana.",
     "description": "Wskazówki dotyczące domeny strony"
@@ -342,6 +398,10 @@
   "message.faviconTip": {
     "message": "Favicon strony, wyświetlany na karcie przeglądarki.",
     "description": "Wskazówki dotyczące faviconu strony"
+  },
+  "message.primaryColorTip": {
+    "message": "Kolor motywu marki witryny, stosowany do przycisków, linków, podświetleń oraz gradientu koloru marki w całej witrynie.",
+    "description": "Podpowiedź dla selektora koloru motywu witryny"
   },
   "message.adminsTip": {
     "message": "ID administratorów strony, domyślnie pierwszym użytkownikiem, który utworzy stronę, będzie administrator. Tylko administratorzy strony mogą zarządzać stroną.",
@@ -439,6 +499,14 @@
     "message": "Włącz lub wyłącz moduł funkcji SERP.",
     "description": "Opis funkcji SERP"
   },
+  "message.featuresFish": {
+    "message": "Włącz lub wyłącz moduł funkcji Dźwięk ryb.",
+    "description": "Opis funkcji Dźwięk ryb"
+  },
+  "message.featuresWebextrator": {
+    "message": "Enable or disable the WebExtrator feature module.",
+    "description": "Description of the WebExtrator feature"
+  },
   "message.featuresLuma": {
     "message": "Włącz lub wyłącz moduł funkcji Luma.",
     "description": "Opis funkcji Luma"
@@ -471,6 +539,10 @@
     "message": "Prześlij",
     "description": "Prześlij"
   },
+  "button.resetPrimaryColor": {
+    "message": "Przywróć domyślny kolor",
+    "description": "Przywraca kolor motywu witryny do domyślnego koloru platformy"
+  },
   "button.enabled": {
     "message": "Włączone",
     "description": "Tekst przełącznika, oznaczający, że jest włączone"
@@ -498,5 +570,29 @@
   "placeholder.admins": {
     "message": "Wprowadź identyfikator użytkownika administratora",
     "description": "Placeholder w polu edycji administratora w ustawieniach witryny"
+  },
+  "message.userNotFound": {
+    "message": "Nie znaleziono użytkownika",
+    "description": "Shown when the user lookup endpoint returns 404 in the picker preview."
+  },
+  "message.editUserHint": {
+    "message": "Wklej UUID użytkownika lub wpisz email, telefon albo nazwę użytkownika, aby go znaleźć.",
+    "description": "Tip below the lookup input in the inviter / admin user picker dialog."
+  },
+  "message.editUsersEmpty": {
+    "message": "Brak administratorów.",
+    "description": "Empty-state text shown when the admins list has no users."
+  },
+  "message.userAlreadyAdded": {
+    "message": "Już dodany",
+    "description": "Disabled-state label on the Add button when the resolved user is already in the admin list."
+  },
+  "title.addUser": {
+    "message": "Dodaj użytkownika",
+    "description": "Divider title in the admins picker, between the existing-admins list and the lookup input."
+  },
+  "button.addUser": {
+    "message": "Dodaj",
+    "description": "Button label to add the resolved user to the admins list."
   }
 }

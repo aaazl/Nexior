@@ -23,6 +23,10 @@
     "message": "Webbplatsens favicon",
     "description": "Visas som titeln i redigeringsrutan"
   },
+  "field.primaryColor": {
+    "message": "Temafärg",
+    "description": "Titeln som visas i redigeringsfältet"
+  },
   "field.qr": {
     "message": "QR-kod",
     "description": "Visas som titeln i redigeringsrutan"
@@ -42,6 +46,34 @@
   "field.distributionForceInviterId": {
     "message": "Tvingad inbjudar-ID",
     "description": "Visas som titeln i redigeringsrutan"
+  },
+  "field.authEnabledProviders": {
+    "message": "Aktiverade inloggningsmetoder",
+    "description": "Titel på fliken för webbplatsinställningar / inloggningsmetod: kryssa för de inloggningsmetoder som användare får använda på inloggningssidan"
+  },
+  "field.authDefaultProvider": {
+    "message": "Standard inloggningsmetod",
+    "description": "Titel på fliken för webbplatsinställningar / inloggningsmetod: den inloggningsmetod som är förvald när inloggningssidan öppnas"
+  },
+  "field.authProvider_email": {
+    "message": "E-post",
+    "description": "Namn på inloggningsmetod: E-post (E-post + lösenord eller verifieringskod)"
+  },
+  "field.authProvider_phone": {
+    "message": "Mobilnummer",
+    "description": "Namn på inloggningsmetod: Mobilnummer (SMS-verifieringskod)"
+  },
+  "field.authProvider_google": {
+    "message": "Google",
+    "description": "Namn på inloggningsmetod: Google tredjepartsinloggning"
+  },
+  "field.authProvider_github": {
+    "message": "GitHub",
+    "description": "Namn på inloggningsmetod: GitHub tredjepartsinloggning"
+  },
+  "field.authProvider_wechat": {
+    "message": "WeChat",
+    "description": "Namn på inloggningsmetod: WeChat tredjepartsinloggning"
   },
   "field.featuresChat": {
     "message": "Chat",
@@ -143,6 +175,14 @@
     "message": "SERP",
     "description": "Visas som titeln i redigeringsrutan"
   },
+  "field.featuresFish": {
+    "message": "Fiskljud",
+    "description": "Titeln som visas i redigeringsrutan"
+  },
+  "field.featuresWebextrator": {
+    "message": "WebExtrator",
+    "description": "Displayed as the title in the editing box"
+  },
   "field.featuresSupport": {
     "message": "Kundsupport",
     "description": "Visas som titeln i redigeringsrutan"
@@ -239,6 +279,10 @@
     "message": "Ange tvingad inbjudar-ID",
     "description": "Visas som titel i redigeringsrutan"
   },
+  "placeholder.authDefaultProvider": {
+    "message": "Välj standard inloggningsmetod",
+    "description": "Placeholder för rullgardinsmenyn för standard inloggningsmetod på fliken för inloggningsmetoder"
+  },
   "message.uploadImageExceed": {
     "message": "Uppladdad bild överskrider gränsen",
     "description": "Meddelande om att uppladdad bild överskrider gränsen"
@@ -323,6 +367,18 @@
     "message": "Tvingad inbjudarens användar-ID. Om detta ID är inställt används det alltid som inbjudare oavsett om distributionslänken innehåller inviter_id-parametern.",
     "description": "Tips om tvingad inbjudar-ID"
   },
+  "message.authEnabledProvidersTip": {
+    "message": "Kryssa för de inloggningsmetoder som får användas på inloggningssidan. Minst en måste vara kvar, annars kan användaren inte logga in.",
+    "description": "Förklarande text för 'Aktiverade inloggningsmetoder' på fliken för inloggningsmetoder"
+  },
+  "message.authDefaultProviderTip": {
+    "message": "Den inloggningsmetod som är förvald när användaren går in på inloggningssidan, måste vara en av de aktiverade inloggningsmetoderna.",
+    "description": "Förklarande text för 'Standard inloggningsmetod' på fliken för inloggningsmetoder"
+  },
+  "message.authProvidersAtLeastOne": {
+    "message": "Minst en inloggningsmetod måste vara kvar",
+    "description": "Varningsmeddelande när användaren försöker avmarkera alla inloggningsmetoder"
+  },
   "message.originTip": {
     "message": "Webbplatsens domän. Webbplatskonfigurationen är kopplad till domänen och kan inte ändras.",
     "description": "Tips om webbplatsens domän"
@@ -342,6 +398,10 @@
   "message.faviconTip": {
     "message": "Webbplatsens favicon, visas i webbläsarens flik.",
     "description": "Tips om webbplatsens favicon"
+  },
+  "message.primaryColorTip": {
+    "message": "Webbplatsens temabrandfärg, som används för knappar, länkar, markeringar och färgövergångar på hela webbplatsen.",
+    "description": "Tips för färgval för webbplatsens tema"
   },
   "message.adminsTip": {
     "message": "Webbplatsens administratörs-ID. Som standard blir den första användaren som skapar webbplatsen administratör. Endast webbplatsadministratörer kan hantera webbplatsen.",
@@ -439,6 +499,14 @@
     "message": "Aktivera eller inaktivera SERP-funktionmodulen.",
     "description": "Beskrivning av SERP-funktionen"
   },
+  "message.featuresFish": {
+    "message": "Aktivera eller inaktivera Fiskljud-funktionaliteten.",
+    "description": "Beskrivning av Fiskljud-funktionen"
+  },
+  "message.featuresWebextrator": {
+    "message": "Enable or disable the WebExtrator feature module.",
+    "description": "Description of the WebExtrator feature"
+  },
   "message.featuresLuma": {
     "message": "Aktivera eller inaktivera Luma-funktionmodulen.",
     "description": "Beskrivning av Luma-funktionen"
@@ -471,6 +539,10 @@
     "message": "Ladda upp",
     "description": "Ladda upp"
   },
+  "button.resetPrimaryColor": {
+    "message": "Återställ standardfärg",
+    "description": "Återställ webbplatsens temafärg till plattformens standardfärg"
+  },
   "button.enabled": {
     "message": "Aktiverad",
     "description": "Text för växeln som indikerar att den är aktiverad"
@@ -498,5 +570,29 @@
   "placeholder.admins": {
     "message": "Ange administratörs användar-ID",
     "description": "Platshållare i redigeringsrutan för administratörer i webbplatsinställningar"
+  },
+  "message.userNotFound": {
+    "message": "Användaren hittades inte",
+    "description": "Shown when the user lookup endpoint returns 404 in the picker preview."
+  },
+  "message.editUserHint": {
+    "message": "Klistra in en användar-UUID, eller skriv en e-post, telefon eller användarnamn för att hitta någon.",
+    "description": "Tip below the lookup input in the inviter / admin user picker dialog."
+  },
+  "message.editUsersEmpty": {
+    "message": "Inga administratörer än.",
+    "description": "Empty-state text shown when the admins list has no users."
+  },
+  "message.userAlreadyAdded": {
+    "message": "Redan tillagd",
+    "description": "Disabled-state label on the Add button when the resolved user is already in the admin list."
+  },
+  "title.addUser": {
+    "message": "Lägg till användare",
+    "description": "Divider title in the admins picker, between the existing-admins list and the lookup input."
+  },
+  "button.addUser": {
+    "message": "Lägg till",
+    "description": "Button label to add the resolved user to the admins list."
   }
 }

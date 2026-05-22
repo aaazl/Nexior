@@ -23,6 +23,10 @@
     "message": "Favicon Ιστοσελίδας",
     "description": "展示在编辑框的标题"
   },
+  "field.primaryColor": {
+    "message": "Χρώμα θέματος",
+    "description": "Ο τίτλος που εμφανίζεται στο πεδίο επεξεργασίας."
+  },
   "field.qr": {
     "message": "QR Code",
     "description": "展示在编辑框的标题"
@@ -42,6 +46,34 @@
   "field.distributionForceInviterId": {
     "message": "ID Υποχρεωτικού Προσκαλέσματος",
     "description": "展示在编辑框的标题"
+  },
+  "field.authEnabledProviders": {
+    "message": "Ενεργοποιημένοι τρόποι σύνδεσης",
+    "description": "Τίτλος της καρτέλας Ρυθμίσεις ιστότοπου / Τρόποι σύνδεσης: Επιλέξτε τους τρόπους σύνδεσης που επιτρέπεται στους χρήστες να χρησιμοποιούν στη σελίδα σύνδεσης."
+  },
+  "field.authDefaultProvider": {
+    "message": "Προεπιλεγμένος τρόπος σύνδεσης",
+    "description": "Τίτλος της καρτέλας Ρυθμίσεις ιστότοπου / Τρόποι σύνδεσης: Ο τρόπος σύνδεσης που είναι προεπιλεγμένος όταν ανοίγει η σελίδα σύνδεσης."
+  },
+  "field.authProvider_email": {
+    "message": "Email",
+    "description": "Όνομα τρόπου σύνδεσης: Email (Email + Κωδικός ή Κωδικός επιβεβαίωσης)"
+  },
+  "field.authProvider_phone": {
+    "message": "Τηλέφωνο",
+    "description": "Όνομα τρόπου σύνδεσης: Τηλέφωνο (Κωδικός επιβεβαίωσης μέσω SMS)"
+  },
+  "field.authProvider_google": {
+    "message": "Google",
+    "description": "Όνομα τρόπου σύνδεσης: Σύνδεση μέσω τρίτου μέρους Google"
+  },
+  "field.authProvider_github": {
+    "message": "GitHub",
+    "description": "Όνομα τρόπου σύνδεσης: Σύνδεση μέσω τρίτου μέρους GitHub"
+  },
+  "field.authProvider_wechat": {
+    "message": "WeChat",
+    "description": "Όνομα τρόπου σύνδεσης: Σύνδεση μέσω τρίτου μέρους WeChat"
   },
   "field.featuresChat": {
     "message": "Chat",
@@ -143,6 +175,14 @@
     "message": "SERP",
     "description": "展示在编辑框的标题"
   },
+  "field.featuresFish": {
+    "message": "Ήχος Ψαριών",
+    "description": "Τίτλος που εμφανίζεται στο πλαίσιο επεξεργασίας"
+  },
+  "field.featuresWebextrator": {
+    "message": "WebExtrator",
+    "description": "Displayed as the title in the editing box"
+  },
   "field.featuresSupport": {
     "message": "Υποστήριξη Πελατών",
     "description": "展示在编辑框的标题"
@@ -239,6 +279,10 @@
     "message": "Εισάγετε το ID του υποχρεωτικού προσκαλούντα",
     "description": "Εμφανίζεται ως τίτλος στο πλαίσιο επεξεργασίας"
   },
+  "placeholder.authDefaultProvider": {
+    "message": "Επιλέξτε προεπιλεγμένο τρόπο σύνδεσης",
+    "description": "Placeholder για το αναπτυσσόμενο μενού του προεπιλεγμένου τρόπου σύνδεσης στην καρτέλα τρόπων σύνδεσης."
+  },
   "message.uploadImageExceed": {
     "message": "Η εικόνα που ανεβάσατε ξεπερνά το όριο",
     "description": "Μήνυμα προειδοποίησης για υπέρβαση ορίου εικόνας"
@@ -323,6 +367,18 @@
     "message": "Το ID του υποχρεωτικού προσκαλούντα. Αν ορίσετε αυτό το ID, θα χρησιμοποιηθεί υποχρεωτικά ως προσκαλών, ανεξάρτητα από το αν ο σύνδεσμος διανομής περιέχει την παράμετρο inviter_id.",
     "description": "Προτροπή για το ID του υποχρεωτικού προσκαλούντα"
   },
+  "message.authEnabledProvidersTip": {
+    "message": "Επιλέξτε τους τρόπους σύνδεσης που επιτρέπεται να χρησιμοποιούνται στη σελίδα σύνδεσης. Τουλάχιστον ένας πρέπει να παραμείνει, αλλιώς οι χρήστες δεν θα μπορούν να συνδεθούν.",
+    "description": "Κείμενο περιγραφής για το 'Ενεργοποιημένοι τρόποι σύνδεσης' στην καρτέλα τρόπων σύνδεσης."
+  },
+  "message.authDefaultProviderTip": {
+    "message": "Ο προεπιλεγμένος τρόπος σύνδεσης που επιλέγεται όταν ο χρήστης εισέρχεται στη σελίδα σύνδεσης, πρέπει να είναι ένας από τους ενεργοποιημένους τρόπους σύνδεσης.",
+    "description": "Κείμενο περιγραφής για το 'Προεπιλεγμένος τρόπος σύνδεσης' στην καρτέλα τρόπων σύνδεσης."
+  },
+  "message.authProvidersAtLeastOne": {
+    "message": "Πρέπει να παραμείνει τουλάχιστον ένας τρόπος σύνδεσης",
+    "description": "Προειδοποιητικό μήνυμα όταν ο χρήστης προσπαθεί να αποεπιλέξει όλους τους τρόπους σύνδεσης."
+  },
   "message.originTip": {
     "message": "Domain του ιστότοπου. Η ρύθμιση του ιστότοπου είναι δεσμευμένη με το domain και δεν μπορεί να αλλάξει.",
     "description": "Προτροπή για το domain του ιστότοπου"
@@ -342,6 +398,10 @@
   "message.faviconTip": {
     "message": "Favicon του ιστότοπου, εμφανίζεται στην καρτέλα του προγράμματος περιήγησης.",
     "description": "Προτροπή για το favicon του ιστότοπου"
+  },
+  "message.primaryColorTip": {
+    "message": "Το χρώμα μάρκας του ιστότοπου, που χρησιμοποιείται για όλα τα κουμπιά, τους συνδέσμους, τις επισημάνσεις και τις κλίμακες χρώματος μάρκας σε όλο τον ιστότοπο.",
+    "description": "Η υπόδειξη για τον επιλογέα χρώματος θέματος του ιστότοπου."
   },
   "message.adminsTip": {
     "message": "ID διαχειριστών του ιστότοπου. Ο πρώτος χρήστης που δημιουργεί τον ιστότοπο γίνεται διαχειριστής. Μόνο οι διαχειριστές μπορούν να διαχειρίζονται τον ιστότοπο.",
@@ -439,6 +499,14 @@
     "message": "Ενεργοποίηση ή απενεργοποίηση της λειτουργίας SERP.",
     "description": "Περιγραφή της λειτουργίας SERP"
   },
+  "message.featuresFish": {
+    "message": "Ενεργοποιήστε ή απενεργοποιήστε τη λειτουργία Ήχου Ψαριών.",
+    "description": "Περιγραφή της λειτουργίας Ήχου Ψαριών"
+  },
+  "message.featuresWebextrator": {
+    "message": "Enable or disable the WebExtrator feature module.",
+    "description": "Description of the WebExtrator feature"
+  },
   "message.featuresLuma": {
     "message": "Ενεργοποίηση ή απενεργοποίηση της λειτουργίας Luma.",
     "description": "Περιγραφή της λειτουργίας Luma"
@@ -471,6 +539,10 @@
     "message": "Ανέβασμα",
     "description": "Ανέβασμα"
   },
+  "button.resetPrimaryColor": {
+    "message": "Επαναφορά προεπιλεγμένου χρώματος",
+    "description": "Επαναφέρει το χρώμα θέματος της ιστοσελίδας στο προεπιλεγμένο χρώμα της πλατφόρμας."
+  },
   "button.enabled": {
     "message": "Ενεργοποιημένο",
     "description": "Κείμενο διακόπτη που δηλώνει ότι είναι ενεργοποιημένο"
@@ -498,5 +570,29 @@
   "placeholder.admins": {
     "message": "Εισάγετε το ID χρήστη διαχειριστή",
     "description": "Placeholder στο πλαίσιο επεξεργασίας διαχειριστή στις ρυθμίσεις του ιστότοπου"
+  },
+  "message.userNotFound": {
+    "message": "Ο χρήστης δεν βρέθηκε",
+    "description": "Shown when the user lookup endpoint returns 404 in the picker preview."
+  },
+  "message.editUserHint": {
+    "message": "Επικολλήστε ένα UUID χρήστη, ή πληκτρολογήστε email, τηλέφωνο ή όνομα χρήστη για αναζήτηση.",
+    "description": "Tip below the lookup input in the inviter / admin user picker dialog."
+  },
+  "message.editUsersEmpty": {
+    "message": "Δεν υπάρχουν ακόμη διαχειριστές.",
+    "description": "Empty-state text shown when the admins list has no users."
+  },
+  "message.userAlreadyAdded": {
+    "message": "Έχει ήδη προστεθεί",
+    "description": "Disabled-state label on the Add button when the resolved user is already in the admin list."
+  },
+  "title.addUser": {
+    "message": "Προσθήκη χρήστη",
+    "description": "Divider title in the admins picker, between the existing-admins list and the lookup input."
+  },
+  "button.addUser": {
+    "message": "Προσθήκη",
+    "description": "Button label to add the resolved user to the admins list."
   }
 }

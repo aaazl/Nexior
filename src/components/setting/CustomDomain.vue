@@ -1,5 +1,6 @@
 <template>
   <div class="custom-domain-settings">
+    <section-notice tone="admin" :text="$t('common.settings.adminOnlyHint')" />
     <div class="header">
       <p class="settings-title">{{ $t('common.settings.customDomain') }}</p>
       <p class="settings-tip">{{ $t('subsite.message.domainsIntro') }}</p>
@@ -76,6 +77,9 @@
               </td>
             </tr>
           </table>
+          <p class="record-name-hint">
+            {{ $t('subsite.message.recordNameHint') }}
+          </p>
         </div>
       </div>
 
@@ -112,6 +116,7 @@ import {
   vLoading
 } from 'element-plus';
 import { siteDomainOperator } from '@/operators';
+import SectionNotice from '@/components/setting/SectionNotice.vue';
 import type { ISite, ISiteDomain } from '@/models';
 
 // Mirror of the backend hostname validator. Keep in sync with
@@ -170,7 +175,8 @@ export default defineComponent({
     ElFormItem,
     ElInput,
     ElTag,
-    ElDivider
+    ElDivider,
+    SectionNotice
   },
   directives: {
     loading: vLoading
@@ -434,6 +440,12 @@ export default defineComponent({
             word-break: break-all;
           }
         }
+      }
+      .record-name-hint {
+        margin: 10px 0 0;
+        font-size: 12px;
+        line-height: 1.55;
+        color: var(--el-text-color-secondary);
       }
     }
   }

@@ -63,6 +63,10 @@
     "message": "Schließen",
     "description": "Text im Button, der verwendet wird, um ein Dialogfeld oder Panel zu schließen"
   },
+  "button.expand": {
+    "message": "Erweitern",
+    "description": "Schaltflächenhinweistext, um den Vollbild-Editor für die Eingabeaufforderung zu öffnen."
+  },
   "button.alert": {
     "message": "Warnung",
     "description": "Text im Button, der verwendet wird, um eine Warnung auszugeben"
@@ -495,6 +499,10 @@
     "message": "Producer",
     "description": "Website-Navigationsleiste, um die Producer-Seite anzuzeigen, bitte dieses Feld nicht übersetzen, muss als 'Producer' beibehalten werden"
   },
+  "nav.fish": {
+    "message": "Fish Audio",
+    "description": "Text in der Navigationsleiste der Website, um die Fish Audio-Seite anzuzeigen. Bitte diesen Text nicht übersetzen, er muss als 'Fish Audio' erhalten bleiben."
+  },
   "nav.kimi": {
     "message": "Kimi",
     "description": "Website-Navigationsleiste, um die Kimi-Seite anzuzeigen, bitte dieses Feld nicht übersetzen, muss als 'Kimi' beibehalten werden"
@@ -502,6 +510,10 @@
   "nav.serp": {
     "message": "SERP",
     "description": "Website-Navigationsleiste, um die SERP-Seite anzuzeigen, bitte dieses Feld nicht übersetzen, muss als 'SERP' beibehalten werden"
+  },
+  "nav.webextrator": {
+    "message": "WebExtrator",
+    "description": "Text in the website navigation bar to display the WebExtrator page, must remain as 'WebExtrator'"
   },
   "nav.image": {
     "message": "Bild",
@@ -707,6 +719,10 @@
     "message": "Funktionseinstellungen",
     "description": "Titel des Abschnitts für Funktionseinstellungen auf der Einstellungsseite"
   },
+  "settings.auth": {
+    "message": "Anmeldemethode",
+    "description": "Titel des Tabs ‚Anmeldemethode‘ in der Einstellungs-Seitenleiste – konfiguriert die erlaubten Anmeldemethoden und die Standard-Anmeldemethode, nur für Site-Administratoren sichtbar."
+  },
   "settings.apiKey": {
     "message": "API-Schlüssel",
     "description": "API-Schlüssel-Label in der Seitenleiste der Einstellungsseite - Verwaltung des API-Schlüssels des benutzereigenen (BYOK) Anbieters"
@@ -811,6 +827,14 @@
     "message": "Meine Subsites",
     "description": "Titel des Tabs zur Verwaltung von Subsites im Einstellungs-Popup. Nur auf der offiziellen Hauptseite sichtbar, Subsites werden nicht angezeigt."
   },
+  "settings.adminOnlyHint": {
+    "message": "Dieser Abschnitt ist nur für Site-Administratoren sichtbar, normale Benutzer haben keinen Zugriff.",
+    "description": "Eine Hinweiszeile, die oben in den Einstellungen der Site / SEO-Einstellungen / Verteilungseinstellungen / Funktionseinstellungen angezeigt wird und nur für Administratoren sichtbar ist."
+  },
+  "settings.officialOnlyHint": {
+    "message": "Dieser Abschnitt ist nur auf der Hauptseite sichtbar, Unterseiten werden nicht angezeigt.",
+    "description": "Eine Hinweiszeile, die oben im Tab 'Meine Unterseiten' angezeigt wird und erklärt, dass dieser Zugang nur auf der offiziellen Hauptseite erscheint."
+  },
   "settings.customDomain": {
     "message": "Eigene Domain",
     "description": "Title for the custom-domain management tab in the settings popup. Visible only on subsites (non-main-official hosts) for site admins."
@@ -874,5 +898,33 @@
   "button.goBack": {
     "message": "Zurück zur vorherigen Seite",
     "description": "Text des Buttons, um zur vorherigen Seite im Verlauf zurückzukehren"
+  },
+  "title.apiCode": {
+    "message": "API code for this request",
+    "description": "Title of the dialog that shows the equivalent API code (curl / Python / Node) that would reproduce a result generated inside the product"
+  },
+  "message.viewCodeHint": {
+    "message": "Show API code for this request",
+    "description": "Tooltip text on the View Code button shown alongside result-card action buttons (U1/U2/Download/Extend/...). Clicking the button opens a dialog with curl / Python / Node snippets that reproduce the same generation via the public API."
+  },
+  "button.viewCode": {
+    "message": "View code",
+    "description": "Button text that opens a dialog with the equivalent API code (curl / Python / Node) for the current result, similar to the OpenAI Playground 'View code' affordance"
+  },
+  "button.getApiKey": {
+    "message": "Get an API key",
+    "description": "Link text in the API code dialog footer that opens the platform console page where users can create an API key"
+  },
+  "button.apiPlatform": {
+    "message": "API Platform",
+    "description": "API code dialog footer button label. Clicking opens https://platform.acedata.cloud/ in a new tab so users can manage their API keys, balance and usage."
+  },
+  "message.apiCodeIntro": {
+    "message": "Run this from your own code to produce the same result. Replace <YOUR_API_KEY> with a key from your platform console.",
+    "description": "Helper text shown above the code tabs in the API code dialog, explaining how to use the snippet"
+  },
+  "message.uploadInProgress": {
+    "message": "Referenz-Uploads sind noch in Bearbeitung – bitte warten Sie einen Moment.",
+    "description": "Toast shown when the user clicks the Generate button while one or more reference uploads are still in flight. Asks them to wait for uploads to complete before retrying."
   }
 }

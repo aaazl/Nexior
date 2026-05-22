@@ -67,6 +67,7 @@ export const CHAT_MODEL_GPT_5_4_MINI: IChatModel = {
   modelGroup: 'chatgpt',
   isFileSupported: true,
   isImageSupported: true,
+  isFree: true,
   getDisplayName: () => i18n.global.t('chat.model.54Mini'),
   getDescription: () => i18n.global.t('chat.model.54MiniDescription')
 };
@@ -251,7 +252,7 @@ export const CHAT_MODEL_GROUP_CHATGPT: IChatModelGroup = {
   name: 'chatgpt',
   getDisplayName: () => i18n.global.t('chat.modelGroup.chatgpt'),
   getDescription: () => i18n.global.t('chat.modelGroup.chatgptDescription'),
-  models: [CHAT_MODEL_GPT_5_5, CHAT_MODEL_GPT_5_4, CHAT_MODEL_GPT_5_4_MINI]
+  models: [CHAT_MODEL_GPT_5_4_MINI, CHAT_MODEL_GPT_5_5, CHAT_MODEL_GPT_5_4]
 };
 
 export const CHAT_MODEL_GROUP_DEEPSEEK: IChatModelGroup = {
@@ -308,9 +309,9 @@ export const CHAT_MODEL_GROUP_GLM: IChatModelGroup = {
 };
 
 export const CHAT_MODELS: IChatModel[] = [
+  CHAT_MODEL_GPT_5_4_MINI,
   CHAT_MODEL_GPT_5_5,
   CHAT_MODEL_GPT_5_4,
-  CHAT_MODEL_GPT_5_4_MINI,
   CHAT_MODEL_DEEPSEEK_CHAT,
   CHAT_MODEL_DEEPSEEK_REASONER,
   CHAT_MODEL_GROK_4,

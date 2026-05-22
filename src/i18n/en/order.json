@@ -79,6 +79,18 @@
     "message": "Please open WeChat on your phone and scan to complete the payment.",
     "description": "Message for WeChat payment help."
   },
+  "message.wechatPayMobileGuide": {
+    "message": "Mobile browsers can't open WeChat Pay directly. Copy the payment link below and open it inside WeChat to continue.",
+    "description": "Guide shown to users on a mobile browser outside WeChat, where H5 WeChat Pay is unavailable."
+  },
+  "button.copyPayLink": {
+    "message": "Copy payment link",
+    "description": "Label for the button that copies the current page URL so the user can paste it inside WeChat."
+  },
+  "message.wechatPayMobileHint": {
+    "message": "After copying, open WeChat, paste the link into any chat or the search bar, and tap it to complete payment.",
+    "description": "Secondary hint shown beneath the copy-link button to guide users through pasting the link inside WeChat."
+  },
   "message.free": {
     "message": "Free",
     "description": "Message for free orders."
@@ -502,5 +514,9 @@
   "title.updateDiscount": {
     "message": "Update Discount",
     "description": "Title of the popup for editing a discount."
+  },
+  "message.wechatPayLongPressTip": {
+    "message": "Long-press the QR code below and tap 'Recognise QR code' to complete payment in WeChat.",
+    "description": "Tip shown above the Native QR on mobile-WeChat. The user long-presses to recognise the `weixin://wxpay/bizpayurl` URL and pays without leaving WeChat."
   }
 }

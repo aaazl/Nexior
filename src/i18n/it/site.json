@@ -23,6 +23,10 @@
     "message": "Favicon del sito",
     "description": "Mostrato nel campo di modifica del titolo"
   },
+  "field.primaryColor": {
+    "message": "Colore del tema",
+    "description": "Titolo mostrato nel campo di modifica"
+  },
   "field.qr": {
     "message": "Codice QR",
     "description": "Mostrato nel campo di modifica del titolo"
@@ -42,6 +46,34 @@
   "field.distributionForceInviterId": {
     "message": "ID invitante obbligatorio",
     "description": "Mostrato nel campo di modifica del titolo"
+  },
+  "field.authEnabledProviders": {
+    "message": "Metodi di accesso abilitati",
+    "description": "Titolo della scheda Impostazioni sito / Metodo di accesso: seleziona i metodi di accesso che gli utenti possono utilizzare nella pagina di accesso"
+  },
+  "field.authDefaultProvider": {
+    "message": "Metodo di accesso predefinito",
+    "description": "Titolo della scheda Impostazioni sito / Metodo di accesso: metodo di accesso predefinito selezionato quando si apre la pagina di accesso"
+  },
+  "field.authProvider_email": {
+    "message": "Email",
+    "description": "Nome del metodo di accesso: Email (Email + Password o Codice di verifica)"
+  },
+  "field.authProvider_phone": {
+    "message": "Numero di telefono",
+    "description": "Nome del metodo di accesso: Numero di telefono (Codice di verifica SMS)"
+  },
+  "field.authProvider_google": {
+    "message": "Google",
+    "description": "Nome del metodo di accesso: accesso di terze parti tramite Google"
+  },
+  "field.authProvider_github": {
+    "message": "GitHub",
+    "description": "Nome del metodo di accesso: accesso di terze parti tramite GitHub"
+  },
+  "field.authProvider_wechat": {
+    "message": "WeChat",
+    "description": "Nome del metodo di accesso: accesso di terze parti tramite WeChat"
   },
   "field.featuresChat": {
     "message": "Chat",
@@ -143,6 +175,14 @@
     "message": "SERP",
     "description": "Mostrato nel campo di modifica del titolo"
   },
+  "field.featuresFish": {
+    "message": "Fish Audio",
+    "description": "Titolo mostrato nella casella di modifica"
+  },
+  "field.featuresWebextrator": {
+    "message": "WebExtrator",
+    "description": "Displayed as the title in the editing box"
+  },
   "field.featuresSupport": {
     "message": "Supporto clienti",
     "description": "Mostrato nel campo di modifica del titolo"
@@ -239,6 +279,10 @@
     "message": "Inserisci l'ID dell'invitante obbligatorio",
     "description": "Mostrato come titolo nella casella di modifica"
   },
+  "placeholder.authDefaultProvider": {
+    "message": "Seleziona il metodo di accesso predefinito",
+    "description": "Placeholder per il menu a discesa del metodo di accesso predefinito nella scheda Metodo di accesso"
+  },
   "message.uploadImageExceed": {
     "message": "Immagine caricata oltre il limite",
     "description": "Messaggio di avviso quando l'immagine caricata supera il limite"
@@ -323,6 +367,18 @@
     "message": "ID utente dell'invitante obbligatorio. Se questo ID è impostato, verrà utilizzato come invitante indipendentemente dal fatto che il link di distribuzione includa o meno il parametro inviter_id.",
     "description": "Messaggio di avviso per l'ID dell'invitante obbligatorio"
   },
+  "message.authEnabledProvidersTip": {
+    "message": "Seleziona i metodi di accesso consentiti nella pagina di accesso del sito. È necessario mantenere almeno uno, altrimenti gli utenti non potranno accedere.",
+    "description": "Testo descrittivo per 'Metodi di accesso abilitati' nella scheda Metodo di accesso"
+  },
+  "message.authDefaultProviderTip": {
+    "message": "Il metodo di accesso predefinito selezionato quando l'utente entra nella pagina di accesso deve essere uno dei metodi di accesso abilitati.",
+    "description": "Testo descrittivo per 'Metodo di accesso predefinito' nella scheda Metodo di accesso"
+  },
+  "message.authProvidersAtLeastOne": {
+    "message": "È necessario mantenere almeno un metodo di accesso",
+    "description": "Avviso quando l'utente tenta di deselezionare tutti i metodi di accesso"
+  },
   "message.originTip": {
     "message": "Dominio del sito. La configurazione del sito è legata al dominio e non può essere modificata.",
     "description": "Messaggio di avviso per il dominio del sito"
@@ -342,6 +398,10 @@
   "message.faviconTip": {
     "message": "Favicon del sito, mostrato nella scheda del browser.",
     "description": "Messaggio di avviso per il favicon del sito"
+  },
+  "message.primaryColorTip": {
+    "message": "Colore del marchio del tema del sito, utilizzato per i pulsanti, i link, gli evidenziamenti e le sfumature del colore del marchio in tutto il sito.",
+    "description": "Suggerimento per il selettore del colore del tema del sito"
   },
   "message.adminsTip": {
     "message": "ID degli amministratori del sito. Di default, l'utente che crea il sito diventa amministratore. Solo gli amministratori possono gestire il sito.",
@@ -439,6 +499,14 @@
     "message": "Attiva o disattiva il modulo funzionale SERP.",
     "description": "Descrizione della funzionalità SERP"
   },
+  "message.featuresFish": {
+    "message": "Attiva o disattiva il modulo Fish Audio.",
+    "description": "Descrizione della funzionalità Fish Audio"
+  },
+  "message.featuresWebextrator": {
+    "message": "Enable or disable the WebExtrator feature module.",
+    "description": "Description of the WebExtrator feature"
+  },
   "message.featuresLuma": {
     "message": "Attiva o disattiva il modulo funzionale Luma.",
     "description": "Descrizione della funzionalità Luma"
@@ -471,6 +539,10 @@
     "message": "Carica",
     "description": "Carica"
   },
+  "button.resetPrimaryColor": {
+    "message": "Ripristina predefinito",
+    "description": "Ripristina il colore del tema del sito al colore predefinito della piattaforma"
+  },
   "button.enabled": {
     "message": "Abilitato",
     "description": "Testo dell'interruttore che indica che è stato abilitato"
@@ -498,5 +570,29 @@
   "placeholder.admins": {
     "message": "Inserisci l'ID utente amministratore",
     "description": "Segnaposto nella casella di modifica degli amministratori nelle impostazioni del sito"
+  },
+  "message.userNotFound": {
+    "message": "Utente non trovato",
+    "description": "Shown when the user lookup endpoint returns 404 in the picker preview."
+  },
+  "message.editUserHint": {
+    "message": "Incolla un UUID utente o digita un’email, un telefono o un nome utente per cercarlo.",
+    "description": "Tip below the lookup input in the inviter / admin user picker dialog."
+  },
+  "message.editUsersEmpty": {
+    "message": "Nessun amministratore ancora.",
+    "description": "Empty-state text shown when the admins list has no users."
+  },
+  "message.userAlreadyAdded": {
+    "message": "Già aggiunto",
+    "description": "Disabled-state label on the Add button when the resolved user is already in the admin list."
+  },
+  "title.addUser": {
+    "message": "Aggiungi utente",
+    "description": "Divider title in the admins picker, between the existing-admins list and the lookup input."
+  },
+  "button.addUser": {
+    "message": "Aggiungi",
+    "description": "Button label to add the resolved user to the admins list."
   }
 }

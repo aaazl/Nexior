@@ -588,10 +588,11 @@ export default defineComponent({
       if (this.payWay === PayWay.X402) {
         this.x402Session = undefined;
       }
+      // PayBackend always issues a Native QR for WeChat Pay (our merchant
+      // has no JSAPI/H5 enabled), so the surface field is omitted here.
+      const payload: Record<string, unknown> = { pay_way: this.payWay };
       orderOperator
-        .pay(this.id, {
-          pay_way: this.payWay
-        })
+        .pay(this.id, payload as unknown as IOrder)
         .then(({ data: data }: { data: IOrderDetailResponse }) => {
           this.prepaying = false;
           if (data?.id) {

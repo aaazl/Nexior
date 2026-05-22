@@ -21,6 +21,7 @@ import { ERROR_CODE_USED_UP, getWebhookCallbackUrl } from '@/constants';
 import RecentPanel from '@/components/luma/RecentPanel.vue';
 import { ILumaTask } from '@/models';
 import { loadPreviousPage } from '@/utils/pagination';
+import { uploadTrackerProviderMixin, ensureNoPendingUpload } from '@/utils';
 
 const CALLBACK_URL = getWebhookCallbackUrl('luma');
 
@@ -38,6 +39,7 @@ export default defineComponent({
     Layout,
     RecentPanel
   },
+  mixins: [uploadTrackerProviderMixin],
   inject: ['initialized'],
   emits: ['extend'],
   data(): IData {
@@ -153,10 +155,24 @@ export default defineComponent({
       }
     },
     async onGenerate() {
+      if (
+        !ensureNoPendingUpload(
+          this.uploadTracker,
+          (k) => this.$t(k) as string,
+          (m) => ElMessage.warning(m)
+        )
+      ) {
+        return;
+      }
       const request = {
         ...this.config,
         callback_url: CALLBACK_URL
       } as ILumaGenerateRequest;
+      if (!this.hasText(request.prompt)) {
+        ElMessage.error(this.$t('luma.message.promptRequired'));
+        return;
+      }
+      request.prompt = request.prompt?.trim();
       const token = this.credential?.token;
       if (!token) {
         console.error('no token specified');
@@ -185,6 +201,9 @@ export default defineComponent({
     getTasksScrollElement(): HTMLElement | undefined {
       const panel = this.$refs.recentPanel as any;
       return panel?.getScrollElement?.();
+    },
+    hasText(value: unknown): value is string {
+      return typeof value === 'string' && value.trim().length > 0;
     }
   }
 });

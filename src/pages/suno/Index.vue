@@ -25,6 +25,7 @@ import ConfigPanel from '@/components/suno/ConfigPanel.vue';
 import RecentPanel from '@/components/suno/RecentPanel.vue';
 import PreviewPanel from '@/components/suno/PreviewPanel.vue';
 import { loadPreviousPage } from '@/utils/pagination';
+import { uploadTrackerProviderMixin, ensureNoPendingUpload } from '@/utils';
 
 const CALLBACK_URL = getWebhookCallbackUrl('suno');
 
@@ -43,6 +44,7 @@ export default defineComponent({
     RecentPanel,
     PreviewPanel
   },
+  mixins: [uploadTrackerProviderMixin],
   inject: ['initialized'],
   data(): IData {
     return {
@@ -184,10 +186,26 @@ export default defineComponent({
       }
     },
     async onGenerateAudio() {
+      if (
+        !ensureNoPendingUpload(
+          this.uploadTracker,
+          (k) => this.$t(k) as string,
+          (m) => ElMessage.warning(m)
+        )
+      ) {
+        return;
+      }
       const request = {
         ...this.config,
         callback_url: CALLBACK_URL
       } as ISunoAudioRequest;
+      if (!this.hasSunoInput(request)) {
+        ElMessage.error(this.$t('suno.message.promptRequired'));
+        return;
+      }
+      if (this.hasText(request.prompt)) {
+        request.prompt = request.prompt.trim();
+      }
       const token = this.credential?.token;
       if (!token) {
         console.error('no token specified');
@@ -211,6 +229,17 @@ export default defineComponent({
     getTasksScrollElement(): HTMLElement | undefined {
       const panel = this.$refs.recentPanel as any;
       return panel?.getScrollElement?.();
+    },
+    hasText(value: unknown): value is string {
+      return typeof value === 'string' && value.trim().length > 0;
+    },
+    hasSunoInput(request: ISunoAudioRequest): boolean {
+      const textFields = [request.prompt, request.lyric, request.lyric_prompt, request.style, request.title];
+      return (
+        textFields.some((value) => this.hasText(value)) ||
+        this.hasText(request.audio_id) ||
+        (Array.isArray(request.mashup_audio_ids) && request.mashup_audio_ids.length > 0)
+      );
     }
   }
 });

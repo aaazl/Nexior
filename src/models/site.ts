@@ -24,6 +24,8 @@ export interface ISiteFeatures {
   producer?: any;
   kimi?: any;
   serp?: any;
+  fish?: any;
+  webextrator?: any;
   support?: any;
   subsite?: ISiteSubsiteFeature;
 }
@@ -39,7 +41,36 @@ export interface ISiteDistribution {
   force_inviter_id?: string;
 }
 
-export interface ISiteAuth {}
+// Per-provider auth toggle on a Site. Today the only structural key is
+// ``enabled``; kept open-ended so future provider-specific config
+// (``client_id``, ``scopes``, ``required_user_fields``, ...) can be
+// added without breaking the wire format. Backend stores this as a
+// JSONField (see ``PlatformBackend/app/models/site.py``).
+export interface ISiteAuthProvider {
+  enabled?: boolean;
+  [key: string]: unknown;
+}
+
+// Site-level authentication configuration. ``default_provider`` is the
+// provider key (``"email"`` / ``"google"`` / ...) the login page should
+// pre-select. ``providers`` is a sparse map keyed by provider ID — only
+// entries with ``enabled: true`` are shown on the login screen. The
+// platform defaults live in
+// ``PlatformBackend/app/utils/site_defaults.py::DEFAULT_AUTH_PROVIDERS``
+// (currently ``email`` enabled + ``google`` disabled).
+export interface ISiteAuth {
+  default_provider?: string;
+  providers?: Record<string, ISiteAuthProvider>;
+}
+
+export interface ISiteTheme {
+  // Hex colour like ``#277186`` (or shorthand ``#abc``). Drives the
+  // Element Plus ``--el-color-primary`` CSS variable at runtime via
+  // ``src/utils/initializer.ts``. Backend validator lives in
+  // PlatformBackend ``app/utils/site_theme.py`` and rejects unknown
+  // keys, so the shape here intentionally stays narrow.
+  primary_color?: string;
+}
 
 export interface ISite {
   id?: string;
@@ -52,9 +83,11 @@ export interface ISite {
   description?: string;
   features?: ISiteFeatures;
   distribution?: ISiteDistribution;
+  auth?: ISiteAuth;
   created_at?: string;
   updated_at?: string;
   metadata?: any;
+  theme?: ISiteTheme | null;
   tags?: string[];
 }
 

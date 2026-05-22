@@ -63,6 +63,10 @@
     "message": "Close",
     "description": "Text in button for closing a dialog or panel"
   },
+  "button.expand": {
+    "message": "Expand",
+    "description": "Tooltip text for the button that opens a fullscreen editor for a prompt textarea"
+  },
   "button.alert": {
     "message": "Alert",
     "description": "Text in button for issuing an alert"
@@ -495,6 +499,10 @@
     "message": "Producer",
     "description": "Text in the website navigation bar to display the Producer page, must remain as 'Producer'"
   },
+  "nav.fish": {
+    "message": "Fish Audio",
+    "description": "Text in the website navigation bar to display the Fish Audio page, must remain as 'Fish Audio'"
+  },
   "nav.kimi": {
     "message": "Kimi",
     "description": "Text in the website navigation bar to display the Kimi page, must remain as 'Kimi'"
@@ -502,6 +510,10 @@
   "nav.serp": {
     "message": "SERP",
     "description": "Text in the website navigation bar to display the SERP page, must remain as 'SERP'"
+  },
+  "nav.webextrator": {
+    "message": "WebExtrator",
+    "description": "Text in the website navigation bar to display the WebExtrator page, must remain as 'WebExtrator'"
   },
   "nav.image": {
     "message": "Image",
@@ -707,6 +719,10 @@
     "message": "Function Settings",
     "description": "Title for the function settings section in the settings page"
   },
+  "settings.auth": {
+    "message": "Login Methods",
+    "description": "Title for the 'Login Methods' tab in the settings sidebar — configure which authentication providers this site offers and which one is pre-selected by default. Admin-only."
+  },
   "settings.apiKey": {
     "message": "API Key",
     "description": "API Key label in the settings page sidebar - management of user-provided (BYOK) upstream service provider API Keys"
@@ -811,6 +827,14 @@
     "message": "My Subsites",
     "description": "Title for the subsites management tab in the settings popup. Visible only on the official main site; subsites are not displayed."
   },
+  "settings.adminOnlyHint": {
+    "message": "Only site administrators can see this section. Regular users do not have access.",
+    "description": "Hint shown at the top of admin-only settings tabs (Site / SEO / Distribution / Function)."
+  },
+  "settings.officialOnlyHint": {
+    "message": "Only the official main site can see this section. Subsites do not show this entry.",
+    "description": "Hint shown at the top of the My Subsites tab, explaining the entry only appears on the official main site."
+  },
   "settings.customDomain": {
     "message": "Custom Domain",
     "description": "Title for the custom-domain management tab in the settings popup. Visible only on subsites (non-main-official hosts) for site admins."
@@ -874,5 +898,33 @@
   "button.goBack": {
     "message": "Go Back",
     "description": "Button text for returning to the previous page in browsing history"
+  },
+  "title.apiCode": {
+    "message": "API code for this request",
+    "description": "Title of the dialog that shows the equivalent API code (curl / Python / Node) that would reproduce a result generated inside the product"
+  },
+  "message.viewCodeHint": {
+    "message": "Show API code for this request",
+    "description": "Tooltip text on the View Code button shown alongside result-card action buttons (U1/U2/Download/Extend/...). Clicking the button opens a dialog with curl / Python / Node snippets that reproduce the same generation via the public API."
+  },
+  "button.viewCode": {
+    "message": "View code",
+    "description": "Button text that opens a dialog with the equivalent API code (curl / Python / Node) for the current result, similar to the OpenAI Playground 'View code' affordance"
+  },
+  "button.getApiKey": {
+    "message": "Get an API key",
+    "description": "Link text in the API code dialog footer that opens the platform console page where users can create an API key"
+  },
+  "button.apiPlatform": {
+    "message": "API Platform",
+    "description": "API code dialog footer button label. Clicking opens https://platform.acedata.cloud/ in a new tab so users can manage their API keys, balance and usage."
+  },
+  "message.apiCodeIntro": {
+    "message": "Run this from your own code to produce the same result.",
+    "description": "API code dialog: short hint shown above the language tabs. Explains that the snippet below reproduces the current result when run from the user's own code."
+  },
+  "message.uploadInProgress": {
+    "message": "Reference uploads are still in progress — please wait a moment.",
+    "description": "Toast warning shown when the user clicks the Generate button while reference image / video / audio uploads are still in flight. Tells them to wait for the upload to finish before re-clicking Generate."
   }
 }

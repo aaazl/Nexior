@@ -103,6 +103,10 @@
     "message": "更快更轻量的 GPT 5.4 模型",
     "description": "GPT 5.4 Mini 模型的描述"
   },
+  "model.freeTag": {
+    "message": "免费",
+    "description": "模型选择器中免费模型旁的角标文案"
+  },
   "model.deepseekChat": {
     "message": "3.0",
     "description": "服务的模型名称，即 DeepSeek 聊天"
@@ -398,22 +402,6 @@
   "group.earlier": {
     "message": "更早",
     "description": "网页中的分组名称，即 更早"
-  },
-  "connector.authFailed": {
-    "message": "授权失败，请重试。",
-    "description": "授权失败消息"
-  },
-  "connector.processing": {
-    "message": "正在处理授权...",
-    "description": "OAuth 回调处理消息"
-  },
-  "connector.authSuccess": {
-    "message": "授权成功！",
-    "description": "OAuth 回调成功消息"
-  },
-  "connector.closeWindow": {
-    "message": "此窗口将自动关闭。",
-    "description": "OAuth 回调关闭提示"
   },
   "connections.tooltip": {
     "message": "连接管理",

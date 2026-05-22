@@ -1,5 +1,6 @@
 <template>
   <div class="settings-list">
+    <section-notice tone="admin" :text="$t('common.settings.adminOnlyHint')" />
     <section class="settings-item">
       <div class="settings-label">
         <p class="settings-title">{{ $t('site.field.origin') }}</p>
@@ -72,18 +73,39 @@
 
     <section class="settings-item">
       <div class="settings-label">
+        <p class="settings-title">{{ $t('site.field.primaryColor') }}</p>
+        <p class="settings-tip">
+          {{ $t('site.message.primaryColorTip') }}
+        </p>
+      </div>
+      <div class="settings-content primary-color-content">
+        <el-color-picker
+          :model-value="currentPrimaryColor"
+          color-format="hex"
+          :predefine="primaryColorPresets"
+          @change="onPrimaryColorPicked"
+        />
+        <span class="settings-value primary-color-value">{{ currentPrimaryColor }}</span>
+        <el-button v-if="hasCustomPrimaryColor" link type="primary" @click="onPrimaryColorReset">
+          {{ $t('site.button.resetPrimaryColor') }}
+        </el-button>
+      </div>
+    </section>
+
+    <section class="settings-item">
+      <div class="settings-label">
         <p class="settings-title">{{ $t('site.field.admins') }}</p>
         <p class="settings-tip">
           {{ $t('site.message.adminsTip') }}
         </p>
       </div>
       <div class="settings-content">
-        <span class="settings-value">{{ site.admins?.join(', ') }}</span>
-        <edit-array
+        <div class="admins-list">
+          <user-chip v-for="adminId in site.admins || []" :key="adminId" :user-id="adminId" class="admins-chip" />
+        </div>
+        <edit-users
           :model-value="site?.admins || []"
           :title="$t('site.title.editAdmins')"
-          :placeholder="$t('site.placeholder.admins')"
-          :tip="$t('site.message.adminsTip2')"
           :min="1"
           :min-error-message="$t('site.message.atLeastOneAdmin')"
           @confirm="onSave({ admins: $event })"
@@ -95,23 +117,60 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { ElImage } from 'element-plus';
+import { ElButton, ElColorPicker, ElImage } from 'element-plus';
 import EditText from '@/components/site/EditText.vue';
 import EditImage from '@/components/site/EditImage.vue';
-import EditArray from '@/components/site/EditArray.vue';
+import EditUsers from '@/components/site/EditUsers.vue';
+import UserChip from '@/components/site/UserChip.vue';
+import SectionNotice from '@/components/setting/SectionNotice.vue';
 import { siteOperator } from '@/operators';
+import { DEFAULT_PRIMARY_COLOR, applyAccentColor } from '@/utils/theme';
+
+// A small curated palette to make picking a "good" colour easy. The picker
+// still accepts any hex via its colour wheel; these are just shortcuts.
+const PRIMARY_COLOR_PRESETS = [
+  '#277186', // Ace Data Cloud teal (default)
+  '#0ea5e9', // sky blue
+  '#2563eb', // brand blue
+  '#7c3aed', // violet
+  '#db2777', // pink
+  '#dc2626', // red
+  '#ea580c', // orange
+  '#16a34a', // emerald
+  '#0d9488', // teal
+  '#475569' // slate
+];
 
 export default defineComponent({
   name: 'SiteSetting',
   components: {
     EditText,
     EditImage,
-    EditArray,
-    ElImage
+    EditUsers,
+    UserChip,
+    ElButton,
+    ElColorPicker,
+    ElImage,
+    SectionNotice
+  },
+  data() {
+    return {
+      primaryColorPresets: PRIMARY_COLOR_PRESETS
+    };
   },
   computed: {
     site() {
       return this.$store.getters.site || {};
+    },
+    storedPrimaryColor(): string | undefined {
+      return this.site?.theme?.primary_color;
+    },
+    currentPrimaryColor(): string {
+      return this.storedPrimaryColor || DEFAULT_PRIMARY_COLOR;
+    },
+    hasCustomPrimaryColor(): boolean {
+      const c = this.storedPrimaryColor;
+      return !!c && c.toLowerCase() !== DEFAULT_PRIMARY_COLOR.toLowerCase();
     }
   },
   methods: {
@@ -124,6 +183,32 @@ export default defineComponent({
         console.debug('getSite for id', this.site?.id);
         this.$store.dispatch('getSite');
       });
+    },
+    onPrimaryColorPicked(value: string | null) {
+      // `el-color-picker` emits `null` if the user clears the swatch and
+      // a `#xxxxxx` hex otherwise. Either way we route through the same
+      // theme merge as the explicit Reset button.
+      const next = value || undefined;
+      this.persistPrimaryColor(next);
+    },
+    onPrimaryColorReset() {
+      this.persistPrimaryColor(undefined);
+    },
+    persistPrimaryColor(hex: string | undefined) {
+      // Apply optimistically for a live preview; the server save happens
+      // through the same `siteOperator.update` path as every other field
+      // on this page so any 4xx will be surfaced the same way.
+      applyAccentColor(hex || null);
+      const nextTheme: { primary_color?: string } = {
+        ...(this.site?.theme || {}),
+        primary_color: hex
+      };
+      // Drop the key entirely when reverting to default so we don't pile
+      // up `{ primary_color: undefined }` entries in `Site.theme` (the
+      // backend validator also rejects unknown keys, so keeping the
+      // shape clean is important).
+      if (!hex) delete nextTheme.primary_color;
+      this.onSave({ theme: nextTheme });
     }
   }
 });
@@ -138,5 +223,37 @@ export default defineComponent({
 
 .favicon {
   max-width: 64px;
+}
+
+.admins-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  max-width: 100%;
+}
+
+.admins-chip {
+  max-width: 100%;
+}
+
+.primary-color-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+
+  .primary-color-value {
+    font-family: var(--el-font-family-monospace, 'SFMono-Regular', Menlo, Consolas, monospace);
+    font-size: 13px;
+    color: var(--el-text-color-regular);
+    text-transform: uppercase;
+  }
+}
+
+@media (max-width: 640px) {
+  .admins-list {
+    align-items: flex-start;
+  }
 }
 </style>

@@ -35,6 +35,7 @@ import {
   getWebhookCallbackUrl
 } from '@/constants';
 import { loadPreviousPage } from '@/utils/pagination';
+import { uploadTrackerProviderMixin, ensureNoPendingUpload } from '@/utils';
 
 interface IData {
   operating: boolean;
@@ -52,6 +53,7 @@ export default defineComponent({
     TaskList,
     Layout
   },
+  mixins: [uploadTrackerProviderMixin],
   inject: ['initialized'],
   data(): IData {
     return {
@@ -323,6 +325,15 @@ export default defineComponent({
       this.onStartImagineTask(request);
     },
     async onGenerate() {
+      if (
+        !ensureNoPendingUpload(
+          this.uploadTracker,
+          (k) => this.$t(k) as string,
+          (m) => ElMessage.warning(m)
+        )
+      ) {
+        return;
+      }
       console.debug('onGenerate', this.config);
       if (this.config?.type === 'videos') {
         const request = {
@@ -338,7 +349,7 @@ export default defineComponent({
         };
         await this.onStartVideosTask(request);
       } else if (this.config?.type === 'imagine') {
-        const isV8 = this.config?.version === '8';
+        const isV8 = this.config?.version === '8' || this.config?.version === '8.1';
         const hasSref = !!(this.finalPrompt && this.finalPrompt.includes('--sref'));
         const hasMoodboard = !!(isV8 && this.config?.references && this.config.references.length > 0);
         const request = {

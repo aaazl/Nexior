@@ -103,6 +103,10 @@
     "message": "Brži i lakši GPT 5.4 model",
     "description": "Opis GPT 5.4 Mini modela"
   },
+  "model.freeTag": {
+    "message": "Бесплатно",
+    "description": "Ознака приказана поред бесплатних модела у бирачу модела"
+  },
   "model.deepseekChat": {
     "message": "3.0",
     "description": "Naziv modela usluge, tj. DeepSeek chat"
@@ -398,22 +402,6 @@
   "group.earlier": {
     "message": "Ranije",
     "description": "Naziv grupe na vebu, tj. ranije."
-  },
-  "connector.authFailed": {
-    "message": "Autentifikacija nije uspela, pokušajte ponovo.",
-    "description": "Poruka o neuspešnoj autentifikaciji."
-  },
-  "connector.processing": {
-    "message": "Obrada autentifikacije...",
-    "description": "Poruka o obradi OAuth povratnog poziva."
-  },
-  "connector.authSuccess": {
-    "message": "Autentifikacija uspešna!",
-    "description": "Poruka o uspešnoj OAuth povratnoj informaciji."
-  },
-  "connector.closeWindow": {
-    "message": "Ovaj prozor će se automatski zatvoriti.",
-    "description": "Poruka o zatvaranju OAuth povratnog poziva."
   },
   "connections.tooltip": {
     "message": "Upravljanje vezama",

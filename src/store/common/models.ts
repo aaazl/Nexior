@@ -19,6 +19,8 @@ import { ISeedreamState } from '../seedream/models';
 import { ISeedanceState } from '../seedance/models';
 import { ISerpState } from '../serp/models';
 import { IWanState } from '../wan/models';
+import { IFishState } from '../fish/models';
+import { IWebextratorState } from '../webextrator/models';
 
 export interface ISetting {}
 
@@ -68,6 +70,8 @@ export interface IAppState {
   seedance: ISeedanceState;
   serp: ISerpState;
   wan: IWanState;
+  fish: IFishState;
+  webextrator: IWebextratorState;
 }
 
 export interface IRootState extends ICommonState, IAppState {}

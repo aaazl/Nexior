@@ -103,6 +103,10 @@
     "message": "Modèle GPT 5.4 plus rapide et plus léger",
     "description": "Description du modèle GPT 5.4 Mini"
   },
+  "model.freeTag": {
+    "message": "Gratuit",
+    "description": "Badge affiché à côté des modèles gratuits dans le sélecteur de modèles"
+  },
   "model.deepseekChat": {
     "message": "3.0",
     "description": "Nom du modèle du service, c'est-à-dire DeepSeek Chat"
@@ -398,22 +402,6 @@
   "group.earlier": {
     "message": "Plus tôt",
     "description": "Nom du groupe sur la page web, c'est-à-dire Plus tôt"
-  },
-  "connector.authFailed": {
-    "message": "Échec de l'autorisation, veuillez réessayer.",
-    "description": "Message d'échec de l'autorisation"
-  },
-  "connector.processing": {
-    "message": "Traitement de l'autorisation en cours...",
-    "description": "Message de traitement de rappel OAuth"
-  },
-  "connector.authSuccess": {
-    "message": "Autorisation réussie !",
-    "description": "Message de succès de rappel OAuth"
-  },
-  "connector.closeWindow": {
-    "message": "Cette fenêtre se fermera automatiquement.",
-    "description": "Alerte de fermeture de rappel OAuth"
   },
   "connections.tooltip": {
     "message": "Gestion des connexions",

@@ -79,6 +79,18 @@
     "message": "휴대폰에서 WeChat을 열고 결제를 완료하세요.",
     "description": "WeChat 결제 도움말에 대한 메시지입니다."
   },
+  "message.wechatPayMobileGuide": {
+    "message": "Mobile browsers can't open WeChat Pay directly. Copy the payment link below and open it inside WeChat to continue.",
+    "description": "Guide shown to users on a mobile browser outside WeChat, where H5 WeChat Pay is unavailable."
+  },
+  "button.copyPayLink": {
+    "message": "Copy payment link",
+    "description": "Label for the button that copies the current page URL so the user can paste it inside WeChat."
+  },
+  "message.wechatPayMobileHint": {
+    "message": "After copying, open WeChat, paste the link into any chat or the search bar, and tap it to complete payment.",
+    "description": "Secondary hint shown beneath the copy-link button to guide users through pasting the link inside WeChat."
+  },
   "message.free": {
     "message": "무료",
     "description": "무료 주문에 대한 메시지입니다."
@@ -502,5 +514,9 @@
   "title.updateDiscount": {
     "message": "할인 업데이트",
     "description": "할인 수정 팝업 제목."
+  },
+  "message.wechatPayLongPressTip": {
+    "message": "아래 QR 코드를 길게 눌러 'QR 코드 인식'을 선택해 WeChat에서 결제를 완료하세요.",
+    "description": "Tip shown above the Native QR on mobile-WeChat. The user long-presses to recognise the `weixin://wxpay/bizpayurl` URL and pays without leaving WeChat."
   }
 }

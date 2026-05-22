@@ -63,6 +63,10 @@
     "message": "关闭",
     "description": "按钮中的文本，用于关闭对话框或面板"
   },
+  "button.expand": {
+    "message": "展开",
+    "description": "按钮提示文本，用于打开提示词输入框的全屏编辑器"
+  },
   "button.alert": {
     "message": "警告",
     "description": "按钮中的文本，用于发出警报"
@@ -495,6 +499,10 @@
     "message": "Producer",
     "description": "网站导航栏中的文本，用于显示Producer页面，请不要翻译此字段，必须保持为'Producer'"
   },
+  "nav.fish": {
+    "message": "Fish Audio",
+    "description": "网站导航栏中的文本，用于显示Fish Audio页面，请不要翻译此字段，必须保持为'Fish Audio'"
+  },
   "nav.kimi": {
     "message": "Kimi",
     "description": "网站导航栏中的文本，用于显示Kimi页面，请不要翻译此字段，必须保持为'Kimi'"
@@ -502,6 +510,10 @@
   "nav.serp": {
     "message": "SERP",
     "description": "网站导航栏中的文本，用于显示SERP页面，请不要翻译此字段，必须保持为'SERP'"
+  },
+  "nav.webextrator": {
+    "message": "WebExtrator",
+    "description": "网站导航栏中的文本，用于显示WebExtrator页面，请不要翻译此字段，必须保持为'WebExtrator'"
   },
   "nav.image": {
     "message": "图片",
@@ -707,6 +719,10 @@
     "message": "功能设置",
     "description": "设置页面中的功能设置部分的标题"
   },
+  "settings.auth": {
+    "message": "登录方式",
+    "description": "设置页面侧边栏的『登录方式』tab 标题——配置本站允许使用的登录方式及默认登录方式，仅站点管理员可见"
+  },
   "settings.apiKey": {
     "message": "API Key",
     "description": "设置页面侧边栏的 API Key 标签——用户自带（BYOK）的上游服务商 API Key 管理"
@@ -811,6 +827,14 @@
     "message": "我的分站",
     "description": "设置弹窗中分站管理 tab 的标题。仅在 official 主站可见，分站不显示。"
   },
+  "settings.adminOnlyHint": {
+    "message": "此栏目仅站点管理员可见，普通用户无法访问。",
+    "description": "在站点设置 / SEO 设置 / 分发设置 / 功能设置 等仅管理员可见的设置 tab 顶部展示的提示语。"
+  },
+  "settings.officialOnlyHint": {
+    "message": "此栏目仅主站可见，分站不会显示。",
+    "description": "在『我的分站』tab 顶部展示的提示语，说明该入口只在 official 主站出现。"
+  },
   "settings.customDomain": {
     "message": "自定义域名",
     "description": "Title for the custom-domain management tab in the settings popup. Visible only on subsites (non-main-official hosts) for site admins."
@@ -874,5 +898,33 @@
   "button.goBack": {
     "message": "返回上一页",
     "description": "按钮文本，用于返回浏览历史的上一页"
+  },
+  "title.apiCode": {
+    "message": "本次请求对应的 API 代码",
+    "description": "对话框标题：展示当前结果对应的 curl / Python / Node API 调用代码"
+  },
+  "message.viewCodeHint": {
+    "message": "查看本次请求对应的 API 代码",
+    "description": "结果卡片操作按钮（U1/U2/下载/扩展…）旁边的 View Code 按钮的悬浮提示。点击按钮会弹出对话框，展示 curl / Python / Node 三种语言下与当前结果等价的 API 调用代码。"
+  },
+  "button.viewCode": {
+    "message": "查看代码",
+    "description": "按钮文本：打开对话框，展示当前结果对应的 curl / Python / Node API 调用代码（类似 OpenAI Playground 的 View code）"
+  },
+  "button.getApiKey": {
+    "message": "获取 API Key",
+    "description": "API 代码对话框底部的链接文本：点击后跳转到平台控制台用于创建 API Key 的页面"
+  },
+  "button.apiPlatform": {
+    "message": "API 平台",
+    "description": "API code dialog footer button label. Clicking opens https://platform.acedata.cloud/ in a new tab so users can manage their API keys, balance and usage."
+  },
+  "message.apiCodeIntro": {
+    "message": "在你自己的代码里运行下面任意一段即可复现当前结果。",
+    "description": "API code dialog: short hint shown above the language tabs. Explains that the snippet below reproduces the current result when run from the user's own code."
+  },
+  "message.uploadInProgress": {
+    "message": "参考文件正在上传，请稍候再生成",
+    "description": "用户在参考图/视频/音频还未上传完成时点击生成按钮，会弹出的轻量提示，要求用户等待上传完成后再次点击生成。"
   }
 }

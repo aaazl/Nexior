@@ -20,6 +20,7 @@ import { ElMessage } from 'element-plus';
 import { ERROR_CODE_USED_UP, getWebhookCallbackUrl } from '@/constants';
 import RecentPanel from '@/components/openaiimage/RecentPanel.vue';
 import { loadPreviousPage } from '@/utils/pagination';
+import { uploadTrackerProviderMixin, ensureNoPendingUpload } from '@/utils';
 import { IOpenAIImageTask } from '@/models';
 
 const CALLBACK_URL = getWebhookCallbackUrl('openaiimage');
@@ -37,6 +38,7 @@ export default defineComponent({
     Layout,
     RecentPanel
   },
+  mixins: [uploadTrackerProviderMixin],
   inject: ['initialized'],
   data(): IData {
     return {
@@ -139,8 +141,23 @@ export default defineComponent({
       });
     },
     async onGenerate() {
+      if (
+        !ensureNoPendingUpload(
+          this.uploadTracker,
+          (k) => this.$t(k) as string,
+          (m) => ElMessage.warning(m)
+        )
+      ) {
+        return;
+      }
       const cfg: any = { ...(this.config || {}) };
       const hasReferenceImages = Array.isArray(cfg?.image_urls) && cfg.image_urls.length > 0;
+
+      if (!this.hasText(cfg.prompt)) {
+        ElMessage.error(this.$t('openaiimage.message.promptRequired'));
+        return;
+      }
+      cfg.prompt = cfg.prompt.trim();
 
       if (!hasReferenceImages && 'image_urls' in cfg) {
         delete cfg.image_urls;
@@ -203,6 +220,9 @@ export default defineComponent({
     getTasksScrollElement(): HTMLElement | undefined {
       const panel = this.$refs.recentPanel as any;
       return panel?.getScrollElement?.();
+    },
+    hasText(value: unknown): value is string {
+      return typeof value === 'string' && value.trim().length > 0;
     }
   }
 });

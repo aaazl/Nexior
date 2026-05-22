@@ -63,6 +63,10 @@
     "message": "Fermer",
     "description": "Texte dans le bouton, utilisé pour fermer une boîte de dialogue ou un panneau"
   },
+  "button.expand": {
+    "message": "Développer",
+    "description": "Texte d'alerte du bouton, utilisé pour ouvrir l'éditeur en plein écran de la zone de saisie des mots-clés."
+  },
   "button.alert": {
     "message": "Alerte",
     "description": "Texte dans le bouton, utilisé pour émettre une alerte"
@@ -495,6 +499,10 @@
     "message": "Producer",
     "description": "网站导航栏中的文本，用于显示Producer页面，请不要翻译此字段，必须保持为'Producer'"
   },
+  "nav.fish": {
+    "message": "Fish Audio",
+    "description": "Texte dans la barre de navigation du site, utilisé pour afficher la page Fish Audio, veuillez ne pas traduire ce champ, il doit rester 'Fish Audio'"
+  },
   "nav.kimi": {
     "message": "Kimi",
     "description": "网站导航栏中的文本，用于显示Kimi页面，请不要翻译此字段，必须保持为'Kimi'"
@@ -502,6 +510,10 @@
   "nav.serp": {
     "message": "SERP",
     "description": "网站导航栏中的文本，用于显示SERP页面，请不要翻译此字段，必须保持为'SERP'"
+  },
+  "nav.webextrator": {
+    "message": "WebExtrator",
+    "description": "Text in the website navigation bar to display the WebExtrator page, must remain as 'WebExtrator'"
   },
   "nav.image": {
     "message": "Image",
@@ -707,6 +719,10 @@
     "message": "Paramètres de fonctionnalité",
     "description": "Titre de la section des paramètres de fonctionnalité dans la page des paramètres"
   },
+  "settings.auth": {
+    "message": "Méthode de connexion",
+    "description": "Titre de l'onglet 'Méthode de connexion' dans la barre latérale de la page des paramètres — configure les méthodes de connexion autorisées sur ce site et la méthode de connexion par défaut, visible uniquement par les administrateurs du site."
+  },
   "settings.apiKey": {
     "message": "Clé API",
     "description": "Étiquette de la clé API dans la barre latérale de la page des paramètres - gestion de la clé API des fournisseurs de services en amont (BYOK)"
@@ -811,6 +827,14 @@
     "message": "Mes sous-sites",
     "description": "Titre de l'onglet de gestion des sous-sites dans la fenêtre des paramètres. Visible uniquement sur le site principal officiel, les sous-sites ne s'affichent pas."
   },
+  "settings.adminOnlyHint": {
+    "message": "Cette section est visible uniquement par les administrateurs du site, les utilisateurs ordinaires n'y ont pas accès.",
+    "description": "Message affiché en haut des onglets de paramètres du site / paramètres SEO / paramètres de distribution / paramètres de fonctionnalités, visible uniquement par les administrateurs."
+  },
+  "settings.officialOnlyHint": {
+    "message": "Cette section est visible uniquement sur le site principal, les sous-sites ne l'afficheront pas.",
+    "description": "Message affiché en haut de l'onglet 'Mes sous-sites', indiquant que cette entrée n'apparaît que sur le site principal officiel."
+  },
   "settings.customDomain": {
     "message": "Domaine personnalisé",
     "description": "Title for the custom-domain management tab in the settings popup. Visible only on subsites (non-main-official hosts) for site admins."
@@ -874,5 +898,33 @@
   "button.goBack": {
     "message": "Retour à la page précédente",
     "description": "Texte du bouton pour revenir à la page précédente dans l'historique de navigation"
+  },
+  "title.apiCode": {
+    "message": "API code for this request",
+    "description": "Title of the dialog that shows the equivalent API code (curl / Python / Node) that would reproduce a result generated inside the product"
+  },
+  "message.viewCodeHint": {
+    "message": "Show API code for this request",
+    "description": "Tooltip text on the View Code button shown alongside result-card action buttons (U1/U2/Download/Extend/...). Clicking the button opens a dialog with curl / Python / Node snippets that reproduce the same generation via the public API."
+  },
+  "button.viewCode": {
+    "message": "View code",
+    "description": "Button text that opens a dialog with the equivalent API code (curl / Python / Node) for the current result, similar to the OpenAI Playground 'View code' affordance"
+  },
+  "button.getApiKey": {
+    "message": "Get an API key",
+    "description": "Link text in the API code dialog footer that opens the platform console page where users can create an API key"
+  },
+  "button.apiPlatform": {
+    "message": "API Platform",
+    "description": "API code dialog footer button label. Clicking opens https://platform.acedata.cloud/ in a new tab so users can manage their API keys, balance and usage."
+  },
+  "message.apiCodeIntro": {
+    "message": "Run this from your own code to produce the same result. Replace <YOUR_API_KEY> with a key from your platform console.",
+    "description": "Helper text shown above the code tabs in the API code dialog, explaining how to use the snippet"
+  },
+  "message.uploadInProgress": {
+    "message": "Les téléversements de référence sont toujours en cours — veuillez patienter un instant.",
+    "description": "Toast shown when the user clicks the Generate button while one or more reference uploads are still in flight. Asks them to wait for uploads to complete before retrying."
   }
 }

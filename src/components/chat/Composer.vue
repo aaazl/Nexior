@@ -60,7 +60,11 @@
         -->
         <span class="btn-plus-trigger">
           <el-tooltip class="box-item" effect="dark" :content="$t('chat.composer.addAction')" placement="top">
-            <span :class="{ btn: true, 'btn-plus': true, disabled: answering }" :aria-disabled="answering" role="button">
+            <span
+              :class="{ btn: true, 'btn-plus': true, disabled: answering }"
+              :aria-disabled="answering"
+              role="button"
+            >
               <font-awesome-icon icon="fa-solid fa-plus" class="icon icon-plus" />
             </span>
           </el-tooltip>
@@ -126,7 +130,13 @@ import {
 } from 'element-plus';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { IChatModel, IChatReference } from '@/models';
-import { getBaseUrlPlatform, isImageUrl, pasteUploadMixin, withCurrentUserId } from '@/utils';
+import {
+  getBaseUrlPlatform,
+  isImageUrl,
+  pasteUploadMixin,
+  uploadTrackerMixin,
+  withCurrentUserIdAndSite
+} from '@/utils';
 import FilePreview from '@/components/common/FilePreview.vue';
 import ImagePreview from '@/components/common/ImagePreview.vue';
 
@@ -143,7 +153,7 @@ export default defineComponent({
     ElDropdownMenu,
     ElDropdownItem
   },
-  mixins: [pasteUploadMixin],
+  mixins: [pasteUploadMixin, uploadTrackerMixin],
   props: {
     answering: {
       type: Boolean,
@@ -314,13 +324,14 @@ export default defineComponent({
     onOpenSkills() {
       // Skills are managed exclusively at auth.acedata.cloud/user/skills.
       // Nexior is a thin entry point - clicking opens the canonical
-      // management page in a new tab.
-      window.open(withCurrentUserId('https://auth.acedata.cloud/user/skills'), '_blank', 'noopener');
+      // management page in a new tab. Pass `site` so AuthFrontend renders
+      // the calling subsite's white-label logo (no-op on the main host).
+      window.open(withCurrentUserIdAndSite('https://auth.acedata.cloud/user/skills'), '_blank', 'noopener');
     },
     onOpenConnections() {
       // Connections (MCP + OAuth connectors) are managed exclusively at
       // auth.acedata.cloud/user/connections.
-      window.open(withCurrentUserId('https://auth.acedata.cloud/user/connections'), '_blank', 'noopener');
+      window.open(withCurrentUserIdAndSite('https://auth.acedata.cloud/user/connections'), '_blank', 'noopener');
     }
   }
 });
@@ -391,7 +402,9 @@ textarea.input:focus {
   box-shadow:
     0 2px 6px rgba(0, 0, 0, 0.04),
     0 1px 2px rgba(0, 0, 0, 0.04);
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
   padding: 6px;
 
   &:focus-within {
@@ -500,7 +513,7 @@ textarea.input:focus {
     font-size: 16px;
     transition: box-shadow 0.2s ease;
     &:hover:not(:disabled) {
-      box-shadow: 0 0 16px rgba(39, 113, 134, 0.3);
+      box-shadow: 0 0 16px rgba(var(--app-brand-rgb), 0.3);
     }
   }
 }
@@ -510,7 +523,12 @@ textarea.input:focus {
     border-radius: 18px;
     .input {
       margin-bottom: 46px;
-      font-size: 15px;
+      // iOS Safari auto-zooms focused form fields whose font-size is below
+      // 16px (and ignores `maximum-scale` / `user-scalable=0` in the viewport
+      // meta for accessibility reasons), so tapping the Send button — which
+      // keeps the textarea focused — would zoom the whole page in. Keep the
+      // mobile composer text at >=16px to suppress that behaviour.
+      font-size: 16px;
     }
 
     .tools {

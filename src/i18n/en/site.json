@@ -23,6 +23,10 @@
     "message": "Site Favicon",
     "description": "Displayed as the title in the editing box"
   },
+  "field.primaryColor": {
+    "message": "Primary Color",
+    "description": "Displayed as the title in the editing box"
+  },
   "field.qr": {
     "message": "QR Code",
     "description": "Displayed as the title in the editing box"
@@ -42,6 +46,34 @@
   "field.distributionForceInviterId": {
     "message": "Forced Inviter ID",
     "description": "Displayed as the title in the editing box"
+  },
+  "field.authEnabledProviders": {
+    "message": "Enabled Login Methods",
+    "description": "Settings / Login Methods tab title — checkboxes for which authentication providers the site offers on its login page."
+  },
+  "field.authDefaultProvider": {
+    "message": "Default Login Method",
+    "description": "Settings / Login Methods tab title — which login provider is pre-selected when the login page first opens."
+  },
+  "field.authProvider_email": {
+    "message": "Email",
+    "description": "Login provider display name: email (email + password or verification code)."
+  },
+  "field.authProvider_phone": {
+    "message": "Phone",
+    "description": "Login provider display name: phone number (SMS verification code)."
+  },
+  "field.authProvider_google": {
+    "message": "Google",
+    "description": "Login provider display name: Google OAuth."
+  },
+  "field.authProvider_github": {
+    "message": "GitHub",
+    "description": "Login provider display name: GitHub OAuth."
+  },
+  "field.authProvider_wechat": {
+    "message": "WeChat",
+    "description": "Login provider display name: WeChat OAuth."
   },
   "field.featuresChat": {
     "message": "Chat",
@@ -143,6 +175,14 @@
     "message": "SERP",
     "description": "Displayed as the title in the editing box"
   },
+  "field.featuresFish": {
+    "message": "Fish Audio",
+    "description": "Displayed as the title in the editing box"
+  },
+  "field.featuresWebextrator": {
+    "message": "WebExtrator",
+    "description": "Displayed as the title in the editing box"
+  },
   "field.featuresSupport": {
     "message": "Customer Support",
     "description": "Displayed as the title in the editing box"
@@ -239,6 +279,10 @@
     "message": "Enter Forced Inviter ID",
     "description": "Displayed as the title in the edit box"
   },
+  "placeholder.authDefaultProvider": {
+    "message": "Select default login method",
+    "description": "Placeholder for the default-login-method dropdown in the Login Methods tab."
+  },
   "message.uploadImageExceed": {
     "message": "Image Upload Exceeds Limit",
     "description": "Prompt for exceeding image upload limit"
@@ -323,6 +367,18 @@
     "message": "User ID of the forced inviter. If this ID is set, it will be used as the inviter regardless of whether the distribution link carries the inviter_id parameter.",
     "description": "Tip for forced inviter ID"
   },
+  "message.authEnabledProvidersTip": {
+    "message": "Pick which authentication methods this site's login page offers. At least one method must remain enabled, otherwise no one will be able to sign in.",
+    "description": "Helper text under the Enabled Login Methods row in the Login Methods tab."
+  },
+  "message.authDefaultProviderTip": {
+    "message": "The login method that is pre-selected when a user opens the login page. Must be one of the enabled methods above.",
+    "description": "Helper text under the Default Login Method row in the Login Methods tab."
+  },
+  "message.authProvidersAtLeastOne": {
+    "message": "At least one login method must remain enabled.",
+    "description": "Warning toast when the user tries to disable every login method at once."
+  },
   "message.originTip": {
     "message": "Site domain, site configuration is bound to the domain, and the site domain cannot be changed.",
     "description": "Tip for site domain"
@@ -342,6 +398,10 @@
   "message.faviconTip": {
     "message": "Site Favicon, displayed in the browser tab.",
     "description": "Tip for site favicon"
+  },
+  "message.primaryColorTip": {
+    "message": "Primary brand colour for the site. Applies to buttons, links, highlights, and accent gradients across the entire UI.",
+    "description": "Tip for the per-site primary colour picker"
   },
   "message.adminsTip": {
     "message": "Site admin IDs, by default, the user who first creates the site will become an admin. Only site admins can manage the site.",
@@ -439,6 +499,14 @@
     "message": "Enable or disable the SERP feature module.",
     "description": "Description of the SERP feature"
   },
+  "message.featuresFish": {
+    "message": "Enable or disable the Fish Audio feature module.",
+    "description": "Description of the Fish Audio feature"
+  },
+  "message.featuresWebextrator": {
+    "message": "Enable or disable the WebExtrator feature module.",
+    "description": "Description of the WebExtrator feature"
+  },
   "message.featuresLuma": {
     "message": "Enable or disable the Luma feature module.",
     "description": "Description of the Luma feature"
@@ -471,6 +539,10 @@
     "message": "Upload",
     "description": "Upload"
   },
+  "button.resetPrimaryColor": {
+    "message": "Reset to default",
+    "description": "Reset the per-site primary colour back to the platform default"
+  },
   "button.enabled": {
     "message": "Enabled",
     "description": "Toggle text indicating it is enabled"
@@ -498,5 +570,29 @@
   "placeholder.admins": {
     "message": "Enter admin user ID",
     "description": "Placeholder in the admin editing box in site settings"
+  },
+  "message.userNotFound": {
+    "message": "User not found",
+    "description": "Shown when the user lookup endpoint returns 404 in the picker preview."
+  },
+  "message.editUserHint": {
+    "message": "Type a full UUID, username, email or phone to look up a user.",
+    "description": "Tip below the lookup input in the inviter / admin user picker dialog."
+  },
+  "message.editUsersEmpty": {
+    "message": "No admins yet.",
+    "description": "Empty-state text shown when the admins list has no users."
+  },
+  "message.userAlreadyAdded": {
+    "message": "Already added",
+    "description": "Disabled-state label on the Add button when the resolved user is already in the admin list."
+  },
+  "title.addUser": {
+    "message": "Add user",
+    "description": "Divider title in the admins picker, between the existing-admins list and the lookup input."
+  },
+  "button.addUser": {
+    "message": "Add",
+    "description": "Button label to add the resolved user to the admins list."
   }
 }

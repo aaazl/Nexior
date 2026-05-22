@@ -22,6 +22,8 @@ export * from './seedream';
 export * from './seedance';
 export * from './serp';
 export * from './wan';
+export * from './webextrator';
+export * from './fish';
 export * from './mapping';
 export * from './surface';
 export * from './mobile';

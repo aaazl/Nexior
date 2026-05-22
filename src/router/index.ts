@@ -29,6 +29,8 @@ import seedream from './seedream';
 import seedance from './seedance';
 import serp from './serp';
 import wan from './wan';
+import fish from './fish';
+import webextrator from './webextrator';
 import settings from './settings';
 import profile from './profile';
 
@@ -55,6 +57,8 @@ import {
   ROUTE_PIXVERSE_INDEX,
   ROUTE_WAN_INDEX,
   ROUTE_SERP_INDEX,
+  ROUTE_FISH_TTS_INDEX,
+  ROUTE_WEBEXTRATOR_INDEX,
   ROUTE_NOT_FOUND
 } from './constants';
 import { getCookie } from 'typescript-cookie';
@@ -212,6 +216,12 @@ const ROUTE_SEO: Record<string, { title: string; description: string; keywords: 
     keywords: ['Producer', 'AI Music', 'Music Generation', 'FUZZ', 'AI Song'],
     category: 'AI Music Generation'
   },
+  fish: {
+    title: 'Fish Audio',
+    description: 'Generate natural speech and clone voices with Fish Audio — text-to-speech and voice cloning.',
+    keywords: ['Fish Audio', 'TTS', 'Text to Speech', 'Voice Cloning', 'AI Voice'],
+    category: 'AI Audio Generation'
+  },
   distribution: {
     title: 'Affiliate',
     description: 'Join the Ace Data Cloud affiliate program — earn commissions by referring AI services.',
@@ -224,6 +234,13 @@ const ROUTE_SEO: Record<string, { title: string; description: string; keywords: 
       'Search the web with Google — powered by SERP API. Get organic results, knowledge graphs, images, and more.',
     keywords: ['Search', 'Google Search', 'SERP', 'Web Search'],
     category: 'Web Search'
+  },
+  webextrator: {
+    title: 'WebExtrator',
+    description:
+      'Render and extract any web page with WebExtrator — get HTML, markdown, plain text, structured data, links, and screenshots from any URL.',
+    keywords: ['WebExtrator', 'Web Scraping', 'Web Render', 'Content Extraction', 'Markdown', 'Headless Browser'],
+    category: 'Web Data'
   }
 };
 
@@ -251,6 +268,7 @@ const FEATURE_ROUTE_PRIORITY: Array<[string, string]> = [
   ['openaiimage', ROUTE_OPENAIIMAGE_INDEX],
   ['suno', ROUTE_SUNO_INDEX],
   ['producer', ROUTE_PRODUCER_INDEX],
+  ['fish', ROUTE_FISH_TTS_INDEX],
   ['veo', ROUTE_VEO_INDEX],
   ['sora', ROUTE_SORA_INDEX],
   ['kling', ROUTE_KLING_INDEX],
@@ -259,7 +277,8 @@ const FEATURE_ROUTE_PRIORITY: Array<[string, string]> = [
   ['seedance', ROUTE_SEEDANCE_INDEX],
   ['pixverse', ROUTE_PIXVERSE_INDEX],
   ['wan', ROUTE_WAN_INDEX],
-  ['serp', ROUTE_SERP_INDEX]
+  ['serp', ROUTE_SERP_INDEX],
+  ['webextrator', ROUTE_WEBEXTRATOR_INDEX]
 ];
 
 const getDefaultRoute = (): { name: string } => {
@@ -281,12 +300,6 @@ const routes = [
   {
     path: '/',
     redirect: (to: RouteLocationGeneric) => ({ ...getDefaultRoute(), query: to.query })
-  },
-  {
-    path: '/chat/oauth/callback',
-    name: 'oauth-callback',
-    component: () => import('@/pages/chat/OAuthCallback.vue'),
-    meta: { auth: false }
   },
   console,
   auth,
@@ -314,6 +327,8 @@ const routes = [
   seedance,
   serp,
   wan,
+  fish,
+  webextrator,
   midjourney,
   distribution,
   download,

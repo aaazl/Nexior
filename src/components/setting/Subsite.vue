@@ -1,5 +1,6 @@
 <template>
   <div class="subsite-settings">
+    <section-notice tone="official" :text="$t('common.settings.officialOnlyHint')" />
     <div class="header">
       <div>
         <p class="settings-title">{{ $t('subsite.title.index') }}</p>
@@ -13,11 +14,39 @@
     <el-card v-loading="loading" shadow="never" class="list-card">
       <el-empty v-if="!loading && items.length === 0" :description="$t('subsite.message.empty')" />
       <el-table v-else :data="items" stripe class="subsite-table">
-        <el-table-column :label="$t('subsite.field.origin')" prop="origin" min-width="220">
+        <el-table-column :label="$t('subsite.field.origin')" prop="origin" min-width="240">
           <template #default="{ row }">
-            <a :href="rowUrl(row)" target="_blank" rel="noopener" class="origin-link">
-              {{ row.origin }}
-            </a>
+            <div class="domain-list">
+              <a :href="rowUrl(row)" target="_blank" rel="noopener" class="origin-link primary">
+                {{ row.origin }}
+              </a>
+              <template v-for="dom in customDomainsFor(row)" :key="dom.id">
+                <a
+                  v-if="dom.status === SiteDomainStatus.Active"
+                  :href="`https://${dom.hostname}/`"
+                  target="_blank"
+                  rel="noopener"
+                  class="custom-domain origin-link"
+                >
+                  {{ dom.hostname }}
+                  <el-tag size="small" type="success" effect="plain" round>
+                    {{ $t('subsite.status.active') }}
+                  </el-tag>
+                </a>
+                <div v-else-if="dom.status === SiteDomainStatus.Pending" class="custom-domain muted">
+                  <span class="hostname">{{ dom.hostname }}</span>
+                  <el-tag size="small" type="warning" effect="plain" round>
+                    {{ $t('subsite.status.pending') }}
+                  </el-tag>
+                </div>
+                <div v-else-if="dom.status === SiteDomainStatus.Failed" class="custom-domain muted">
+                  <span class="hostname">{{ dom.hostname }}</span>
+                  <el-tag size="small" type="danger" effect="plain" round>
+                    {{ $t('subsite.status.failed') }}
+                  </el-tag>
+                </div>
+              </template>
+            </div>
             <div v-if="row.title" class="row-title">{{ row.title }}</div>
           </template>
         </el-table-column>
@@ -40,6 +69,29 @@
         </el-table-column>
       </el-table>
     </el-card>
+
+    <el-dialog
+      v-model="opening.visible"
+      :title="$t('subsite.title.openSite')"
+      width="auto"
+      class="open-dialog"
+      append-to-body
+    >
+      <template #footer>
+        <div class="open-actions">
+          <el-button round @click="opening.visible = false">{{ $t('common.button.cancel') }}</el-button>
+          <el-button
+            v-for="url in opening.urls"
+            :key="url.href"
+            round
+            :type="url.isCustom ? 'success' : 'primary'"
+            @click="onConfirmOpen(url.href)"
+          >
+            {{ url.hostname }}
+          </el-button>
+        </div>
+      </template>
+    </el-dialog>
 
     <el-dialog v-model="creating.visible" :title="$t('subsite.title.create')" width="480px" class="create-dialog">
       <el-form :model="creating.form" label-width="auto" class="form" @submit.prevent>
@@ -91,11 +143,13 @@ import {
   ElInput,
   ElMessage,
   ElMessageBox,
+  ElTag,
   vLoading
 } from 'element-plus';
 import { Plus } from '@element-plus/icons-vue';
-import { siteOperator } from '@/operators';
-import type { ISite } from '@/models';
+import { siteOperator, siteDomainOperator } from '@/operators';
+import SectionNotice from '@/components/setting/SectionNotice.vue';
+import { SiteDomainStatus, type ISite, type ISiteDomain } from '@/models';
 
 const SLUG_RE = /^(?!.*--)[a-z0-9][a-z0-9-]{1,30}[a-z0-9]$/;
 
@@ -120,7 +174,9 @@ export default defineComponent({
     ElDialog,
     ElForm,
     ElFormItem,
-    ElInput
+    ElInput,
+    ElTag,
+    SectionNotice
   },
   directives: {
     loading: vLoading
@@ -137,8 +193,22 @@ export default defineComponent({
   data() {
     return {
       Plus: markRaw(Plus),
+      // Re-export the enum for the template (string-comparable in v-if).
+      SiteDomainStatus,
       loading: false,
       items: [] as ISite[],
+      // Custom (BYO) domains grouped by their parent subsite id. Fetched
+      // alongside `items` so the column can render every bound hostname,
+      // and so the open-confirmation dialog can offer Active customs as
+      // pickable URLs.
+      domainsBySite: {} as Record<string, ISiteDomain[]>,
+      // Drives the unified "Open subsite" confirmation dialog. Built on
+      // demand from `customDomainsFor(row)` so the URL list is always
+      // fresh w.r.t. the latest domain statuses.
+      opening: {
+        visible: false,
+        urls: [] as { href: string; hostname: string; isCustom: boolean }[]
+      },
       creating: {
         visible: false,
         submitting: false,
@@ -195,23 +265,60 @@ export default defineComponent({
         this.items = [];
         return;
       }
+      const zone = this.subdomainZone;
+      if (!zone) {
+        // Parent site hasn't been seeded with a subdomain zone yet —
+        // surface the empty state rather than dumping every site the
+        // user happens to own elsewhere.
+        this.items = [];
+        return;
+      }
       this.loading = true;
       try {
-        const { data } = await siteOperator.getAll({ user_id: userId });
-        const all = (data?.items || []) as ISite[];
-        const parentId = this.parentSite?.id;
-        this.items = all.filter((s) => {
-          if (s.id === parentId) return false;
-          const meta = (s.metadata || {}) as Record<string, unknown>;
-          if (parentId && meta.parent_site_id) return meta.parent_site_id === parentId;
-          return Boolean(s.origin && this.subdomainZone && s.origin.endsWith(`.${this.subdomainZone}`));
+        // Listing is fully scoped by (user_id, origin__endswith=.{zone}).
+        // The leading dot excludes the parent (`studio.acedata.cloud`) by
+        // DNS-hierarchy semantics and matches every subsite
+        // (`<slug>.studio.acedata.cloud`). No `parent_site_id` needed —
+        // the superuser fast path doesn't stamp `metadata.parent_site_id`
+        // anyway, which is why the previous metadata filter hid rows.
+        const { data } = await siteOperator.getAll({
+          user_id: userId,
+          origin__endswith: `.${zone}`,
+          ordering: '-created_at'
         });
+        this.items = (data?.items || []) as ISite[];
+        await this.fetchDomains();
       } catch (e) {
         console.error('failed to load subsites', e);
         ElMessage.error(this.$t('subsite.message.loadFailed'));
       } finally {
         this.loading = false;
       }
+    },
+    async fetchDomains() {
+      // Fan-out one GET per subsite (typical max is 5). We deliberately
+      // filter by site id rather than user_id because that's the only
+      // filter known to be wired up server-side (mirrors CustomDomain.vue),
+      // and the per-row swarm is bounded by `maxSubsitesPerUser`.
+      // Failures are swallowed per-row so one site's RBAC hiccup doesn't
+      // hide every other site's domains.
+      const sites = this.items.filter((s) => s.id);
+      if (sites.length === 0) {
+        this.domainsBySite = {};
+        return;
+      }
+      const pairs = await Promise.all(
+        sites.map(async (s) => {
+          try {
+            const { data } = await siteDomainOperator.getAll({ site: s.id, limit: 50 });
+            return [s.id as string, (data?.items || []) as ISiteDomain[]] as const;
+          } catch (err) {
+            console.warn(`failed to load domains for site ${s.id}`, err);
+            return [s.id as string, [] as ISiteDomain[]] as const;
+          }
+        })
+      );
+      this.domainsBySite = Object.fromEntries(pairs);
     },
     onOpenCreate() {
       this.creating.form.slug = '';
@@ -276,7 +383,49 @@ export default defineComponent({
     },
     onOpenSite(row: ISite) {
       if (!row.origin) return;
-      window.open(`https://${row.origin}/`, '_blank', 'noopener');
+      // Build the URL picker once, on demand. We always include the
+      // default subdomain. Active custom domains are listed beneath so
+      // a tenant who's bound their own brand URL can land there
+      // directly without re-typing the hostname. Pending / Failed
+      // customs are intentionally excluded — they wouldn't actually
+      // load until DNS + TLS are green.
+      const urls: { href: string; hostname: string; isCustom: boolean }[] = [
+        { href: `https://${row.origin}/`, hostname: row.origin, isCustom: false }
+      ];
+      const customs = this.customDomainsFor(row);
+      for (const d of customs) {
+        if (d.status === SiteDomainStatus.Active && d.hostname) {
+          urls.push({ href: `https://${d.hostname}/`, hostname: d.hostname, isCustom: true });
+        }
+      }
+      // Single URL → no point asking the user to "choose"; open it
+      // straight away. Only show the picker dialog when the tenant has
+      // bound at least one Active custom domain and the default
+      // subdomain coexists.
+      if (urls.length <= 1) {
+        window.open(urls[0].href, '_blank', 'noopener');
+        return;
+      }
+      this.opening.urls = urls;
+      this.opening.visible = true;
+    },
+    onConfirmOpen(href: string) {
+      this.opening.visible = false;
+      window.open(href, '_blank', 'noopener');
+    },
+    customDomainsFor(row: ISite): ISiteDomain[] {
+      if (!row.id) return [];
+      const list = this.domainsBySite[row.id] || [];
+      // Keep a stable order: Active first (clickable), then Pending,
+      // then Failed — and alphabetize within each bucket so reloads
+      // don't shuffle the column.
+      const rank = (s?: SiteDomainStatus) =>
+        s === SiteDomainStatus.Active ? 0 : s === SiteDomainStatus.Pending ? 1 : 2;
+      return [...list].sort((a, b) => {
+        const r = rank(a.status) - rank(b.status);
+        if (r !== 0) return r;
+        return (a.hostname || '').localeCompare(b.hostname || '');
+      });
     },
     onManageSite(row: ISite) {
       if (!row.origin) return;
@@ -341,8 +490,35 @@ export default defineComponent({
       text-decoration: underline;
     }
   }
+  .domain-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+
+    .origin-link.primary {
+      font-weight: 500;
+    }
+    .custom-domain {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      line-height: 1.4;
+
+      .hostname {
+        word-break: break-all;
+      }
+      &.muted {
+        color: var(--el-text-color-secondary);
+      }
+      &.origin-link {
+        font-weight: 400;
+      }
+    }
+  }
   .row-title {
-    margin-top: 2px;
+    margin-top: 4px;
     font-size: 12px;
     color: var(--el-text-color-secondary);
     line-height: 1.4;
@@ -362,6 +538,20 @@ export default defineComponent({
     color: var(--el-text-color-secondary);
     font-size: 12px;
     margin-top: 4px;
+  }
+}
+
+// Scoped styles on the open-dialog rely on `:deep` because el-dialog
+// portals its body outside `.subsite-settings`. Keeping them in the
+// same <style scoped> block avoids leaking selectors globally while
+// still reaching the teleported nodes.
+.open-dialog {
+  :deep(.open-actions) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
   }
 }
 </style>

@@ -63,6 +63,10 @@
     "message": "Zamknij",
     "description": "Tekst w przycisku, używany do zamykania okna dialogowego lub panelu"
   },
+  "button.expand": {
+    "message": "Rozwiń",
+    "description": "Tekst przycisku, używany do otwierania edytora pełnoekranowego dla pola wprowadzania podpowiedzi."
+  },
   "button.alert": {
     "message": "Ostrzeżenie",
     "description": "Tekst w przycisku, używany do wydawania ostrzeżenia"
@@ -495,6 +499,10 @@
     "message": "Producer",
     "description": "Tekst w nawigacji strony, który wyświetla stronę Producer, nie tłumaczyć, musi pozostać 'Producer'"
   },
+  "nav.fish": {
+    "message": "Fish Audio",
+    "description": "Tekst w pasku nawigacyjnym strony, używany do wyświetlania strony Fish Audio, proszę nie tłumaczyć tego pola, musi pozostać jako 'Fish Audio'"
+  },
   "nav.kimi": {
     "message": "Kimi",
     "description": "Tekst w nawigacji strony, który wyświetla stronę Kimi, nie tłumaczyć, musi pozostać 'Kimi'"
@@ -502,6 +510,10 @@
   "nav.serp": {
     "message": "SERP",
     "description": "Tekst w nawigacji strony, który wyświetla stronę SERP, nie tłumaczyć, musi pozostać 'SERP'"
+  },
+  "nav.webextrator": {
+    "message": "WebExtrator",
+    "description": "Text in the website navigation bar to display the WebExtrator page, must remain as 'WebExtrator'"
   },
   "nav.image": {
     "message": "Obraz",
@@ -707,6 +719,10 @@
     "message": "Ustawienia funkcji",
     "description": "Tytuł sekcji ustawień funkcji na stronie ustawień"
   },
+  "settings.auth": {
+    "message": "Metoda logowania",
+    "description": "Tytuł zakładki „Metoda logowania” w bocznym pasku ustawień — konfiguruje dostępne metody logowania oraz domyślną metodę logowania, widoczną tylko dla administratorów witryny."
+  },
   "settings.apiKey": {
     "message": "Klucz API",
     "description": "Etykieta Klucz API w bocznym pasku na stronie ustawień - zarządzanie kluczem API dostawcy usług upstream (BYOK)"
@@ -811,6 +827,14 @@
     "message": "Moje podstrony",
     "description": "Tytuł zakładki zarządzania podstronami w oknie ustawień. Widoczne tylko na oficjalnej stronie głównej, podstrony nie są wyświetlane."
   },
+  "settings.adminOnlyHint": {
+    "message": "Ten dział jest widoczny tylko dla administratorów witryny, zwykli użytkownicy nie mają dostępu.",
+    "description": "To jest komunikat wyświetlany na górze zakładek w ustawieniach witryny / ustawieniach SEO / ustawieniach dystrybucji / ustawieniach funkcji, które są widoczne tylko dla administratorów."
+  },
+  "settings.officialOnlyHint": {
+    "message": "Ten dział jest widoczny tylko na głównej stronie, nie będzie wyświetlany na podstronach.",
+    "description": "To jest komunikat wyświetlany na górze zakładki 'Moje podstrony', informujący, że ten dostęp jest dostępny tylko na oficjalnej głównej stronie."
+  },
   "settings.customDomain": {
     "message": "Domena niestandardowa",
     "description": "Title for the custom-domain management tab in the settings popup. Visible only on subsites (non-main-official hosts) for site admins."
@@ -874,5 +898,33 @@
   "button.goBack": {
     "message": "Wróć do poprzedniej strony",
     "description": "Tekst przycisku do powrotu do poprzedniej strony w historii przeglądania"
+  },
+  "title.apiCode": {
+    "message": "API code for this request",
+    "description": "Title of the dialog that shows the equivalent API code (curl / Python / Node) that would reproduce a result generated inside the product"
+  },
+  "message.viewCodeHint": {
+    "message": "Show API code for this request",
+    "description": "Tooltip text on the View Code button shown alongside result-card action buttons (U1/U2/Download/Extend/...). Clicking the button opens a dialog with curl / Python / Node snippets that reproduce the same generation via the public API."
+  },
+  "button.viewCode": {
+    "message": "View code",
+    "description": "Button text that opens a dialog with the equivalent API code (curl / Python / Node) for the current result, similar to the OpenAI Playground 'View code' affordance"
+  },
+  "button.getApiKey": {
+    "message": "Get an API key",
+    "description": "Link text in the API code dialog footer that opens the platform console page where users can create an API key"
+  },
+  "button.apiPlatform": {
+    "message": "API Platform",
+    "description": "API code dialog footer button label. Clicking opens https://platform.acedata.cloud/ in a new tab so users can manage their API keys, balance and usage."
+  },
+  "message.apiCodeIntro": {
+    "message": "Run this from your own code to produce the same result. Replace <YOUR_API_KEY> with a key from your platform console.",
+    "description": "Helper text shown above the code tabs in the API code dialog, explaining how to use the snippet"
+  },
+  "message.uploadInProgress": {
+    "message": "Przesyłanie plików referencyjnych nadal trwa — proszę chwilę poczekać.",
+    "description": "Toast shown when the user clicks the Generate button while one or more reference uploads are still in flight. Asks them to wait for uploads to complete before retrying."
   }
 }

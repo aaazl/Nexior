@@ -63,6 +63,10 @@
     "message": "닫기",
     "description": "버튼의 텍스트, 대화상자나 패널을 닫는 데 사용"
   },
+  "button.expand": {
+    "message": "확장",
+    "description": "버튼 툴팁 텍스트로, 프롬프트 입력창의 전체 화면 편집기를 여는 용도"
+  },
   "button.alert": {
     "message": "경고",
     "description": "버튼의 텍스트, 경고를 발송하는 데 사용"
@@ -495,6 +499,10 @@
     "message": "Producer",
     "description": "사이트 내비게이션 바의 텍스트로 Producer 페이지를 표시합니다. 이 필드는 번역하지 말고 'Producer'로 유지해야 합니다."
   },
+  "nav.fish": {
+    "message": "Fish Audio",
+    "description": "웹사이트 내비게이션 바의 텍스트로, Fish Audio 페이지를 표시하는 데 사용됩니다. 이 필드는 번역하지 말고 'Fish Audio'로 유지해야 합니다."
+  },
   "nav.kimi": {
     "message": "Kimi",
     "description": "사이트 내비게이션 바의 텍스트로 Kimi 페이지를 표시합니다. 이 필드는 번역하지 말고 'Kimi'로 유지해야 합니다."
@@ -502,6 +510,10 @@
   "nav.serp": {
     "message": "SERP",
     "description": "사이트 내비게이션 바의 텍스트로 SERP 페이지를 표시합니다. 이 필드는 번역하지 말고 'SERP'로 유지해야 합니다."
+  },
+  "nav.webextrator": {
+    "message": "WebExtrator",
+    "description": "Text in the website navigation bar to display the WebExtrator page, must remain as 'WebExtrator'"
   },
   "nav.image": {
     "message": "이미지",
@@ -707,6 +719,10 @@
     "message": "기능 설정",
     "description": "설정 페이지의 기능 설정 부분 제목"
   },
+  "settings.auth": {
+    "message": "로그인 방법",
+    "description": "설정 페이지 사이드바의 '로그인 방법' 탭 제목—사이트에서 허용하는 로그인 방법 및 기본 로그인 방법을 설정합니다. 오직 사이트 관리자만 볼 수 있습니다."
+  },
   "settings.apiKey": {
     "message": "API 키",
     "description": "설정 페이지 사이드바의 API 키 레이블 - 사용자가 제공하는 상위 서비스 제공업체 API 키 관리"
@@ -811,6 +827,14 @@
     "message": "내 서브사이트",
     "description": "설정 팝업의 서브사이트 관리 탭 제목. 공식 메인 사이트에서만 표시되며, 서브사이트는 표시되지 않음."
   },
+  "settings.adminOnlyHint": {
+    "message": "이 섹션은 사이트 관리자만 볼 수 있으며, 일반 사용자는 접근할 수 없습니다.",
+    "description": "사이트 설정 / SEO 설정 / 배포 설정 / 기능 설정 등에서 관리자만 볼 수 있는 설정 탭 상단에 표시되는 안내 문구입니다."
+  },
+  "settings.officialOnlyHint": {
+    "message": "이 섹션은 본 사이트에서만 볼 수 있으며, 하위 사이트에서는 표시되지 않습니다.",
+    "description": "'내 하위 사이트' 탭 상단에 표시되는 안내 문구로, 해당 항목이 공식 본 사이트에서만 나타난다는 것을 설명합니다."
+  },
   "settings.customDomain": {
     "message": "사용자 지정 도메인",
     "description": "Title for the custom-domain management tab in the settings popup. Visible only on subsites (non-main-official hosts) for site admins."
@@ -874,5 +898,33 @@
   "button.goBack": {
     "message": "이전 페이지로 돌아가기",
     "description": "브라우징 기록의 이전 페이지로 돌아가는 버튼 텍스트"
+  },
+  "title.apiCode": {
+    "message": "API code for this request",
+    "description": "Title of the dialog that shows the equivalent API code (curl / Python / Node) that would reproduce a result generated inside the product"
+  },
+  "message.viewCodeHint": {
+    "message": "Show API code for this request",
+    "description": "Tooltip text on the View Code button shown alongside result-card action buttons (U1/U2/Download/Extend/...). Clicking the button opens a dialog with curl / Python / Node snippets that reproduce the same generation via the public API."
+  },
+  "button.viewCode": {
+    "message": "View code",
+    "description": "Button text that opens a dialog with the equivalent API code (curl / Python / Node) for the current result, similar to the OpenAI Playground 'View code' affordance"
+  },
+  "button.getApiKey": {
+    "message": "Get an API key",
+    "description": "Link text in the API code dialog footer that opens the platform console page where users can create an API key"
+  },
+  "button.apiPlatform": {
+    "message": "API Platform",
+    "description": "API code dialog footer button label. Clicking opens https://platform.acedata.cloud/ in a new tab so users can manage their API keys, balance and usage."
+  },
+  "message.apiCodeIntro": {
+    "message": "Run this from your own code to produce the same result. Replace <YOUR_API_KEY> with a key from your platform console.",
+    "description": "Helper text shown above the code tabs in the API code dialog, explaining how to use the snippet"
+  },
+  "message.uploadInProgress": {
+    "message": "참조 파일을 아직 업로드하는 중입니다. 잠시만 기다려 주세요.",
+    "description": "Toast shown when the user clicks the Generate button while one or more reference uploads are still in flight. Asks them to wait for uploads to complete before retrying."
   }
 }

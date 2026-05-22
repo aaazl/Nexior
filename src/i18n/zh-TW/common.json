@@ -63,6 +63,10 @@
     "message": "關閉",
     "description": "按鈕中的文本，用於關閉對話框或面板"
   },
+  "button.expand": {
+    "message": "展開",
+    "description": "按鈕提示文本，用於打開提示詞輸入框的全屏編輯器"
+  },
   "button.alert": {
     "message": "警告",
     "description": "按鈕中的文本，用於發出警報"
@@ -495,6 +499,10 @@
     "message": "Producer",
     "description": "網站導航欄中的文本，用於顯示Producer頁面，請不要翻譯此字段，必須保持為'Producer'"
   },
+  "nav.fish": {
+    "message": "Fish Audio",
+    "description": "網站導航欄中的文本，用於顯示Fish Audio頁面，請不要翻譯此字段，必須保持為'Fish Audio'"
+  },
   "nav.kimi": {
     "message": "Kimi",
     "description": "網站導航欄中的文本，用於顯示Kimi頁面，請不要翻譯此字段，必須保持為'Kimi'"
@@ -502,6 +510,10 @@
   "nav.serp": {
     "message": "SERP",
     "description": "網站導航欄中的文本，用於顯示SERP頁面，請不要翻譯此字段，必須保持為'SERP'"
+  },
+  "nav.webextrator": {
+    "message": "WebExtrator",
+    "description": "Text in the website navigation bar to display the WebExtrator page, must remain as 'WebExtrator'"
   },
   "nav.image": {
     "message": "圖片",
@@ -707,6 +719,10 @@
     "message": "功能設置",
     "description": "設置頁面中的功能設置部分的標題"
   },
+  "settings.auth": {
+    "message": "登入方式",
+    "description": "設定頁面側邊欄的『登入方式』標籤標題——配置本站允許使用的登入方式及預設登入方式，僅站點管理員可見"
+  },
   "settings.apiKey": {
     "message": "API金鑰",
     "description": "設置頁面側邊欄的 API 金鑰標籤——用戶自帶（BYOK）的上游服務商 API 金鑰管理"
@@ -811,6 +827,14 @@
     "message": "我的分站",
     "description": "設定彈窗中分站管理 tab 的標題。僅在 official 主站可見，分站不顯示。"
   },
+  "settings.adminOnlyHint": {
+    "message": "此栏目仅站点管理员可见，普通用户无法访问。",
+    "description": "在站点设置 / SEO 设置 / 分发设置 / 功能设置 等仅管理员可见的设置 tab 顶部展示的提示語。"
+  },
+  "settings.officialOnlyHint": {
+    "message": "此栏目仅主站可见，分站不会显示。",
+    "description": "在『我的分站』tab 顶部展示的提示語，說明該入口只在 official 主站出現。"
+  },
   "settings.customDomain": {
     "message": "自訂網域",
     "description": "Title for the custom-domain management tab in the settings popup. Visible only on subsites (non-main-official hosts) for site admins."
@@ -874,5 +898,33 @@
   "button.goBack": {
     "message": "返回上一頁",
     "description": "按鈕文本，用於返回瀏覽歷史的上一頁"
+  },
+  "title.apiCode": {
+    "message": "API code for this request",
+    "description": "Title of the dialog that shows the equivalent API code (curl / Python / Node) that would reproduce a result generated inside the product"
+  },
+  "message.viewCodeHint": {
+    "message": "Show API code for this request",
+    "description": "Tooltip text on the View Code button shown alongside result-card action buttons (U1/U2/Download/Extend/...). Clicking the button opens a dialog with curl / Python / Node snippets that reproduce the same generation via the public API."
+  },
+  "button.viewCode": {
+    "message": "View code",
+    "description": "Button text that opens a dialog with the equivalent API code (curl / Python / Node) for the current result, similar to the OpenAI Playground 'View code' affordance"
+  },
+  "button.getApiKey": {
+    "message": "Get an API key",
+    "description": "Link text in the API code dialog footer that opens the platform console page where users can create an API key"
+  },
+  "button.apiPlatform": {
+    "message": "API Platform",
+    "description": "API code dialog footer button label. Clicking opens https://platform.acedata.cloud/ in a new tab so users can manage their API keys, balance and usage."
+  },
+  "message.apiCodeIntro": {
+    "message": "Run this from your own code to produce the same result. Replace <YOUR_API_KEY> with a key from your platform console.",
+    "description": "Helper text shown above the code tabs in the API code dialog, explaining how to use the snippet"
+  },
+  "message.uploadInProgress": {
+    "message": "參考檔案仍在上傳，請稍候再生成。",
+    "description": "Toast shown when the user clicks the Generate button while one or more reference uploads are still in flight. Asks them to wait for uploads to complete before retrying."
   }
 }

@@ -103,6 +103,10 @@
     "message": "Швидша та легша модель GPT 5.4",
     "description": "Опис моделі GPT 5.4 Mini"
   },
+  "model.freeTag": {
+    "message": "Безкоштовно",
+    "description": "Значок, що відображається поруч із безкоштовними моделями в селекторі моделей"
+  },
   "model.deepseekChat": {
     "message": "3.0",
     "description": "Назва моделі сервісу, тобто DeepSeek Chat"
@@ -398,22 +402,6 @@
   "group.earlier": {
     "message": "Раніше",
     "description": "Назва групи на веб-сторінці, тобто Раніше"
-  },
-  "connector.authFailed": {
-    "message": "Авторизація не вдалася, будь ласка, спробуйте знову.",
-    "description": "Повідомлення про невдалу авторизацію"
-  },
-  "connector.processing": {
-    "message": "Обробка авторизації...",
-    "description": "Повідомлення про обробку OAuth зворотного виклику"
-  },
-  "connector.authSuccess": {
-    "message": "Авторизація успішна!",
-    "description": "Повідомлення про успішну авторизацію OAuth"
-  },
-  "connector.closeWindow": {
-    "message": "Це вікно закриється автоматично.",
-    "description": "Підказка про закриття вікна OAuth зворотного виклику"
   },
   "connections.tooltip": {
     "message": "Управління з'єднаннями",

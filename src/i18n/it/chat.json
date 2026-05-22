@@ -103,6 +103,10 @@
     "message": "Modello GPT 5.4 più veloce e leggero",
     "description": "Descrizione del modello GPT 5.4 Mini"
   },
+  "model.freeTag": {
+    "message": "Gratis",
+    "description": "Badge mostrato accanto ai modelli gratuiti nel selettore modello"
+  },
   "model.deepseekChat": {
     "message": "3.0",
     "description": "Nome del modello del servizio, ovvero DeepSeek Chat"
@@ -398,22 +402,6 @@
   "group.earlier": {
     "message": "Precedente",
     "description": "Nome del gruppo nella pagina web, ovvero Precedente"
-  },
-  "connector.authFailed": {
-    "message": "Autenticazione fallita, riprova.",
-    "description": "Messaggio di errore di autenticazione fallita"
-  },
-  "connector.processing": {
-    "message": "Elaborazione dell'autenticazione in corso...",
-    "description": "Messaggio di elaborazione del callback OAuth"
-  },
-  "connector.authSuccess": {
-    "message": "Autenticazione riuscita!",
-    "description": "Messaggio di successo del callback OAuth"
-  },
-  "connector.closeWindow": {
-    "message": "Questa finestra si chiuderà automaticamente.",
-    "description": "Messaggio di chiusura del callback OAuth"
   },
   "connections.tooltip": {
     "message": "Gestione connessioni",

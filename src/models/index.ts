@@ -28,6 +28,8 @@ export * from './seedream';
 export * from './seedance';
 export * from './serp';
 export * from './wan';
+export * from './webextrator';
+export * from './fish';
 export * from './site';
 export * from './site_domain';
 export * from './exchange';

@@ -58,6 +58,7 @@ export interface IChatModel {
   isFileSupported?: boolean;
   isReasoningSupported?: boolean;
   isDeepSearchSupported?: boolean;
+  isFree?: boolean;
 }
 
 export interface IChatModelGroup {

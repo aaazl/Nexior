@@ -11,6 +11,10 @@
     "message": "Visit Subsite Now",
     "description": "Title for the dialog asking if the user wants to redirect after successful creation"
   },
+  "title.openSite": {
+    "message": "Open Subsite",
+    "description": "Title of the open-subsite confirmation dialog."
+  },
   "field.slug": {
     "message": "Subdomain Prefix",
     "description": "Title for the subsite slug input field"
@@ -18,6 +22,14 @@
   "field.origin": {
     "message": "Subsite Domain",
     "description": "Domain column in the subsite list"
+  },
+  "field.defaultLabel": {
+    "message": "Default",
+    "description": "Tag rendered next to the default subdomain in the open-subsite dialog."
+  },
+  "field.customLabel": {
+    "message": "Custom",
+    "description": "Tag rendered next to a custom (BYO) hostname in the open-subsite dialog."
   },
   "field.title": {
     "message": "Subsite Title",
@@ -90,6 +102,10 @@
   "message.openNowConfirm": {
     "message": "Subsite {origin} has been created. Would you like to open it now to continue configuration?",
     "description": "Prompt to open immediately after creation"
+  },
+  "message.openSiteHint": {
+    "message": "Choose which URL to open. We'll open it in a new tab for you.",
+    "description": "Body hint inside the open-subsite dialog explaining the URL picker."
   },
   "title.domains": {
     "message": "Custom Domain for {origin}",
@@ -198,5 +214,9 @@
   "status.failed": {
     "message": "Failed",
     "description": "Failed status label"
+  },
+  "message.recordNameHint": {
+    "message": "Tip: On most DNS providers (DNSPod, Cloudflare, Aliyun, Tencent Cloud, etc.) the \"Host\" / \"Name\" field only takes the subdomain prefix. For example, when binding studio.your-brand.com you enter just studio; when binding the root domain itself (e.g. your-brand.com), enter @ as the host. Providers that expect a full FQDN (AWS Route 53, Bind, etc.) accept the value shown in the table above as-is.",
+    "description": "Hint below the DNS record table explaining what to enter for the host/name field across common DNS providers (subdomain prefix / @ / full FQDN)"
   }
 }

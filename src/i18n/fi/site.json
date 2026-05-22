@@ -23,6 +23,10 @@
     "message": "Sivuston favicon",
     "description": "Näytetään muokkausruudun otsikkona"
   },
+  "field.primaryColor": {
+    "message": "Teeman väri",
+    "description": "Otsikko, joka näkyy muokkausruudussa"
+  },
   "field.qr": {
     "message": "QR-koodi",
     "description": "Näytetään muokkausruudun otsikkona"
@@ -42,6 +46,34 @@
   "field.distributionForceInviterId": {
     "message": "Pakotettu kutsuja ID",
     "description": "Näytetään muokkausruudun otsikkona"
+  },
+  "field.authEnabledProviders": {
+    "message": "Käytettävissä olevat kirjautumistavat",
+    "description": "Sivuston asetukset / Kirjautumistapa-välilehden otsikko: valitse sallitut kirjautumistavat, joita käyttäjät voivat käyttää kirjautumissivulla"
+  },
+  "field.authDefaultProvider": {
+    "message": "Oletusarvoinen kirjautumistapa",
+    "description": "Sivuston asetukset / Kirjautumistapa-välilehden otsikko: kirjautumissivun avautuessa oletuksena valittu kirjautumistapa"
+  },
+  "field.authProvider_email": {
+    "message": "Sähköposti",
+    "description": "Kirjautumistavan nimi: sähköposti (sähköposti + salasana tai vahvistuskoodi)"
+  },
+  "field.authProvider_phone": {
+    "message": "Puhelinnumero",
+    "description": "Kirjautumistavan nimi: puhelinnumero (tekstiviestivahvistus)"
+  },
+  "field.authProvider_google": {
+    "message": "Google",
+    "description": "Kirjautumistavan nimi: Google kolmannen osapuolen kirjautuminen"
+  },
+  "field.authProvider_github": {
+    "message": "GitHub",
+    "description": "Kirjautumistavan nimi: GitHub kolmannen osapuolen kirjautuminen"
+  },
+  "field.authProvider_wechat": {
+    "message": "WeChat",
+    "description": "Kirjautumistavan nimi: WeChat kolmannen osapuolen kirjautuminen"
   },
   "field.featuresChat": {
     "message": "Chat",
@@ -143,6 +175,14 @@
     "message": "SERP",
     "description": "Näytetään muokkausruudun otsikkona"
   },
+  "field.featuresFish": {
+    "message": "Kalojen ääni",
+    "description": "Näytetään muokkausruudun otsikkona."
+  },
+  "field.featuresWebextrator": {
+    "message": "WebExtrator",
+    "description": "Displayed as the title in the editing box"
+  },
   "field.featuresSupport": {
     "message": "Asiakastuki",
     "description": "Näytetään muokkausruudun otsikkona"
@@ -239,6 +279,10 @@
     "message": "Syötä pakollisen kutsujan ID",
     "description": "Näytetään muokkausruudun otsikkona"
   },
+  "placeholder.authDefaultProvider": {
+    "message": "Valitse oletusarvoinen kirjautumistapa",
+    "description": "Kirjautumistapa-välilehden oletusarvoisen kirjautumistavan alasvetovalikon placeholder"
+  },
   "message.uploadImageExceed": {
     "message": "Kuvan lataus ylittää rajan",
     "description": "Kuvan lataus ylittää rajan ilmoitus"
@@ -323,6 +367,18 @@
     "message": "Pakollisen kutsujan käyttäjä ID, jos tämä ID on asetettu, käytetään tätä käyttäjä ID:tä kutsujana riippumatta siitä, sisältääkö jakolinkki inviter_id-parametrin.",
     "description": "Pakollisen kutsujan ID:n ohje"
   },
+  "message.authEnabledProvidersTip": {
+    "message": "Valitse sallitut kirjautumistavat, joita voi käyttää tällä sivustolla. Yksi on pakollinen, muuten käyttäjä ei voi kirjautua sisään.",
+    "description": "Kirjautumistapa-välilehden 'Käytettävissä olevat kirjautumistavat' seliteteksti"
+  },
+  "message.authDefaultProviderTip": {
+    "message": "Oletusarvoinen kirjautumistapa, joka on valittuna, kun käyttäjä saapuu kirjautumissivulle. Sen on oltava yksi sallitusta kirjautumistavasta.",
+    "description": "Kirjautumistapa-välilehden 'Oletusarvoinen kirjautumistapa' seliteteksti"
+  },
+  "message.authProvidersAtLeastOne": {
+    "message": "Yksi kirjautumistapa on pakollinen",
+    "description": "Varoitusviesti, kun käyttäjä yrittää poistaa valinnan kaikista kirjautumistavoista"
+  },
   "message.originTip": {
     "message": "Sivuston verkkotunnus, sivuston asetukset on sidottu verkkotunnukseen, verkkotunnusta ei voi muuttaa.",
     "description": "Sivuston verkkotunnuksen ohje"
@@ -342,6 +398,10 @@
   "message.faviconTip": {
     "message": "Sivuston favicon, näytetään selaimen välilehdessä.",
     "description": "Sivuston faviconin ohje"
+  },
+  "message.primaryColorTip": {
+    "message": "Sivuston teeman brändiväri, jota käytetään koko sivuston painikkeissa, linkeissä, korostuksissa ja brändivärin liukuväriä varten.",
+    "description": "Vihje teeman värin valitsimelle"
   },
   "message.adminsTip": {
     "message": "Sivuston ylläpitäjän ID, oletuksena ensimmäinen sivuston luoja on ylläpitäjä, vain sivuston ylläpitäjät voivat hallita sivustoa.",
@@ -439,6 +499,14 @@
     "message": "Ota käyttöön tai poista käytöstä SERP-ominaisuusmoduuli.",
     "description": "SERP-ominaisuuden kuvaus"
   },
+  "message.featuresFish": {
+    "message": "Avaa tai sulje Kalojen ääni -toimintomoduuli.",
+    "description": "Kalojen ääni -toiminnon kuvaus."
+  },
+  "message.featuresWebextrator": {
+    "message": "Enable or disable the WebExtrator feature module.",
+    "description": "Description of the WebExtrator feature"
+  },
   "message.featuresLuma": {
     "message": "Ota käyttöön tai poista käytöstä Luma-ominaisuusmoduuli.",
     "description": "Luma-ominaisuuden kuvaus"
@@ -471,6 +539,10 @@
     "message": "Lataa",
     "description": "Lataa"
   },
+  "button.resetPrimaryColor": {
+    "message": "Palauta oletus",
+    "description": "Palauttaa sivuston teeman värin alustavan värin mukaan"
+  },
   "button.enabled": {
     "message": "Otetaan käyttöön",
     "description": "Kytkin teksti, joka osoittaa, että se on otettu käyttöön"
@@ -498,5 +570,29 @@
   "placeholder.admins": {
     "message": "Syötä ylläpitäjän käyttäjä ID",
     "description": "Ylläpitäjän muokkausruudun paikkamerkki sivuston asetuksissa"
+  },
+  "message.userNotFound": {
+    "message": "Käyttäjää ei löytynyt",
+    "description": "Shown when the user lookup endpoint returns 404 in the picker preview."
+  },
+  "message.editUserHint": {
+    "message": "Liitä käyttäjän UUID tai kirjoita sähköposti, puhelinnumero tai käyttäjänimi etsiäksesi.",
+    "description": "Tip below the lookup input in the inviter / admin user picker dialog."
+  },
+  "message.editUsersEmpty": {
+    "message": "Ei vielä ylläpitäjiä.",
+    "description": "Empty-state text shown when the admins list has no users."
+  },
+  "message.userAlreadyAdded": {
+    "message": "Jo lisätty",
+    "description": "Disabled-state label on the Add button when the resolved user is already in the admin list."
+  },
+  "title.addUser": {
+    "message": "Lisää käyttäjä",
+    "description": "Divider title in the admins picker, between the existing-admins list and the lookup input."
+  },
+  "button.addUser": {
+    "message": "Lisää",
+    "description": "Button label to add the resolved user to the admins list."
   }
 }

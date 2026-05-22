@@ -23,6 +23,10 @@
     "message": "Favicon sajta",
     "description": "Prikazuje se kao naslov u okviru za uređivanje"
   },
+  "field.primaryColor": {
+    "message": "Боја теме",
+    "description": "Наслов који се приказује у уређивачу"
+  },
   "field.qr": {
     "message": "QR kod",
     "description": "Prikazuje se kao naslov u okviru za uređivanje"
@@ -42,6 +46,34 @@
   "field.distributionForceInviterId": {
     "message": "ID obaveznog pozivaoca",
     "description": "Prikazuje se kao naslov u okviru za uređivanje"
+  },
+  "field.authEnabledProviders": {
+    "message": "Omogućeni načini prijave",
+    "description": "Naslov taba za podešavanje sajta / Način prijave: označite koje načine prijave korisnici mogu koristiti na stranici za prijavu"
+  },
+  "field.authDefaultProvider": {
+    "message": "Podrazumevani način prijave",
+    "description": "Naslov taba za podešavanje sajta / Način prijave: način prijave koji je podrazumevano izabran kada se otvori stranica za prijavu"
+  },
+  "field.authProvider_email": {
+    "message": "Email",
+    "description": "Naziv načina prijave: Email (email + lozinka ili kod)"
+  },
+  "field.authProvider_phone": {
+    "message": "Broj telefona",
+    "description": "Naziv načina prijave: Broj telefona (SMS kod)"
+  },
+  "field.authProvider_google": {
+    "message": "Google",
+    "description": "Naziv načina prijave: Google treća strana"
+  },
+  "field.authProvider_github": {
+    "message": "GitHub",
+    "description": "Naziv načina prijave: GitHub treća strana"
+  },
+  "field.authProvider_wechat": {
+    "message": "WeChat",
+    "description": "Naziv načina prijave: WeChat treća strana"
   },
   "field.featuresChat": {
     "message": "Chat",
@@ -143,6 +175,14 @@
     "message": "SERP",
     "description": "Prikazuje se kao naslov u okviru za uređivanje"
   },
+  "field.featuresFish": {
+    "message": "Riblja Audio",
+    "description": "Naslov prikazan u okviru za uređivanje"
+  },
+  "field.featuresWebextrator": {
+    "message": "WebExtrator",
+    "description": "Displayed as the title in the editing box"
+  },
   "field.featuresSupport": {
     "message": "Korisnička podrška",
     "description": "Prikazuje se kao naslov u okviru za uređivanje"
@@ -239,6 +279,10 @@
     "message": "Унесите ID обавезног позиватеља",
     "description": "Приказује се у уређивању"
   },
+  "placeholder.authDefaultProvider": {
+    "message": "Izaberite podrazumevani način prijave",
+    "description": "Placeholder za padajuću listu podrazumevanog načina prijave u tabu za načine prijave"
+  },
   "message.uploadImageExceed": {
     "message": "Превише слика за учитавање",
     "description": "Порука о превеликом учитавању слике"
@@ -323,6 +367,18 @@
     "message": "ID корисника обавезног позиватеља. Ако је овај ID подешен, без обзира на то да ли дистрибутивни линк садржи параметар inviter_id, користиће се овај ID као позиватељ.",
     "description": "Упутство о обавезном ID позиватеља"
   },
+  "message.authEnabledProvidersTip": {
+    "message": "Označite načine prijave koje korisnici mogu koristiti na ovoj stranici. Mora biti omogućena barem jedna opcija, inače korisnici neće moći da se prijave.",
+    "description": "Objašnjenje za 'Omogućeni načini prijave' u tabu za načine prijave"
+  },
+  "message.authDefaultProviderTip": {
+    "message": "Način prijave koji je podrazumevano izabran kada korisnik uđe na stranicu za prijavu, mora biti jedan od omogućених načina prijave.",
+    "description": "Objašnjenje za 'Podrazumevani način prijave' u tabu za načine prijave"
+  },
+  "message.authProvidersAtLeastOne": {
+    "message": "Mora biti omogućena barem jedna opcija za prijavu",
+    "description": "Upozorenje kada korisnik pokuša da poništi sve načine prijave"
+  },
   "message.originTip": {
     "message": "Домен сајта, конфигурација сајта је повезана са доменом и не може се променити.",
     "description": "Упутство о домену сајта"
@@ -342,6 +398,10 @@
   "message.faviconTip": {
     "message": "Favicon сајта, приказује се на картици прегледача.",
     "description": "Упутство о favicon-у сајта"
+  },
+  "message.primaryColorTip": {
+    "message": "Тема боје бренда сајта, примењује се на све дугмиће, линкове, истакнуте елементе и градијент боје бренда.",
+    "description": "Саветник за избор боје теме сајта"
   },
   "message.adminsTip": {
     "message": "ID администраторов сајта, подразумевано, први корисник који креира сајт постаје администратор, само администратори могу управљати сајтом.",
@@ -439,6 +499,14 @@
     "message": "Uključi ili isključi SERP funkcionalnost.",
     "description": "Opis SERP funkcionalnosti"
   },
+  "message.featuresFish": {
+    "message": "Uključi ili isključi modul Riblja Audio.",
+    "description": "Opis funkcionalnosti Riblja Audio"
+  },
+  "message.featuresWebextrator": {
+    "message": "Enable or disable the WebExtrator feature module.",
+    "description": "Description of the WebExtrator feature"
+  },
   "message.featuresLuma": {
     "message": "Uključi ili isključi Luma funkcionalnost.",
     "description": "Opis Luma funkcionalnosti"
@@ -471,6 +539,10 @@
     "message": "Otpremi",
     "description": "Otpremi"
   },
+  "button.resetPrimaryColor": {
+    "message": "Врати подешавања",
+    "description": "Враћа боју теме на подразумевану боју платформе"
+  },
   "button.enabled": {
     "message": "Omogućeno",
     "description": "Tekst prekidača, označava da je omogućeno"
@@ -498,5 +570,29 @@
   "placeholder.admins": {
     "message": "Unesite ID korisnika administratora",
     "description": "Placeholder u okviru za uređivanje administratora u podešavanjima sajta"
+  },
+  "message.userNotFound": {
+    "message": "Korisnik nije pronađen",
+    "description": "Shown when the user lookup endpoint returns 404 in the picker preview."
+  },
+  "message.editUserHint": {
+    "message": "Nalepite UUID korisnika ili unesite email, telefon ili korisničko ime da biste pronašli korisnika.",
+    "description": "Tip below the lookup input in the inviter / admin user picker dialog."
+  },
+  "message.editUsersEmpty": {
+    "message": "Još uvek nema administratora.",
+    "description": "Empty-state text shown when the admins list has no users."
+  },
+  "message.userAlreadyAdded": {
+    "message": "Već dodato",
+    "description": "Disabled-state label on the Add button when the resolved user is already in the admin list."
+  },
+  "title.addUser": {
+    "message": "Dodaj korisnika",
+    "description": "Divider title in the admins picker, between the existing-admins list and the lookup input."
+  },
+  "button.addUser": {
+    "message": "Dodaj",
+    "description": "Button label to add the resolved user to the admins list."
   }
 }
