@@ -71,6 +71,10 @@
     "message": "GitHub",
     "description": "Назва типу авторизації: стороння авторизація через GitHub."
   },
+  "field.authProvider_apple": {
+    "message": "Apple",
+    "description": "Login provider display name: Sign in with Apple."
+  },
   "field.authProvider_wechat": {
     "message": "WeChat",
     "description": "Назва типу авторизації: стороння авторизація через WeChat."
@@ -90,6 +94,18 @@
   "field.featuresGrok": {
     "message": "Grok",
     "description": "展示在编辑框的标题"
+  },
+  "field.featuresGrokvideo": {
+    "message": "Grok Video",
+    "description": "Відображається як заголовок у полі редагування"
+  },
+  "field.featuresMaestro": {
+    "message": "Maestro",
+    "description": "Відображається як заголовок у полі редагування"
+  },
+  "field.featuresDigitalhuman": {
+    "message": "Digital Human",
+    "description": "Displayed as the title in the editing box"
   },
   "field.featuresDeepseek": {
     "message": "Deepseek",
@@ -178,6 +194,10 @@
   "field.featuresFish": {
     "message": "Аудіо риби",
     "description": "Заголовок, що відображається в редакторі"
+  },
+  "field.featuresCodingBridge": {
+    "message": "Coding Bridge",
+    "description": "Displayed as the title in the editing box"
   },
   "field.featuresWebextrator": {
     "message": "WebExtrator",
@@ -427,6 +447,18 @@
     "message": "Увімкнути або вимкнути модуль функції Grok.",
     "description": "Опис функції Grok"
   },
+  "message.featuresGrokvideo": {
+    "message": "Увімкнути або вимкнути модуль функцій Grok Video.",
+    "description": "Опис функції Grok Video"
+  },
+  "message.featuresMaestro": {
+    "message": "Увімкнути або вимкнути модуль функцій Maestro.",
+    "description": "Опис функції Maestro"
+  },
+  "message.featuresDigitalhuman": {
+    "message": "Enable or disable the Digital Human feature module.",
+    "description": "Description of the Digital Human feature"
+  },
   "message.featuresDeepseek": {
     "message": "Увімкнути або вимкнути модуль функції Deepseek.",
     "description": "Опис функції Deepseek"
@@ -502,6 +534,10 @@
   "message.featuresFish": {
     "message": "Увімкнути або вимкнути модуль функції Аудіо риби.",
     "description": "Опис функції Аудіо риби"
+  },
+  "message.featuresCodingBridge": {
+    "message": "Enable or disable the Coding Bridge feature module.",
+    "description": "Description of the Coding Bridge feature"
   },
   "message.featuresWebextrator": {
     "message": "Enable or disable the WebExtrator feature module.",
@@ -594,5 +630,33 @@
   "button.addUser": {
     "message": "Додати",
     "description": "Button label to add the resolved user to the admins list."
+  },
+  "autoTranslate.tooltipOn": {
+    "message": "Автопереклад УВІМКНЕНО — вміст відображається мовою відвідувача",
+    "description": "Tooltip on the auto-translate toggle when it is ON"
+  },
+  "autoTranslate.tooltipOff": {
+    "message": "Зберігання дослівне — натисніть, щоб увімкнути автопереклад",
+    "description": "Tooltip on the auto-translate toggle when it is OFF"
+  },
+  "autoTranslate.tooltipDisabledNotSaved": {
+    "message": "Збережіть рядок, перш ніж вмикати автопереклад",
+    "description": "Tooltip shown when the toggle is disabled because the row has no id yet (create-dialog state)"
+  },
+  "autoTranslate.confirmEnable": {
+    "message": "Цей вміст буде перекладено на 17 мов протягом ~1 години. Продовжити?",
+    "description": "Body text of the confirm dialog shown before enabling auto-translation"
+  },
+  "autoTranslate.confirmDisable": {
+    "message": "Вимкнення видалить усі 18 перекладів і збереже лише поточне значення. Продовжити?",
+    "description": "Body text of the confirm dialog shown before disabling auto-translation"
+  },
+  "autoTranslate.empty": {
+    "message": "Введіть якийсь вміст, перш ніж вмикати автопереклад",
+    "description": "Warning shown when the user tries to enable auto-translation on an empty field"
+  },
+  "autoTranslate.error": {
+    "message": "Не вдалося перемкнути автопереклад, спробуйте знову",
+    "description": "Fallback error toast when the enable/disable HTTP call fails with no detail"
   }
 }

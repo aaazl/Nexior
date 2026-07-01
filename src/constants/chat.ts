@@ -14,10 +14,12 @@ export const CHAT_MODEL_NAME_DEEPSEEK_V4_FLASH = 'deepseek-v4-flash';
 export const CHAT_MODEL_NAME_DEEPSEEK_REASONER = 'deepseek-r1';
 export const CHAT_MODEL_NAME_GROK_4 = 'grok-4';
 export const CHAT_MODEL_NAME_GROK_3 = 'grok-3';
+export const CHAT_MODEL_NAME_GEMINI_3_1_PRO = 'gemini-3.1-pro';
 export const CHAT_MODEL_NAME_GEMINI_3_0_PRO = 'gemini-3.0-pro';
+export const CHAT_MODEL_NAME_GEMINI_3_5_FLASH = 'gemini-3.5-flash';
 export const CHAT_MODEL_NAME_GEMINI_2_5_PRO = 'gemini-2.5-pro';
 export const CHAT_MODEL_NAME_GEMINI_2_5_FLASH = 'gemini-2.5-flash';
-export const CHAT_MODEL_NAME_CLAUDE_OPUS_4_7 = 'claude-opus-4-7';
+export const CHAT_MODEL_NAME_CLAUDE_OPUS_4_8 = 'claude-opus-4-8';
 export const CHAT_MODEL_NAME_CLAUDE_SONNET_4_6 = 'claude-sonnet-4-6';
 export const CHAT_MODEL_NAME_CLAUDE_HAIKU_4_5 = 'claude-haiku-4-5-20251001';
 
@@ -128,6 +130,18 @@ export const CHAT_MODEL_GROK_3: IChatModel = {
   getDescription: () => i18n.global.t('chat.model.grok3Description')
 };
 
+export const CHAT_MODEL_GEMINI_3_1_PRO: IChatModel = {
+  enabled: true,
+  name: CHAT_MODEL_NAME_GEMINI_3_1_PRO,
+  icon: CHAT_MODEL_ICON_GEMINI,
+  modelGroup: 'gemini',
+  isImageSupported: true,
+  isFileSupported: true,
+  isReasoningSupported: true,
+  getDisplayName: () => i18n.global.t('chat.model.gemini31Pro'),
+  getDescription: () => i18n.global.t('chat.model.gemini31ProDescription')
+};
+
 export const CHAT_MODEL_GEMINI_3_0_PRO: IChatModel = {
   enabled: true,
   name: CHAT_MODEL_NAME_GEMINI_3_0_PRO,
@@ -137,6 +151,18 @@ export const CHAT_MODEL_GEMINI_3_0_PRO: IChatModel = {
   isFileSupported: true,
   getDisplayName: () => i18n.global.t('chat.model.gemini30Pro'),
   getDescription: () => i18n.global.t('chat.model.gemini30ProDescription')
+};
+
+export const CHAT_MODEL_GEMINI_3_5_FLASH: IChatModel = {
+  enabled: true,
+  name: CHAT_MODEL_NAME_GEMINI_3_5_FLASH,
+  icon: CHAT_MODEL_ICON_GEMINI,
+  modelGroup: 'gemini',
+  isImageSupported: true,
+  isFileSupported: true,
+  isReasoningSupported: true,
+  getDisplayName: () => i18n.global.t('chat.model.gemini35Flash'),
+  getDescription: () => i18n.global.t('chat.model.gemini35FlashDescription')
 };
 
 export const CHAT_MODEL_GEMINI_2_5_PRO: IChatModel = {
@@ -163,16 +189,16 @@ export const CHAT_MODEL_GEMINI_2_5_FLASH: IChatModel = {
   getDescription: () => i18n.global.t('chat.model.gemini25FlashDescription')
 };
 
-export const CHAT_MODEL_CLAUDE_OPUS_4_7: IChatModel = {
+export const CHAT_MODEL_CLAUDE_OPUS_4_8: IChatModel = {
   enabled: true,
-  name: CHAT_MODEL_NAME_CLAUDE_OPUS_4_7,
+  name: CHAT_MODEL_NAME_CLAUDE_OPUS_4_8,
   icon: CHAT_MODEL_ICON_CLAUDE,
   modelGroup: 'claude',
   isImageSupported: true,
   isFileSupported: true,
   isReasoningSupported: true,
-  getDisplayName: () => i18n.global.t('chat.model.claudeOpus47'),
-  getDescription: () => i18n.global.t('chat.model.claudeOpus47Description')
+  getDisplayName: () => i18n.global.t('chat.model.claudeOpus48'),
+  getDescription: () => i18n.global.t('chat.model.claudeOpus48Description')
 };
 
 export const CHAT_MODEL_CLAUDE_SONNET_4_6: IChatModel = {
@@ -252,7 +278,8 @@ export const CHAT_MODEL_GROUP_CHATGPT: IChatModelGroup = {
   name: 'chatgpt',
   getDisplayName: () => i18n.global.t('chat.modelGroup.chatgpt'),
   getDescription: () => i18n.global.t('chat.modelGroup.chatgptDescription'),
-  models: [CHAT_MODEL_GPT_5_4_MINI, CHAT_MODEL_GPT_5_5, CHAT_MODEL_GPT_5_4]
+  models: [CHAT_MODEL_GPT_5_4_MINI, CHAT_MODEL_GPT_5_5, CHAT_MODEL_GPT_5_4],
+  isVoiceCallSupported: true
 };
 
 export const CHAT_MODEL_GROUP_DEEPSEEK: IChatModelGroup = {
@@ -281,7 +308,13 @@ export const CHAT_MODEL_GROUP_GEMINI: IChatModelGroup = {
   name: 'gemini',
   getDisplayName: () => i18n.global.t('chat.modelGroup.gemini'),
   getDescription: () => i18n.global.t('chat.modelGroup.geminiDescription'),
-  models: [CHAT_MODEL_GEMINI_3_0_PRO, CHAT_MODEL_GEMINI_2_5_PRO, CHAT_MODEL_GEMINI_2_5_FLASH]
+  models: [
+    CHAT_MODEL_GEMINI_3_1_PRO,
+    CHAT_MODEL_GEMINI_3_0_PRO,
+    CHAT_MODEL_GEMINI_3_5_FLASH,
+    CHAT_MODEL_GEMINI_2_5_PRO,
+    CHAT_MODEL_GEMINI_2_5_FLASH
+  ]
 };
 
 export const CHAT_MODEL_GROUP_CLAUDE: IChatModelGroup = {
@@ -289,7 +322,7 @@ export const CHAT_MODEL_GROUP_CLAUDE: IChatModelGroup = {
   name: 'claude',
   getDisplayName: () => i18n.global.t('chat.modelGroup.claude'),
   getDescription: () => i18n.global.t('chat.modelGroup.claudeDescription'),
-  models: [CHAT_MODEL_CLAUDE_OPUS_4_7, CHAT_MODEL_CLAUDE_SONNET_4_6, CHAT_MODEL_CLAUDE_HAIKU_4_5]
+  models: [CHAT_MODEL_CLAUDE_OPUS_4_8, CHAT_MODEL_CLAUDE_SONNET_4_6, CHAT_MODEL_CLAUDE_HAIKU_4_5]
 };
 
 export const CHAT_MODEL_GROUP_KIMI: IChatModelGroup = {
@@ -316,10 +349,12 @@ export const CHAT_MODELS: IChatModel[] = [
   CHAT_MODEL_DEEPSEEK_REASONER,
   CHAT_MODEL_GROK_4,
   CHAT_MODEL_GROK_3,
+  CHAT_MODEL_GEMINI_3_1_PRO,
   CHAT_MODEL_GEMINI_3_0_PRO,
+  CHAT_MODEL_GEMINI_3_5_FLASH,
   CHAT_MODEL_GEMINI_2_5_PRO,
   CHAT_MODEL_GEMINI_2_5_FLASH,
-  CHAT_MODEL_CLAUDE_OPUS_4_7,
+  CHAT_MODEL_CLAUDE_OPUS_4_8,
   CHAT_MODEL_CLAUDE_SONNET_4_6,
   CHAT_MODEL_CLAUDE_HAIKU_4_5,
   CHAT_MODEL_KIMI_K2_5,

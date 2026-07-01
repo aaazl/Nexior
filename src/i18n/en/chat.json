@@ -163,6 +163,14 @@
     "message": "Currently the most advanced model",
     "description": "Description of the Gemini 3.0 Pro model"
   },
+  "model.gemini31Pro": {
+    "message": "gemini-3.1-pro",
+    "description": "Name of the service model, i.e., Gemini 3.0 Pro"
+  },
+  "model.gemini31ProDescription": {
+    "message": "Currently the most advanced model",
+    "description": "Description of the Gemini 3.0 Pro model"
+  },
   "model.gemini25Pro": {
     "message": "gemini-2.5-pro",
     "description": "Name of the service model, i.e., Gemini 2.5 Pro"
@@ -179,13 +187,21 @@
     "message": "Faster and lighter model",
     "description": "Description of the Gemini 2.5 Flash model"
   },
-  "model.claudeOpus47": {
-    "message": "claude-opus-4.7",
-    "description": "Name of the service model, i.e., Claude Opus 4.7"
+  "model.gemini35Flash": {
+    "message": "gemini-3.5-flash",
+    "description": "Name of the service model, i.e., Gemini 2.5 Flash"
   },
-  "model.claudeOpus47Description": {
+  "model.gemini35FlashDescription": {
+    "message": "Faster and lighter model",
+    "description": "Description of the Gemini 2.5 Flash model"
+  },
+  "model.claudeOpus48": {
+    "message": "claude-opus-4.8",
+    "description": "Name of the service model, i.e., Claude Opus 4.8"
+  },
+  "model.claudeOpus48Description": {
     "message": "Currently the most advanced model",
-    "description": "Description of the Claude Opus 4.7 model"
+    "description": "Description of the Claude Opus 4.8 model"
   },
   "model.claudeSonnet46": {
     "message": "claude-sonnet-4.6",
@@ -506,5 +522,195 @@
   "askUserQuestion.collapsedAnswerLabel": {
     "message": "Your Answer",
     "description": "Fallback text when a specific answer cannot be extracted from historical output"
+  },
+  "consent.title": {
+    "message": "Connector authorization needed",
+    "description": "Title of the connector consent card"
+  },
+  "consent.matchAny": {
+    "message": "Authorize any of these",
+    "description": "Label: any one of the listed connectors satisfies this requirement"
+  },
+  "consent.matchAll": {
+    "message": "Authorize all of these",
+    "description": "Label: every listed connector must be authorized"
+  },
+  "consent.authorize": {
+    "message": "Authorize",
+    "description": "Authorize button; opens the third-party OAuth flow"
+  },
+  "consent.skip": {
+    "message": "Skip",
+    "description": "Skip button; continue without authorizing any connector"
+  },
+  "consent.continue": {
+    "message": "Continue",
+    "description": "Continue button shown after we detect (post-OAuth) that the connector is now connected; submitting authorizes it."
+  },
+  "consent.selectScopes": {
+    "message": "Select {provider} Authorization Scopes",
+    "description": "Title of the scope picker dialog opened from the consent card; {provider} is the upstream provider name (e.g. Gmail)."
+  },
+  "consent.selectScopesHint": {
+    "message": "Select the permissions you wish to authorize. Multiple selections are allowed; by default, only basic login information is granted.",
+    "description": "Body copy explaining that the user can opt out of specific scopes; rendered above the checkbox group."
+  },
+  "consent.installFailed": {
+    "message": "Authorization failed. Please try again.",
+    "description": "Toast shown when the AuthBackend install endpoint returns an error from the consent card."
+  },
+  "consent.statusConnected": {
+    "message": "Connected",
+    "description": "Pill badge for already-connected connectors"
+  },
+  "consent.statusUnconnected": {
+    "message": "Unavailable",
+    "description": "Pill badge for unconnected connectors with no install URL"
+  },
+  "consent.resolvedAuthorized": {
+    "message": "Authorized: {list}",
+    "description": "Resolved banner after authorization; {list} = comma-separated connector ids"
+  },
+  "consent.resolvedSkipped": {
+    "message": "Connector authorization skipped",
+    "description": "Resolved banner when the user clicked Skip"
+  },
+  "scheduledTasks.navTitle": {
+    "message": "Scheduled Tasks"
+  },
+  "scheduledTasks.title": {
+    "message": "Scheduled Tasks"
+  },
+  "scheduledTasks.create": {
+    "message": "New"
+  },
+  "scheduledTasks.edit": {
+    "message": "Edit Task"
+  },
+  "scheduledTasks.empty": {
+    "message": "No scheduled tasks yet. Click \"New\" to create one."
+  },
+  "scheduledTasks.noRuns": {
+    "message": "No runs yet"
+  },
+  "scheduledTasks.loadError": {
+    "message": "Failed to load"
+  },
+  "scheduledTasks.deleteConfirm": {
+    "message": "Delete \"{name}\"? The task will stop running."
+  },
+  "scheduledTasks.viewResult": {
+    "message": "View Result"
+  },
+  "scheduledTasks.viewRuns": {
+    "message": "Run history"
+  },
+  "scheduledTasks.noConversation": {
+    "message": "No conversation"
+  },
+  "scheduledTasks.jitterHint": {
+    "message": "±60s jitter"
+  },
+  "scheduledTasks.runCount": {
+    "message": "Ran {count} time(s)"
+  },
+  "scheduledTasks.state.enabled": {
+    "message": "Active"
+  },
+  "scheduledTasks.state.disabled": {
+    "message": "Paused"
+  },
+  "scheduledTasks.state.error": {
+    "message": "Error"
+  },
+  "scheduledTasks.run.queued": {
+    "message": "Queued"
+  },
+  "scheduledTasks.run.running": {
+    "message": "Running"
+  },
+  "scheduledTasks.run.success": {
+    "message": "Success"
+  },
+  "scheduledTasks.run.failed": {
+    "message": "Failed"
+  },
+  "scheduledTasks.run.needs_user_input": {
+    "message": "Needs action"
+  },
+  "scheduledTasks.scheduleType.daily": {
+    "message": "Daily"
+  },
+  "scheduledTasks.scheduleType.minutely": {
+    "message": "Every minute"
+  },
+  "scheduledTasks.scheduleType.hourly": {
+    "message": "Hourly"
+  },
+  "scheduledTasks.scheduleType.weekly": {
+    "message": "Weekly"
+  },
+  "scheduledTasks.scheduleType.cron": {
+    "message": "Cron expression"
+  },
+  "scheduledTasks.form.name": {
+    "message": "Task name"
+  },
+  "scheduledTasks.form.namePlaceholder": {
+    "message": "e.g. Daily news summary"
+  },
+  "scheduledTasks.form.model": {
+    "message": "Model"
+  },
+  "scheduledTasks.form.prompt": {
+    "message": "Prompt"
+  },
+  "scheduledTasks.form.promptPlaceholder": {
+    "message": "Enter your scheduled question or instruction. Supports {'{{date}}'}, {'{{run_count}}'}, {'{{last_output}}'} variables."
+  },
+  "scheduledTasks.form.promptHint": {
+    "message": "Variables: {'{{date}}'} today, {'{{run_count}}'} run number, {'{{last_output}}'} last output snippet"
+  },
+  "scheduledTasks.form.schedule": {
+    "message": "Frequency"
+  },
+  "scheduledTasks.form.time": {
+    "message": "Time"
+  },
+  "scheduledTasks.form.weekday": {
+    "message": "Weekday"
+  },
+  "scheduledTasks.form.cron": {
+    "message": "Cron expression"
+  },
+  "scheduledTasks.form.skills": {
+    "message": "Authorized Skills"
+  },
+  "scheduledTasks.form.skillsPlaceholder": {
+    "message": "Select Skills this task may run automatically"
+  },
+  "scheduledTasks.form.skillsHint": {
+    "message": "Selected Skills may skip interactive confirmation during scheduled background runs. Unselected Skills can still preview or wait for confirmation."
+  },
+  "scheduledTasks.form.skillMissing": {
+    "message": "Not connected"
+  },
+  "scheduledTasks.form.mcpServers": {
+    "message": "Authorized MCP"
+  },
+  "scheduledTasks.form.mcpServersPlaceholder": {
+    "message": "Select MCP servers this task may load automatically"
+  },
+  "scheduledTasks.form.mcpServersHint": {
+    "message": "Selected MCP servers may be loaded and used during scheduled background runs. Unselected MCP servers will not load in unattended mode."
+  },
+  "scheduledTasks.form.skillsConfirmTitle": {
+    "message": "Confirm unattended authorization"
+  },
+  "scheduledTasks.form.skillsConfirm": {
+    "message": "This task will allow {count} Skill/MCP item(s) to skip interactive confirmation or load restrictions in background runs: {skills}. They may send messages, publish content, or write to external services. Please confirm."
+  },
+  "scheduledTasks.form.required": {
+    "message": "Please fill in task name and prompt"
   }
 }

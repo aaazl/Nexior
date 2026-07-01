@@ -17,18 +17,11 @@ import { nanobananaOperator } from '@/operators';
 import { instrumentGeneration } from '@/plugins/telemetry';
 import { INanobananaGenerateRequest, Status } from '@/models';
 import { ElMessage } from 'element-plus';
-import {
-  ERROR_CODE_USED_UP,
-  NANOBANANA_DEFAULT_RESOLUTION,
-  NANOBANANA_MODEL_NANO_BANANA_PRO,
-  getWebhookCallbackUrl
-} from '@/constants';
+import { ERROR_CODE_USED_UP, NANOBANANA_DEFAULT_RESOLUTION, NANOBANANA_MODEL_NANO_BANANA } from '@/constants';
 import RecentPanel from '@/components/nanobanana/RecentPanel.vue';
 import { INanobananaTask } from '@/models';
 import { loadPreviousPage } from '@/utils/pagination';
-import { uploadTrackerProviderMixin, ensureNoPendingUpload } from '@/utils';
-
-const CALLBACK_URL = getWebhookCallbackUrl('nanobanana');
+import { uploadTrackerProviderMixin, ensureNoPendingUpload, ensureLoggedIn } from '@/utils';
 
 interface IData {
   task: INanobananaTask | undefined;
@@ -165,17 +158,21 @@ export default defineComponent({
       if (!cfg?.aspect_ratio) {
         delete cfg.aspect_ratio;
       }
-      if (cfg?.model !== NANOBANANA_MODEL_NANO_BANANA_PRO && 'resolution' in cfg) {
+      // Resolution (1K/2K/4K) is supported by nano-banana-2 and nano-banana-pro; base nano-banana is 1K only.
+      if (cfg?.model === NANOBANANA_MODEL_NANO_BANANA && 'resolution' in cfg) {
         delete cfg.resolution;
       }
-      if (cfg?.model === NANOBANANA_MODEL_NANO_BANANA_PRO && !cfg?.resolution) {
+      if (cfg?.model !== NANOBANANA_MODEL_NANO_BANANA && !cfg?.resolution) {
         cfg.resolution = NANOBANANA_DEFAULT_RESOLUTION;
       }
       const request = {
         ...cfg,
         action: hasReferenceImages ? 'edit' : 'generate',
-        callback_url: CALLBACK_URL
+        async: true
       } as INanobananaGenerateRequest;
+      if (!ensureLoggedIn()) {
+        return;
+      }
       const token = this.credential?.token;
       if (!token) {
         console.error('no token specified');

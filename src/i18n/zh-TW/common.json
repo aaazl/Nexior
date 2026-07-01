@@ -51,6 +51,10 @@
     "message": "刪除",
     "description": "按鈕中的文本，用於刪除內容"
   },
+  "button.deletePermanently": {
+    "message": "永久刪除帳號",
+    "description": "Final red delete button at the bottom of the delete confirmation dialog"
+  },
   "button.confirm": {
     "message": "確認",
     "description": "按鈕中的文本，用於確認某項操作"
@@ -122,6 +126,14 @@
   "button.downloadIos": {
     "message": "下載 iOS 安裝包",
     "description": "按鈕中的文本，用於下載 iOS 安裝包文件"
+  },
+  "button.downloadWindows": {
+    "message": "下載 Windows 版",
+    "description": "Text in button for downloading the Windows desktop installer"
+  },
+  "button.downloadMac": {
+    "message": "下載 macOS 版",
+    "description": "Text in button for downloading the macOS desktop installer"
   },
   "button.installIos": {
     "message": "安裝 iOS",
@@ -215,6 +227,14 @@
     "message": "載入中...",
     "description": "内容加载时显示的状态文案"
   },
+  "error.appleSignInFailed": {
+    "message": "透過 Apple 登入失敗，請重試或使用其他登入方式。",
+    "description": "Error toast shown when native Apple sign-in fails for a reason other than user cancellation"
+  },
+  "error.loginLinkExpired": {
+    "message": "登入連結已失效，請重新登入。",
+    "description": "桌面客戶端 OAuth 回呼因 state 驗證失敗/過期被丟棄時顯示的錯誤提示。"
+  },
   "entity.operation": {
     "message": "操作",
     "description": "实体的操作"
@@ -238,6 +258,10 @@
   "message.noTasks": {
     "message": "沒有歷史任務，請開始新的任務吧～",
     "description": "没有任务时的消息"
+  },
+  "message.guestTasks": {
+    "message": "登入後即可發起任務，並在這裡查看你的作品。",
+    "description": "Prompt shown in the task list area for not-logged-in guests"
   },
   "message.usedAmount": {
     "message": "已使用金額",
@@ -282,6 +306,46 @@
   "message.mobileIosPending": {
     "message": "iOS 安裝包暫未開放下載，正在補齊 Apple 證書和描述文件後提供。",
     "description": "iOS 安装包暂未可用时的提示"
+  },
+  "message.mobileComingSoon": {
+    "message": "即將推出",
+    "description": "Short status label shown on a platform card (e.g. iOS) while its build is being prepared"
+  },
+  "message.mobileNowOnAppStore": {
+    "message": "已上架 App Store",
+    "description": "Status label shown on the iOS card when the app is live on the App Store"
+  },
+  "message.desktopWindowsHint": {
+    "message": "適用於 Windows 10 及以上版本（64 位元）。下載安裝程式後按兩下即可安裝。",
+    "description": "Windows desktop download card description"
+  },
+  "message.desktopMacHint": {
+    "message": "適用於 macOS 11 及以上版本。請依你的機型選擇 —— Apple 晶片（M 系列）或 Intel。",
+    "description": "macOS desktop download card description"
+  },
+  "message.desktopUnsignedNote": {
+    "message": "桌面版目前為未簽署的 Beta 版本。Windows 在 SmartScreen 提示中選擇「更多資訊 → 仍要執行」；macOS 請按右鍵點選應用程式並選擇「打開」以略過 Gatekeeper。",
+    "description": "Note explaining the desktop builds are unsigned betas and how to open them"
+  },
+  "button.getOnGooglePlay": {
+    "message": "在 Google Play 取得",
+    "description": "Button label that opens the app's Google Play Store listing"
+  },
+  "button.getOnAppStore": {
+    "message": "在 App Store 下載",
+    "description": "Button label that opens the app's Apple App Store listing"
+  },
+  "message.mobileApkFallback": {
+    "message": "無法存取 Google Play？可直接下載 APK 安裝檔。",
+    "description": "Shown next to a secondary button offering a direct APK download for users who cannot access Google Play"
+  },
+  "message.mobilePlayStoreHint": {
+    "message": "掃碼前往 Google Play",
+    "description": "Hint under the QR code explaining that scanning it opens the Google Play listing"
+  },
+  "message.mobileAppStoreHint": {
+    "message": "掃碼前往 App Store",
+    "description": "Hint under the QR code explaining that scanning it opens the App Store listing"
   },
   "message.mobileInstallNote": {
     "message": "iOS 首次安裝企業或 Ad Hoc 包時，系統可能要求先在“設定 > 通用 > VPN 與設備管理”中信任證書。",
@@ -342,6 +406,34 @@
   "message.alert": {
     "message": "警告",
     "description": "警告用戶的消息"
+  },
+  "message.deleteAccountConfirm": {
+    "message": "此操作將永久刪除您的帳號及所有相關資料，且無法復原。確定要繼續嗎？",
+    "description": "Confirmation message shown before permanently deleting the user account"
+  },
+  "message.deleteAccountSuccess": {
+    "message": "您的帳號已刪除。",
+    "description": "Message shown after the user account is successfully deleted"
+  },
+  "message.deleteAccountFailed": {
+    "message": "刪除帳號失敗，請稍後再試。",
+    "description": "Message shown when account deletion fails"
+  },
+  "message.deleteAccountWarning": {
+    "message": "此操作不可逆！您的帳號及其所有資料將被永久刪除，無法找回。",
+    "description": "Red warning banner at the top of the delete confirmation dialog"
+  },
+  "message.deleteAccountConsequences": {
+    "message": "將永久刪除：個人資料、餘額與點數、應用與訂閱、API 金鑰及第三方登入綁定。",
+    "description": "Explains what data will be removed in the delete confirmation dialog"
+  },
+  "message.deleteAccountTypePrompt": {
+    "message": "請輸入您的使用者名稱以確認刪除：",
+    "description": "Instructs the user to type their username to confirm; the username is shown separately below"
+  },
+  "message.deleteAccountPlaceholder": {
+    "message": "在此輸入您的使用者名稱",
+    "description": "Placeholder for the username confirmation input"
   },
   "message.info": {
     "message": "提示",
@@ -475,6 +567,10 @@
     "message": "SeeDance",
     "description": "網站導航欄中的文本，用於顯示SeeDance頁面，請不要翻譯此字段，必須保持為'SeeDance'"
   },
+  "nav.grokvideo": {
+    "message": "Grok Video",
+    "description": "Text in the website navigation bar to display the Grok Imagine video page"
+  },
   "nav.luma": {
     "message": "Luma",
     "description": "網站導航欄中的文本，用於顯示Luma頁面，請不要翻譯此字段，必須保持為'Luma'"
@@ -511,6 +607,10 @@
     "message": "SERP",
     "description": "網站導航欄中的文本，用於顯示SERP頁面，請不要翻譯此字段，必須保持為'SERP'"
   },
+  "nav.codingBridge": {
+    "message": "Coding Bridge",
+    "description": "Text in the website navigation bar to display the Coding Bridge page, must remain as 'Coding Bridge'"
+  },
   "nav.webextrator": {
     "message": "WebExtrator",
     "description": "Text in the website navigation bar to display the WebExtrator page, must remain as 'WebExtrator'"
@@ -538,6 +638,10 @@
   "nav.logOut": {
     "message": "登出",
     "description": "網站導航欄中的文本，用於登出"
+  },
+  "nav.deleteAccount": {
+    "message": "刪除帳號",
+    "description": "Menu item to permanently delete the current user account"
   },
   "nav.site": {
     "message": "站點配置",
@@ -636,7 +740,7 @@
     "description": "顯示支持信息的部分標題"
   },
   "about.address": {
-    "message": "美國特拉華州米德爾敦北廣街651號201室",
+    "message": "美國特拉華州紐瓦克大陸路131號305室，郵遞區號19713",
     "description": "公司的地址"
   },
   "about.email": {
@@ -823,6 +927,119 @@
     "message": "關於",
     "description": "設定頁面中的關於部分的標題"
   },
+  "settings.localTools": {
+    "message": "本機工具",
+    "description": "Desktop-only settings tab for managing local tool folders, permissions and grants."
+  },
+  "settings.localToolsDesktopOnly": {
+    "message": "僅在桌面應用程式中可用。",
+    "description": "Shown when the Local Tools tab is opened on web/mobile."
+  },
+  "settings.localToolsFoldersTitle": {
+    "message": "已授權資料夾",
+    "description": "Heading for the list of folders the AI may read/write locally."
+  },
+  "settings.localToolsFoldersHint": {
+    "message": "AI 可在本機讀寫的資料夾。工具於本機執行；未經你同意，任何內容都不會離開你的裝置。",
+    "description": "Help text under the authorized-folders heading."
+  },
+  "settings.localToolsComputerUseTitle": {
+    "message": "電腦操作（實驗性）",
+    "description": "Heading for the opt-in Computer Use (screen + mouse/keyboard control) toggle."
+  },
+  "settings.localToolsComputerUseHint": {
+    "message": "讓 AI 看到你的螢幕並控制本機的滑鼠和鍵盤。預設關閉，按需開啟。macOS 上需在下方授予「螢幕錄製」和「輔助使用」權限。每個操作仍會請求你的確認。",
+    "description": "Help text under the Computer Use toggle."
+  },
+  "settings.localToolsPreauthorizeAll": "預先允許所有電腦操作",
+  "settings.localToolsPreauthorizeHint": "一次性允許截圖、點擊、輸入、按鍵等所有電腦操作，並觸發所需的系統權限。",
+  "settings.localToolsCuActionsTitle": "逐項允許操作",
+  "settings.localToolsCuActionsHint": "只開啟你願意讓 AI 免確認執行的操作，其餘仍會逐次詢問。每一項都可在此撤銷。",
+  "settings.localToolsCuScreenshot": "截圖",
+  "settings.localToolsCuClick": "點擊",
+  "settings.localToolsCuMove": "移動指標",
+  "settings.localToolsCuType": "輸入文字",
+  "settings.localToolsCuKey": "按鍵",
+  "settings.localToolsCuScroll": "捲動",
+  "settings.localToolsBuiltinTitle": "內建工具",
+  "settings.localToolsBuiltinHint": "開啟某個工具後，AI 呼叫它將不再逐次詢問。Shell 可執行本機任意命令——請謹慎開啟；檔案工具仍限制在你已授權的資料夾內。",
+  "settings.localToolsBuiltinRisky": "完全存取",
+  "settings.localToolsAddFolder": {
+    "message": "新增資料夾",
+    "description": "Button to pick a folder to authorize."
+  },
+  "settings.localToolsRemove": {
+    "message": "移除",
+    "description": "Button to remove an authorized folder."
+  },
+  "settings.localToolsNoFolders": {
+    "message": "尚未授權任何資料夾。",
+    "description": "Empty state for the authorized-folders list."
+  },
+  "settings.localToolsSave": {
+    "message": "儲存",
+    "description": "Save the authorized folders."
+  },
+  "settings.localToolsSaved": {
+    "message": "已儲存",
+    "description": "Transient confirmation after saving local-tool folders."
+  },
+  "settings.localToolsActiveTools": {
+    "message": "可用工具",
+    "description": "Label before the list of currently available local tools."
+  },
+  "settings.localToolsGrantsTitle": {
+    "message": "永久允許的操作",
+    "description": "Heading for the persistent consent grants list."
+  },
+  "settings.localToolsGrantsHint": {
+    "message": "你選擇「永久允許」的工具呼叫，將不再詢問直接執行。撤銷任一項可重新開啟確認提示。",
+    "description": "Help text under the always-allowed actions heading."
+  },
+  "settings.localToolsRevoke": {
+    "message": "撤銷",
+    "description": "Button to revoke a single always-allow grant."
+  },
+  "settings.localToolsRevokeAll": {
+    "message": "全部撤銷",
+    "description": "Button to revoke every always-allow grant."
+  },
+  "settings.localToolsNoGrants": {
+    "message": "尚無永久允許的操作。每次執行本機工具前都會先徵求你的同意。",
+    "description": "Empty state for the always-allowed actions list."
+  },
+  "settings.localToolsPermsTitle": {
+    "message": "系統權限",
+    "description": "Heading for the macOS system-permission section."
+  },
+  "settings.localToolsPermsHint": {
+    "message": "選用。上方的資料夾存取不需要這些權限——只授予特定工作真正需要的。",
+    "description": "Help text under the system-permissions heading."
+  },
+  "settings.localToolsPermFullDisk": {
+    "message": "完整磁碟存取權",
+    "description": "macOS Full Disk Access permission row."
+  },
+  "settings.localToolsPermScreen": {
+    "message": "螢幕錄製",
+    "description": "macOS Screen Recording permission row."
+  },
+  "settings.localToolsPermAccessibility": {
+    "message": "輔助使用",
+    "description": "macOS Accessibility permission row."
+  },
+  "settings.localToolsGranted": {
+    "message": "已授權",
+    "description": "Status tag when a system permission is granted."
+  },
+  "settings.localToolsNotGranted": {
+    "message": "未授權",
+    "description": "Status tag when a system permission is not granted."
+  },
+  "settings.localToolsOpen": {
+    "message": "開啟…",
+    "description": "Button to open the relevant macOS System Settings pane."
+  },
   "settings.subsites": {
     "message": "我的分站",
     "description": "設定彈窗中分站管理 tab 的標題。僅在 official 主站可見，分站不顯示。"
@@ -923,8 +1140,84 @@
     "message": "Run this from your own code to produce the same result. Replace <YOUR_API_KEY> with a key from your platform console.",
     "description": "Helper text shown above the code tabs in the API code dialog, explaining how to use the snippet"
   },
+  "tab.apiRequest": {
+    "message": "請求",
+    "description": "API 代碼對話框中請求片段的標籤（重現當前結果的代碼）。"
+  },
+  "tab.apiResponse": {
+    "message": "響應",
+    "description": "API 代碼對話框中在點擊運行後返回的實時響應的標籤。"
+  },
+  "button.apiRun": {
+    "message": "再次運行",
+    "description": "API 代碼對話框中的按鈕，使用用戶的 API 金鑰實時重新運行請求。結果已存在，因此點擊後會再次運行，並且會計費。"
+  },
+  "button.apiRunning": {
+    "message": "運行中…",
+    "description": "當實時請求正在進行時，API 代碼對話框中的運行按鈕標籤。"
+  },
+  "button.apiRunConfirm": {
+    "message": "確認運行",
+    "description": "對話框中的確認按鈕標籤，警告運行此操作會消耗額外的積分。"
+  },
+  "button.viewDocs": {
+    "message": "查看文檔",
+    "description": "API 代碼對話框底部的按鈕，打開平台上相應的 API 文檔頁面。"
+  },
+  "message.apiClickRun": {
+    "message": "點擊「再次運行」即可使用你的 API Key 實時執行本次請求。",
+    "description": "API 代碼對話框響應標籤的空狀態，在用戶運行請求之前顯示。"
+  },
+  "message.apiRunConfirmTitle": {
+    "message": "確認運行",
+    "description": "在從 API 代碼對話框重新運行請求之前顯示的確認對話框標題。"
+  },
+  "message.apiRunConfirmDesc": {
+    "message": "本次運行會用你的 API Key 真實調用接口並額外消耗積分，確認繼續嗎？",
+    "description": "確認對話框的主體，警告重新運行請求是一個真實的、可計費的 API 調用。"
+  },
+  "message.apiRunConfirmSkip": {
+    "message": "不再提示",
+    "description": "在運行確認對話框中的復選框，勾選後將在後續運行中抑制警告。"
+  },
+  "message.apiRunTaskCreated": {
+    "message": "任務已創建，關閉此窗口即可在下方查看最新結果。",
+    "description": "在 API 代碼對話框中，當運行返回任務 ID 後顯示的成功橫幅，提示新任務已經出現在對話框後面的列表中。"
+  },
+  "button.apiViewLatest": {
+    "message": "關閉並查看",
+    "description": "在 API 代碼對話框成功橫幅中的按鈕，關閉對話框以便用戶可以查看下方新創建的任務列表。"
+  },
   "message.uploadInProgress": {
     "message": "參考檔案仍在上傳，請稍候再生成。",
     "description": "Toast shown when the user clicks the Generate button while one or more reference uploads are still in flight. Asks them to wait for uploads to complete before retrying."
+  },
+  "appUpgrade.title": {
+    "message": "Update required",
+    "description": "Title of the native-app version gate modal shown at startup when the installed build is older than what the backend supports."
+  },
+  "appUpgrade.blockMessage": {
+    "message": "This version is no longer supported. Please update from the app store to continue.",
+    "description": "Body text of the hard-block upgrade modal shown when the installed version is below min_supported. The modal has no dismiss affordance — the only button opens the app store."
+  },
+  "appUpgrade.softMessage": {
+    "message": "A newer version is available. Update from the app store for the best experience.",
+    "description": "Body text of the soft upgrade prompt shown when the installed version is below latest but above min_supported. The user can dismiss and keep using the app."
+  },
+  "appUpgrade.openStore": {
+    "message": "Update now",
+    "description": "Primary button on the upgrade modal — opens the App Store / Play Store URL in the system browser."
+  },
+  "appUpgrade.later": {
+    "message": "Later",
+    "description": "Secondary button on the soft upgrade prompt — dismisses the modal and lets the user keep using the current version. Only shown for non-forced upgrades."
+  },
+  "nav.maestro": {
+    "message": "Maestro",
+    "description": "導航欄中 Maestro 文章轉視頻頁面的文字,保持為 'Maestro'"
+  },
+  "nav.digitalhuman": {
+    "message": "數字人",
+    "description": "Text in the website navigation bar for the Digital Human talking-head page"
   }
 }

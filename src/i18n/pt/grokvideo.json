@@ -1,0 +1,166 @@
+{
+  "name.bot": {
+    "message": "Robô de Vídeo Grok",
+    "description": "Nome do gerador de vídeo Grok"
+  },
+  "name.prompt": {
+    "message": "Prompt",
+    "description": "Prompt para gerar o vídeo"
+  },
+  "name.model": {
+    "message": "Modelo",
+    "description": "Rótulo para seleção de modelo"
+  },
+  "name.ratio": {
+    "message": "Proporção",
+    "description": "Rótulo para proporção de aspecto"
+  },
+  "name.resolution": {
+    "message": "Resolução",
+    "description": "Rótulo para resolução"
+  },
+  "name.duration": {
+    "message": "Duração",
+    "description": "Rótulo para duração"
+  },
+  "name.image": {
+    "message": "Imagem",
+    "description": "Rótulo para entrada de imagem"
+  },
+  "name.referenceImages": {
+    "message": "Reference Images",
+    "description": "Label for reference images"
+  },
+  "name.required": {
+    "message": "Obrigatório",
+    "description": "Sinalizador de campo obrigatório"
+  },
+  "name.taskId": {
+    "message": "ID da Tarefa",
+    "description": "Rótulo para ID da tarefa"
+  },
+  "name.elapsed": {
+    "message": "Tempo decorrido",
+    "description": "Rótulo de tempo decorrido"
+  },
+  "name.traceId": {
+    "message": "ID de Rastreamento",
+    "description": "Rótulo para ID de rastreamento"
+  },
+  "name.failure": {
+    "message": "Falha na geração",
+    "description": "Título de falha"
+  },
+  "name.failureReason": {
+    "message": "Razão da falha",
+    "description": "Rótulo da razão da falha"
+  },
+  "name.status": {
+    "message": "Status",
+    "description": "Título do status"
+  },
+  "description.prompt": {
+    "message": "Descreva o vídeo que você deseja gerar (cena, sujeito, ação, ângulo, iluminação, estilo).",
+    "description": "Instruções para entrada de prompt"
+  },
+  "description.model": {
+    "message": "Escolha o modelo Grok Imagine. grok-imagine-video suporta vídeos gerados por texto e imagem; 1.5-preview suporta apenas vídeos gerados por imagem.",
+    "description": "Instruções para seleção de modelo"
+  },
+  "description.ratio": {
+    "message": "Escolha a proporção da saída.",
+    "description": "Instruções para a proporção da imagem"
+  },
+  "description.resolution": {
+    "message": "Escolha a resolução de saída. Quanto maior a resolução, mais crédito será consumido por segundo.",
+    "description": "Instruções para resolução"
+  },
+  "description.duration": {
+    "message": "Duração do vídeo (segundos), cobrado por segundo de saída.",
+    "description": "Instruções para a duração"
+  },
+  "description.image": {
+    "message": "Imagem de entrada opcional, usada para gerar vídeo. grok-imagine-video-1.5-preview é obrigatório.",
+    "description": "Instruções para a entrada de imagem"
+  },
+  "description.referenceImages": {
+    "message": "Optional reference images to guide the style or content of the generated video (grok-imagine-video only).",
+    "description": "Instructions for reference images"
+  },
+  "placeholder.prompt": {
+    "message": "Descreva seu vídeo…",
+    "description": "Texto de espaço reservado para prompt"
+  },
+  "placeholder.select": {
+    "message": "Selecione",
+    "description": "Texto de espaço reservado para seleções"
+  },
+  "model.default": {
+    "message": "Grok Imagine Vídeo",
+    "description": "Rótulo do modelo padrão"
+  },
+  "model.preview15": {
+    "message": "Grok Imagine Vídeo 1.5 (prévia, vídeo gerado por imagem)",
+    "description": "Rótulo do modelo prévia 1.5"
+  },
+  "button.upload": {
+    "message": "Enviar",
+    "description": "Botão de upload"
+  },
+  "button.generate": {
+    "message": "Gerar",
+    "description": "Botão de gerar"
+  },
+  "button.download": {
+    "message": "Baixar",
+    "description": "Botão de download"
+  },
+  "status.pending": {
+    "message": "Pendente",
+    "description": "Status pendente"
+  },
+  "status.processing": {
+    "message": "Processando",
+    "description": "Status de processamento"
+  },
+  "message.uploadExceed": {
+    "message": "Somente uma imagem pode ser enviada.",
+    "description": "Aviso de excesso de upload"
+  },
+  "message.uploadReferenceExceed": {
+    "message": "You can upload up to 4 reference images.",
+    "description": "Reference images upload exceed warning"
+  },
+  "message.uploadError": {
+    "message": "Falha ao enviar a imagem, por favor tente novamente.",
+    "description": "Erro de upload"
+  },
+  "message.downloadVideo": {
+    "message": "Baixar vídeo",
+    "description": "Dica de download"
+  },
+  "message.modelRequiresImage": {
+    "message": "Este modelo requer uma imagem de entrada (vídeo gerado por imagem).",
+    "description": "Aviso de que o modelo requer imagem"
+  },
+  "message.promptOrImageRequired": {
+    "message": "Por favor, insira um prompt ou envie uma imagem.",
+    "description": "Aviso de que prompt ou imagem são necessários"
+  },
+  "message.startingTask": {
+    "message": "Enviando tarefa de geração de vídeo…",
+    "description": "Iniciando tarefa"
+  },
+  "message.startTaskSuccess": {
+    "message": "Tarefa enviada com sucesso.",
+    "description": "Sucesso na tarefa"
+  },
+  "message.startTaskFailed": {
+    "message": "Falha ao enviar a tarefa:",
+    "description": "Falha na tarefa"
+  },
+  "message.usedUp": {
+    "message": "Créditos esgotados, por favor compre mais para continuar usando.",
+    "description": "Esgotado"
+  }
+}

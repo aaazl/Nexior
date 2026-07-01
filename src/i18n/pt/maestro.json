@@ -1,0 +1,226 @@
+{
+  "name.maestroBot": {
+    "message": "Maestro",
+    "description": "Nome de exibição do bot"
+  },
+  "name.taskId": {
+    "message": "ID da tarefa",
+    "description": "ID da tarefa"
+  },
+  "name.status": {
+    "message": "Status",
+    "description": "Status da tarefa"
+  },
+  "name.elapsed": {
+    "message": "Tempo decorrido",
+    "description": "Segundos decorridos"
+  },
+  "name.traceId": {
+    "message": "ID de rastreamento",
+    "description": "ID de rastreamento"
+  },
+  "name.failure": {
+    "message": "Falha",
+    "description": "Status de falha"
+  },
+  "name.failureReason": {
+    "message": "Razão da falha",
+    "description": "Razão da falha"
+  },
+  "name.prompt": {
+    "message": "Prompt",
+    "description": "Campo de prompt"
+  },
+  "name.files": {
+    "message": "Materiais de referência",
+    "description": "Campo para mídia de referência"
+  },
+  "name.langs": {
+    "message": "Idiomas",
+    "description": "Campo para idiomas de saída"
+  },
+  "name.aspect": {
+    "message": "Proporção",
+    "description": "Campo de proporção de aspecto"
+  },
+  "name.duration": {
+    "message": "Duração",
+    "description": "Campo de duração alvo"
+  },
+  "name.quality": {
+    "message": "Qualidade",
+    "description": "Production quality tier field"
+  },
+  "option.quality.draft": {
+    "message": "Rascunho · pré-visualização rápida",
+    "description": "Draft quality option"
+  },
+  "option.quality.standard": {
+    "message": "Padrão · equilibrado",
+    "description": "Standard quality option"
+  },
+  "option.quality.premium": {
+    "message": "Premium · mais detalhes",
+    "description": "Premium quality option"
+  },
+  "name.remixing": {
+    "message": "Remixando",
+    "description": "Rótulo do banner de remix"
+  },
+  "placeholder.prompt": {
+    "message": "Descreva o vídeo que você deseja — tema, o que mostrar, estilo, público-alvo…",
+    "description": "Placeholder do textarea de prompt"
+  },
+  "placeholder.select": {
+    "message": "Selecione",
+    "description": "Placeholder genérico para seleção"
+  },
+  "description.prompt": {
+    "message": "Explique claramente o que você deseja em linguagem simples; deixe o roteiro, as cenas, a dublagem e a edição para o Maestro.",
+    "description": "Ajuda sobre o campo de prompt"
+  },
+  "description.langs": {
+    "message": "Você pode exportar em uma ou mais línguas, reutilizando a mesma cena e apenas adicionando a dublagem (cada língua adicional +6 pontos).",
+    "description": "Ajuda sobre idiomas"
+  },
+  "description.files": {
+    "message": "Opcional. Envie imagens, vídeos ou áudios para uso do Maestro (como imagens de produtos, logotipos).",
+    "description": "Ajuda sobre arquivos"
+  },
+  "description.duration": {
+    "message": "Duração-alvo do vídeo; quanto mais longo, mais tempo e pontos a produção exige.",
+    "description": "Duration help"
+  },
+  "description.quality": {
+    "message": "Quanto mais alto o nível de produção, mais refinadas as imagens e a edição, mas com maior custo de tempo e pontos.",
+    "description": "Quality help"
+  },
+  "status.pending": {
+    "message": "Aguardando",
+    "description": "Aguardando"
+  },
+  "status.planning": {
+    "message": "Planejando",
+    "description": "Planejamento"
+  },
+  "status.producing": {
+    "message": "Produzindo",
+    "description": "Produção"
+  },
+  "status.processing": {
+    "message": "Processando",
+    "description": "Processando"
+  },
+  "button.generate": {
+    "message": "Gerar vídeo",
+    "description": "Botão para gerar"
+  },
+  "button.download": {
+    "message": "Baixar vídeo",
+    "description": "Botão para baixar vídeo"
+  },
+  "button.uploadFiles": {
+    "message": "Enviar arquivos",
+    "description": "Botão para enviar arquivos de referência"
+  },
+  "button.remix": {
+    "message": "Remixar",
+    "description": "Botão para remixar este vídeo"
+  },
+  "button.cancelRemix": {
+    "message": "Cancelar remix",
+    "description": "Botão para cancelar a remixagem"
+  },
+  "message.startingTask": {
+    "message": "Enviando tarefa de vídeo…",
+    "description": "Toast de envio"
+  },
+  "message.startTaskSuccess": {
+    "message": "Tarefa enviada! O progresso da renderização será exibido abaixo.",
+    "description": "Sucesso ao enviar"
+  },
+  "message.startTaskFailed": {
+    "message": "Falha ao enviar a tarefa, por favor, tente novamente.",
+    "description": "Falha ao enviar"
+  },
+  "message.usedUp": {
+    "message": "Créditos esgotados, por favor, recarregue para continuar.",
+    "description": "Esgotado"
+  },
+  "message.remixLoaded": {
+    "message": "Remix carregado — descreva à esquerda as modificações desejadas e, em seguida, gere.",
+    "description": "Toast de remix carregado"
+  },
+  "message.uploadExceed": {
+    "message": "Muitos arquivos, por favor, exclua alguns e tente novamente.",
+    "description": "Excedeu o limite de upload"
+  },
+  "message.uploadError": {
+    "message": "Falha no envio, por favor, tente novamente.",
+    "description": "Erro de upload"
+  },
+  "message.noTasks": {
+    "message": "Ainda não há vídeos — crie o seu primeiro à esquerda.",
+    "description": "Sem tarefas"
+  },
+  "name.sourceType": {
+    "message": "Tipo de origem",
+    "description": "Campo de tipo de origem"
+  },
+  "name.sourceRef": {
+    "message": "Conteúdo",
+    "description": "Campo de conteúdo de origem"
+  },
+  "name.lang": {
+    "message": "Idioma principal",
+    "description": "Campo de idioma principal"
+  },
+  "name.extraLangs": {
+    "message": "Idiomas adicionais",
+    "description": "Campo para versões de idiomas extras"
+  },
+  "name.music": {
+    "message": "Música de fundo",
+    "description": "Campo para alternar música"
+  },
+  "option.topic": {
+    "message": "Tópico",
+    "description": "Tipo de fonte: um tópico/título"
+  },
+  "option.article": {
+    "message": "Artigo",
+    "description": "Tipo de fonte: texto completo do artigo"
+  },
+  "placeholder.sourceRef": {
+    "message": "Digite um tópico (como “o que é um banco de dados vetorial”) ou cole um artigo completo…",
+    "description": "Placeholder para área de texto de fonte"
+  },
+  "description.sourceRef": {
+    "message": "Um tópico/título ou o texto completo do artigo a ser transformado em vídeo.",
+    "description": "Ajuda para o campo de origem"
+  },
+  "description.extraLangs": {
+    "message": "Reutilizar a imagem, produzir versões adicionais nesses idiomas (cada uma +6 pontos).",
+    "description": "Ajuda sobre idiomas extras"
+  },
+  "status.scripting": {
+    "message": "Gerando script",
+    "description": "Gerando script"
+  },
+  "status.generating": {
+    "message": "Gerando",
+    "description": "Gerando"
+  },
+  "status.rendering": {
+    "message": "Renderizando",
+    "description": "Renderizando"
+  },
+  "button.downloadCaptions": {
+    "message": "Baixar legendas",
+    "description": "Botão para baixar srt"
+  },
+  "message.downloadVideo": {
+    "message": "Baixar o vídeo gerado",
+    "description": "Dica para download"
+  }
+}

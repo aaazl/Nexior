@@ -4,7 +4,13 @@
       <config-panel @generate="onGenerateAudio" />
     </template>
     <template #result>
-      <recent-panel ref="recentPanel" class="panel recent" :loading="loadingMore" @reach-top="onReachTop" />
+      <recent-panel
+        ref="recentPanel"
+        class="panel recent"
+        :loading="loadingMore || loadingAll"
+        @reach-top="onReachTop"
+        @load-all="onLoadAll"
+      />
     </template>
     <template #preview>
       <preview-panel />
@@ -19,20 +25,19 @@ import { applicationOperator, sunoOperator } from '@/operators';
 import { IApplicationDetailResponse, ISunoAudioRequest, Status } from '@/models';
 import { ElMessage } from 'element-plus';
 import { ISunoTask } from '@/models';
-import { ERROR_CODE_DUPLICATION, getWebhookCallbackUrl } from '@/constants';
+import { ERROR_CODE_DUPLICATION } from '@/constants';
 import { instrumentGeneration } from '@/plugins/telemetry';
 import ConfigPanel from '@/components/suno/ConfigPanel.vue';
 import RecentPanel from '@/components/suno/RecentPanel.vue';
 import PreviewPanel from '@/components/suno/PreviewPanel.vue';
 import { loadPreviousPage } from '@/utils/pagination';
-import { uploadTrackerProviderMixin, ensureNoPendingUpload } from '@/utils';
-
-const CALLBACK_URL = getWebhookCallbackUrl('suno');
+import { uploadTrackerProviderMixin, ensureNoPendingUpload, ensureLoggedIn } from '@/utils';
 
 interface IData {
   task: ISunoTask | undefined;
   job: number;
   loadingMore: boolean;
+  loadingAll: boolean;
   fetchingTasks: boolean;
 }
 
@@ -51,6 +56,7 @@ export default defineComponent({
       task: undefined,
       job: 0,
       loadingMore: false,
+      loadingAll: false,
       fetchingTasks: false
     };
   },
@@ -91,7 +97,6 @@ export default defineComponent({
       handler(value, oldValue) {
         // scroll down if new tasks are added
         if (value?.items?.length > oldValue?.items?.length) {
-          console.debug('new tasks detected');
           // this.onScrollDown();
         }
       },
@@ -100,7 +105,6 @@ export default defineComponent({
     initialized: {
       async handler(newValue) {
         if (newValue) {
-          console.debug('layout initialized');
           await this.onGetTasks();
           await this.onScrollDown();
           this.job = window.setInterval(() => {
@@ -132,15 +136,48 @@ export default defineComponent({
         getScrollElement: () => this.getTasksScrollElement()
       });
     },
+    // Pull the user's full task history (older pages) so client-side
+    // search/filter cover everything, not just the loaded pages. Triggered
+    // once when the user first searches/filters.
+    async onLoadAll() {
+      if (this.loadingAll) {
+        return;
+      }
+      this.loadingAll = true;
+      try {
+        // Bounded loop — each pass fetches the page older than the current
+        // oldest item; stop at total, when no progress is made, or at the cap.
+        for (let guard = 0; guard < 100; guard++) {
+          // Wait for any in-flight fetch (the 5s poll or pagination) to settle,
+          // otherwise onGetTasks early-returns on its fetchingTasks guard and we
+          // would mistake the no-op for end-of-history.
+          for (let waits = 0; (this.fetchingTasks || this.applicationsLoading) && waits < 50; waits++) {
+            await new Promise((resolve) => setTimeout(resolve, 100));
+          }
+          const items = this.tasks?.items ?? [];
+          const total = this.tasks?.total;
+          if (total !== undefined && items.length >= total) {
+            break;
+          }
+          const oldest = items[0];
+          if (!oldest?.created_at) {
+            break;
+          }
+          const before = items.length;
+          await this.onGetTasks({ createdAtMax: oldest.created_at });
+          if ((this.tasks?.items?.length ?? 0) <= before) {
+            break;
+          }
+        }
+      } finally {
+        this.loadingAll = false;
+      }
+    },
     async onGetService() {
-      console.debug('start onGetService');
       await this.$store.dispatch('suno/getService');
-      console.debug('end onGetService');
     },
     async onGetApplication() {
-      console.debug('start onGetApplications');
       await this.$store.dispatch('suno/getApplications');
-      console.debug('end onGetApplications');
       await this.onGetTasks();
     },
     onApply() {
@@ -168,12 +205,9 @@ export default defineComponent({
     },
     async onGetTasks(payload?: { limit?: number; createdAtMin?: number; createdAtMax?: number }) {
       if (this.applicationsLoading || this.fetchingTasks) {
-        console.debug('loading');
         return;
       }
-      console.debug('start onGetTasks', payload);
       const { limit = 5, createdAtMin, createdAtMax } = payload || {};
-      console.debug('limit', limit, 'createdAtMin', createdAtMin, 'createdAtMax', createdAtMax);
       this.fetchingTasks = true;
       try {
         await this.$store.dispatch('suno/getTasks', {
@@ -197,7 +231,7 @@ export default defineComponent({
       }
       const request = {
         ...this.config,
-        callback_url: CALLBACK_URL
+        async: true
       } as ISunoAudioRequest;
       if (!this.hasSunoInput(request)) {
         ElMessage.error(this.$t('suno.message.promptRequired'));
@@ -205,6 +239,9 @@ export default defineComponent({
       }
       if (this.hasText(request.prompt)) {
         request.prompt = request.prompt.trim();
+      }
+      if (!ensureLoggedIn()) {
+        return;
       }
       const token = this.credential?.token;
       if (!token) {

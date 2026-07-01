@@ -51,6 +51,10 @@
     "message": "Видалити",
     "description": "Текст у кнопці, що використовується для видалення вмісту"
   },
+  "button.deletePermanently": {
+    "message": "Назавжди видалити акаунт",
+    "description": "Final red delete button at the bottom of the delete confirmation dialog"
+  },
   "button.confirm": {
     "message": "Підтвердити",
     "description": "Текст у кнопці, що використовується для підтвердження певної дії"
@@ -122,6 +126,14 @@
   "button.downloadIos": {
     "message": "Завантажити iOS",
     "description": "Текст у кнопці, що використовується для завантаження iOS інсталяційного файлу"
+  },
+  "button.downloadWindows": {
+    "message": "Завантажити для Windows",
+    "description": "Text in button for downloading the Windows desktop installer"
+  },
+  "button.downloadMac": {
+    "message": "Завантажити для macOS",
+    "description": "Text in button for downloading the macOS desktop installer"
   },
   "button.installIos": {
     "message": "Встановити iOS",
@@ -215,6 +227,14 @@
     "message": "Завантаження...",
     "description": "Текст статусу, що відображається під час завантаження контенту"
   },
+  "error.appleSignInFailed": {
+    "message": "Не вдалося ввійти через Apple. Спробуйте ще раз або скористайтеся іншим способом входу.",
+    "description": "Error toast shown when native Apple sign-in fails for a reason other than user cancellation"
+  },
+  "error.loginLinkExpired": {
+    "message": "Login link expired. Please sign in again.",
+    "description": "Shown on the desktop client when an OAuth callback is dropped (state mismatch or expired)."
+  },
   "entity.operation": {
     "message": "Операція",
     "description": "Операція сутності"
@@ -238,6 +258,10 @@
   "message.noTasks": {
     "message": "Немає історичних завдань, почніть нове завдання～",
     "description": "Повідомлення, коли немає завдань"
+  },
+  "message.guestTasks": {
+    "message": "Увійдіть, щоб розпочати завдання та переглянути свої творіння тут.",
+    "description": "Prompt shown in the task list area for not-logged-in guests"
   },
   "message.usedAmount": {
     "message": "Використана сума",
@@ -282,6 +306,46 @@
   "message.mobileIosPending": {
     "message": "Пакет для iOS ще не доступний для завантаження, буде надано після завершення сертифікації Apple.",
     "description": "Підказка, коли пакет для iOS ще не доступний"
+  },
+  "message.mobileComingSoon": {
+    "message": "Незабаром",
+    "description": "Short status label shown on a platform card (e.g. iOS) while its build is being prepared"
+  },
+  "message.mobileNowOnAppStore": {
+    "message": "Now on the App Store",
+    "description": "Status label shown on the iOS card when the app is live on the App Store"
+  },
+  "message.desktopWindowsHint": {
+    "message": "Для Windows 10 і новіших (64-біт). Завантажте інсталятор і двічі клацніть, щоб установити.",
+    "description": "Windows desktop download card description"
+  },
+  "message.desktopMacHint": {
+    "message": "Для macOS 11 і новіших. Виберіть збірку для вашого Mac — Apple Silicon (серія M) або Intel.",
+    "description": "macOS desktop download card description"
+  },
+  "message.desktopUnsignedNote": {
+    "message": "Настільні застосунки — це непідписані бета-збірки. У Windows виберіть «Докладніше → Усе одно запустити» у вікні SmartScreen; у macOS клацніть застосунок правою кнопкою миші та виберіть «Відкрити», щоб обійти Gatekeeper.",
+    "description": "Note explaining the desktop builds are unsigned betas and how to open them"
+  },
+  "button.getOnGooglePlay": {
+    "message": "Завантажити в Google Play",
+    "description": "Button label that opens the app's Google Play Store listing"
+  },
+  "button.getOnAppStore": {
+    "message": "Get it on the App Store",
+    "description": "Button label that opens the app's Apple App Store listing"
+  },
+  "message.mobileApkFallback": {
+    "message": "Немає доступу до Google Play? Завантажте APK напряму.",
+    "description": "Shown next to a secondary button offering a direct APK download for users who cannot access Google Play"
+  },
+  "message.mobilePlayStoreHint": {
+    "message": "Скануйте, щоб відкрити Google Play",
+    "description": "Hint under the QR code explaining that scanning it opens the Google Play listing"
+  },
+  "message.mobileAppStoreHint": {
+    "message": "Scan to open the App Store",
+    "description": "Hint under the QR code explaining that scanning it opens the App Store listing"
   },
   "message.mobileInstallNote": {
     "message": "При першому встановленні корпоративного або Ad Hoc пакету на iOS, система може вимагати спочатку довірити сертифікат у 'Налаштування > Загальні > VPN та управління пристроями'.",
@@ -342,6 +406,34 @@
   "message.alert": {
     "message": "Увага",
     "description": "Повідомлення для попередження користувача"
+  },
+  "message.deleteAccountConfirm": {
+    "message": "Це назавжди видалить ваш обліковий запис і всі пов’язані дані. Цю дію не можна скасувати. Ви впевнені, що хочете продовжити?",
+    "description": "Confirmation message shown before permanently deleting the user account"
+  },
+  "message.deleteAccountSuccess": {
+    "message": "Ваш обліковий запис видалено.",
+    "description": "Message shown after the user account is successfully deleted"
+  },
+  "message.deleteAccountFailed": {
+    "message": "Не вдалося видалити обліковий запис. Спробуйте пізніше.",
+    "description": "Message shown when account deletion fails"
+  },
+  "message.deleteAccountWarning": {
+    "message": "Цю дію неможливо скасувати! Ваш акаунт і всі його дані буде назавжди видалено без можливості відновлення.",
+    "description": "Red warning banner at the top of the delete confirmation dialog"
+  },
+  "message.deleteAccountConsequences": {
+    "message": "Буде видалено назавжди: профіль, баланс і кредити, застосунки та підписки, ключі API та прив'язки сторонніх входів.",
+    "description": "Explains what data will be removed in the delete confirmation dialog"
+  },
+  "message.deleteAccountTypePrompt": {
+    "message": "Введіть своє ім'я користувача, щоб підтвердити видалення:",
+    "description": "Instructs the user to type their username to confirm; the username is shown separately below"
+  },
+  "message.deleteAccountPlaceholder": {
+    "message": "Введіть своє ім'я користувача тут",
+    "description": "Placeholder for the username confirmation input"
   },
   "message.info": {
     "message": "Інформація",
@@ -475,6 +567,10 @@
     "message": "SeeDance",
     "description": "Текст у навігаційній панелі сайту для відображення сторінки SeeDance, не перекладати, має залишатися 'SeeDance'"
   },
+  "nav.grokvideo": {
+    "message": "Grok Video",
+    "description": "Text in the website navigation bar to display the Grok Imagine video page"
+  },
   "nav.luma": {
     "message": "Luma",
     "description": "Текст у навігаційній панелі сайту для відображення сторінки Luma, не перекладати, має залишатися 'Luma'"
@@ -511,6 +607,10 @@
     "message": "SERP",
     "description": "Текст у навігаційній панелі сайту для відображення сторінки SERP, не перекладати, має залишатися 'SERP'"
   },
+  "nav.codingBridge": {
+    "message": "Coding Bridge",
+    "description": "Text in the website navigation bar to display the Coding Bridge page, must remain as 'Coding Bridge'"
+  },
   "nav.webextrator": {
     "message": "WebExtrator",
     "description": "Text in the website navigation bar to display the WebExtrator page, must remain as 'WebExtrator'"
@@ -538,6 +638,10 @@
   "nav.logOut": {
     "message": "Вийти",
     "description": "Текст у навігаційній панелі сайту для виходу з облікового запису"
+  },
+  "nav.deleteAccount": {
+    "message": "Видалити обліковий запис",
+    "description": "Menu item to permanently delete the current user account"
   },
   "nav.site": {
     "message": "Налаштування сайту",
@@ -636,7 +740,7 @@
     "description": "Відображення частини заголовка з інформацією про підтримку"
   },
   "about.address": {
-    "message": "651 N Broad St, Suite 201, Middletown, DE, США",
+    "message": "131 Continental Dr, Suite 305, Newark, DE 19713, США",
     "description": "Адреса компанії"
   },
   "about.email": {
@@ -823,6 +927,119 @@
     "message": "Про нас",
     "description": "Заголовок розділу 'Про нас' на сторінці налаштувань"
   },
+  "settings.localTools": {
+    "message": "Локальні інструменти",
+    "description": "Desktop-only settings tab for managing local tool folders, permissions and grants."
+  },
+  "settings.localToolsDesktopOnly": {
+    "message": "Доступно лише в застосунку для комп’ютера.",
+    "description": "Shown when the Local Tools tab is opened on web/mobile."
+  },
+  "settings.localToolsFoldersTitle": {
+    "message": "Дозволені папки",
+    "description": "Heading for the list of folders the AI may read/write locally."
+  },
+  "settings.localToolsFoldersHint": {
+    "message": "Папки, які ШІ може читати та записувати на цьому пристрої. Інструменти виконуються локально; ніщо не залишає ваш пристрій без вашої згоди.",
+    "description": "Help text under the authorized-folders heading."
+  },
+  "settings.localToolsComputerUseTitle": {
+    "message": "Computer Use (experimental)",
+    "description": "Heading for the opt-in Computer Use (screen + mouse/keyboard control) toggle."
+  },
+  "settings.localToolsComputerUseHint": {
+    "message": "Let the AI see your screen and control the mouse and keyboard on this computer. Off by default — turn it on only when you need it. On macOS, grant Screen Recording and Accessibility permissions below. Each action still asks for your confirmation.",
+    "description": "Help text under the Computer Use toggle."
+  },
+  "settings.localToolsPreauthorizeAll": "Попередньо дозволити всі дії з комп'ютером",
+  "settings.localToolsPreauthorizeHint": "Дозволити одразу знімок екрана, клік, введення, клавіші та всі дії й запросити потрібні системні дозволи.",
+  "settings.localToolsCuActionsTitle": "Дозволити окремі дії",
+  "settings.localToolsCuActionsHint": "Вмикайте лише ті дії, які ви готові дозволити ШІ виконувати без запиту щоразу. Кожну можна відкликати тут.",
+  "settings.localToolsCuScreenshot": "Знімок екрана",
+  "settings.localToolsCuClick": "Клік",
+  "settings.localToolsCuMove": "Перемістити вказівник",
+  "settings.localToolsCuType": "Ввести текст",
+  "settings.localToolsCuKey": "Натискання клавіш",
+  "settings.localToolsCuScroll": "Прокручування",
+  "settings.localToolsBuiltinTitle": "Вбудовані інструменти",
+  "settings.localToolsBuiltinHint": "Увімкніть інструмент, щоб ШІ виконував його без запиту. Shell може виконати будь-яку команду на цьому комп'ютері — вмикайте лише за наявності довіри. Файлові інструменти залишаються в межах дозволених папок.",
+  "settings.localToolsBuiltinRisky": "Повний доступ",
+  "settings.localToolsAddFolder": {
+    "message": "Додати папку",
+    "description": "Button to pick a folder to authorize."
+  },
+  "settings.localToolsRemove": {
+    "message": "Вилучити",
+    "description": "Button to remove an authorized folder."
+  },
+  "settings.localToolsNoFolders": {
+    "message": "Ще немає дозволених папок.",
+    "description": "Empty state for the authorized-folders list."
+  },
+  "settings.localToolsSave": {
+    "message": "Зберегти",
+    "description": "Save the authorized folders."
+  },
+  "settings.localToolsSaved": {
+    "message": "Збережено",
+    "description": "Transient confirmation after saving local-tool folders."
+  },
+  "settings.localToolsActiveTools": {
+    "message": "Активні інструменти",
+    "description": "Label before the list of currently available local tools."
+  },
+  "settings.localToolsGrantsTitle": {
+    "message": "Завжди дозволені дії",
+    "description": "Heading for the persistent consent grants list."
+  },
+  "settings.localToolsGrantsHint": {
+    "message": "Виклики інструментів, які ви вирішили завжди дозволяти. Вони виконуються без повторного запиту. Відкличте будь-який, щоб знову ввімкнути підтвердження.",
+    "description": "Help text under the always-allowed actions heading."
+  },
+  "settings.localToolsRevoke": {
+    "message": "Відкликати",
+    "description": "Button to revoke a single always-allow grant."
+  },
+  "settings.localToolsRevokeAll": {
+    "message": "Відкликати все",
+    "description": "Button to revoke every always-allow grant."
+  },
+  "settings.localToolsNoGrants": {
+    "message": "Немає завжди дозволених дій. Перед кожним локальним інструментом запитуватиметься підтвердження.",
+    "description": "Empty state for the always-allowed actions list."
+  },
+  "settings.localToolsPermsTitle": {
+    "message": "Системні дозволи",
+    "description": "Heading for the macOS system-permission section."
+  },
+  "settings.localToolsPermsHint": {
+    "message": "Необов’язково. Для доступу до папок вище вони не потрібні — надавайте лише те, що потребує конкретне завдання.",
+    "description": "Help text under the system-permissions heading."
+  },
+  "settings.localToolsPermFullDisk": {
+    "message": "Повний доступ до диска",
+    "description": "macOS Full Disk Access permission row."
+  },
+  "settings.localToolsPermScreen": {
+    "message": "Запис екрана",
+    "description": "macOS Screen Recording permission row."
+  },
+  "settings.localToolsPermAccessibility": {
+    "message": "Доступність",
+    "description": "macOS Accessibility permission row."
+  },
+  "settings.localToolsGranted": {
+    "message": "Надано",
+    "description": "Status tag when a system permission is granted."
+  },
+  "settings.localToolsNotGranted": {
+    "message": "Не надано",
+    "description": "Status tag when a system permission is not granted."
+  },
+  "settings.localToolsOpen": {
+    "message": "Відкрити…",
+    "description": "Button to open the relevant macOS System Settings pane."
+  },
   "settings.subsites": {
     "message": "Мої підсайти",
     "description": "Заголовок вкладки управління підсайтами в спливаючому вікні налаштувань. Видно лише на офіційному головному сайті, підсайти не відображаються."
@@ -923,8 +1140,84 @@
     "message": "Run this from your own code to produce the same result. Replace <YOUR_API_KEY> with a key from your platform console.",
     "description": "Helper text shown above the code tabs in the API code dialog, explaining how to use the snippet"
   },
+  "tab.apiRequest": {
+    "message": "Запит",
+    "description": "Мітка вкладки діалогу API коду для фрагмента запиту (код, який відтворює поточний результат)."
+  },
+  "tab.apiResponse": {
+    "message": "Відповідь",
+    "description": "Мітка вкладки діалогу API коду для живої відповіді, яка повертається після натискання Запустити."
+  },
+  "button.apiRun": {
+    "message": "Запустити знову",
+    "description": "Кнопка діалогу API коду, яка повторно запускає запит в реальному часі з використанням ключа користувача. Результат вже існує, тому натискання запускає його знову, і це підлягає оплаті."
+  },
+  "button.apiRunning": {
+    "message": "Виконується…",
+    "description": "Мітка кнопки Запустити діалогу API коду, коли запит виконується."
+  },
+  "button.apiRunConfirm": {
+    "message": "Підтвердити запуск",
+    "description": "Мітка кнопки підтвердження в діалозі, який попереджає, що запуск тут споживає додаткові кредити."
+  },
+  "button.viewDocs": {
+    "message": "Переглянути документацію",
+    "description": "Кнопка в нижній частині діалогу API коду, яка відкриває відповідну сторінку документації API на платформі."
+  },
+  "message.apiClickRun": {
+    "message": "Натисніть «Запустити знову», щоб використовувати ваш API Key для виконання цього запиту в реальному часі.",
+    "description": "Стан порожньої вкладки відповіді діалогу API коду, який відображається до того, як користувач запустив запит."
+  },
+  "message.apiRunConfirmTitle": {
+    "message": "Підтвердити запуск",
+    "description": "Заголовок діалогу підтвердження, що відображається перед повторним запуском запиту з діалогу API коду."
+  },
+  "message.apiRunConfirmDesc": {
+    "message": "Цей запуск використовуватиме ваш API Key для реального виклику інтерфейсу та додатково споживатиме кредити. Підтвердити продовження?",
+    "description": "Текст підтвердження в діалозі, що попереджає, що повторний запуск запиту є реальним, платним викликом API."
+  },
+  "message.apiRunConfirmSkip": {
+    "message": "Більше не нагадувати",
+    "description": "Прапорець у діалозі підтвердження запуску, який, якщо його позначити, подавляє попередження при наступних запусках."
+  },
+  "message.apiRunTaskCreated": {
+    "message": "Завдання створено, закрийте це вікно, щоб переглянути останні результати нижче.",
+    "description": "Банер успіху, що відображається в діалозі API-коду після виконання, яке повертає ідентифікатор завдання, натякаючи, що нове завдання вже з'явилося в списку за діалогом."
+  },
+  "button.apiViewLatest": {
+    "message": "Закрити та переглянути",
+    "description": "Кнопка в банері успіху діалогу API-коду, яка закриває діалог, щоб користувач міг побачити новостворене завдання в списку нижче."
+  },
   "message.uploadInProgress": {
     "message": "Завантаження довідкових файлів ще триває — зачекайте, будь ласка.",
     "description": "Toast shown when the user clicks the Generate button while one or more reference uploads are still in flight. Asks them to wait for uploads to complete before retrying."
+  },
+  "appUpgrade.title": {
+    "message": "Update required",
+    "description": "Title of the native-app version gate modal shown at startup when the installed build is older than what the backend supports."
+  },
+  "appUpgrade.blockMessage": {
+    "message": "This version is no longer supported. Please update from the app store to continue.",
+    "description": "Body text of the hard-block upgrade modal shown when the installed version is below min_supported. The modal has no dismiss affordance — the only button opens the app store."
+  },
+  "appUpgrade.softMessage": {
+    "message": "A newer version is available. Update from the app store for the best experience.",
+    "description": "Body text of the soft upgrade prompt shown when the installed version is below latest but above min_supported. The user can dismiss and keep using the app."
+  },
+  "appUpgrade.openStore": {
+    "message": "Update now",
+    "description": "Primary button on the upgrade modal — opens the App Store / Play Store URL in the system browser."
+  },
+  "appUpgrade.later": {
+    "message": "Later",
+    "description": "Secondary button on the soft upgrade prompt — dismisses the modal and lets the user keep using the current version. Only shown for non-forced upgrades."
+  },
+  "nav.maestro": {
+    "message": "Maestro",
+    "description": "Текст на сторінці перетворення статей Maestro на відео в навігаційній панелі, залишити як 'Maestro'"
+  },
+  "nav.digitalhuman": {
+    "message": "Digital Human",
+    "description": "Text in the website navigation bar for the Digital Human talking-head page"
   }
 }

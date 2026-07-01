@@ -5,9 +5,12 @@ export const ROUTE_AUTH_LOGIN = 'auth-login';
 export const ROUTE_AUTH_CALLBACK = 'auth-callback';
 
 export const ROUTE_SETTINGS_INDEX = 'settings-index';
+export const ROUTE_SETTINGS_LOCAL_TOOLS = 'settings-local-tools';
 
 export const ROUTE_CHATGPT_CONVERSATION = 'chatgpt-conversation';
 export const ROUTE_CHATGPT_CONVERSATION_NEW = 'chatgpt-conversation-new';
+export const ROUTE_CHATGPT_CALL = 'chatgpt-call';
+export const ROUTE_CHAT_SCHEDULED_TASKS = 'chat-scheduled-tasks';
 
 export const ROUTE_DEEPSEEK_CONVERSATION = 'deepseek-conversation';
 export const ROUTE_DEEPSEEK_CONVERSATION_NEW = 'deepseek-conversation-new';
@@ -40,6 +43,8 @@ export const ROUTE_VEO_HISTORY = 'veo-history';
 
 export const ROUTE_SORA_INDEX = 'sora-index';
 export const ROUTE_SORA_HISTORY = 'sora-history';
+export const ROUTE_MAESTRO_INDEX = 'maestro-index';
+export const ROUTE_DIGITALHUMAN_INDEX = 'digitalhuman-index';
 
 export const ROUTE_PIXVERSE_INDEX = 'pixverse-index';
 export const ROUTE_PIXVERSE_HISTORY = 'pixverse-history';
@@ -65,6 +70,7 @@ export const ROUTE_OPENAIIMAGE_INDEX = 'openaiimage-index';
 export const ROUTE_SEEDREAM_INDEX = 'seedream-index';
 
 export const ROUTE_SEEDANCE_INDEX = 'seedance-index';
+export const ROUTE_GROKVIDEO_INDEX = 'grokvideo-index';
 
 export const ROUTE_SERP_INDEX = 'serp-index';
 
@@ -75,7 +81,9 @@ export const ROUTE_FISH_MODEL_INDEX = 'fish-model-index';
 
 export const ROUTE_WEBEXTRATOR_INDEX = 'webextrator-index';
 
-export const ROUTE_PROFILE_INDEX = 'profile-index';
+export const ROUTE_CODING_BRIDGE_INDEX = 'coding-bridge-index';
+
+export const ROUTE_ORDER_PUBLIC_PAY = 'order-public-pay';
 
 export const ROUTE_CONSOLE_ROOT = 'console-root';
 export const ROUTE_CONSOLE_ORDER_LIST = 'console-order-list';

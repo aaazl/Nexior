@@ -123,6 +123,14 @@
     "message": "Download iOS",
     "description": "Text in button for downloading the iOS installation package"
   },
+  "button.downloadWindows": {
+    "message": "Download for Windows",
+    "description": "Text in button for downloading the Windows desktop installer"
+  },
+  "button.downloadMac": {
+    "message": "Download for macOS",
+    "description": "Text in button for downloading the macOS desktop installer"
+  },
   "button.installIos": {
     "message": "Install iOS",
     "description": "Text in button for installing the iOS app"
@@ -215,6 +223,14 @@
     "message": "Loading...",
     "description": "Status text displayed while content is loading"
   },
+  "error.appleSignInFailed": {
+    "message": "Sign in with Apple failed. Please try again or use another sign-in method.",
+    "description": "Error toast shown when native Sign in with Apple fails for a reason other than the user cancelling."
+  },
+  "error.loginLinkExpired": {
+    "message": "Login link expired. Please sign in again.",
+    "description": "Shown on the desktop client when an OAuth callback is dropped (state mismatch or expired)."
+  },
   "entity.operation": {
     "message": "Operation",
     "description": "The operation of the entity"
@@ -239,16 +255,20 @@
     "message": "No historical tasks, please start a new task~",
     "description": "Message when there are no tasks"
   },
+  "message.guestTasks": {
+    "message": "Log in to start a task and view your creations here.",
+    "description": "Prompt shown in the task list area for not-logged-in guests"
+  },
   "message.usedAmount": {
     "message": "Used Amount",
     "description": "Used to display the amount of service that has been used"
   },
   "message.mobileAppDescription": {
-    "message": "Use AceData directly on your phone. Currently, Android APK is available for download, and the iOS installation package will be available after signing.",
-    "description": "Description text for the mobile app download page"
+    "message": "Take the full AceData studio everywhere — on Android, iPhone & iPad, Windows, and macOS. Install in one tap, or scan a QR code to get started.",
+    "description": "Description text for the app download page"
   },
   "message.mobileAndroidHint": {
-    "message": "For Android phones and tablets, scan the code to download the latest APK.",
+    "message": "For Android phones and tablets. Install from Google Play for automatic updates, or grab the APK directly.",
     "description": "Android download card description"
   },
   "message.mobileAndroidPending": {
@@ -256,7 +276,7 @@
     "description": "Hint when the Android installation package is not available"
   },
   "message.mobileAvailableNow": {
-    "message": "Android is available for download",
+    "message": "Now on Google Play",
     "description": "Used to display the status that Android is available for download"
   },
   "message.mobileSecureDelivery": {
@@ -276,20 +296,60 @@
     "description": "Used to explain that the mobile version shares the account with the web version"
   },
   "message.mobileIosHint": {
-    "message": "For iPhone and iPad, can be installed directly online; if the system intercepts, you can also download the IPA first and then distribute it.",
+    "message": "For iPhone and iPad — install directly from the App Store, sharing your account and quota with the web app.",
     "description": "iOS download card description"
   },
   "message.mobileIosPending": {
-    "message": "The iOS installation package is not yet available for download, it is being prepared with Apple certificates and provisioning profiles.",
+    "message": "The iOS build is being finalized with Apple certificates and provisioning profiles, and will be available here shortly.",
     "description": "Hint when the iOS installation package is not available"
+  },
+  "message.mobileComingSoon": {
+    "message": "Coming soon",
+    "description": "Short status label shown on a platform card (e.g. iOS) while its build is being prepared"
+  },
+  "message.mobileNowOnAppStore": {
+    "message": "Now on the App Store",
+    "description": "Status label shown on the iOS card when the app is live on the App Store"
+  },
+  "message.desktopWindowsHint": {
+    "message": "For Windows 10 and later (64-bit). Download the installer and double-click to set up.",
+    "description": "Windows desktop download card description"
+  },
+  "message.desktopMacHint": {
+    "message": "For macOS 11 and later. Choose the build that matches your Mac — Apple Silicon (M-series) or Intel.",
+    "description": "macOS desktop download card description"
+  },
+  "message.desktopUnsignedNote": {
+    "message": "The desktop apps are unsigned beta builds. On Windows, choose ‘More info → Run anyway’ at the SmartScreen prompt; on macOS, right-click the app and choose ‘Open’ to bypass Gatekeeper.",
+    "description": "Note explaining the desktop builds are unsigned betas and how to open them"
+  },
+  "button.getOnGooglePlay": {
+    "message": "Get it on Google Play",
+    "description": "Button label that opens the app's Google Play Store listing"
+  },
+  "button.getOnAppStore": {
+    "message": "Get it on the App Store",
+    "description": "Button label that opens the app's Apple App Store listing"
+  },
+  "message.mobileApkFallback": {
+    "message": "No access to Google Play? Download the APK directly.",
+    "description": "Shown next to a secondary button offering a direct APK download for users who cannot access Google Play"
+  },
+  "message.mobilePlayStoreHint": {
+    "message": "Scan to open Google Play",
+    "description": "Hint under the QR code explaining that scanning it opens the Google Play listing"
+  },
+  "message.mobileAppStoreHint": {
+    "message": "Scan to open the App Store",
+    "description": "Hint under the QR code explaining that scanning it opens the App Store listing"
   },
   "message.mobileInstallNote": {
     "message": "When installing the enterprise or Ad Hoc package for the first time on iOS, the system may require you to trust the certificate in 'Settings > General > VPN & Device Management'.",
     "description": "Mobile app installation prompt"
   },
   "title.mobileApp": {
-    "message": "Mobile Download",
-    "description": "Title for the mobile app download page"
+    "message": "Get the AceData Apps",
+    "description": "Title for the app download page"
   },
   "title.mobileFastAccess": {
     "message": "Faster Access, No App Store Detours",
@@ -304,8 +364,8 @@
     "description": "Title for the download page advantage card, emphasizing unified experience"
   },
   "nav.mobileApp": {
-    "message": "Mobile",
-    "description": "Navigation entry for mobile app download"
+    "message": "Apps",
+    "description": "Navigation entry for the app download page (mobile + desktop)"
   },
   "message.mobileFastAccess": {
     "message": "Users can scan the code on their phone for direct installation, or download the APK on the desktop and distribute it to team members, suitable for quick trials and internal testing.",
@@ -342,6 +402,18 @@
   "message.alert": {
     "message": "Warning",
     "description": "Message warning the user"
+  },
+  "message.deleteAccountConfirm": {
+    "message": "This will permanently delete your account and all associated data. This action cannot be undone. Are you sure you want to continue?",
+    "description": "Confirmation message shown before permanently deleting the user account"
+  },
+  "message.deleteAccountSuccess": {
+    "message": "Your account has been deleted.",
+    "description": "Message shown after the user account is successfully deleted"
+  },
+  "message.deleteAccountFailed": {
+    "message": "Failed to delete your account. Please try again later.",
+    "description": "Message shown when account deletion fails"
   },
   "message.info": {
     "message": "Tip",
@@ -475,6 +547,10 @@
     "message": "SeeDance",
     "description": "Text in the website navigation bar to display the SeeDance page, must remain as 'SeeDance'"
   },
+  "nav.grokvideo": {
+    "message": "Grok Video",
+    "description": "Text in the website navigation bar to display the Grok Imagine video page"
+  },
   "nav.luma": {
     "message": "Luma",
     "description": "Text in the website navigation bar to display the Luma page, must remain as 'Luma'"
@@ -511,6 +587,10 @@
     "message": "SERP",
     "description": "Text in the website navigation bar to display the SERP page, must remain as 'SERP'"
   },
+  "nav.codingBridge": {
+    "message": "Coding Bridge",
+    "description": "Text in the website navigation bar to display the Coding Bridge page, must remain as 'Coding Bridge'"
+  },
   "nav.webextrator": {
     "message": "WebExtrator",
     "description": "Text in the website navigation bar to display the WebExtrator page, must remain as 'WebExtrator'"
@@ -538,6 +618,10 @@
   "nav.logOut": {
     "message": "Log Out",
     "description": "Text in the website navigation bar to log out"
+  },
+  "nav.deleteAccount": {
+    "message": "Delete Account",
+    "description": "Menu item to permanently delete the current user account"
   },
   "nav.site": {
     "message": "Site Configuration",
@@ -636,7 +720,7 @@
     "description": "Part title displaying support information"
   },
   "about.address": {
-    "message": "201 North Broad Street, Middletown, DE, USA",
+    "message": "131 Continental Dr, Suite 305, Newark, DE 19713, USA",
     "description": "Company's address"
   },
   "about.email": {
@@ -823,6 +907,119 @@
     "message": "About",
     "description": "Title for the about section in the settings page"
   },
+  "settings.localTools": {
+    "message": "Local Tools",
+    "description": "Desktop-only settings tab for managing local tool folders, permissions and grants."
+  },
+  "settings.localToolsDesktopOnly": {
+    "message": "Available in the desktop app only.",
+    "description": "Shown when the Local Tools tab is opened on web/mobile."
+  },
+  "settings.localToolsFoldersTitle": {
+    "message": "Authorized folders",
+    "description": "Heading for the list of folders the AI may read/write locally."
+  },
+  "settings.localToolsFoldersHint": {
+    "message": "Folders the AI may read and write on this machine. Tools run locally; nothing leaves your device without your consent.",
+    "description": "Help text under the authorized-folders heading."
+  },
+  "settings.localToolsComputerUseTitle": {
+    "message": "Computer Use (experimental)",
+    "description": "Heading for the opt-in Computer Use (screen + mouse/keyboard control) toggle."
+  },
+  "settings.localToolsComputerUseHint": {
+    "message": "Let the AI see your screen and control the mouse and keyboard on this computer. Off by default — turn it on only when you need it. On macOS, grant Screen Recording and Accessibility permissions below. Each action still asks for your confirmation.",
+    "description": "Help text under the Computer Use toggle."
+  },
+  "settings.localToolsPreauthorizeAll": "Pre-approve all computer actions",
+  "settings.localToolsPreauthorizeHint": "Allow screenshot, click, type, key and every computer action at once, and trigger the required system permissions.",
+  "settings.localToolsCuActionsTitle": "Allow individual actions",
+  "settings.localToolsCuActionsHint": "Turn on only the actions you're comfortable letting the AI run without asking each time. Each stays revocable here.",
+  "settings.localToolsCuScreenshot": "Screenshot",
+  "settings.localToolsCuClick": "Click",
+  "settings.localToolsCuMove": "Move pointer",
+  "settings.localToolsCuType": "Type text",
+  "settings.localToolsCuKey": "Press keys",
+  "settings.localToolsCuScroll": "Scroll",
+  "settings.localToolsBuiltinTitle": "Built-in tools",
+  "settings.localToolsBuiltinHint": "Turn on a tool to let the AI run it without asking each time. Shell can run any command on this machine — enable only if you trust it. File tools stay limited to your authorized folders.",
+  "settings.localToolsBuiltinRisky": "Full access",
+  "settings.localToolsAddFolder": {
+    "message": "Add folder",
+    "description": "Button to pick a folder to authorize."
+  },
+  "settings.localToolsRemove": {
+    "message": "Remove",
+    "description": "Button to remove an authorized folder."
+  },
+  "settings.localToolsNoFolders": {
+    "message": "No folders authorized yet.",
+    "description": "Empty state for the authorized-folders list."
+  },
+  "settings.localToolsSave": {
+    "message": "Save",
+    "description": "Save the authorized folders."
+  },
+  "settings.localToolsSaved": {
+    "message": "Saved",
+    "description": "Transient confirmation after saving local-tool folders."
+  },
+  "settings.localToolsActiveTools": {
+    "message": "Active tools",
+    "description": "Label before the list of currently available local tools."
+  },
+  "settings.localToolsGrantsTitle": {
+    "message": "Always-allowed actions",
+    "description": "Heading for the persistent consent grants list."
+  },
+  "settings.localToolsGrantsHint": {
+    "message": "Tool calls you chose to always allow. They run without asking again. Revoke any to re-arm the confirmation prompt.",
+    "description": "Help text under the always-allowed actions heading."
+  },
+  "settings.localToolsRevoke": {
+    "message": "Revoke",
+    "description": "Button to revoke a single always-allow grant."
+  },
+  "settings.localToolsRevokeAll": {
+    "message": "Revoke all",
+    "description": "Button to revoke every always-allow grant."
+  },
+  "settings.localToolsNoGrants": {
+    "message": "No always-allowed actions. You'll be asked before each local tool runs.",
+    "description": "Empty state for the always-allowed actions list."
+  },
+  "settings.localToolsPermsTitle": {
+    "message": "System permissions",
+    "description": "Heading for the macOS system-permission section."
+  },
+  "settings.localToolsPermsHint": {
+    "message": "Optional. Folder access above needs none of these — grant only what a specific task requires.",
+    "description": "Help text under the system-permissions heading."
+  },
+  "settings.localToolsPermFullDisk": {
+    "message": "Full Disk Access",
+    "description": "macOS Full Disk Access permission row."
+  },
+  "settings.localToolsPermScreen": {
+    "message": "Screen Recording",
+    "description": "macOS Screen Recording permission row."
+  },
+  "settings.localToolsPermAccessibility": {
+    "message": "Accessibility",
+    "description": "macOS Accessibility permission row."
+  },
+  "settings.localToolsGranted": {
+    "message": "Granted",
+    "description": "Status tag when a system permission is granted."
+  },
+  "settings.localToolsNotGranted": {
+    "message": "Not granted",
+    "description": "Status tag when a system permission is not granted."
+  },
+  "settings.localToolsOpen": {
+    "message": "Open",
+    "description": "Button to open the relevant macOS System Settings pane."
+  },
   "settings.subsites": {
     "message": "My Subsites",
     "description": "Title for the subsites management tab in the settings popup. Visible only on the official main site; subsites are not displayed."
@@ -923,8 +1120,104 @@
     "message": "Run this from your own code to produce the same result.",
     "description": "API code dialog: short hint shown above the language tabs. Explains that the snippet below reproduces the current result when run from the user's own code."
   },
+  "tab.apiRequest": {
+    "message": "Request",
+    "description": "API code dialog tab label for the request snippet (the code that reproduces the current result)."
+  },
+  "tab.apiResponse": {
+    "message": "Response",
+    "description": "API code dialog tab label for the live response returned after clicking Run."
+  },
+  "button.apiRun": {
+    "message": "Run again",
+    "description": "API code dialog button that re-runs the request live against the API using the user's key. The result already exists, so clicking runs it again, and it is billable."
+  },
+  "button.apiRunning": {
+    "message": "Running…",
+    "description": "API code dialog Run button label while the live request is in flight."
+  },
+  "button.apiRunConfirm": {
+    "message": "Run",
+    "description": "Confirm-button label in the dialog that warns running here consumes extra credits."
+  },
+  "button.viewDocs": {
+    "message": "View docs",
+    "description": "API code dialog footer button that opens the matching API documentation page on the platform."
+  },
+  "message.apiClickRun": {
+    "message": "Click Run again to execute this request live with your API key.",
+    "description": "API code dialog Response tab empty state, shown before the user has run the request."
+  },
+  "message.apiRunConfirmTitle": {
+    "message": "Confirm run",
+    "description": "Title of the confirmation dialog shown before re-running a request from the API code dialog."
+  },
+  "message.apiRunConfirmDesc": {
+    "message": "Running here makes a real API call with your API key and consumes extra credits. Continue?",
+    "description": "Body of the confirmation dialog warning that re-running the request is a real, billable API call."
+  },
+  "message.apiRunConfirmSkip": {
+    "message": "Don't show again",
+    "description": "Checkbox in the run-confirmation dialog that, when ticked, suppresses the warning on subsequent runs."
+  },
+  "message.apiRunTaskCreated": {
+    "message": "Task created — close this window to see the latest result below.",
+    "description": "Success banner shown in the API code dialog after a run returns a task id, hinting that the new task already appears in the list behind the dialog."
+  },
+  "button.apiViewLatest": {
+    "message": "Close & view",
+    "description": "Button in the API code dialog success banner that closes the dialog so the user can see the newly created task in the list below."
+  },
   "message.uploadInProgress": {
     "message": "Reference uploads are still in progress — please wait a moment.",
     "description": "Toast warning shown when the user clicks the Generate button while reference image / video / audio uploads are still in flight. Tells them to wait for the upload to finish before re-clicking Generate."
+  },
+  "appUpgrade.title": {
+    "message": "Update required",
+    "description": "Title of the native-app version gate modal shown at startup when the installed build is older than what the backend supports."
+  },
+  "appUpgrade.blockMessage": {
+    "message": "This version is no longer supported. Please update from the app store to continue.",
+    "description": "Body text of the hard-block upgrade modal shown when the installed version is below min_supported. The modal has no dismiss affordance — the only button opens the app store."
+  },
+  "appUpgrade.softMessage": {
+    "message": "A newer version is available. Update from the app store for the best experience.",
+    "description": "Body text of the soft upgrade prompt shown when the installed version is below latest but above min_supported. The user can dismiss and keep using the app."
+  },
+  "appUpgrade.openStore": {
+    "message": "Update now",
+    "description": "Primary button on the upgrade modal — opens the App Store / Play Store URL in the system browser."
+  },
+  "appUpgrade.later": {
+    "message": "Later",
+    "description": "Secondary button on the soft upgrade prompt — dismisses the modal and lets the user keep using the current version. Only shown for non-forced upgrades."
+  },
+  "button.deletePermanently": {
+    "message": "Permanently delete account",
+    "description": "Final red delete button at the bottom of the delete confirmation dialog"
+  },
+  "message.deleteAccountWarning": {
+    "message": "This action is irreversible! Your account and all of its data will be permanently deleted and cannot be recovered.",
+    "description": "Red warning banner at the top of the delete confirmation dialog"
+  },
+  "message.deleteAccountConsequences": {
+    "message": "Permanently deleted: profile, balance and credits, applications and subscriptions, API keys, and third-party login bindings.",
+    "description": "Explains what data will be removed in the delete confirmation dialog"
+  },
+  "message.deleteAccountTypePrompt": {
+    "message": "Type your username to confirm deletion:",
+    "description": "Instructs the user to type their username to confirm; the username is shown separately below"
+  },
+  "message.deleteAccountPlaceholder": {
+    "message": "Enter your username here",
+    "description": "Placeholder for the username confirmation input"
+  },
+  "nav.maestro": {
+    "message": "Maestro",
+    "description": "Text in the website navigation bar for the Maestro article-to-video page, keep it as 'Maestro'"
+  },
+  "nav.digitalhuman": {
+    "message": "Digital Human",
+    "description": "Text in the website navigation bar for the Digital Human talking-head page"
   }
 }

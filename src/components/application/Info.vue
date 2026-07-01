@@ -19,9 +19,19 @@
         <p class="description">
           <span v-if="!application.service">{{ $t('application.title.globalBalance') }}</span>
           <span v-else>{{ $t('application.title.applicationBalance', { service: application.service?.title }) }}</span>
+          <el-tag
+            v-if="application.role === 'grantee'"
+            class="shared-badge"
+            size="small"
+            type="warning"
+            effect="dark"
+            round
+          >
+            {{ $t('application.badge.shared') }}
+          </el-tag>
         </p>
         <p class="value">
-          {{ application?.remaining_amount?.toFixed(2) }}
+          {{ remainingAmountText }}
           {{ $t(`service.unit.` + (application?.service?.unit || 'credit') + 's') }}
         </p>
         <p class="description2">
@@ -39,7 +49,7 @@
         <font-awesome-icon icon="fa-solid fa-chart-line" class="mr-1 text-[11px]" />
         {{ $t('application.button.usage') }}
       </el-button>
-      <el-button type="primary" round size="small" @click.stop="$emit('buy', application)">
+      <el-button v-if="showPayment" type="primary" round size="small" @click.stop="$emit('buy', application)">
         <font-awesome-icon icon="fa-solid fa-coins" class="mr-1 text-[11px]" />
         {{ $t('application.button.buyMore') }}
       </el-button>
@@ -54,6 +64,7 @@ import { ElButton, ElIcon } from 'element-plus';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { Check } from '@element-plus/icons-vue';
 import CopyToClipboard from '@/components/common/CopyToClipboard.vue';
+import { isIOS } from '@/utils';
 
 export default defineComponent({
   name: 'ApplicationInfo',
@@ -78,7 +89,29 @@ export default defineComponent({
       default: false
     }
   },
-  emits: ['buy', 'usage']
+  emits: ['buy', 'usage'],
+  computed: {
+    // On iOS the only Apple-buyable entity is the global 积分 wallet, so show
+    // "Top Up" for the global application (per-service apps have no Apple
+    // products). Keyed on scope (always present) rather than packages, which
+    // isn't serialized in every view.
+    showPayment(): boolean {
+      if (!isIOS()) {
+        return true;
+      }
+      if (this.application?.scope === 'Global') {
+        return true;
+      }
+      return (this.application?.packages || []).some((p) => p?.metadata?.apple_product_id);
+    },
+    remainingAmountText(): string {
+      const amount = Number(this.application?.remaining_amount ?? 0);
+      if (!Number.isFinite(amount) || amount < 0) {
+        return '0.00';
+      }
+      return amount.toFixed(2);
+    }
+  }
 });
 </script>
 
@@ -196,6 +229,13 @@ export default defineComponent({
 .description {
   color: var(--el-text-color-regular);
   font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.shared-badge {
+  margin-left: 2px;
 }
 .description2 {
   color: var(--el-text-color-secondary);

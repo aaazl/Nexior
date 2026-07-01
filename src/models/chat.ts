@@ -14,7 +14,9 @@ import {
   CHAT_MODEL_NAME_GEMINI_2_5_FLASH,
   CHAT_MODEL_NAME_GEMINI_2_5_PRO,
   CHAT_MODEL_NAME_GEMINI_3_0_PRO,
-  CHAT_MODEL_NAME_CLAUDE_OPUS_4_7,
+  CHAT_MODEL_NAME_GEMINI_3_1_PRO,
+  CHAT_MODEL_NAME_GEMINI_3_5_FLASH,
+  CHAT_MODEL_NAME_CLAUDE_OPUS_4_8,
   CHAT_MODEL_NAME_CLAUDE_SONNET_4_6,
   CHAT_MODEL_NAME_CLAUDE_HAIKU_4_5,
   CHAT_MODEL_NAME_KIMI_K2_5,
@@ -34,10 +36,12 @@ export type IChatModelName =
   | typeof CHAT_MODEL_NAME_DEEPSEEK_REASONER
   | typeof CHAT_MODEL_NAME_GROK_4
   | typeof CHAT_MODEL_NAME_GROK_3
+  | typeof CHAT_MODEL_NAME_GEMINI_3_1_PRO
   | typeof CHAT_MODEL_NAME_GEMINI_3_0_PRO
+  | typeof CHAT_MODEL_NAME_GEMINI_3_5_FLASH
   | typeof CHAT_MODEL_NAME_GEMINI_2_5_PRO
   | typeof CHAT_MODEL_NAME_GEMINI_2_5_FLASH
-  | typeof CHAT_MODEL_NAME_CLAUDE_OPUS_4_7
+  | typeof CHAT_MODEL_NAME_CLAUDE_OPUS_4_8
   | typeof CHAT_MODEL_NAME_CLAUDE_SONNET_4_6
   | typeof CHAT_MODEL_NAME_CLAUDE_HAIKU_4_5
   | typeof CHAT_MODEL_NAME_KIMI_K2_5
@@ -67,6 +71,8 @@ export interface IChatModelGroup {
   getDisplayName: () => string;
   getDescription: () => string;
   models: IChatModel[];
+  // Realtime voice call is only wired up for the OpenAI (ChatGPT) service.
+  isVoiceCallSupported?: boolean;
 }
 
 interface IError {
@@ -103,6 +109,11 @@ export interface IChatMessageContentItem {
   // Present iff `status === 'awaiting_input'` and `tool_name === 'ask_user_question'`.
   // The card UI renders this; on submit, it's stripped and `output` is set.
   pending_question?: IAskUserQuestionPayload;
+  // Present iff `status === 'awaiting_input'` and the pause was driven by
+  // `request_user_consent`. Carries the consent payload so the frontend can
+  // render `<ConnectorConsentCard>`; on resume the resume detector strips it
+  // and folds `output` (the user's authorize/skip JSON) into the block.
+  pending_consent_request?: IConsentRequestPayload;
   // Rich-output entity card (type='card') — payload mirrors the
   // worker's `CardData` SSE event. `type` inside `card` is open-ended:
   // 'audio' | 'video' | 'image' | 'file' today, with room for future
@@ -138,6 +149,61 @@ export interface IAskUserQuestion {
 export interface IAskUserQuestionPayload {
   /** 1–4 questions. */
   questions: IAskUserQuestion[];
+}
+
+// ===== request_user_consent tool payload =====
+// Mirrors aichat2 worker contract (frozen). When the model calls the
+// `request_user_consent` tool with unsatisfied requirements, the worker
+// pauses the turn and emits a single SSE event of type `consent_request`
+// carrying this payload, followed by a terminal `done` with
+// `terminal_reason: 'awaiting_user_input'`. The card UI renders this and,
+// on submit, the resume request carries a `tool_results` entry whose
+// `output` is `JSON.stringify({ consent_request_id, authorized, skipped })`.
+
+export interface IConsentRequestEntry {
+  /** Catalog identifier, e.g. `acedatacloud/suno`. */
+  connector: string;
+  /** Stable UUID of the matching `Connector` (à la `ConnectorCatalogItem`)
+   *  row in AuthBackend (`/api/v1/connectors/<id>/`, legacy alias
+   *  `/api/v1/connections/catalog/<id>/`). Required: the consent card uses
+   *  this to fetch logo / localized name / permission list so each row can
+   *  show the upstream brand instead of the opaque slug. Emitted by the
+   *  worker's `request_user_consent` tool — there is no fallback because
+   *  Layer-2 validation guarantees every entry's `connector` resolves to
+   *  a catalog row. */
+  catalog_id: string;
+  /** Short, user-facing phrase explaining why this connector is needed.
+   *  May be empty/undefined if the model omitted it. */
+  context?: string;
+  /** Connection state computed at tool-call time. */
+  status: 'connected' | 'unconnected';
+  /** AuthFrontend deep-link the consent card uses for the "Authorize"
+   *  button. Present only when `status === 'unconnected'`. */
+  install_url?: string;
+}
+
+export interface IConsentRequestRequirement {
+  /** Position in the original `requirements` array — stable handle the
+   *  frontend uses to group entries. */
+  requirement_index: number;
+  /** `any` = ONE connected entry suffices; `all` = every entry must be
+   *  connected. */
+  match: 'any' | 'all';
+  /** Each candidate connector for this requirement. */
+  entries: IConsentRequestEntry[];
+  /** Pre-computed by the tool: `true` iff the `match` rule is already met. */
+  satisfied: boolean;
+}
+
+export interface IConsentRequestPayload {
+  /** Stable id of the form `consent_<uuid>`. Echoed back in the
+   *  `tool_results[0].output.consent_request_id` field on resume. */
+  consent_request_id: string;
+  /** Optional one-sentence rationale (< 200 chars) shown above the card. */
+  rationale?: string;
+  /** All requirements, satisfied and unsatisfied, so the card can show
+   *  "✓ already connected" rows alongside the action rows. */
+  requirements: IConsentRequestRequirement[];
 }
 
 /**
@@ -221,13 +287,19 @@ export interface IChatConversationRequest {
   tools_enabled?: boolean;
   tools_filter?: string[];
   mcp_servers?: string[];
+  // Desktop local tools (run on the user's machine). The worker registers each
+  // as a client-executed tool; the model can call it, the worker pauses with
+  // execution:'client', and the desktop runs it then resumes via tool_results.
+  // Names must be OpenAI-valid (^[a-zA-Z0-9_-]+$) — the desktop sends sanitized
+  // wire names and maps them back locally.
+  client_tools?: { name: string; displayName?: string; description: string; inputSchema: Record<string, unknown> }[];
   connectors?: string[];
   skills?: string[];
   // Resume payload for a paused conversation. When present, the conversation
   // MUST be in `awaiting_user_input` state and `tool_results` MUST contain
   // exactly one entry whose `tool_use_id` matches the pending `tool_use`
   // block. `question` / `message` / `references` are ignored when this is set.
-  tool_results?: { tool_use_id: string; output: string; is_error?: boolean }[];
+  tool_results?: { tool_use_id: string; output: string; is_error?: boolean; image?: string }[];
 }
 
 export interface IChatConversationResponse {
@@ -240,6 +312,8 @@ export interface IChatConversationResponse {
   tool_id?: string;
   tool_name?: string;
   tool_display_name?: string;
+  // 'client' ⇒ desktop runs this tool locally; worker pauses awaiting tool_results.
+  execution?: 'client' | 'server';
   input?: Record<string, unknown>;
   output?: string;
   is_error?: boolean;
@@ -262,7 +336,9 @@ export interface IChatConversationResponse {
   // ask_user_question SSE event (`type === 'ask_user_question'`). The worker
   // pauses the turn and asks the user one or more multi-choice questions; the
   // payload is rendered as a card (see AskUserQuestionCard.vue).
-  payload?: IAskUserQuestionPayload;
+  // Also used for `type === 'consent_request'` SSE events, which carry a
+  // `IConsentRequestPayload` rendered by ConnectorConsentCard.vue.
+  payload?: IAskUserQuestionPayload | IConsentRequestPayload;
 }
 
 export interface IChatConversationsResponse {

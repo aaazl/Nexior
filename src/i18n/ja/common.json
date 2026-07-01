@@ -51,6 +51,10 @@
     "message": "削除",
     "description": "ボタンのテキスト、内容を削除するため"
   },
+  "button.deletePermanently": {
+    "message": "アカウントを完全に削除",
+    "description": "Final red delete button at the bottom of the delete confirmation dialog"
+  },
   "button.confirm": {
     "message": "確認",
     "description": "ボタンのテキスト、特定の操作を確認するため"
@@ -122,6 +126,14 @@
   "button.downloadIos": {
     "message": "iOSインストーラをダウンロード",
     "description": "ボタンのテキスト、iOSインストーラファイルをダウンロードするため"
+  },
+  "button.downloadWindows": {
+    "message": "Windows 版をダウンロード",
+    "description": "Text in button for downloading the Windows desktop installer"
+  },
+  "button.downloadMac": {
+    "message": "macOS 版をダウンロード",
+    "description": "Text in button for downloading the macOS desktop installer"
   },
   "button.installIos": {
     "message": "iOSをインストール",
@@ -215,6 +227,14 @@
     "message": "読み込み中...",
     "description": "コンテンツが読み込まれているときに表示されるステータステキスト"
   },
+  "error.appleSignInFailed": {
+    "message": "Apple でのサインインに失敗しました。もう一度お試しいただくか、別のサインイン方法をご利用ください。",
+    "description": "Error toast shown when native Apple sign-in fails for a reason other than user cancellation"
+  },
+  "error.loginLinkExpired": {
+    "message": "Login link expired. Please sign in again.",
+    "description": "Shown on the desktop client when an OAuth callback is dropped (state mismatch or expired)."
+  },
   "entity.operation": {
     "message": "操作",
     "description": "エンティティの操作"
@@ -238,6 +258,10 @@
   "message.noTasks": {
     "message": "履歴タスクはありません。新しいタスクを始めましょう～",
     "description": "タスクがないときのメッセージ"
+  },
+  "message.guestTasks": {
+    "message": "ログインしてタスクを開始し、作品をここで確認しましょう。",
+    "description": "Prompt shown in the task list area for not-logged-in guests"
   },
   "message.usedAmount": {
     "message": "使用済み金額",
@@ -282,6 +306,46 @@
   "message.mobileIosPending": {
     "message": "iOSインストールパッケージはまだダウンロード可能ではありません。Apple証明書とプロファイルを補完後に提供します。",
     "description": "iOSインストールパッケージがまだ利用できないときのヒント"
+  },
+  "message.mobileComingSoon": {
+    "message": "近日公開",
+    "description": "Short status label shown on a platform card (e.g. iOS) while its build is being prepared"
+  },
+  "message.mobileNowOnAppStore": {
+    "message": "Now on the App Store",
+    "description": "Status label shown on the iOS card when the app is live on the App Store"
+  },
+  "message.desktopWindowsHint": {
+    "message": "Windows 10 以降（64 ビット）向け。インストーラーをダウンロードし、ダブルクリックしてセットアップします。",
+    "description": "Windows desktop download card description"
+  },
+  "message.desktopMacHint": {
+    "message": "macOS 11 以降向け。お使いの Mac に合うビルドを選択してください —— Apple Silicon（M シリーズ）または Intel。",
+    "description": "macOS desktop download card description"
+  },
+  "message.desktopUnsignedNote": {
+    "message": "デスクトップ版は未署名のベータビルドです。Windows では SmartScreen の警告で「詳細情報 → 実行」を選択してください。macOS ではアプリを右クリックして「開く」を選ぶと Gatekeeper を回避できます。",
+    "description": "Note explaining the desktop builds are unsigned betas and how to open them"
+  },
+  "button.getOnGooglePlay": {
+    "message": "Google Play で手に入れよう",
+    "description": "Button label that opens the app's Google Play Store listing"
+  },
+  "button.getOnAppStore": {
+    "message": "Get it on the App Store",
+    "description": "Button label that opens the app's Apple App Store listing"
+  },
+  "message.mobileApkFallback": {
+    "message": "Google Play を利用できない場合は、APK を直接ダウンロードできます。",
+    "description": "Shown next to a secondary button offering a direct APK download for users who cannot access Google Play"
+  },
+  "message.mobilePlayStoreHint": {
+    "message": "スキャンして Google Play を開く",
+    "description": "Hint under the QR code explaining that scanning it opens the Google Play listing"
+  },
+  "message.mobileAppStoreHint": {
+    "message": "Scan to open the App Store",
+    "description": "Hint under the QR code explaining that scanning it opens the App Store listing"
   },
   "message.mobileInstallNote": {
     "message": "iOSで企業またはAd Hocパッケージを初めてインストールする際、システムが「設定 > 一般 > VPNとデバイス管理」で証明書を信頼するよう求める場合があります。",
@@ -342,6 +406,34 @@
   "message.alert": {
     "message": "警告",
     "description": "ユーザーに警告するメッセージ"
+  },
+  "message.deleteAccountConfirm": {
+    "message": "これにより、アカウントと関連するすべてのデータが完全に削除されます。この操作は元に戻せません。本当に続行しますか？",
+    "description": "Confirmation message shown before permanently deleting the user account"
+  },
+  "message.deleteAccountSuccess": {
+    "message": "アカウントが削除されました。",
+    "description": "Message shown after the user account is successfully deleted"
+  },
+  "message.deleteAccountFailed": {
+    "message": "アカウントの削除に失敗しました。後でもう一度お試しください。",
+    "description": "Message shown when account deletion fails"
+  },
+  "message.deleteAccountWarning": {
+    "message": "この操作は取り消せません！アカウントとそのすべてのデータは完全に削除され、復元できません。",
+    "description": "Red warning banner at the top of the delete confirmation dialog"
+  },
+  "message.deleteAccountConsequences": {
+    "message": "完全に削除されるもの：プロフィール、残高とクレジット、アプリケーションとサブスクリプション、API キー、サードパーティのログイン連携。",
+    "description": "Explains what data will be removed in the delete confirmation dialog"
+  },
+  "message.deleteAccountTypePrompt": {
+    "message": "削除を確認するには、ユーザー名を入力してください：",
+    "description": "Instructs the user to type their username to confirm; the username is shown separately below"
+  },
+  "message.deleteAccountPlaceholder": {
+    "message": "ここにユーザー名を入力",
+    "description": "Placeholder for the username confirmation input"
   },
   "message.info": {
     "message": "情報",
@@ -475,6 +567,10 @@
     "message": "SeeDance",
     "description": "ウェブサイトのナビゲーションバーのテキストで、SeeDanceページを表示するためのものです。このフィールドは翻訳しないでください。'SeeDance'のままにしてください。"
   },
+  "nav.grokvideo": {
+    "message": "Grok Video",
+    "description": "Text in the website navigation bar to display the Grok Imagine video page"
+  },
   "nav.luma": {
     "message": "Luma",
     "description": "ウェブサイトのナビゲーションバーのテキストで、Lumaページを表示するためのものです。このフィールドは翻訳しないでください。'Luma'のままにしてください。"
@@ -511,6 +607,10 @@
     "message": "SERP",
     "description": "ウェブサイトのナビゲーションバーのテキストで、SERPページを表示するためのものです。このフィールドは翻訳しないでください。'SERP'のままにしてください。"
   },
+  "nav.codingBridge": {
+    "message": "Coding Bridge",
+    "description": "Text in the website navigation bar to display the Coding Bridge page, must remain as 'Coding Bridge'"
+  },
   "nav.webextrator": {
     "message": "WebExtrator",
     "description": "Text in the website navigation bar to display the WebExtrator page, must remain as 'WebExtrator'"
@@ -538,6 +638,10 @@
   "nav.logOut": {
     "message": "ログアウト",
     "description": "ウェブサイトのナビゲーションバーのテキストで、ログアウトするためのものです。"
+  },
+  "nav.deleteAccount": {
+    "message": "アカウントを削除",
+    "description": "Menu item to permanently delete the current user account"
   },
   "nav.site": {
     "message": "サイト設定",
@@ -636,7 +740,7 @@
     "description": "サポート情報の部分タイトル"
   },
   "about.address": {
-    "message": "アメリカ合衆国デラウェア州ミドルタウン北広街651号201室",
+    "message": "アメリカ合衆国デラウェア州ニューアーク コンチネンタルドライブ131 スイート305 19713",
     "description": "会社の住所"
   },
   "about.email": {
@@ -823,6 +927,119 @@
     "message": "概要",
     "description": "設定ページの概要セクションのタイトル"
   },
+  "settings.localTools": {
+    "message": "ローカルツール",
+    "description": "Desktop-only settings tab for managing local tool folders, permissions and grants."
+  },
+  "settings.localToolsDesktopOnly": {
+    "message": "デスクトップアプリでのみ利用できます。",
+    "description": "Shown when the Local Tools tab is opened on web/mobile."
+  },
+  "settings.localToolsFoldersTitle": {
+    "message": "許可済みフォルダ",
+    "description": "Heading for the list of folders the AI may read/write locally."
+  },
+  "settings.localToolsFoldersHint": {
+    "message": "AI がこの端末で読み書きできるフォルダです。ツールはローカルで実行され、あなたの同意なしに何も端末の外へ出ません。",
+    "description": "Help text under the authorized-folders heading."
+  },
+  "settings.localToolsComputerUseTitle": {
+    "message": "Computer Use (experimental)",
+    "description": "Heading for the opt-in Computer Use (screen + mouse/keyboard control) toggle."
+  },
+  "settings.localToolsComputerUseHint": {
+    "message": "Let the AI see your screen and control the mouse and keyboard on this computer. Off by default — turn it on only when you need it. On macOS, grant Screen Recording and Accessibility permissions below. Each action still asks for your confirmation.",
+    "description": "Help text under the Computer Use toggle."
+  },
+  "settings.localToolsPreauthorizeAll": "すべてのコンピュータ操作を事前に許可",
+  "settings.localToolsPreauthorizeHint": "スクリーンショット、クリック、入力、キー操作などすべての操作を一度に許可し、必要なシステム権限を要求します。",
+  "settings.localToolsCuActionsTitle": "操作を個別に許可",
+  "settings.localToolsCuActionsHint": "毎回確認せずに AI に実行させてよい操作だけをオンにします。各項目はここでいつでも取り消せます。",
+  "settings.localToolsCuScreenshot": "スクリーンショット",
+  "settings.localToolsCuClick": "クリック",
+  "settings.localToolsCuMove": "ポインター移動",
+  "settings.localToolsCuType": "テキスト入力",
+  "settings.localToolsCuKey": "キー入力",
+  "settings.localToolsCuScroll": "スクロール",
+  "settings.localToolsBuiltinTitle": "組み込みツール",
+  "settings.localToolsBuiltinHint": "ツールをオンにすると、AI は毎回確認せずに実行できます。Shell はこのマシンで任意のコマンドを実行できます。信頼できる場合のみ有効にしてください。ファイルツールは許可済みフォルダーに限定されます。",
+  "settings.localToolsBuiltinRisky": "フルアクセス",
+  "settings.localToolsAddFolder": {
+    "message": "フォルダを追加",
+    "description": "Button to pick a folder to authorize."
+  },
+  "settings.localToolsRemove": {
+    "message": "削除",
+    "description": "Button to remove an authorized folder."
+  },
+  "settings.localToolsNoFolders": {
+    "message": "まだフォルダが許可されていません。",
+    "description": "Empty state for the authorized-folders list."
+  },
+  "settings.localToolsSave": {
+    "message": "保存",
+    "description": "Save the authorized folders."
+  },
+  "settings.localToolsSaved": {
+    "message": "保存しました",
+    "description": "Transient confirmation after saving local-tool folders."
+  },
+  "settings.localToolsActiveTools": {
+    "message": "利用可能なツール",
+    "description": "Label before the list of currently available local tools."
+  },
+  "settings.localToolsGrantsTitle": {
+    "message": "常に許可する操作",
+    "description": "Heading for the persistent consent grants list."
+  },
+  "settings.localToolsGrantsHint": {
+    "message": "「常に許可」を選んだツール呼び出しです。再確認なしで実行されます。いずれかを取り消すと確認ダイアログが再び表示されます。",
+    "description": "Help text under the always-allowed actions heading."
+  },
+  "settings.localToolsRevoke": {
+    "message": "取り消す",
+    "description": "Button to revoke a single always-allow grant."
+  },
+  "settings.localToolsRevokeAll": {
+    "message": "すべて取り消す",
+    "description": "Button to revoke every always-allow grant."
+  },
+  "settings.localToolsNoGrants": {
+    "message": "常に許可する操作はありません。ローカルツールの実行前に毎回確認されます。",
+    "description": "Empty state for the always-allowed actions list."
+  },
+  "settings.localToolsPermsTitle": {
+    "message": "システム権限",
+    "description": "Heading for the macOS system-permission section."
+  },
+  "settings.localToolsPermsHint": {
+    "message": "任意です。上のフォルダアクセスにこれらは不要です。特定の作業に必要なものだけ許可してください。",
+    "description": "Help text under the system-permissions heading."
+  },
+  "settings.localToolsPermFullDisk": {
+    "message": "フルディスクアクセス",
+    "description": "macOS Full Disk Access permission row."
+  },
+  "settings.localToolsPermScreen": {
+    "message": "画面収録",
+    "description": "macOS Screen Recording permission row."
+  },
+  "settings.localToolsPermAccessibility": {
+    "message": "アクセシビリティ",
+    "description": "macOS Accessibility permission row."
+  },
+  "settings.localToolsGranted": {
+    "message": "許可済み",
+    "description": "Status tag when a system permission is granted."
+  },
+  "settings.localToolsNotGranted": {
+    "message": "未許可",
+    "description": "Status tag when a system permission is not granted."
+  },
+  "settings.localToolsOpen": {
+    "message": "開く…",
+    "description": "Button to open the relevant macOS System Settings pane."
+  },
   "settings.subsites": {
     "message": "私のサブサイト",
     "description": "設定ポップアップのサブサイト管理タブのタイトル。officialメインサイトでのみ表示され、サブサイトは表示されません。"
@@ -923,8 +1140,84 @@
     "message": "Run this from your own code to produce the same result. Replace <YOUR_API_KEY> with a key from your platform console.",
     "description": "Helper text shown above the code tabs in the API code dialog, explaining how to use the snippet"
   },
+  "tab.apiRequest": {
+    "message": "リクエスト",
+    "description": "APIコードダイアログのタブラベルで、現在の結果を再現するコードスニペットを示します。"
+  },
+  "tab.apiResponse": {
+    "message": "レスポンス",
+    "description": "実行をクリックした後に返されるライブレスポンスのためのAPIコードダイアログのタブラベルです。"
+  },
+  "button.apiRun": {
+    "message": "再実行",
+    "description": "ユーザーのキーを使用してAPIに対してリクエストをライブで再実行するAPIコードダイアログボタン。結果はすでに存在するため、クリックすると再実行され、請求対象となります。"
+  },
+  "button.apiRunning": {
+    "message": "実行中…",
+    "description": "APIコードダイアログの実行ボタンラベルで、リアルタイムリクエストが進行中の間表示されます。"
+  },
+  "button.apiRunConfirm": {
+    "message": "実行を確認",
+    "description": "ここで実行すると追加のクレジットを消費することを警告するダイアログの確認ボタンラベル。"
+  },
+  "button.viewDocs": {
+    "message": "ドキュメントを見る",
+    "description": "プラットフォーム上の対応するAPIドキュメントページを開くAPIコードダイアログのフッターボタン。"
+  },
+  "message.apiClickRun": {
+    "message": "「再実行」をクリックして、あなたのAPIキーを使ってこのリクエストをリアルタイムで実行できます。",
+    "description": "APIコードダイアログのレスポンスタブの空の状態で、ユーザーがリクエストを実行する前に表示されます。"
+  },
+  "message.apiRunConfirmTitle": {
+    "message": "実行を確認",
+    "description": "APIコードダイアログからリクエストを再実行する前に表示される確認ダイアログのタイトル。"
+  },
+  "message.apiRunConfirmDesc": {
+    "message": "この実行はあなたのAPIキーを使用して実際にAPIを呼び出し、追加のポイントを消費します。続行してもよろしいですか？",
+    "description": "リクエストを再実行することが実際の請求対象となるAPI呼び出しであることを警告する確認ダイアログの本文。"
+  },
+  "message.apiRunConfirmSkip": {
+    "message": "今後は表示しない",
+    "description": "実行確認ダイアログのチェックボックスで、チェックを入れると次回以降の実行時に警告が抑制されます。"
+  },
+  "message.apiRunTaskCreated": {
+    "message": "タスクが作成されました。このウィンドウを閉じると、下に最新の結果が表示されます。",
+    "description": "APIコードダイアログで実行がタスクIDを返した後に表示される成功バナーで、新しいタスクがダイアログの背後のリストにすでに表示されていることを示唆しています。"
+  },
+  "button.apiViewLatest": {
+    "message": "閉じて表示",
+    "description": "APIコードダイアログの成功バナーにあるボタンで、ダイアログを閉じてユーザーが下のリストで新しく作成されたタスクを見ることができます。"
+  },
   "message.uploadInProgress": {
     "message": "参照ファイルのアップロードがまだ進行中です。少々お待ちください。",
     "description": "Toast shown when the user clicks the Generate button while one or more reference uploads are still in flight. Asks them to wait for uploads to complete before retrying."
+  },
+  "appUpgrade.title": {
+    "message": "Update required",
+    "description": "Title of the native-app version gate modal shown at startup when the installed build is older than what the backend supports."
+  },
+  "appUpgrade.blockMessage": {
+    "message": "This version is no longer supported. Please update from the app store to continue.",
+    "description": "Body text of the hard-block upgrade modal shown when the installed version is below min_supported. The modal has no dismiss affordance — the only button opens the app store."
+  },
+  "appUpgrade.softMessage": {
+    "message": "A newer version is available. Update from the app store for the best experience.",
+    "description": "Body text of the soft upgrade prompt shown when the installed version is below latest but above min_supported. The user can dismiss and keep using the app."
+  },
+  "appUpgrade.openStore": {
+    "message": "Update now",
+    "description": "Primary button on the upgrade modal — opens the App Store / Play Store URL in the system browser."
+  },
+  "appUpgrade.later": {
+    "message": "Later",
+    "description": "Secondary button on the soft upgrade prompt — dismisses the modal and lets the user keep using the current version. Only shown for non-forced upgrades."
+  },
+  "nav.maestro": {
+    "message": "マエストロ",
+    "description": "ナビゲーションバーのマエストロ記事を動画に変換するページの文字で、'マエストロ'のままにします。"
+  },
+  "nav.digitalhuman": {
+    "message": "Digital Human",
+    "description": "Text in the website navigation bar for the Digital Human talking-head page"
   }
 }

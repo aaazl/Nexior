@@ -99,6 +99,18 @@
     "message": "Please complete the payment in the external link.",
     "description": "Message for external link payment."
   },
+  "message.applePayProcessing": {
+    "message": "Completing your purchase through the App Store…",
+    "description": "Message while the Apple in-app purchase is processing."
+  },
+  "message.applePayFailed": {
+    "message": "App Store payment didn't complete. Please try again.",
+    "description": "Message when the Apple in-app purchase fails."
+  },
+  "message.applePayUnavailable": {
+    "message": "This package can't be purchased inside the app.",
+    "description": "Message when Apple in-app purchase is unavailable for the package."
+  },
   "message.updateFailed": {
     "message": "Update Failed",
     "description": "Message indicating update failure."
@@ -383,6 +395,10 @@
     "message": "Solana Wallet",
     "description": "Title for the Solana wallet connection card."
   },
+  "message.publicPayNotFound": {
+    "message": "Order not found or has expired.",
+    "description": "Shown on public pay page when the order GET returns 404."
+  },
   "message.x402WalletStatusDetected": {
     "message": "Detected",
     "description": "Label for the detected/installed wallet status."
@@ -518,5 +534,41 @@
   "message.wechatPayLongPressTip": {
     "message": "Long-press the QR code below and tap 'Recognise QR code' to complete payment in WeChat.",
     "description": "Tip shown above the Native QR on mobile-WeChat. The user long-presses to recognise the `weixin://wxpay/bizpayurl` URL and pays without leaving WeChat."
+  },
+  "message.wechatPayMobileScanTip": {
+    "message": "Save or screenshot the QR code below, open WeChat, click on Scan, select the album in the upper right corner, and choose the saved image to complete the payment.",
+    "description": "Displayed above the QR code in non-WeChat mobile browsers. Guides users to save the QR code image and use WeChat's scan feature to recognize it from the album to complete the payment."
+  },
+  "message.creditsValue": {
+    "message": "{value} credits",
+    "description": "Display of credits amount for an order, e.g. '5 credits'. {value} is the formatted credit number."
+  },
+  "title.totalOrders": {
+    "message": "Total Orders",
+    "description": "Summary card: total number of orders matching the current filters."
+  },
+  "title.totalSpent": {
+    "message": "Total Spent",
+    "description": "Summary card: total amount spent across matching orders."
+  },
+  "title.finishedOrders": {
+    "message": "Finished Orders",
+    "description": "Summary card: number of finished orders."
+  },
+  "title.pendingOrders": {
+    "message": "Pending Orders",
+    "description": "Summary card: number of pending orders."
+  },
+  "button.export": {
+    "message": "Export CSV",
+    "description": "Button label to export the filtered orders as CSV."
+  },
+  "field.allStates": {
+    "message": "All States",
+    "description": "Placeholder of the state filter dropdown indicating no specific state is selected."
+  },
+  "field.allPayWays": {
+    "message": "All Payment Methods",
+    "description": "Placeholder of the payment method filter dropdown indicating no specific method is selected."
   }
 }

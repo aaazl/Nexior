@@ -11,20 +11,32 @@ export const resetAll = ({ commit }: ActionContext<ISunoState, IRootState>): voi
   commit('resetAll');
 };
 
-export const setApplication = async ({ commit, dispatch }: any, payload: IApplication): Promise<void> => {
+export const setApplication = async ({ commit, dispatch, rootState }: any, payload: IApplication): Promise<void> => {
   console.debug('set application', payload);
   commit('setApplication', payload);
   if (!payload) {
     console.debug('application is null, return');
     return;
   }
-  const credential = payload?.credentials?.find((credential) => credential?.host === window.location.origin);
+  // Credential-as-Authorization: when the current user is a grantee on this
+  // application, never auto-create — just pick the credential that already
+  // belongs to them. Backend (PR #540) only returns the caller's own
+  // credentials for granted apps, so user_id-matching is sufficient.
+  const me = rootState?.user?.id;
+  const isGranted = payload?.role === 'grantee';
+  let credential = payload?.credentials?.find((credential) => credential?.host === window.location.origin);
+  if (!credential && isGranted) {
+    credential = payload?.credentials?.find((credential) => credential?.user_id === me);
+  }
   if (credential) {
     console.debug('credential exists, set credential', credential);
     commit('setCredential', credential);
-  } else {
+  } else if (!isGranted) {
     console.debug('credential not exists, start to create credential for application', payload);
     await dispatch('createCredential');
+  } else {
+    console.warn('no credential available for granted application', payload);
+    commit('setCredential', undefined);
   }
 };
 
@@ -79,8 +91,7 @@ export const getService = async ({
 
 export const getApplications = async ({
   commit,
-  state,
-  rootState
+  state
 }: ActionContext<ISunoState, IRootState>): Promise<IApplication[] | undefined> => {
   console.debug('start to get applications for chat');
   state.status.getApplications = Status.Request;
@@ -88,8 +99,9 @@ export const getApplications = async ({
   console.debug('current application', currentApplication);
   try {
     const { data: applications } = await applicationOperator.getAll({
-      user_id: rootState?.user?.id,
-      service_id: SUNO_SERVICE_ID
+      user_id: 'me',
+      service_id: SUNO_SERVICE_ID,
+      affiliation: ['owner', 'granted']
     });
     state.status.getApplications = Status.Success;
     commit('setApplications', applications.items);

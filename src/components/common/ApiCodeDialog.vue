@@ -35,7 +35,54 @@
     </div>
 
     <div v-if="code" class="code">
-      <code-snippet :key="`${lang}-${variant}-${code.length}`" :code="code" :lang="lang" />
+      <div class="code-toolbar">
+        <div class="code-tabs">
+          <button
+            type="button"
+            :class="{ 'code-tab': true, active: activeTab === 'request' }"
+            @click="activeTab = 'request'"
+          >
+            <font-awesome-icon icon="fa-solid fa-code" class="mr-1" />
+            {{ $t('common.tab.apiRequest') }}
+          </button>
+          <button
+            type="button"
+            :class="{ 'code-tab': true, active: activeTab === 'response' }"
+            @click="activeTab = 'response'"
+          >
+            <font-awesome-icon icon="fa-solid fa-terminal" class="mr-1" />
+            {{ $t('common.tab.apiResponse') }}
+          </button>
+        </div>
+        <button v-if="!running" type="button" class="code-run" :disabled="!canRun" @click="onRun">
+          <font-awesome-icon icon="fa-solid fa-play" />
+          <span>{{ $t('common.button.apiRun') }}</span>
+        </button>
+        <button v-else type="button" class="code-run code-run--running" disabled>
+          <font-awesome-icon icon="fa-solid fa-spinner" spin />
+          <span>{{ $t('common.button.apiRunning') }}</span>
+        </button>
+      </div>
+
+      <div v-show="activeTab === 'request'">
+        <code-snippet :key="`${lang}-${variant}-${code.length}`" :code="code" :lang="lang" />
+      </div>
+      <div v-show="activeTab === 'response'">
+        <div v-if="runTaskId" class="run-created">
+          <div class="run-created__text">
+            <font-awesome-icon icon="fa-solid fa-circle-check" class="run-created__icon" />
+            <span>{{ $t('common.message.apiRunTaskCreated') }}</span>
+          </div>
+          <el-button class="run-created__btn" type="primary" size="small" @click="onCloseAndView">
+            {{ $t('common.button.apiViewLatest') }}
+          </el-button>
+        </div>
+        <div v-if="!response && !running" class="code-empty">
+          <font-awesome-icon icon="fa-solid fa-play" class="code-empty__icon" />
+          <p>{{ $t('common.message.apiClickRun') }}</p>
+        </div>
+        <code-snippet v-else :key="`resp-${response.length}`" :code="response || '...'" lang="json" />
+      </div>
     </div>
 
     <template #footer>
@@ -45,16 +92,21 @@
           {{ $t('common.button.apiPlatform') }}
           <font-awesome-icon icon="fa-solid fa-up-right-from-square" class="ml-2 ext-icon" />
         </el-button>
+        <el-button v-if="docHref" class="docs-btn" type="primary" plain @click="onOpenDocs">
+          <font-awesome-icon icon="fa-solid fa-book" class="mr-2" />
+          {{ $t('common.button.viewDocs') }}
+          <font-awesome-icon icon="fa-solid fa-up-right-from-square" class="ml-2 ext-icon" />
+        </el-button>
       </div>
     </template>
   </el-dialog>
 </template>
 
 <script lang="ts">
-import { defineComponent, type PropType } from 'vue';
-import { ElDialog, ElButton, ElImage } from 'element-plus';
+import { defineComponent, h, ref, type PropType } from 'vue';
+import { ElDialog, ElButton, ElImage, ElCheckbox, ElMessageBox } from 'element-plus';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import Mustache from 'mustache';
+import { VARIANTS, renderApiCode, type Lang, type CodeVariant } from '@acedatacloud/core/code-snippet';
 import CodeSnippet from '@/components/common/CodeSnippet.vue';
 import { BASE_URL_API } from '@/constants/endpoint';
 import shellLogo from '@/assets/images/logos/shell.png';
@@ -63,83 +115,24 @@ import javascriptLogo from 'programming-languages-logos/src/javascript/javascrip
 import javaLogo from 'programming-languages-logos/src/java/java.svg';
 import goLogo from 'programming-languages-logos/src/go/go.svg';
 import phpLogo from 'programming-languages-logos/src/php/php.svg';
-import shellTpl from '@/assets/templates/shell.tpl?raw';
-import shellHttpieTpl from '@/assets/templates/shell-httpie.tpl?raw';
-import shellWgetTpl from '@/assets/templates/shell-wget.tpl?raw';
-import pythonTpl from '@/assets/templates/python.tpl?raw';
-import pythonHttpxTpl from '@/assets/templates/python-httpx.tpl?raw';
-import pythonAiohttpTpl from '@/assets/templates/python-aiohttp.tpl?raw';
-import pythonUrllibTpl from '@/assets/templates/python-urllib.tpl?raw';
-import javascriptTpl from '@/assets/templates/javascript.tpl?raw';
-import javascriptAxiosTpl from '@/assets/templates/javascript-axios.tpl?raw';
-import javascriptXhrTpl from '@/assets/templates/javascript-xhr.tpl?raw';
-import javaTpl from '@/assets/templates/java.tpl?raw';
-import javaHttpClientTpl from '@/assets/templates/java-httpclient.tpl?raw';
-import goTpl from '@/assets/templates/go.tpl?raw';
-import phpTpl from '@/assets/templates/php.tpl?raw';
-import phpCurlTpl from '@/assets/templates/php-curl.tpl?raw';
 
-const LANG_SHELL = 'Shell';
-const LANG_PYTHON = 'Python';
-const LANG_JAVASCRIPT = 'JavaScript';
-const LANG_JAVA = 'Java';
-const LANG_GO = 'Go';
-const LANG_PHP = 'PHP';
-
-type Lang =
-  | typeof LANG_SHELL
-  | typeof LANG_PYTHON
-  | typeof LANG_JAVASCRIPT
-  | typeof LANG_JAVA
-  | typeof LANG_GO
-  | typeof LANG_PHP;
-
-interface IVariant {
-  key: string;
-  label: string;
-  template: string;
-}
-
-const VARIANTS: Record<Lang, IVariant[]> = {
-  Shell: [
-    { key: 'curl', label: 'cURL', template: shellTpl },
-    { key: 'httpie', label: 'HTTPie', template: shellHttpieTpl },
-    { key: 'wget', label: 'wget', template: shellWgetTpl }
-  ],
-  Python: [
-    { key: 'requests', label: 'requests', template: pythonTpl },
-    { key: 'httpx', label: 'httpx', template: pythonHttpxTpl },
-    { key: 'aiohttp', label: 'aiohttp', template: pythonAiohttpTpl },
-    { key: 'urllib', label: 'urllib', template: pythonUrllibTpl }
-  ],
-  JavaScript: [
-    { key: 'fetch', label: 'fetch', template: javascriptTpl },
-    { key: 'axios', label: 'axios', template: javascriptAxiosTpl },
-    { key: 'xhr', label: 'XHR', template: javascriptXhrTpl }
-  ],
-  Java: [
-    { key: 'okhttp', label: 'OkHttp', template: javaTpl },
-    { key: 'httpclient', label: 'HttpClient', template: javaHttpClientTpl }
-  ],
-  Go: [{ key: 'nethttp', label: 'net/http', template: goTpl }],
-  PHP: [
-    { key: 'guzzle', label: 'Guzzle', template: phpTpl },
-    { key: 'curl', label: 'cURL', template: phpCurlTpl }
-  ]
-};
-
+// Language list keeps the app-specific icons; the variant matrix + render logic
+// (templates, per-language coercion) come from @acedatacloud/core/code-snippet.
 const LANGUAGES: { name: Lang; icon: string }[] = [
-  { name: LANG_SHELL, icon: shellLogo },
-  { name: LANG_PYTHON, icon: pythonLogo },
-  { name: LANG_JAVASCRIPT, icon: javascriptLogo },
-  { name: LANG_JAVA, icon: javaLogo },
-  { name: LANG_GO, icon: goLogo },
-  { name: LANG_PHP, icon: phpLogo }
+  { name: 'Shell', icon: shellLogo },
+  { name: 'Python', icon: pythonLogo },
+  { name: 'JavaScript', icon: javascriptLogo },
+  { name: 'Java', icon: javaLogo },
+  { name: 'Go', icon: goLogo },
+  { name: 'PHP', icon: phpLogo }
 ];
 
 const PLATFORM_URL = 'https://platform.acedata.cloud/';
 
 const PLATFORM_FAVICON = 'https://platform.acedata.cloud/favicon.ico';
+
+// Persisted opt-out for the "running here consumes extra credits" warning.
+const RUN_CONFIRM_SKIP_KEY = 'nexior:api-run:skip-confirm';
 interface IRenderHeader {
   key: string;
   value: string;
@@ -181,21 +174,30 @@ export default defineComponent({
     token: {
       type: String,
       default: ''
+    },
+    // Per-service platform documentation URL. When set, the footer shows a
+    // "查看文档" button that deep-links to the matching API doc.
+    docHref: {
+      type: String,
+      default: ''
     }
   },
   emits: ['update:visible'],
   data() {
     return {
-      lang: LANG_SHELL as Lang,
+      lang: 'Shell' as Lang,
       variant: 'curl',
-      platformIcon: PLATFORM_FAVICON
+      platformIcon: PLATFORM_FAVICON,
+      activeTab: 'request' as 'request' | 'response',
+      running: false,
+      response: ''
     };
   },
   computed: {
     languages(): { name: Lang; icon: string }[] {
       return LANGUAGES;
     },
-    currentVariants(): IVariant[] {
+    currentVariants(): CodeVariant[] {
       return VARIANTS[this.lang] || [];
     },
     url(): string {
@@ -228,63 +230,48 @@ export default defineComponent({
     code(): string {
       const selected = this.currentVariants.find((v) => v.key === this.variant) || this.currentVariants[0];
       if (!selected) return '';
-      const template = selected.template;
-
-      // Deep clone so per-language value coercion does not leak across tabs.
-      const headers: IRenderHeader[] = this.rawHeaders.map((h) => ({ ...h }));
-      const body: IRenderBody[] = this.rawBody.map((b) => ({ ...b }));
-      let methodLower = String(this.method || 'POST').toLowerCase();
-      let methodUpper = String(this.method || 'POST').toUpperCase();
-      let renderMethod: string = methodUpper;
-
-      const jsonStringifyValue = (v: unknown) => JSON.stringify(v);
-
-      if (this.lang === LANG_PYTHON) {
-        for (const h of headers) {
-          h.value = jsonStringifyValue(h.value) as unknown as string;
-        }
-        for (const item of body) {
-          const v = item.value;
-          if (v === true || v === false) {
-            item.value = v ? 'True' : 'False';
-          } else if (v === null) {
-            item.value = 'None';
-          } else {
-            item.value = jsonStringifyValue(v);
-          }
-        }
-        renderMethod = methodLower;
-      } else if (this.lang === LANG_JAVASCRIPT) {
-        for (const h of headers) {
-          h.value = jsonStringifyValue(h.value) as unknown as string;
-        }
-        for (const item of body) {
-          item.value = jsonStringifyValue(item.value);
-        }
-        renderMethod = methodUpper;
-      } else if (this.lang === LANG_PHP || this.lang === LANG_JAVA || this.lang === LANG_GO) {
-        for (const h of headers) {
-          h.value = jsonStringifyValue(h.value) as unknown as string;
-        }
-        for (const item of body) {
-          item.value = jsonStringifyValue(item.value);
-        }
-        renderMethod = methodUpper;
-      } else if (this.lang === LANG_SHELL) {
-        // Shell: keep header values raw (single-quoted by template), body values JSON.
-        for (const item of body) {
-          item.value = jsonStringifyValue(item.value);
-        }
-        renderMethod = methodUpper;
-      }
-
-      return Mustache.render(template, {
+      return renderApiCode({
+        lang: this.lang,
+        templateKey: selected.templateKey,
+        method: this.method,
         url: this.url,
-        method: renderMethod,
-        methodUpper,
-        headers,
-        body
+        headers: this.rawHeaders,
+        body: this.rawBody
       });
+    },
+    // Run is only possible with a real key — without it the snippet shows the
+    // <YOUR_API_KEY> placeholder and the call would 401.
+    canRun(): boolean {
+      return !!this.token;
+    },
+    // A successful async run returns a task_id (and no top-level error). When
+    // present we surface the "task created — close to view it below" hint,
+    // since the new task already shows up in the recent list via polling.
+    runTaskId(): string {
+      if (!this.response) return '';
+      try {
+        const json = JSON.parse(this.response);
+        if (json && !json.error && typeof json.task_id === 'string') {
+          return json.task_id;
+        }
+      } catch {
+        return '';
+      }
+      return '';
+    }
+  },
+  watch: {
+    // Reset the live response when the dialog reopens or targets a different
+    // request, so the Response tab never shows stale data from a prior result.
+    visible(val: boolean) {
+      if (val) {
+        this.response = '';
+        this.activeTab = 'request';
+      }
+    },
+    url() {
+      this.response = '';
+      this.activeTab = 'request';
     }
   },
   methods: {
@@ -292,8 +279,80 @@ export default defineComponent({
       this.lang = name;
       this.variant = VARIANTS[name][0]?.key || '';
     },
+    // Re-fires the same request live against the API. This is a real, billable
+    // generation — same as the user calling the endpoint themselves, so it is
+    // gated behind a confirmation (unless the user opted out).
+    async onRun() {
+      if (!this.canRun || this.running) return;
+      if (!(await this.confirmRun())) return;
+      this.running = true;
+      this.response = '';
+      this.activeTab = 'response';
+      try {
+        const res = await fetch(this.url, {
+          method: (this.method || 'POST').toUpperCase(),
+          headers: {
+            authorization: `Bearer ${this.token}`,
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify(this.body || {})
+        });
+        const json = await res.json();
+        this.response = JSON.stringify(json, null, 2);
+      } catch (err: unknown) {
+        this.response = `Error: ${err instanceof Error ? err.message : 'Request failed'}`;
+      } finally {
+        this.running = false;
+      }
+    },
     onOpenPlatform() {
       window.open(PLATFORM_URL, '_blank', 'noopener');
+    },
+    onOpenDocs() {
+      if (this.docHref) {
+        window.open(this.docHref, '_blank', 'noopener');
+      }
+    },
+    onCloseAndView() {
+      this.$emit('update:visible', false);
+    },
+    // Warns that running here is a real, billable call. Returns true to proceed.
+    // The checkbox persists an opt-out so power users aren't nagged every time.
+    async confirmRun(): Promise<boolean> {
+      if (localStorage.getItem(RUN_CONFIRM_SKIP_KEY) === '1') {
+        return true;
+      }
+      // `dontAsk` must be reactive: the ElMessageBox message is a render fn, so
+      // a plain variable would never re-render the checkbox and it would look
+      // stuck unchecked.
+      const dontAsk = ref(false);
+      try {
+        await ElMessageBox({
+          title: this.$t('common.message.apiRunConfirmTitle') as string,
+          showCancelButton: true,
+          confirmButtonText: this.$t('common.button.apiRunConfirm') as string,
+          cancelButtonText: this.$t('common.button.cancel') as string,
+          type: 'warning',
+          message: () =>
+            h('div', { class: 'api-run-confirm' }, [
+              h('p', { class: 'api-run-confirm__desc' }, this.$t('common.message.apiRunConfirmDesc') as string),
+              h(
+                ElCheckbox,
+                {
+                  modelValue: dontAsk.value,
+                  'onUpdate:modelValue': (val: string | number | boolean) => (dontAsk.value = Boolean(val))
+                },
+                () => this.$t('common.message.apiRunConfirmSkip')
+              )
+            ])
+        });
+      } catch {
+        return false;
+      }
+      if (dontAsk.value) {
+        localStorage.setItem(RUN_CONFIRM_SKIP_KEY, '1');
+      }
+      return true;
     }
   }
 });
@@ -388,10 +447,126 @@ export default defineComponent({
     margin-top: 4px;
   }
 
+  .code-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .code-tabs {
+    display: flex;
+    gap: 2px;
+  }
+
+  .code-tab {
+    appearance: none;
+    border: none;
+    background: transparent;
+    color: var(--el-text-color-secondary);
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+
+    &:hover {
+      color: var(--el-text-color-primary);
+      background: var(--el-fill-color);
+    }
+
+    &.active {
+      color: var(--el-color-primary);
+      background: var(--el-color-primary-light-9);
+    }
+  }
+
+  .code-run {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    appearance: none;
+    border: none;
+    border-radius: 8px;
+    padding: 6px 16px;
+    background: var(--el-color-primary);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+
+    &:hover:not(:disabled) {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+    }
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    &--running {
+      opacity: 0.8;
+    }
+  }
+
+  .run-created {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: var(--el-color-success-light-9);
+    border: 1px solid var(--el-color-success-light-7);
+
+    &__text {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--el-color-success);
+    }
+
+    &__icon {
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+  }
+
+  .code-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 140px;
+    border-radius: 6px;
+    background: #011627;
+    color: rgba(255, 255, 255, 0.45);
+
+    &__icon {
+      font-size: 30px;
+      margin-bottom: 12px;
+      opacity: 0.4;
+    }
+
+    p {
+      font-size: 13px;
+      margin: 0;
+      padding: 0 16px;
+      text-align: center;
+    }
+  }
+
   .footer {
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    flex-wrap: wrap;
   }
 
   .platform-btn {
@@ -413,6 +588,24 @@ export default defineComponent({
       font-size: 11px;
       opacity: 0.7;
     }
+  }
+
+  .docs-btn {
+    display: inline-flex;
+    align-items: center;
+    font-weight: 500;
+
+    .ext-icon {
+      font-size: 11px;
+      opacity: 0.7;
+    }
+  }
+}
+
+.api-run-confirm {
+  .api-run-confirm__desc {
+    margin: 0 0 12px;
+    line-height: 1.6;
   }
 }
 </style>

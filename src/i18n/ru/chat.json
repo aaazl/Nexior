@@ -163,6 +163,14 @@
     "message": "На данный момент самая продвинутая модель",
     "description": "Описание модели Gemini 3.0 Pro"
   },
+  "model.gemini31Pro": {
+    "message": "gemini-3.1-pro",
+    "description": "Название модели сервиса, то есть Gemini 3.0 Pro"
+  },
+  "model.gemini31ProDescription": {
+    "message": "На данный момент самая продвинутая модель",
+    "description": "Описание модели Gemini 3.0 Pro"
+  },
   "model.gemini25Pro": {
     "message": "gemini-2.5-pro",
     "description": "Название модели сервиса, то есть Gemini 2.5 Pro"
@@ -179,13 +187,21 @@
     "message": "Более быстрая и легкая модель",
     "description": "Описание модели Gemini 2.5 Flash"
   },
-  "model.claudeOpus47": {
-    "message": "claude-opus-4.7",
-    "description": "Название модели сервиса, то есть Claude Opus 4.7"
+  "model.gemini35Flash": {
+    "message": "gemini-3.5-flash",
+    "description": "Название модели сервиса, то есть Gemini 2.5 Flash"
   },
-  "model.claudeOpus47Description": {
-    "message": "На данный момент самая продвинутая модель",
-    "description": "Описание модели Claude Opus 4.7"
+  "model.gemini35FlashDescription": {
+    "message": "Более быстрая и легкая модель",
+    "description": "Описание модели Gemini 2.5 Flash"
+  },
+  "model.claudeOpus48": {
+    "message": "claude-opus-4.8",
+    "description": "Название модели сервиса, то есть Claude Opus 4.8"
+  },
+  "model.claudeOpus48Description": {
+    "message": "Самая современная модель",
+    "description": "Описание модели Claude Opus 4.8"
   },
   "model.claudeSonnet46": {
     "message": "claude-sonnet-4.6",
@@ -506,5 +522,213 @@
   "askUserQuestion.collapsedAnswerLabel": {
     "message": "Ваш ответ",
     "description": "Заполнитель, когда конкретный ответ не может быть извлечен из истории"
+  },
+  "consent.title": {
+    "message": "Требуется авторизация коннектора",
+    "description": "Заголовок карточки авторизации коннектора"
+  },
+  "consent.matchAny": {
+    "message": "Достаточно выбрать один",
+    "description": "Метка: достаточно авторизовать любой коннектор из этой группы"
+  },
+  "consent.matchAll": {
+    "message": "Требуется авторизация всех",
+    "description": "Метка: все коннекторы в этой группе требуют авторизации"
+  },
+  "consent.authorize": {
+    "message": "Авторизовать",
+    "description": "Кнопка авторизации, при нажатии открывается страница авторизации стороннего сервиса"
+  },
+  "consent.skip": {
+    "message": "Пропустить",
+    "description": "Кнопка пропуска авторизации, после нажатия модель продолжит работу без этого коннектора"
+  },
+  "consent.continue": {
+    "message": "Продолжить",
+    "description": "Кнопка «Продолжить», появляется после возврата OAuth, когда обнаружено, что коннектор подключён; нажатие отправляет авторизацию."
+  },
+  "consent.selectScopes": {
+    "message": "Выберите разрешения {provider}",
+    "description": "Title of the scope picker dialog opened from the consent card; {provider} is the upstream provider name (e.g. Gmail)."
+  },
+  "consent.selectScopesHint": {
+    "message": "Выберите разрешения, которые вы хотите предоставить. Можно выбрать несколько, по умолчанию предоставляются только основные данные для входа.",
+    "description": "Body copy explaining that the user can opt out of specific scopes; rendered above the checkbox group."
+  },
+  "consent.installFailed": {
+    "message": "Авторизация не удалась. Пожалуйста, попробуйте снова.",
+    "description": "Toast shown when the AuthBackend install endpoint returns an error from the consent card."
+  },
+  "consent.statusConnected": {
+    "message": "Подключено",
+    "description": "Индикатор статуса для подключенного коннектора"
+  },
+  "consent.statusUnconnected": {
+    "message": "Не подключено",
+    "description": "Индикатор статуса для не подключенного коннектора (показывается, если нет ссылки на авторизацию)"
+  },
+  "consent.resolvedAuthorized": {
+    "message": "Авторизовано: {list}",
+    "description": "Нижняя подпись карточки после завершения авторизации пользователем, {list} — список авторизованных коннекторов"
+  },
+  "consent.resolvedSkipped": {
+    "message": "Авторизация коннектора пропущена",
+    "description": "Нижняя подпись карточки после того, как пользователь пропустил авторизацию"
+  },
+  "scheduledTasks.navTitle": {
+    "message": "Scheduled Tasks"
+  },
+  "scheduledTasks.title": {
+    "message": "Scheduled Tasks"
+  },
+  "scheduledTasks.create": {
+    "message": "New"
+  },
+  "scheduledTasks.edit": {
+    "message": "Edit Task"
+  },
+  "scheduledTasks.empty": {
+    "message": "No scheduled tasks yet. Click \"New\" to create one."
+  },
+  "scheduledTasks.noRuns": {
+    "message": "No runs yet"
+  },
+  "scheduledTasks.loadError": {
+    "message": "Failed to load"
+  },
+  "scheduledTasks.deleteConfirm": {
+    "message": "Delete \"{name}\"? The task will stop running."
+  },
+  "scheduledTasks.viewResult": {
+    "message": "View Result"
+  },
+  "scheduledTasks.viewRuns": {
+    "message": "Run history"
+  },
+  "scheduledTasks.noConversation": {
+    "message": "Нет записей о разговоре",
+    "description": "Запуск без связанных разговоров (версия старого типа)"
+  },
+  "scheduledTasks.jitterHint": {
+    "message": "±60s jitter"
+  },
+  "scheduledTasks.runCount": {
+    "message": "Ran {count} time(s)"
+  },
+  "scheduledTasks.state.enabled": {
+    "message": "Active"
+  },
+  "scheduledTasks.state.disabled": {
+    "message": "Paused"
+  },
+  "scheduledTasks.state.error": {
+    "message": "Error"
+  },
+  "scheduledTasks.run.queued": {
+    "message": "Queued"
+  },
+  "scheduledTasks.run.running": {
+    "message": "Running"
+  },
+  "scheduledTasks.run.success": {
+    "message": "Success"
+  },
+  "scheduledTasks.run.failed": {
+    "message": "Failed"
+  },
+  "scheduledTasks.run.needs_user_input": {
+    "message": "Needs action"
+  },
+  "scheduledTasks.scheduleType.daily": {
+    "message": "Daily"
+  },
+  "scheduledTasks.scheduleType.minutely": {
+    "message": "Каждую минуту"
+  },
+  "scheduledTasks.scheduleType.hourly": {
+    "message": "Hourly"
+  },
+  "scheduledTasks.scheduleType.weekly": {
+    "message": "Weekly"
+  },
+  "scheduledTasks.scheduleType.cron": {
+    "message": "Cron expression"
+  },
+  "scheduledTasks.form.name": {
+    "message": "Task name"
+  },
+  "scheduledTasks.form.namePlaceholder": {
+    "message": "e.g. Daily news summary"
+  },
+  "scheduledTasks.form.model": {
+    "message": "Model"
+  },
+  "scheduledTasks.form.prompt": {
+    "message": "Prompt"
+  },
+  "scheduledTasks.form.promptPlaceholder": {
+    "message": "Enter your scheduled question or instruction. Supports {'{{date}}'}, {'{{run_count}}'}, {'{{last_output}}'} variables."
+  },
+  "scheduledTasks.form.promptHint": {
+    "message": "Variables: {'{{date}}'} today, {'{{run_count}}'} run number, {'{{last_output}}'} last output snippet"
+  },
+  "scheduledTasks.form.schedule": {
+    "message": "Frequency"
+  },
+  "scheduledTasks.form.time": {
+    "message": "Time"
+  },
+  "scheduledTasks.form.weekday": {
+    "message": "Weekday"
+  },
+  "scheduledTasks.form.cron": {
+    "message": "Cron expression"
+  },
+  "scheduledTasks.form.skills": {
+    "message": "Разрешить Skills",
+    "description": "Множественный выбор skill для автоматического выполнения запланированных задач"
+  },
+  "scheduledTasks.form.skillsPlaceholder": {
+    "message": "Выберите Skills, разрешенные для автоматического выполнения этой задачи",
+    "description": "Заполнитель для разрешения skill"
+  },
+  "scheduledTasks.form.skillsHint": {
+    "message": "Выбранные Skills могут выполнять действия в фоновом режиме без подтверждения; невыбранные Skills все еще требуют предварительного просмотра или ожидания подтверждения.",
+    "description": "Описание разрешения skill"
+  },
+  "scheduledTasks.form.skillMissing": {
+    "message": "Не подключено",
+    "description": "Отсутствует подключение к skill"
+  },
+  "scheduledTasks.form.mcpServers": {
+    "message": "Авторизация MCP",
+    "description": "Запланированные задачи для безнадзорной авторизации нескольких серверов MCP"
+  },
+  "scheduledTasks.form.mcpServersPlaceholder": {
+    "message": "Выберите разрешенные для автоматической загрузки серверы MCP",
+    "description": "Заполнитель для авторизации серверов MCP"
+  },
+  "scheduledTasks.form.mcpServersHint": {
+    "message": "Выбранные серверы MCP могут загружаться и выполняться в фоновом режиме запланированных задач; невыбранные серверы MCP не будут загружаться в безнадзорном режиме.",
+    "description": "Объяснение авторизации серверов MCP"
+  },
+  "scheduledTasks.form.skillsConfirmTitle": {
+    "message": "Подтверждение автоматического разрешения",
+    "description": "Заголовок подтверждения разрешения"
+  },
+  "scheduledTasks.form.skillsConfirm": {
+    "message": "Эта задача позволит {count} Skill выполнять действия в фоновом режиме без подтверждения: {skills}. Эти Skill могут отправлять сообщения, публиковать контент или записывать в внешние сервисы, пожалуйста, подтвердите.",
+    "description": "Текст подтверждения разрешения"
+  },
+  "scheduledTasks.form.required": {
+    "message": "Please fill in task name and prompt"
+  },
+  "model.claudeOpus47": {
+    "message": "claude-opus-4.7",
+    "description": "Название модели сервиса, то есть Claude Opus 4.7"
+  },
+  "model.claudeOpus47Description": {
+    "message": "На данный момент самая продвинутая модель",
+    "description": "Описание модели Claude Opus 4.7"
   }
 }

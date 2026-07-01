@@ -71,6 +71,10 @@
     "message": "GitHub",
     "description": "Nombre del método de inicio de sesión: inicio de sesión de terceros con GitHub."
   },
+  "field.authProvider_apple": {
+    "message": "Apple",
+    "description": "Login provider display name: Sign in with Apple."
+  },
   "field.authProvider_wechat": {
     "message": "WeChat",
     "description": "Nombre del método de inicio de sesión: inicio de sesión de terceros con WeChat."
@@ -90,6 +94,18 @@
   "field.featuresGrok": {
     "message": "Grok",
     "description": "Texto que se muestra en el cuadro de edición"
+  },
+  "field.featuresGrokvideo": {
+    "message": "Grok Video",
+    "description": "Se muestra como el título en el cuadro de edición"
+  },
+  "field.featuresMaestro": {
+    "message": "Maestro",
+    "description": "Se muestra como el título en el cuadro de edición"
+  },
+  "field.featuresDigitalhuman": {
+    "message": "Digital Human",
+    "description": "Displayed as the title in the editing box"
   },
   "field.featuresDeepseek": {
     "message": "Deepseek",
@@ -178,6 +194,10 @@
   "field.featuresFish": {
     "message": "Audio de Pescado",
     "description": "Título mostrado en el cuadro de edición"
+  },
+  "field.featuresCodingBridge": {
+    "message": "Coding Bridge",
+    "description": "Displayed as the title in the editing box"
   },
   "field.featuresWebextrator": {
     "message": "WebExtrator",
@@ -427,6 +447,18 @@
     "message": "Activar o desactivar el módulo de función de Grok.",
     "description": "Descripción de la función de Grok"
   },
+  "message.featuresGrokvideo": {
+    "message": "Habilitar o deshabilitar el módulo de funciones de Grok Video.",
+    "description": "Descripción de la función Grok Video"
+  },
+  "message.featuresMaestro": {
+    "message": "Habilitar o deshabilitar el módulo de funciones de Maestro.",
+    "description": "Descripción de la función Maestro"
+  },
+  "message.featuresDigitalhuman": {
+    "message": "Enable or disable the Digital Human feature module.",
+    "description": "Description of the Digital Human feature"
+  },
   "message.featuresDeepseek": {
     "message": "Activar o desactivar el módulo de función de Deepseek.",
     "description": "Descripción de la función de Deepseek"
@@ -502,6 +534,10 @@
   "message.featuresFish": {
     "message": "Activar o desactivar el módulo de Audio de Pescado.",
     "description": "Descripción de la función de Audio de Pescado"
+  },
+  "message.featuresCodingBridge": {
+    "message": "Enable or disable the Coding Bridge feature module.",
+    "description": "Description of the Coding Bridge feature"
   },
   "message.featuresWebextrator": {
     "message": "Enable or disable the WebExtrator feature module.",
@@ -594,5 +630,33 @@
   "button.addUser": {
     "message": "Agregar",
     "description": "Button label to add the resolved user to the admins list."
+  },
+  "autoTranslate.tooltipOn": {
+    "message": "Traducción automática ACTIVADA — el contenido se muestra en el idioma del visitante",
+    "description": "Tooltip on the auto-translate toggle when it is ON"
+  },
+  "autoTranslate.tooltipOff": {
+    "message": "Almacenamiento literal — haz clic para activar la traducción automática",
+    "description": "Tooltip on the auto-translate toggle when it is OFF"
+  },
+  "autoTranslate.tooltipDisabledNotSaved": {
+    "message": "Guarda la fila antes de activar la traducción automática",
+    "description": "Tooltip shown when the toggle is disabled because the row has no id yet (create-dialog state)"
+  },
+  "autoTranslate.confirmEnable": {
+    "message": "Este contenido se traducirá a 17 idiomas en aproximadamente 1 hora. ¿Continuar?",
+    "description": "Body text of the confirm dialog shown before enabling auto-translation"
+  },
+  "autoTranslate.confirmDisable": {
+    "message": "Desactivar eliminará las 18 traducciones de idioma, manteniendo solo el valor actual. ¿Continuar?",
+    "description": "Body text of the confirm dialog shown before disabling auto-translation"
+  },
+  "autoTranslate.empty": {
+    "message": "Introduce contenido antes de activar la traducción automática",
+    "description": "Warning shown when the user tries to enable auto-translation on an empty field"
+  },
+  "autoTranslate.error": {
+    "message": "Error al cambiar la traducción automática, inténtalo de nuevo",
+    "description": "Fallback error toast when the enable/disable HTTP call fails with no detail"
   }
 }

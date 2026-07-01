@@ -71,6 +71,10 @@
     "message": "GitHub",
     "description": "Kirjautumistavan nimi: GitHub kolmannen osapuolen kirjautuminen"
   },
+  "field.authProvider_apple": {
+    "message": "Apple",
+    "description": "Login provider display name: Sign in with Apple."
+  },
   "field.authProvider_wechat": {
     "message": "WeChat",
     "description": "Kirjautumistavan nimi: WeChat kolmannen osapuolen kirjautuminen"
@@ -90,6 +94,18 @@
   "field.featuresGrok": {
     "message": "Grok",
     "description": "Näytetään muokkausruudun otsikkona"
+  },
+  "field.featuresGrokvideo": {
+    "message": "Grok Video",
+    "description": "Näytetään otsikkona muokkausruudussa"
+  },
+  "field.featuresMaestro": {
+    "message": "Maestro",
+    "description": "Näytetään otsikkona muokkausruudussa"
+  },
+  "field.featuresDigitalhuman": {
+    "message": "Digital Human",
+    "description": "Displayed as the title in the editing box"
   },
   "field.featuresDeepseek": {
     "message": "Deepseek",
@@ -178,6 +194,10 @@
   "field.featuresFish": {
     "message": "Kalojen ääni",
     "description": "Näytetään muokkausruudun otsikkona."
+  },
+  "field.featuresCodingBridge": {
+    "message": "Coding Bridge",
+    "description": "Displayed as the title in the editing box"
   },
   "field.featuresWebextrator": {
     "message": "WebExtrator",
@@ -427,6 +447,18 @@
     "message": "Avaa tai sulje Grok-toimintomoduuli.",
     "description": "Grok-toiminnon kuvaus"
   },
+  "message.featuresGrokvideo": {
+    "message": "Ota käyttöön tai poista käytöstä Grok Video -toimintomoduuli.",
+    "description": "Grok Video -toiminnon kuvaus"
+  },
+  "message.featuresMaestro": {
+    "message": "Ota käyttöön tai poista käytöstä Maestro-toimintomoduuli.",
+    "description": "Maestro-toiminnon kuvaus"
+  },
+  "message.featuresDigitalhuman": {
+    "message": "Enable or disable the Digital Human feature module.",
+    "description": "Description of the Digital Human feature"
+  },
   "message.featuresDeepseek": {
     "message": "Avaa tai sulje Deepseek-toimintomoduuli.",
     "description": "Deepseek-toiminnon kuvaus"
@@ -502,6 +534,10 @@
   "message.featuresFish": {
     "message": "Avaa tai sulje Kalojen ääni -toimintomoduuli.",
     "description": "Kalojen ääni -toiminnon kuvaus."
+  },
+  "message.featuresCodingBridge": {
+    "message": "Enable or disable the Coding Bridge feature module.",
+    "description": "Description of the Coding Bridge feature"
   },
   "message.featuresWebextrator": {
     "message": "Enable or disable the WebExtrator feature module.",
@@ -594,5 +630,33 @@
   "button.addUser": {
     "message": "Lisää",
     "description": "Button label to add the resolved user to the admins list."
+  },
+  "autoTranslate.tooltipOn": {
+    "message": "Automaattinen käännös PÄÄLLÄ — sisältö näkyy kävijän kielellä",
+    "description": "Tooltip on the auto-translate toggle when it is ON"
+  },
+  "autoTranslate.tooltipOff": {
+    "message": "Tallennetaan sellaisenaan — napsauta ottaaksesi automaattisen käännöksen käyttöön",
+    "description": "Tooltip on the auto-translate toggle when it is OFF"
+  },
+  "autoTranslate.tooltipDisabledNotSaved": {
+    "message": "Tallenna rivi ennen automaattisen käännöksen käyttöönottoa",
+    "description": "Tooltip shown when the toggle is disabled because the row has no id yet (create-dialog state)"
+  },
+  "autoTranslate.confirmEnable": {
+    "message": "Tämä sisältö käännetään 17 kielelle ~1 tunnin sisällä. Jatketaanko?",
+    "description": "Body text of the confirm dialog shown before enabling auto-translation"
+  },
+  "autoTranslate.confirmDisable": {
+    "message": "Käytöstä poistaminen poistaa kaikki 18 käännöstä ja säilyttää vain nykyisen arvon. Jatketaanko?",
+    "description": "Body text of the confirm dialog shown before disabling auto-translation"
+  },
+  "autoTranslate.empty": {
+    "message": "Syötä sisältöä ennen automaattisen käännöksen käyttöönottoa",
+    "description": "Warning shown when the user tries to enable auto-translation on an empty field"
+  },
+  "autoTranslate.error": {
+    "message": "Automaattisen käännöksen vaihtaminen epäonnistui, yritä uudelleen",
+    "description": "Fallback error toast when the enable/disable HTTP call fails with no detail"
   }
 }

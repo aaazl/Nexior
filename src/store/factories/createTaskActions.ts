@@ -85,16 +85,29 @@ export function createTaskActions<TConfig, TTask, TFilter>(opts: {
       }) as unknown as TFilter);
 
   const setApplication = async (
-    { commit, dispatch }: ActionContext<S, IRootState>,
+    { commit, dispatch, rootState }: ActionContext<S, IRootState>,
     payload: IApplication
   ): Promise<void> => {
     commit('setApplication', payload);
     if (!payload) return;
-    const credential = payload?.credentials?.find((c) => c?.host === window.location.origin);
+    // Credential-as-Authorization: skip auto-createCredential when the user is
+    // a grantee — pick the credential that already belongs to them. The
+    // backend (PR #540) returns only the caller's own credential for granted
+    // apps and 404s any grantee POST /credentials, so creating one here both
+    // fails and blocks the follow-up tasks fetch.
+    const me = rootState?.user?.id;
+    const isGranted = payload?.role === 'grantee';
+    let credential = payload?.credentials?.find((c) => c?.host === window.location.origin);
+    if (!credential && isGranted) {
+      credential = payload?.credentials?.find((c) => c?.user_id === me);
+    }
     if (credential) {
       commit('setCredential', credential);
-    } else {
+    } else if (!isGranted) {
       await dispatch('createCredential');
+    } else {
+      console.warn('no credential available for granted application', payload);
+      commit('setCredential', undefined);
     }
   };
 
@@ -134,6 +147,17 @@ export function createTaskActions<TConfig, TTask, TFilter>(opts: {
     state,
     rootState
   }: ActionContext<S, IRootState>): Promise<IApplication[] | undefined> => {
+    // Guests browse the config panel without an application — login is deferred
+    // to the operation handlers on each page. Skip the authed fetch so it
+    // neither 401s nor leaves the page pinned in a "Request" state, and drop any
+    // stale credential so a guest can never reuse a previous session's token.
+    if (!rootState?.token?.access) {
+      state.status.getApplications = Status.Success;
+      commit('setApplications', []);
+      commit('setApplication', undefined);
+      commit('setCredential', undefined);
+      return [];
+    }
     state.status.getApplications = Status.Request;
     try {
       const { data: applications } = await applicationOperator.getAll({

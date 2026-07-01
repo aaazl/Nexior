@@ -17,13 +17,11 @@ import { lumaOperator } from '@/operators';
 import { instrumentGeneration } from '@/plugins/telemetry';
 import { ILumaGenerateRequest, Status } from '@/models';
 import { ElMessage } from 'element-plus';
-import { ERROR_CODE_USED_UP, getWebhookCallbackUrl } from '@/constants';
+import { ERROR_CODE_USED_UP } from '@/constants';
 import RecentPanel from '@/components/luma/RecentPanel.vue';
 import { ILumaTask } from '@/models';
 import { loadPreviousPage } from '@/utils/pagination';
-import { uploadTrackerProviderMixin, ensureNoPendingUpload } from '@/utils';
-
-const CALLBACK_URL = getWebhookCallbackUrl('luma');
+import { uploadTrackerProviderMixin, ensureNoPendingUpload, ensureLoggedIn } from '@/utils';
 
 interface IData {
   task: ILumaTask | undefined;
@@ -166,13 +164,16 @@ export default defineComponent({
       }
       const request = {
         ...this.config,
-        callback_url: CALLBACK_URL
+        async: true
       } as ILumaGenerateRequest;
       if (!this.hasText(request.prompt)) {
         ElMessage.error(this.$t('luma.message.promptRequired'));
         return;
       }
       request.prompt = request.prompt?.trim();
+      if (!ensureLoggedIn()) {
+        return;
+      }
       const token = this.credential?.token;
       if (!token) {
         console.error('no token specified');

@@ -12,6 +12,7 @@
             <el-row>
               <el-col :span="16" :offset="4">
                 <el-skeleton v-if="loading" />
+                <el-empty v-else-if="!showPayment" :description="$t('common.message.noData')" />
                 <el-form v-else-if="application" label-width="100px">
                   <div v-if="!application?.service">
                     <p class="text-[var(--el-text-color-secondary)] text-[12px] mb-3">
@@ -65,6 +66,7 @@
                   </el-form-item>
                   <el-form-item>
                     <el-button
+                      v-if="showPayment"
                       type="primary"
                       size="large"
                       class="btn-create"
@@ -105,6 +107,7 @@ import {
   ElFormItem,
   ElButton,
   ElDivider,
+  ElEmpty,
   ElRadioGroup,
   ElRadioButton
 } from 'element-plus';
@@ -112,6 +115,7 @@ import { ROUTE_CONSOLE_APPLICATION_SUBSCRIBE, ROUTE_CONSOLE_ORDER_DETAIL } from 
 import Price from '@/components/common/Price.vue';
 import { applicationOperator, orderOperator } from '@/operators';
 import { getPriceString } from '@/utils';
+import { isIOS } from '@/utils';
 import { track } from '@/plugins/telemetry';
 import ServiceEstimation from '@/components/service/Estimation.vue';
 
@@ -138,6 +142,7 @@ export default defineComponent({
     ElFormItem,
     ElButton,
     ElDivider,
+    ElEmpty,
     ElRadioGroup,
     ElRadioButton,
     Price,
@@ -163,6 +168,12 @@ export default defineComponent({
     id() {
       return this.$route.params?.id?.toString();
     },
+    // Credits are buyable on every surface now. On iOS the order is paid via
+    // Apple IAP on the order-detail page; we only offer packages that have an
+    // Apple product id mapped (see `packages`).
+    showPayment(): boolean {
+      return true;
+    },
     price() {
       if (this.application?.service?.price && this.form.amount) {
         return this.form.amount * this.application.service?.price;
@@ -170,11 +181,15 @@ export default defineComponent({
       return 0;
     },
     packages() {
-      return (
+      const all =
         this.application?.packages
           ?.filter((pkg) => pkg.type === IPackageType.USAGE)
-          .sort((a, b) => a.amount - b.amount) || []
-      );
+          .sort((a, b) => a.amount - b.amount) || [];
+      // On iOS only packages with an Apple product id can be purchased via IAP.
+      if (isIOS()) {
+        return all.filter((pkg) => !!pkg?.metadata?.apple_product_id);
+      }
+      return all;
     },
     package() {
       if (this.packages && this.form.packageId) {

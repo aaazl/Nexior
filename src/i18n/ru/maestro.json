@@ -1,0 +1,226 @@
+{
+  "name.maestroBot": {
+    "message": "Maestro",
+    "description": "Отображаемое имя бота"
+  },
+  "name.taskId": {
+    "message": "ID задачи",
+    "description": "ID задачи"
+  },
+  "name.status": {
+    "message": "Статус",
+    "description": "Статус задачи"
+  },
+  "name.elapsed": {
+    "message": "Затраченное время",
+    "description": "Прошедшие секунды"
+  },
+  "name.traceId": {
+    "message": "ID трассировки",
+    "description": "ID трассировки"
+  },
+  "name.failure": {
+    "message": "Ошибка",
+    "description": "Статус ошибки"
+  },
+  "name.failureReason": {
+    "message": "Причина ошибки",
+    "description": "Причина ошибки"
+  },
+  "name.prompt": {
+    "message": "Подсказка",
+    "description": "Поле подсказки"
+  },
+  "name.files": {
+    "message": "Референсные материалы",
+    "description": "Поле для медиа-материалов"
+  },
+  "name.langs": {
+    "message": "Языки",
+    "description": "Поле для языков вывода"
+  },
+  "name.aspect": {
+    "message": "Соотношение сторон",
+    "description": "Поле соотношения сторон"
+  },
+  "name.duration": {
+    "message": "Длительность",
+    "description": "Поле целевой длительности"
+  },
+  "name.quality": {
+    "message": "Качество",
+    "description": "Production quality tier field"
+  },
+  "option.quality.draft": {
+    "message": "Черновик · быстрый предпросмотр",
+    "description": "Draft quality option"
+  },
+  "option.quality.standard": {
+    "message": "Стандарт · сбалансированно",
+    "description": "Standard quality option"
+  },
+  "option.quality.premium": {
+    "message": "Премиум · больше деталей",
+    "description": "Premium quality option"
+  },
+  "name.remixing": {
+    "message": "Ремикс",
+    "description": "Метка баннера ремикса"
+  },
+  "placeholder.prompt": {
+    "message": "Опишите, какое видео вы хотите — тему, что показать, стиль, аудиторию…",
+    "description": "Заполнитель текстовой области подсказки"
+  },
+  "placeholder.select": {
+    "message": "Пожалуйста, выберите",
+    "description": "Общий плейсхолдер для выбора"
+  },
+  "description.prompt": {
+    "message": "Четко сформулируйте, что вы хотите, сценарий, изображения, озвучка и монтаж — все это сделает Maestro.",
+    "description": "Помощь по полю подсказки"
+  },
+  "description.langs": {
+    "message": "Можно вывести на одном или нескольких языках, каждый дополнительный язык использует те же изображения и добавляет только озвучку (каждый дополнительный +6 баллов).",
+    "description": "Помощь по языкам"
+  },
+  "description.files": {
+    "message": "Необязательно. Загрузите изображения, видео или аудио для использования Maestro (например, изображения продукта, логотипы).",
+    "description": "Помощь по файлам"
+  },
+  "description.duration": {
+    "message": "Целевая длительность видео: чем длиннее, тем больше времени и баллов нужно на производство.",
+    "description": "Duration help"
+  },
+  "description.quality": {
+    "message": "Чем выше уровень производства, тем детальнее изображение и монтаж, но больше затраты времени и баллов.",
+    "description": "Quality help"
+  },
+  "status.pending": {
+    "message": "В очереди",
+    "description": "Ожидание"
+  },
+  "status.planning": {
+    "message": "В планировании",
+    "description": "Планирование"
+  },
+  "status.producing": {
+    "message": "В производстве",
+    "description": "Производство"
+  },
+  "status.processing": {
+    "message": "Обработка",
+    "description": "Обработка"
+  },
+  "button.generate": {
+    "message": "Сгенерировать видео",
+    "description": "Кнопка генерации"
+  },
+  "button.download": {
+    "message": "Скачать видео",
+    "description": "Кнопка для скачивания видео"
+  },
+  "button.uploadFiles": {
+    "message": "Загрузить файлы",
+    "description": "Кнопка загрузки файлов-образцов"
+  },
+  "button.remix": {
+    "message": "Создать ремикс",
+    "description": "Кнопка создания ремикса этого видео"
+  },
+  "button.cancelRemix": {
+    "message": "Отменить ремикс",
+    "description": "Кнопка отмены ремикса"
+  },
+  "message.startingTask": {
+    "message": "Отправка видео задачи…",
+    "description": "Подсказка отправки"
+  },
+  "message.startTaskSuccess": {
+    "message": "Задача отправлена! Прогресс рендеринга будет показан ниже.",
+    "description": "Успешная отправка"
+  },
+  "message.startTaskFailed": {
+    "message": "Не удалось отправить задачу, попробуйте еще раз.",
+    "description": "Ошибка отправки"
+  },
+  "message.usedUp": {
+    "message": "Лимит исчерпан, пожалуйста, пополните счет для продолжения.",
+    "description": "Лимит исчерпан"
+  },
+  "message.remixLoaded": {
+    "message": "Ремикс загружен — опишите слева желаемые изменения, затем создайте.",
+    "description": "Уведомление о загруженном ремиксе"
+  },
+  "message.uploadExceed": {
+    "message": "Слишком много файлов, пожалуйста, удалите некоторые и попробуйте снова.",
+    "description": "Превышение лимита загрузки"
+  },
+  "message.uploadError": {
+    "message": "Ошибка загрузки, пожалуйста, попробуйте снова.",
+    "description": "Ошибка загрузки"
+  },
+  "message.noTasks": {
+    "message": "Пока нет видео — создайте ваше первое слева.",
+    "description": "Нет задач"
+  },
+  "name.sourceType": {
+    "message": "Тип источника",
+    "description": "Поле типа источника"
+  },
+  "name.sourceRef": {
+    "message": "Содержимое",
+    "description": "Поле исходного контента"
+  },
+  "name.lang": {
+    "message": "Основной язык",
+    "description": "Поле основного языка"
+  },
+  "name.extraLangs": {
+    "message": "Дополнительные языки",
+    "description": "Поле для дополнительных языковых версий"
+  },
+  "name.music": {
+    "message": "Фоновая музыка",
+    "description": "Поле переключения музыки"
+  },
+  "option.topic": {
+    "message": "Тема",
+    "description": "Тип источника: тема/заголовок"
+  },
+  "option.article": {
+    "message": "Статья",
+    "description": "Тип источника: полный текст статьи"
+  },
+  "placeholder.sourceRef": {
+    "message": "Введите тему (например, “Что такое векторная база данных”) или вставьте полную статью…",
+    "description": "Плейсхолдер для текстовой области источника"
+  },
+  "description.sourceRef": {
+    "message": "Тема/заголовок или полный текст статьи, которую нужно сделать видео.",
+    "description": "Помощь по полю источника"
+  },
+  "description.extraLangs": {
+    "message": "Повторное использование изображения, дополнительный выпуск этих языковых версий (каждая +6 баллов).",
+    "description": "Помощь по дополнительным языкам"
+  },
+  "status.scripting": {
+    "message": "Генерация скрипта",
+    "description": "Генерация скрипта"
+  },
+  "status.generating": {
+    "message": "Генерация изображения",
+    "description": "Генерация"
+  },
+  "status.rendering": {
+    "message": "Рендеринг",
+    "description": "Рендеринг"
+  },
+  "button.downloadCaptions": {
+    "message": "Скачать субтитры",
+    "description": "Кнопка для скачивания srt"
+  },
+  "message.downloadVideo": {
+    "message": "Скачать сгенерированное видео",
+    "description": "Подсказка для скачивания"
+  }
+}

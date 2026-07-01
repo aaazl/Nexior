@@ -1,4 +1,5 @@
 import { ActionContext } from 'vuex';
+import { createFingerprintResolver } from '@acedatacloud/core/fingerprint';
 import { IRootState } from './models';
 import {
   userOperator,
@@ -12,7 +13,7 @@ import {
 import { IApplication, IApplicationScope, IApplicationType, ICredential, IToken, IUser, Status } from '@/models';
 import { getSiteOrigin } from '@/utils/site';
 import { getBaseUrlAuth, getBaseUrlHub, getInviterId, loginRedirect } from '@/utils';
-import { isNative } from '@/utils/surface';
+import { isNative, isDesktop } from '@/utils/surface';
 
 export const resetAll = ({ commit }: ActionContext<IRootState, IRootState>) => {
   commit('resetToken');
@@ -65,15 +66,15 @@ export const getUser = async ({ commit }: ActionContext<IRootState, IRootState>)
   }
 };
 
+// `@fingerprintjs/fingerprintjs` is ~30 KB minified and only needed once,
+// typically well after first paint. Load it lazily (inside the injected loader)
+// so it stays out of the entry chunk and off the critical path.
+const resolveFingerprint = createFingerprintResolver({
+  load: () => import('@fingerprintjs/fingerprintjs').then((m) => m.default.load())
+});
+
 export const getFingerprint = async ({ commit }: ActionContext<IRootState, IRootState>) => {
-  // `@fingerprintjs/fingerprintjs` is ~30 KB minified and only needed once,
-  // typically well after first paint. Load it lazily so it stays out of the
-  // entry chunk and out of the critical-path execution time.
-  const { default: FingerprintJS } = await import('@fingerprintjs/fingerprintjs');
-  const fp = await FingerprintJS.load();
-  const result = await fp.get();
-  const visitorId = result.visitorId;
-  console.debug('visitorId', visitorId);
+  const visitorId = await resolveFingerprint();
   commit('setFingerprint', visitorId);
   return visitorId;
 };
@@ -169,8 +170,7 @@ export const setApplications = async ({ commit }: any, payload: IApplication[]):
 
 export const getApplications = async ({
   commit,
-  state,
-  rootState
+  state
 }: ActionContext<IRootState, IRootState>): Promise<IApplication[] | undefined> => {
   console.debug('start to get applications for global');
   state.status.getApplications = Status.Request;
@@ -178,10 +178,16 @@ export const getApplications = async ({
     const { data: applications } = await applicationOperator.getAll({
       limit: 100,
       offset: 0,
-      user_id: rootState?.user?.id,
+      user_id: 'me',
       ordering: '-created_at',
       type: IApplicationType.USAGE,
-      scope: IApplicationScope.GLOBAL
+      // Cross-service picker: only apps usable on every service page.
+      // GLOBAL-scope apps fit that bill; service-specific INDIVIDUAL apps
+      // (owned or granted) come from each page's own per-service module,
+      // so they MUST NOT leak in here.
+      scope: IApplicationScope.GLOBAL,
+      // Apps I own + GLOBAL apps another user granted me access to.
+      affiliation: ['owner', 'granted']
     });
     console.debug('global applications from online', applications);
     state.status.getApplications = Status.Success;
@@ -214,7 +220,9 @@ export const createCredential = async ({ commit, state }: any): Promise<ICredent
 
 export const login = async ({ state, commit }: ActionContext<IRootState, IRootState>) => {
   const site = state?.site?.origin;
-  if (isNative()) {
+  if (isNative() || isDesktop()) {
+    // In-app popup (iframe) login. NEVER window.location.href on desktop — an
+    // app://bundle window navigated to the external auth host cannot return.
     commit('setAuth', {
       flow: 'popup',
       visible: true
@@ -244,9 +252,10 @@ export const logout = async ({ dispatch, commit }: ActionContext<IRootState, IRo
   for (const name of getRegisteredLazyModules()) {
     await dispatch(`${name}/resetAll`);
   }
-  if (isNative()) {
-    // On native platforms, show in-app login popup instead of navigating to
-    // external auth URL (which would open Chrome and redirect to localhost)
+  if (isNative() || isDesktop()) {
+    // On native AND desktop, show the in-app login popup instead of navigating
+    // to an external auth URL (which on native opens Chrome → localhost, and on
+    // desktop navigates the app://bundle window somewhere it can't return from).
     commit('setAuth', {
       flow: 'popup',
       visible: true
@@ -271,7 +280,7 @@ export const logout = async ({ dispatch, commit }: ActionContext<IRootState, IRo
       ...(inviterId ? { inviter_id: inviterId } : {}),
       redirect: callbackUrl
     };
-    const loginUrl = `${baseUrlAuth}/auth/login?${new URLSearchParams(loginQuery).toString()}`;
+    const loginUrl = `${baseUrlAuth}/auth/login/?${new URLSearchParams(loginQuery).toString()}`;
     const redirectUrl = `${baseUrlAuth}/auth/logout?${new URLSearchParams({ redirect: loginUrl }).toString()}`;
     window.location.href = redirectUrl;
   }

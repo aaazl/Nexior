@@ -11,15 +11,17 @@
           :class="['border-r-0 settings-menu', mobile ? 'is-mobile flex flex-row overflow-x-auto' : '']"
           :mode="mobile ? 'horizontal' : 'vertical'"
         >
+          <!-- Render only the visible tabs. CSS-hiding (display:none) leaks
+               admin-only items into the horizontal el-menu ellipsis overflow
+               on mobile, exposing them to non-admins. -->
           <el-menu-item
-            v-for="(item, index) in navItems"
+            v-for="(item, index) in visibleNavItems"
             :key="index"
             :index="item.key"
             :class="[
               'items-center cursor-pointer',
               mobile ? 'flex-shrink-0 px-3 py-2 text-sm' : 'flex w-[180px] px-2 py-2',
-              activeTab === item.key ? 'active' : '',
-              item.visible ? '' : 'hidden'
+              activeTab === item.key ? 'active' : ''
             ]"
             @click="activeTab = item.key"
           >
@@ -35,26 +37,29 @@
         <div v-else-if="activeTab === SETTING_TAB_API_KEY">
           <byok-setting />
         </div>
-        <div v-else-if="activeTab === SETTING_TAB_SITE">
+        <div v-else-if="activeTab === SETTING_TAB_SITE && isSiteConfigVisible">
           <site-setting />
         </div>
-        <div v-else-if="activeTab === SETTING_TAB_SEO && isSiteAdmin">
+        <div v-else-if="activeTab === SETTING_TAB_SEO && isSiteConfigVisible">
           <seo-setting />
         </div>
-        <div v-else-if="activeTab === SETTING_TAB_DISTRIBUTION && isSiteAdmin">
+        <div v-else-if="activeTab === SETTING_TAB_DISTRIBUTION && isSiteConfigVisible">
           <distribution-setting />
         </div>
-        <div v-else-if="activeTab === SETTING_TAB_FUNCTION && isSiteAdmin">
+        <div v-else-if="activeTab === SETTING_TAB_FUNCTION && isSiteConfigVisible">
           <function-setting />
         </div>
-        <div v-else-if="activeTab === SETTING_TAB_AUTH && isSiteAdmin">
+        <div v-else-if="activeTab === SETTING_TAB_AUTH && isSiteConfigVisible">
           <auth-setting />
         </div>
-        <div v-else-if="activeTab === SETTING_TAB_SUBSITES && isMainOfficialHost">
+        <div v-else-if="activeTab === SETTING_TAB_SUBSITES && isSubsitesVisible">
           <subsite-setting :auto-open-create="autoOpenCreateSubsite" />
         </div>
         <div v-else-if="activeTab === SETTING_TAB_CUSTOM_DOMAIN && isCustomDomainVisible">
           <custom-domain-setting />
+        </div>
+        <div v-else-if="activeTab === SETTING_TAB_LOCAL_TOOLS && isDesktopApp">
+          <local-tools-setting />
         </div>
         <div v-else-if="activeTab === SETTING_TAB_ABOUT">
           <about-setting @switch-tab="onSwitchTab" />
@@ -78,7 +83,8 @@ import {
   faInfoCircle,
   faSitemap,
   faGlobe,
-  faRightToBracket
+  faRightToBracket,
+  faLaptopCode
 } from '@fortawesome/free-solid-svg-icons';
 import GeneralSetting from '@/components/setting/General.vue';
 import ByokSetting from '@/components/setting/Byok.vue';
@@ -90,6 +96,7 @@ import SubsiteSetting from '@/components/setting/Subsite.vue';
 import CustomDomainSetting from '@/components/setting/CustomDomain.vue';
 import AuthSetting from '@/components/setting/Auth.vue';
 import AboutSetting from '@/components/setting/About.vue';
+import LocalToolsSetting from '@/components/setting/LocalTools.vue';
 import {
   SETTING_TAB_ABOUT,
   SETTING_TAB_API_KEY,
@@ -101,9 +108,12 @@ import {
   SETTING_TAB_SITE,
   SETTING_TAB_SUBSITES,
   SETTING_TAB_CUSTOM_DOMAIN,
+  SETTING_TAB_LOCAL_TOOLS,
   type SettingTabKey
 } from '@/constants';
 import { isMainOfficial } from '@/utils';
+import { isWeb } from '@/utils/surface';
+import { localExec } from '@/utils/desktop';
 
 export default defineComponent({
   name: 'UserSetting',
@@ -121,7 +131,8 @@ export default defineComponent({
     SubsiteSetting,
     CustomDomainSetting,
     AuthSetting,
-    AboutSetting
+    AboutSetting,
+    LocalToolsSetting
   },
   props: {
     visible: {
@@ -148,6 +159,7 @@ export default defineComponent({
       SETTING_TAB_SUBSITES,
       SETTING_TAB_CUSTOM_DOMAIN,
       SETTING_TAB_ABOUT,
+      SETTING_TAB_LOCAL_TOOLS,
       activeTab: SETTING_TAB_GENERAL as SettingTabKey,
       autoOpenCreateSubsite: false,
       mobile: typeof window !== 'undefined' && window.innerWidth < 768
@@ -158,24 +170,29 @@ export default defineComponent({
       return [
         { key: SETTING_TAB_GENERAL, label: this.$t('common.settings.general'), icon: faCog, visible: true },
         { key: SETTING_TAB_API_KEY, label: this.$t('common.settings.apiKey'), icon: faKey, visible: true },
-        { key: SETTING_TAB_SITE, label: this.$t('common.settings.site'), icon: faBell, visible: this.isSiteAdmin },
+        {
+          key: SETTING_TAB_SITE,
+          label: this.$t('common.settings.site'),
+          icon: faBell,
+          visible: this.isSiteConfigVisible
+        },
         {
           key: SETTING_TAB_SEO,
           label: this.$t('common.settings.seo'),
           icon: faUserShield,
-          visible: this.isSiteAdmin
+          visible: this.isSiteConfigVisible
         },
         {
           key: SETTING_TAB_DISTRIBUTION,
           label: this.$t('common.settings.distribution'),
           icon: faMoneyBill,
-          visible: this.isSiteAdmin
+          visible: this.isSiteConfigVisible
         },
         {
           key: SETTING_TAB_FUNCTION,
           label: this.$t('common.settings.function'),
           icon: faMagic,
-          visible: this.isSiteAdmin
+          visible: this.isSiteConfigVisible
         },
         {
           // Per-site login provider configuration (which providers are
@@ -186,7 +203,7 @@ export default defineComponent({
           key: SETTING_TAB_AUTH,
           label: this.$t('common.settings.auth'),
           icon: faRightToBracket,
-          visible: this.isSiteAdmin
+          visible: this.isSiteConfigVisible
         },
         {
           // Subsite (white-label child site) management. Only the official
@@ -197,7 +214,7 @@ export default defineComponent({
           key: SETTING_TAB_SUBSITES,
           label: this.$t('common.settings.subsites'),
           icon: faSitemap,
-          visible: this.isMainOfficialHost
+          visible: this.isSubsitesVisible
         },
         {
           // Custom-domain (CNAME + HTTPS) management for the *current*
@@ -212,8 +229,20 @@ export default defineComponent({
           icon: faGlobe,
           visible: this.isCustomDomainVisible
         },
+        {
+          // Desktop-only: manage the folders / system permissions / persistent
+          // "always allow" grants for local tools that run on the user's
+          // machine. Hidden on web & mobile (no localExec bridge there).
+          key: SETTING_TAB_LOCAL_TOOLS,
+          label: this.$t('common.settings.localTools'),
+          icon: faLaptopCode,
+          visible: this.isDesktopApp
+        },
         { key: SETTING_TAB_ABOUT, label: this.$t('common.settings.about'), icon: faInfoCircle, visible: true }
       ];
+    },
+    visibleNavItems(): Array<{ key: SettingTabKey; label: string; icon: typeof faCog; visible: boolean }> {
+      return this.navItems.filter((item) => item.visible);
     },
     isSiteAdmin(): boolean {
       return !!this.$store?.state?.site?.admins?.includes(this.$store.getters.user?.id);
@@ -221,11 +250,30 @@ export default defineComponent({
     isMainOfficialHost(): boolean {
       return isMainOfficial();
     },
+    isWebSurface(): boolean {
+      // Operator / white-label management (site config, SEO, distribution,
+      // subsites, custom domain) is a web-deployment concern — useless on a
+      // phone and risky for app-store review. Restrict it to the web surface
+      // so the native iOS/Android and desktop apps hide these tabs.
+      return isWeb();
+    },
+    isSiteConfigVisible(): boolean {
+      // Site / SEO / Distribution / Function / Auth: admin-only AND web-only.
+      return this.isWebSurface && this.isSiteAdmin;
+    },
+    isSubsitesVisible(): boolean {
+      // White-label child-site management: main official host AND web-only.
+      return this.isWebSurface && this.isMainOfficialHost;
+    },
     isCustomDomainVisible(): boolean {
       // Custom-domain binding is only meaningful on a subsite (or any
-      // non-main-official tenant). The parent commercial host never
-      // points additional CNAMEs at itself.
-      return !this.isMainOfficialHost && this.isSiteAdmin;
+      // non-main-official tenant), and only on the web surface (DNS/CNAME
+      // config). The parent commercial host never points CNAMEs at itself.
+      return this.isWebSurface && !this.isMainOfficialHost && this.isSiteAdmin;
+    },
+    isDesktopApp(): boolean {
+      // Only the Electron desktop app exposes the localExec bridge.
+      return !!localExec();
     },
     dialogWidth(): string {
       // Phone-sized viewports: take almost full width so the 450px-min

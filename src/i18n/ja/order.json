@@ -99,6 +99,18 @@
     "message": "外部リンクで支払いを完了してください。",
     "description": "外部リンクでの支払いに関するメッセージです。"
   },
+  "message.applePayProcessing": {
+    "message": "App Store で購入を完了しています…",
+    "description": "Message while the Apple in-app purchase is processing."
+  },
+  "message.applePayFailed": {
+    "message": "App Store の支払いが完了しませんでした。もう一度お試しください。",
+    "description": "Message when the Apple in-app purchase fails."
+  },
+  "message.applePayUnavailable": {
+    "message": "このパッケージはアプリ内で購入できません。",
+    "description": "Message when Apple in-app purchase is unavailable for the package."
+  },
   "message.updateFailed": {
     "message": "更新失敗",
     "description": "更新失敗のメッセージです。"
@@ -383,6 +395,10 @@
     "message": "Solana ウォレット",
     "description": "Solana ウォレット接続カードのタイトル。"
   },
+  "message.publicPayNotFound": {
+    "message": "注文が見つからないか期限切れです。",
+    "description": "Shown on public pay page when the order GET returns 404."
+  },
   "message.x402WalletStatusDetected": {
     "message": "検出済み",
     "description": "検出済み/インストール済みのウォレット状態ラベル。"
@@ -518,5 +534,41 @@
   "message.wechatPayLongPressTip": {
     "message": "下のQRコードを長押しし、「QRコードを認識」を選択してWeChatで支払いを完了してください。",
     "description": "Tip shown above the Native QR on mobile-WeChat. The user long-presses to recognise the `weixin://wxpay/bizpayurl` URL and pays without leaving WeChat."
+  },
+  "message.wechatPayMobileScanTip": {
+    "message": "下のQRコードを保存またはスクリーンショットを撮り、WeChatを開いて、スキャンをクリックし、右上のアルバムを選択して、先ほど保存した画像を選択することで支払いが完了します。",
+    "description": "非WeChatのモバイルブラウザでQRコードの上に表示されるガイド文です。ユーザーがQRコードの画像を保存し、WeChatのスキャン機能でアルバムから選択して支払いを完了する方法を案内します。"
+  },
+  "message.creditsValue": {
+    "message": "{value} クレジット",
+    "description": "Display of credits amount for an order, e.g. '5 credits'. {value} is the formatted credit number."
+  },
+  "title.totalOrders": {
+    "message": "Total Orders",
+    "description": "Summary card: total number of orders matching the current filters."
+  },
+  "title.totalSpent": {
+    "message": "Total Spent",
+    "description": "Summary card: total amount spent across matching orders."
+  },
+  "title.finishedOrders": {
+    "message": "Finished Orders",
+    "description": "Summary card: number of finished orders."
+  },
+  "title.pendingOrders": {
+    "message": "Pending Orders",
+    "description": "Summary card: number of pending orders."
+  },
+  "button.export": {
+    "message": "Export CSV",
+    "description": "Button label to export the filtered orders as CSV."
+  },
+  "field.allStates": {
+    "message": "All States",
+    "description": "Placeholder of the state filter dropdown indicating no specific state is selected."
+  },
+  "field.allPayWays": {
+    "message": "All Payment Methods",
+    "description": "Placeholder of the payment method filter dropdown indicating no specific method is selected."
   }
 }

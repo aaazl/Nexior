@@ -1,0 +1,166 @@
+{
+  "name.maestroBot": {
+    "message": "Maestro",
+    "description": "Bot display name"
+  },
+  "name.taskId": {
+    "message": "Task ID",
+    "description": "Task id"
+  },
+  "name.status": {
+    "message": "Status",
+    "description": "Task status"
+  },
+  "name.elapsed": {
+    "message": "Elapsed Time",
+    "description": "Elapsed seconds"
+  },
+  "name.traceId": {
+    "message": "Trace ID",
+    "description": "Trace id"
+  },
+  "name.failure": {
+    "message": "Failed",
+    "description": "Failure status"
+  },
+  "name.failureReason": {
+    "message": "Failure Reason",
+    "description": "Failure reason"
+  },
+  "name.prompt": {
+    "message": "Prompt",
+    "description": "Prompt field"
+  },
+  "name.files": {
+    "message": "Reference Files",
+    "description": "Reference media field"
+  },
+  "name.langs": {
+    "message": "Languages",
+    "description": "Output languages field"
+  },
+  "name.aspect": {
+    "message": "Aspect Ratio",
+    "description": "Aspect ratio field"
+  },
+  "name.duration": {
+    "message": "Duration",
+    "description": "Target duration field"
+  },
+  "name.quality": {
+    "message": "Quality",
+    "description": "Production quality tier field"
+  },
+  "option.quality.draft": {
+    "message": "Draft · fast preview",
+    "description": "Draft quality option"
+  },
+  "option.quality.standard": {
+    "message": "Standard · balanced",
+    "description": "Standard quality option"
+  },
+  "option.quality.premium": {
+    "message": "Premium · more detail",
+    "description": "Premium quality option"
+  },
+  "name.remixing": {
+    "message": "Remixing",
+    "description": "Remix banner label"
+  },
+  "placeholder.prompt": {
+    "message": "Describe the video you want — topic, what to show, tone, audience…",
+    "description": "Prompt textarea placeholder"
+  },
+  "placeholder.select": {
+    "message": "Please select",
+    "description": "Generic select placeholder"
+  },
+  "description.prompt": {
+    "message": "Say what you want in plain language — Maestro plans the script, visuals, voiceover and edit.",
+    "description": "Prompt field help"
+  },
+  "description.langs": {
+    "message": "Output one or more languages. Each extra language reuses the visuals with a localized voiceover (+6 credits each).",
+    "description": "Languages help"
+  },
+  "description.files": {
+    "message": "Optional. Attach images, video or audio for Maestro to use (e.g. a product shot or logo).",
+    "description": "Files help"
+  },
+  "description.duration": {
+    "message": "Target video length in seconds (1–600, up to 10 min). Billed by duration — longer videos take more time and credits to produce.",
+    "description": "Duration help"
+  },
+  "description.quality": {
+    "message": "Higher tiers produce more refined visuals and editing, at higher time and credit cost.",
+    "description": "Quality help"
+  },
+  "status.pending": {
+    "message": "Pending",
+    "description": "Pending"
+  },
+  "status.planning": {
+    "message": "Planning",
+    "description": "Planning"
+  },
+  "status.producing": {
+    "message": "Producing",
+    "description": "Producing"
+  },
+  "status.processing": {
+    "message": "Processing",
+    "description": "Processing"
+  },
+  "button.generate": {
+    "message": "Generate Video",
+    "description": "Generate button"
+  },
+  "button.download": {
+    "message": "Download Video",
+    "description": "Download video button"
+  },
+  "button.uploadFiles": {
+    "message": "Upload Files",
+    "description": "Upload reference files button"
+  },
+  "button.remix": {
+    "message": "Remix",
+    "description": "Remix this video button"
+  },
+  "button.cancelRemix": {
+    "message": "Cancel remix",
+    "description": "Cancel remix button"
+  },
+  "message.startingTask": {
+    "message": "Submitting your video task…",
+    "description": "Submit toast"
+  },
+  "message.startTaskSuccess": {
+    "message": "Task submitted! It will appear below as it renders.",
+    "description": "Submit success"
+  },
+  "message.startTaskFailed": {
+    "message": "Failed to submit the task. Please try again.",
+    "description": "Submit fail"
+  },
+  "message.usedUp": {
+    "message": "Your quota is used up. Please top up to continue.",
+    "description": "Used up"
+  },
+  "message.remixLoaded": {
+    "message": "Loaded for remix — describe your change on the left, then generate.",
+    "description": "Remix loaded toast"
+  },
+  "message.uploadExceed": {
+    "message": "Too many files. Please remove some and try again.",
+    "description": "Upload exceed"
+  },
+  "message.uploadError": {
+    "message": "Upload failed. Please try again.",
+    "description": "Upload error"
+  },
+  "message.noTasks": {
+    "message": "No videos yet — create your first one on the left.",
+    "description": "No tasks"
+  }
+}

@@ -1,0 +1,226 @@
+{
+  "name.maestroBot": {
+    "message": "Maestro",
+    "description": "Botens visningsnamn"
+  },
+  "name.taskId": {
+    "message": "Uppgift ID",
+    "description": "Uppgifts-ID"
+  },
+  "name.status": {
+    "message": "Status",
+    "description": "Uppgiftsstatus"
+  },
+  "name.elapsed": {
+    "message": "Tid förbrukad",
+    "description": "Förflutna sekunder"
+  },
+  "name.traceId": {
+    "message": "Spårnings ID",
+    "description": "Spårnings-ID"
+  },
+  "name.failure": {
+    "message": "Misslyckande",
+    "description": "Status för misslyckande"
+  },
+  "name.failureReason": {
+    "message": "Orsak till misslyckande",
+    "description": "Orsak till misslyckande"
+  },
+  "name.prompt": {
+    "message": "Prompt",
+    "description": "Prompt fält"
+  },
+  "name.files": {
+    "message": "Referensmaterial",
+    "description": "Referensmedia fält"
+  },
+  "name.langs": {
+    "message": "Språk",
+    "description": "Utgångsspråk fält"
+  },
+  "name.aspect": {
+    "message": "Bildförhållande",
+    "description": "Fält för bildförhållande"
+  },
+  "name.duration": {
+    "message": "Längd",
+    "description": "Mållängdsfält"
+  },
+  "name.quality": {
+    "message": "Kvalitet",
+    "description": "Production quality tier field"
+  },
+  "option.quality.draft": {
+    "message": "Utkast · snabb förhandsvisning",
+    "description": "Draft quality option"
+  },
+  "option.quality.standard": {
+    "message": "Standard · balanserad",
+    "description": "Standard quality option"
+  },
+  "option.quality.premium": {
+    "message": "Premium · mer detaljer",
+    "description": "Premium quality option"
+  },
+  "name.remixing": {
+    "message": "Remix",
+    "description": "Remix banner etikett"
+  },
+  "placeholder.prompt": {
+    "message": "Beskriv videon du vill ha - tema, vad som ska visas, stil, publik…",
+    "description": "Prompt textarea platshållare"
+  },
+  "placeholder.select": {
+    "message": "Vänligen välj",
+    "description": "Allmänt val av platshållare"
+  },
+  "description.prompt": {
+    "message": "Säg tydligt vad du vill ha, manus, bilder, röstöverlagring, klippning lämnar du till Maestro.",
+    "description": "Prompt fält hjälp"
+  },
+  "description.langs": {
+    "message": "Kan exportera ett eller flera språk, varje extra språk återanvänder bilden, bara mer röstöverlagring (varje extra +6 poäng).",
+    "description": "Språk hjälp"
+  },
+  "description.files": {
+    "message": "Valfritt. Ladda upp bilder, videor eller ljud för Maestro att använda (som produktbilder, logotyper).",
+    "description": "Filer hjälp"
+  },
+  "description.duration": {
+    "message": "Önskad videolängd – ju längre, desto mer tid och poäng krävs för produktionen.",
+    "description": "Duration help"
+  },
+  "description.quality": {
+    "message": "Högre produktionsnivå ger mer förfinad bild och redigering, men kostar mer tid och poäng.",
+    "description": "Quality help"
+  },
+  "status.pending": {
+    "message": "I kö",
+    "description": "Väntar"
+  },
+  "status.planning": {
+    "message": "Planering",
+    "description": "Planering"
+  },
+  "status.producing": {
+    "message": "Produktion",
+    "description": "Produktion"
+  },
+  "status.processing": {
+    "message": "Bearbetar",
+    "description": "Bearbetar"
+  },
+  "button.generate": {
+    "message": "Generera video",
+    "description": "Generera-knapp"
+  },
+  "button.download": {
+    "message": "Ladda ner video",
+    "description": "Ladda ner video-knapp"
+  },
+  "button.uploadFiles": {
+    "message": "Ladda upp filer",
+    "description": "Ladda upp referensfiler-knappen"
+  },
+  "button.remix": {
+    "message": "Remixa",
+    "description": "Remixa denna video-knappen"
+  },
+  "button.cancelRemix": {
+    "message": "Avbryt remix",
+    "description": "Avbryt remix-knappen"
+  },
+  "message.startingTask": {
+    "message": "Skickar videouppgift…",
+    "description": "Inlämning toast"
+  },
+  "message.startTaskSuccess": {
+    "message": "Uppgiften har skickats! Renderingsstatus kommer att visas nedan.",
+    "description": "Inlämning lyckades"
+  },
+  "message.startTaskFailed": {
+    "message": "Uppgiftsinlämning misslyckades, vänligen försök igen.",
+    "description": "Inlämning misslyckades"
+  },
+  "message.usedUp": {
+    "message": "Krediten är slut, vänligen ladda på för att fortsätta.",
+    "description": "Användd upp"
+  },
+  "message.remixLoaded": {
+    "message": "Remix inläst - beskriv ändringarna du vill ha till vänster och generera.",
+    "description": "Remix inläst toast"
+  },
+  "message.uploadExceed": {
+    "message": "För många filer, vänligen ta bort några och försök igen.",
+    "description": "Överskridande av uppladdning"
+  },
+  "message.uploadError": {
+    "message": "Uppladdning misslyckades, försök igen.",
+    "description": "Uppladdningsfel"
+  },
+  "message.noTasks": {
+    "message": "Inga videor än — skapa din första till vänster.",
+    "description": "Inga uppgifter"
+  },
+  "name.sourceType": {
+    "message": "Källtyp",
+    "description": "Fält för källtyp"
+  },
+  "name.sourceRef": {
+    "message": "Innehåll",
+    "description": "Fält för källinnehåll"
+  },
+  "name.lang": {
+    "message": "Huvudspråk",
+    "description": "Fält för primärt språk"
+  },
+  "name.extraLangs": {
+    "message": "Extra språk",
+    "description": "Fält för extra språkversioner"
+  },
+  "name.music": {
+    "message": "Bakgrundsmusik",
+    "description": "Fält för musikväxling"
+  },
+  "option.topic": {
+    "message": "Ämne",
+    "description": "Källtyp: ett ämne/rubrik"
+  },
+  "option.article": {
+    "message": "Artikel",
+    "description": "Källtyp: fullständig artikeltext"
+  },
+  "placeholder.sourceRef": {
+    "message": "Skriv ett ämne (t.ex. \"Vad är en vektordatabas?\") eller klistra in hela artikeln…",
+    "description": "Platshållare för källtextområde"
+  },
+  "description.sourceRef": {
+    "message": "Ett ämne/titel, eller hela texten av artikeln som ska göras till video.",
+    "description": "Hjälp för källfält"
+  },
+  "description.extraLangs": {
+    "message": "Återanvända bild, extra utgåvor av dessa språkversioner (varje +6 poäng).",
+    "description": "Extra språk hjälper"
+  },
+  "status.scripting": {
+    "message": "Skripterar",
+    "description": "Skripterar"
+  },
+  "status.generating": {
+    "message": "Genererar",
+    "description": "Genererar"
+  },
+  "status.rendering": {
+    "message": "Renderar",
+    "description": "Renderar"
+  },
+  "button.downloadCaptions": {
+    "message": "Ladda ner undertexter",
+    "description": "Ladda ner srt-knapp"
+  },
+  "message.downloadVideo": {
+    "message": "Ladda ner den genererade videon",
+    "description": "Nedladdningstips"
+  }
+}

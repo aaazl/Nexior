@@ -1,12 +1,15 @@
 import { IApplication, IConfigResponse, ISite, IToken, IUser, Status } from '@/models';
 import { IMidjourneyState } from '../midjourney/models';
 import { IChatState } from '../chat/models';
+import { IRealtimeState } from '../realtime/models';
 import { IQrartState } from '../qrart/models';
 import { ILumaState } from '../luma/models';
 import { IPikaState } from '../pika/models';
 import { IKlingState } from '../kling/models';
 import { IVeoState } from '../veo/models';
 import { ISoraState } from '../sora/models';
+import { IMaestroState } from '../maestro/models';
+import { IDigitalHumanState } from '../digitalhuman/models';
 import { IPixverseState } from '../pixverse/models';
 import { IFluxState } from '../flux/models';
 import { IHailuoState } from '../hailuo/models';
@@ -17,10 +20,12 @@ import { INanobananaState } from '../nanobanana/models';
 import { IOpenAIImageState } from '../openaiimage/models';
 import { ISeedreamState } from '../seedream/models';
 import { ISeedanceState } from '../seedance/models';
+import { IGrokVideoState } from '../grokvideo/models';
 import { ISerpState } from '../serp/models';
 import { IWanState } from '../wan/models';
 import { IFishState } from '../fish/models';
 import { IWebextratorState } from '../webextrator/models';
+import { ICodingBridgeState } from '../codingBridge/models';
 
 export interface ISetting {}
 
@@ -52,12 +57,17 @@ export interface ICommonState {
 export interface IAppState {
   midjourney: IMidjourneyState;
   chat: IChatState;
+  // Lazily registered only when the user opens the voice-call screen, so it's
+  // absent from the initial root state — optional, accessed with `?.`.
+  realtime?: IRealtimeState;
   qrart: IQrartState;
   luma: ILumaState;
   pika: IPikaState;
   kling: IKlingState;
   veo: IVeoState;
   sora: ISoraState;
+  maestro: IMaestroState;
+  digitalhuman: IDigitalHumanState;
   pixverse: IPixverseState;
   flux: IFluxState;
   hailuo: IHailuoState;
@@ -68,10 +78,12 @@ export interface IAppState {
   openaiimage: IOpenAIImageState;
   seedream: ISeedreamState;
   seedance: ISeedanceState;
+  grokvideo: IGrokVideoState;
   serp: ISerpState;
   wan: IWanState;
   fish: IFishState;
   webextrator: IWebextratorState;
+  codingBridge: ICodingBridgeState;
 }
 
 export interface IRootState extends ICommonState, IAppState {}

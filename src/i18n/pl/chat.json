@@ -163,6 +163,14 @@
     "message": "Obecnie najnowocześniejszy model",
     "description": "Opis modelu Gemini 3.0 Pro"
   },
+  "model.gemini31Pro": {
+    "message": "gemini-3.1-pro",
+    "description": "Nazwa modelu usługi, czyli Gemini 3.0 Pro"
+  },
+  "model.gemini31ProDescription": {
+    "message": "Obecnie najnowocześniejszy model",
+    "description": "Opis modelu Gemini 3.0 Pro"
+  },
   "model.gemini25Pro": {
     "message": "gemini-2.5-pro",
     "description": "Nazwa modelu usługi, czyli Gemini 2.5 Pro"
@@ -179,13 +187,21 @@
     "message": "Szybszy i lżejszy model",
     "description": "Opis modelu Gemini 2.5 Flash"
   },
-  "model.claudeOpus47": {
-    "message": "claude-opus-4.7",
-    "description": "Nazwa modelu usługi, czyli Claude Opus 4.7"
+  "model.gemini35Flash": {
+    "message": "gemini-3.5-flash",
+    "description": "Nazwa modelu usługi, czyli Gemini 2.5 Flash"
   },
-  "model.claudeOpus47Description": {
+  "model.gemini35FlashDescription": {
+    "message": "Szybszy i lżejszy model",
+    "description": "Opis modelu Gemini 2.5 Flash"
+  },
+  "model.claudeOpus48": {
+    "message": "claude-opus-4.8",
+    "description": "Nazwa modelu usługi, czyli Claude Opus 4.8"
+  },
+  "model.claudeOpus48Description": {
     "message": "Obecnie najnowocześniejszy model",
-    "description": "Opis modelu Claude Opus 4.7"
+    "description": "Opis modelu Claude Opus 4.8"
   },
   "model.claudeSonnet46": {
     "message": "claude-sonnet-4.6",
@@ -506,5 +522,213 @@
   "askUserQuestion.collapsedAnswerLabel": {
     "message": "Twoja odpowiedź",
     "description": "Tekst zastępczy, gdy nie można wyodrębnić konkretnej odpowiedzi z historii"
+  },
+  "consent.title": {
+    "message": "Wymagana autoryzacja konektora",
+    "description": "Tytuł karty autoryzacji konektora"
+  },
+  "consent.matchAny": {
+    "message": "Wystarczy wybrać jeden",
+    "description": "Etykieta: wystarczy autoryzacja dowolnego konektora w tej grupie"
+  },
+  "consent.matchAll": {
+    "message": "Wymagana autoryzacja wszystkich",
+    "description": "Etykieta: wszystkie konektory w tej grupie wymagają autoryzacji"
+  },
+  "consent.authorize": {
+    "message": "Autoryzuj",
+    "description": "Przycisk autoryzacji, po kliknięciu otwiera stronę autoryzacji osoby trzeciej"
+  },
+  "consent.skip": {
+    "message": "Pomiń autoryzację",
+    "description": "Przycisk pominięcia autoryzacji; po pominięciu model kontynuuje bez tego konektora"
+  },
+  "consent.continue": {
+    "message": "Kontynuuj",
+    "description": "Przycisk Kontynuuj wyświetlany, gdy po powrocie z OAuth wykryto, że konektor jest podłączony; kliknięcie wysyła autoryzację."
+  },
+  "consent.selectScopes": {
+    "message": "Wybierz zakresy autoryzacji {provider}",
+    "description": "Title of the scope picker dialog opened from the consent card; {provider} is the upstream provider name (e.g. Gmail)."
+  },
+  "consent.selectScopesHint": {
+    "message": "Wybierz uprawnienia, które chcesz autoryzować. Możesz wybrać wiele, domyślnie przyznawane są tylko podstawowe informacje logowania.",
+    "description": "Body copy explaining that the user can opt out of specific scopes; rendered above the checkbox group."
+  },
+  "consent.installFailed": {
+    "message": "Autoryzacja nie powiodła się. Spróbuj ponownie.",
+    "description": "Toast shown when the AuthBackend install endpoint returns an error from the consent card."
+  },
+  "consent.statusConnected": {
+    "message": "Połączono",
+    "description": "Znacznik statusu dla konektora, który jest połączony"
+  },
+  "consent.statusUnconnected": {
+    "message": "Niepołączono",
+    "description": "Znacznik statusu dla konektora, który nie jest połączony (wyświetlany, gdy brak linku autoryzacyjnego)"
+  },
+  "consent.resolvedAuthorized": {
+    "message": "Autoryzowano: {list}",
+    "description": "Informacja na dole karty po zakończeniu autoryzacji, {list} to lista autoryzowanych konektorów"
+  },
+  "consent.resolvedSkipped": {
+    "message": "Autoryzacja konektorów pominięta",
+    "description": "Informacja na dole karty po pominięciu autoryzacji przez użytkownika"
+  },
+  "scheduledTasks.navTitle": {
+    "message": "Scheduled Tasks"
+  },
+  "scheduledTasks.title": {
+    "message": "Scheduled Tasks"
+  },
+  "scheduledTasks.create": {
+    "message": "New"
+  },
+  "scheduledTasks.edit": {
+    "message": "Edit Task"
+  },
+  "scheduledTasks.empty": {
+    "message": "No scheduled tasks yet. Click \"New\" to create one."
+  },
+  "scheduledTasks.noRuns": {
+    "message": "No runs yet"
+  },
+  "scheduledTasks.loadError": {
+    "message": "Failed to load"
+  },
+  "scheduledTasks.deleteConfirm": {
+    "message": "Delete \"{name}\"? The task will stop running."
+  },
+  "scheduledTasks.viewResult": {
+    "message": "View Result"
+  },
+  "scheduledTasks.viewRuns": {
+    "message": "Run history"
+  },
+  "scheduledTasks.noConversation": {
+    "message": "Brak historii rozmów",
+    "description": "Zadania, które nie są powiązane z żadną rozmową (stara wersja działania)"
+  },
+  "scheduledTasks.jitterHint": {
+    "message": "±60s jitter"
+  },
+  "scheduledTasks.runCount": {
+    "message": "Ran {count} time(s)"
+  },
+  "scheduledTasks.state.enabled": {
+    "message": "Active"
+  },
+  "scheduledTasks.state.disabled": {
+    "message": "Paused"
+  },
+  "scheduledTasks.state.error": {
+    "message": "Error"
+  },
+  "scheduledTasks.run.queued": {
+    "message": "Queued"
+  },
+  "scheduledTasks.run.running": {
+    "message": "Running"
+  },
+  "scheduledTasks.run.success": {
+    "message": "Success"
+  },
+  "scheduledTasks.run.failed": {
+    "message": "Failed"
+  },
+  "scheduledTasks.run.needs_user_input": {
+    "message": "Needs action"
+  },
+  "scheduledTasks.scheduleType.daily": {
+    "message": "Daily"
+  },
+  "scheduledTasks.scheduleType.minutely": {
+    "message": "Co minutę"
+  },
+  "scheduledTasks.scheduleType.hourly": {
+    "message": "Hourly"
+  },
+  "scheduledTasks.scheduleType.weekly": {
+    "message": "Weekly"
+  },
+  "scheduledTasks.scheduleType.cron": {
+    "message": "Cron expression"
+  },
+  "scheduledTasks.form.name": {
+    "message": "Task name"
+  },
+  "scheduledTasks.form.namePlaceholder": {
+    "message": "e.g. Daily news summary"
+  },
+  "scheduledTasks.form.model": {
+    "message": "Model"
+  },
+  "scheduledTasks.form.prompt": {
+    "message": "Prompt"
+  },
+  "scheduledTasks.form.promptPlaceholder": {
+    "message": "Enter your scheduled question or instruction. Supports {'{{date}}'}, {'{{run_count}}'}, {'{{last_output}}'} variables."
+  },
+  "scheduledTasks.form.promptHint": {
+    "message": "Variables: {'{{date}}'} today, {'{{run_count}}'} run number, {'{{last_output}}'} last output snippet"
+  },
+  "scheduledTasks.form.schedule": {
+    "message": "Frequency"
+  },
+  "scheduledTasks.form.time": {
+    "message": "Time"
+  },
+  "scheduledTasks.form.weekday": {
+    "message": "Weekday"
+  },
+  "scheduledTasks.form.cron": {
+    "message": "Cron expression"
+  },
+  "scheduledTasks.form.skills": {
+    "message": "Autoryzuj umiejętności",
+    "description": "Wielokrotny wybór umiejętności do zadań zaplanowanych w trybie bezobsługowym"
+  },
+  "scheduledTasks.form.skillsPlaceholder": {
+    "message": "Wybierz umiejętności, które mogą być automatycznie wykonywane w tym zadaniu",
+    "description": "Placeholder dla autoryzacji umiejętności"
+  },
+  "scheduledTasks.form.skillsHint": {
+    "message": "Wybrane umiejętności mogą być wykonywane w tle bez potwierdzenia ręcznego; nie wybrane umiejętności mogą być jedynie podglądane lub czekać na potwierdzenie.",
+    "description": "Opis autoryzacji umiejętności"
+  },
+  "scheduledTasks.form.skillMissing": {
+    "message": "Niepołączone",
+    "description": "Brak połączenia z umiejętnością"
+  },
+  "scheduledTasks.form.mcpServers": {
+    "message": "Autoryzuj MCP",
+    "description": "Autoryzacja serwera MCP dla zadań zaplanowanych w trybie bezobsługowym"
+  },
+  "scheduledTasks.form.mcpServersPlaceholder": {
+    "message": "Wybierz serwery MCP, które mogą być automatycznie ładowane przez to zadanie",
+    "description": "Placeholder dla autoryzacji serwera MCP"
+  },
+  "scheduledTasks.form.mcpServersHint": {
+    "message": "Wybrane serwery MCP mogą być ładowane i wykonywane w tle zadań zaplanowanych; nie wybrane serwery MCP nie będą ładowane w trybie bezobsługowym.",
+    "description": "Opis autoryzacji serwera MCP"
+  },
+  "scheduledTasks.form.skillsConfirmTitle": {
+    "message": "Potwierdzenie autoryzacji bezobsługowej",
+    "description": "Tytuł potwierdzenia autoryzacji"
+  },
+  "scheduledTasks.form.skillsConfirm": {
+    "message": "To zadanie pozwoli na pominięcie potwierdzenia ręcznego dla {count} umiejętności w tle: {skills}. Te umiejętności mogą wysyłać wiadomości, publikować treści lub zapisywać w zewnętrznych usługach, proszę potwierdzić.",
+    "description": "Treść potwierdzenia autoryzacji"
+  },
+  "scheduledTasks.form.required": {
+    "message": "Please fill in task name and prompt"
+  },
+  "model.claudeOpus47": {
+    "message": "claude-opus-4.7",
+    "description": "Nazwa modelu usługi, czyli Claude Opus 4.7"
+  },
+  "model.claudeOpus47Description": {
+    "message": "Obecnie najnowocześniejszy model",
+    "description": "Opis modelu Claude Opus 4.7"
   }
 }

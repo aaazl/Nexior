@@ -51,6 +51,10 @@
     "message": "Διαγραφή",
     "description": "Κείμενο στο κουμπί για να διαγράψετε περιεχόμενο"
   },
+  "button.deletePermanently": {
+    "message": "Οριστική διαγραφή λογαριασμού",
+    "description": "Final red delete button at the bottom of the delete confirmation dialog"
+  },
   "button.confirm": {
     "message": "Επιβεβαίωση",
     "description": "Κείμενο στο κουμπί για να επιβεβαιώσετε κάποια ενέργεια"
@@ -122,6 +126,14 @@
   "button.downloadIos": {
     "message": "Λήψη πακέτου εγκατάστασης iOS",
     "description": "Κείμενο στο κουμπί για να κατεβάσετε το πακέτο εγκατάστασης iOS"
+  },
+  "button.downloadWindows": {
+    "message": "Λήψη για Windows",
+    "description": "Text in button for downloading the Windows desktop installer"
+  },
+  "button.downloadMac": {
+    "message": "Λήψη για macOS",
+    "description": "Text in button for downloading the macOS desktop installer"
   },
   "button.installIos": {
     "message": "Εγκατάσταση iOS",
@@ -215,6 +227,14 @@
     "message": "Φόρτωση...",
     "description": "Κείμενο κατάστασης που εμφανίζεται κατά τη φόρτωση περιεχομένου"
   },
+  "error.appleSignInFailed": {
+    "message": "Η σύνδεση με Apple απέτυχε. Δοκιμάστε ξανά ή χρησιμοποιήστε άλλη μέθοδο σύνδεσης.",
+    "description": "Error toast shown when native Apple sign-in fails for a reason other than user cancellation"
+  },
+  "error.loginLinkExpired": {
+    "message": "Login link expired. Please sign in again.",
+    "description": "Shown on the desktop client when an OAuth callback is dropped (state mismatch or expired)."
+  },
   "entity.operation": {
     "message": "Ενέργεια",
     "description": "Η ενέργεια της οντότητας"
@@ -238,6 +258,10 @@
   "message.noTasks": {
     "message": "Δεν υπάρχουν ιστορικά καθήκοντα, ξεκινήστε ένα νέο καθήκον～",
     "description": "Μήνυμα όταν δεν υπάρχουν καθήκοντα"
+  },
+  "message.guestTasks": {
+    "message": "Συνδεθείτε για να ξεκινήσετε μια εργασία και να δείτε εδώ τις δημιουργίες σας.",
+    "description": "Prompt shown in the task list area for not-logged-in guests"
   },
   "message.usedAmount": {
     "message": "Χρησιμοποιηθέν ποσό",
@@ -282,6 +306,46 @@
   "message.mobileIosPending": {
     "message": "Το πακέτο εγκατάστασης iOS δεν είναι διαθέσιμο προς λήψη, θα είναι διαθέσιμο μετά την ολοκλήρωση των πιστοποιητικών και των προφίλ της Apple.",
     "description": "Υπόδειξη όταν το πακέτο εγκατάστασης iOS δεν είναι διαθέσιμο"
+  },
+  "message.mobileComingSoon": {
+    "message": "Σύντομα",
+    "description": "Short status label shown on a platform card (e.g. iOS) while its build is being prepared"
+  },
+  "message.mobileNowOnAppStore": {
+    "message": "Now on the App Store",
+    "description": "Status label shown on the iOS card when the app is live on the App Store"
+  },
+  "message.desktopWindowsHint": {
+    "message": "Για Windows 10 και νεότερα (64-bit). Κατεβάστε το πρόγραμμα εγκατάστασης και κάντε διπλό κλικ για εγκατάσταση.",
+    "description": "Windows desktop download card description"
+  },
+  "message.desktopMacHint": {
+    "message": "Για macOS 11 και νεότερα. Επιλέξτε την έκδοση που ταιριάζει στο Mac σας — Apple Silicon (σειρά M) ή Intel.",
+    "description": "macOS desktop download card description"
+  },
+  "message.desktopUnsignedNote": {
+    "message": "Οι εφαρμογές για υπολογιστή είναι ανυπόγραφες εκδόσεις beta. Στα Windows επιλέξτε «Περισσότερες πληροφορίες → Εκτέλεση ούτως ή άλλως» στο μήνυμα SmartScreen· στο macOS κάντε δεξί κλικ στην εφαρμογή και επιλέξτε «Άνοιγμα» για να παρακάμψετε το Gatekeeper.",
+    "description": "Note explaining the desktop builds are unsigned betas and how to open them"
+  },
+  "button.getOnGooglePlay": {
+    "message": "Λήψη από το Google Play",
+    "description": "Button label that opens the app's Google Play Store listing"
+  },
+  "button.getOnAppStore": {
+    "message": "Get it on the App Store",
+    "description": "Button label that opens the app's Apple App Store listing"
+  },
+  "message.mobileApkFallback": {
+    "message": "Δεν έχετε πρόσβαση στο Google Play; Κατεβάστε απευθείας το APK.",
+    "description": "Shown next to a secondary button offering a direct APK download for users who cannot access Google Play"
+  },
+  "message.mobilePlayStoreHint": {
+    "message": "Σαρώστε για άνοιγμα στο Google Play",
+    "description": "Hint under the QR code explaining that scanning it opens the Google Play listing"
+  },
+  "message.mobileAppStoreHint": {
+    "message": "Scan to open the App Store",
+    "description": "Hint under the QR code explaining that scanning it opens the App Store listing"
   },
   "message.mobileInstallNote": {
     "message": "Κατά την πρώτη εγκατάσταση του πακέτου επιχείρησης ή Ad Hoc για iOS, το σύστημα μπορεί να ζητήσει πρώτα να εμπιστευτείτε το πιστοποιητικό στις 'Ρυθμίσεις > Γενικά > VPN και Διαχείριση Συσκευών'.",
@@ -342,6 +406,34 @@
   "message.alert": {
     "message": "Προειδοποίηση",
     "description": "Μήνυμα που προειδοποιεί τον χρήστη"
+  },
+  "message.deleteAccountConfirm": {
+    "message": "Αυτό θα διαγράψει οριστικά τον λογαριασμό σας και όλα τα σχετικά δεδομένα. Αυτή η ενέργεια δεν μπορεί να αναιρεθεί. Είστε βέβαιοι ότι θέλετε να συνεχίσετε;",
+    "description": "Confirmation message shown before permanently deleting the user account"
+  },
+  "message.deleteAccountSuccess": {
+    "message": "Ο λογαριασμός σας διαγράφηκε.",
+    "description": "Message shown after the user account is successfully deleted"
+  },
+  "message.deleteAccountFailed": {
+    "message": "Η διαγραφή του λογαριασμού σας απέτυχε. Δοκιμάστε ξανά αργότερα.",
+    "description": "Message shown when account deletion fails"
+  },
+  "message.deleteAccountWarning": {
+    "message": "Αυτή η ενέργεια είναι μη αναστρέψιμη! Ο λογαριασμός σας και όλα τα δεδομένα του θα διαγραφούν οριστικά και δεν μπορούν να ανακτηθούν.",
+    "description": "Red warning banner at the top of the delete confirmation dialog"
+  },
+  "message.deleteAccountConsequences": {
+    "message": "Διαγράφονται οριστικά: προφίλ, υπόλοιπο και μονάδες, εφαρμογές και συνδρομές, κλειδιά API και συνδέσεις σύνδεσης τρίτων.",
+    "description": "Explains what data will be removed in the delete confirmation dialog"
+  },
+  "message.deleteAccountTypePrompt": {
+    "message": "Πληκτρολογήστε το όνομα χρήστη σας για να επιβεβαιώσετε τη διαγραφή:",
+    "description": "Instructs the user to type their username to confirm; the username is shown separately below"
+  },
+  "message.deleteAccountPlaceholder": {
+    "message": "Εισαγάγετε εδώ το όνομα χρήστη σας",
+    "description": "Placeholder for the username confirmation input"
   },
   "message.info": {
     "message": "Πληροφορία",
@@ -475,6 +567,10 @@
     "message": "SeeDance",
     "description": "Website navigation text for displaying the SeeDance page, must remain as 'SeeDance'"
   },
+  "nav.grokvideo": {
+    "message": "Grok Video",
+    "description": "Text in the website navigation bar to display the Grok Imagine video page"
+  },
   "nav.luma": {
     "message": "Luma",
     "description": "Website navigation text for displaying the Luma page, must remain as 'Luma'"
@@ -511,6 +607,10 @@
     "message": "SERP",
     "description": "Website navigation text for displaying the SERP page, must remain as 'SERP'"
   },
+  "nav.codingBridge": {
+    "message": "Coding Bridge",
+    "description": "Text in the website navigation bar to display the Coding Bridge page, must remain as 'Coding Bridge'"
+  },
   "nav.webextrator": {
     "message": "WebExtrator",
     "description": "Text in the website navigation bar to display the WebExtrator page, must remain as 'WebExtrator'"
@@ -538,6 +638,10 @@
   "nav.logOut": {
     "message": "Αποσύνδεση",
     "description": "Website navigation text for logging out"
+  },
+  "nav.deleteAccount": {
+    "message": "Διαγραφή λογαριασμού",
+    "description": "Menu item to permanently delete the current user account"
   },
   "nav.site": {
     "message": "Ρυθμίσεις Ιστοσελίδας",
@@ -636,7 +740,7 @@
     "description": "Επικεφαλίδα τμήματος που εμφανίζει πληροφορίες υποστήριξης"
   },
   "about.address": {
-    "message": "651 Νότια Οδός Broad, Δωμάτιο 201, Middletown, DE, ΗΠΑ",
+    "message": "131 Continental Dr, Suite 305, Newark, DE 19713, ΗΠΑ",
     "description": "Διεύθυνση της εταιρείας"
   },
   "about.email": {
@@ -823,6 +927,119 @@
     "message": "Σχετικά",
     "description": "Τίτλος της ενότητας σχετικά στην σελίδα ρυθμίσεων"
   },
+  "settings.localTools": {
+    "message": "Τοπικά εργαλεία",
+    "description": "Desktop-only settings tab for managing local tool folders, permissions and grants."
+  },
+  "settings.localToolsDesktopOnly": {
+    "message": "Διαθέσιμο μόνο στην εφαρμογή υπολογιστή.",
+    "description": "Shown when the Local Tools tab is opened on web/mobile."
+  },
+  "settings.localToolsFoldersTitle": {
+    "message": "Εξουσιοδοτημένοι φάκελοι",
+    "description": "Heading for the list of folders the AI may read/write locally."
+  },
+  "settings.localToolsFoldersHint": {
+    "message": "Φάκελοι που το AI μπορεί να διαβάζει και να γράφει σε αυτό το μηχάνημα. Τα εργαλεία εκτελούνται τοπικά· τίποτα δεν φεύγει από τη συσκευή σας χωρίς τη συγκατάθεσή σας.",
+    "description": "Help text under the authorized-folders heading."
+  },
+  "settings.localToolsComputerUseTitle": {
+    "message": "Computer Use (experimental)",
+    "description": "Heading for the opt-in Computer Use (screen + mouse/keyboard control) toggle."
+  },
+  "settings.localToolsComputerUseHint": {
+    "message": "Let the AI see your screen and control the mouse and keyboard on this computer. Off by default — turn it on only when you need it. On macOS, grant Screen Recording and Accessibility permissions below. Each action still asks for your confirmation.",
+    "description": "Help text under the Computer Use toggle."
+  },
+  "settings.localToolsPreauthorizeAll": "Προέγκριση όλων των ενεργειών υπολογιστή",
+  "settings.localToolsPreauthorizeHint": "Επιτρέψτε με μία κίνηση στιγμιότυπο οθόνης, κλικ, πληκτρολόγηση, πλήκτρα και όλες τις ενέργειες και ζητήστε τα απαιτούμενα δικαιώματα συστήματος.",
+  "settings.localToolsCuActionsTitle": "Άδεια μεμονωμένων ενεργειών",
+  "settings.localToolsCuActionsHint": "Ενεργοποιήστε μόνο τις ενέργειες που δέχεστε να εκτελεί η AI χωρίς ερώτηση κάθε φορά. Κάθε μία μπορεί να ανακληθεί εδώ.",
+  "settings.localToolsCuScreenshot": "Στιγμιότυπο οθόνης",
+  "settings.localToolsCuClick": "Κλικ",
+  "settings.localToolsCuMove": "Μετακίνηση δείκτη",
+  "settings.localToolsCuType": "Πληκτρολόγηση κειμένου",
+  "settings.localToolsCuKey": "Πάτημα πλήκτρων",
+  "settings.localToolsCuScroll": "Κύλιση",
+  "settings.localToolsBuiltinTitle": "Ενσωματωμένα εργαλεία",
+  "settings.localToolsBuiltinHint": "Ενεργοποιήστε ένα εργαλείο ώστε η AI να το εκτελεί χωρίς ερώτηση. Το Shell μπορεί να εκτελέσει οποιαδήποτε εντολή σε αυτό το μηχάνημα — ενεργοποιήστε το μόνο αν εμπιστεύεστε. Τα εργαλεία αρχείων παραμένουν εντός των εγκεκριμένων φακέλων.",
+  "settings.localToolsBuiltinRisky": "Πλήρης πρόσβαση",
+  "settings.localToolsAddFolder": {
+    "message": "Προσθήκη φακέλου",
+    "description": "Button to pick a folder to authorize."
+  },
+  "settings.localToolsRemove": {
+    "message": "Αφαίρεση",
+    "description": "Button to remove an authorized folder."
+  },
+  "settings.localToolsNoFolders": {
+    "message": "Δεν υπάρχουν ακόμη εξουσιοδοτημένοι φάκελοι.",
+    "description": "Empty state for the authorized-folders list."
+  },
+  "settings.localToolsSave": {
+    "message": "Αποθήκευση",
+    "description": "Save the authorized folders."
+  },
+  "settings.localToolsSaved": {
+    "message": "Αποθηκεύτηκε",
+    "description": "Transient confirmation after saving local-tool folders."
+  },
+  "settings.localToolsActiveTools": {
+    "message": "Ενεργά εργαλεία",
+    "description": "Label before the list of currently available local tools."
+  },
+  "settings.localToolsGrantsTitle": {
+    "message": "Πάντα επιτρεπόμενες ενέργειες",
+    "description": "Heading for the persistent consent grants list."
+  },
+  "settings.localToolsGrantsHint": {
+    "message": "Κλήσεις εργαλείων που επιλέξατε να επιτρέπετε πάντα. Εκτελούνται χωρίς νέα ερώτηση. Ανακαλέστε οποιαδήποτε για να ενεργοποιήσετε ξανά την επιβεβαίωση.",
+    "description": "Help text under the always-allowed actions heading."
+  },
+  "settings.localToolsRevoke": {
+    "message": "Ανάκληση",
+    "description": "Button to revoke a single always-allow grant."
+  },
+  "settings.localToolsRevokeAll": {
+    "message": "Ανάκληση όλων",
+    "description": "Button to revoke every always-allow grant."
+  },
+  "settings.localToolsNoGrants": {
+    "message": "Καμία πάντα επιτρεπόμενη ενέργεια. Θα ερωτάστε πριν από κάθε τοπικό εργαλείο.",
+    "description": "Empty state for the always-allowed actions list."
+  },
+  "settings.localToolsPermsTitle": {
+    "message": "Δικαιώματα συστήματος",
+    "description": "Heading for the macOS system-permission section."
+  },
+  "settings.localToolsPermsHint": {
+    "message": "Προαιρετικό. Η πρόσβαση στους φακέλους παραπάνω δεν χρειάζεται κανένα — παραχωρήστε μόνο ό,τι απαιτεί μια συγκεκριμένη εργασία.",
+    "description": "Help text under the system-permissions heading."
+  },
+  "settings.localToolsPermFullDisk": {
+    "message": "Πλήρης πρόσβαση στον δίσκο",
+    "description": "macOS Full Disk Access permission row."
+  },
+  "settings.localToolsPermScreen": {
+    "message": "Εγγραφή οθόνης",
+    "description": "macOS Screen Recording permission row."
+  },
+  "settings.localToolsPermAccessibility": {
+    "message": "Προσβασιμότητα",
+    "description": "macOS Accessibility permission row."
+  },
+  "settings.localToolsGranted": {
+    "message": "Παραχωρήθηκε",
+    "description": "Status tag when a system permission is granted."
+  },
+  "settings.localToolsNotGranted": {
+    "message": "Δεν παραχωρήθηκε",
+    "description": "Status tag when a system permission is not granted."
+  },
+  "settings.localToolsOpen": {
+    "message": "Άνοιγμα…",
+    "description": "Button to open the relevant macOS System Settings pane."
+  },
   "settings.subsites": {
     "message": "Οι υποσελίδες μου",
     "description": "Τίτλος της καρτέλας διαχείρισης υποσελίδων στο παράθυρο ρυθμίσεων. Ορατό μόνο στην επίσημη κύρια σελίδα, οι υποσελίδες δεν εμφανίζονται."
@@ -923,8 +1140,84 @@
     "message": "Run this from your own code to produce the same result. Replace <YOUR_API_KEY> with a key from your platform console.",
     "description": "Helper text shown above the code tabs in the API code dialog, explaining how to use the snippet"
   },
+  "tab.apiRequest": {
+    "message": "Αίτημα",
+    "description": "Ετικέτα καρτέλας διαλόγου API για το απόσπασμα αιτήματος (ο κώδικας που αναπαράγει το τρέχον αποτέλεσμα)."
+  },
+  "tab.apiResponse": {
+    "message": "Απόκριση",
+    "description": "Ετικέτα καρτέλας διαλόγου API για τη ζωντανή απόκριση που επιστρέφεται μετά την κλικ στο Εκτέλεση."
+  },
+  "button.apiRun": {
+    "message": "Εκτέλεση ξανά",
+    "description": "Κουμπί διαλόγου κώδικα API που εκτελεί ξανά το αίτημα ζωντανά κατά του API χρησιμοποιώντας το κλειδί του χρήστη. Το αποτέλεσμα υπάρχει ήδη, οπότε το κλικ το εκτελεί ξανά και είναι χρεώσιμο."
+  },
+  "button.apiRunning": {
+    "message": "Εκτελείται…",
+    "description": "Ετικέτα κουμπιού Εκτέλεσης διαλόγου API ενώ το ζωντανό αίτημα είναι σε εκκίνηση."
+  },
+  "button.apiRunConfirm": {
+    "message": "Επιβεβαίωση εκτέλεσης",
+    "description": "Ετικέτα κουμπιού επιβεβαίωσης στο διάλογο που προειδοποιεί ότι η εκτέλεση εδώ καταναλώνει επιπλέον πιστώσεις."
+  },
+  "button.viewDocs": {
+    "message": "Προβολή τεκμηρίωσης",
+    "description": "Κουμπί υποσέλιδου διαλόγου κώδικα API που ανοίγει την αντίστοιχη σελίδα τεκμηρίωσης API στην πλατφόρμα."
+  },
+  "message.apiClickRun": {
+    "message": "Κάντε κλικ στο «Εκτέλεση ξανά» για να χρησιμοποιήσετε το API Key σας για να εκτελέσετε το αίτημα σε πραγματικό χρόνο.",
+    "description": "Κατάσταση κενής καρτέλας απάντησης διαλόγου κώδικα API, που εμφανίζεται πριν ο χρήστης εκτελέσει το αίτημα."
+  },
+  "message.apiRunConfirmTitle": {
+    "message": "Επιβεβαίωση εκτέλεσης",
+    "description": "Τίτλος του διαλόγου επιβεβαίωσης που εμφανίζεται πριν από την επανεκτέλεση ενός αιτήματος από το διάλογο κώδικα API."
+  },
+  "message.apiRunConfirmDesc": {
+    "message": "Αυτή η εκτέλεση θα χρησιμοποιήσει το API Key σας για πραγματική κλήση της διεπαφής και θα καταναλώσει επιπλέον πόντους. Θέλετε να συνεχίσετε;",
+    "description": "Κείμενο του διαλόγου επιβεβαίωσης που προειδοποιεί ότι η εκτέλεση του αιτήματος ξανά είναι μια πραγματική, χρεώσιμη κλήση API."
+  },
+  "message.apiRunConfirmSkip": {
+    "message": "Μη ξαναϋπενθυμιστεί",
+    "description": "Επιλογή στο διάλογο επιβεβαίωσης εκτέλεσης που, όταν επιλεγεί, κατα suppresses την προειδοποίηση σε επόμενες εκτελέσεις."
+  },
+  "message.apiRunTaskCreated": {
+    "message": "Η εργασία έχει δημιουργηθεί, κλείστε αυτό το παράθυρο για να δείτε τα τελευταία αποτελέσματα παρακάτω.",
+    "description": "Επιτυχία που εμφανίζεται στο διάλογο κώδικα API αφού μια εκτέλεση επιστρέψει ένα αναγνωριστικό εργασίας, υποδεικνύοντας ότι η νέα εργασία εμφανίζεται ήδη στη λίστα πίσω από το διάλογο."
+  },
+  "button.apiViewLatest": {
+    "message": "Κλείσιμο και προβολή",
+    "description": "Κουμπί στην επιτυχία του διαλόγου κώδικα API που κλείνει το διάλογο ώστε ο χρήστης να μπορεί να δει την πρόσφατα δημιουργημένη εργασία στη λίστα παρακάτω."
+  },
   "message.uploadInProgress": {
     "message": "Οι μεταφορτώσεις αναφορών βρίσκονται ακόμη σε εξέλιξη — περιμένετε λίγο.",
     "description": "Toast shown when the user clicks the Generate button while one or more reference uploads are still in flight. Asks them to wait for uploads to complete before retrying."
+  },
+  "appUpgrade.title": {
+    "message": "Update required",
+    "description": "Title of the native-app version gate modal shown at startup when the installed build is older than what the backend supports."
+  },
+  "appUpgrade.blockMessage": {
+    "message": "This version is no longer supported. Please update from the app store to continue.",
+    "description": "Body text of the hard-block upgrade modal shown when the installed version is below min_supported. The modal has no dismiss affordance — the only button opens the app store."
+  },
+  "appUpgrade.softMessage": {
+    "message": "A newer version is available. Update from the app store for the best experience.",
+    "description": "Body text of the soft upgrade prompt shown when the installed version is below latest but above min_supported. The user can dismiss and keep using the app."
+  },
+  "appUpgrade.openStore": {
+    "message": "Update now",
+    "description": "Primary button on the upgrade modal — opens the App Store / Play Store URL in the system browser."
+  },
+  "appUpgrade.later": {
+    "message": "Later",
+    "description": "Secondary button on the soft upgrade prompt — dismisses the modal and lets the user keep using the current version. Only shown for non-forced upgrades."
+  },
+  "nav.maestro": {
+    "message": "Maestro",
+    "description": "Το κείμενο της σελίδας μετατροπής άρθρων σε βίντεο Maestro στη γραμμή πλοήγησης, παραμένει 'Maestro'"
+  },
+  "nav.digitalhuman": {
+    "message": "Digital Human",
+    "description": "Text in the website navigation bar for the Digital Human talking-head page"
   }
 }

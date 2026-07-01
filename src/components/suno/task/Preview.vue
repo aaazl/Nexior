@@ -1,10 +1,14 @@
 <template>
   <div class="task">
     <div
-      v-for="audio in audios"
+      v-for="(audio, index) in audios"
       :key="audio.id"
       class="audio"
-      :class="{ 'mashup-selected': isMashupSelected(audio) }"
+      :class="{
+        'mashup-selected': isMashupSelected(audio),
+        active: $store.state?.suno?.audio?.id === audio.id,
+        generating: !audio?.audio_url
+      }"
       @click.stop="onClick(audio)"
     >
       <!-- Mashup selection checkbox -->
@@ -13,26 +17,21 @@
       </div>
       <div v-loading="!audio?.audio_url" class="left">
         <el-image :src="audio?.image_url" class="cover" fit="cover" lazy />
+        <!-- Variation index — one generation returns 2 songs; label them so they don't read as duplicates -->
+        <div v-if="audios.length > 1" class="variation-badge">{{ index + 1 }}</div>
+        <!-- Always-visible play/pause control (hover-only was invisible on touch) -->
         <div
           v-if="
             audio?.audio_url &&
             $store.state?.suno?.audio?.id === audio.id &&
             $store.state?.suno?.audio?.state === 'playing'
           "
-          class="overlay"
+          class="play-btn"
           @click.stop="onPause(audio)"
         >
           <el-icon><video-pause /></el-icon>
         </div>
-        <div
-          v-if="
-            audio?.audio_url &&
-            ($store.state?.suno?.audio?.id !== audio.id ||
-              ($store.state?.suno?.audio?.id === audio.id && $store.state?.suno?.audio?.state === 'paused'))
-          "
-          class="overlay"
-          @click.stop="onPlay(audio)"
-        >
+        <div v-else-if="audio?.audio_url" class="play-btn" @click.stop="onPlay(audio)">
           <el-icon><video-play /></el-icon>
         </div>
         <div v-if="audio?.duration" class="duration">
@@ -53,6 +52,7 @@
         </div>
         <div v-else class="title-row">
           <h2 class="title">{{ audio?.title }}</h2>
+          <span v-if="shortModel(audio)" class="model-chip">{{ shortModel(audio) }}</span>
           <font-awesome-icon
             v-if="audio?.audio_url"
             icon="fa-solid fa-pen"
@@ -74,9 +74,14 @@
         </div>
       </div>
       <div class="right">
-        <!-- <el-button v-if="audio?.audio_url" size="small" round @click.stop="onExtend($event, audio)">{{
-          $t('suno.button.extend')
-        }}</el-button> -->
+        <!-- Quick Extend — the most common re-use action, surfaced out of the "…" menu -->
+        <el-tooltip v-if="audio?.audio_url" effect="dark" :content="$t('suno.button.extend')" placement="top">
+          <font-awesome-icon
+            icon="fa-solid fa-forward"
+            class="icon icon-extend"
+            @click.stop="onExtend($event, audio)"
+          />
+        </el-tooltip>
         <el-dropdown>
           <span class="el-dropdown-link">
             <el-tooltip effect="dark" :content="$t('suno.button.download')" placement="top">
@@ -233,7 +238,6 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { getWebhookCallbackUrl } from '@/constants';
 import { useFormatDuring } from '@/utils/number';
 import { ISunoAudio, ISunoTask } from '@/models';
 import {
@@ -256,8 +260,6 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { saveAs } from 'file-saver';
 import { sunoOperator } from '@/operators';
 import ApiCodeDialog from '@/components/common/ApiCodeDialog.vue';
-
-const CALLBACK_URL = getWebhookCallbackUrl('suno');
 
 export default defineComponent({
   name: 'TaskPreview',
@@ -329,6 +331,15 @@ export default defineComponent({
   },
   methods: {
     useFormatDuring,
+    shortModel(audio: ISunoAudio): string {
+      // "chirp-v5-5" -> "v5.5", "chirp-v3-0" -> "v3" (matches the model selector labels)
+      const m = audio?.model;
+      if (!m) return '';
+      const match = /v(\d+)(?:-(\d+))?(-plus)?/i.exec(m);
+      if (!match) return m;
+      const minor = match[2] && match[2] !== '0' ? '.' + match[2] : '';
+      return `v${match[1]}${minor}${match[3] ? '+' : ''}`;
+    },
     onViewCode() {
       const request = (this.modelValue?.request || {}) as Record<string, unknown>;
       const body: Record<string, unknown> = {};
@@ -349,7 +360,6 @@ export default defineComponent({
         ...audio,
         state: 'playing'
       });
-      console.log('on play');
     },
     onPause(audio: ISunoAudio) {
       this.$store.dispatch('suno/setAudio', {
@@ -357,7 +367,6 @@ export default defineComponent({
         ...audio,
         state: 'paused'
       });
-      console.log('on pause');
     },
     onClick(audio: ISunoAudio) {
       if (this.$store.state?.suno?.audio?.id !== audio.id) {
@@ -368,10 +377,7 @@ export default defineComponent({
       }
     },
     onExtend(event: MouseEvent, audio: ISunoAudio) {
-      event.stopPropagation();
-      console.log('on extend');
-      // download url here
-      console.debug('set config', audio);
+      event?.stopPropagation();
       this.$store.commit('suno/setConfig', {
         ...this.$store.state.suno?.config,
         model: audio.model,
@@ -386,13 +392,11 @@ export default defineComponent({
     },
     onDownload(event: MouseEvent | null, audioUrl: string) {
       if (event) {
-        event.stopPropagation();
+        event?.stopPropagation();
       }
-      console.log('on download', audioUrl);
       const parsedUrl = new URL(audioUrl);
       const pathname = parsedUrl.pathname;
       const filename = pathname.substring(pathname.lastIndexOf('/') + 1);
-      console.log('on preview', filename);
       fetch(audioUrl)
         .then((response) => response.blob())
         .then((blob) => {
@@ -413,7 +417,6 @@ export default defineComponent({
         this.isFetchingVideoUrl = true;
         // @ts-ignore
         const videoUrl = await this.fetchVideoUrlFromApi(audio?.id);
-        console.log(`get videoUrl: ${videoUrl}`);
         audio.video_url = videoUrl;
         this.onDownload(null, videoUrl);
       } catch (error) {
@@ -450,18 +453,13 @@ export default defineComponent({
       });
     },
     onPreview(event: MouseEvent, videoUrl: string) {
-      event.stopPropagation();
-      console.log('on preview', videoUrl);
-      // preview url here
+      event?.stopPropagation();
       window.open(videoUrl, '_blank');
     },
     async onGetStems(audioId: string) {
       await this.onGenerateAudioUrl('stems', audioId);
     },
     onCover(audio: ISunoAudio) {
-      console.log('on cover');
-      // download url here
-      console.debug('set config', audio);
       this.$store.commit('suno/setConfig', {
         ...this.$store.state.suno?.config,
         model: audio.model,
@@ -619,7 +617,7 @@ export default defineComponent({
       if (!token) return;
       ElMessage.info(this.$t('suno.message.extractingVocals'));
       sunoOperator
-        .vox({ audio_id: audioId, callback_url: CALLBACK_URL }, { token })
+        .vox({ audio_id: audioId, async: true }, { token })
         .then(() => {
           ElMessage.success(this.$t('suno.message.extractVocalsSuccess'));
         })
@@ -637,9 +635,8 @@ export default defineComponent({
       ElMessage.info(this.$t('suno.message.fetchingTiming'));
       sunoOperator
         .timing({ audio_id: audioId }, { token })
-        .then((response) => {
+        .then(() => {
           ElMessage.success(this.$t('suno.message.fetchTimingSuccess'));
-          console.debug('timing data', response.data);
         })
         .catch((error) => {
           ElMessage.error(error?.response?.data?.error?.message || this.$t('suno.message.fetchTimingFailed'));
@@ -697,7 +694,7 @@ export default defineComponent({
       const request = {
         action,
         audio_id: audioId,
-        callback_url: CALLBACK_URL
+        async: true
       } as ISunoAudioRequest;
       const token = this.credential?.token;
       if (!token) {
@@ -814,7 +811,6 @@ export default defineComponent({
     },
     async onGetTasks() {
       if (this.loading) {
-        console.debug('loading');
         return;
       }
       await this.$store.dispatch('suno/getTasks', {
@@ -831,13 +827,32 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   cursor: pointer;
+  // Group the variations of one generation so the pair reads as a unit
+  padding: 4px;
+  margin-bottom: 8px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  transition: border-color 0.2s;
+  &:hover {
+    border-color: var(--el-border-color-lighter);
+  }
   .audio {
     display: flex;
-    margin-bottom: 10px;
+    padding: 6px;
+    margin-bottom: 2px;
     border-radius: 10px;
+    transition: background-color 0.2s;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
 
     &:hover {
       background-color: var(--el-bg-color-page);
+    }
+
+    &.active {
+      background-color: var(--el-color-primary-light-9);
     }
 
     .left {
@@ -847,14 +862,10 @@ export default defineComponent({
       margin-right: 16px;
       flex-shrink: 0;
 
-      &:hover .overlay {
-        display: block;
-      }
-
       .cover {
         width: 100%;
         height: 100%;
-        border-radius: 4px;
+        border-radius: 6px;
       }
 
       .duration {
@@ -868,26 +879,49 @@ export default defineComponent({
         font-size: 10px;
       }
 
-      .overlay {
+      .variation-badge {
         position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
+        top: 3px;
+        left: 3px;
+        min-width: 16px;
+        height: 16px;
+        padding: 0 4px;
+        border-radius: 8px;
+        background-color: rgba(0, 0, 0, 0.6);
+        color: #fff;
+        font-size: 10px;
+        line-height: 16px;
+        text-align: center;
+        font-weight: 600;
+      }
+
+      // Always-visible play/pause control (works on touch; brightens on hover)
+      .play-btn {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background-color: rgba(0, 0, 0, 0.55);
         display: flex;
         justify-content: center;
         align-items: center;
-        display: none;
-        transition: opacity 0.3s;
-        border-radius: 4px;
-        text-align: center;
-        line-height: 70px;
         cursor: pointer;
+        opacity: 0.92;
+        transition:
+          background-color 0.2s,
+          opacity 0.2s;
         .el-icon {
-          font-size: 20px;
+          font-size: 16px;
           color: white;
         }
+      }
+
+      &:hover .play-btn {
+        background-color: var(--el-color-primary);
+        opacity: 1;
       }
     }
     .info {
@@ -903,9 +937,22 @@ export default defineComponent({
         font-size: 14px;
         font-weight: bold;
         margin-top: 5px;
-        white-space: normal;
-        word-break: break-word;
-        overflow-wrap: anywhere;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        min-width: 0;
+      }
+      .model-chip {
+        flex-shrink: 0;
+        margin-top: 5px;
+        padding: 0 6px;
+        height: 16px;
+        line-height: 16px;
+        border-radius: 8px;
+        font-size: 10px;
+        font-weight: 600;
+        color: var(--el-color-primary);
+        background: var(--el-color-primary-light-9);
       }
       .edit-icon {
         font-size: 10px;
@@ -922,14 +969,10 @@ export default defineComponent({
       }
       .style {
         font-size: 12px;
+        margin-top: 2px;
         margin-bottom: 0;
         color: var(--el-text-color-secondary);
-        white-space: normal;
-        word-break: break-word;
-        overflow-wrap: anywhere;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
+        white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
       }
@@ -963,7 +1006,7 @@ export default defineComponent({
       border-radius: 8px;
     }
     .right {
-      width: 120px;
+      width: 140px;
       display: flex;
       align-items: center;
       justify-content: flex-end;
@@ -973,11 +1016,31 @@ export default defineComponent({
         z-index: 100;
         cursor: pointer;
         margin-right: 15px;
+        color: var(--el-text-color-secondary);
+        transition: color 0.2s;
+        &:hover {
+          color: var(--el-color-primary);
+        }
       }
       .el-button {
         margin-right: 15px; /* Add margin to the right of the button */
       }
     }
+
+    // Pulse the cover while a generation is still in flight (~2 min wait)
+    &.generating .left .cover {
+      animation: suno-pulse 1.4s ease-in-out infinite;
+    }
+  }
+}
+
+@keyframes suno-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
   }
 }
 

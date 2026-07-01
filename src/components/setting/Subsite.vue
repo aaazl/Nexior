@@ -55,7 +55,7 @@
             <span>{{ formatDate(row.created_at) }}</span>
           </template>
         </el-table-column>
-        <el-table-column :label="$t('subsite.field.actions')" width="200" fixed="right" align="right">
+        <el-table-column :label="$t('subsite.field.actions')" width="260" fixed="right" align="right">
           <template #default="{ row }">
             <span class="row-actions">
               <el-button size="small" round @click="onOpenSite(row)">
@@ -63,6 +63,16 @@
               </el-button>
               <el-button size="small" round @click="onManageSite(row)">
                 {{ $t('subsite.button.manage') }}
+              </el-button>
+              <el-button
+                size="small"
+                round
+                type="danger"
+                plain
+                :loading="deletingId === row.id"
+                @click="onDeleteSite(row)"
+              >
+                {{ $t('common.button.delete') }}
               </el-button>
             </span>
           </template>
@@ -73,24 +83,17 @@
     <el-dialog
       v-model="opening.visible"
       :title="$t('subsite.title.openSite')"
-      width="auto"
+      width="420px"
       class="open-dialog"
+      align-center
       append-to-body
     >
-      <template #footer>
-        <div class="open-actions">
-          <el-button round @click="opening.visible = false">{{ $t('common.button.cancel') }}</el-button>
-          <el-button
-            v-for="url in opening.urls"
-            :key="url.href"
-            round
-            :type="url.isCustom ? 'success' : 'primary'"
-            @click="onConfirmOpen(url.href)"
-          >
-            {{ url.hostname }}
-          </el-button>
-        </div>
-      </template>
+      <p class="open-hint">{{ $t('subsite.message.openSiteHint') }}</p>
+      <div class="open-actions">
+        <el-button v-for="url in opening.urls" :key="url.href" round type="primary" @click="onConfirmOpen(url.href)">
+          {{ $t('subsite.button.open') }} {{ url.hostname }}
+        </el-button>
+      </div>
     </el-dialog>
 
     <el-dialog v-model="creating.visible" :title="$t('subsite.title.create')" width="480px" class="create-dialog">
@@ -216,7 +219,10 @@ export default defineComponent({
           slug: '',
           title: ''
         }
-      }
+      },
+      // Row id whose DELETE call is currently in flight (drives the
+      // per-row spinner on the destructive action button).
+      deletingId: null as string | null
     };
   },
   computed: {
@@ -439,6 +445,39 @@ export default defineComponent({
       // before UserCenter's listener is registered.
       window.open(`https://${row.origin}/?dialog=settings`, '_blank', 'noopener');
     },
+    async onDeleteSite(row: ISite) {
+      if (!row.id || !row.origin) return;
+      try {
+        await ElMessageBox.confirm(
+          this.$t('subsite.message.deleteConfirm', { origin: row.origin }) as string,
+          this.$t('common.button.delete') as string,
+          {
+            type: 'warning',
+            confirmButtonText: this.$t('common.button.delete') as string,
+            cancelButtonText: this.$t('common.button.cancel') as string,
+            confirmButtonClass: 'el-button--danger'
+          }
+        );
+      } catch {
+        return;
+      }
+      this.deletingId = row.id;
+      try {
+        await siteOperator.delete(row.id);
+        this.items = this.items.filter((s) => s.id !== row.id);
+        if (row.id && this.domainsBySite[row.id]) {
+          const next = { ...this.domainsBySite };
+          delete next[row.id];
+          this.domainsBySite = next;
+        }
+        ElMessage.success(this.$t('subsite.message.deleted', { origin: row.origin }));
+      } catch (e: any) {
+        const detail = e?.response?.data?.detail || e?.message;
+        ElMessage.error(typeof detail === 'string' ? detail : this.$t('subsite.message.deleteFailed'));
+      } finally {
+        this.deletingId = null;
+      }
+    },
     rowUrl(row: ISite) {
       return row.origin ? `https://${row.origin}/` : '#';
     },
@@ -546,12 +585,29 @@ export default defineComponent({
 // same <style scoped> block avoids leaking selectors globally while
 // still reaching the teleported nodes.
 .open-dialog {
+  :deep(.el-dialog) {
+    max-width: calc(100vw - 32px);
+  }
+  :deep(.open-hint) {
+    margin: 0 0 16px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--el-text-color-regular);
+  }
   :deep(.open-actions) {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     align-items: center;
-    justify-content: flex-end;
-    gap: 8px;
+    gap: 14px;
+
+    .el-button {
+      min-width: 220px;
+      max-width: 100%;
+      margin-left: 0;
+    }
+    .el-button + .el-button {
+      margin-left: 0;
+    }
   }
 }
 </style>

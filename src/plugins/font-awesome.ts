@@ -10,7 +10,8 @@ import {
   faFileAlt as faRegularFileAlt,
   faClock as faRegularClock,
   faFile as faRegularFile,
-  faStar as faRegularStar
+  faStar as faRegularStar,
+  faBell as faRegularBell
 } from '@fortawesome/free-regular-svg-icons';
 import {
   faDiscord as faBrandsDiscord,
@@ -24,6 +25,8 @@ import {
   faEllipsis as faSolidEllipsis,
   faIdCard as faSolidIdCard,
   faStopCircle as faSolidStopCircle,
+  faPlay as faSolidPlay,
+  faPause as faSolidPause,
   faPlayCircle as faSolidPlayCircle,
   faDownload as faSolidDownload,
   faFilm as faSolidFilm,
@@ -34,6 +37,8 @@ import {
   faSeedling as faSolidSeedling,
   faDiamond as faSolidDiamond,
   faLaptopCode as faSolidLaptopCode,
+  faBell as faSolidBell,
+  faSpinner as faSolidSpinner,
   faOutdent as faSolidOutdent,
   faImage as faSolidImage,
   faChevronRight as faSolidChevronRight,
@@ -50,6 +55,10 @@ import {
   faHashtag as faSolidHashtag,
   faCircleInfo as faSolidCircleInfo,
   faMicrophone as faSolidMicrophone,
+  faMicrophoneSlash as faSolidMicrophoneSlash,
+  faClosedCaptioning as faSolidClosedCaptioning,
+  faPhone as faSolidPhone,
+  faPhoneSlash as faSolidPhoneSlash,
   faArrowLeft as faSolidArrowLeft,
   faArrowUp as faSolidArrowUp,
   faUpload as faSolidUpload,
@@ -128,17 +137,37 @@ import {
   faUserTie as faSolidUserTie,
   faCode as faSolidCode,
   faMicrophoneLines as faSolidMicrophoneLines,
-  faBookOpen as faSolidBookOpen
+  faBookOpen as faSolidBookOpen,
+  faReceipt as faSolidReceipt,
+  faDollarSign as faSolidDollarSign,
+  faFileExport as faSolidFileExport,
+  faUserXmark as faSolidUserXmark,
+  faClockRotateLeft as faSolidClockRotateLeft,
+  faEye as faSolidEye,
+  faTerminal as faSolidTerminal,
+  faFolder as faSolidFolder,
+  faFolderOpen as faSolidFolderOpen,
+  faFile as faSolidFile,
+  faCamera as faSolidCamera,
+  faArrowPointer as faSolidArrowPointer,
+  faUpDownLeftRight as faSolidUpDownLeftRight,
+  faKeyboard as faSolidKeyboard,
+  faArrowsUpDown as faSolidArrowsUpDown
 } from '@fortawesome/free-solid-svg-icons';
 // add icons
 library.add(faSolidEllipsis);
 library.add(faSolidCode);
 library.add(faSolidGlobe);
 library.add(faRegularLightbulb);
+library.add(faSolidClockRotateLeft);
+library.add(faSolidEye);
+library.add(faSolidTerminal);
 library.add(faSolidIdCard);
 library.add(faSolidStopCircle);
 library.add(faRegularFile);
 library.add(faSolidPlayCircle);
+library.add(faSolidPlay);
+library.add(faSolidPause);
 library.add(faSolidArrowUp);
 library.add(faRegularFileAlt);
 library.add(faSolidFilm);
@@ -167,6 +196,9 @@ library.add(faSolidImage);
 library.add(faSolidXmark);
 library.add(faSolidFire);
 library.add(faSolidLaptopCode);
+library.add(faSolidBell);
+library.add(faRegularBell);
+library.add(faSolidSpinner);
 library.add(faSolidRotateRight);
 library.add(faSolidSeedling);
 library.add(faSolidPenToSquare);
@@ -182,6 +214,10 @@ library.add(faSolidBook);
 library.add(faSolidGear);
 library.add(faSolidSitemap);
 library.add(faSolidMicrophone);
+library.add(faSolidMicrophoneSlash);
+library.add(faSolidClosedCaptioning);
+library.add(faSolidPhone);
+library.add(faSolidPhoneSlash);
 library.add(faSolidBars);
 library.add(faSolidPlus);
 library.add(faSolidUpload);
@@ -197,6 +233,7 @@ library.add(faSolidWind);
 library.add(faSolidQrcode);
 library.add(faRegularComment);
 library.add(faSolidArrowRightFromBracket);
+library.add(faSolidUserXmark);
 library.add(faSolidTrash);
 library.add(faSolidChevronDown);
 library.add(faSolidPalette);
@@ -256,3 +293,14 @@ library.add(faSolidPersonRunning);
 library.add(faSolidUserTie);
 library.add(faSolidMicrophoneLines);
 library.add(faSolidBookOpen);
+library.add(faSolidReceipt);
+library.add(faSolidDollarSign);
+library.add(faSolidFileExport);
+library.add(faSolidFolder);
+library.add(faSolidFolderOpen);
+library.add(faSolidFile);
+library.add(faSolidCamera);
+library.add(faSolidArrowPointer);
+library.add(faSolidUpDownLeftRight);
+library.add(faSolidKeyboard);
+library.add(faSolidArrowsUpDown);

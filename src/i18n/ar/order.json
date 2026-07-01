@@ -99,6 +99,18 @@
     "message": "يرجى إكمال الدفع في الرابط الخارجي",
     "description": "رسالة للدفع عبر رابط خارجي."
   },
+  "message.applePayProcessing": {
+    "message": "جارٍ إتمام عملية الشراء عبر App Store…",
+    "description": "Message while the Apple in-app purchase is processing."
+  },
+  "message.applePayFailed": {
+    "message": "لم تكتمل عملية الدفع في App Store. حاول مرة أخرى.",
+    "description": "Message when the Apple in-app purchase fails."
+  },
+  "message.applePayUnavailable": {
+    "message": "لا يمكن شراء هذه الباقة داخل التطبيق.",
+    "description": "Message when Apple in-app purchase is unavailable for the package."
+  },
   "message.updateFailed": {
     "message": "فشل التحديث",
     "description": "رسالة تفيد بفشل التحديث."
@@ -383,6 +395,10 @@
     "message": "محفظة Solana",
     "description": "عنوان بطاقة الاتصال بمحفظة Solana."
   },
+  "message.publicPayNotFound": {
+    "message": "الطلب غير موجود أو انتهت صلاحيته.",
+    "description": "Shown on public pay page when the order GET returns 404."
+  },
   "message.x402WalletStatusDetected": {
     "message": "تم الكشف",
     "description": "تسمية حالة المحفظة التي تم الكشف عنها/تثبيتها."
@@ -518,5 +534,41 @@
   "message.wechatPayLongPressTip": {
     "message": "اضغط مطولا على رمز الاستجابة السريعة ادناه واختر 'التعرف على رمز QR' لاكمال الدفع في WeChat.",
     "description": "Tip shown above the Native QR on mobile-WeChat. The user long-presses to recognise the `weixin://wxpay/bizpayurl` URL and pays without leaving WeChat."
+  },
+  "message.wechatPayMobileScanTip": {
+    "message": "احفظ أو التقط صورة للرمز الشريطي أدناه، افتح وي تشات، انقر على مسح، اختر الزاوية اليمنى العليا من الألبوم، واختر الصورة التي حفظتها للتو لإكمال الدفع.",
+    "description": "نص إرشادي يظهر فوق الرمز الشريطي في متصفح الهاتف المحمول غير الخاص بوي تشات. يوجه المستخدمين لحفظ صورة الرمز الشريطي ثم استخدام وظيفة الألبوم في وي تشات لمسحها لإكمال الدفع."
+  },
+  "message.creditsValue": {
+    "message": "{value} رصيد",
+    "description": "Display of credits amount for an order, e.g. '5 credits'. {value} is the formatted credit number."
+  },
+  "title.totalOrders": {
+    "message": "Total Orders",
+    "description": "Summary card: total number of orders matching the current filters."
+  },
+  "title.totalSpent": {
+    "message": "Total Spent",
+    "description": "Summary card: total amount spent across matching orders."
+  },
+  "title.finishedOrders": {
+    "message": "Finished Orders",
+    "description": "Summary card: number of finished orders."
+  },
+  "title.pendingOrders": {
+    "message": "Pending Orders",
+    "description": "Summary card: number of pending orders."
+  },
+  "button.export": {
+    "message": "Export CSV",
+    "description": "Button label to export the filtered orders as CSV."
+  },
+  "field.allStates": {
+    "message": "All States",
+    "description": "Placeholder of the state filter dropdown indicating no specific state is selected."
+  },
+  "field.allPayWays": {
+    "message": "All Payment Methods",
+    "description": "Placeholder of the payment method filter dropdown indicating no specific method is selected."
   }
 }

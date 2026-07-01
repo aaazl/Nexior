@@ -66,6 +66,10 @@
                   !(
                     item.tool_name === 'ask_user_question' &&
                     (item.status === 'awaiting_input' || item.status === 'done')
+                  ) &&
+                  !(
+                    item.tool_name === 'request_user_consent' &&
+                    (item.status === 'awaiting_input' || item.status === 'done')
                   )
                 "
                 :item="item"
@@ -88,6 +92,31 @@
                 :tool-use-id="item.tool_id || ''"
                 :payload="askUserQuestionPayloadFromBlock(item)"
                 :collapsed="true"
+                :previous-output="item.output || ''"
+              />
+              <connector-consent-card
+                v-if="
+                  item.type === 'tool_use' &&
+                  item.tool_name === 'request_user_consent' &&
+                  item.status === 'awaiting_input' &&
+                  item.pending_consent_request
+                "
+                :tool-use-id="item.tool_id || ''"
+                :payload="item.pending_consent_request"
+                :resolved="false"
+                @submit="onConnectorConsentSubmit"
+                @authorize="onConnectorConsentAuthorize"
+              />
+              <connector-consent-card
+                v-if="
+                  item.type === 'tool_use' &&
+                  item.tool_name === 'request_user_consent' &&
+                  item.status === 'done' &&
+                  consentPayloadFromBlock(item)
+                "
+                :tool-use-id="item.tool_id || ''"
+                :payload="consentPayloadFromBlock(item)!"
+                :resolved="true"
                 :previous-output="item.output || ''"
               />
               <entity-card v-if="item.type === 'card' && item.card" :card="item.card" />
@@ -165,7 +194,7 @@ import { ElButton, ElImage, ElInput } from 'element-plus';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import MarkdownRenderer from '@/components/common/MarkdownRenderer.vue';
 import { IApplication, IChatMessage, IChatMessageState } from '@/models';
-import type { IAskUserQuestionPayload, IChatMessageContentItem } from '@/models';
+import type { IAskUserQuestionPayload, IChatMessageContentItem, IConsentRequestPayload } from '@/models';
 import CopyToClipboard from '@/components/common/CopyToClipboard.vue';
 import RestartToGenerate from './RestartToGenerate.vue';
 import EditMessage from './EditMessage.vue';
@@ -174,6 +203,7 @@ import ToolActivity from './ToolActivity.vue';
 import EntityCard from './EntityCard.vue';
 import ThinkingBlock from './ThinkingBlock.vue';
 import AskUserQuestionCard from './AskUserQuestionCard.vue';
+import ConnectorConsentCard from './ConnectorConsentCard.vue';
 import {
   ERROR_CODE_API_ERROR,
   ERROR_CODE_BAD_REQUEST,
@@ -188,6 +218,7 @@ import {
   ERROR_CODE_BUSY
 } from '@/constants';
 import { ROUTE_CONSOLE_APPLICATION_EXTRA } from '@/router';
+import { isIOS } from '@/utils';
 
 interface IData {
   copied: boolean;
@@ -209,6 +240,7 @@ export default defineComponent({
     EntityCard,
     ThinkingBlock,
     AskUserQuestionCard,
+    ConnectorConsentCard,
     ElButton,
     ElImage,
     ElInput,
@@ -229,7 +261,15 @@ export default defineComponent({
       required: true
     }
   },
-  emits: ['stop', 'edit', 'restart', 'answerAskUserQuestion', 'skipAskUserQuestion'],
+  emits: [
+    'stop',
+    'edit',
+    'restart',
+    'answerAskUserQuestion',
+    'skipAskUserQuestion',
+    'respondConnectorConsent',
+    'authorizeConnector'
+  ],
   data(): IData {
     return {
       copied: false,
@@ -292,7 +332,10 @@ export default defineComponent({
       }
     },
     showBuyMore() {
-      return this.message.role === ROLE_ASSISTANT && this.message.error?.code === ERROR_CODE_USED_UP;
+      // Payment flows live on the web, not inside the iOS bundle. Hide the
+      // in-chat "Top Up" entry on iOS so it never routes to a payment page
+      // that renders empty there (matches showPayment in the console pages).
+      return !isIOS() && this.message.role === ROLE_ASSISTANT && this.message.error?.code === ERROR_CODE_USED_UP;
     }
   },
   watch: {},
@@ -357,6 +400,20 @@ export default defineComponent({
       const input = item.input as { questions?: unknown } | undefined;
       const qs = (input?.questions as IAskUserQuestionPayload['questions']) || [];
       return { questions: qs };
+    },
+    onConnectorConsentSubmit(payload: { tool_use_id: string; output: string }) {
+      this.$emit('respondConnectorConsent', payload);
+    },
+    onConnectorConsentAuthorize(payload: { tool_use_id: string; entry: { connector: string; install_url?: string } }) {
+      this.$emit('authorizeConnector', payload);
+    },
+    consentPayloadFromBlock(item: IChatMessageContentItem): IConsentRequestPayload | null {
+      // Done blocks shouldn't carry `pending_consent_request` per the
+      // contract, but the resolved summary still needs a payload. We can't
+      // reconstruct one from `input` (which only carries `requirements`),
+      // so if it's already been stripped we return null and the template
+      // suppresses the collapsed card.
+      return item.pending_consent_request ?? null;
     }
   }
 });

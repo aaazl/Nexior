@@ -1,0 +1,450 @@
+{
+  "nodeList.title": {
+    "message": "Devices",
+    "description": "Coding Bridge device list title"
+  },
+  "nodeList.refresh": {
+    "message": "Refresh",
+    "description": "Refresh the device list"
+  },
+  "nodeList.pair": {
+    "message": "Pair device",
+    "description": "Open the pairing dialog"
+  },
+  "nodeList.empty": {
+    "message": "No devices paired yet.",
+    "description": "Empty device list message"
+  },
+  "nodeList.pairFirst": {
+    "message": "Pair your first device",
+    "description": "Empty-state pairing button"
+  },
+  "nodeList.remove": {
+    "message": "Remove",
+    "description": "Remove a device"
+  },
+  "nodeList.removeConfirm": {
+    "message": "Remove device \"{name}\"? It will need to be paired again.",
+    "description": "Device removal confirmation"
+  },
+  "nodeList.removeSuccess": {
+    "message": "Device removed.",
+    "description": "Device removed toast"
+  },
+  "nodeList.removeFailed": {
+    "message": "Failed to remove device.",
+    "description": "Device removal error toast"
+  },
+  "status.online": {
+    "message": "Online",
+    "description": "Device online status"
+  },
+  "status.offline": {
+    "message": "Offline",
+    "description": "Device offline status"
+  },
+  "connection.disconnected": {
+    "message": "Disconnected",
+    "description": "Relay connection disconnected"
+  },
+  "connection.connecting": {
+    "message": "Connecting…",
+    "description": "Relay connection connecting"
+  },
+  "connection.connected": {
+    "message": "Connected",
+    "description": "Relay connection connected"
+  },
+  "connection.error": {
+    "message": "Connection error",
+    "description": "Relay connection error"
+  },
+  "pair.title": {
+    "message": "Pair a device",
+    "description": "Pairing dialog title"
+  },
+  "pair.intro": {
+    "message": "Run the Coding Bridge agent on your computer, then enter its pairing code here to control it from the web.",
+    "description": "Pairing dialog intro"
+  },
+  "pair.step1": {
+    "message": "Install the agent (requires Python 3.10+):",
+    "description": "Pairing step 1"
+  },
+  "pair.step2": {
+    "message": "Start it and follow the prompt:",
+    "description": "Pairing step 2"
+  },
+  "pair.step3": {
+    "message": "Enter the pairing code it shows below.",
+    "description": "Pairing step 3"
+  },
+  "pair.codePlaceholder": {
+    "message": "Pairing code",
+    "description": "Pairing code input placeholder"
+  },
+  "pair.claim": {
+    "message": "Pair device",
+    "description": "Pairing confirm button"
+  },
+  "pair.success": {
+    "message": "Device \"{name}\" paired.",
+    "description": "Pairing success toast"
+  },
+  "pair.invalidCode": {
+    "message": "Invalid or expired pairing code.",
+    "description": "Pairing invalid code error"
+  },
+  "pair.usedCode": {
+    "message": "This pairing code has already been used.",
+    "description": "Pairing used code error"
+  },
+  "pair.failed": {
+    "message": "Failed to pair device.",
+    "description": "Pairing generic error"
+  },
+  "permission.title": {
+    "message": "Permission required",
+    "description": "Permission dialog title"
+  },
+  "permission.subtitle": {
+    "message": "The agent wants to use a tool. Approve to continue.",
+    "description": "Permission dialog subtitle"
+  },
+  "permission.deny": {
+    "message": "Deny",
+    "description": "Deny a tool permission"
+  },
+  "permission.allow": {
+    "message": "Allow",
+    "description": "Allow a tool permission"
+  },
+  "session.noDevice": {
+    "message": "Select a device to start coding.",
+    "description": "No device selected placeholder"
+  },
+  "session.newSession": {
+    "message": "New session",
+    "description": "Start a new session"
+  },
+  "session.deviceOffline": {
+    "message": "This device is offline. Start the Coding Bridge agent on it to continue.",
+    "description": "Device offline warning"
+  },
+  "session.nodeId": {
+    "message": "ID de l'appareil",
+    "description": "Diagnostic label for the node id"
+  },
+  "session.sessionId": {
+    "message": "ID de session",
+    "description": "Diagnostic label for the session id"
+  },
+  "session.traceId": {
+    "message": "ID de trace",
+    "description": "Diagnostic label for the trace id"
+  },
+  "session.startHint": {
+    "message": "Send a message to start a session on this device.",
+    "description": "Empty transcript hint"
+  },
+  "session.cwdPlaceholder": {
+    "message": "Working directory (optional)",
+    "description": "Working directory input placeholder"
+  },
+  "session.modelPlaceholder": {
+    "message": "Model (optional)",
+    "description": "Model input placeholder"
+  },
+  "session.promptPlaceholder": {
+    "message": "Send a message to the agent…",
+    "description": "Prompt input placeholder"
+  },
+  "session.send": {
+    "message": "Send",
+    "description": "Send prompt button"
+  },
+  "session.retry": {
+    "message": "Réessayer",
+    "description": "Re-run the last prompt after a failure"
+  },
+  "session.editPrompt": {
+    "message": "Edit",
+    "description": "Edit a sent prompt and resend it as a new turn"
+  },
+  "session.editingBanner": {
+    "message": "Editing — sending rewinds the conversation to this point.",
+    "description": "Banner shown while editing a past prompt"
+  },
+  "session.editRestoreCode": {
+    "message": "Also restore code",
+    "description": "Checkbox to also roll back file changes when editing"
+  },
+  "session.editCancel": {
+    "message": "Cancel",
+    "description": "Cancel editing a past prompt"
+  },
+  "session.editSubmit": {
+    "message": "Update",
+    "description": "Submit an edited prompt (rewind and re-run)"
+  },
+  "session.enterHint": {
+    "message": "Enter to send, Shift+Enter for a new line.",
+    "description": "Composer keyboard hint"
+  },
+  "transcript.turnFailed": {
+    "message": "Turn failed",
+    "description": "Turn result failed label"
+  },
+  "transcript.turnDone": {
+    "message": "Done",
+    "description": "Turn result done label"
+  },
+  "history.button": {
+    "message": "Historique",
+    "description": "Open the conversation history drawer"
+  },
+  "history.title": {
+    "message": "Historique des conversations",
+    "description": "History drawer title"
+  },
+  "history.intro": {
+    "message": "Sessions Claude Code et Codex précédentes sur cet appareil.",
+    "description": "History drawer intro"
+  },
+  "history.refresh": {
+    "message": "Actualiser",
+    "description": "Reload the history list"
+  },
+  "history.loading": {
+    "message": "Chargement de l’historique…",
+    "description": "History loading message"
+  },
+  "history.empty": {
+    "message": "Aucun historique trouvé sur cet appareil.",
+    "description": "Empty history message"
+  },
+  "history.messages": {
+    "message": "{count} messages",
+    "description": "History item message count"
+  },
+  "history.readonly": {
+    "message": "Cette conversation Codex est en lecture seule et ne peut pas être poursuivie. Démarrez une nouvelle session pour continuer à coder.",
+    "description": "Read-only replay notice"
+  },
+  "history.running": {
+    "message": "En cours",
+    "description": "Marks a history conversation that is currently live on the device"
+  },
+  "history.resumeHint": {
+    "message": "Envoyer un message reprendra cette conversation sur l’appareil.",
+    "description": "Resume composer hint"
+  },
+  "history.claudeLabel": {
+    "message": "Historique Claude",
+    "description": "Replayed Claude session label"
+  },
+  "history.codexLabel": {
+    "message": "Historique Codex (lecture seule)",
+    "description": "Replayed Codex session label"
+  },
+  "session.permissionModeLabel": {
+    "message": "Mode d'autorisation",
+    "description": "Permission-mode selector label"
+  },
+  "session.permissionModeDefault": {
+    "message": "Par défaut (demander à chaque fois)",
+    "description": "Permission mode: ask before each tool use"
+  },
+  "session.permissionModeAcceptEdits": {
+    "message": "Accepter automatiquement les modifications",
+    "description": "Permission mode: auto-accept file edits"
+  },
+  "session.permissionModePlan": {
+    "message": "Mode plan (lecture seule)",
+    "description": "Permission mode: read-only planning"
+  },
+  "session.permissionModeBypass": {
+    "message": "Ignorer toutes les autorisations",
+    "description": "Permission mode: bypass all permission prompts"
+  },
+  "session.providerLabel": {
+    "message": "Backend",
+    "description": "Agent backend selector label"
+  },
+  "session.providerClaude": {
+    "message": "Claude Code",
+    "description": "Backend option: Claude Code"
+  },
+  "session.providerCodex": {
+    "message": "Codex",
+    "description": "Backend option: Codex"
+  },
+  "session.providerUnavailable": {
+    "message": "(non installé)",
+    "description": "Suffix shown next to a backend whose CLI is not installed on the node"
+  },
+  "session.providerUnavailableHint": {
+    "message": "{name} n'est pas installé sur cet appareil.",
+    "description": "Composer hint shown when the selected backend is not installed on the node"
+  },
+  "session.effortLabel": {
+    "message": "Effort de raisonnement",
+    "description": "Reasoning-effort selector label"
+  },
+  "session.effortDefault": {
+    "message": "Par défaut",
+    "description": "Reasoning effort: backend default"
+  },
+  "session.effortLow": {
+    "message": "Faible",
+    "description": "Reasoning effort: low"
+  },
+  "session.effortMedium": {
+    "message": "Moyen",
+    "description": "Reasoning effort: medium"
+  },
+  "session.effortHigh": {
+    "message": "Élevé",
+    "description": "Reasoning effort: high"
+  },
+  "session.effortMax": {
+    "message": "Maximum",
+    "description": "Reasoning effort: maximum (Claude only)"
+  },
+  "directory.title": {
+    "message": "Choisir le répertoire de travail",
+    "description": "Working-directory picker dialog title"
+  },
+  "directory.choose": {
+    "message": "Utiliser ce répertoire",
+    "description": "Button: select the current directory"
+  },
+  "directory.up": {
+    "message": "Répertoire parent",
+    "description": "Button: go to the parent directory"
+  },
+  "directory.refresh": {
+    "message": "Actualiser",
+    "description": "Button: reload the current directory"
+  },
+  "directory.pathPlaceholder": {
+    "message": "Entrez le chemin (par exemple D:\\) puis appuyez sur Entrée",
+    "description": "Espace réservé pour le champ de saisie du chemin de répertoire modifiable"
+  },
+  "directory.go": {
+    "message": "Aller",
+    "description": "Bouton : naviguer vers le chemin de répertoire saisi"
+  },
+  "directory.loading": {
+    "message": "Chargement…",
+    "description": "Directory listing loading hint"
+  },
+  "directory.empty": {
+    "message": "Ce répertoire est vide.",
+    "description": "Empty directory hint"
+  },
+  "directory.truncated": {
+    "message": "Affichage des 1000 premières entrées.",
+    "description": "Hint shown when the listing was truncated"
+  },
+  "session.attachImage": {
+    "message": "Joindre une image",
+    "description": "Attach image button title"
+  },
+  "session.removeImage": {
+    "message": "Supprimer l'image",
+    "description": "Remove attached image button title"
+  },
+  "session.imageAlt": {
+    "message": "Image jointe",
+    "description": "Attached image thumbnail alt text"
+  },
+  "session.imageTooLarge": {
+    "message": "L'image est trop volumineuse ; gardez chacune sous 12 Mo.",
+    "description": "Warning shown when an image exceeds the size limit"
+  },
+  "session.imageLimit": {
+    "message": "Vous pouvez joindre jusqu'à {count} images.",
+    "description": "Warning shown when exceeding the max number of images"
+  },
+  "session.modelDefault": {
+    "message": "Default model",
+    "description": "Default model"
+  },
+  "session.cwdDefault": {
+    "message": "Default directory",
+    "description": "Default directory"
+  },
+  "session.settings": {
+    "message": "Session settings",
+    "description": "Session settings"
+  },
+  "session.settingsLocked": {
+    "message": "Settings are locked for this session",
+    "description": "Settings are locked for this session"
+  },
+  "session.attachFile": {
+    "message": "Attach file",
+    "description": "Attach file"
+  },
+  "session.attachmentImageAlt": {
+    "message": "Attached image",
+    "description": "Attached image"
+  },
+  "session.removeAttachment": {
+    "message": "Remove attachment",
+    "description": "Remove attachment"
+  },
+  "session.uploadingAttachment": {
+    "message": "Uploading attachments…",
+    "description": "Uploading attachments…"
+  },
+  "session.attachmentTooLarge": {
+    "message": "File is too large; keep each under 50 MB.",
+    "description": "File is too large; keep each under 50 MB."
+  },
+  "session.attachmentLimit": {
+    "message": "You can attach up to {count} files.",
+    "description": "You can attach up to {count} files."
+  },
+  "session.attachmentUploadError": {
+    "message": "Failed to upload attachment.",
+    "description": "Failed to upload attachment."
+  },
+  "notice.slashUnavailable": {
+    "message": "/{command} est une commande interactive et ne peut pas s'exécuter dans une session distante.",
+    "description": "Notice shown when a slash command can't run in a remote session"
+  },
+  "notice.slashCodexUnsupported": {
+    "message": "/{command} n'est pas disponible pour Codex dans une session distante.",
+    "description": "Notice shown when a Codex slash command isn't supported remotely"
+  },
+  "notify.enable": {
+    "message": "Activer les notifications",
+    "description": "Tooltip on the notification bell when notifications are off"
+  },
+  "notify.disable": {
+    "message": "Désactiver les notifications",
+    "description": "Tooltip on the notification bell when notifications are on"
+  },
+  "notify.enabled": {
+    "message": "Notifications activées. Nous vous préviendrons lorsqu'une session nécessite une approbation.",
+    "description": "Toast after enabling notifications"
+  },
+  "notify.disabled": {
+    "message": "Notifications désactivées.",
+    "description": "Toast after disabling notifications"
+  },
+  "notify.denied": {
+    "message": "Les notifications sont bloquées. Autorisez-les dans les paramètres de votre navigateur pour recevoir les alertes d'approbation.",
+    "description": "Toast when notification permission is denied"
+  },
+  "notify.unsupported": {
+    "message": "Les notifications ne sont pas prises en charge sur cet appareil.",
+    "description": "Toast when notifications are unsupported"
+  },
+  "notify.failed": {
+    "message": "Impossible de mettre à jour les paramètres de notification.",
+    "description": "Toast when enabling or disabling notifications errors"
+  }
+}

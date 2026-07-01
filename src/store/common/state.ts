@@ -7,6 +7,8 @@ import pikaState from '../pika/state';
 import klingState from '../kling/state';
 import veoState from '../veo/state';
 import soraState from '../sora/state';
+import maestroState from '../maestro/state';
+import digitalhumanState from '../digitalhuman/state';
 import pixverseState from '../pixverse/state';
 import fluxState from '../flux/state';
 import hailuoState from '../hailuo/state';
@@ -17,10 +19,12 @@ import nanobananaState from '../nanobanana/state';
 import openaiimageState from '../openaiimage/state';
 import seedreamState from '../seedream/state';
 import seedanceState from '../seedance/state';
+import grokvideoState from '../grokvideo/state';
 import serpState from '../serp/state';
 import wanState from '../wan/state';
 import fishState from '../fish/state';
 import webextratorState from '../webextrator/state';
+import codingBridgeState from '../codingBridge/state';
 
 export default (): IRootState => {
   return {
@@ -53,6 +57,8 @@ export default (): IRootState => {
     pika: pikaState(),
     kling: klingState(),
     sora: soraState(),
+    maestro: maestroState(),
+    digitalhuman: digitalhumanState(),
     veo: veoState(),
     pixverse: pixverseState(),
     flux: fluxState(),
@@ -64,9 +70,11 @@ export default (): IRootState => {
     openaiimage: openaiimageState(),
     seedream: seedreamState(),
     seedance: seedanceState(),
+    grokvideo: grokvideoState(),
     serp: serpState(),
     wan: wanState(),
     fish: fishState(),
-    webextrator: webextratorState()
+    webextrator: webextratorState(),
+    codingBridge: codingBridgeState()
   };
 };

@@ -99,6 +99,18 @@
     "message": "請在外部鏈接中完成支付",
     "description": "外部鏈接支付的消息。"
   },
+  "message.applePayProcessing": {
+    "message": "正在透過 App Store 完成付款…",
+    "description": "Message while the Apple in-app purchase is processing."
+  },
+  "message.applePayFailed": {
+    "message": "App Store 付款未完成，請重試",
+    "description": "Message when the Apple in-app purchase fails."
+  },
+  "message.applePayUnavailable": {
+    "message": "此方案暫不支援在 App 內購買",
+    "description": "Message when Apple in-app purchase is unavailable for the package."
+  },
   "message.updateFailed": {
     "message": "更新失敗",
     "description": "更新失敗的消息。"
@@ -383,6 +395,10 @@
     "message": "Solana 錢包",
     "description": "Solana 錢包連接卡片標題。"
   },
+  "message.publicPayNotFound": {
+    "message": "訂單不存在或已失效。",
+    "description": "Shown on public pay page when the order GET returns 404."
+  },
   "message.x402WalletStatusDetected": {
     "message": "已檢測",
     "description": "已檢測/已安裝的錢包狀態標籤。"
@@ -518,5 +534,41 @@
   "message.wechatPayLongPressTip": {
     "message": "請長按下方二維碼，識別圖中二維碼完成支付。",
     "description": "Tip shown above the Native QR on mobile-WeChat. The user long-presses to recognise the `weixin://wxpay/bizpayurl` URL and pays without leaving WeChat."
+  },
+  "message.wechatPayMobileScanTip": {
+    "message": "保存或截圖下方二維碼，打開微信，點擊掃一掃，選擇右上角的相冊，挑選剛才保存的圖片即可完成支付。",
+    "description": "在非微信的移動端瀏覽器中顯示在二維碼上方的引導文案。指導用戶保存二維碼圖片後通過微信掃一掃的相冊功能識別完成支付。"
+  },
+  "message.creditsValue": {
+    "message": "{value} 積分",
+    "description": "Display of credits amount for an order, e.g. '5 credits'. {value} is the formatted credit number."
+  },
+  "title.totalOrders": {
+    "message": "訂單總數",
+    "description": "彙總卡片：目前篩選條件下的訂單總數。"
+  },
+  "title.totalSpent": {
+    "message": "總消費",
+    "description": "彙總卡片：目前篩選條件下訂單總金額。"
+  },
+  "title.finishedOrders": {
+    "message": "已完成訂單",
+    "description": "彙總卡片：已完成的訂單數。"
+  },
+  "title.pendingOrders": {
+    "message": "待支付訂單",
+    "description": "彙總卡片：待支付的訂單數。"
+  },
+  "button.export": {
+    "message": "匯出 CSV",
+    "description": "按鈕文案：依目前篩選條件匯出訂單 CSV。"
+  },
+  "field.allStates": {
+    "message": "全部狀態",
+    "description": "狀態篩選下拉的佔位符：表示不限定狀態。"
+  },
+  "field.allPayWays": {
+    "message": "全部支付方式",
+    "description": "支付方式篩選下拉的佔位符：表示不限定支付方式。"
   }
 }

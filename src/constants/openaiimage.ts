@@ -32,7 +32,7 @@ export const OPENAIIMAGE_SIZE_2448_3264 = '2448x3264';
 export const OPENAIIMAGE_SIZE_3840_2160 = '3840x2160';
 export const OPENAIIMAGE_SIZE_2160_3840 = '2160x3840';
 
-export const OPENAIIMAGE_DEFAULT_SIZE = OPENAIIMAGE_SIZE_1024;
+export const OPENAIIMAGE_DEFAULT_SIZE = '';
 
 // Per-model preset lists. Mirrors the OpenAPI `size` description on
 // `/openai/images/generations` and `/openai/images/edits`.
@@ -57,7 +57,7 @@ export const OPENAIIMAGE_SIZES_GPT_IMAGE_2_1K: string[] = [
   OPENAIIMAGE_SIZE_1024_1792
 ];
 
-// gpt-image-2 2K group → 0.3 credits/image (1.5x tier)
+// gpt-image-2 2K preset sizes.
 export const OPENAIIMAGE_SIZES_GPT_IMAGE_2_2K: string[] = [
   OPENAIIMAGE_SIZE_2048_2048,
   OPENAIIMAGE_SIZE_2048_1536,
@@ -66,7 +66,7 @@ export const OPENAIIMAGE_SIZES_GPT_IMAGE_2_2K: string[] = [
   OPENAIIMAGE_SIZE_1152_2048
 ];
 
-// gpt-image-2 4K group → 0.3 credits/image (1.5x tier)
+// gpt-image-2 4K preset sizes.
 export const OPENAIIMAGE_SIZES_GPT_IMAGE_2_4K: string[] = [
   OPENAIIMAGE_SIZE_2880_2880,
   OPENAIIMAGE_SIZE_3264_2448,

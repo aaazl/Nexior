@@ -6,6 +6,7 @@
         <div class="flex-1 min-h-0">
           <config-panel v-if="taskType === 'videos'" @generate="onGenerate" />
           <motion-panel v-else-if="taskType === 'motion'" @generate="onGenerateMotion" />
+          <talking-photo-panel v-else-if="taskType === 'talking-photo'" @generate="onGenerateTalkingPhoto" />
         </div>
       </div>
     </template>
@@ -21,17 +22,22 @@ import Layout from '@/layouts/Kling.vue';
 import ConfigPanel from '@/components/kling/ConfigPanel.vue';
 import MotionPanel from '@/components/kling/MotionPanel.vue';
 import TabSwitcher from '@/components/kling/TabSwitcher.vue';
+import TalkingPhotoPanel from '@/components/kling/TalkingPhotoPanel.vue';
 import { klingOperator } from '@/operators';
 import { instrumentGeneration } from '@/plugins/telemetry';
-import { IKlingGenerateRequest, IKlingMotionRequest, IKlingTaskType, Status } from '@/models';
+import {
+  IKlingGenerateRequest,
+  IKlingMotionRequest,
+  IKlingTalkingPhotoRequest,
+  IKlingTaskType,
+  Status
+} from '@/models';
 import { ElMessage } from 'element-plus';
-import { ERROR_CODE_USED_UP, getWebhookCallbackUrl } from '@/constants';
+import { ERROR_CODE_USED_UP, KLING_TALKING_PHOTO_DEFAULT_MODEL, KLING_TALKING_PHOTO_DEFAULT_MODE } from '@/constants';
 import RecentPanel from '@/components/kling/RecentPanel.vue';
 import { IKlingTask } from '@/models';
 import { loadPreviousPage } from '@/utils/pagination';
-import { uploadTrackerProviderMixin, ensureNoPendingUpload } from '@/utils';
-
-const CALLBACK_URL = getWebhookCallbackUrl('kling');
+import { uploadTrackerProviderMixin, ensureNoPendingUpload, ensureLoggedIn } from '@/utils';
 
 interface IData {
   task: IKlingTask | undefined;
@@ -45,6 +51,7 @@ export default defineComponent({
   components: {
     ConfigPanel,
     MotionPanel,
+    TalkingPhotoPanel,
     TabSwitcher,
     Layout,
     RecentPanel
@@ -74,6 +81,9 @@ export default defineComponent({
     },
     motionConfig() {
       return this.$store.state.kling.motionConfig;
+    },
+    talkingPhotoConfig() {
+      return this.$store.state.kling.talkingPhotoConfig;
     },
     taskType(): IKlingTaskType {
       return this.$store.state.kling.taskType || 'videos';
@@ -177,7 +187,7 @@ export default defineComponent({
       const { camera_control, ...rest } = this.config || {};
       const request = {
         ...rest,
-        callback_url: CALLBACK_URL
+        async: true
       } as IKlingGenerateRequest;
       // Reject "only end frame, no start frame" — Kling can't anchor an
       // end-frame without a starting reference.
@@ -213,6 +223,9 @@ export default defineComponent({
               }
             : {})
         };
+      }
+      if (!ensureLoggedIn()) {
+        return;
       }
       const token = this.credential?.token;
       if (!token) {
@@ -272,8 +285,11 @@ export default defineComponent({
         mode: cfg.mode || 'std',
         keep_original_sound: cfg.keep_original_sound ?? 'yes',
         ...(cfg.prompt ? { prompt: cfg.prompt } : {}),
-        callback_url: CALLBACK_URL
+        async: true
       };
+      if (!ensureLoggedIn()) {
+        return;
+      }
       const token = this.credential?.token;
       if (!token) {
         console.error('no token specified');
@@ -281,6 +297,59 @@ export default defineComponent({
       }
       ElMessage.info(this.$t('kling.message.startingTask'));
       instrumentGeneration('kling', klingOperator.motion(request, { token }))
+        .then(() => {
+          ElMessage.success(this.$t('kling.message.startTaskSuccess'));
+        })
+        .catch((error) => {
+          const response = error?.response?.data;
+          if (response?.error?.code === ERROR_CODE_USED_UP) {
+            ElMessage.error(this.$t('kling.message.usedUp'));
+          } else {
+            ElMessage.error(this.$t('kling.message.startTaskFailed'));
+          }
+        })
+        .finally(async () => {
+          setTimeout(async () => {
+            await this.onGetTasks();
+            await this.onScrollDown();
+          }, 1000);
+        });
+    },
+    async onGenerateTalkingPhoto() {
+      if (
+        !ensureNoPendingUpload(
+          this.uploadTracker,
+          (k) => this.$t(k) as string,
+          (m) => ElMessage.warning(m)
+        )
+      ) {
+        return;
+      }
+      const cfg = this.talkingPhotoConfig || {};
+      if (!cfg.image_url || !cfg.audio_url) {
+        ElMessage.warning(this.$t('kling.message.talkingPhotoMissingInputs'));
+        return;
+      }
+      const request: IKlingTalkingPhotoRequest = {
+        image_url: cfg.image_url,
+        audio_url: cfg.audio_url,
+        // Upstream requires `model`; always send a supported default if unset.
+        model: cfg.model || KLING_TALKING_PHOTO_DEFAULT_MODEL,
+        mode: cfg.mode || KLING_TALKING_PHOTO_DEFAULT_MODE,
+        ...(cfg.prompt ? { prompt: cfg.prompt } : {}),
+        ...(cfg.duration ? { duration: cfg.duration } : {}),
+        async: true
+      };
+      if (!ensureLoggedIn()) {
+        return;
+      }
+      const token = this.credential?.token;
+      if (!token) {
+        console.error('no token specified');
+        return;
+      }
+      ElMessage.info(this.$t('kling.message.startingTask'));
+      instrumentGeneration('kling', klingOperator.talkingPhoto(request, { token }))
         .then(() => {
           ElMessage.success(this.$t('kling.message.startTaskSuccess'));
         })

@@ -71,6 +71,10 @@
     "message": "GitHub",
     "description": "Namn på inloggningsmetod: GitHub tredjepartsinloggning"
   },
+  "field.authProvider_apple": {
+    "message": "Apple",
+    "description": "Login provider display name: Sign in with Apple."
+  },
   "field.authProvider_wechat": {
     "message": "WeChat",
     "description": "Namn på inloggningsmetod: WeChat tredjepartsinloggning"
@@ -90,6 +94,18 @@
   "field.featuresGrok": {
     "message": "Grok",
     "description": "Visas som titeln i redigeringsrutan"
+  },
+  "field.featuresGrokvideo": {
+    "message": "Grok Video",
+    "description": "Visas som titeln i redigeringsrutan"
+  },
+  "field.featuresMaestro": {
+    "message": "Maestro",
+    "description": "Visas som titeln i redigeringsrutan"
+  },
+  "field.featuresDigitalhuman": {
+    "message": "Digital Human",
+    "description": "Displayed as the title in the editing box"
   },
   "field.featuresDeepseek": {
     "message": "Deepseek",
@@ -178,6 +194,10 @@
   "field.featuresFish": {
     "message": "Fiskljud",
     "description": "Titeln som visas i redigeringsrutan"
+  },
+  "field.featuresCodingBridge": {
+    "message": "Coding Bridge",
+    "description": "Displayed as the title in the editing box"
   },
   "field.featuresWebextrator": {
     "message": "WebExtrator",
@@ -427,6 +447,18 @@
     "message": "Aktivera eller inaktivera Grok-funktion.",
     "description": "Beskrivning av Grok-funktionen"
   },
+  "message.featuresGrokvideo": {
+    "message": "Aktivera eller inaktivera Grok Video-funktionmodulen.",
+    "description": "Beskrivning av Grok Video-funktionen"
+  },
+  "message.featuresMaestro": {
+    "message": "Aktivera eller inaktivera Maestro-funktionmodulen.",
+    "description": "Beskrivning av Maestro-funktionen"
+  },
+  "message.featuresDigitalhuman": {
+    "message": "Enable or disable the Digital Human feature module.",
+    "description": "Description of the Digital Human feature"
+  },
   "message.featuresDeepseek": {
     "message": "Aktivera eller inaktivera Deepseek-funktion.",
     "description": "Beskrivning av Deepseek-funktionen"
@@ -502,6 +534,10 @@
   "message.featuresFish": {
     "message": "Aktivera eller inaktivera Fiskljud-funktionaliteten.",
     "description": "Beskrivning av Fiskljud-funktionen"
+  },
+  "message.featuresCodingBridge": {
+    "message": "Enable or disable the Coding Bridge feature module.",
+    "description": "Description of the Coding Bridge feature"
   },
   "message.featuresWebextrator": {
     "message": "Enable or disable the WebExtrator feature module.",
@@ -594,5 +630,33 @@
   "button.addUser": {
     "message": "Lägg till",
     "description": "Button label to add the resolved user to the admins list."
+  },
+  "autoTranslate.tooltipOn": {
+    "message": "Automatisk översättning PÅ — innehållet visas på besökarens språk",
+    "description": "Tooltip on the auto-translate toggle when it is ON"
+  },
+  "autoTranslate.tooltipOff": {
+    "message": "Sparas ordagrant — klicka för att aktivera automatisk översättning",
+    "description": "Tooltip on the auto-translate toggle when it is OFF"
+  },
+  "autoTranslate.tooltipDisabledNotSaved": {
+    "message": "Spara raden innan du aktiverar automatisk översättning",
+    "description": "Tooltip shown when the toggle is disabled because the row has no id yet (create-dialog state)"
+  },
+  "autoTranslate.confirmEnable": {
+    "message": "Detta innehåll översätts till 17 språk inom ~1 timme. Fortsätt?",
+    "description": "Body text of the confirm dialog shown before enabling auto-translation"
+  },
+  "autoTranslate.confirmDisable": {
+    "message": "Inaktivering tar bort alla 18 översättningarna och behåller endast det aktuella värdet. Fortsätt?",
+    "description": "Body text of the confirm dialog shown before disabling auto-translation"
+  },
+  "autoTranslate.empty": {
+    "message": "Ange innehåll innan du aktiverar automatisk översättning",
+    "description": "Warning shown when the user tries to enable auto-translation on an empty field"
+  },
+  "autoTranslate.error": {
+    "message": "Det gick inte att växla automatisk översättning, försök igen",
+    "description": "Fallback error toast when the enable/disable HTTP call fails with no detail"
   }
 }

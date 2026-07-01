@@ -1,5 +1,5 @@
 <template>
-  <div :direction="direction" :class="['navigator', { collapsed: direction === 'column' }]">
+  <div :direction="direction" :class="['navigator', { collapsed: direction === 'column', 'is-mac': isMacOS() && !isFullscreen }]">
     <div v-if="direction === 'column'" class="brand">
       <logo collapsed @click.stop="onHome" />
     </div>
@@ -62,7 +62,6 @@ import { defineComponent } from 'vue';
 import { ElTooltip, ElImage, ElPopover } from 'element-plus';
 import {
   ROUTE_INDEX,
-  ROUTE_PROFILE_INDEX,
   ROUTE_MIDJOURNEY_INDEX,
   ROUTE_LUMA_INDEX,
   ROUTE_LUMA_HISTORY,
@@ -88,22 +87,27 @@ import {
   ROUTE_VEO_INDEX,
   ROUTE_VEO_HISTORY,
   ROUTE_SORA_INDEX,
+  ROUTE_MAESTRO_INDEX,
+  ROUTE_DIGITALHUMAN_INDEX,
   ROUTE_SORA_HISTORY,
   ROUTE_NANOBANANA_INDEX,
   ROUTE_OPENAIIMAGE_INDEX,
   ROUTE_SEEDREAM_INDEX,
   ROUTE_SEEDANCE_INDEX,
+  ROUTE_GROKVIDEO_INDEX,
   ROUTE_WAN_INDEX,
   ROUTE_PRODUCER_INDEX,
   ROUTE_FISH_TTS_INDEX,
   ROUTE_FISH_MODEL_INDEX,
   ROUTE_KIMI_CONVERSATION,
   ROUTE_KIMI_CONVERSATION_NEW,
-  ROUTE_WEBEXTRATOR_INDEX
+  ROUTE_WEBEXTRATOR_INDEX,
+  ROUTE_CODING_BRIDGE_INDEX
 } from '@/router/constants';
 import { SERP_LOGO } from '@/constants';
 import { ROUTE_SERP_INDEX } from '@/constants/serp';
 import { WEBEXTRATOR_LOGO } from '@/constants/webextrator';
+import { CODING_BRIDGE_LOGO } from '@/constants/codingBridge';
 import {
   CHAT_MODEL_ICON_CHATGPT,
   CHAT_MODEL_ICON_DEEPSEEK,
@@ -116,12 +120,15 @@ import {
   OPENAIIMAGE_LOGO,
   SEEDREAM_LOGO,
   SEEDANCE_LOGO,
+  GROKVIDEO_LOGO,
   SUNO_LOGO,
   LUMA_LOGO,
   HAILUO_LOGO,
   KLING_LOGO,
   VEO_LOGO,
   SORA_LOGO,
+  MAESTRO_LOGO,
+  DIGITALHUMAN_LOGO,
   PIXVERSE_LOGO,
   WAN_LOGO,
   PRODUCER_LOGO,
@@ -130,6 +137,8 @@ import {
 } from '@/constants';
 import Logo from './Logo.vue';
 import UserCenter from '@/components/user/Center.vue';
+import { isMacOS } from '@/utils/surface';
+import { desktopBridge } from '@/utils/desktop';
 
 interface NavLink {
   route: { name: string };
@@ -164,7 +173,11 @@ export default defineComponent({
       activeIndex: this.$route.name as string,
       containerHeight: 0,
       showOverflow: false,
-      resizeObserver: null as ResizeObserver | null
+      resizeObserver: null as ResizeObserver | null,
+      // macOS native fullscreen hides the traffic lights, so the brand inset
+      // must be dropped there. Fed by the Electron main fullscreen events.
+      isFullscreen: false,
+      offFullscreen: null as (() => void) | null
     };
   },
   computed: {
@@ -309,6 +322,15 @@ export default defineComponent({
           category: 'video'
         });
       }
+      if (this.$store?.state?.site?.features?.grokvideo?.enabled) {
+        result.push({
+          route: { name: ROUTE_GROKVIDEO_INDEX },
+          displayName: this.$t('common.nav.grokvideo'),
+          logo: GROKVIDEO_LOGO,
+          routes: [ROUTE_GROKVIDEO_INDEX],
+          category: 'video'
+        });
+      }
       if (this.$store?.state?.site?.features?.luma?.enabled) {
         result.push({
           route: { name: ROUTE_LUMA_INDEX },
@@ -342,6 +364,24 @@ export default defineComponent({
           displayName: this.$t('common.nav.veo'),
           logo: VEO_LOGO,
           routes: [ROUTE_VEO_INDEX, ROUTE_VEO_HISTORY],
+          category: 'video'
+        });
+      }
+      if (this.$store?.state?.site?.features?.maestro?.enabled) {
+        result.push({
+          route: { name: ROUTE_MAESTRO_INDEX },
+          displayName: this.$t('common.nav.maestro'),
+          logo: MAESTRO_LOGO,
+          routes: [ROUTE_MAESTRO_INDEX],
+          category: 'video'
+        });
+      }
+      if (this.$store?.state?.site?.features?.digitalhuman?.enabled) {
+        result.push({
+          route: { name: ROUTE_DIGITALHUMAN_INDEX },
+          displayName: this.$t('common.nav.digitalhuman'),
+          logo: DIGITALHUMAN_LOGO,
+          routes: [ROUTE_DIGITALHUMAN_INDEX],
           category: 'video'
         });
       }
@@ -391,13 +431,13 @@ export default defineComponent({
           category: 'data'
         });
       }
-      if (this.direction === 'row') {
+      if (this.$store?.state?.site?.features?.codingBridge?.enabled) {
         result.push({
-          route: { name: ROUTE_PROFILE_INDEX },
-          displayName: this.$t('common.nav.profile'),
-          icon: 'fa-solid fa-user',
-          routes: [ROUTE_PROFILE_INDEX],
-          category: 'other'
+          route: { name: ROUTE_CODING_BRIDGE_INDEX },
+          displayName: this.$t('common.nav.codingBridge'),
+          logo: CODING_BRIDGE_LOGO,
+          routes: [ROUTE_CODING_BRIDGE_INDEX],
+          category: 'data'
         });
       }
       return result;
@@ -443,14 +483,27 @@ export default defineComponent({
       });
       this.resizeObserver.observe(el);
     }
+    // Native fullscreen state from the Electron main process (canonical signal
+    // for the macOS green button / setFullScreen; undefined off desktop).
+    this.offFullscreen = desktopBridge()?.onFullscreenChange((v) => {
+      this.isFullscreen = v;
+    }) ?? null;
   },
   beforeUnmount() {
     if (this.resizeObserver) {
       this.resizeObserver.disconnect();
       this.resizeObserver = null;
     }
+    if (this.offFullscreen) {
+      this.offFullscreen();
+      this.offFullscreen = null;
+    }
   },
   methods: {
+    // Frameless macOS desktop: the traffic lights sit over the top-left, so the
+    // column rail insets its brand logo to clear them. isMacOS() reads the
+    // Electron preload bridge, which only exists in the desktop shell.
+    isMacOS,
     onHome() {
       this.$router.push({ name: ROUTE_INDEX });
     },
@@ -536,6 +589,12 @@ export default defineComponent({
       align-items: center;
       padding: 10px 0 10px;
       width: 100%;
+    }
+
+    // Frameless macOS desktop: inset the brand below the window traffic lights
+    // so the logo no longer overlaps the red/yellow/green dots.
+    &.is-mac .brand {
+      padding-top: 38px;
     }
 
     .top {

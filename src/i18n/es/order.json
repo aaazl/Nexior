@@ -99,6 +99,18 @@
     "message": "Por favor, completa el pago en el enlace externo.",
     "description": "Mensaje para pagos a través de enlaces externos."
   },
+  "message.applePayProcessing": {
+    "message": "Completando tu compra a través de la App Store…",
+    "description": "Message while the Apple in-app purchase is processing."
+  },
+  "message.applePayFailed": {
+    "message": "El pago en la App Store no se completó. Inténtalo de nuevo.",
+    "description": "Message when the Apple in-app purchase fails."
+  },
+  "message.applePayUnavailable": {
+    "message": "Este paquete no se puede comprar dentro de la app.",
+    "description": "Message when Apple in-app purchase is unavailable for the package."
+  },
   "message.updateFailed": {
     "message": "Actualización fallida",
     "description": "Mensaje de actualización fallida."
@@ -383,6 +395,10 @@
     "message": "Billetera Solana",
     "description": "Título de la tarjeta de conexión de la billetera Solana."
   },
+  "message.publicPayNotFound": {
+    "message": "Pedido no encontrado o caducado.",
+    "description": "Shown on public pay page when the order GET returns 404."
+  },
   "message.x402WalletStatusDetected": {
     "message": "Detectado",
     "description": "Etiqueta de estado para billeteras detectadas/instaladas."
@@ -518,5 +534,41 @@
   "message.wechatPayLongPressTip": {
     "message": "Mantenga pulsado el siguiente codigo QR y toque 'Reconocer codigo QR' para completar el pago en WeChat.",
     "description": "Tip shown above the Native QR on mobile-WeChat. The user long-presses to recognise the `weixin://wxpay/bizpayurl` URL and pays without leaving WeChat."
+  },
+  "message.wechatPayMobileScanTip": {
+    "message": "Guarda o toma una captura de pantalla del código QR de abajo, abre WeChat, haz clic en 'Escanear', selecciona la galería en la esquina superior derecha y elige la imagen que guardaste para completar el pago.",
+    "description": "Texto de guía que se muestra sobre el código QR en navegadores móviles que no son WeChat. Indica a los usuarios que guarden la imagen del código QR y la reconozcan a través de la función de galería de WeChat para completar el pago."
+  },
+  "message.creditsValue": {
+    "message": "{value} créditos",
+    "description": "Display of credits amount for an order, e.g. '5 credits'. {value} is the formatted credit number."
+  },
+  "title.totalOrders": {
+    "message": "Total Orders",
+    "description": "Summary card: total number of orders matching the current filters."
+  },
+  "title.totalSpent": {
+    "message": "Total Spent",
+    "description": "Summary card: total amount spent across matching orders."
+  },
+  "title.finishedOrders": {
+    "message": "Finished Orders",
+    "description": "Summary card: number of finished orders."
+  },
+  "title.pendingOrders": {
+    "message": "Pending Orders",
+    "description": "Summary card: number of pending orders."
+  },
+  "button.export": {
+    "message": "Export CSV",
+    "description": "Button label to export the filtered orders as CSV."
+  },
+  "field.allStates": {
+    "message": "All States",
+    "description": "Placeholder of the state filter dropdown indicating no specific state is selected."
+  },
+  "field.allPayWays": {
+    "message": "All Payment Methods",
+    "description": "Placeholder of the payment method filter dropdown indicating no specific method is selected."
   }
 }

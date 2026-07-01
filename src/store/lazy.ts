@@ -23,6 +23,7 @@ type AnyVuexModule = Module<any, any>;
  */
 const moduleLoaders: Record<string, () => Promise<{ default: AnyVuexModule }>> = {
   chat: () => import('./chat'),
+  realtime: () => import('./realtime'),
   midjourney: () => import('./midjourney'),
   qrart: () => import('./qrart'),
   luma: () => import('./luma'),
@@ -30,6 +31,8 @@ const moduleLoaders: Record<string, () => Promise<{ default: AnyVuexModule }>> =
   kling: () => import('./kling'),
   veo: () => import('./veo'),
   sora: () => import('./sora'),
+  maestro: () => import('./maestro'),
+  digitalhuman: () => import('./digitalhuman'),
   pixverse: () => import('./pixverse'),
   flux: () => import('./flux'),
   hailuo: () => import('./hailuo'),
@@ -40,10 +43,12 @@ const moduleLoaders: Record<string, () => Promise<{ default: AnyVuexModule }>> =
   openaiimage: () => import('./openaiimage'),
   seedream: () => import('./seedream'),
   seedance: () => import('./seedance'),
+  grokvideo: () => import('./grokvideo'),
   serp: () => import('./serp'),
   wan: () => import('./wan'),
   fish: () => import('./fish'),
-  webextrator: () => import('./webextrator')
+  webextrator: () => import('./webextrator'),
+  codingBridge: () => import('./codingBridge')
 };
 
 /** Names of every lazy-registerable per-app module (single source of truth). */

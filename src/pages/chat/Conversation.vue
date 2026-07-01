@@ -38,9 +38,12 @@
             @restart="onRestart"
             @answer-ask-user-question="onAnswerAskUserQuestion"
             @skip-ask-user-question="onSkipAskUserQuestion"
+            @respond-connector-consent="onRespondConnectorConsent"
+            @authorize-connector="onAuthorizeConnector"
           />
         </div>
         <div class="starter">
+          <div class="composer-connectors"><connector-strip /></div>
           <composer
             v-model:question="question"
             :answering="answering"
@@ -50,7 +53,7 @@
             @submit="onSubmit"
             @stop="onStop"
           />
-          <disclaimer class="disclaimer" />
+          <disclaimer class="composer-disclaimer" />
         </div>
       </div>
     </template>
@@ -77,9 +80,19 @@ import BYOKBadge from '@/components/chat/BYOKBadge.vue';
 import { ERROR_CODE_CANCELED, ERROR_CODE_NOT_APPLIED, ERROR_CODE_UNKNOWN } from '@/constants/errorCode';
 import { Status } from '@/models';
 import Disclaimer from '@/components/chat/Disclaimer.vue';
+import ConnectorStrip from '@/components/chat/ConnectorStrip.vue';
 import Layout from '@/layouts/Chat.vue';
 import { isImageUrl } from '@/utils/is';
-import { IChatMessageContentItem } from '@/models';
+import { isDesktop } from '@/utils/surface';
+import { ensureLoggedIn } from '@/utils/login';
+import { localExec, type LocalToolSpec } from '@/utils/desktop';
+import { IAskUserQuestionPayload, IChatMessageContentItem, IConsentRequestPayload } from '@/models';
+import {
+  buildAuthorizedConsentOutput,
+  findPendingConsentBlock,
+  parseConsentReturnFromQuery,
+  type IConsentReturn
+} from '@/components/chat/consentReturn';
 import { chatOperator, agentOperator } from '@/operators';
 import { ElTooltip, ElButton } from 'element-plus';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -109,6 +122,28 @@ export interface IData {
    * locally” and skip the otherwise-redundant `retrieve` call.
    */
   skipNextRestoreId: string | undefined;
+  /**
+   * Stashed on mount from the `?consent=&connector=` deep-link the
+   * AuthFrontend install page redirects back to after a successful
+   * OAuth round-trip. The `messages` watcher consumes it as soon as
+   * the matching awaiting `request_user_consent` block is in the
+   * conversation, then clears it. Set to ``null`` when there's no
+   * pending return (the common case).
+   */
+  pendingConsentReturn: IConsentReturn | null;
+  // Full specs of the desktop local tools (from window.localExec). Sent to the
+  // worker as `client_tools` so the model can call them; the worker pauses with
+  // execution:'client' and the desktop runs them. Empty on web/native.
+  localTools: LocalToolSpec[];
+  // A desktop client tool the model called this turn, deferred until the paused
+  // stream finalizes (so the conversation id + route are settled and the
+  // `answering` flag isn't cleared mid-resume). At most one per turn — the
+  // worker pauses after the first client tool. Null when none pending.
+  pendingClientTools: { toolId: string; name: string; input: Record<string, unknown> }[];
+  // Monotonic token for the in-flight deferred client-tool run. onStop() bumps
+  // it to invalidate a run whose `localExec.invoke()` is still pending, so Stop
+  // cancels the auto-resume even after the finalizer captured the pending tool.
+  clientToolRunId: number;
 }
 
 export default defineComponent({
@@ -116,6 +151,7 @@ export default defineComponent({
   components: {
     Composer,
     Disclaimer,
+    ConnectorStrip,
     ModelSelector,
     DesktopAgentManager,
     'byok-badge': BYOKBadge,
@@ -130,6 +166,9 @@ export default defineComponent({
       drawer: false,
       question: '',
       references: [],
+      localTools: [],
+      pendingClientTools: [],
+      clientToolRunId: 0,
       upload: false,
       answering: false,
       canceler: undefined,
@@ -139,7 +178,8 @@ export default defineComponent({
       agentToolCount: 0,
       agentConnectedAt: '',
       skipNextRestoreId: undefined,
-      messages: []
+      messages: [],
+      pendingConsentReturn: null
     };
   },
   computed: {
@@ -179,6 +219,11 @@ export default defineComponent({
       return this.$store.state.chat.status.getApplications === Status.Request;
     },
     ready(): boolean {
+      // Guests may compose & "send" — the submit handler triggers login
+      // (deferred auth), so the composer must not be disabled for them.
+      if (!this.$store.getters.authenticated) {
+        return true;
+      }
       // Disable sending until token/application/credential are all initialized,
       // otherwise the first submit races init and hits `You have not applied for this service...`.
       return !this.initializing && !!this.credential?.token && !!this.application;
@@ -230,19 +275,49 @@ export default defineComponent({
         return;
       }
       await this.onRestoreCurrentConversation();
+    },
+    /**
+     * Consent-return auto-resume: after the AuthFrontend install page
+     * completes a successful OAuth round-trip it redirects back to
+     * ``/chat/c/<conv>?consent=<rid>&connector=<id>``. ``mounted``
+     * stashes that pair on ``pendingConsentReturn`` and this watcher
+     * fires every time ``messages`` mutates (e.g. once
+     * ``onRestoreCurrentConversation`` finishes populating the
+     * restored history). The body is a cheap no-op while the pending
+     * return is null, so leaving it on a deep-less `messages` watcher
+     * during a streaming turn costs nothing.
+     */
+    messages: {
+      handler() {
+        if (!this.pendingConsentReturn) return;
+        this.onConsumePendingConsentReturn();
+      },
+      deep: false
     }
   },
   async mounted() {
+    // Stash the deep-link return params BEFORE anything else touches the
+    // route — `onApplyQueryFromUrl` (further down) strips `connector` from
+    // the URL as part of Studio's Try-It chip cleanup, so we have to grab
+    // our copy first. Strip happens later in `onConsumePendingConsentReturn`
+    // once we've successfully resumed the paused tool_use block.
+    this.onCaptureConsentReturnFromUrl();
     await this.onGetService();
     await this.onGetApplication();
     this.onConsumePendingDraft();
     this.onApplyQueryFromUrl();
+    if (isDesktop()) {
+      this.localTools = (await localExec()?.listTools()) ?? [];
+    }
   },
   methods: {
     resetConversation() {
       this.messages = [];
       this.question = '';
       this.references = [];
+      // Drop any deferred desktop client tool from a prior turn so a new chat
+      // never auto-runs a stale tool against the wrong conversation.
+      this.pendingClientTools = [];
     },
     // Idempotent restore for the URL-pinned conversation. Bails on
     // missing token (credential.token watcher will retry), missing :id
@@ -363,6 +438,12 @@ export default defineComponent({
       this.onSubmit();
     },
     async onStop() {
+      // Drop any deferred desktop client tool so Stop also cancels an
+      // about-to-run local tool / auto-resume, not just the live stream. Bump
+      // the run token too, so a deferred run already past the pending check
+      // (localExec.invoke() in flight) skips its resume.
+      this.pendingClientTools = [];
+      this.clientToolRunId++;
       if (this.canceler) {
         this.canceler.abort();
         this.answering = false;
@@ -547,6 +628,11 @@ export default defineComponent({
       await this.$router.push(this.conversationsPath(target));
     },
     async onSubmit() {
+      // Deferred auth: a guest hitting send is sent to login here, before we
+      // mutate `messages`, so they return to a clean composer post-login.
+      if (!ensureLoggedIn()) {
+        return;
+      }
       if (this.references.length > 0) {
         const content: IChatMessageContentItem[] = [
           {
@@ -579,6 +665,19 @@ export default defineComponent({
     },
     // Get answers to questions
     async onRequest() {
+      // Safety net for every send path (onSubmit / onEdit / onRestart funnel
+      // here): a guest is sent to login before any request is attempted.
+      if (!ensureLoggedIn()) {
+        return;
+      }
+      // Refresh the desktop local-tool list at the start of each user turn so a
+      // Settings change (e.g. toggling Computer Use on/off) takes effect on the
+      // very next message. Without this, `localTools` is cached from mount and a
+      // disabled tool would keep being advertised as `client_tools` — wasting
+      // prompt tokens — until the chat remounts.
+      if (isDesktop()) {
+        this.localTools = (await localExec()?.listTools()) ?? [];
+      }
       console.debug('start to get answer', this.messages);
       const token = this.credential?.token;
       const question = this.question.trim();
@@ -617,37 +716,52 @@ export default defineComponent({
           model: this.model.name,
           references,
           id: this.conversationId,
-          stateful: true
+          stateful: true,
+          ...this._localToolInjection()
         },
         token,
         conversationId
       );
     },
     /**
-     * Resume a paused conversation by submitting a tool result for the
-     * `ask_user_question` block on the last assistant message. Marks the
-     * pending block as `done` locally (so the card collapses immediately
-     * to the readonly summary), pushes a fresh pending assistant message,
-     * and runs the next streaming turn against `tool_results`.
+     * Resume a paused conversation by folding one-or-more tool results into
+     * the matching awaiting `tool_use` block(s) and running the next
+     * streaming turn against `tool_results`. Shared by ask_user_question,
+     * connector-consent, and desktop client-tool resumes.
+     *
+     * The resume body re-sends `client_tools` (via {@link _localToolInjection})
+     * so the model can keep calling local tools AFTER the first round — the
+     * worker registers client tools only from the request body, so omitting
+     * them here would strand the desktop's local tools on every turn past the
+     * first.
      */
-    async onAnswerAskUserQuestion(payload: { tool_use_id: string; output: string }) {
+    _resumeWithToolResults(
+      toolResults: { tool_use_id: string; output: string; is_error?: boolean; image?: string }[],
+      conversationId?: string
+    ) {
       const token = this.credential?.token;
-      if (!token || !this.conversationId) {
-        console.error('cannot resume: no token or no conversation id');
+      // Prefer an explicitly-passed id (deferred client-tool resume on a
+      // brand-new chat, where this.conversationId isn't route-derived yet).
+      const convId = conversationId ?? this.conversationId;
+      if (!token || !convId || !toolResults.length) {
+        console.error('cannot resume: no token / conversation id / results');
         return;
       }
-      // Locally fold the pending block so the card flips to the collapsed
-      // summary instantly (the worker will fold its own copy on the resume
-      // request — both stay in sync).
+      // Locally fold each pending block so its card flips to the collapsed
+      // summary instantly (the worker folds its own copy on the resume — both
+      // stay in sync). `pending_consent_request` is intentionally left intact
+      // so a resolved consent card can still render its requirements list.
       const lastAssistant = [...this.messages].reverse().find((m) => m.role === ROLE_ASSISTANT);
       if (lastAssistant && Array.isArray(lastAssistant.content)) {
-        const block = (lastAssistant.content as IChatMessageContentItem[]).find(
-          (b) => b.type === 'tool_use' && b.tool_id === payload.tool_use_id
-        );
-        if (block) {
-          block.status = 'done';
-          block.output = payload.output;
-          delete block.pending_question;
+        const content = lastAssistant.content as IChatMessageContentItem[];
+        for (const tr of toolResults) {
+          const block = content.find((b) => b.type === 'tool_use' && b.tool_id === tr.tool_use_id);
+          if (block) {
+            block.status = 'done';
+            block.output = tr.output;
+            if (tr.is_error) block.is_error = true;
+            delete block.pending_question;
+          }
         }
       }
       // Push fresh pending assistant message for the resumed turn.
@@ -661,14 +775,149 @@ export default defineComponent({
       this.canceler = new AbortController();
       this._streamAssistantTurn(
         {
-          id: this.conversationId,
+          id: convId,
           model: this.model.name,
           stateful: true,
-          tool_results: [{ tool_use_id: payload.tool_use_id, output: payload.output }]
+          tool_results: toolResults,
+          // Re-send local tools so post-resume turns can still call them.
+          ...this._localToolInjection()
         },
         token,
-        this.conversationId
+        convId
       );
+    },
+    /**
+     * Resume a paused conversation by submitting a single tool result for the
+     * `ask_user_question` block on the last assistant message. Thin wrapper
+     * over {@link _resumeWithToolResults}.
+     */
+    async onAnswerAskUserQuestion(payload: {
+      tool_use_id: string;
+      output: string;
+      is_error?: boolean;
+      conversationId?: string;
+    }) {
+      this._resumeWithToolResults(
+        [
+          {
+            tool_use_id: payload.tool_use_id,
+            output: payload.output,
+            ...(payload.is_error ? { is_error: true } : {})
+          }
+        ],
+        payload.conversationId
+      );
+    },
+    /**
+     * Inject desktop local tools into the chat request (no-op on web). The
+     * worker registers each as a client-executed tool (see
+     * `tools/builtin/clientTool.ts`): the model can call it, the worker pauses
+     * with execution:'client', and {@link _runClientTools} runs it via
+     * `localExec().invoke` then resumes with `tool_results`.
+     *
+     * Local tool names are dotted (`fs.list_dir`, `mcp.srv.tool`), but OpenAI
+     * function names must match `^[a-zA-Z0-9_-]+$` (no dots) or the upstream
+     * 400s. So we send a sanitized wire name to the model and map it back to
+     * the real dotted name in {@link _runClientTools} via {@link _wiredTools}.
+     */
+    _localToolInjection(): {
+      client_tools?: {
+        name: string;
+        displayName?: string;
+        description: string;
+        inputSchema: Record<string, unknown>;
+      }[];
+    } {
+      if (!isDesktop() || !this.localTools.length) return {};
+      return {
+        client_tools: this._wiredTools().map(({ spec, wire }) => ({
+          name: wire,
+          displayName: spec.name,
+          description: spec.description,
+          inputSchema: spec.input_schema
+        }))
+      };
+    },
+    /**
+     * Pair each local tool spec with a UNIQUE OpenAI-valid wire name. Dots and
+     * other invalid chars become `_`; collisions (possible for arbitrary MCP
+     * tool names) get a numeric suffix so the wire→spec mapping stays
+     * injective. Deterministic: `localTools` order is stable after mount, so
+     * the injection and the {@link _runClientTools} lookup agree.
+     */
+    _wiredTools(): { spec: LocalToolSpec; wire: string }[] {
+      const used = new Set<string>();
+      return this.localTools.map((spec) => {
+        let wire = spec.name.replace(/[^a-zA-Z0-9_-]/g, '_');
+        if (used.has(wire)) {
+          let i = 2;
+          while (used.has(`${wire}_${i}`)) i++;
+          wire = `${wire}_${i}`;
+        }
+        used.add(wire);
+        return { spec, wire };
+      });
+    },
+    /**
+     * Run one-or-more client-executed tools locally (the model can fan out
+     * several in a single paused turn), then resume the turn with ALL the
+     * results in ONE request. Running every pending tool and submitting them
+     * together matches the worker's resume contract, which requires the
+     * `tool_results` to cover every awaiting client block (a partial resume
+     * is rejected to avoid a half-paused conversation).
+     */
+    async _runClientTools(
+      pending: { toolId: string; name: string; input: Record<string, unknown> }[],
+      conversationId?: string,
+      runId?: number
+    ) {
+      const sessionId = (conversationId ?? this.conversationId) || '';
+      const results: { tool_use_id: string; output: string; is_error?: boolean; image?: string }[] = [];
+      for (const p of pending) {
+        // Stop pressed mid-batch → onStop() bumped the token; abort BEFORE
+        // running any further local tool (each invoke may be a shell command,
+        // so checking only after the loop would let Stop be ignored).
+        if (runId !== undefined && runId !== this.clientToolRunId) return;
+        // The worker echoes the sanitized wire name; map it back to the real
+        // dotted tool name localExec expects (else `unknown tool`).
+        const realName = this._wiredTools().find((w) => w.wire === p.name)?.spec.name ?? p.name;
+        // `p.input` came from reactive component state (pendingClientTools /
+        // message content), so it's a Vue reactive Proxy. Electron's IPC
+        // structured-clone can't clone a Proxy → "An object could not be
+        // cloned". Pass a plain deep copy (tool inputs are JSON-serializable).
+        let safeInput: Record<string, unknown>;
+        try {
+          safeInput = JSON.parse(JSON.stringify(p.input ?? {}));
+        } catch {
+          safeInput = {};
+        }
+        let r: { output: string; is_error?: boolean; image?: string };
+        try {
+          r = (await localExec()?.invoke({ name: realName, input: safeInput, sessionId })) ?? {
+            output: 'local execution unavailable',
+            is_error: true
+          };
+        } catch (e) {
+          // A rejected invoke (e.g. fs.ts throws 'path outside allowed roots')
+          // must resume the turn as a tool ERROR, not bubble up and fail the
+          // whole turn — the model should see the failure and react.
+          r = { output: e instanceof Error ? e.message : String(e), is_error: true };
+        }
+        // Propagate is_error so denied/failed local executions (e.g. consent
+        // denied, path outside allowed roots) resume as a tool ERROR, not a
+        // successful output the model would trust. `image` (e.g. a
+        // computer.screenshot) is forwarded so the worker can show the model
+        // the screen as a vision input.
+        results.push({
+          tool_use_id: p.toolId,
+          output: r.output,
+          ...(r.is_error ? { is_error: true } : {}),
+          ...(r.image ? { image: r.image } : {})
+        });
+      }
+      // Stop pressed while the last tool was running → don't resume the turn.
+      if (runId !== undefined && runId !== this.clientToolRunId) return;
+      this._resumeWithToolResults(results, conversationId);
     },
     /**
      * Visual-only "skip" of an ask_user_question card. Marks the pending
@@ -689,6 +938,138 @@ export default defineComponent({
       delete block.pending_question;
     },
     /**
+     * Resume a paused conversation by submitting a tool result for the
+     * `request_user_consent` block. Mirrors `onAnswerAskUserQuestion`:
+     * folds the pending block locally so the card flips to the resolved
+     * banner immediately, pushes a fresh pending assistant message, and
+     * runs the next streaming turn against `tool_results`.
+     */
+    async onRespondConnectorConsent(payload: { tool_use_id: string; output: string }) {
+      const token = this.credential?.token;
+      if (!token || !this.conversationId) {
+        console.error('cannot resume: no token or no conversation id');
+        return;
+      }
+      const lastAssistant = [...this.messages].reverse().find((m) => m.role === ROLE_ASSISTANT);
+      if (lastAssistant && Array.isArray(lastAssistant.content)) {
+        const block = (lastAssistant.content as IChatMessageContentItem[]).find(
+          (b) => b.type === 'tool_use' && b.tool_id === payload.tool_use_id
+        );
+        if (block) {
+          block.status = 'done';
+          block.output = payload.output;
+          // Keep `pending_consent_request` so the resolved card can still
+          // render the requirements list. (`pending_question` resume strips
+          // its sentinel; `pending_consent_request` is the only handle the
+          // collapsed view has to the original requirements list.)
+        }
+      }
+      this.messages.push({
+        content: '',
+        role: ROLE_ASSISTANT,
+        state: IChatMessageState.PENDING
+      });
+      this.onScrollDown();
+      this.answering = true;
+      this.canceler = new AbortController();
+      this._streamAssistantTurn(
+        {
+          id: this.conversationId,
+          model: this.model.name,
+          stateful: true,
+          tool_results: [{ tool_use_id: payload.tool_use_id, output: payload.output }],
+          // Re-send local tools so post-resume turns can still call them.
+          ...this._localToolInjection()
+        },
+        token,
+        this.conversationId
+      );
+    },
+    /**
+     * Open the connector's OAuth install URL. PR-6: navigate the
+     * current tab to the AuthFrontend deep-link install page rather
+     * than popping a new window. AuthFrontend completes the OAuth
+     * dance and redirects back here with
+     * ``?consent=<rid>&connector=<id>``; the `messages` watcher then
+     * spots the matching awaiting `request_user_consent` block and
+     * resumes the paused turn automatically (see
+     * ``onConsumePendingConsentReturn``).
+     *
+     * Same-tab nav loses any unsaved composer draft, which is
+     * acceptable for the consent flow: the user clicked Authorize
+     * deliberately and the rest of the conversation is persisted
+     * server-side and restored on return.
+     */
+    onAuthorizeConnector(payload: { tool_use_id: string; entry: { connector: string; install_url?: string } }) {
+      const url = payload.entry?.install_url;
+      if (!url) {
+        console.warn('authorize click with no install_url', payload);
+        return;
+      }
+      window.location.href = url;
+    },
+    /**
+     * Stash any ``?consent=<rid>&connector=<id>`` pair on
+     * ``pendingConsentReturn`` so the `messages` watcher can match
+     * them against the restored history. Called from ``mounted``
+     * BEFORE ``onApplyQueryFromUrl`` strips ``connector`` as part of
+     * Studio's Try-It chip cleanup. Safe to call on every mount —
+     * URLs without both params are simply ignored.
+     */
+    onCaptureConsentReturnFromUrl() {
+      const parsed = parseConsentReturnFromQuery(
+        (this.$route.query || {}) as Record<string, string | string[] | undefined | null>
+      );
+      if (!parsed) return;
+      this.pendingConsentReturn = parsed;
+    },
+    /**
+     * Try to consume ``pendingConsentReturn`` by locating the matching
+     * awaiting ``request_user_consent`` block in ``messages`` and
+     * dispatching ``onRespondConnectorConsent`` with the just-authorized
+     * connector. Called by the `messages` watcher on every mutation so
+     * we run as soon as ``onRestoreCurrentConversation`` populates the
+     * restored history.
+     *
+     * The block search is bounded to the latest assistant message — by
+     * the worker contract only the tail can carry an awaiting block —
+     * so the watcher hot-path stays O(1) for a typical assistant
+     * content array. ``pendingConsentReturn`` is cleared BEFORE
+     * dispatching the resume so that the new messages mutations from
+     * ``onRespondConnectorConsent`` (which folds the block and pushes
+     * a fresh pending assistant) re-enter this watcher as cheap no-ops
+     * instead of double-dispatching.
+     */
+    onConsumePendingConsentReturn() {
+      const pending = this.pendingConsentReturn;
+      if (!pending) return;
+      if (this.messages.length === 0) return;
+      const found = findPendingConsentBlock(this.messages, pending.consentRequestId);
+      if (!found) return;
+      this.pendingConsentReturn = null;
+      const output = buildAuthorizedConsentOutput(found.payload, pending.connector);
+      this.stripConsentReturnFromUrl();
+      this.onRespondConnectorConsent({
+        tool_use_id: found.toolUseId,
+        output
+      });
+    },
+    /**
+     * Drop the ``consent`` + ``connector`` deep-link params from the
+     * URL via ``router.replace`` so a manual refresh after the resume
+     * doesn't replay the request. Keeps any unrelated query keys the
+     * route may pick up in the future.
+     */
+    stripConsentReturnFromUrl() {
+      const query: Record<string, string | string[]> = {};
+      for (const [k, v] of Object.entries(this.$route.query || {})) {
+        if (k === 'consent' || k === 'connector') continue;
+        if (v == null) continue;
+        query[k] = v as string | string[];
+      }
+      this.$router.replace({ path: this.$route.path, query });
+    },
+    /**
      * Shared SSE-driven assistant-turn streamer. Handles deltas, tool_use,
      * cards, citations, ask_user_question, and final state transitions.
      * Caller is responsible for pushing the pending assistant message,
@@ -700,6 +1081,13 @@ export default defineComponent({
       initialConversationId: string | undefined
     ) {
       let conversationId = initialConversationId;
+      // Capture the target assistant message slot NOW. A client-tool auto-resume
+      // ({@link _runClientTools} -> {@link _resumeWithToolResults}) can push a
+      // NEW pending message mid-stream, so `messages.length - 1` would point at
+      // the wrong message by the time this stream's callback/finalizer writes.
+      // Messages are only appended during a turn, so this index stays valid for
+      // the slot we own.
+      const targetIndex = this.messages.length - 1;
       // Track content parts for tool-calling interleaving
       const contentParts: IChatMessageContentItem[] = [];
       const toolMap = new Map<string, IChatMessageContentItem>();
@@ -718,14 +1106,14 @@ export default defineComponent({
           token,
           stream: (response: IChatConversationResponse) => {
             console.debug('stream response', response);
-            const lastMessage = this.messages[this.messages.length - 1];
+            const lastMessage = this.messages[targetIndex];
 
             // Handle tool-calling events
             if (response.type === 'thinking' && response.content) {
               // Streamed chain-of-thought from a reasoning model.
               // Accumulate on the assistant message; rendered above the
               // visible answer by `<thinking-block>` in `Message.vue`.
-              const target = this.messages[this.messages.length - 1];
+              const target = this.messages[targetIndex];
               target.thinking = (target.thinking ?? '') + response.content;
             } else if (response.type === 'tool_use_start' && response.tool_id) {
               // Flush any accumulated text before tool
@@ -744,6 +1132,20 @@ export default defineComponent({
               };
               contentParts.push(toolItem);
               toolMap.set(response.tool_id, toolItem);
+              // Desktop: defer the local run until this paused stream fully
+              // finalizes (so this.conversationId + route are settled for a
+              // brand-new chat and the `answering` flag isn't cleared
+              // mid-resume). The model can fan out several client tools in one
+              // turn, so we QUEUE them and run all on finalize, resuming with
+              // every result in one request.
+              if (isDesktop() && response.execution === 'client') {
+                toolItem.status = 'awaiting_input';
+                this.pendingClientTools.push({
+                  toolId: response.tool_id,
+                  name: response.tool_name || '',
+                  input: response.input || {}
+                });
+              }
             } else if (response.type === 'tool_result' && response.tool_id) {
               const toolItem = toolMap.get(response.tool_id);
               if (toolItem) {
@@ -765,7 +1167,18 @@ export default defineComponent({
               const toolItem = toolMap.get(response.tool_id);
               if (toolItem) {
                 toolItem.status = 'awaiting_input';
-                toolItem.pending_question = response.payload;
+                toolItem.pending_question = response.payload as IAskUserQuestionPayload;
+              }
+            } else if (response.type === 'consent_request' && response.tool_id && response.payload) {
+              // Worker pauses the turn on `request_user_consent` with unmet
+              // requirements. Flip the matching tool_use block to
+              // `awaiting_input`; the renderer swaps in
+              // <ConnectorConsentCard>. SSE then ends with terminal_reason
+              // 'awaiting_user_input'.
+              const toolItem = toolMap.get(response.tool_id);
+              if (toolItem) {
+                toolItem.status = 'awaiting_input';
+                toolItem.pending_consent_request = response.payload as IConsentRequestPayload;
               }
             } else if (response.type === 'artifact' && response.artifact) {
               if (response.artifact.type === 'image' || response.artifact.mimeType?.startsWith('image/')) {
@@ -806,7 +1219,7 @@ export default defineComponent({
               // time. Last-write-wins on duplicate ids matches the
               // worker's semantics (the model is taught to reuse the
               // same id for the same source).
-              const target = this.messages[this.messages.length - 1];
+              const target = this.messages[targetIndex];
               target.citations = { ...(target.citations ?? {}), [response.citation.id]: response.citation };
             } else if (response.delta_answer) {
               currentText = (response.answer || '').slice(answerOffset);
@@ -819,7 +1232,7 @@ export default defineComponent({
             }
 
             if (displayParts.length > 0) {
-              this.messages[this.messages.length - 1] = {
+              this.messages[targetIndex] = {
                 role: ROLE_ASSISTANT,
                 content: displayParts,
                 thinking: lastMessage?.thinking,
@@ -828,7 +1241,7 @@ export default defineComponent({
                   lastMessage?.state !== IChatMessageState.FINISHED ? IChatMessageState.ANSWERING : lastMessage?.state
               };
             } else {
-              this.messages[this.messages.length - 1] = {
+              this.messages[targetIndex] = {
                 role: ROLE_ASSISTANT,
                 content: response.answer,
                 thinking: lastMessage?.thinking,
@@ -843,13 +1256,16 @@ export default defineComponent({
         })
         .then(async () => {
           console.debug('finished fetch answer', this.messages);
-          this.messages[this.messages.length - 1].state = IChatMessageState.FINISHED;
+          this.messages[targetIndex].state = IChatMessageState.FINISHED;
           console.debug('finished fetch answer', JSON.stringify(this.messages));
           await this.$store.dispatch('chat/setConversation', {
             id: conversationId,
             messages: this.messages
           });
-          this.answering = false;
+          // Keep `answering` true if we're about to auto-resume deferred
+          // desktop client tools, so the composer/stop button stay in the
+          // streaming state across the resume instead of flickering enabled.
+          if (!this.pendingClientTools.length) this.answering = false;
           if (conversationId) {
             this.skipNextRestoreId = conversationId;
             await this.$router.push(this.conversationsPath(conversationId));
@@ -857,32 +1273,53 @@ export default defineComponent({
           this.onScrollDown();
           await this.$store.dispatch('chat/getConversations');
           await this.$store.dispatch('chat/getApplications');
+          // Turn is finalized and the conversation id/route are settled — now
+          // run any deferred desktop client tools and resume the turn.
+          if (this.pendingClientTools.length) {
+            const pending = this.pendingClientTools;
+            this.pendingClientTools = [];
+            const runId = ++this.clientToolRunId;
+            await this._runClientTools(pending, conversationId, runId);
+          }
         })
         .catch((error) => {
-          this.handleRequestError(error);
+          this.handleRequestError(error, targetIndex);
         });
     },
-    async handleRequestError(error: any) {
+    async handleRequestError(error: any, targetIndex?: number) {
       console.error('error happened', error);
-      if (this.messages && this.messages.length > 0) {
-        this.messages[this.messages.length - 1].state = IChatMessageState.FAILED;
+      // A turn that errored/aborted after emitting a client tool_use must NOT
+      // auto-resume — drop the deferred tools so the next stream doesn't pick up
+      // a stale invocation against a different conversation.
+      this.pendingClientTools = [];
+      // `i` is the captured slot for this turn; after reset/navigation the
+      // array may be shorter, so resolve the message defensively.
+      const i = targetIndex ?? this.messages.length - 1;
+      const msg = i >= 0 ? this.messages[i] : undefined;
+      if (msg) {
+        msg.state = IChatMessageState.FAILED;
       }
       if (error.name === 'AbortError') {
         console.error('aborted');
+        this.answering = false;
         return;
       } else if (error instanceof BaseError) {
         console.debug('BaseError', error);
-        this.messages[this.messages.length - 1].error = {
-          code: error.code,
-          message: error.detail
-        };
+        if (msg) {
+          msg.error = {
+            code: error.code,
+            message: error.detail
+          };
+        }
       } else if (axios.isCancel(error)) {
-        this.messages[this.messages.length - 1].error = {
-          code: ERROR_CODE_CANCELED
-        };
+        if (msg) {
+          msg.error = {
+            code: ERROR_CODE_CANCELED
+          };
+        }
       } else {
-        if (this.messages && this.messages.length > 0) {
-          this.messages[this.messages.length - 1].error = {
+        if (msg) {
+          msg.error = {
             code: ERROR_CODE_UNKNOWN
           };
         }
@@ -982,11 +1419,31 @@ export default defineComponent({
   height: 100%;
   overflow-y: auto;
   position: relative;
-  .disclaimer {
+  // Enabled-connector icons sit left-aligned directly above the composer input;
+  // :empty drops the row when there are no connectors. The disclaimer is a
+  // single centered line below. Both share the composer's own box
+  // (max-width:800px; margin:auto) so they line up with the input edges rather
+  // than the wider .starter content box.
+  .composer-connectors {
     width: 100%;
+    max-width: 800px;
+    margin: 0 auto 8px;
+    // A little vertical breathing room so the icons aren't squished between
+    // the message above and the composer below; 12px inset lines them up with
+    // the composer's + button (left:12px) rather than the card's outer edge.
+    padding: 4px 12px;
+    display: flex;
+    justify-content: flex-start;
+    &:empty {
+      display: none;
+    }
+  }
+  .composer-disclaimer {
+    width: 100%;
+    max-width: 800px;
+    margin: 8px auto 0;
     text-align: center;
     font-size: 12px;
-    margin: 10px 0 8px;
     color: var(--el-text-color-secondary);
   }
   &.empty {
@@ -1039,6 +1496,11 @@ export default defineComponent({
 
   .dialogue.empty .starter {
     top: 55%;
+  }
+
+  // Match the composer's mobile left control inset (.tools left:10px).
+  .dialogue .composer-connectors {
+    padding: 4px 10px;
   }
 }
 </style>

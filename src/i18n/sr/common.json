@@ -51,6 +51,10 @@
     "message": "Obriši",
     "description": "Tekst u dugmetu, koji se koristi za brisanje sadržaja"
   },
+  "button.deletePermanently": {
+    "message": "Трајно обриши налог",
+    "description": "Final red delete button at the bottom of the delete confirmation dialog"
+  },
   "button.confirm": {
     "message": "Potvrdi",
     "description": "Tekst u dugmetu, koji se koristi za potvrdu neke operacije"
@@ -122,6 +126,14 @@
   "button.downloadIos": {
     "message": "Preuzmi iOS instalacioni paket",
     "description": "Tekst u dugmetu, koji se koristi za preuzimanje iOS instalacionog paketa"
+  },
+  "button.downloadWindows": {
+    "message": "Преузми за Windows",
+    "description": "Text in button for downloading the Windows desktop installer"
+  },
+  "button.downloadMac": {
+    "message": "Преузми за macOS",
+    "description": "Text in button for downloading the macOS desktop installer"
   },
   "button.installIos": {
     "message": "Instaliraj iOS",
@@ -215,6 +227,14 @@
     "message": "Učitavanje...",
     "description": "Statusni tekst koji se prikazuje dok se sadržaj učitava"
   },
+  "error.appleSignInFailed": {
+    "message": "Пријава помоћу Apple-а није успела. Покушајте поново или користите други начин пријаве.",
+    "description": "Error toast shown when native Apple sign-in fails for a reason other than user cancellation"
+  },
+  "error.loginLinkExpired": {
+    "message": "Login link expired. Please sign in again.",
+    "description": "Shown on the desktop client when an OAuth callback is dropped (state mismatch or expired)."
+  },
   "entity.operation": {
     "message": "Operacija",
     "description": "Operacija entiteta"
@@ -238,6 +258,10 @@
   "message.noTasks": {
     "message": "Nema istorijskih zadataka, započnite novi zadatak～",
     "description": "Poruka kada nema zadataka"
+  },
+  "message.guestTasks": {
+    "message": "Пријавите се да започнете задатак и овде видите своје креације.",
+    "description": "Prompt shown in the task list area for not-logged-in guests"
   },
   "message.usedAmount": {
     "message": "Iskorišćeni iznos",
@@ -282,6 +306,46 @@
   "message.mobileIosPending": {
     "message": "iOS instalacioni paket još nije dostupan za preuzimanje, biće dostupan nakon što se završi sa Apple sertifikatima i profilima.",
     "description": "Poruka kada iOS instalacioni paket nije dostupan"
+  },
+  "message.mobileComingSoon": {
+    "message": "Ускоро",
+    "description": "Short status label shown on a platform card (e.g. iOS) while its build is being prepared"
+  },
+  "message.mobileNowOnAppStore": {
+    "message": "Now on the App Store",
+    "description": "Status label shown on the iOS card when the app is live on the App Store"
+  },
+  "message.desktopWindowsHint": {
+    "message": "За Windows 10 и новије (64-битни). Преузмите инсталер и двапут кликните да бисте инсталирали.",
+    "description": "Windows desktop download card description"
+  },
+  "message.desktopMacHint": {
+    "message": "За macOS 11 и новије. Изаберите верзију која одговара вашем Mac-у — Apple Silicon (M серија) или Intel.",
+    "description": "macOS desktop download card description"
+  },
+  "message.desktopUnsignedNote": {
+    "message": "Десктоп апликације су непотписане бета верзије. На Windows-у изаберите „Више информација → Свеједно покрени“ у SmartScreen упозорењу; на macOS-у кликните десним тастером на апликацију и изаберите „Отвори“ да бисте заобишли Gatekeeper.",
+    "description": "Note explaining the desktop builds are unsigned betas and how to open them"
+  },
+  "button.getOnGooglePlay": {
+    "message": "Преузмите са Google Play-а",
+    "description": "Button label that opens the app's Google Play Store listing"
+  },
+  "button.getOnAppStore": {
+    "message": "Get it on the App Store",
+    "description": "Button label that opens the app's Apple App Store listing"
+  },
+  "message.mobileApkFallback": {
+    "message": "Немате приступ Google Play-у? Преузмите APK директно.",
+    "description": "Shown next to a secondary button offering a direct APK download for users who cannot access Google Play"
+  },
+  "message.mobilePlayStoreHint": {
+    "message": "Скенирајте да отворите Google Play",
+    "description": "Hint under the QR code explaining that scanning it opens the Google Play listing"
+  },
+  "message.mobileAppStoreHint": {
+    "message": "Scan to open the App Store",
+    "description": "Hint under the QR code explaining that scanning it opens the App Store listing"
   },
   "message.mobileInstallNote": {
     "message": "Prilikom prve instalacije preduzeća ili Ad Hoc paketa na iOS-u, sistem može zatražiti da prvo verifikujete sertifikat u 'Podešavanja > Opšte > VPN i upravljanje uređajem'.",
@@ -342,6 +406,34 @@
   "message.alert": {
     "message": "Upozorenje",
     "description": "Poruka koja upozorava korisnika"
+  },
+  "message.deleteAccountConfirm": {
+    "message": "Ово ће трајно обрисати ваш налог и све повезане податке. Ова радња се не може опозвати. Да ли сте сигурни да желите да наставите?",
+    "description": "Confirmation message shown before permanently deleting the user account"
+  },
+  "message.deleteAccountSuccess": {
+    "message": "Ваш налог је обрисан.",
+    "description": "Message shown after the user account is successfully deleted"
+  },
+  "message.deleteAccountFailed": {
+    "message": "Брисање налога није успело. Покушајте поново касније.",
+    "description": "Message shown when account deletion fails"
+  },
+  "message.deleteAccountWarning": {
+    "message": "Ова радња је неповратна! Ваш налог и сви његови подаци биће трајно обрисани и не могу се повратити.",
+    "description": "Red warning banner at the top of the delete confirmation dialog"
+  },
+  "message.deleteAccountConsequences": {
+    "message": "Трајно се бришу: профил, стање и кредити, апликације и претплате, API кључеви и везе за пријаву трећих страна.",
+    "description": "Explains what data will be removed in the delete confirmation dialog"
+  },
+  "message.deleteAccountTypePrompt": {
+    "message": "Унесите своје корисничко име да бисте потврдили брисање:",
+    "description": "Instructs the user to type their username to confirm; the username is shown separately below"
+  },
+  "message.deleteAccountPlaceholder": {
+    "message": "Овде унесите своје корисничко име",
+    "description": "Placeholder for the username confirmation input"
   },
   "message.info": {
     "message": "Informacija",
@@ -475,6 +567,10 @@
     "message": "SeeDance",
     "description": "网站导航栏中的文本，用于显示SeeDance页面，请不要翻译此字段，必须保持为'SeeDance'"
   },
+  "nav.grokvideo": {
+    "message": "Grok Video",
+    "description": "Text in the website navigation bar to display the Grok Imagine video page"
+  },
   "nav.luma": {
     "message": "Luma",
     "description": "网站导航栏中的文本，用于显示Luma页面，请不要翻译此字段，必须保持为'Luma'"
@@ -511,6 +607,10 @@
     "message": "SERP",
     "description": "网站导航栏中的文本，用于显示SERP页面，请不要翻译此字段，必须保持为'SERP'"
   },
+  "nav.codingBridge": {
+    "message": "Coding Bridge",
+    "description": "Text in the website navigation bar to display the Coding Bridge page, must remain as 'Coding Bridge'"
+  },
   "nav.webextrator": {
     "message": "WebExtrator",
     "description": "Text in the website navigation bar to display the WebExtrator page, must remain as 'WebExtrator'"
@@ -538,6 +638,10 @@
   "nav.logOut": {
     "message": "Odjavi se",
     "description": "网站导航栏中的文本，用于退出登录"
+  },
+  "nav.deleteAccount": {
+    "message": "Обриши налог",
+    "description": "Menu item to permanently delete the current user account"
   },
   "nav.site": {
     "message": "Podešavanje sajta",
@@ -636,7 +740,7 @@
     "description": "Prikazuje deo naslova sa informacijama o podršci"
   },
   "about.address": {
-    "message": "651 N Broad St, Suite 201, Middletown, DE, USA",
+    "message": "131 Continental Dr, Suite 305, Newark, DE 19713, USA",
     "description": "Adresa kompanije"
   },
   "about.email": {
@@ -823,6 +927,119 @@
     "message": "O aplikaciji",
     "description": "Naslov sekcije o aplikaciji na stranici sa podešavanjima"
   },
+  "settings.localTools": {
+    "message": "Локални алати",
+    "description": "Desktop-only settings tab for managing local tool folders, permissions and grants."
+  },
+  "settings.localToolsDesktopOnly": {
+    "message": "Доступно само у десктоп апликацији.",
+    "description": "Shown when the Local Tools tab is opened on web/mobile."
+  },
+  "settings.localToolsFoldersTitle": {
+    "message": "Овлашћене фасцикле",
+    "description": "Heading for the list of folders the AI may read/write locally."
+  },
+  "settings.localToolsFoldersHint": {
+    "message": "Фасцикле које вештачка интелигенција сме да чита и уписује на овом уређају. Алати се извршавају локално; ништа не напушта ваш уређај без ваше сагласности.",
+    "description": "Help text under the authorized-folders heading."
+  },
+  "settings.localToolsComputerUseTitle": {
+    "message": "Computer Use (experimental)",
+    "description": "Heading for the opt-in Computer Use (screen + mouse/keyboard control) toggle."
+  },
+  "settings.localToolsComputerUseHint": {
+    "message": "Let the AI see your screen and control the mouse and keyboard on this computer. Off by default — turn it on only when you need it. On macOS, grant Screen Recording and Accessibility permissions below. Each action still asks for your confirmation.",
+    "description": "Help text under the Computer Use toggle."
+  },
+  "settings.localToolsPreauthorizeAll": "Унапред дозволи све радње рачунара",
+  "settings.localToolsPreauthorizeHint": "Дозволите одједном снимак екрана, клик, куцање, тастере и све радње и затражите потребне системске дозволе.",
+  "settings.localToolsCuActionsTitle": "Дозволи појединачне радње",
+  "settings.localToolsCuActionsHint": "Укључите само радње које дозвољавате да их вештачка интелигенција изврши без питања сваки пут. Свака се може опозвати овде.",
+  "settings.localToolsCuScreenshot": "Снимак екрана",
+  "settings.localToolsCuClick": "Клик",
+  "settings.localToolsCuMove": "Помери показивач",
+  "settings.localToolsCuType": "Унеси текст",
+  "settings.localToolsCuKey": "Притисни тастере",
+  "settings.localToolsCuScroll": "Померање",
+  "settings.localToolsBuiltinTitle": "Уграђени алати",
+  "settings.localToolsBuiltinHint": "Укључите алат да га вештачка интелигенција покреће без питања. Shell може извршити било коју команду на овом рачунару — укључите само ако верујете. Алати за датотеке остају ограничени на одобрене фасцикле.",
+  "settings.localToolsBuiltinRisky": "Пун приступ",
+  "settings.localToolsAddFolder": {
+    "message": "Додај фасциклу",
+    "description": "Button to pick a folder to authorize."
+  },
+  "settings.localToolsRemove": {
+    "message": "Уклони",
+    "description": "Button to remove an authorized folder."
+  },
+  "settings.localToolsNoFolders": {
+    "message": "Још нема овлашћених фасцикли.",
+    "description": "Empty state for the authorized-folders list."
+  },
+  "settings.localToolsSave": {
+    "message": "Сачувај",
+    "description": "Save the authorized folders."
+  },
+  "settings.localToolsSaved": {
+    "message": "Сачувано",
+    "description": "Transient confirmation after saving local-tool folders."
+  },
+  "settings.localToolsActiveTools": {
+    "message": "Активни алати",
+    "description": "Label before the list of currently available local tools."
+  },
+  "settings.localToolsGrantsTitle": {
+    "message": "Увек дозвољене радње",
+    "description": "Heading for the persistent consent grants list."
+  },
+  "settings.localToolsGrantsHint": {
+    "message": "Позиви алата које сте изабрали да увек дозволите. Извршавају се без поновног питања. Опозовите било који да поново укључите потврду.",
+    "description": "Help text under the always-allowed actions heading."
+  },
+  "settings.localToolsRevoke": {
+    "message": "Опозови",
+    "description": "Button to revoke a single always-allow grant."
+  },
+  "settings.localToolsRevokeAll": {
+    "message": "Опозови све",
+    "description": "Button to revoke every always-allow grant."
+  },
+  "settings.localToolsNoGrants": {
+    "message": "Нема увек дозвољених радњи. Бићете упитани пре сваког локалног алата.",
+    "description": "Empty state for the always-allowed actions list."
+  },
+  "settings.localToolsPermsTitle": {
+    "message": "Системске дозволе",
+    "description": "Heading for the macOS system-permission section."
+  },
+  "settings.localToolsPermsHint": {
+    "message": "Опционо. Приступ фасциклама изнад не захтева ниједну — доделите само оно што одређени задатак захтева.",
+    "description": "Help text under the system-permissions heading."
+  },
+  "settings.localToolsPermFullDisk": {
+    "message": "Пун приступ диску",
+    "description": "macOS Full Disk Access permission row."
+  },
+  "settings.localToolsPermScreen": {
+    "message": "Снимање екрана",
+    "description": "macOS Screen Recording permission row."
+  },
+  "settings.localToolsPermAccessibility": {
+    "message": "Приступачност",
+    "description": "macOS Accessibility permission row."
+  },
+  "settings.localToolsGranted": {
+    "message": "Додељено",
+    "description": "Status tag when a system permission is granted."
+  },
+  "settings.localToolsNotGranted": {
+    "message": "Није додељено",
+    "description": "Status tag when a system permission is not granted."
+  },
+  "settings.localToolsOpen": {
+    "message": "Отвори…",
+    "description": "Button to open the relevant macOS System Settings pane."
+  },
   "settings.subsites": {
     "message": "Moje podstranice",
     "description": "Naslov taba za upravljanje podstranicama u prozoru sa podešavanjima. Vidljivo samo na zvaničnoj glavnoj stranici, podstranice se ne prikazuju."
@@ -923,8 +1140,84 @@
     "message": "Run this from your own code to produce the same result. Replace <YOUR_API_KEY> with a key from your platform console.",
     "description": "Helper text shown above the code tabs in the API code dialog, explaining how to use the snippet"
   },
+  "tab.apiRequest": {
+    "message": "Захтев",
+    "description": "Oznaka taba dijaloga za API kod za isječak zahteva (kod koji reprodukuje trenutni rezultat)."
+  },
+  "tab.apiResponse": {
+    "message": "Одговор",
+    "description": "Oznaka taba dijaloga za API kod za uživo odgovor koji se vraća nakon klika na Izvrši."
+  },
+  "button.apiRun": {
+    "message": "Ponovo pokreni",
+    "description": "Dugme u API kod dijalogu koje ponovo pokreće zahtev uživo protiv API-ja koristeći korisnički ključ. Rezultat već postoji, pa klikom ponovo pokreće, i to se naplaćuje."
+  },
+  "button.apiRunning": {
+    "message": "Извршава се…",
+    "description": "Oznaka dugmeta 'Izvrši' dijaloga za API kod dok je uživo zahtev u toku."
+  },
+  "button.apiRunConfirm": {
+    "message": "Potvrdi pokretanje",
+    "description": "Oznaka dugmeta za potvrdu u dijalogu koji upozorava da pokretanje ovde troši dodatne kredite."
+  },
+  "button.viewDocs": {
+    "message": "Pogledaj dokumentaciju",
+    "description": "Dugme u donjem delu API kod dijaloga koje otvara odgovarajuću stranicu dokumentacije API-ja na platformi."
+  },
+  "message.apiClickRun": {
+    "message": "Kliknite na „Ponovo pokreni“ da biste koristili svoj API ključ za izvršenje ovog zahteva uživo.",
+    "description": "Prazno stanje kartice odgovora u API kod dijalogu, prikazuje se pre nego što korisnik pokrene zahtev."
+  },
+  "message.apiRunConfirmTitle": {
+    "message": "Potvrdi pokretanje",
+    "description": "Naslov dijaloga za potvrdu koji se prikazuje pre ponovnog pokretanja zahteva iz API kod dijaloga."
+  },
+  "message.apiRunConfirmDesc": {
+    "message": "Ovo pokretanje će koristiti vaš API ključ za stvarno pozivanje interfejsa i dodatno trošiti kredite, da li ste sigurni da želite da nastavite?",
+    "description": "Tekst u dijalogu za potvrdu koji upozorava da ponovno pokretanje zahteva predstavlja stvarno, naplaćeno API pozivanje."
+  },
+  "message.apiRunConfirmSkip": {
+    "message": "Ne prikazuj ponovo",
+    "description": "Potvrdna kutija u dijalogu za potvrdu pokretanja koja, kada je označena, potiskuje upozorenje na narednim pokretanjima."
+  },
+  "message.apiRunTaskCreated": {
+    "message": "Задатак је креиран, затворите овај прозор да бисте видели најновије резултате испод.",
+    "description": "Banner uspeha koji se prikazuje u API kod dijalogu након што izvrшавање врати ID zadatka, sugerишући да нови задатак већ појавljuје у списку иза дијалога."
+  },
+  "button.apiViewLatest": {
+    "message": "Затвори и погледај",
+    "description": " dugme u API kod dijalogu koje zatvara dijalog kako bi korisnik mogao da vidi novo kreirani zadatak u listi ispod."
+  },
   "message.uploadInProgress": {
     "message": "Otpremanje referentnih datoteka je još u toku — sačekajte trenutak.",
     "description": "Toast shown when the user clicks the Generate button while one or more reference uploads are still in flight. Asks them to wait for uploads to complete before retrying."
+  },
+  "appUpgrade.title": {
+    "message": "Update required",
+    "description": "Title of the native-app version gate modal shown at startup when the installed build is older than what the backend supports."
+  },
+  "appUpgrade.blockMessage": {
+    "message": "This version is no longer supported. Please update from the app store to continue.",
+    "description": "Body text of the hard-block upgrade modal shown when the installed version is below min_supported. The modal has no dismiss affordance — the only button opens the app store."
+  },
+  "appUpgrade.softMessage": {
+    "message": "A newer version is available. Update from the app store for the best experience.",
+    "description": "Body text of the soft upgrade prompt shown when the installed version is below latest but above min_supported. The user can dismiss and keep using the app."
+  },
+  "appUpgrade.openStore": {
+    "message": "Update now",
+    "description": "Primary button on the upgrade modal — opens the App Store / Play Store URL in the system browser."
+  },
+  "appUpgrade.later": {
+    "message": "Later",
+    "description": "Secondary button on the soft upgrade prompt — dismisses the modal and lets the user keep using the current version. Only shown for non-forced upgrades."
+  },
+  "nav.maestro": {
+    "message": "Maestro",
+    "description": "Текст на страници за претварање Maestro чланака у видео у навигационом менију, остаје 'Maestro'"
+  },
+  "nav.digitalhuman": {
+    "message": "Digital Human",
+    "description": "Text in the website navigation bar for the Digital Human talking-head page"
   }
 }

@@ -12,6 +12,8 @@ export interface ISiteFeatures {
   kling?: any;
   veo?: any;
   sora?: any;
+  maestro?: any;
+  digitalhuman?: any;
   pixverse?: any;
   hailuo?: any;
   headshots?: any;
@@ -20,12 +22,14 @@ export interface ISiteFeatures {
   openaiimage?: any;
   seedream?: any;
   seedance?: any;
+  grokvideo?: any;
   wan?: any;
   producer?: any;
   kimi?: any;
   serp?: any;
   fish?: any;
   webextrator?: any;
+  codingBridge?: any;
   support?: any;
   subsite?: ISiteSubsiteFeature;
 }
@@ -89,6 +93,16 @@ export interface ISite {
   metadata?: any;
   theme?: ISiteTheme | null;
   tags?: string[];
+  // Server-derived metadata for the per-field auto-translate toggle
+  // (PlatformBackend PR #511/#513). When a field is in
+  // ``auto_translated_fields``, the rendered column (``title`` /
+  // ``description``) is JSONLocalizationRenderer-evaluated to the
+  // viewer's language and the raw zh-cn source lives in the matching
+  // ``<field>_source`` key. When the toggle is OFF, ``<field>_source``
+  // mirrors the column. Read-only on the wire.
+  title_source?: string;
+  description_source?: string;
+  auto_translated_fields?: string[];
 }
 
 export interface ISiteListResponse {

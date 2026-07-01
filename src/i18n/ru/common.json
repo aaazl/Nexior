@@ -51,6 +51,10 @@
     "message": "Удалить",
     "description": "Текст в кнопке, используемый для удаления содержимого"
   },
+  "button.deletePermanently": {
+    "message": "Удалить аккаунт навсегда",
+    "description": "Final red delete button at the bottom of the delete confirmation dialog"
+  },
   "button.confirm": {
     "message": "Подтвердить",
     "description": "Текст в кнопке, используемый для подтверждения действия"
@@ -122,6 +126,14 @@
   "button.downloadIos": {
     "message": "Скачать для iOS",
     "description": "Текст в кнопке, используемый для скачивания установочного пакета для iOS"
+  },
+  "button.downloadWindows": {
+    "message": "Скачать для Windows",
+    "description": "Text in button for downloading the Windows desktop installer"
+  },
+  "button.downloadMac": {
+    "message": "Скачать для macOS",
+    "description": "Text in button for downloading the macOS desktop installer"
   },
   "button.installIos": {
     "message": "Установить для iOS",
@@ -215,6 +227,14 @@
     "message": "Загрузка...",
     "description": "Текст статуса, отображаемый во время загрузки контента"
   },
+  "error.appleSignInFailed": {
+    "message": "Не удалось войти через Apple. Повторите попытку или используйте другой способ входа.",
+    "description": "Error toast shown when native Apple sign-in fails for a reason other than user cancellation"
+  },
+  "error.loginLinkExpired": {
+    "message": "Login link expired. Please sign in again.",
+    "description": "Shown on the desktop client when an OAuth callback is dropped (state mismatch or expired)."
+  },
   "entity.operation": {
     "message": "Операция",
     "description": "Операция сущности"
@@ -238,6 +258,10 @@
   "message.noTasks": {
     "message": "Нет историй задач, начните новую задачу～",
     "description": "Сообщение, когда нет задач"
+  },
+  "message.guestTasks": {
+    "message": "Войдите, чтобы начать задачу и увидеть свои работы здесь.",
+    "description": "Prompt shown in the task list area for not-logged-in guests"
   },
   "message.usedAmount": {
     "message": "Использованная сумма",
@@ -282,6 +306,46 @@
   "message.mobileIosPending": {
     "message": "Пакет установки iOS еще не доступен для загрузки, будет предоставлен после завершения сертификатов и профилей Apple.",
     "description": "Сообщение, когда пакет установки iOS еще недоступен"
+  },
+  "message.mobileComingSoon": {
+    "message": "Скоро",
+    "description": "Short status label shown on a platform card (e.g. iOS) while its build is being prepared"
+  },
+  "message.mobileNowOnAppStore": {
+    "message": "Now on the App Store",
+    "description": "Status label shown on the iOS card when the app is live on the App Store"
+  },
+  "message.desktopWindowsHint": {
+    "message": "Для Windows 10 и новее (64-бит). Скачайте установщик и дважды щёлкните для установки.",
+    "description": "Windows desktop download card description"
+  },
+  "message.desktopMacHint": {
+    "message": "Для macOS 11 и новее. Выберите сборку для вашего Mac — Apple Silicon (серия M) или Intel.",
+    "description": "macOS desktop download card description"
+  },
+  "message.desktopUnsignedNote": {
+    "message": "Настольные приложения — это неподписанные бета-сборки. В Windows выберите «Подробнее → Выполнить в любом случае» в окне SmartScreen; в macOS щёлкните приложение правой кнопкой мыши и выберите «Открыть», чтобы обойти Gatekeeper.",
+    "description": "Note explaining the desktop builds are unsigned betas and how to open them"
+  },
+  "button.getOnGooglePlay": {
+    "message": "Доступно в Google Play",
+    "description": "Button label that opens the app's Google Play Store listing"
+  },
+  "button.getOnAppStore": {
+    "message": "Get it on the App Store",
+    "description": "Button label that opens the app's Apple App Store listing"
+  },
+  "message.mobileApkFallback": {
+    "message": "Нет доступа к Google Play? Скачайте APK напрямую.",
+    "description": "Shown next to a secondary button offering a direct APK download for users who cannot access Google Play"
+  },
+  "message.mobilePlayStoreHint": {
+    "message": "Отсканируйте, чтобы открыть Google Play",
+    "description": "Hint under the QR code explaining that scanning it opens the Google Play listing"
+  },
+  "message.mobileAppStoreHint": {
+    "message": "Scan to open the App Store",
+    "description": "Hint under the QR code explaining that scanning it opens the App Store listing"
   },
   "message.mobileInstallNote": {
     "message": "При первой установке корпоративного или Ad Hoc пакета на iOS система может потребовать сначала доверить сертификат в 'Настройки > Основные > VPN и управление устройствами'.",
@@ -342,6 +406,34 @@
   "message.alert": {
     "message": "Предупреждение",
     "description": "Сообщение для предупреждения пользователя"
+  },
+  "message.deleteAccountConfirm": {
+    "message": "Это навсегда удалит вашу учётную запись и все связанные данные. Это действие нельзя отменить. Вы уверены, что хотите продолжить?",
+    "description": "Confirmation message shown before permanently deleting the user account"
+  },
+  "message.deleteAccountSuccess": {
+    "message": "Ваша учётная запись удалена.",
+    "description": "Message shown after the user account is successfully deleted"
+  },
+  "message.deleteAccountFailed": {
+    "message": "Не удалось удалить учётную запись. Повторите попытку позже.",
+    "description": "Message shown when account deletion fails"
+  },
+  "message.deleteAccountWarning": {
+    "message": "Это действие необратимо! Ваш аккаунт и все его данные будут безвозвратно удалены и не подлежат восстановлению.",
+    "description": "Red warning banner at the top of the delete confirmation dialog"
+  },
+  "message.deleteAccountConsequences": {
+    "message": "Будут удалены навсегда: профиль, баланс и кредиты, приложения и подписки, ключи API и привязки сторонних входов.",
+    "description": "Explains what data will be removed in the delete confirmation dialog"
+  },
+  "message.deleteAccountTypePrompt": {
+    "message": "Введите имя пользователя, чтобы подтвердить удаление:",
+    "description": "Instructs the user to type their username to confirm; the username is shown separately below"
+  },
+  "message.deleteAccountPlaceholder": {
+    "message": "Введите имя пользователя здесь",
+    "description": "Placeholder for the username confirmation input"
   },
   "message.info": {
     "message": "Информация",
@@ -475,6 +567,10 @@
     "message": "SeeDance",
     "description": "网站导航栏中的文本，用于显示SeeDance页面，请不要翻译此字段，必须保持为'SeeDance'"
   },
+  "nav.grokvideo": {
+    "message": "Grok Video",
+    "description": "Text in the website navigation bar to display the Grok Imagine video page"
+  },
   "nav.luma": {
     "message": "Luma",
     "description": "网站导航栏中的文本，用于显示Luma页面，请不要翻译此字段，必须保持为'Luma'"
@@ -511,6 +607,10 @@
     "message": "SERP",
     "description": "网站导航栏中的文本，用于显示SERP页面，请不要翻译此字段，必须保持为'SERP'"
   },
+  "nav.codingBridge": {
+    "message": "Coding Bridge",
+    "description": "Text in the website navigation bar to display the Coding Bridge page, must remain as 'Coding Bridge'"
+  },
   "nav.webextrator": {
     "message": "WebExtrator",
     "description": "Text in the website navigation bar to display the WebExtrator page, must remain as 'WebExtrator'"
@@ -538,6 +638,10 @@
   "nav.logOut": {
     "message": "Выйти",
     "description": "网站导航栏中的文本，用于退出登录"
+  },
+  "nav.deleteAccount": {
+    "message": "Удалить аккаунт",
+    "description": "Menu item to permanently delete the current user account"
   },
   "nav.site": {
     "message": "Настройки сайта",
@@ -636,7 +740,7 @@
     "description": "Часть заголовка, отображающая информацию о поддержке"
   },
   "about.address": {
-    "message": "Сuite 201, 651 N Broad St, Middletown, DE, USA",
+    "message": "США, штат Делавэр, Ньюарк, 131 Continental Dr, Suite 305, 19713",
     "description": "Адрес компании"
   },
   "about.email": {
@@ -823,6 +927,119 @@
     "message": "О нас",
     "description": "Заголовок раздела 'О нас' на странице настроек"
   },
+  "settings.localTools": {
+    "message": "Локальные инструменты",
+    "description": "Desktop-only settings tab for managing local tool folders, permissions and grants."
+  },
+  "settings.localToolsDesktopOnly": {
+    "message": "Доступно только в настольном приложении.",
+    "description": "Shown when the Local Tools tab is opened on web/mobile."
+  },
+  "settings.localToolsFoldersTitle": {
+    "message": "Разрешённые папки",
+    "description": "Heading for the list of folders the AI may read/write locally."
+  },
+  "settings.localToolsFoldersHint": {
+    "message": "Папки, которые ИИ может читать и записывать на этом устройстве. Инструменты выполняются локально; ничто не покидает ваше устройство без вашего согласия.",
+    "description": "Help text under the authorized-folders heading."
+  },
+  "settings.localToolsComputerUseTitle": {
+    "message": "Computer Use (experimental)",
+    "description": "Heading for the opt-in Computer Use (screen + mouse/keyboard control) toggle."
+  },
+  "settings.localToolsComputerUseHint": {
+    "message": "Let the AI see your screen and control the mouse and keyboard on this computer. Off by default — turn it on only when you need it. On macOS, grant Screen Recording and Accessibility permissions below. Each action still asks for your confirmation.",
+    "description": "Help text under the Computer Use toggle."
+  },
+  "settings.localToolsPreauthorizeAll": "Заранее разрешить все действия с компьютером",
+  "settings.localToolsPreauthorizeHint": "Разрешите сразу снимок экрана, клик, ввод, клавиши и все действия и запросите необходимые системные разрешения.",
+  "settings.localToolsCuActionsTitle": "Разрешить отдельные действия",
+  "settings.localToolsCuActionsHint": "Включайте только те действия, которые вы готовы разрешить ИИ выполнять без запроса. Каждое можно отозвать здесь.",
+  "settings.localToolsCuScreenshot": "Снимок экрана",
+  "settings.localToolsCuClick": "Клик",
+  "settings.localToolsCuMove": "Переместить указатель",
+  "settings.localToolsCuType": "Ввод текста",
+  "settings.localToolsCuKey": "Нажатие клавиш",
+  "settings.localToolsCuScroll": "Прокрутка",
+  "settings.localToolsBuiltinTitle": "Встроенные инструменты",
+  "settings.localToolsBuiltinHint": "Включите инструмент, чтобы ИИ выполнял его без запроса. Shell может выполнить любую команду на этом компьютере — включайте только при доверии. Файловые инструменты остаются в пределах разрешённых папок.",
+  "settings.localToolsBuiltinRisky": "Полный доступ",
+  "settings.localToolsAddFolder": {
+    "message": "Добавить папку",
+    "description": "Button to pick a folder to authorize."
+  },
+  "settings.localToolsRemove": {
+    "message": "Удалить",
+    "description": "Button to remove an authorized folder."
+  },
+  "settings.localToolsNoFolders": {
+    "message": "Пока нет разрешённых папок.",
+    "description": "Empty state for the authorized-folders list."
+  },
+  "settings.localToolsSave": {
+    "message": "Сохранить",
+    "description": "Save the authorized folders."
+  },
+  "settings.localToolsSaved": {
+    "message": "Сохранено",
+    "description": "Transient confirmation after saving local-tool folders."
+  },
+  "settings.localToolsActiveTools": {
+    "message": "Активные инструменты",
+    "description": "Label before the list of currently available local tools."
+  },
+  "settings.localToolsGrantsTitle": {
+    "message": "Всегда разрешённые действия",
+    "description": "Heading for the persistent consent grants list."
+  },
+  "settings.localToolsGrantsHint": {
+    "message": "Вызовы инструментов, которые вы решили всегда разрешать. Они выполняются без повторного запроса. Отзовите любой, чтобы снова включить подтверждение.",
+    "description": "Help text under the always-allowed actions heading."
+  },
+  "settings.localToolsRevoke": {
+    "message": "Отозвать",
+    "description": "Button to revoke a single always-allow grant."
+  },
+  "settings.localToolsRevokeAll": {
+    "message": "Отозвать все",
+    "description": "Button to revoke every always-allow grant."
+  },
+  "settings.localToolsNoGrants": {
+    "message": "Нет всегда разрешённых действий. Перед каждым локальным инструментом будет запрашиваться подтверждение.",
+    "description": "Empty state for the always-allowed actions list."
+  },
+  "settings.localToolsPermsTitle": {
+    "message": "Системные разрешения",
+    "description": "Heading for the macOS system-permission section."
+  },
+  "settings.localToolsPermsHint": {
+    "message": "Необязательно. Для доступа к папкам выше они не нужны — предоставляйте только то, что требует конкретная задача.",
+    "description": "Help text under the system-permissions heading."
+  },
+  "settings.localToolsPermFullDisk": {
+    "message": "Полный доступ к диску",
+    "description": "macOS Full Disk Access permission row."
+  },
+  "settings.localToolsPermScreen": {
+    "message": "Запись экрана",
+    "description": "macOS Screen Recording permission row."
+  },
+  "settings.localToolsPermAccessibility": {
+    "message": "Универсальный доступ",
+    "description": "macOS Accessibility permission row."
+  },
+  "settings.localToolsGranted": {
+    "message": "Предоставлено",
+    "description": "Status tag when a system permission is granted."
+  },
+  "settings.localToolsNotGranted": {
+    "message": "Не предоставлено",
+    "description": "Status tag when a system permission is not granted."
+  },
+  "settings.localToolsOpen": {
+    "message": "Открыть…",
+    "description": "Button to open the relevant macOS System Settings pane."
+  },
   "settings.subsites": {
     "message": "Мои подсайты",
     "description": "Заголовок вкладки управления подсайтами в окне настроек. Видно только на официальном основном сайте, подсайты не отображаются."
@@ -923,8 +1140,84 @@
     "message": "Run this from your own code to produce the same result. Replace <YOUR_API_KEY> with a key from your platform console.",
     "description": "Helper text shown above the code tabs in the API code dialog, explaining how to use the snippet"
   },
+  "tab.apiRequest": {
+    "message": "Запрос",
+    "description": "Метка таба диалога API-кода для фрагмента запроса (код, который воспроизводит текущий результат)."
+  },
+  "tab.apiResponse": {
+    "message": "Ответ",
+    "description": "Метка таба диалога API-кода для живого ответа, возвращаемого после нажатия на Запустить."
+  },
+  "button.apiRun": {
+    "message": "Запустить снова",
+    "description": "Кнопка диалога кода API, которая повторно выполняет запрос в реальном времени с использованием ключа пользователя. Результат уже существует, поэтому нажатие запускает его снова, и это подлежит оплате."
+  },
+  "button.apiRunning": {
+    "message": "Запуск…",
+    "description": "Метка кнопки Запустить в диалоге API-кода, пока запрос выполняется."
+  },
+  "button.apiRunConfirm": {
+    "message": "Подтвердить запуск",
+    "description": "Метка кнопки подтверждения в диалоге, который предупреждает, что выполнение здесь потребляет дополнительные кредиты."
+  },
+  "button.viewDocs": {
+    "message": "Просмотреть документацию",
+    "description": "Кнопка в нижней части диалога кода API, которая открывает соответствующую страницу документации API на платформе."
+  },
+  "message.apiClickRun": {
+    "message": "Нажмите «Запустить снова», чтобы использовать ваш API Key для выполнения этого запроса в реальном времени.",
+    "description": "Состояние пустого таба ответа диалога кода API, отображаемое до того, как пользователь выполнит запрос."
+  },
+  "message.apiRunConfirmTitle": {
+    "message": "Подтвердить запуск",
+    "description": "Заголовок диалога подтверждения, отображаемого перед повторным запуском запроса из диалога кода API."
+  },
+  "message.apiRunConfirmDesc": {
+    "message": "Этот запуск будет использовать ваш API Key для реального вызова интерфейса и дополнительно израсходует кредиты, вы уверены, что хотите продолжить?",
+    "description": "Текст тела диалога подтверждения, предупреждающий о том, что повторный запуск запроса является реальным, оплачиваемым вызовом API."
+  },
+  "message.apiRunConfirmSkip": {
+    "message": "Больше не напоминать",
+    "description": "Флажок в диалоге подтверждения запуска, который, если установлен, подавляет предупреждение при последующих запусках."
+  },
+  "message.apiRunTaskCreated": {
+    "message": "Задача создана, закройте это окно, чтобы увидеть последние результаты ниже.",
+    "description": "Баннер успеха, отображаемый в диалоге кода API после выполнения, возвращающего идентификатор задачи, намекающий на то, что новая задача уже отображается в списке за диалогом."
+  },
+  "button.apiViewLatest": {
+    "message": "Закрыть и посмотреть",
+    "description": "Кнопка в баннере успеха диалога кода API, которая закрывает диалог, чтобы пользователь мог увидеть только что созданную задачу в списке ниже."
+  },
   "message.uploadInProgress": {
     "message": "Загрузка эталонных файлов ещё продолжается — пожалуйста, подождите.",
     "description": "Toast shown when the user clicks the Generate button while one or more reference uploads are still in flight. Asks them to wait for uploads to complete before retrying."
+  },
+  "appUpgrade.title": {
+    "message": "Update required",
+    "description": "Title of the native-app version gate modal shown at startup when the installed build is older than what the backend supports."
+  },
+  "appUpgrade.blockMessage": {
+    "message": "This version is no longer supported. Please update from the app store to continue.",
+    "description": "Body text of the hard-block upgrade modal shown when the installed version is below min_supported. The modal has no dismiss affordance — the only button opens the app store."
+  },
+  "appUpgrade.softMessage": {
+    "message": "A newer version is available. Update from the app store for the best experience.",
+    "description": "Body text of the soft upgrade prompt shown when the installed version is below latest but above min_supported. The user can dismiss and keep using the app."
+  },
+  "appUpgrade.openStore": {
+    "message": "Update now",
+    "description": "Primary button on the upgrade modal — opens the App Store / Play Store URL in the system browser."
+  },
+  "appUpgrade.later": {
+    "message": "Later",
+    "description": "Secondary button on the soft upgrade prompt — dismisses the modal and lets the user keep using the current version. Only shown for non-forced upgrades."
+  },
+  "nav.maestro": {
+    "message": "Маэстро",
+    "description": "Текст на странице преобразования статей Maestro в видео в навигационной панели, остается как 'Маэстро'"
+  },
+  "nav.digitalhuman": {
+    "message": "Digital Human",
+    "description": "Text in the website navigation bar for the Digital Human talking-head page"
   }
 }

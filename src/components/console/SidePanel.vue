@@ -81,6 +81,9 @@ export default defineComponent({
         }
       ];
 
+      // Order history stays visible on iOS — purchases now happen in-app via
+      // Apple IAP, so users should see their orders.
+
       return links;
     }
   },
@@ -147,10 +150,15 @@ $padding-left: 12px;
     .icon {
       width: 16px;
       height: 16px;
-      display: inline-block;
-      position: relative;
+      // Center the SVG in its own box and reset the inherited tall line-height,
+      // otherwise the icon renders against the link's 36/40px line box and drops
+      // well below the label.
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      vertical-align: middle;
       margin-right: 10px;
-      transform: translateY(-2%);
     }
     .text {
       font-size: 14px;

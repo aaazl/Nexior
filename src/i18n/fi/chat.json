@@ -163,6 +163,14 @@
     "message": "Tällä hetkellä edistyksellisin malli",
     "description": "Gemini 3.0 Pro -mallin kuvaus"
   },
+  "model.gemini31Pro": {
+    "message": "gemini-3.1-pro",
+    "description": "Palvelun mallin nimi, eli Gemini 3.0 Pro"
+  },
+  "model.gemini31ProDescription": {
+    "message": "Tällä hetkellä edistyksellisin malli",
+    "description": "Gemini 3.0 Pro -mallin kuvaus"
+  },
   "model.gemini25Pro": {
     "message": "gemini-2.5-pro",
     "description": "Palvelun mallin nimi, eli Gemini 2.5 Pro"
@@ -179,13 +187,21 @@
     "message": "Nopeampi ja kevyempi malli",
     "description": "Gemini 2.5 Flash -mallin kuvaus"
   },
-  "model.claudeOpus47": {
-    "message": "claude-opus-4.7",
-    "description": "Palvelun mallin nimi, eli Claude Opus 4.7"
+  "model.gemini35Flash": {
+    "message": "gemini-3.5-flash",
+    "description": "Palvelun mallin nimi, eli Gemini 2.5 Flash"
   },
-  "model.claudeOpus47Description": {
-    "message": "Tällä hetkellä edistyksellisin malli",
-    "description": "Claude Opus 4.7 -mallin kuvaus"
+  "model.gemini35FlashDescription": {
+    "message": "Nopeampi ja kevyempi malli",
+    "description": "Gemini 2.5 Flash -mallin kuvaus"
+  },
+  "model.claudeOpus48": {
+    "message": "claude-opus-4.8",
+    "description": "Palvelun mallin nimi, eli Claude Opus 4.8"
+  },
+  "model.claudeOpus48Description": {
+    "message": "Tällä hetkellä edistynein malli",
+    "description": "Claude Opus 4.8 mallin kuvaus"
   },
   "model.claudeSonnet46": {
     "message": "claude-sonnet-4.6",
@@ -506,5 +522,213 @@
   "askUserQuestion.collapsedAnswerLabel": {
     "message": "Vastauksesi",
     "description": "Kun ei voida poimia tarkkaa vastausta historiasta, käytetään tätä tekstiä"
+  },
+  "consent.title": {
+    "message": "Liittimen valtuutus vaaditaan",
+    "description": "Liittimen valtuutuskortin otsikko"
+  },
+  "consent.matchAny": {
+    "message": "Valitse yksi riittää",
+    "description": "Tunniste: Tämän ryhmän liittimistä yksi riittää tarpeen täyttämiseen"
+  },
+  "consent.matchAll": {
+    "message": "Kaikki vaativat valtuutuksen",
+    "description": "Tunniste: Tämän ryhmän kaikki liittimet vaativat valtuutuksen"
+  },
+  "consent.authorize": {
+    "message": "Myönnä valtuutus",
+    "description": "Valtuutuspainike, jonka klikkaaminen avaa kolmannen osapuolen valtuutussivun"
+  },
+  "consent.skip": {
+    "message": "Ohita valtuutus",
+    "description": "Ohita valtuutuspainike; ohituksen jälkeen malli jatkaa ilman tätä liitintä"
+  },
+  "consent.continue": {
+    "message": "Jatka",
+    "description": "Jatka-painike, joka näytetään, kun OAuth-paluun jälkeen havaitaan, että liitin on yhdistetty; napsautus lähettää valtuutuksen."
+  },
+  "consent.selectScopes": {
+    "message": "Valitse {provider} -valtuutusalueet",
+    "description": "Title of the scope picker dialog opened from the consent card; {provider} is the upstream provider name (e.g. Gmail)."
+  },
+  "consent.selectScopesHint": {
+    "message": "Valitse haluamasi valtuutukset. Voit valita useita, mutta oletuksena vain peruskirjautumistiedot myönnetään.",
+    "description": "Body copy explaining that the user can opt out of specific scopes; rendered above the checkbox group."
+  },
+  "consent.installFailed": {
+    "message": "Valtuutus epäonnistui. Yritä uudelleen.",
+    "description": "Toast shown when the AuthBackend install endpoint returns an error from the consent card."
+  },
+  "consent.statusConnected": {
+    "message": "Yhdistetty",
+    "description": "Valtuutetun liittimen tilasymboli"
+  },
+  "consent.statusUnconnected": {
+    "message": "Ei yhdistetty",
+    "description": "Liittimen tilasymboli, kun yhdistystä/valtuutusta ei ole"
+  },
+  "consent.resolvedAuthorized": {
+    "message": "Valtuutettu: {list}",
+    "description": "Kortin alaosan ilmoitus käyttäjän valtuutuksen jälkeen, {list} on valtuutettujen liittimien lista"
+  },
+  "consent.resolvedSkipped": {
+    "message": "Liittimen valtuutus ohitettu",
+    "description": "Kortin alaosan ilmoitus, kun käyttäjä ohittaa valtuutuksen"
+  },
+  "scheduledTasks.navTitle": {
+    "message": "Scheduled Tasks"
+  },
+  "scheduledTasks.title": {
+    "message": "Scheduled Tasks"
+  },
+  "scheduledTasks.create": {
+    "message": "New"
+  },
+  "scheduledTasks.edit": {
+    "message": "Edit Task"
+  },
+  "scheduledTasks.empty": {
+    "message": "No scheduled tasks yet. Click \"New\" to create one."
+  },
+  "scheduledTasks.noRuns": {
+    "message": "No runs yet"
+  },
+  "scheduledTasks.loadError": {
+    "message": "Failed to load"
+  },
+  "scheduledTasks.deleteConfirm": {
+    "message": "Delete \"{name}\"? The task will stop running."
+  },
+  "scheduledTasks.viewResult": {
+    "message": "View Result"
+  },
+  "scheduledTasks.viewRuns": {
+    "message": "Run history"
+  },
+  "scheduledTasks.noConversation": {
+    "message": "Ei keskusteluhistoriaa",
+    "description": "Suoritus ei ole liitetty keskusteluun (vanha versio suoritus)"
+  },
+  "scheduledTasks.jitterHint": {
+    "message": "±60s jitter"
+  },
+  "scheduledTasks.runCount": {
+    "message": "Ran {count} time(s)"
+  },
+  "scheduledTasks.state.enabled": {
+    "message": "Active"
+  },
+  "scheduledTasks.state.disabled": {
+    "message": "Paused"
+  },
+  "scheduledTasks.state.error": {
+    "message": "Error"
+  },
+  "scheduledTasks.run.queued": {
+    "message": "Queued"
+  },
+  "scheduledTasks.run.running": {
+    "message": "Running"
+  },
+  "scheduledTasks.run.success": {
+    "message": "Success"
+  },
+  "scheduledTasks.run.failed": {
+    "message": "Failed"
+  },
+  "scheduledTasks.run.needs_user_input": {
+    "message": "Needs action"
+  },
+  "scheduledTasks.scheduleType.daily": {
+    "message": "Daily"
+  },
+  "scheduledTasks.scheduleType.minutely": {
+    "message": "Joka minuutti"
+  },
+  "scheduledTasks.scheduleType.hourly": {
+    "message": "Hourly"
+  },
+  "scheduledTasks.scheduleType.weekly": {
+    "message": "Weekly"
+  },
+  "scheduledTasks.scheduleType.cron": {
+    "message": "Cron expression"
+  },
+  "scheduledTasks.form.name": {
+    "message": "Task name"
+  },
+  "scheduledTasks.form.namePlaceholder": {
+    "message": "e.g. Daily news summary"
+  },
+  "scheduledTasks.form.model": {
+    "message": "Model"
+  },
+  "scheduledTasks.form.prompt": {
+    "message": "Prompt"
+  },
+  "scheduledTasks.form.promptPlaceholder": {
+    "message": "Enter your scheduled question or instruction. Supports {'{{date}}'}, {'{{run_count}}'}, {'{{last_output}}'} variables."
+  },
+  "scheduledTasks.form.promptHint": {
+    "message": "Variables: {'{{date}}'} today, {'{{run_count}}'} run number, {'{{last_output}}'} last output snippet"
+  },
+  "scheduledTasks.form.schedule": {
+    "message": "Frequency"
+  },
+  "scheduledTasks.form.time": {
+    "message": "Time"
+  },
+  "scheduledTasks.form.weekday": {
+    "message": "Weekday"
+  },
+  "scheduledTasks.form.cron": {
+    "message": "Cron expression"
+  },
+  "scheduledTasks.form.skills": {
+    "message": "Valtuuta taidot",
+    "description": "Aikataulutetut tehtävät, joissa on valtuutettuja taitoja, usean valinnan vaihtoehto"
+  },
+  "scheduledTasks.form.skillsPlaceholder": {
+    "message": "Valitse taidot, jotka sallivat tämän tehtävän suorittaa automaattisesti",
+    "description": "Valtuutettujen taitojen paikkamerkki"
+  },
+  "scheduledTasks.form.skillsHint": {
+    "message": "Valitut taidot voivat suorittaa taustalla ilman manuaalista vahvistusta; valitsemattomat taidot voivat vain esikatsella tai odottaa vahvistusta.",
+    "description": "Valtuutettujen taitojen selitys"
+  },
+  "scheduledTasks.form.skillMissing": {
+    "message": "Ei yhdistetty",
+    "description": "skill puuttuu yhteydestä"
+  },
+  "scheduledTasks.form.mcpServers": {
+    "message": "Valtuuta MCP",
+    "description": "Aikataulutetut tehtävät valvonnasta vapaa valtuutus MCP-palvelimille usealla valinnalla"
+  },
+  "scheduledTasks.form.mcpServersPlaceholder": {
+    "message": "Valitse MCP-palvelimet, jotka saavat automaattisesti ladata tämän tehtävän",
+    "description": "Valtuutuksen MCP-palvelimien paikka"
+  },
+  "scheduledTasks.form.mcpServersHint": {
+    "message": "Valitut MCP-palvelimet voidaan ladata ja suorittaa aikataulutettujen tehtävien taustalla; valitsemattomia MCP-palvelimia ei ladata valvonnasta vapaassa tilassa.",
+    "description": "Valtuutuksen MCP-palvelimista selitys"
+  },
+  "scheduledTasks.form.skillsConfirmTitle": {
+    "message": "Vahvista automaattinen valtuutus",
+    "description": "Valtuutuksen vahvistuksen otsikko"
+  },
+  "scheduledTasks.form.skillsConfirm": {
+    "message": "Tämä tehtävä sallii {count} taidon suorittaa taustalla ilman manuaalista vahvistusta: {skills}. Nämä taidot voivat lähettää viestejä, julkaista sisältöä tai kirjoittaa ulkoisiin palveluihin, vahvista tämä.",
+    "description": "Valtuutuksen vahvistusteksti"
+  },
+  "scheduledTasks.form.required": {
+    "message": "Please fill in task name and prompt"
+  },
+  "model.claudeOpus47": {
+    "message": "claude-opus-4.7",
+    "description": "Palvelun mallin nimi, eli Claude Opus 4.7"
+  },
+  "model.claudeOpus47Description": {
+    "message": "Tällä hetkellä edistyksellisin malli",
+    "description": "Claude Opus 4.7 -mallin kuvaus"
   }
 }

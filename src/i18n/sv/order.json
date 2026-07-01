@@ -99,6 +99,18 @@
     "message": "Vänligen slutför betalningen via den externa länken",
     "description": "Meddelande om betalning via extern länk."
   },
+  "message.applePayProcessing": {
+    "message": "Slutför ditt köp via App Store…",
+    "description": "Message while the Apple in-app purchase is processing."
+  },
+  "message.applePayFailed": {
+    "message": "App Store-betalningen slutfördes inte. Försök igen.",
+    "description": "Message when the Apple in-app purchase fails."
+  },
+  "message.applePayUnavailable": {
+    "message": "Det här paketet kan inte köpas i appen.",
+    "description": "Message when Apple in-app purchase is unavailable for the package."
+  },
   "message.updateFailed": {
     "message": "Uppdatering misslyckades",
     "description": "Meddelande om att uppdateringen misslyckades."
@@ -383,6 +395,10 @@
     "message": "Solana Plånbok",
     "description": "Rubrik för Solana plånboksanslutningskort."
   },
+  "message.publicPayNotFound": {
+    "message": "Beställningen hittades inte eller har gått ut.",
+    "description": "Shown on public pay page when the order GET returns 404."
+  },
   "message.x402WalletStatusDetected": {
     "message": "Upptäckt",
     "description": "Statusetikett för upptäckta/installera plånböcker."
@@ -518,5 +534,41 @@
   "message.wechatPayLongPressTip": {
     "message": "Hall in QR-koden nedan och valj 'Identifiera QR-kod' for att slutfora betalningen i WeChat.",
     "description": "Tip shown above the Native QR on mobile-WeChat. The user long-presses to recognise the `weixin://wxpay/bizpayurl` URL and pays without leaving WeChat."
+  },
+  "message.wechatPayMobileScanTip": {
+    "message": "Spara eller ta en skärmbild av QR-koden nedan, öppna WeChat, tryck på Skanna, välj albumet uppe till höger och välj sedan den sparade bilden för att slutföra betalningen.",
+    "description": "Vägledande text som visas ovanför QR-koden i mobila webbläsare utanför WeChat. Den instruerar användaren att spara QR-kodsbilden och sedan använda albumfunktionen i WeChats skanningsverktyg för att identifiera koden och slutföra betalningen."
+  },
+  "message.creditsValue": {
+    "message": "{value} krediter",
+    "description": "Display of credits amount for an order, e.g. '5 credits'. {value} is the formatted credit number."
+  },
+  "title.totalOrders": {
+    "message": "Total Orders",
+    "description": "Summary card: total number of orders matching the current filters."
+  },
+  "title.totalSpent": {
+    "message": "Total Spent",
+    "description": "Summary card: total amount spent across matching orders."
+  },
+  "title.finishedOrders": {
+    "message": "Finished Orders",
+    "description": "Summary card: number of finished orders."
+  },
+  "title.pendingOrders": {
+    "message": "Pending Orders",
+    "description": "Summary card: number of pending orders."
+  },
+  "button.export": {
+    "message": "Export CSV",
+    "description": "Button label to export the filtered orders as CSV."
+  },
+  "field.allStates": {
+    "message": "All States",
+    "description": "Placeholder of the state filter dropdown indicating no specific state is selected."
+  },
+  "field.allPayWays": {
+    "message": "All Payment Methods",
+    "description": "Placeholder of the payment method filter dropdown indicating no specific method is selected."
   }
 }

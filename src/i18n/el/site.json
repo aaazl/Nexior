@@ -71,6 +71,10 @@
     "message": "GitHub",
     "description": "Όνομα τρόπου σύνδεσης: Σύνδεση μέσω τρίτου μέρους GitHub"
   },
+  "field.authProvider_apple": {
+    "message": "Apple",
+    "description": "Login provider display name: Sign in with Apple."
+  },
   "field.authProvider_wechat": {
     "message": "WeChat",
     "description": "Όνομα τρόπου σύνδεσης: Σύνδεση μέσω τρίτου μέρους WeChat"
@@ -90,6 +94,18 @@
   "field.featuresGrok": {
     "message": "Grok",
     "description": "展示在编辑框的标题"
+  },
+  "field.featuresGrokvideo": {
+    "message": "Grok Video",
+    "description": "Εμφανίζεται ως ο τίτλος στο πλαίσιο επεξεργασίας"
+  },
+  "field.featuresMaestro": {
+    "message": "Maestro",
+    "description": "Εμφανίζεται ως ο τίτλος στο πλαίσιο επεξεργασίας"
+  },
+  "field.featuresDigitalhuman": {
+    "message": "Digital Human",
+    "description": "Displayed as the title in the editing box"
   },
   "field.featuresDeepseek": {
     "message": "Deepseek",
@@ -178,6 +194,10 @@
   "field.featuresFish": {
     "message": "Ήχος Ψαριών",
     "description": "Τίτλος που εμφανίζεται στο πλαίσιο επεξεργασίας"
+  },
+  "field.featuresCodingBridge": {
+    "message": "Coding Bridge",
+    "description": "Displayed as the title in the editing box"
   },
   "field.featuresWebextrator": {
     "message": "WebExtrator",
@@ -427,6 +447,18 @@
     "message": "Ενεργοποιήστε ή απενεργοποιήστε τη λειτουργία Grok.",
     "description": "Περιγραφή της λειτουργίας Grok"
   },
+  "message.featuresGrokvideo": {
+    "message": "Ενεργοποιήστε ή απενεργοποιήστε το module λειτουργίας Grok Video.",
+    "description": "Περιγραφή της λειτουργίας Grok Video"
+  },
+  "message.featuresMaestro": {
+    "message": "Ενεργοποιήστε ή απενεργοποιήστε το module λειτουργίας Maestro.",
+    "description": "Περιγραφή της λειτουργίας Maestro"
+  },
+  "message.featuresDigitalhuman": {
+    "message": "Enable or disable the Digital Human feature module.",
+    "description": "Description of the Digital Human feature"
+  },
   "message.featuresDeepseek": {
     "message": "Ενεργοποιήστε ή απενεργοποιήστε τη λειτουργία Deepseek.",
     "description": "Περιγραφή της λειτουργίας Deepseek"
@@ -502,6 +534,10 @@
   "message.featuresFish": {
     "message": "Ενεργοποιήστε ή απενεργοποιήστε τη λειτουργία Ήχου Ψαριών.",
     "description": "Περιγραφή της λειτουργίας Ήχου Ψαριών"
+  },
+  "message.featuresCodingBridge": {
+    "message": "Enable or disable the Coding Bridge feature module.",
+    "description": "Description of the Coding Bridge feature"
   },
   "message.featuresWebextrator": {
     "message": "Enable or disable the WebExtrator feature module.",
@@ -594,5 +630,33 @@
   "button.addUser": {
     "message": "Προσθήκη",
     "description": "Button label to add the resolved user to the admins list."
+  },
+  "autoTranslate.tooltipOn": {
+    "message": "Αυτόματη μετάφραση ΕΝΕΡΓΗ — το περιεχόμενο εμφανίζεται στη γλώσσα του επισκέπτη",
+    "description": "Tooltip on the auto-translate toggle when it is ON"
+  },
+  "autoTranslate.tooltipOff": {
+    "message": "Αποθήκευση κειμένου ως έχει — κάντε κλικ για ενεργοποίηση αυτόματης μετάφρασης",
+    "description": "Tooltip on the auto-translate toggle when it is OFF"
+  },
+  "autoTranslate.tooltipDisabledNotSaved": {
+    "message": "Αποθηκεύστε τη γραμμή πριν ενεργοποιήσετε την αυτόματη μετάφραση",
+    "description": "Tooltip shown when the toggle is disabled because the row has no id yet (create-dialog state)"
+  },
+  "autoTranslate.confirmEnable": {
+    "message": "Αυτό το περιεχόμενο θα μεταφραστεί σε 17 γλώσσες εντός ~1 ώρας. Συνέχεια;",
+    "description": "Body text of the confirm dialog shown before enabling auto-translation"
+  },
+  "autoTranslate.confirmDisable": {
+    "message": "Η απενεργοποίηση διαγράφει και τις 18 μεταφράσεις και διατηρεί μόνο την τρέχουσα τιμή. Συνέχεια;",
+    "description": "Body text of the confirm dialog shown before disabling auto-translation"
+  },
+  "autoTranslate.empty": {
+    "message": "Εισάγετε κάποιο περιεχόμενο πριν ενεργοποιήσετε την αυτόματη μετάφραση",
+    "description": "Warning shown when the user tries to enable auto-translation on an empty field"
+  },
+  "autoTranslate.error": {
+    "message": "Η εναλλαγή αυτόματης μετάφρασης απέτυχε, δοκιμάστε ξανά",
+    "description": "Fallback error toast when the enable/disable HTTP call fails with no detail"
   }
 }

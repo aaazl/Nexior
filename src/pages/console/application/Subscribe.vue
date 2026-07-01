@@ -10,7 +10,10 @@
         <el-col :span="24">
           <el-card shadow="hover" class="card">
             <el-row>
-              <el-col class="max-w-4xl mx-auto">
+              <el-col v-if="!showPayment" class="max-w-4xl mx-auto">
+                <el-empty :description="$t('common.message.noData')" />
+              </el-col>
+              <el-col v-else class="max-w-4xl mx-auto">
                 <p class="introduction">
                   {{ $t('console.subscription.title') }}
                 </p>
@@ -44,6 +47,7 @@
                       </div>
                       <div class="operations">
                         <el-button
+                          v-if="showPayment"
                           class="btn btn-subscribe"
                           :type="subscription?.name === item?.name ? 'primary' : ''"
                           round
@@ -54,7 +58,7 @@
                     </el-card>
                   </el-col>
                 </el-row>
-                <div v-if="!loading" class="extra">
+                <div v-if="!loading && showPayment" class="extra">
                   <span>{{ $t('console.message.doNotWantSubscribe') }}</span>
                   <el-button type="primary" class="btn btn-extra" round size="small" @click="onBuyExtra">
                     {{ $t('console.message.buyExtra') }}
@@ -72,9 +76,10 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { IService, IApplication, IApplicationType, IOrderDetailResponse, IPackageType, IPackage } from '@/models';
-import { ElRow, ElCol, ElCard, ElSkeleton, ElMessage, ElButton, ElTag } from 'element-plus';
+import { ElRow, ElCol, ElCard, ElSkeleton, ElMessage, ElButton, ElTag, ElEmpty } from 'element-plus';
 import { applicationOperator, orderOperator, serviceOperator } from '@/operators';
 import { getPriceString } from '@/utils';
+import { isIOS } from '@/utils';
 import { track } from '@/plugins/telemetry';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { ROUTE_CONSOLE_APPLICATION_EXTRA, ROUTE_CONSOLE_ORDER_DETAIL } from '@/router';
@@ -107,6 +112,7 @@ export default defineComponent({
     ElTag,
     ElCol,
     ElCard,
+    ElEmpty,
     FontAwesomeIcon,
     ElButton
   },
@@ -128,6 +134,12 @@ export default defineComponent({
     },
     applicationId() {
       return this.$route.params?.id?.toString();
+    },
+    // App Store Review Guideline 3.1.1: on iOS the whole paid catalog
+    // (packages, prices and buy buttons) is hidden — Apple flags merely
+    // displaying non-IAP paid content, not just the purchase action.
+    showPayment(): boolean {
+      return !isIOS();
     },
     subscriptions(): ISubscription[] {
       const items: ISubscription[] = [

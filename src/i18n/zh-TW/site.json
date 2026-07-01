@@ -71,6 +71,10 @@
     "message": "GitHub",
     "description": "登入方式名稱：GitHub 第三方登入"
   },
+  "field.authProvider_apple": {
+    "message": "Apple",
+    "description": "Login provider display name: Sign in with Apple."
+  },
   "field.authProvider_wechat": {
     "message": "微信",
     "description": "登入方式名稱：微信第三方登入"
@@ -90,6 +94,18 @@
   "field.featuresGrok": {
     "message": "Grok",
     "description": "展示在編輯框的標題"
+  },
+  "field.featuresGrokvideo": {
+    "message": "Grok 視頻",
+    "description": "顯示為編輯框中的標題"
+  },
+  "field.featuresMaestro": {
+    "message": "Maestro",
+    "description": "顯示為編輯框中的標題"
+  },
+  "field.featuresDigitalhuman": {
+    "message": "數字人",
+    "description": "Displayed as the title in the editing box"
   },
   "field.featuresDeepseek": {
     "message": "Deepseek",
@@ -178,6 +194,10 @@
   "field.featuresFish": {
     "message": "魚音頻",
     "description": "展示在編輯框的標題"
+  },
+  "field.featuresCodingBridge": {
+    "message": "Coding Bridge",
+    "description": "Displayed as the title in the editing box"
   },
   "field.featuresWebextrator": {
     "message": "WebExtrator",
@@ -427,6 +447,18 @@
     "message": "開啟或關閉 Grok 功能模塊。",
     "description": "Grok 功能的描述"
   },
+  "message.featuresGrokvideo": {
+    "message": "啟用或禁用 Grok 視頻功能模組。",
+    "description": "Grok 視頻功能的描述"
+  },
+  "message.featuresMaestro": {
+    "message": "啟用或禁用 Maestro 功能模組。",
+    "description": "Maestro 功能的描述"
+  },
+  "message.featuresDigitalhuman": {
+    "message": "啟用或停用數字人功能模組。",
+    "description": "Description of the Digital Human feature"
+  },
   "message.featuresDeepseek": {
     "message": "開啟或關閉 Deepseek 功能模塊。",
     "description": "Deepseek 功能的描述"
@@ -502,6 +534,10 @@
   "message.featuresFish": {
     "message": "打開或關閉魚音頻功能模塊。",
     "description": "魚音頻功能的描述"
+  },
+  "message.featuresCodingBridge": {
+    "message": "Enable or disable the Coding Bridge feature module.",
+    "description": "Description of the Coding Bridge feature"
   },
   "message.featuresWebextrator": {
     "message": "Enable or disable the WebExtrator feature module.",
@@ -594,5 +630,33 @@
   "button.addUser": {
     "message": "新增",
     "description": "Button label to add the resolved user to the admins list."
+  },
+  "autoTranslate.tooltipOn": {
+    "message": "已啟用 — 內容將自動翻譯為 17 種語言顯示",
+    "description": "Tooltip on the auto-translate toggle when it is ON"
+  },
+  "autoTranslate.tooltipOff": {
+    "message": "字面量儲存 — 點擊啟用自動翻譯為 17 種語言",
+    "description": "Tooltip on the auto-translate toggle when it is OFF"
+  },
+  "autoTranslate.tooltipDisabledNotSaved": {
+    "message": "請先儲存後再啟用自動翻譯",
+    "description": "Tooltip shown when the toggle is disabled because the row has no id yet (create-dialog state)"
+  },
+  "autoTranslate.confirmEnable": {
+    "message": "目前內容將被翻譯為 17 種語言，約 1 小時生效。繼續嗎？",
+    "description": "Body text of the confirm dialog shown before enabling auto-translation"
+  },
+  "autoTranslate.confirmDisable": {
+    "message": "關閉後將刪除所有 18 種語言的翻譯，僅保留目前編輯框內容。繼續嗎？",
+    "description": "Body text of the confirm dialog shown before disabling auto-translation"
+  },
+  "autoTranslate.empty": {
+    "message": "請先輸入內容，再啟用自動翻譯",
+    "description": "Warning shown when the user tries to enable auto-translation on an empty field"
+  },
+  "autoTranslate.error": {
+    "message": "切換自動翻譯失敗，請稍後重試",
+    "description": "Fallback error toast when the enable/disable HTTP call fails with no detail"
   }
 }

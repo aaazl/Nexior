@@ -9,7 +9,7 @@ export const resetAll = ({ commit }: ActionContext<IChatState, IRootState>): voi
   commit('resetAll');
 };
 
-export const setApplication = async ({ commit, dispatch }: any, payload: IApplication): Promise<void> => {
+export const setApplication = async ({ commit, dispatch, rootState }: any, payload: IApplication): Promise<void> => {
   console.debug('set application', payload);
   commit('setApplication', payload);
   console.debug('application is set');
@@ -17,13 +17,23 @@ export const setApplication = async ({ commit, dispatch }: any, payload: IApplic
     console.debug('application is null, return');
     return;
   }
-  const credential = payload?.credentials?.find((credential) => credential?.host === window.location.origin);
+  // Credential-as-Authorization: skip auto-createCredential when the user is
+  // a grantee — pick the credential that already belongs to them.
+  const me = rootState?.user?.id;
+  const isGranted = payload?.role === 'grantee';
+  let credential = payload?.credentials?.find((credential) => credential?.host === window.location.origin);
+  if (!credential && isGranted) {
+    credential = payload?.credentials?.find((credential) => credential?.user_id === me);
+  }
   if (credential) {
     console.debug('credential exists, set credential', credential);
     commit('setCredential', credential);
-  } else {
+  } else if (!isGranted) {
     console.debug('credential not exists, start to create credential for application', payload);
     await dispatch('createCredential');
+  } else {
+    console.warn('no credential available for granted application', payload);
+    commit('setCredential', undefined);
   }
 };
 
@@ -82,11 +92,23 @@ export const getApplications = async ({
   rootState
 }: ActionContext<IChatState, IRootState>): Promise<IApplication[] | undefined> => {
   console.debug('start to get applications for chat');
+  // Guests browse the chat composer without an application — login is deferred
+  // to send-time (see `onSubmit`/`onRequest`). Skip the authed fetch so it
+  // neither 401s nor leaves the page stuck in a "Request" state, and drop any
+  // stale credential so a guest can never reuse a previous session's token.
+  if (!rootState?.token?.access) {
+    state.status.getApplications = Status.Success;
+    commit('setApplications', []);
+    commit('setApplication', undefined);
+    commit('setCredential', undefined);
+    return [];
+  }
   state.status.getApplications = Status.Request;
   try {
     const { data: applications } = await applicationOperator.getAll({
-      user_id: rootState?.user?.id,
-      service_id: CHAT_SERVICE_ID
+      user_id: 'me',
+      service_id: CHAT_SERVICE_ID,
+      affiliation: ['owner', 'granted']
     });
     console.debug('get applications success for chat', applications);
     state.status.getApplications = Status.Success;

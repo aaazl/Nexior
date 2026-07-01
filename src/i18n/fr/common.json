@@ -51,6 +51,10 @@
     "message": "Supprimer",
     "description": "Texte dans le bouton, utilisé pour supprimer un contenu"
   },
+  "button.deletePermanently": {
+    "message": "Supprimer définitivement le compte",
+    "description": "Final red delete button at the bottom of the delete confirmation dialog"
+  },
   "button.confirm": {
     "message": "Confirmer",
     "description": "Texte dans le bouton, utilisé pour confirmer une action"
@@ -122,6 +126,14 @@
   "button.downloadIos": {
     "message": "Télécharger le package d'installation iOS",
     "description": "Texte dans le bouton, utilisé pour télécharger le fichier d'installation iOS"
+  },
+  "button.downloadWindows": {
+    "message": "Télécharger pour Windows",
+    "description": "Text in button for downloading the Windows desktop installer"
+  },
+  "button.downloadMac": {
+    "message": "Télécharger pour macOS",
+    "description": "Text in button for downloading the macOS desktop installer"
   },
   "button.installIos": {
     "message": "Installer iOS",
@@ -215,6 +227,14 @@
     "message": "Chargement...",
     "description": "Texte d'état affiché lors du chargement du contenu"
   },
+  "error.appleSignInFailed": {
+    "message": "La connexion avec Apple a échoué. Veuillez réessayer ou utiliser une autre méthode de connexion.",
+    "description": "Error toast shown when native Apple sign-in fails for a reason other than user cancellation"
+  },
+  "error.loginLinkExpired": {
+    "message": "Login link expired. Please sign in again.",
+    "description": "Shown on the desktop client when an OAuth callback is dropped (state mismatch or expired)."
+  },
   "entity.operation": {
     "message": "Opération",
     "description": "Opération de l'entité"
@@ -238,6 +258,10 @@
   "message.noTasks": {
     "message": "Aucune tâche historique, veuillez commencer une nouvelle tâche～",
     "description": "Message lorsque aucune tâche n'est disponible"
+  },
+  "message.guestTasks": {
+    "message": "Connectez-vous pour lancer une tâche et voir vos créations ici.",
+    "description": "Prompt shown in the task list area for not-logged-in guests"
   },
   "message.usedAmount": {
     "message": "Montant utilisé",
@@ -282,6 +306,46 @@
   "message.mobileIosPending": {
     "message": "Le package d'installation iOS n'est pas encore disponible, il sera fourni après la complétion des certificats et des profils Apple.",
     "description": "Alerte lorsque le package d'installation iOS n'est pas disponible"
+  },
+  "message.mobileComingSoon": {
+    "message": "Bientôt disponible",
+    "description": "Short status label shown on a platform card (e.g. iOS) while its build is being prepared"
+  },
+  "message.mobileNowOnAppStore": {
+    "message": "Now on the App Store",
+    "description": "Status label shown on the iOS card when the app is live on the App Store"
+  },
+  "message.desktopWindowsHint": {
+    "message": "Pour Windows 10 et versions ultérieures (64 bits). Téléchargez l’installateur et double-cliquez pour l’installer.",
+    "description": "Windows desktop download card description"
+  },
+  "message.desktopMacHint": {
+    "message": "Pour macOS 11 et versions ultérieures. Choisissez la version adaptée à votre Mac — Apple Silicon (série M) ou Intel.",
+    "description": "macOS desktop download card description"
+  },
+  "message.desktopUnsignedNote": {
+    "message": "Les applications de bureau sont des versions bêta non signées. Sous Windows, choisissez « Informations complémentaires → Exécuter quand même » dans l’invite SmartScreen ; sous macOS, faites un clic droit sur l’application et choisissez « Ouvrir » pour contourner Gatekeeper.",
+    "description": "Note explaining the desktop builds are unsigned betas and how to open them"
+  },
+  "button.getOnGooglePlay": {
+    "message": "Disponible sur Google Play",
+    "description": "Button label that opens the app's Google Play Store listing"
+  },
+  "button.getOnAppStore": {
+    "message": "Get it on the App Store",
+    "description": "Button label that opens the app's Apple App Store listing"
+  },
+  "message.mobileApkFallback": {
+    "message": "Pas d'accès à Google Play ? Téléchargez directement l'APK.",
+    "description": "Shown next to a secondary button offering a direct APK download for users who cannot access Google Play"
+  },
+  "message.mobilePlayStoreHint": {
+    "message": "Scannez pour ouvrir Google Play",
+    "description": "Hint under the QR code explaining that scanning it opens the Google Play listing"
+  },
+  "message.mobileAppStoreHint": {
+    "message": "Scan to open the App Store",
+    "description": "Hint under the QR code explaining that scanning it opens the App Store listing"
   },
   "message.mobileInstallNote": {
     "message": "Lors de la première installation d'un package d'entreprise ou Ad Hoc sur iOS, le système peut demander de faire confiance au certificat dans 'Réglages > Général > VPN et gestion des appareils'.",
@@ -342,6 +406,34 @@
   "message.alert": {
     "message": "Alerte",
     "description": "Message d'alerte pour l'utilisateur"
+  },
+  "message.deleteAccountConfirm": {
+    "message": "Cela supprimera définitivement votre compte et toutes les données associées. Cette action est irréversible. Voulez-vous vraiment continuer ?",
+    "description": "Confirmation message shown before permanently deleting the user account"
+  },
+  "message.deleteAccountSuccess": {
+    "message": "Votre compte a été supprimé.",
+    "description": "Message shown after the user account is successfully deleted"
+  },
+  "message.deleteAccountFailed": {
+    "message": "Échec de la suppression de votre compte. Veuillez réessayer plus tard.",
+    "description": "Message shown when account deletion fails"
+  },
+  "message.deleteAccountWarning": {
+    "message": "Cette action est irréversible ! Votre compte et toutes ses données seront définitivement supprimés et ne pourront pas être récupérés.",
+    "description": "Red warning banner at the top of the delete confirmation dialog"
+  },
+  "message.deleteAccountConsequences": {
+    "message": "Supprimés définitivement : profil, solde et crédits, applications et abonnements, clés API et liaisons de connexion tierces.",
+    "description": "Explains what data will be removed in the delete confirmation dialog"
+  },
+  "message.deleteAccountTypePrompt": {
+    "message": "Saisissez votre nom d'utilisateur pour confirmer la suppression :",
+    "description": "Instructs the user to type their username to confirm; the username is shown separately below"
+  },
+  "message.deleteAccountPlaceholder": {
+    "message": "Saisissez votre nom d'utilisateur ici",
+    "description": "Placeholder for the username confirmation input"
   },
   "message.info": {
     "message": "Information",
@@ -475,6 +567,10 @@
     "message": "SeeDance",
     "description": "网站导航栏中的文本，用于显示SeeDance页面，请不要翻译此字段，必须保持为'SeeDance'"
   },
+  "nav.grokvideo": {
+    "message": "Grok Video",
+    "description": "Text in the website navigation bar to display the Grok Imagine video page"
+  },
   "nav.luma": {
     "message": "Luma",
     "description": "网站导航栏中的文本，用于显示Luma页面，请不要翻译此字段，必须保持为'Luma'"
@@ -511,6 +607,10 @@
     "message": "SERP",
     "description": "网站导航栏中的文本，用于显示SERP页面，请不要翻译此字段，必须保持为'SERP'"
   },
+  "nav.codingBridge": {
+    "message": "Coding Bridge",
+    "description": "Text in the website navigation bar to display the Coding Bridge page, must remain as 'Coding Bridge'"
+  },
   "nav.webextrator": {
     "message": "WebExtrator",
     "description": "Text in the website navigation bar to display the WebExtrator page, must remain as 'WebExtrator'"
@@ -538,6 +638,10 @@
   "nav.logOut": {
     "message": "Déconnexion",
     "description": "网站导航栏中的文本，用于退出登录"
+  },
+  "nav.deleteAccount": {
+    "message": "Supprimer le compte",
+    "description": "Menu item to permanently delete the current user account"
   },
   "nav.site": {
     "message": "Configuration du site",
@@ -636,7 +740,7 @@
     "description": "Affiche le titre de la section des informations de support"
   },
   "about.address": {
-    "message": "201, North Broad Street, Middletown, DE, États-Unis",
+    "message": "131 Continental Dr, Suite 305, Newark, DE 19713, États-Unis",
     "description": "Adresse de l'entreprise"
   },
   "about.email": {
@@ -823,6 +927,119 @@
     "message": "À propos",
     "description": "Titre de la section à propos dans la page des paramètres"
   },
+  "settings.localTools": {
+    "message": "Outils locaux",
+    "description": "Desktop-only settings tab for managing local tool folders, permissions and grants."
+  },
+  "settings.localToolsDesktopOnly": {
+    "message": "Disponible uniquement dans l’application de bureau.",
+    "description": "Shown when the Local Tools tab is opened on web/mobile."
+  },
+  "settings.localToolsFoldersTitle": {
+    "message": "Dossiers autorisés",
+    "description": "Heading for the list of folders the AI may read/write locally."
+  },
+  "settings.localToolsFoldersHint": {
+    "message": "Dossiers que l’IA peut lire et écrire sur cette machine. Les outils s’exécutent localement ; rien ne quitte votre appareil sans votre consentement.",
+    "description": "Help text under the authorized-folders heading."
+  },
+  "settings.localToolsComputerUseTitle": {
+    "message": "Computer Use (experimental)",
+    "description": "Heading for the opt-in Computer Use (screen + mouse/keyboard control) toggle."
+  },
+  "settings.localToolsComputerUseHint": {
+    "message": "Let the AI see your screen and control the mouse and keyboard on this computer. Off by default — turn it on only when you need it. On macOS, grant Screen Recording and Accessibility permissions below. Each action still asks for your confirmation.",
+    "description": "Help text under the Computer Use toggle."
+  },
+  "settings.localToolsPreauthorizeAll": "Pré-autoriser toutes les actions de l'ordinateur",
+  "settings.localToolsPreauthorizeHint": "Autorisez en une fois la capture d'écran, le clic, la saisie, les touches et toutes les actions, et déclenchez les autorisations système requises.",
+  "settings.localToolsCuActionsTitle": "Autoriser chaque action",
+  "settings.localToolsCuActionsHint": "N'activez que les actions que vous acceptez de laisser l'IA exécuter sans confirmation. Chacune reste révocable ici.",
+  "settings.localToolsCuScreenshot": "Capture d'écran",
+  "settings.localToolsCuClick": "Clic",
+  "settings.localToolsCuMove": "Déplacer le pointeur",
+  "settings.localToolsCuType": "Saisir du texte",
+  "settings.localToolsCuKey": "Touches",
+  "settings.localToolsCuScroll": "Défilement",
+  "settings.localToolsBuiltinTitle": "Outils intégrés",
+  "settings.localToolsBuiltinHint": "Activez un outil pour que l'IA l'exécute sans confirmation. Shell peut exécuter n'importe quelle commande sur cette machine — n'activez que si vous avez confiance. Les outils de fichiers restent limités à vos dossiers autorisés.",
+  "settings.localToolsBuiltinRisky": "Accès total",
+  "settings.localToolsAddFolder": {
+    "message": "Ajouter un dossier",
+    "description": "Button to pick a folder to authorize."
+  },
+  "settings.localToolsRemove": {
+    "message": "Retirer",
+    "description": "Button to remove an authorized folder."
+  },
+  "settings.localToolsNoFolders": {
+    "message": "Aucun dossier autorisé pour l’instant.",
+    "description": "Empty state for the authorized-folders list."
+  },
+  "settings.localToolsSave": {
+    "message": "Enregistrer",
+    "description": "Save the authorized folders."
+  },
+  "settings.localToolsSaved": {
+    "message": "Enregistré",
+    "description": "Transient confirmation after saving local-tool folders."
+  },
+  "settings.localToolsActiveTools": {
+    "message": "Outils actifs",
+    "description": "Label before the list of currently available local tools."
+  },
+  "settings.localToolsGrantsTitle": {
+    "message": "Actions toujours autorisées",
+    "description": "Heading for the persistent consent grants list."
+  },
+  "settings.localToolsGrantsHint": {
+    "message": "Appels d’outils que vous avez choisi de toujours autoriser. Ils s’exécutent sans nouvelle demande. Révoquez-en un pour réactiver la confirmation.",
+    "description": "Help text under the always-allowed actions heading."
+  },
+  "settings.localToolsRevoke": {
+    "message": "Révoquer",
+    "description": "Button to revoke a single always-allow grant."
+  },
+  "settings.localToolsRevokeAll": {
+    "message": "Tout révoquer",
+    "description": "Button to revoke every always-allow grant."
+  },
+  "settings.localToolsNoGrants": {
+    "message": "Aucune action toujours autorisée. Une confirmation vous sera demandée avant chaque outil local.",
+    "description": "Empty state for the always-allowed actions list."
+  },
+  "settings.localToolsPermsTitle": {
+    "message": "Autorisations système",
+    "description": "Heading for the macOS system-permission section."
+  },
+  "settings.localToolsPermsHint": {
+    "message": "Facultatif. L’accès aux dossiers ci-dessus n’en a pas besoin — n’accordez que ce qu’une tâche précise exige.",
+    "description": "Help text under the system-permissions heading."
+  },
+  "settings.localToolsPermFullDisk": {
+    "message": "Accès complet au disque",
+    "description": "macOS Full Disk Access permission row."
+  },
+  "settings.localToolsPermScreen": {
+    "message": "Enregistrement de l’écran",
+    "description": "macOS Screen Recording permission row."
+  },
+  "settings.localToolsPermAccessibility": {
+    "message": "Accessibilité",
+    "description": "macOS Accessibility permission row."
+  },
+  "settings.localToolsGranted": {
+    "message": "Accordé",
+    "description": "Status tag when a system permission is granted."
+  },
+  "settings.localToolsNotGranted": {
+    "message": "Non accordé",
+    "description": "Status tag when a system permission is not granted."
+  },
+  "settings.localToolsOpen": {
+    "message": "Ouvrir…",
+    "description": "Button to open the relevant macOS System Settings pane."
+  },
   "settings.subsites": {
     "message": "Mes sous-sites",
     "description": "Titre de l'onglet de gestion des sous-sites dans la fenêtre des paramètres. Visible uniquement sur le site principal officiel, les sous-sites ne s'affichent pas."
@@ -923,8 +1140,84 @@
     "message": "Run this from your own code to produce the same result. Replace <YOUR_API_KEY> with a key from your platform console.",
     "description": "Helper text shown above the code tabs in the API code dialog, explaining how to use the snippet"
   },
+  "tab.apiRequest": {
+    "message": "Requête",
+    "description": "Étiquette de l'onglet du dialogue de code API pour le fragment de requête (le code qui reproduit le résultat actuel)."
+  },
+  "tab.apiResponse": {
+    "message": "Réponse",
+    "description": "Étiquette de l'onglet du dialogue de code API pour la réponse en direct renvoyée après avoir cliqué sur Exécuter."
+  },
+  "button.apiRun": {
+    "message": "Relancer",
+    "description": "Bouton du dialogue du code API qui relance la requête en direct contre l'API en utilisant la clé de l'utilisateur. Le résultat existe déjà, donc cliquer le relance, et c'est facturable."
+  },
+  "button.apiRunning": {
+    "message": "Exécution en cours…",
+    "description": "Étiquette du bouton Exécuter du dialogue de code API pendant que la requête en direct est en cours."
+  },
+  "button.apiRunConfirm": {
+    "message": "Confirmer l'exécution",
+    "description": "Étiquette du bouton de confirmation dans le dialogue qui avertit que l'exécution ici consomme des crédits supplémentaires."
+  },
+  "button.viewDocs": {
+    "message": "Voir la documentation",
+    "description": "Bouton de pied de page du dialogue du code API qui ouvre la page de documentation API correspondante sur la plateforme."
+  },
+  "message.apiClickRun": {
+    "message": "Cliquez sur « Relancer » pour exécuter cette requête en temps réel avec votre clé API.",
+    "description": "État vide de l'onglet Réponse du dialogue du code API, affiché avant que l'utilisateur n'ait exécuté la requête."
+  },
+  "message.apiRunConfirmTitle": {
+    "message": "Confirmer l'exécution",
+    "description": "Titre du dialogue de confirmation affiché avant de relancer une requête depuis le dialogue du code API."
+  },
+  "message.apiRunConfirmDesc": {
+    "message": "Cette exécution utilisera votre clé API pour appeler réellement l'interface et consommera des points supplémentaires, confirmez-vous pour continuer ?",
+    "description": "Corps du dialogue de confirmation avertissant que relancer la requête est un appel API réel et facturable."
+  },
+  "message.apiRunConfirmSkip": {
+    "message": "Ne plus afficher cet avertissement",
+    "description": "Case à cocher dans le dialogue de confirmation d'exécution qui, une fois cochée, supprime l'avertissement lors des exécutions suivantes."
+  },
+  "message.apiRunTaskCreated": {
+    "message": "Tâche créée, fermez cette fenêtre pour voir les derniers résultats ci-dessous.",
+    "description": "Bannière de succès affichée dans le dialogue de code API après qu'une exécution renvoie un identifiant de tâche, indiquant que la nouvelle tâche apparaît déjà dans la liste derrière le dialogue."
+  },
+  "button.apiViewLatest": {
+    "message": "Fermer et voir",
+    "description": "Bouton dans la bannière de succès du dialogue de code API qui ferme le dialogue afin que l'utilisateur puisse voir la tâche nouvellement créée dans la liste ci-dessous."
+  },
   "message.uploadInProgress": {
     "message": "Les téléversements de référence sont toujours en cours — veuillez patienter un instant.",
     "description": "Toast shown when the user clicks the Generate button while one or more reference uploads are still in flight. Asks them to wait for uploads to complete before retrying."
+  },
+  "appUpgrade.title": {
+    "message": "Update required",
+    "description": "Title of the native-app version gate modal shown at startup when the installed build is older than what the backend supports."
+  },
+  "appUpgrade.blockMessage": {
+    "message": "This version is no longer supported. Please update from the app store to continue.",
+    "description": "Body text of the hard-block upgrade modal shown when the installed version is below min_supported. The modal has no dismiss affordance — the only button opens the app store."
+  },
+  "appUpgrade.softMessage": {
+    "message": "A newer version is available. Update from the app store for the best experience.",
+    "description": "Body text of the soft upgrade prompt shown when the installed version is below latest but above min_supported. The user can dismiss and keep using the app."
+  },
+  "appUpgrade.openStore": {
+    "message": "Update now",
+    "description": "Primary button on the upgrade modal — opens the App Store / Play Store URL in the system browser."
+  },
+  "appUpgrade.later": {
+    "message": "Later",
+    "description": "Secondary button on the soft upgrade prompt — dismisses the modal and lets the user keep using the current version. Only shown for non-forced upgrades."
+  },
+  "nav.maestro": {
+    "message": "Maestro",
+    "description": "Texte sur la page de conversion d'articles en vidéos Maestro dans la barre de navigation, restez comme 'Maestro'"
+  },
+  "nav.digitalhuman": {
+    "message": "Digital Human",
+    "description": "Text in the website navigation bar for the Digital Human talking-head page"
   }
 }

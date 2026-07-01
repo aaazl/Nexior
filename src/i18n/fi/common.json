@@ -51,6 +51,10 @@
     "message": "Poista",
     "description": "Painikkeen teksti, jota käytetään sisällön poistamiseen"
   },
+  "button.deletePermanently": {
+    "message": "Poista tili pysyvästi",
+    "description": "Final red delete button at the bottom of the delete confirmation dialog"
+  },
   "button.confirm": {
     "message": "Vahvista",
     "description": "Painikkeen teksti, jota käytetään toiminnan vahvistamiseen"
@@ -122,6 +126,14 @@
   "button.downloadIos": {
     "message": "Lataa iOS-asennustiedosto",
     "description": "Painikkeen teksti, jota käytetään iOS-asennustiedoston lataamiseen"
+  },
+  "button.downloadWindows": {
+    "message": "Lataa Windowsille",
+    "description": "Text in button for downloading the Windows desktop installer"
+  },
+  "button.downloadMac": {
+    "message": "Lataa macOS:lle",
+    "description": "Text in button for downloading the macOS desktop installer"
   },
   "button.installIos": {
     "message": "Asenna iOS",
@@ -215,6 +227,14 @@
     "message": "Ladataan...",
     "description": "Sisällön lataamisen aikana näytettävä tilateksti"
   },
+  "error.appleSignInFailed": {
+    "message": "Apple-kirjautuminen epäonnistui. Yritä uudelleen tai käytä toista kirjautumistapaa.",
+    "description": "Error toast shown when native Apple sign-in fails for a reason other than user cancellation"
+  },
+  "error.loginLinkExpired": {
+    "message": "Login link expired. Please sign in again.",
+    "description": "Shown on the desktop client when an OAuth callback is dropped (state mismatch or expired)."
+  },
   "entity.operation": {
     "message": "Toiminto",
     "description": "Entiteetin toiminto"
@@ -238,6 +258,10 @@
   "message.noTasks": {
     "message": "Ei historiallisia tehtäviä, aloita uusi tehtävä～",
     "description": "Viesti, kun tehtäviä ei ole"
+  },
+  "message.guestTasks": {
+    "message": "Kirjaudu sisään aloittaaksesi tehtävän ja nähdäksesi luomuksesi täällä.",
+    "description": "Prompt shown in the task list area for not-logged-in guests"
   },
   "message.usedAmount": {
     "message": "Käytetty määrä",
@@ -282,6 +306,46 @@
   "message.mobileIosPending": {
     "message": "iOS-asennuspaketti ei ole vielä ladattavissa, Apple-sertifikaatti ja -profiili ovat työn alla.",
     "description": "Vihje, kun iOS-asennuspaketti ei ole saatavilla"
+  },
+  "message.mobileComingSoon": {
+    "message": "Tulossa pian",
+    "description": "Short status label shown on a platform card (e.g. iOS) while its build is being prepared"
+  },
+  "message.mobileNowOnAppStore": {
+    "message": "Now on the App Store",
+    "description": "Status label shown on the iOS card when the app is live on the App Store"
+  },
+  "message.desktopWindowsHint": {
+    "message": "Windows 10:lle ja uudemmille (64-bittinen). Lataa asennusohjelma ja asenna kaksoisnapsauttamalla.",
+    "description": "Windows desktop download card description"
+  },
+  "message.desktopMacHint": {
+    "message": "macOS 11:lle ja uudemmille. Valitse Maciisi sopiva versio — Apple Silicon (M-sarja) tai Intel.",
+    "description": "macOS desktop download card description"
+  },
+  "message.desktopUnsignedNote": {
+    "message": "Työpöytäsovellukset ovat allekirjoittamattomia beta-versioita. Valitse Windowsissa SmartScreen-ilmoituksessa »Lisätietoja → Suorita silti«; valitse macOS:ssä sovellusta hiiren oikealla painikkeella »Avaa« ohittaaksesi Gatekeeperin.",
+    "description": "Note explaining the desktop builds are unsigned betas and how to open them"
+  },
+  "button.getOnGooglePlay": {
+    "message": "Lataa Google Playsta",
+    "description": "Button label that opens the app's Google Play Store listing"
+  },
+  "button.getOnAppStore": {
+    "message": "Get it on the App Store",
+    "description": "Button label that opens the app's Apple App Store listing"
+  },
+  "message.mobileApkFallback": {
+    "message": "Eikö Google Play ole käytettävissä? Lataa APK suoraan.",
+    "description": "Shown next to a secondary button offering a direct APK download for users who cannot access Google Play"
+  },
+  "message.mobilePlayStoreHint": {
+    "message": "Skannaa avataksesi Google Playn",
+    "description": "Hint under the QR code explaining that scanning it opens the Google Play listing"
+  },
+  "message.mobileAppStoreHint": {
+    "message": "Scan to open the App Store",
+    "description": "Hint under the QR code explaining that scanning it opens the App Store listing"
   },
   "message.mobileInstallNote": {
     "message": "Kun asennat iOS:lle ensimmäistä kertaa yritys- tai Ad Hoc-pakettia, järjestelmä saattaa vaatia ensin luottamusta sertifikaattiin 'Asetukset > Yleiset > VPN ja laitehallinta' -valikossa.",
@@ -342,6 +406,34 @@
   "message.alert": {
     "message": "Varoitus",
     "description": "Viesti, joka varoittaa käyttäjää"
+  },
+  "message.deleteAccountConfirm": {
+    "message": "Tämä poistaa tilisi ja kaikki siihen liittyvät tiedot pysyvästi. Tätä toimintoa ei voi peruuttaa. Haluatko varmasti jatkaa?",
+    "description": "Confirmation message shown before permanently deleting the user account"
+  },
+  "message.deleteAccountSuccess": {
+    "message": "Tilisi on poistettu.",
+    "description": "Message shown after the user account is successfully deleted"
+  },
+  "message.deleteAccountFailed": {
+    "message": "Tilisi poistaminen epäonnistui. Yritä myöhemmin uudelleen.",
+    "description": "Message shown when account deletion fails"
+  },
+  "message.deleteAccountWarning": {
+    "message": "Tätä toimintoa ei voi peruuttaa! Tilisi ja kaikki sen tiedot poistetaan pysyvästi eikä niitä voi palauttaa.",
+    "description": "Red warning banner at the top of the delete confirmation dialog"
+  },
+  "message.deleteAccountConsequences": {
+    "message": "Poistetaan pysyvästi: profiili, saldo ja krediitit, sovellukset ja tilaukset, API-avaimet sekä kolmannen osapuolen kirjautumissidokset.",
+    "description": "Explains what data will be removed in the delete confirmation dialog"
+  },
+  "message.deleteAccountTypePrompt": {
+    "message": "Kirjoita käyttäjänimesi vahvistaaksesi poiston:",
+    "description": "Instructs the user to type their username to confirm; the username is shown separately below"
+  },
+  "message.deleteAccountPlaceholder": {
+    "message": "Kirjoita käyttäjänimesi tähän",
+    "description": "Placeholder for the username confirmation input"
   },
   "message.info": {
     "message": "Tietoa",
@@ -475,6 +567,10 @@
     "message": "SeeDance",
     "description": "网站导航栏中的文本，用于显示SeeDance页面，请不要翻译此字段，必须保持为'SeeDance'"
   },
+  "nav.grokvideo": {
+    "message": "Grok Video",
+    "description": "Text in the website navigation bar to display the Grok Imagine video page"
+  },
   "nav.luma": {
     "message": "Luma",
     "description": "网站导航栏中的文本，用于显示Luma页面，请不要翻译此字段，必须保持为'Luma'"
@@ -511,6 +607,10 @@
     "message": "SERP",
     "description": "网站导航栏中的文本，用于显示SERP页面，请不要翻译此字段，必须保持为'SERP'"
   },
+  "nav.codingBridge": {
+    "message": "Coding Bridge",
+    "description": "Text in the website navigation bar to display the Coding Bridge page, must remain as 'Coding Bridge'"
+  },
   "nav.webextrator": {
     "message": "WebExtrator",
     "description": "Text in the website navigation bar to display the WebExtrator page, must remain as 'WebExtrator'"
@@ -538,6 +638,10 @@
   "nav.logOut": {
     "message": "Kirjaudu ulos",
     "description": "网站导航栏中的文本，用于退出登录"
+  },
+  "nav.deleteAccount": {
+    "message": "Poista tili",
+    "description": "Menu item to permanently delete the current user account"
   },
   "nav.site": {
     "message": "Sivuston asetukset",
@@ -636,7 +740,7 @@
     "description": "Näyttää tukitietojen osan otsikon"
   },
   "about.address": {
-    "message": "651 N Broad St, Suite 201, Middletown, Delaware, USA",
+    "message": "131 Continental Dr, Suite 305, Newark, Delaware 19713, USA",
     "description": "Yrityksen osoite"
   },
   "about.email": {
@@ -823,6 +927,119 @@
     "message": "Tietoja",
     "description": "Asetussivun tietoja-osan otsikko"
   },
+  "settings.localTools": {
+    "message": "Paikalliset työkalut",
+    "description": "Desktop-only settings tab for managing local tool folders, permissions and grants."
+  },
+  "settings.localToolsDesktopOnly": {
+    "message": "Käytettävissä vain työpöytäsovelluksessa.",
+    "description": "Shown when the Local Tools tab is opened on web/mobile."
+  },
+  "settings.localToolsFoldersTitle": {
+    "message": "Valtuutetut kansiot",
+    "description": "Heading for the list of folders the AI may read/write locally."
+  },
+  "settings.localToolsFoldersHint": {
+    "message": "Kansiot, joita tekoäly saa lukea ja kirjoittaa tällä laitteella. Työkalut suoritetaan paikallisesti; mikään ei poistu laitteeltasi ilman suostumustasi.",
+    "description": "Help text under the authorized-folders heading."
+  },
+  "settings.localToolsComputerUseTitle": {
+    "message": "Computer Use (experimental)",
+    "description": "Heading for the opt-in Computer Use (screen + mouse/keyboard control) toggle."
+  },
+  "settings.localToolsComputerUseHint": {
+    "message": "Let the AI see your screen and control the mouse and keyboard on this computer. Off by default — turn it on only when you need it. On macOS, grant Screen Recording and Accessibility permissions below. Each action still asks for your confirmation.",
+    "description": "Help text under the Computer Use toggle."
+  },
+  "settings.localToolsPreauthorizeAll": "Esihyväksy kaikki tietokoneen toiminnot",
+  "settings.localToolsPreauthorizeHint": "Salli kerralla kuvakaappaus, napsautus, kirjoitus, näppäimet ja kaikki toiminnot ja pyydä tarvittavat järjestelmäoikeudet.",
+  "settings.localToolsCuActionsTitle": "Salli toiminnot erikseen",
+  "settings.localToolsCuActionsHint": "Ota käyttöön vain ne toiminnot, jotka sallit tekoälyn suorittaa kysymättä joka kerta. Kunkin voi peruuttaa täältä.",
+  "settings.localToolsCuScreenshot": "Kuvakaappaus",
+  "settings.localToolsCuClick": "Napsautus",
+  "settings.localToolsCuMove": "Siirrä osoitinta",
+  "settings.localToolsCuType": "Kirjoita tekstiä",
+  "settings.localToolsCuKey": "Näppäinpainallus",
+  "settings.localToolsCuScroll": "Vieritys",
+  "settings.localToolsBuiltinTitle": "Sisäänrakennetut työkalut",
+  "settings.localToolsBuiltinHint": "Ota työkalu käyttöön, niin tekoäly suorittaa sen kysymättä joka kerta. Shell voi suorittaa minkä tahansa komennon tällä koneella — ota käyttöön vain jos luotat. Tiedostotyökalut pysyvät sallituissa kansioissasi.",
+  "settings.localToolsBuiltinRisky": "Täysi käyttöoikeus",
+  "settings.localToolsAddFolder": {
+    "message": "Lisää kansio",
+    "description": "Button to pick a folder to authorize."
+  },
+  "settings.localToolsRemove": {
+    "message": "Poista",
+    "description": "Button to remove an authorized folder."
+  },
+  "settings.localToolsNoFolders": {
+    "message": "Ei vielä valtuutettuja kansioita.",
+    "description": "Empty state for the authorized-folders list."
+  },
+  "settings.localToolsSave": {
+    "message": "Tallenna",
+    "description": "Save the authorized folders."
+  },
+  "settings.localToolsSaved": {
+    "message": "Tallennettu",
+    "description": "Transient confirmation after saving local-tool folders."
+  },
+  "settings.localToolsActiveTools": {
+    "message": "Aktiiviset työkalut",
+    "description": "Label before the list of currently available local tools."
+  },
+  "settings.localToolsGrantsTitle": {
+    "message": "Aina sallitut toiminnot",
+    "description": "Heading for the persistent consent grants list."
+  },
+  "settings.localToolsGrantsHint": {
+    "message": "Työkalukutsut, jotka valitsit sallittavaksi aina. Ne suoritetaan kysymättä uudelleen. Peru mikä tahansa ottaaksesi vahvistuksen taas käyttöön.",
+    "description": "Help text under the always-allowed actions heading."
+  },
+  "settings.localToolsRevoke": {
+    "message": "Peru",
+    "description": "Button to revoke a single always-allow grant."
+  },
+  "settings.localToolsRevokeAll": {
+    "message": "Peru kaikki",
+    "description": "Button to revoke every always-allow grant."
+  },
+  "settings.localToolsNoGrants": {
+    "message": "Ei aina sallittuja toimintoja. Sinulta kysytään ennen jokaista paikallista työkalua.",
+    "description": "Empty state for the always-allowed actions list."
+  },
+  "settings.localToolsPermsTitle": {
+    "message": "Järjestelmän käyttöoikeudet",
+    "description": "Heading for the macOS system-permission section."
+  },
+  "settings.localToolsPermsHint": {
+    "message": "Valinnainen. Yllä oleva kansiokäyttö ei tarvitse näitä – myönnä vain se, mitä tietty tehtävä vaatii.",
+    "description": "Help text under the system-permissions heading."
+  },
+  "settings.localToolsPermFullDisk": {
+    "message": "Täysi levyn käyttöoikeus",
+    "description": "macOS Full Disk Access permission row."
+  },
+  "settings.localToolsPermScreen": {
+    "message": "Näytön tallennus",
+    "description": "macOS Screen Recording permission row."
+  },
+  "settings.localToolsPermAccessibility": {
+    "message": "Käyttöapu",
+    "description": "macOS Accessibility permission row."
+  },
+  "settings.localToolsGranted": {
+    "message": "Myönnetty",
+    "description": "Status tag when a system permission is granted."
+  },
+  "settings.localToolsNotGranted": {
+    "message": "Ei myönnetty",
+    "description": "Status tag when a system permission is not granted."
+  },
+  "settings.localToolsOpen": {
+    "message": "Avaa…",
+    "description": "Button to open the relevant macOS System Settings pane."
+  },
   "settings.subsites": {
     "message": "Omat alisivustot",
     "description": "Asetusikkunassa alisivustojen hallinta-välilehden otsikko. Näkyy vain virallisella pääsivustolla, alisivustot eivät näy."
@@ -923,8 +1140,84 @@
     "message": "Run this from your own code to produce the same result. Replace <YOUR_API_KEY> with a key from your platform console.",
     "description": "Helper text shown above the code tabs in the API code dialog, explaining how to use the snippet"
   },
+  "tab.apiRequest": {
+    "message": "Pyyntö",
+    "description": "API-koodin dialogin välilehden etiketti pyyntökoodille (koodi, joka toistaa nykyisen tuloksen)."
+  },
+  "tab.apiResponse": {
+    "message": "Vastaus",
+    "description": "API-koodin dialogin välilehden etiketti reaaliaikaiselle vastaukselle, joka palautuu Suorita-painiketta napsautettaessa."
+  },
+  "button.apiRun": {
+    "message": "Suorita uudelleen",
+    "description": "API-koodin dialogin painike, joka suorittaa pyynnön uudelleen reaaliaikaisesti API:ta käyttäen käyttäjän avainta. Tulos on jo olemassa, joten napsauttaminen suorittaa sen uudelleen, ja se on laskutettavaa."
+  },
+  "button.apiRunning": {
+    "message": "Suoritetaan…",
+    "description": "API-koodin dialogin Suorita-painikkeen etiketti, kun reaaliaikainen pyyntö on käynnissä."
+  },
+  "button.apiRunConfirm": {
+    "message": "Vahvista suoritus",
+    "description": "Vahvistuspainikkeen etiketti dialogissa, joka varoittaa, että suorittaminen kuluttaa ylimääräisiä krediittejä."
+  },
+  "button.viewDocs": {
+    "message": "Näytä asiakirjat",
+    "description": "API-koodin dialogin alatunnisteen painike, joka avaa vastaavan API-dokumentaatiosivun alustalla."
+  },
+  "message.apiClickRun": {
+    "message": "Napsauta 'Suorita uudelleen' käyttääksesi API-avaintasi tämän pyynnön suorittamiseen reaaliaikaisesti.",
+    "description": "API-koodin dialogin vastaustabin tyhjät tilat, jotka näytetään ennen kuin käyttäjä on suorittanut pyynnön."
+  },
+  "message.apiRunConfirmTitle": {
+    "message": "Vahvista suoritus",
+    "description": "Vahvistusdialogin otsikko, joka näytetään ennen pyynnön uudelleen suorittamista API-koodin dialogista."
+  },
+  "message.apiRunConfirmDesc": {
+    "message": "Tämä suoritus käyttää API-avaintasi ja tekee todellisen kutsun rajapintaan, mikä kuluttaa ylimääräisiä pisteitä. Vahvistatko jatkamisen?",
+    "description": "Vahvistusdialogin runko, joka varoittaa, että pyynnön uudelleen suorittaminen on todellinen, laskutettava API-kutsu."
+  },
+  "message.apiRunConfirmSkip": {
+    "message": "Älä enää muistuta",
+    "description": "Valintaruutu suoritusvahvistusdialogissa, joka, kun se on valittuna, estää varoituksen seuraavilla suorituksilla."
+  },
+  "message.apiRunTaskCreated": {
+    "message": "Tehtävä on luotu, sulje tämä ikkuna nähdäksesi uusimmat tulokset alla.",
+    "description": "Onnistumisbanneri, joka näytetään API-koodin dialogissa sen jälkeen, kun suoritus palauttaa tehtävän ID:n, vihjaten että uusi tehtävä näkyy jo dialogin takana olevassa luettelossa."
+  },
+  "button.apiViewLatest": {
+    "message": "Sulje ja katso",
+    "description": "Painike API-koodin dialogin onnistumisbannerissa, joka sulkee dialogin, jotta käyttäjä voi nähdä juuri luodun tehtävän alla olevassa luettelossa."
+  },
   "message.uploadInProgress": {
     "message": "Viiteaineistojen lataus on yhä käynnissä – odota hetki.",
     "description": "Toast shown when the user clicks the Generate button while one or more reference uploads are still in flight. Asks them to wait for uploads to complete before retrying."
+  },
+  "appUpgrade.title": {
+    "message": "Update required",
+    "description": "Title of the native-app version gate modal shown at startup when the installed build is older than what the backend supports."
+  },
+  "appUpgrade.blockMessage": {
+    "message": "This version is no longer supported. Please update from the app store to continue.",
+    "description": "Body text of the hard-block upgrade modal shown when the installed version is below min_supported. The modal has no dismiss affordance — the only button opens the app store."
+  },
+  "appUpgrade.softMessage": {
+    "message": "A newer version is available. Update from the app store for the best experience.",
+    "description": "Body text of the soft upgrade prompt shown when the installed version is below latest but above min_supported. The user can dismiss and keep using the app."
+  },
+  "appUpgrade.openStore": {
+    "message": "Update now",
+    "description": "Primary button on the upgrade modal — opens the App Store / Play Store URL in the system browser."
+  },
+  "appUpgrade.later": {
+    "message": "Later",
+    "description": "Secondary button on the soft upgrade prompt — dismisses the modal and lets the user keep using the current version. Only shown for non-forced upgrades."
+  },
+  "nav.maestro": {
+    "message": "Maestro",
+    "description": "Navigointipalkissa Maestro-artikkeleiden muuntaminen videoiksi -sivun teksti, säilytä 'Maestro'"
+  },
+  "nav.digitalhuman": {
+    "message": "Digital Human",
+    "description": "Text in the website navigation bar for the Digital Human talking-head page"
   }
 }

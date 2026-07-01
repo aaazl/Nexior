@@ -27,14 +27,12 @@ import { applicationOperator, qrartOperator } from '@/operators';
 import { instrumentGeneration } from '@/plugins/telemetry';
 import { IApplicationDetailResponse, IQrartGenerateRequest, Status } from '@/models';
 import { ElMessage } from 'element-plus';
-import { ERROR_CODE_DUPLICATION, ERROR_CODE_USED_UP, getWebhookCallbackUrl } from '@/constants';
+import { ERROR_CODE_DUPLICATION, ERROR_CODE_USED_UP } from '@/constants';
 import ApplicationStatus from '@/components/application/Status.vue';
 import RecentPanel from '@/components/qrart/RecentPanel.vue';
 import { IQrartTask } from '@/models';
 import { loadPreviousPage } from '@/utils/pagination';
-import { uploadTrackerProviderMixin, ensureNoPendingUpload } from '@/utils';
-
-const CALLBACK_URL = getWebhookCallbackUrl('qrart');
+import { uploadTrackerProviderMixin, ensureNoPendingUpload, ensureLoggedIn } from '@/utils';
 
 interface IData {
   task: IQrartTask | undefined;
@@ -208,7 +206,7 @@ export default defineComponent({
         content_image_url: this.config?.content_image_url,
         prompt: this.config?.prompt,
         aspect_ratio: this.config?.aspect_ratio,
-        callback_url: CALLBACK_URL,
+        async: true,
         qrw: this.config?.qrw,
         steps: this.config?.steps,
         preset: this.config?.preset,
@@ -226,6 +224,9 @@ export default defineComponent({
             }
           : {})
       } as IQrartGenerateRequest;
+      if (!ensureLoggedIn()) {
+        return;
+      }
       const token = this.credential?.token;
       if (!token) {
         console.error('no token specified');

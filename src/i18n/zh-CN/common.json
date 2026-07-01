@@ -51,6 +51,10 @@
     "message": "删除",
     "description": "按钮中的文本，用于删除内容"
   },
+  "button.deletePermanently": {
+    "message": "永久删除账号",
+    "description": "删除账号确认对话框底部的红色最终删除按钮文本，translate to 'Permanently delete account'"
+  },
   "button.confirm": {
     "message": "确认",
     "description": "按钮中的文本，用于确认某项操作"
@@ -122,6 +126,14 @@
   "button.downloadIos": {
     "message": "下载 iOS 安装包",
     "description": "按钮中的文本，用于下载 iOS 安装包文件"
+  },
+  "button.downloadWindows": {
+    "message": "下载 Windows 版",
+    "description": "Text in button for downloading the Windows desktop installer"
+  },
+  "button.downloadMac": {
+    "message": "下载 macOS 版",
+    "description": "Text in button for downloading the macOS desktop installer"
   },
   "button.installIos": {
     "message": "安装 iOS",
@@ -215,6 +227,14 @@
     "message": "加载中...",
     "description": "内容加载时显示的状态文案"
   },
+  "error.appleSignInFailed": {
+    "message": "通过 Apple 登录失败，请重试或使用其他登录方式。",
+    "description": "当原生“通过 Apple 登录”因用户取消以外的原因失败时显示的错误提示。"
+  },
+  "error.loginLinkExpired": {
+    "message": "登录链接已失效，请重新登录。",
+    "description": "桌面客户端 OAuth 回调因 state 校验失败/过期被丢弃时显示的错误提示。"
+  },
   "entity.operation": {
     "message": "操作",
     "description": "实体的操作"
@@ -239,16 +259,20 @@
     "message": "没有历史任务，请开始新的任务吧～",
     "description": "没有任务时的消息"
   },
+  "message.guestTasks": {
+    "message": "登录后即可发起任务，并在这里查看你的作品。",
+    "description": "未登录访客在任务列表区域看到的提示"
+  },
   "message.usedAmount": {
     "message": "已使用金额",
     "description": "用于显示服务已使用的金额"
   },
   "message.mobileAppDescription": {
-    "message": "在手机上直接使用 AceData，当前提供 Android APK 下载安装，iOS 安装包完成签名后开放下载。",
-    "description": "移动应用下载页的说明文案"
+    "message": "随时随地使用完整的 AceData 创作工具 —— 支持 Android、iPhone、iPad、Windows 与 macOS。一键安装，或扫码前往。",
+    "description": "应用下载页的说明文案"
   },
   "message.mobileAndroidHint": {
-    "message": "适用于 Android 手机和平板，扫码即可下载安装最新 APK。",
+    "message": "适用于 Android 手机和平板。可从 Google Play 安装以获得自动更新，也可直接下载 APK。",
     "description": "Android 下载卡片说明"
   },
   "message.mobileAndroidPending": {
@@ -256,7 +280,7 @@
     "description": "Android 安装包暂未可用时的提示"
   },
   "message.mobileAvailableNow": {
-    "message": "Android 已开放下载",
+    "message": "已上架 Google Play",
     "description": "用于显示 Android 已可下载的状态"
   },
   "message.mobileSecureDelivery": {
@@ -276,20 +300,60 @@
     "description": "用于说明移动端与网页端共用账号"
   },
   "message.mobileIosHint": {
-    "message": "适用于 iPhone 和 iPad，可直接在线安装；如果系统拦截，也可以先下载 IPA 再分发。",
+    "message": "适用于 iPhone 和 iPad，可直接从 App Store 安装，与网页端共用账号和额度。",
     "description": "iOS 下载卡片说明"
   },
   "message.mobileIosPending": {
-    "message": "iOS 安装包暂未开放下载，正在补齐 Apple 证书和描述文件后提供。",
+    "message": "iOS 版正在完成 Apple 证书与描述文件签名，稍后将在此开放下载。",
     "description": "iOS 安装包暂未可用时的提示"
+  },
+  "message.mobileComingSoon": {
+    "message": "即将推出",
+    "description": "用于标记某个平台（如 iOS）即将开放下载的短状态标签"
+  },
+  "message.mobileNowOnAppStore": {
+    "message": "已上架 App Store",
+    "description": "Status label shown on the iOS card when the app is live on the App Store"
+  },
+  "message.desktopWindowsHint": {
+    "message": "适用于 Windows 10 及以上版本（64 位）。下载安装程序后双击即可安装。",
+    "description": "Windows desktop download card description"
+  },
+  "message.desktopMacHint": {
+    "message": "适用于 macOS 11 及以上版本。请按你的机型选择 —— Apple 芯片（M 系列）或 Intel。",
+    "description": "macOS desktop download card description"
+  },
+  "message.desktopUnsignedNote": {
+    "message": "桌面版目前为未签名的 Beta 版本。Windows 在 SmartScreen 提示中选择“更多信息 → 仍要运行”；macOS 请右键点按应用并选择“打开”以绕过 Gatekeeper。",
+    "description": "Note explaining the desktop builds are unsigned betas and how to open them"
+  },
+  "button.getOnGooglePlay": {
+    "message": "在 Google Play 上获取",
+    "description": "Button label that opens the app's Google Play Store listing"
+  },
+  "button.getOnAppStore": {
+    "message": "在 App Store 下载",
+    "description": "Button label that opens the app's Apple App Store listing"
+  },
+  "message.mobileApkFallback": {
+    "message": "无法访问 Google Play？可直接下载 APK 安装包。",
+    "description": "Shown next to a secondary button offering a direct APK download for users who cannot access Google Play"
+  },
+  "message.mobilePlayStoreHint": {
+    "message": "扫码前往 Google Play",
+    "description": "Hint under the QR code explaining that scanning it opens the Google Play listing"
+  },
+  "message.mobileAppStoreHint": {
+    "message": "扫码前往 App Store",
+    "description": "Hint under the QR code explaining that scanning it opens the App Store listing"
   },
   "message.mobileInstallNote": {
     "message": "iOS 首次安装企业或 Ad Hoc 包时，系统可能要求先在“设置 > 通用 > VPN 与设备管理”中信任证书。",
     "description": "移动应用安装提示"
   },
   "title.mobileApp": {
-    "message": "移动端下载",
-    "description": "移动应用下载页标题"
+    "message": "获取 AceData 客户端",
+    "description": "应用下载页标题"
   },
   "title.mobileFastAccess": {
     "message": "更快触达，不绕应用商店",
@@ -304,8 +368,8 @@
     "description": "下载页优势卡片标题，强调统一体验"
   },
   "nav.mobileApp": {
-    "message": "移动端",
-    "description": "导航中的移动应用下载入口"
+    "message": "客户端",
+    "description": "导航中的应用下载入口（移动端 + 桌面端）"
   },
   "message.mobileFastAccess": {
     "message": "用户可以在手机扫码直接安装，也可以在桌面端先下载 APK 再分发给团队成员，适合需要快速试用和内测的场景。",
@@ -342,6 +406,34 @@
   "message.alert": {
     "message": "警告",
     "description": "警告用户的消息"
+  },
+  "message.deleteAccountConfirm": {
+    "message": "此操作将永久删除您的账号及所有相关数据，且无法恢复。确定要继续吗？",
+    "description": "永久删除用户账号前显示的确认消息"
+  },
+  "message.deleteAccountSuccess": {
+    "message": "您的账号已删除。",
+    "description": "成功删除用户账号后显示的消息"
+  },
+  "message.deleteAccountFailed": {
+    "message": "删除账号失败，请稍后重试。",
+    "description": "删除账号失败时显示的消息"
+  },
+  "message.deleteAccountWarning": {
+    "message": "此操作不可逆！您的账号及其所有数据将被永久删除，无法找回。",
+    "description": "删除账号确认对话框顶部的红色警示横幅文本，必须强烈警告操作不可撤销"
+  },
+  "message.deleteAccountConsequences": {
+    "message": "将永久删除：个人资料、余额与积分、应用与订阅、API 密钥及第三方登录绑定。",
+    "description": "删除账号确认对话框中列出将被删除内容的说明文本"
+  },
+  "message.deleteAccountTypePrompt": {
+    "message": "请输入您的用户名以确认删除：",
+    "description": "提示用户必须逐字输入自己的用户名才能确认删除；紧随其后会单独显示该用户名"
+  },
+  "message.deleteAccountPlaceholder": {
+    "message": "在此输入您的用户名",
+    "description": "用户名确认输入框的占位符"
   },
   "message.info": {
     "message": "提示",
@@ -475,6 +567,10 @@
     "message": "SeeDance",
     "description": "网站导航栏中的文本，用于显示SeeDance页面，请不要翻译此字段，必须保持为'SeeDance'"
   },
+  "nav.grokvideo": {
+    "message": "Grok 视频",
+    "description": "网站导航栏中的文本，用于显示 Grok Imagine 视频页面"
+  },
   "nav.luma": {
     "message": "Luma",
     "description": "网站导航栏中的文本，用于显示Luma页面，请不要翻译此字段，必须保持为'Luma'"
@@ -511,6 +607,10 @@
     "message": "SERP",
     "description": "网站导航栏中的文本，用于显示SERP页面，请不要翻译此字段，必须保持为'SERP'"
   },
+  "nav.codingBridge": {
+    "message": "Coding Bridge",
+    "description": "网站导航栏中的文本，用于显示 Coding Bridge 页面，请不要翻译此字段，必须保持为'Coding Bridge'"
+  },
   "nav.webextrator": {
     "message": "WebExtrator",
     "description": "网站导航栏中的文本，用于显示WebExtrator页面，请不要翻译此字段，必须保持为'WebExtrator'"
@@ -538,6 +638,10 @@
   "nav.logOut": {
     "message": "退出登录",
     "description": "网站导航栏中的文本，用于退出登录"
+  },
+  "nav.deleteAccount": {
+    "message": "删除账号",
+    "description": "用于永久删除当前用户账号的菜单项"
   },
   "nav.site": {
     "message": "站点配置",
@@ -636,7 +740,7 @@
     "description": "显示支持信息的部分标题"
   },
   "about.address": {
-    "message": "美国特拉华州米德尔敦北广街651号201室",
+    "message": "美国特拉华州纽瓦克大陆路131号305室，邮编19713",
     "description": "公司的地址"
   },
   "about.email": {
@@ -823,6 +927,119 @@
     "message": "关于",
     "description": "设置页面中的关于部分的标题"
   },
+  "settings.localTools": {
+    "message": "本地工具",
+    "description": "桌面专属设置 tab：管理本地工具的授权文件夹、系统权限与永久授权。"
+  },
+  "settings.localToolsDesktopOnly": {
+    "message": "仅在桌面应用中可用。",
+    "description": "在 web/移动端打开本地工具 tab 时的提示。"
+  },
+  "settings.localToolsFoldersTitle": {
+    "message": "已授权文件夹",
+    "description": "AI 可在本地读写的文件夹列表标题。"
+  },
+  "settings.localToolsFoldersHint": {
+    "message": "AI 可在本机读写的文件夹。工具在本地执行；未经你同意，任何内容都不会离开你的设备。",
+    "description": "已授权文件夹标题下的说明。"
+  },
+  "settings.localToolsComputerUseTitle": {
+    "message": "电脑操作（实验性）",
+    "description": "Heading for the opt-in Computer Use (screen + mouse/keyboard control) toggle."
+  },
+  "settings.localToolsComputerUseHint": {
+    "message": "让 AI 看到你的屏幕并控制本机的鼠标和键盘。默认关闭，按需开启。macOS 上需在下方授予「屏幕录制」和「辅助功能」权限。每个操作仍会请求你的确认。",
+    "description": "Help text under the Computer Use toggle."
+  },
+  "settings.localToolsPreauthorizeAll": "预先允许所有电脑操作",
+  "settings.localToolsPreauthorizeHint": "一次性允许截图、点击、输入、按键等所有电脑操作，并触发所需的系统权限。",
+  "settings.localToolsCuActionsTitle": "逐项允许操作",
+  "settings.localToolsCuActionsHint": "只打开你愿意让 AI 免确认执行的操作，其余仍会逐次询问。每一项都可在此撤销。",
+  "settings.localToolsCuScreenshot": "截图",
+  "settings.localToolsCuClick": "点击",
+  "settings.localToolsCuMove": "移动指针",
+  "settings.localToolsCuType": "输入文字",
+  "settings.localToolsCuKey": "按键",
+  "settings.localToolsCuScroll": "滚动",
+  "settings.localToolsBuiltinTitle": "内置工具",
+  "settings.localToolsBuiltinHint": "打开某个工具后，AI 调用它将不再逐次询问。Shell 可执行本机任意命令——请谨慎开启；文件工具仍限制在你已授权的文件夹内。",
+  "settings.localToolsBuiltinRisky": "完全访问",
+  "settings.localToolsAddFolder": {
+    "message": "添加文件夹",
+    "description": "选择要授权的文件夹的按钮。"
+  },
+  "settings.localToolsRemove": {
+    "message": "移除",
+    "description": "移除已授权文件夹的按钮。"
+  },
+  "settings.localToolsNoFolders": {
+    "message": "还没有授权任何文件夹。",
+    "description": "已授权文件夹列表的空状态。"
+  },
+  "settings.localToolsSave": {
+    "message": "保存",
+    "description": "保存已授权文件夹。"
+  },
+  "settings.localToolsSaved": {
+    "message": "已保存",
+    "description": "保存本地工具文件夹后的短暂确认。"
+  },
+  "settings.localToolsActiveTools": {
+    "message": "可用工具",
+    "description": "当前可用本地工具列表前的标签。"
+  },
+  "settings.localToolsGrantsTitle": {
+    "message": "永久允许的操作",
+    "description": "永久授权列表的标题。"
+  },
+  "settings.localToolsGrantsHint": {
+    "message": "你选择「永久允许」的工具调用，将不再询问直接执行。撤销任意一项可重新开启确认弹窗。",
+    "description": "永久允许操作标题下的说明。"
+  },
+  "settings.localToolsRevoke": {
+    "message": "撤销",
+    "description": "撤销单条永久授权的按钮。"
+  },
+  "settings.localToolsRevokeAll": {
+    "message": "全部撤销",
+    "description": "撤销所有永久授权的按钮。"
+  },
+  "settings.localToolsNoGrants": {
+    "message": "暂无永久允许的操作。每次执行本地工具前都会先征求你的同意。",
+    "description": "永久允许操作列表的空状态。"
+  },
+  "settings.localToolsPermsTitle": {
+    "message": "系统权限",
+    "description": "macOS 系统权限区块的标题。"
+  },
+  "settings.localToolsPermsHint": {
+    "message": "可选。上面的文件夹访问无需这些权限——只授予某个任务真正需要的。",
+    "description": "系统权限标题下的说明。"
+  },
+  "settings.localToolsPermFullDisk": {
+    "message": "完全磁盘访问权限",
+    "description": "macOS 完全磁盘访问权限行。"
+  },
+  "settings.localToolsPermScreen": {
+    "message": "屏幕录制",
+    "description": "macOS 屏幕录制权限行。"
+  },
+  "settings.localToolsPermAccessibility": {
+    "message": "辅助功能",
+    "description": "macOS 辅助功能权限行。"
+  },
+  "settings.localToolsGranted": {
+    "message": "已授权",
+    "description": "系统权限已授权时的状态标签。"
+  },
+  "settings.localToolsNotGranted": {
+    "message": "未授权",
+    "description": "系统权限未授权时的状态标签。"
+  },
+  "settings.localToolsOpen": {
+    "message": "打开",
+    "description": "打开对应 macOS 系统设置面板的按钮。"
+  },
   "settings.subsites": {
     "message": "我的分站",
     "description": "设置弹窗中分站管理 tab 的标题。仅在 official 主站可见，分站不显示。"
@@ -923,8 +1140,84 @@
     "message": "在你自己的代码里运行下面任意一段即可复现当前结果。",
     "description": "API code dialog: short hint shown above the language tabs. Explains that the snippet below reproduces the current result when run from the user's own code."
   },
+  "tab.apiRequest": {
+    "message": "请求",
+    "description": "API code dialog tab label for the request snippet (the code that reproduces the current result)."
+  },
+  "tab.apiResponse": {
+    "message": "响应",
+    "description": "API code dialog tab label for the live response returned after clicking Run."
+  },
+  "button.apiRun": {
+    "message": "再次运行",
+    "description": "API code dialog button that re-runs the request live against the API using the user's key. The result already exists, so clicking runs it again, and it is billable."
+  },
+  "button.apiRunning": {
+    "message": "运行中…",
+    "description": "API code dialog Run button label while the live request is in flight."
+  },
+  "button.apiRunConfirm": {
+    "message": "确认运行",
+    "description": "Confirm-button label in the dialog that warns running here consumes extra credits."
+  },
+  "button.viewDocs": {
+    "message": "查看文档",
+    "description": "API code dialog footer button that opens the matching API documentation page on the platform."
+  },
+  "message.apiClickRun": {
+    "message": "点击「再次运行」即可使用你的 API Key 实时执行本次请求。",
+    "description": "API code dialog Response tab empty state, shown before the user has run the request."
+  },
+  "message.apiRunConfirmTitle": {
+    "message": "确认运行",
+    "description": "Title of the confirmation dialog shown before re-running a request from the API code dialog."
+  },
+  "message.apiRunConfirmDesc": {
+    "message": "本次运行会用你的 API Key 真实调用接口并额外消耗积分，确认继续吗？",
+    "description": "Body of the confirmation dialog warning that re-running the request is a real, billable API call."
+  },
+  "message.apiRunConfirmSkip": {
+    "message": "不再提示",
+    "description": "Checkbox in the run-confirmation dialog that, when ticked, suppresses the warning on subsequent runs."
+  },
+  "message.apiRunTaskCreated": {
+    "message": "任务已创建，关闭此窗口即可在下方查看最新结果。",
+    "description": "Success banner shown in the API code dialog after a run returns a task id, hinting that the new task already appears in the list behind the dialog."
+  },
+  "button.apiViewLatest": {
+    "message": "关闭并查看",
+    "description": "Button in the API code dialog success banner that closes the dialog so the user can see the newly created task in the list below."
+  },
   "message.uploadInProgress": {
     "message": "参考文件正在上传，请稍候再生成",
     "description": "用户在参考图/视频/音频还未上传完成时点击生成按钮，会弹出的轻量提示，要求用户等待上传完成后再次点击生成。"
+  },
+  "appUpgrade.title": {
+    "message": "需要升级",
+    "description": "原生 App 启动时的版本闸门弹窗标题。当客户端版本低于服务端要求时显示，告知用户需要升级 App。"
+  },
+  "appUpgrade.blockMessage": {
+    "message": "当前版本过低，请前往应用商店更新到最新版本后再使用。",
+    "description": "强制升级弹窗正文。当客户端版本低于 min_supported 时显示，无法关闭，唯一按钮跳转到应用商店。"
+  },
+  "appUpgrade.softMessage": {
+    "message": "有新版本可用，建议前往应用商店更新以获得最佳体验。",
+    "description": "可选升级提示正文。当客户端版本低于 latest 但高于 min_supported 时显示，用户可以选择稍后再说继续使用。"
+  },
+  "appUpgrade.openStore": {
+    "message": "前往更新",
+    "description": "升级弹窗主按钮：在系统浏览器中打开 App Store / Play Store 链接。"
+  },
+  "appUpgrade.later": {
+    "message": "稍后再说",
+    "description": "软提示升级弹窗的次按钮：忽略本次提示继续使用，仅在非强制升级场景出现。"
+  },
+  "nav.maestro": {
+    "message": "Maestro",
+    "description": "导航栏中 Maestro 文章转视频页面的文字,保持为 'Maestro'"
+  },
+  "nav.digitalhuman": {
+    "message": "数字人",
+    "description": "导航栏中数字人口播页面的文字"
   }
 }

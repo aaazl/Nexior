@@ -99,6 +99,18 @@
     "message": "Будь ласка, завершіть оплату за зовнішнім посиланням",
     "description": "Повідомлення про оплату за зовнішнім посиланням."
   },
+  "message.applePayProcessing": {
+    "message": "Завершуємо покупку через App Store…",
+    "description": "Message while the Apple in-app purchase is processing."
+  },
+  "message.applePayFailed": {
+    "message": "Платіж у App Store не завершено. Спробуйте ще раз.",
+    "description": "Message when the Apple in-app purchase fails."
+  },
+  "message.applePayUnavailable": {
+    "message": "Цей пакет не можна придбати в застосунку.",
+    "description": "Message when Apple in-app purchase is unavailable for the package."
+  },
   "message.updateFailed": {
     "message": "Не вдалося оновити",
     "description": "Повідомлення про невдале оновлення."
@@ -383,6 +395,10 @@
     "message": "Solana гаманець",
     "description": "Заголовок картки підключення Solana гаманця."
   },
+  "message.publicPayNotFound": {
+    "message": "Замовлення не знайдено або термін його дії минув.",
+    "description": "Shown on public pay page when the order GET returns 404."
+  },
   "message.x402WalletStatusDetected": {
     "message": "Виявлено",
     "description": "Мітка статусу гаманця, що виявлений/встановлений."
@@ -518,5 +534,41 @@
   "message.wechatPayLongPressTip": {
     "message": "Утримуйте QR-код нижче та виберіть 'Розпізнати QR-код', щоб завершити оплату в WeChat.",
     "description": "Tip shown above the Native QR on mobile-WeChat. The user long-presses to recognise the `weixin://wxpay/bizpayurl` URL and pays without leaving WeChat."
+  },
+  "message.wechatPayMobileScanTip": {
+    "message": "Збережіть або зробіть скріншот нижче QR-коду, відкрийте WeChat, натисніть «Сканувати», виберіть у правому верхньому куті альбом, оберіть щойно збережене зображення, щоб завершити оплату.",
+    "description": "Текст, що відображається над QR-кодом у мобільному браузері, не пов'язаному з WeChat. Інструктує користувачів зберегти зображення QR-коду та використовувати функцію альбому у WeChat для сканування та завершення оплати."
+  },
+  "message.creditsValue": {
+    "message": "{value} кредитів",
+    "description": "Display of credits amount for an order, e.g. '5 credits'. {value} is the formatted credit number."
+  },
+  "title.totalOrders": {
+    "message": "Total Orders",
+    "description": "Summary card: total number of orders matching the current filters."
+  },
+  "title.totalSpent": {
+    "message": "Total Spent",
+    "description": "Summary card: total amount spent across matching orders."
+  },
+  "title.finishedOrders": {
+    "message": "Finished Orders",
+    "description": "Summary card: number of finished orders."
+  },
+  "title.pendingOrders": {
+    "message": "Pending Orders",
+    "description": "Summary card: number of pending orders."
+  },
+  "button.export": {
+    "message": "Export CSV",
+    "description": "Button label to export the filtered orders as CSV."
+  },
+  "field.allStates": {
+    "message": "All States",
+    "description": "Placeholder of the state filter dropdown indicating no specific state is selected."
+  },
+  "field.allPayWays": {
+    "message": "All Payment Methods",
+    "description": "Placeholder of the payment method filter dropdown indicating no specific method is selected."
   }
 }

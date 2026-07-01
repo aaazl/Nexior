@@ -38,6 +38,7 @@ bower_components
 build/Release
 
 # Dependency directories
+node_modules
 node_modules/
 jspm_packages/
 
@@ -83,6 +84,16 @@ typings/
 # Nuxt.js build / generate output
 .nuxt
 dist
+
+# Electron desktop build artifacts
+dist-electron
+electron/dist
+electron/renderer
+release
+
+# Playwright (desktop E2E)
+playwright-report
+test-results
 
 # Gatsby files
 .cache/

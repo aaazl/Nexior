@@ -88,6 +88,17 @@
           </el-dropdown-menu>
         </template>
       </el-dropdown>
+      <el-tooltip
+        v-if="isVoiceCallSupported"
+        class="box-item"
+        effect="dark"
+        :content="$t('realtime.callTooltip')"
+        placement="top"
+      >
+        <span :class="{ btn: true, 'btn-voice': true }" role="button" @click="onStartCall">
+          <font-awesome-icon icon="fa-solid fa-microphone" class="icon icon-voice" />
+        </span>
+      </el-tooltip>
     </div>
     <el-button
       :disabled="answering || !questionValue || uploading || !ready"
@@ -139,6 +150,7 @@ import {
 } from '@/utils';
 import FilePreview from '@/components/common/FilePreview.vue';
 import ImagePreview from '@/components/common/ImagePreview.vue';
+import { ROUTE_CHATGPT_CALL } from '@/router/constants';
 
 export default defineComponent({
   name: 'Composer',
@@ -190,6 +202,11 @@ export default defineComponent({
     },
     modelGroup() {
       return this.$store.state.chat.modelGroup;
+    },
+    isVoiceCallSupported(): boolean {
+      // The realtime voice call route + store only exist for ChatGPT, so the
+      // mic button stays hidden for other model groups (Grok, Gemini, …).
+      return this.modelGroup?.isVoiceCallSupported ?? false;
     },
     isFileSupported() {
       return this.model?.isFileSupported;
@@ -264,6 +281,9 @@ export default defineComponent({
   },
   methods: {
     isImageUrl,
+    onStartCall() {
+      this.$router.push({ name: ROUTE_CHATGPT_CALL });
+    },
     // add textarea method
     adjustTextareaHeight() {
       this.$nextTick(() => {
@@ -483,6 +503,18 @@ textarea.input:focus {
         }
         .icon-plus {
           font-size: 16px;
+        }
+      }
+      &.btn-voice {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background-color: var(--el-fill-color-light);
+        color: var(--el-text-color-primary);
+        font-size: 15px;
+        transition: background-color 0.15s ease;
+        &:hover {
+          background-color: var(--el-fill-color);
         }
       }
     }

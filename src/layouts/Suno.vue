@@ -11,7 +11,7 @@
     <div class="preview h-full w-[300px] flex flex-col">
       <slot name="preview" />
     </div>
-    <el-button circle class="menu" @click="drawer = true">
+    <el-button v-show="!tasksEmpty" circle class="menu" @click="drawer = true">
       <font-awesome-icon icon="fa-solid fa-magic" />
     </el-button>
     <el-drawer v-model="drawer" direction="ltr" :with-header="false" size="340px" class="drawer">
@@ -24,6 +24,7 @@
 import { defineComponent } from 'vue';
 import { ElDrawer, ElButton } from 'element-plus';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import taskDrawerMixin from '@/utils/taskDrawerMixin';
 
 export default defineComponent({
   name: 'LayoutSuno',
@@ -32,19 +33,21 @@ export default defineComponent({
     ElButton,
     FontAwesomeIcon
   },
-  data() {
-    return {
-      drawer: false,
-      preview: false
-    };
-  },
-  computed: {}
+  mixins: [taskDrawerMixin]
 });
 </script>
 
 <style lang="scss" scoped>
 .menu {
   display: none;
+}
+
+// On laptops (≤1180px) the 320 + flex + 300 layout crushes the song list —
+// drop the detail preview here so the list keeps a usable width.
+@media (max-width: 1180px) {
+  .main .preview {
+    display: none;
+  }
 }
 
 @media (max-width: 767px) {

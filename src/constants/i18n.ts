@@ -31,12 +31,15 @@ export const I18N_SCOPES = [
   'kling',
   'veo',
   'sora',
+  'maestro',
+  'digitalhuman',
   'pixverse',
   'flux',
   'nanobanana',
   'openaiimage',
   'seedream',
   'seedance',
+  'grokvideo',
   'hailuo',
   'wan',
   'headshots',
@@ -60,5 +63,7 @@ export const I18N_SCOPES = [
   'connector',
   'byok',
   'subsite',
-  'webextrator'
+  'webextrator',
+  'codingBridge',
+  'realtime'
 ];

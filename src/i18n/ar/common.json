@@ -51,6 +51,10 @@
     "message": "حذف",
     "description": "النص في الزر، المستخدم لحذف المحتوى"
   },
+  "button.deletePermanently": {
+    "message": "حذف الحساب نهائيًا",
+    "description": "Final red delete button at the bottom of the delete confirmation dialog"
+  },
   "button.confirm": {
     "message": "تأكيد",
     "description": "النص في الزر، المستخدم لتأكيد عملية معينة"
@@ -122,6 +126,14 @@
   "button.downloadIos": {
     "message": "تنزيل حزمة تثبيت iOS",
     "description": "النص في الزر، المستخدم لتنزيل ملف حزمة تثبيت iOS"
+  },
+  "button.downloadWindows": {
+    "message": "تنزيل لنظام Windows",
+    "description": "Text in button for downloading the Windows desktop installer"
+  },
+  "button.downloadMac": {
+    "message": "تنزيل لنظام macOS",
+    "description": "Text in button for downloading the macOS desktop installer"
   },
   "button.installIos": {
     "message": "تثبيت iOS",
@@ -215,6 +227,14 @@
     "message": "جارٍ التحميل...",
     "description": "النص الذي يظهر أثناء تحميل المحتوى"
   },
+  "error.appleSignInFailed": {
+    "message": "فشل تسجيل الدخول باستخدام Apple. يرجى المحاولة مرة أخرى أو استخدام طريقة تسجيل دخول أخرى.",
+    "description": "Error toast shown when native Apple sign-in fails for a reason other than user cancellation"
+  },
+  "error.loginLinkExpired": {
+    "message": "Login link expired. Please sign in again.",
+    "description": "Shown on the desktop client when an OAuth callback is dropped (state mismatch or expired)."
+  },
   "entity.operation": {
     "message": "عملية",
     "description": "عملية الكيان"
@@ -238,6 +258,10 @@
   "message.noTasks": {
     "message": "لا توجد مهام تاريخية، يرجى بدء مهمة جديدة～",
     "description": "رسالة عند عدم وجود مهام"
+  },
+  "message.guestTasks": {
+    "message": "سجّل الدخول لبدء مهمة وعرض إبداعاتك هنا.",
+    "description": "Prompt shown in the task list area for not-logged-in guests"
   },
   "message.usedAmount": {
     "message": "المبلغ المستخدم",
@@ -282,6 +306,46 @@
   "message.mobileIosPending": {
     "message": "حزمة iOS غير متاحة للتنزيل بعد، جارٍ استكمال شهادة Apple وملف التعريف.",
     "description": "تنبيه عند عدم توفر حزمة iOS"
+  },
+  "message.mobileComingSoon": {
+    "message": "قريبًا",
+    "description": "Short status label shown on a platform card (e.g. iOS) while its build is being prepared"
+  },
+  "message.mobileNowOnAppStore": {
+    "message": "Now on the App Store",
+    "description": "Status label shown on the iOS card when the app is live on the App Store"
+  },
+  "message.desktopWindowsHint": {
+    "message": "لنظام Windows 10 والأحدث (64 بت). نزّل المثبّت وانقر نقرًا مزدوجًا للتثبيت.",
+    "description": "Windows desktop download card description"
+  },
+  "message.desktopMacHint": {
+    "message": "لنظام macOS 11 والأحدث. اختر النسخة المناسبة لجهاز Mac لديك — معالج Apple (سلسلة M) أو Intel.",
+    "description": "macOS desktop download card description"
+  },
+  "message.desktopUnsignedNote": {
+    "message": "تطبيقات سطح المكتب هي إصدارات Beta غير موقّعة. على Windows اختر ‹مزيد من المعلومات ← التشغيل على أي حال› عند ظهور SmartScreen؛ وعلى macOS انقر بزر الفأرة الأيمن على التطبيق واختر ‹فتح› لتجاوز Gatekeeper.",
+    "description": "Note explaining the desktop builds are unsigned betas and how to open them"
+  },
+  "button.getOnGooglePlay": {
+    "message": "تنزيل من Google Play",
+    "description": "Button label that opens the app's Google Play Store listing"
+  },
+  "button.getOnAppStore": {
+    "message": "Get it on the App Store",
+    "description": "Button label that opens the app's Apple App Store listing"
+  },
+  "message.mobileApkFallback": {
+    "message": "لا يمكنك الوصول إلى Google Play؟ نزّل حزمة APK مباشرةً.",
+    "description": "Shown next to a secondary button offering a direct APK download for users who cannot access Google Play"
+  },
+  "message.mobilePlayStoreHint": {
+    "message": "امسح الرمز لفتح Google Play",
+    "description": "Hint under the QR code explaining that scanning it opens the Google Play listing"
+  },
+  "message.mobileAppStoreHint": {
+    "message": "Scan to open the App Store",
+    "description": "Hint under the QR code explaining that scanning it opens the App Store listing"
   },
   "message.mobileInstallNote": {
     "message": "عند تثبيت حزمة مؤسسية أو Ad Hoc على iOS لأول مرة، قد يطلب النظام أولاً الوثوق بالشهادة في \"الإعدادات > عام > VPN وإدارة الأجهزة\".",
@@ -342,6 +406,34 @@
   "message.alert": {
     "message": "تحذير",
     "description": "警告用户的消息"
+  },
+  "message.deleteAccountConfirm": {
+    "message": "سيؤدي هذا إلى حذف حسابك وجميع البيانات المرتبطة به نهائيًا. لا يمكن التراجع عن هذا الإجراء. هل أنت متأكد من أنك تريد المتابعة؟",
+    "description": "Confirmation message shown before permanently deleting the user account"
+  },
+  "message.deleteAccountSuccess": {
+    "message": "تم حذف حسابك.",
+    "description": "Message shown after the user account is successfully deleted"
+  },
+  "message.deleteAccountFailed": {
+    "message": "فشل حذف حسابك. يرجى المحاولة مرة أخرى لاحقًا.",
+    "description": "Message shown when account deletion fails"
+  },
+  "message.deleteAccountWarning": {
+    "message": "هذا الإجراء لا يمكن التراجع عنه! سيتم حذف حسابك وجميع بياناته نهائيًا ولا يمكن استعادتها.",
+    "description": "Red warning banner at the top of the delete confirmation dialog"
+  },
+  "message.deleteAccountConsequences": {
+    "message": "سيتم حذفها نهائيًا: الملف الشخصي، الرصيد والنقاط، التطبيقات والاشتراكات، مفاتيح API، وروابط تسجيل الدخول من جهات خارجية.",
+    "description": "Explains what data will be removed in the delete confirmation dialog"
+  },
+  "message.deleteAccountTypePrompt": {
+    "message": "اكتب اسم المستخدم لتأكيد الحذف:",
+    "description": "Instructs the user to type their username to confirm; the username is shown separately below"
+  },
+  "message.deleteAccountPlaceholder": {
+    "message": "أدخل اسم المستخدم هنا",
+    "description": "Placeholder for the username confirmation input"
   },
   "message.info": {
     "message": "معلومات",
@@ -475,6 +567,10 @@
     "message": "SeeDance",
     "description": "النص في شريط التنقل للموقع، لعرض صفحة SeeDance، يجب عدم ترجمة هذا الحقل، يجب أن يبقى 'SeeDance'"
   },
+  "nav.grokvideo": {
+    "message": "Grok Video",
+    "description": "Text in the website navigation bar to display the Grok Imagine video page"
+  },
   "nav.luma": {
     "message": "Luma",
     "description": "النص في شريط التنقل للموقع، لعرض صفحة Luma، يجب عدم ترجمة هذا الحقل، يجب أن يبقى 'Luma'"
@@ -511,6 +607,10 @@
     "message": "SERP",
     "description": "النص في شريط التنقل للموقع، لعرض صفحة SERP، يجب عدم ترجمة هذا الحقل، يجب أن يبقى 'SERP'"
   },
+  "nav.codingBridge": {
+    "message": "Coding Bridge",
+    "description": "Text in the website navigation bar to display the Coding Bridge page, must remain as 'Coding Bridge'"
+  },
   "nav.webextrator": {
     "message": "WebExtrator",
     "description": "Text in the website navigation bar to display the WebExtrator page, must remain as 'WebExtrator'"
@@ -538,6 +638,10 @@
   "nav.logOut": {
     "message": "تسجيل الخروج",
     "description": "النص في شريط التنقل للموقع، لتسجيل الخروج"
+  },
+  "nav.deleteAccount": {
+    "message": "حذف الحساب",
+    "description": "Menu item to permanently delete the current user account"
   },
   "nav.site": {
     "message": "إعدادات الموقع",
@@ -636,7 +740,7 @@
     "description": "عرض عنوان الجزء الذي يحتوي على معلومات الدعم"
   },
   "about.address": {
-    "message": "651 North Broad St, Suite 201, Middletown, DE, USA",
+    "message": "131 Continental Dr, Suite 305, Newark, DE 19713, USA",
     "description": "عنوان الشركة"
   },
   "about.email": {
@@ -823,6 +927,119 @@
     "message": "حول",
     "description": "عنوان قسم حول في صفحة الإعدادات"
   },
+  "settings.localTools": {
+    "message": "الأدوات المحلية",
+    "description": "Desktop-only settings tab for managing local tool folders, permissions and grants."
+  },
+  "settings.localToolsDesktopOnly": {
+    "message": "متاح في تطبيق سطح المكتب فقط.",
+    "description": "Shown when the Local Tools tab is opened on web/mobile."
+  },
+  "settings.localToolsFoldersTitle": {
+    "message": "المجلدات المصرّح بها",
+    "description": "Heading for the list of folders the AI may read/write locally."
+  },
+  "settings.localToolsFoldersHint": {
+    "message": "المجلدات التي يُسمح للذكاء الاصطناعي بالقراءة والكتابة فيها على هذا الجهاز. تعمل الأدوات محليًا؛ ولا يغادر أي شيء جهازك دون موافقتك.",
+    "description": "Help text under the authorized-folders heading."
+  },
+  "settings.localToolsComputerUseTitle": {
+    "message": "Computer Use (experimental)",
+    "description": "Heading for the opt-in Computer Use (screen + mouse/keyboard control) toggle."
+  },
+  "settings.localToolsComputerUseHint": {
+    "message": "Let the AI see your screen and control the mouse and keyboard on this computer. Off by default — turn it on only when you need it. On macOS, grant Screen Recording and Accessibility permissions below. Each action still asks for your confirmation.",
+    "description": "Help text under the Computer Use toggle."
+  },
+  "settings.localToolsPreauthorizeAll": "السماح مسبقًا بجميع إجراءات الكمبيوتر",
+  "settings.localToolsPreauthorizeHint": "اسمح دفعة واحدة بلقطة الشاشة والنقر والكتابة والمفاتيح وجميع الإجراءات، واطلب أذونات النظام المطلوبة.",
+  "settings.localToolsCuActionsTitle": "السماح بالإجراءات فرديًا",
+  "settings.localToolsCuActionsHint": "فعّل فقط الإجراءات التي تقبل أن ينفّذها الذكاء الاصطناعي دون سؤال في كل مرة. يمكن إلغاء كل منها من هنا.",
+  "settings.localToolsCuScreenshot": "لقطة شاشة",
+  "settings.localToolsCuClick": "نقر",
+  "settings.localToolsCuMove": "تحريك المؤشر",
+  "settings.localToolsCuType": "كتابة نص",
+  "settings.localToolsCuKey": "ضغط المفاتيح",
+  "settings.localToolsCuScroll": "تمرير",
+  "settings.localToolsBuiltinTitle": "الأدوات المدمجة",
+  "settings.localToolsBuiltinHint": "فعّل أداة ليشغّلها الذكاء الاصطناعي دون سؤال في كل مرة. يمكن لـ Shell تنفيذ أي أمر على هذا الجهاز — فعّله فقط إذا كنت تثق. تبقى أدوات الملفات محصورة في مجلداتك المصرّح بها.",
+  "settings.localToolsBuiltinRisky": "وصول كامل",
+  "settings.localToolsAddFolder": {
+    "message": "إضافة مجلد",
+    "description": "Button to pick a folder to authorize."
+  },
+  "settings.localToolsRemove": {
+    "message": "إزالة",
+    "description": "Button to remove an authorized folder."
+  },
+  "settings.localToolsNoFolders": {
+    "message": "لا توجد مجلدات مصرّح بها بعد.",
+    "description": "Empty state for the authorized-folders list."
+  },
+  "settings.localToolsSave": {
+    "message": "حفظ",
+    "description": "Save the authorized folders."
+  },
+  "settings.localToolsSaved": {
+    "message": "تم الحفظ",
+    "description": "Transient confirmation after saving local-tool folders."
+  },
+  "settings.localToolsActiveTools": {
+    "message": "الأدوات النشطة",
+    "description": "Label before the list of currently available local tools."
+  },
+  "settings.localToolsGrantsTitle": {
+    "message": "الإجراءات المسموح بها دائمًا",
+    "description": "Heading for the persistent consent grants list."
+  },
+  "settings.localToolsGrantsHint": {
+    "message": "استدعاءات الأدوات التي اخترت السماح بها دائمًا. تُنفَّذ دون السؤال مجددًا. ألغِ أيًّا منها لإعادة تفعيل مطالبة التأكيد.",
+    "description": "Help text under the always-allowed actions heading."
+  },
+  "settings.localToolsRevoke": {
+    "message": "إلغاء",
+    "description": "Button to revoke a single always-allow grant."
+  },
+  "settings.localToolsRevokeAll": {
+    "message": "إلغاء الكل",
+    "description": "Button to revoke every always-allow grant."
+  },
+  "settings.localToolsNoGrants": {
+    "message": "لا توجد إجراءات مسموح بها دائمًا. ستُطلب موافقتك قبل تشغيل كل أداة محلية.",
+    "description": "Empty state for the always-allowed actions list."
+  },
+  "settings.localToolsPermsTitle": {
+    "message": "أذونات النظام",
+    "description": "Heading for the macOS system-permission section."
+  },
+  "settings.localToolsPermsHint": {
+    "message": "اختياري. الوصول إلى المجلدات أعلاه لا يحتاج إلى أيٍّ منها — امنح فقط ما تتطلبه مهمة محددة.",
+    "description": "Help text under the system-permissions heading."
+  },
+  "settings.localToolsPermFullDisk": {
+    "message": "الوصول الكامل إلى القرص",
+    "description": "macOS Full Disk Access permission row."
+  },
+  "settings.localToolsPermScreen": {
+    "message": "تسجيل الشاشة",
+    "description": "macOS Screen Recording permission row."
+  },
+  "settings.localToolsPermAccessibility": {
+    "message": "إمكانية الوصول",
+    "description": "macOS Accessibility permission row."
+  },
+  "settings.localToolsGranted": {
+    "message": "مَمنوح",
+    "description": "Status tag when a system permission is granted."
+  },
+  "settings.localToolsNotGranted": {
+    "message": "غير ممنوح",
+    "description": "Status tag when a system permission is not granted."
+  },
+  "settings.localToolsOpen": {
+    "message": "فتح…",
+    "description": "Button to open the relevant macOS System Settings pane."
+  },
   "settings.subsites": {
     "message": "مواقعي الفرعية",
     "description": "عنوان علامة تبويب إدارة المواقع الفرعية في نافذة الإعدادات. يظهر فقط في الموقع الرسمي، المواقع الفرعية لا تظهر."
@@ -923,8 +1140,84 @@
     "message": "Run this from your own code to produce the same result. Replace <YOUR_API_KEY> with a key from your platform console.",
     "description": "Helper text shown above the code tabs in the API code dialog, explaining how to use the snippet"
   },
+  "tab.apiRequest": {
+    "message": "الطلب",
+    "description": "تسمية علامة التبويب لحوار كود API لقصاصة الطلب (الكود الذي يعيد إنتاج النتيجة الحالية)."
+  },
+  "tab.apiResponse": {
+    "message": "الاستجابة",
+    "description": "تسمية علامة التبويب لحوار كود API للاستجابة المباشرة التي تم إرجاعها بعد النقر على تشغيل."
+  },
+  "button.apiRun": {
+    "message": "إعادة التشغيل",
+    "description": "زر حوار كود API الذي يعيد تشغيل الطلب مباشرة ضد API باستخدام مفتاح المستخدم. النتيجة موجودة بالفعل، لذا فإن النقر يعيد تشغيلها، وهي قابلة للفوترة."
+  },
+  "button.apiRunning": {
+    "message": "جارٍ التشغيل…",
+    "description": "تسمية زر تشغيل حوار كود API بينما يكون الطلب المباشر قيد التنفيذ."
+  },
+  "button.apiRunConfirm": {
+    "message": "تأكيد التشغيل",
+    "description": "تسمية زر التأكيد في الحوار الذي يحذر من أن التشغيل هنا يستهلك أرصدة إضافية."
+  },
+  "button.viewDocs": {
+    "message": "عرض الوثائق",
+    "description": "زر تذييل حوار كود API الذي يفتح صفحة الوثائق المطابقة لـ API على المنصة."
+  },
+  "message.apiClickRun": {
+    "message": "انقر على «إعادة التشغيل» لاستخدام مفتاح API الخاص بك لتنفيذ هذا الطلب مباشرة.",
+    "description": "حالة فارغة لعلامة الاستجابة في حوار كود API، تظهر قبل أن يقوم المستخدم بتشغيل الطلب."
+  },
+  "message.apiRunConfirmTitle": {
+    "message": "تأكيد التشغيل",
+    "description": "عنوان حوار التأكيد الذي يظهر قبل إعادة تشغيل طلب من حوار كود API."
+  },
+  "message.apiRunConfirmDesc": {
+    "message": "سيستخدم هذا التشغيل مفتاح API الخاص بك لاستدعاء الواجهة بشكل حقيقي وسيستهلك نقاط إضافية، هل تؤكد الاستمرار؟",
+    "description": "نص جسم حوار التأكيد الذي يحذر من أن إعادة تشغيل الطلب هي استدعاء API حقيقي وقابل للفوترة."
+  },
+  "message.apiRunConfirmSkip": {
+    "message": "لا تذكرني مرة أخرى",
+    "description": "مربع اختيار في حوار تأكيد التشغيل، عند تحديده، يتم كتم التحذير في التشغيلات اللاحقة."
+  },
+  "message.apiRunTaskCreated": {
+    "message": "تم إنشاء المهمة، أغلق هذه النافذة لرؤية النتائج الأخيرة أدناه.",
+    "description": "شريط نجاح يظهر في حوار كود API بعد أن تعيد عملية التشغيل معرف المهمة، مما يشير إلى أن المهمة الجديدة تظهر بالفعل في القائمة خلف الحوار."
+  },
+  "button.apiViewLatest": {
+    "message": "أغلق وشاهد",
+    "description": "زر في شريط نجاح حوار كود API يغلق الحوار حتى يتمكن المستخدم من رؤية المهمة التي تم إنشاؤها حديثًا في القائمة أدناه."
+  },
   "message.uploadInProgress": {
     "message": "لا تزال عمليات رفع المراجع جارية — يُرجى الانتظار قليلاً.",
     "description": "Toast shown when the user clicks the Generate button while one or more reference uploads are still in flight. Asks them to wait for uploads to complete before retrying."
+  },
+  "appUpgrade.title": {
+    "message": "Update required",
+    "description": "Title of the native-app version gate modal shown at startup when the installed build is older than what the backend supports."
+  },
+  "appUpgrade.blockMessage": {
+    "message": "This version is no longer supported. Please update from the app store to continue.",
+    "description": "Body text of the hard-block upgrade modal shown when the installed version is below min_supported. The modal has no dismiss affordance — the only button opens the app store."
+  },
+  "appUpgrade.softMessage": {
+    "message": "A newer version is available. Update from the app store for the best experience.",
+    "description": "Body text of the soft upgrade prompt shown when the installed version is below latest but above min_supported. The user can dismiss and keep using the app."
+  },
+  "appUpgrade.openStore": {
+    "message": "Update now",
+    "description": "Primary button on the upgrade modal — opens the App Store / Play Store URL in the system browser."
+  },
+  "appUpgrade.later": {
+    "message": "Later",
+    "description": "Secondary button on the soft upgrade prompt — dismisses the modal and lets the user keep using the current version. Only shown for non-forced upgrades."
+  },
+  "nav.maestro": {
+    "message": "مايسترو",
+    "description": "نص صفحة تحويل مقالات مايسترو إلى فيديو في شريط التنقل، يجب أن يبقى 'مايسترو'"
+  },
+  "nav.digitalhuman": {
+    "message": "Digital Human",
+    "description": "Text in the website navigation bar for the Digital Human talking-head page"
   }
 }

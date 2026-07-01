@@ -163,6 +163,14 @@
     "message": "Trenutno najnapredniji model",
     "description": "Opis Gemini 3.0 Pro modela"
   },
+  "model.gemini31Pro": {
+    "message": "gemini-3.1-pro",
+    "description": "Naziv modela usluge, tj. Gemini 3.0 Pro"
+  },
+  "model.gemini31ProDescription": {
+    "message": "Trenutno najnapredniji model",
+    "description": "Opis Gemini 3.0 Pro modela"
+  },
   "model.gemini25Pro": {
     "message": "gemini-2.5-pro",
     "description": "Naziv modela usluge, tj. Gemini 2.5 Pro"
@@ -179,13 +187,21 @@
     "message": "Brži i lakši model",
     "description": "Opis Gemini 2.5 Flash modela"
   },
-  "model.claudeOpus47": {
-    "message": "claude-opus-4.7",
-    "description": "Naziv modela usluge, tj. Claude Opus 4.7"
+  "model.gemini35Flash": {
+    "message": "gemini-3.5-flash",
+    "description": "Naziv modela usluge, tj. Gemini 2.5 Flash"
   },
-  "model.claudeOpus47Description": {
+  "model.gemini35FlashDescription": {
+    "message": "Brži i lakši model",
+    "description": "Opis Gemini 2.5 Flash modela"
+  },
+  "model.claudeOpus48": {
+    "message": "claude-opus-4.8",
+    "description": "Naziv modela usluge, tj. Claude Opus 4.8"
+  },
+  "model.claudeOpus48Description": {
     "message": "Trenutno najnapredniji model",
-    "description": "Opis Claude Opus 4.7 modela"
+    "description": "Opis modela Claude Opus 4.8"
   },
   "model.claudeSonnet46": {
     "message": "claude-sonnet-4.6",
@@ -506,5 +522,213 @@
   "askUserQuestion.collapsedAnswerLabel": {
     "message": "Vaš odgovor",
     "description": "Završna poruka kada se konkretan odgovor ne može izvući iz istorijskog izlaza"
+  },
+  "consent.title": {
+    "message": "Потребно овлашћење конектора",
+    "description": "Наслов картице за овлашћење конектора"
+  },
+  "consent.matchAny": {
+    "message": "Изаберите било који",
+    "description": "Етикета: Из групе конектора, било који може задовољити захтев"
+  },
+  "consent.matchAll": {
+    "message": "Сви захтевају овлашћење",
+    "description": "Етикета: Сви конектори у групи захтевају овлашћење"
+  },
+  "consent.authorize": {
+    "message": "Овласти",
+    "description": "Дугме за овлашћење, кликом се отвара страница за овлашћење треће стране"
+  },
+  "consent.skip": {
+    "message": "Тренутно не овлашћујем",
+    "description": "Дугме за прескакање овлашћења, након прескакања модел ће наставити без тог конектора"
+  },
+  "consent.continue": {
+    "message": "Настави",
+    "description": "Дугме „Настави“ приказује се када се после повратка са OAuth-а открије да је конектор повезан; кликом се шаље овлашћење."
+  },
+  "consent.selectScopes": {
+    "message": "Izaberite ovlašćenja {provider}",
+    "description": "Title of the scope picker dialog opened from the consent card; {provider} is the upstream provider name (e.g. Gmail)."
+  },
+  "consent.selectScopesHint": {
+    "message": "Izaberite ovlašćenja koja želite da odobrite. Možete izabrati više opcija, a neizabrana će podrazumevano odobriti samo osnovne informacije za prijavu.",
+    "description": "Body copy explaining that the user can opt out of specific scopes; rendered above the checkbox group."
+  },
+  "consent.installFailed": {
+    "message": "Autorizacija nije uspela. Molimo pokušajte ponovo.",
+    "description": "Toast shown when the AuthBackend install endpoint returns an error from the consent card."
+  },
+  "consent.statusConnected": {
+    "message": "Повезано",
+    "description": "Статусни значак за повезане конекторе"
+  },
+  "consent.statusUnconnected": {
+    "message": "Није повезано",
+    "description": "Статусни значак за неповезане конекторе (приказује се када нема овлашћења)"
+  },
+  "consent.resolvedAuthorized": {
+    "message": "Овлашћено: {list}",
+    "description": "Објашњење на дну картице након што је корисник завршио овлашћење, {list} представља списак овлашћених конектора"
+  },
+  "consent.resolvedSkipped": {
+    "message": "Овлашћење конектора је прескочено",
+    "description": "Објашњење на дну картице након што је корисник прескочио овлашћење"
+  },
+  "scheduledTasks.navTitle": {
+    "message": "Scheduled Tasks"
+  },
+  "scheduledTasks.title": {
+    "message": "Scheduled Tasks"
+  },
+  "scheduledTasks.create": {
+    "message": "New"
+  },
+  "scheduledTasks.edit": {
+    "message": "Edit Task"
+  },
+  "scheduledTasks.empty": {
+    "message": "No scheduled tasks yet. Click \"New\" to create one."
+  },
+  "scheduledTasks.noRuns": {
+    "message": "No runs yet"
+  },
+  "scheduledTasks.loadError": {
+    "message": "Failed to load"
+  },
+  "scheduledTasks.deleteConfirm": {
+    "message": "Delete \"{name}\"? The task will stop running."
+  },
+  "scheduledTasks.viewResult": {
+    "message": "View Result"
+  },
+  "scheduledTasks.viewRuns": {
+    "message": "Run history"
+  },
+  "scheduledTasks.noConversation": {
+    "message": "Нема записа о разговору",
+    "description": "Радња није повезана са разговором (стара верзија рада)"
+  },
+  "scheduledTasks.jitterHint": {
+    "message": "±60s jitter"
+  },
+  "scheduledTasks.runCount": {
+    "message": "Ran {count} time(s)"
+  },
+  "scheduledTasks.state.enabled": {
+    "message": "Active"
+  },
+  "scheduledTasks.state.disabled": {
+    "message": "Paused"
+  },
+  "scheduledTasks.state.error": {
+    "message": "Error"
+  },
+  "scheduledTasks.run.queued": {
+    "message": "Queued"
+  },
+  "scheduledTasks.run.running": {
+    "message": "Running"
+  },
+  "scheduledTasks.run.success": {
+    "message": "Success"
+  },
+  "scheduledTasks.run.failed": {
+    "message": "Failed"
+  },
+  "scheduledTasks.run.needs_user_input": {
+    "message": "Needs action"
+  },
+  "scheduledTasks.scheduleType.daily": {
+    "message": "Daily"
+  },
+  "scheduledTasks.scheduleType.minutely": {
+    "message": "Сваког минута"
+  },
+  "scheduledTasks.scheduleType.hourly": {
+    "message": "Hourly"
+  },
+  "scheduledTasks.scheduleType.weekly": {
+    "message": "Weekly"
+  },
+  "scheduledTasks.scheduleType.cron": {
+    "message": "Cron expression"
+  },
+  "scheduledTasks.form.name": {
+    "message": "Task name"
+  },
+  "scheduledTasks.form.namePlaceholder": {
+    "message": "e.g. Daily news summary"
+  },
+  "scheduledTasks.form.model": {
+    "message": "Model"
+  },
+  "scheduledTasks.form.prompt": {
+    "message": "Prompt"
+  },
+  "scheduledTasks.form.promptPlaceholder": {
+    "message": "Enter your scheduled question or instruction. Supports {'{{date}}'}, {'{{run_count}}'}, {'{{last_output}}'} variables."
+  },
+  "scheduledTasks.form.promptHint": {
+    "message": "Variables: {'{{date}}'} today, {'{{run_count}}'} run number, {'{{last_output}}'} last output snippet"
+  },
+  "scheduledTasks.form.schedule": {
+    "message": "Frequency"
+  },
+  "scheduledTasks.form.time": {
+    "message": "Time"
+  },
+  "scheduledTasks.form.weekday": {
+    "message": "Weekday"
+  },
+  "scheduledTasks.form.cron": {
+    "message": "Cron expression"
+  },
+  "scheduledTasks.form.skills": {
+    "message": "Овласти Skills",
+    "description": "Поставке за заказане задатке без надзора, вишеструки избор skill"
+  },
+  "scheduledTasks.form.skillsPlaceholder": {
+    "message": "Изаберите Skills које ће овлаштити аутоматско извршавање овог задатка",
+    "description": "Позиција за овлашћење skill"
+  },
+  "scheduledTasks.form.skillsHint": {
+    "message": "Изабрани Skills могу се извршавати у позадини без људске потврде; неизабрани Skills и даље могу само да се прегледају или чекају потврду.",
+    "description": "Објашњење за овлашћење skill"
+  },
+  "scheduledTasks.form.skillMissing": {
+    "message": "Није повезано",
+    "description": "skill недостаје веза"
+  },
+  "scheduledTasks.form.mcpServers": {
+    "message": "Ovlašćenje MCP",
+    "description": "Ovlašćenje za MCP servere za automatske zadatke."
+  },
+  "scheduledTasks.form.mcpServersPlaceholder": {
+    "message": "Izaberite MCP servere kojima dozvoljavate automatsko učitavanje za ovaj zadatak",
+    "description": "Placeholder za ovlašćenje MCP servera."
+  },
+  "scheduledTasks.form.mcpServersHint": {
+    "message": "Izabrani MCP serveri će se učitati i izvršiti u pozadini zadatka; neizabrani MCP serveri neće se učitati u režimu bez nadzora.",
+    "description": "Objašnjenje ovlašćenja za MCP servere."
+  },
+  "scheduledTasks.form.skillsConfirmTitle": {
+    "message": "Потврда овлашћења без надзора",
+    "description": "Наслов за потврду овлашћења"
+  },
+  "scheduledTasks.form.skillsConfirm": {
+    "message": "Овај задатак ће дозволити {count} Skill да се извршавају у позадини без људске потврде: {skills}. Ови Skill могу слати поруке, објављивати садржај или писати у спољне услуге, молимо потврдите.",
+    "description": "Текст за потврду овлашћења"
+  },
+  "scheduledTasks.form.required": {
+    "message": "Please fill in task name and prompt"
+  },
+  "model.claudeOpus47": {
+    "message": "claude-opus-4.7",
+    "description": "Naziv modela usluge, tj. Claude Opus 4.7"
+  },
+  "model.claudeOpus47Description": {
+    "message": "Trenutno najnapredniji model",
+    "description": "Opis Claude Opus 4.7 modela"
   }
 }

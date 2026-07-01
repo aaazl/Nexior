@@ -1,10 +1,13 @@
 # build stage
-FROM node:22 as build-stage
+FROM node:26 as build-stage
 WORKDIR /app
 COPY package.json package-lock.json .npmrc ./
 RUN npm ci
 COPY . .
-RUN npm run build
+# Pre-render the flag-allowlisted routes, then derive a plain SPA shell from
+# each. nginx serves the shell by default and the SSG page only when the runtime
+# `features=ssr` flag is set (URL/cookie) — prod behaviour unchanged until opt-in.
+RUN npm run build:ssg && node scripts/ssg-shell.mjs
 
 # production stage
 FROM nginx:stable-alpine as production-stage

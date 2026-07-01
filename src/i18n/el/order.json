@@ -99,6 +99,18 @@
     "message": "Παρακαλώ ολοκληρώστε την πληρωμή μέσω εξωτερικού συνδέσμου.",
     "description": "Μήνυμα για πληρωμή μέσω εξωτερικού συνδέσμου."
   },
+  "message.applePayProcessing": {
+    "message": "Ολοκλήρωση της αγοράς μέσω App Store…",
+    "description": "Message while the Apple in-app purchase is processing."
+  },
+  "message.applePayFailed": {
+    "message": "Η πληρωμή στο App Store δεν ολοκληρώθηκε. Δοκιμάστε ξανά.",
+    "description": "Message when the Apple in-app purchase fails."
+  },
+  "message.applePayUnavailable": {
+    "message": "Αυτό το πακέτο δεν μπορεί να αγοραστεί εντός της εφαρμογής.",
+    "description": "Message when Apple in-app purchase is unavailable for the package."
+  },
   "message.updateFailed": {
     "message": "Αποτυχία Ενημέρωσης",
     "description": "Μήνυμα αποτυχίας ενημέρωσης."
@@ -383,6 +395,10 @@
     "message": "Πορτοφόλι Solana",
     "description": "Τίτλος κάρτας σύνδεσης πορτοφολιού Solana."
   },
+  "message.publicPayNotFound": {
+    "message": "Η παραγγελία δεν βρέθηκε ή έχει λήξει.",
+    "description": "Shown on public pay page when the order GET returns 404."
+  },
   "message.x402WalletStatusDetected": {
     "message": "Ανιχνεύθηκε",
     "description": "Ετικέτα κατάστασης πορτοφολιού που έχει ανιχνευθεί/εγκατασταθεί."
@@ -518,5 +534,41 @@
   "message.wechatPayLongPressTip": {
     "message": "Πατήστε παρατεταμένα τον παρακάτω κωδικό QR και επιλέξτε 'Αναγνώριση κωδικού QR' για να ολοκληρώσετε την πληρωμή στο WeChat.",
     "description": "Tip shown above the Native QR on mobile-WeChat. The user long-presses to recognise the `weixin://wxpay/bizpayurl` URL and pays without leaving WeChat."
+  },
+  "message.wechatPayMobileScanTip": {
+    "message": "Αποθηκεύστε ή τραβήξτε μια φωτογραφία του παρακάτω QR code, ανοίξτε το WeChat, κάντε κλικ στο Σαρώστε, επιλέξτε την γωνία επάνω δεξιά την γκαλερί και επιλέξτε την εικόνα που αποθηκεύσατε για να ολοκληρώσετε την πληρωμή.",
+    "description": "Εμφανίζεται πάνω από το QR code σε κινητό πρόγραμμα περιήγησης που δεν είναι WeChat. Οδηγεί τον χρήστη να αποθηκεύσει την εικόνα του QR code και να την αναγνωρίσει μέσω της λειτουργίας γκαλερί του WeChat."
+  },
+  "message.creditsValue": {
+    "message": "{value} πιστώσεις",
+    "description": "Display of credits amount for an order, e.g. '5 credits'. {value} is the formatted credit number."
+  },
+  "title.totalOrders": {
+    "message": "Total Orders",
+    "description": "Summary card: total number of orders matching the current filters."
+  },
+  "title.totalSpent": {
+    "message": "Total Spent",
+    "description": "Summary card: total amount spent across matching orders."
+  },
+  "title.finishedOrders": {
+    "message": "Finished Orders",
+    "description": "Summary card: number of finished orders."
+  },
+  "title.pendingOrders": {
+    "message": "Pending Orders",
+    "description": "Summary card: number of pending orders."
+  },
+  "button.export": {
+    "message": "Export CSV",
+    "description": "Button label to export the filtered orders as CSV."
+  },
+  "field.allStates": {
+    "message": "All States",
+    "description": "Placeholder of the state filter dropdown indicating no specific state is selected."
+  },
+  "field.allPayWays": {
+    "message": "All Payment Methods",
+    "description": "Placeholder of the payment method filter dropdown indicating no specific method is selected."
   }
 }

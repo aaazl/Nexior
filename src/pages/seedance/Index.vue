@@ -18,17 +18,10 @@ import { seedanceOperator } from '@/operators';
 import { instrumentGeneration } from '@/plugins/telemetry';
 import { ISeedanceGenerateRequest, Status } from '@/models';
 import { ElMessage } from 'element-plus';
-import {
-  ERROR_CODE_USED_UP,
-  getSeedanceCapability,
-  getWebhookCallbackUrl,
-  SEEDANCE_MODEL_CAPABILITIES
-} from '@/constants';
+import { ERROR_CODE_USED_UP, getSeedanceCapability, SEEDANCE_MODEL_CAPABILITIES } from '@/constants';
 import { ISeedanceTask } from '@/models';
 import { loadPreviousPage } from '@/utils/pagination';
-import { uploadTrackerProviderMixin, ensureNoPendingUpload } from '@/utils';
-
-const CALLBACK_URL = getWebhookCallbackUrl('seedance');
+import { uploadTrackerProviderMixin, ensureNoPendingUpload, ensureLoggedIn } from '@/utils';
 
 interface IData {
   task: ISeedanceTask | undefined;
@@ -192,11 +185,42 @@ export default defineComponent({
         cfg.images = cfg.images.filter((img: any) => img?.role !== 'last_frame');
       }
 
+      // Reference media (Seedance 2.0 multimodal): keep only valid urls, drop
+      // entirely when the model doesn't accept that reference type.
+      if (cap.acceptsReferenceAudio && Array.isArray(cfg?.audios)) {
+        cfg.audios = cfg.audios.filter((a: any) => a?.url);
+      }
+      if (!cap.acceptsReferenceAudio || !Array.isArray(cfg?.audios) || cfg.audios.length === 0) {
+        delete cfg.audios;
+      }
+      if (cap.acceptsReferenceVideo && Array.isArray(cfg?.videos)) {
+        cfg.videos = cfg.videos.filter((v: any) => v?.url);
+      }
+      if (!cap.acceptsReferenceVideo || !Array.isArray(cfg?.videos) || cfg.videos.length === 0) {
+        delete cfg.videos;
+      }
+      if (!cap.acceptsReferenceImage && Array.isArray(cfg?.images)) {
+        cfg.images = cfg.images.filter((img: any) => img?.role !== 'reference_image');
+        if (cfg.images.length === 0) delete cfg.images;
+      }
+
+      // Reference audio needs a paired reference image (the talking-head subject);
+      // upstream rejects an audio-only reference, so warn inline instead.
+      const hasReferenceImage =
+        Array.isArray(cfg?.images) && cfg.images.some((img: any) => img?.role === 'reference_image');
+      if (Array.isArray(cfg?.audios) && cfg.audios.length > 0 && !hasReferenceImage) {
+        ElMessage.warning(this.$t('seedance.message.audioRequiresReferenceImage'));
+        return;
+      }
+
       const request = {
         ...cfg,
-        callback_url: CALLBACK_URL
+        async: true
       } as ISeedanceGenerateRequest;
 
+      if (!ensureLoggedIn()) {
+        return;
+      }
       const token = this.credential?.token;
       if (!token) {
         console.error('no token specified');

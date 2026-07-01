@@ -1,8 +1,1598 @@
 # Change Log - @acedatacloud/nexior
 
-<!-- This log was last generated on Sun, 19 Apr 2026 03:30:51 GMT and should not be manually modified. -->
+<!-- This log was last generated on Wed, 01 Jul 2026 08:28:06 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 3.303.0
+
+Wed, 01 Jul 2026 08:28:06 GMT
+
+### Minor changes
+
+- Local Tools: per-tool 'always allow (any input)' toggles for builtin tools (shell.run_command, fs.*) with native confirm + risk warning (dev@acedata.cloud)
+
+## 3.302.0
+
+Wed, 01 Jul 2026 07:29:17 GMT
+
+### Minor changes
+
+- Computer Use: per-action always-allow toggles (screenshot/click/move/type/key/scroll) instead of only a single all-at-once button (dev@acedata.cloud)
+
+## 3.301.2
+
+Wed, 01 Jul 2026 00:19:44 GMT
+
+### Patches
+
+- seedance: show prompt on task cards for audio/video requests (prompt was folded into content[] and dropped from request.prompt) (dev@acedata.cloud)
+
+## 3.301.1
+
+Tue, 30 Jun 2026 19:24:07 GMT
+
+### Patches
+
+- coding-bridge: show GitHub Copilot brand icon in the backend picker, locked pill, and history list (was a generic fallback glyph) (dev@acedata.cloud)
+
+## 3.301.0
+
+Tue, 30 Jun 2026 19:21:06 GMT
+
+### Minor changes
+
+- Guest browsing polish: redirect guests away from auth-only routes (console/distribution/settings/coding-bridge) to login, and show a friendly 'log in to start & view tasks' prompt instead of an indefinite skeleton on service task pages. (dev@acedata.cloud)
+
+## 3.300.0
+
+Tue, 30 Jun 2026 18:35:15 GMT
+
+### Minor changes
+
+- Support guest browsing with deferred login: unauthenticated visitors can view service pages, models and pricing, and are only prompted to log in when they start an operation (chat send, generate, search). (dev@acedata.cloud)
+
+## 3.299.1
+
+Tue, 30 Jun 2026 18:30:57 GMT
+
+### Patches
+
+- ci(mobile): auto-production workflow gains dry-run mode, concurrency guard, and correct staged Android rollout routing (dev@acedata.cloud)
+
+## 3.299.0
+
+Tue, 30 Jun 2026 18:22:05 GMT
+
+### Minor changes
+
+- Maestro: duration is now a numeric input (1-600s, up to 10 min) for per-second billing (dev@acedata.cloud)
+
+## 3.298.1
+
+Tue, 30 Jun 2026 17:34:58 GMT
+
+### Patches
+
+- ci: daily auto production mobile release gated by store review-state (iOS App Store review + Android Production rollout, skips when a review is in-flight/rejected or version not newer) (dev@acedata.cloud)
+
+## 3.298.0
+
+Tue, 30 Jun 2026 17:12:31 GMT
+
+### Minor changes
+
+- desktop: 'Pre-approve all computer actions' one-click — enable Computer Use, grant always-allow for every computer.* tool (native confirm), and trigger macOS Screen Recording + Accessibility prompts (dev@acedata.cloud)
+
+## 3.297.0
+
+Tue, 30 Jun 2026 16:40:57 GMT
+
+### Minor changes
+
+- desktop: persistent 'Always allow' + working 'Allow for session' consent for computer-use tools (name-scoped); cleared when Computer Use is turned off (dev@acedata.cloud)
+
+## 3.296.1
+
+Tue, 30 Jun 2026 16:02:10 GMT
+
+### Patches
+
+- desktop: add global panic-stop hotkey (Cmd/Ctrl+Alt+Shift+P) to instantly disable Computer Use (dev@acedata.cloud)
+
+## 3.296.0
+
+Tue, 30 Jun 2026 16:00:57 GMT
+
+### Minor changes
+
+- feat(desktop): enable the nut.js input backend so computer.click/type/key/scroll work (computer-use Phase 2) (dev@acedata.cloud)
+
+### Patches
+
+- desktop: add global panic-stop hotkey (Cmd/Ctrl+Alt+Shift+P) to instantly disable Computer Use (dev@acedata.cloud)
+
+## 3.295.0
+
+Tue, 30 Jun 2026 16:00:32 GMT
+
+### Minor changes
+
+- feat(desktop): enable the nut.js input backend so computer.click/type/key/scroll work (computer-use Phase 2) (dev@acedata.cloud)
+
+## 3.294.0
+
+Tue, 30 Jun 2026 09:59:53 GMT
+
+### Minor changes
+
+- feat(desktop): computer.screenshot returns the screen image so the model can see it (computer-use Phase 1) (dev@acedata.cloud)
+
+## 3.293.4
+
+Tue, 30 Jun 2026 09:54:38 GMT
+
+### Patches
+
+- fix(desktop): open store links externally + Back/Forward nav so /download isn't a dead end (dev@acedata.cloud)
+
+## 3.293.3
+
+Tue, 30 Jun 2026 09:30:49 GMT
+
+### Patches
+
+- fix(desktop): approving the tool popup now authorizes that path, so reads/lists/writes stop failing with 'path outside allowed roots' (dev@acedata.cloud)
+
+## 3.293.2
+
+Tue, 30 Jun 2026 09:28:20 GMT
+
+### Patches
+
+- fix(desktop): consistent permission status casing + solid Open/Revoke buttons in Local Tools settings (dev@acedata.cloud)
+
+## 3.293.1
+
+Tue, 30 Jun 2026 09:05:51 GMT
+
+### Patches
+
+- fix(nexior): drop macOS chat-rail logo inset in fullscreen (traffic lights hidden) (dev@acedata.cloud)
+
+## 3.293.0
+
+Tue, 30 Jun 2026 09:01:42 GMT
+
+### Minor changes
+
+- feat(desktop): computer-use POC — opt-in screenshot + mouse/keyboard local tools (dev@acedata.cloud)
+
+## 3.292.4
+
+Tue, 30 Jun 2026 08:41:33 GMT
+
+### Patches
+
+- fix(theme): stop Settings theme switcher from flipping the theme on open (dev@acedata.cloud)
+
+## 3.292.3
+
+Tue, 30 Jun 2026 08:39:42 GMT
+
+### Patches
+
+- feat(download): add Windows (.exe) and macOS (Intel + Apple Silicon .dmg) desktop installer cards, linking the public GitHub Release assets (dev@acedata.cloud)
+
+## 3.292.2
+
+Tue, 30 Jun 2026 08:38:51 GMT
+
+### Patches
+
+- feat(download): add Windows (.exe) and macOS (Intel + Apple Silicon .dmg) desktop installer cards, linking the public GitHub Release assets (dev@acedata.cloud)
+- Restrict operator/white-label settings tabs (Site, SEO, Distribution, Function, Auth, Subsites, Custom Domain) to the web surface; hide them in the native iOS/Android and desktop apps (dev@acedata.cloud)
+
+## 3.292.1
+
+Tue, 30 Jun 2026 08:38:07 GMT
+
+### Patches
+
+- Restrict operator/white-label settings tabs (Site, SEO, Distribution, Function, Auth, Subsites, Custom Domain) to the web surface; hide them in the native iOS/Android and desktop apps (dev@acedata.cloud)
+
+## 3.292.0
+
+Tue, 30 Jun 2026 03:42:37 GMT
+
+### Minor changes
+
+- feat(desktop): Local Tools settings tab + persistent Always-allow consent (dev@acedata.cloud)
+
+## 3.291.21
+
+Tue, 30 Jun 2026 03:35:03 GMT
+
+### Patches
+
+- fix(desktop): deep-copy local tool input before IPC (Proxy clone) + expand ~ in fs paths (dev@acedata.cloud)
+
+## 3.291.20
+
+Mon, 29 Jun 2026 19:17:13 GMT
+
+### Patches
+
+- fix(desktop): resume re-sends client_tools and supports parallel local tools (dev@acedata.cloud)
+
+## 3.291.19
+
+Mon, 29 Jun 2026 15:12:53 GMT
+
+### Patches
+
+- fix(desktop): make aichat2 local tool execution actually run on the user's machine (send client_tools, sanitize tool names, defer client-tool resume) (dev@acedata.cloud)
+
+## 3.291.18
+
+Mon, 29 Jun 2026 13:52:43 GMT
+
+### Patches
+
+- fix(nexior): inset chat rail logo below macOS traffic lights (dev@acedata.cloud)
+
+## 3.291.17
+
+Mon, 29 Jun 2026 10:17:46 GMT
+
+### Patches
+
+- fix(nanobanana): honor resolution for nano-banana-2 (dev@acedata.cloud)
+
+## 3.291.16
+
+Mon, 29 Jun 2026 08:02:02 GMT
+
+### Patches
+
+- fix download card CTA alignment (dev@acedata.cloud)
+
+## 3.291.15
+
+Mon, 29 Jun 2026 05:33:16 GMT
+
+### Patches
+
+- feat(desktop): macOS system-permission status rows in LocalTools panel (dev@acedata.cloud)
+
+## 3.291.14
+
+Mon, 29 Jun 2026 05:04:03 GMT
+
+### Patches
+
+- feat(desktop): settings/local-tools page — authorize root folders for local tools (dev@acedata.cloud)
+
+## 3.291.13
+
+Mon, 29 Jun 2026 04:49:59 GMT
+
+### Patches
+
+- fix(desktop): set AceData dock icon for dev runs (packaged DMG already branded; `electron .` showed default Electron icon) (dev@acedata.cloud)
+
+## 3.291.12
+
+Mon, 29 Jun 2026 04:33:40 GMT
+
+### Patches
+
+- fix(desktop): set AceData dock icon for dev runs (packaged DMG already branded; `electron .` showed default Electron icon) (dev@acedata.cloud)
+
+## 3.291.11
+
+Mon, 29 Jun 2026 03:56:33 GMT
+
+### Patches
+
+- feat(desktop): renderer client-tool routing + local config IPC — inject local tools into aichat2 chat, run execution:'client' tools locally and resume via tool_results (desktop only) (dev@acedata.cloud)
+
+## 3.291.10
+
+Mon, 29 Jun 2026 03:26:32 GMT
+
+### Patches
+
+- feat(desktop): local tool execution foundation (electron/local) — fs/shell/MCP host + consent + registry + IPC, gated to desktop, inert until aichat2 client tools land (dev@acedata.cloud)
+
+## 3.291.9
+
+Mon, 29 Jun 2026 03:25:24 GMT
+
+### Patches
+
+- feat(desktop): frameless window chrome — macOS traffic lights / Windows WCO, draggable header (desktop-gated, P2) (dev@acedata.cloud)
+- feat(desktop): local tool execution foundation (electron/local) — fs/shell/MCP host + consent + registry + IPC, gated to desktop, inert until aichat2 client tools land (dev@acedata.cloud)
+
+## 3.291.8
+
+Mon, 29 Jun 2026 03:24:54 GMT
+
+### Patches
+
+- feat(desktop): frameless window chrome — macOS traffic lights / Windows WCO, draggable header (desktop-gated, P2) (dev@acedata.cloud)
+
+## 3.291.7
+
+Mon, 29 Jun 2026 03:03:50 GMT
+
+### Patches
+
+- feat(desktop): add app menu (clipboard accelerators), min window size, PayPal external-open allowlist, and main-process OS notifications (dev@acedata.cloud)
+
+## 3.291.6
+
+Sun, 28 Jun 2026 17:59:26 GMT
+
+### Patches
+
+- fix(desktop): move electron-updater to dependencies so electron-builder bundles it into app.asar (the macOS/Windows app was crashing on launch with "Cannot find module 'electron-updater'") (dev@acedata.cloud)
+
+## 3.291.5
+
+Sun, 28 Jun 2026 14:18:53 GMT
+
+### Patches
+
+- fix(desktop): ship the AceData brand icon for the macOS & Windows apps (was the default Electron icon) (dev@acedata.cloud)
+
+## 3.291.4
+
+Sun, 28 Jun 2026 08:24:24 GMT
+
+### Patches
+
+- Allow scheduled tasks to pre-authorize selected MCP servers alongside Skills for unattended runs (dev@acedata.cloud)
+
+## 3.291.3
+
+Sun, 28 Jun 2026 08:02:43 GMT
+
+### Patches
+
+- Redesign scheduled tasks page: el-card layout, page-tone background, filled status tags, larger radii, and client-side pagination for tasks and run history (dev@acedata.cloud)
+
+## 3.291.2
+
+Sun, 28 Jun 2026 07:50:32 GMT
+
+### Patches
+
+- visual aspect-ratio chips for nanobanana to match other scenarios (dev@acedata.cloud)
+
+## 3.291.1
+
+Sun, 28 Jun 2026 07:30:13 GMT
+
+### Patches
+
+- polish digitalhuman config panel to match maestro/Kling scenarios (dev@acedata.cloud)
+
+## 3.291.0
+
+Sun, 28 Jun 2026 07:19:45 GMT
+
+### Minor changes
+
+- Pre-authorize selected Skills for scheduled tasks (dev@acedata.cloud)
+
+## 3.290.2
+
+Sun, 28 Jun 2026 06:53:05 GMT
+
+### Patches
+
+- polish Maestro config panel to match Kling/Midjourney scenarios (dev@acedata.cloud)
+
+## 3.290.1
+
+Sun, 28 Jun 2026 06:21:09 GMT
+
+### Patches
+
+- maestro: put download/remix/view-code in one row + add download icon (dev@acedata.cloud)
+
+## 3.290.0
+
+Sat, 27 Jun 2026 18:08:39 GMT
+
+### Minor changes
+
+- Add a 每分钟 (every-minute) frequency option to scheduled tasks (dev@acedata.cloud)
+
+## 3.289.4
+
+Sat, 27 Jun 2026 18:05:32 GMT
+
+### Patches
+
+- enable the iOS App Store download entry on the studio download page (dev@acedata.cloud)
+
+## 3.289.3
+
+Sat, 27 Jun 2026 17:01:18 GMT
+
+### Patches
+
+- show the realtime voice call button only for the ChatGPT model group (dev@acedata.cloud)
+
+## 3.289.2
+
+Sat, 27 Jun 2026 16:24:17 GMT
+
+### Patches
+
+- align scheduled run history drawer with Nexior design patterns (dev@acedata.cloud)
+
+## 3.289.1
+
+Sat, 27 Jun 2026 15:13:51 GMT
+
+### Patches
+
+- polish scheduled task run history drawer UI (dev@acedata.cloud)
+
+## 3.289.0
+
+Sat, 27 Jun 2026 14:00:46 GMT
+
+### Minor changes
+
+- make scheduled run history rows clickable with conversation title/preview (dev@acedata.cloud)
+
+## 3.288.2
+
+Sat, 27 Jun 2026 10:07:08 GMT
+
+### Patches
+
+- feat(maestro): quality tier selector (draft/standard/premium) (dev@acedata.cloud)
+
+## 3.288.1
+
+Sat, 27 Jun 2026 09:47:34 GMT
+
+### Patches
+
+- fix(balance): live-refresh the Credits pill after generations across all service modules (dev@acedata.cloud)
+
+## 3.288.0
+
+Sat, 27 Jun 2026 08:40:40 GMT
+
+### Minor changes
+
+- feat(grokvideo): dedicated layout, multi reference images, pending elapsed timer (dev@acedata.cloud)
+
+## 3.287.0
+
+Sat, 27 Jun 2026 07:39:35 GMT
+
+### Minor changes
+
+- feat(grokvideo): expose 1080p and model-aware duration caps (dev@acedata.cloud)
+
+## 3.286.0
+
+Thu, 25 Jun 2026 19:33:21 GMT
+
+### Minor changes
+
+- feat(seedance): add Seedance 2.0 multimodal reference controls (dev@acedata.cloud)
+
+## 3.285.2
+
+Thu, 25 Jun 2026 19:26:16 GMT
+
+### Patches
+
+- Support GitHub Copilot in Coding Bridge provider labels, history restore, and deep links. (dev@acedata.cloud)
+
+## 3.285.1
+
+Tue, 23 Jun 2026 20:14:36 GMT
+
+### Patches
+
+- fix(chat): scheduled-tasks form usability — prompt-first large textarea, normal input size, and model dropdown that lists every enabled chat service (grok, glm, kimi, …) (dev@acedata.cloud)
+
+## 3.285.0
+
+Tue, 23 Jun 2026 19:46:32 GMT
+
+### Minor changes
+
+- Add Digital Human talking-head scenario (face + voice -> lip-synced video) (dev@acedata.cloud)
+
+## 3.284.2
+
+Tue, 23 Jun 2026 19:41:21 GMT
+
+### Patches
+
+- redesign Maestro logo — professional conducting-waves icon (play triangle + radiating arcs) replacing the old flat SVG (dev@acedata.cloud)
+
+## 3.284.1
+
+Tue, 23 Jun 2026 18:59:17 GMT
+
+### Patches
+
+- fix(chat): register Element Plus + FontAwesome components in ScheduledTasks so /chatgpt/scheduled renders instead of a blank page (dev@acedata.cloud)
+
+## 3.284.0
+
+Mon, 22 Jun 2026 18:14:48 GMT
+
+### Minor changes
+
+- feat(chat): scheduled tasks management UI — create, monitor, and manage AI-powered scheduled tasks from the chat side panel (dev@acedata.cloud)
+
+## 3.283.16
+
+Mon, 22 Jun 2026 16:38:27 GMT
+
+### Patches
+
+- fix(chat): inset connector icon strip so it aligns with the composer's + button instead of hugging the card edge (dev@acedata.cloud)
+
+## 3.283.15
+
+Mon, 22 Jun 2026 15:46:38 GMT
+
+### Patches
+
+- fix(chat): align mobile menu button + move connector icons above the input (left-aligned) with a centered disclaimer below (dev@acedata.cloud)
+
+## 3.283.14
+
+Mon, 22 Jun 2026 15:01:51 GMT
+
+### Patches
+
+- fix(coding-bridge): window transcript + cap per-item content to stop mobile Safari OOM on large conversations (dev@acedata.cloud)
+
+## 3.283.13
+
+Mon, 22 Jun 2026 08:36:29 GMT
+
+### Patches
+
+- fix(coding-bridge): throttle streaming markdown render (mobile Safari crash) + stop pinning session id in URL (dev@acedata.cloud)
+
+## 3.283.12
+
+Sun, 21 Jun 2026 15:59:30 GMT
+
+### Patches
+
+- show enabled connector icons above the chat composer input (dev@acedata.cloud)
+
+## 3.283.11
+
+Sun, 21 Jun 2026 14:53:48 GMT
+
+### Patches
+
+- fix(desktop): separate x64 + arm64 macOS DMGs (cqc@cuiqingcai.com)
+
+## 3.283.10
+
+Sun, 21 Jun 2026 14:40:02 GMT
+
+### Patches
+
+- feat(desktop): universal macOS DMG (Intel + Apple Silicon) (cqc@cuiqingcai.com)
+
+## 3.283.9
+
+Sun, 21 Jun 2026 13:45:34 GMT
+
+### Patches
+
+- fix(ci): override publish.channel for electron-builder (cqc@cuiqingcai.com)
+
+## 3.283.8
+
+Sun, 21 Jun 2026 13:38:17 GMT
+
+### Patches
+
+- ci(desktop): auto-build installers on every merge; gate only publish (cqc@cuiqingcai.com)
+
+## 3.283.7
+
+Sun, 21 Jun 2026 13:34:30 GMT
+
+### Patches
+
+- feat(desktop): distinguish Windows vs macOS at runtime (isWindows/isMacOS, per-OS version gate) (cqc@cuiqingcai.com)
+
+## 3.283.6
+
+Sun, 21 Jun 2026 12:59:43 GMT
+
+### Patches
+
+- fix(desktop): build:electron applies VITE_SURFACE=desktop to vite build (cqc@cuiqingcai.com)
+
+## 3.283.5
+
+Sun, 21 Jun 2026 12:52:16 GMT
+
+### Patches
+
+- ci(desktop): graceful unsigned beta + notarize via App Store Connect API key (cqc@cuiqingcai.com)
+
+## 3.283.4
+
+Sun, 21 Jun 2026 11:58:26 GMT
+
+### Patches
+
+- fix(realtime): captions readable in light theme; voice chip never blank (dev@acedata.cloud)
+
+## 3.283.3
+
+Sun, 21 Jun 2026 08:55:00 GMT
+
+### Patches
+
+- fix(realtime): voice via WS connect param; move picker off wallet; safe reconnect (dev@acedata.cloud)
+
+## 3.283.2
+
+Sun, 21 Jun 2026 08:19:09 GMT
+
+### Patches
+
+- fix(realtime): orb clipping, stale cancel error, voice picker, wallet app selection (dev@acedata.cloud)
+
+## 3.283.1
+
+Sun, 21 Jun 2026 07:25:42 GMT
+
+### Patches
+
+- ci(desktop): build/sign/notarize/publish pipeline + Electron E2E smoke (cqc@cuiqingcai.com)
+
+## 3.283.0
+
+Sun, 21 Jun 2026 07:12:47 GMT
+
+### Minor changes
+
+- feat(desktop): Electron shell (main process, custom-scheme SPA, auto-updater, packaging) (cqc@cuiqingcai.com)
+
+## 3.282.3
+
+Sun, 21 Jun 2026 07:04:03 GMT
+
+### Patches
+
+- feat(desktop): add desktop surface foundation (constants, surface utils, vite __APP_VERSION__) (cqc@cuiqingcai.com)
+- feat(desktop): surface-aware auth flow (deep-link, login/logout, version gate) (cqc@cuiqingcai.com)
+
+## 3.282.2
+
+Sat, 20 Jun 2026 17:18:12 GMT
+
+### Patches
+
+- fix(maestro/grokvideo): site feature toggle + missing i18n keys (dev@acedata.cloud)
+
+## 3.282.1
+
+Sat, 20 Jun 2026 17:09:24 GMT
+
+### Patches
+
+- fix(realtime): register FontAwesomeIcon in RealtimeCall so voice-call control icons render (dev@acedata.cloud)
+
+## 3.282.0
+
+Sat, 20 Jun 2026 16:47:11 GMT
+
+### Minor changes
+
+- feat(maestro): migrate consumer module to v4 agent-native contract (prompt/file_urls/action/langs/remix) (dev@acedata.cloud)
+
+## 3.281.10
+
+Sat, 20 Jun 2026 15:55:33 GMT
+
+### Patches
+
+- fix(404): modern minimal NotFound page, drop header/footer chrome (dev@acedata.cloud)
+
+## 3.281.9
+
+Sat, 20 Jun 2026 15:47:26 GMT
+
+### Patches
+
+- Redesign realtime voice call UI to match ChatGPT Voice (reactive orb, captions mode, mute, minimal controls) (dev@acedata.cloud)
+
+## 3.281.8
+
+Sat, 20 Jun 2026 14:50:16 GMT
+
+### Patches
+
+- feat(coding-bridge): default the permission mode to bypass (dev@acedata.cloud)
+
+## 3.281.7
+
+Sat, 20 Jun 2026 14:27:21 GMT
+
+### Patches
+
+- fix(coding-bridge): don't drop the real id's first events after session re-key (dev@acedata.cloud)
+
+## 3.281.6
+
+Sat, 20 Jun 2026 14:12:22 GMT
+
+### Patches
+
+- chore(coding-bridge): rename CLI to `coding-bridge` (`pip install coding-bridge`, `coding-bridge up`) in pairing dialog (dev@acedata.cloud)
+
+## 3.281.5
+
+Sat, 20 Jun 2026 14:09:07 GMT
+
+### Patches
+
+- feat(webextrator): friendly message for anti-bot-blocked (422) pages, noting the request was not billed (dev@acedata.cloud)
+
+## 3.281.4
+
+Sat, 20 Jun 2026 13:15:01 GMT
+
+### Patches
+
+- feat(suno): P2 full-history search — load all pages on first search/filter so older songs are not silently missed (dev@acedata.cloud)
+
+## 3.281.3
+
+Sat, 20 Jun 2026 13:09:59 GMT
+
+### Patches
+
+- feat(suno): P1 create-loop & player — prev/next (visible-order queue) + grabbable seek bar, quick Extend, generating pulse (dev@acedata.cloud)
+
+## 3.281.2
+
+Sat, 20 Jun 2026 13:05:29 GMT
+
+### Patches
+
+- feat(suno): P0 library & visual coherence — coherent search pill, always-visible play, variation badges, model chip, 1-line style, responsive preview, cleanup (dev@acedata.cloud)
+
+## 3.281.1
+
+Sat, 20 Jun 2026 13:03:16 GMT
+
+### Patches
+
+- fix(coding-bridge): resumable codex history, switch loading, full transcript, session URL (dev@acedata.cloud)
+
+## 3.281.0
+
+Sat, 20 Jun 2026 11:25:24 GMT
+
+### Minor changes
+
+- Real-time voice call inside ChatGPT (OpenAI Realtime): mic button -> call screen, 24kHz PCM16 AudioWorklet, streamed playback, server-VAD barge-in (dev@acedata.cloud)
+
+## 3.280.1
+
+Sat, 20 Jun 2026 06:51:04 GMT
+
+### Patches
+
+- Studio API code dialog: credit-confirm Run, per-service docs link, and async:true rollout (dev@acedata.cloud)
+
+## 3.280.0
+
+Sat, 20 Jun 2026 05:32:14 GMT
+
+### Minor changes
+
+- feat(maestro): consumer module for the article-to-video service (dev@acedata.cloud)
+
+## 3.279.0
+
+Sat, 20 Jun 2026 02:40:13 GMT
+
+### Minor changes
+
+- Add Run + Request/Response tabs to the API code dialog (dev@acedata.cloud)
+
+## 3.278.20
+
+Fri, 19 Jun 2026 06:15:53 GMT
+
+### Patches
+
+- fix(grokvideo): point service id at the merged grok service (PlatformBackend#702) (dev@acedata.cloud)
+
+## 3.278.19
+
+Fri, 19 Jun 2026 05:25:16 GMT
+
+### Patches
+
+- fix(coding-bridge): syntax-highlight + copy on tool command/output blocks, header-integrated mobile devices entry, and a restore loading skeleton (dev@acedata.cloud)
+
+## 3.278.18
+
+Fri, 19 Jun 2026 05:19:48 GMT
+
+### Patches
+
+- fix: poll for StoreKit product before failing (dev@acedata.cloud)
+- fix: mobile app-list Top Up entry + global card overflow (dev@acedata.cloud)
+
+## 3.278.17
+
+Fri, 19 Jun 2026 05:18:56 GMT
+
+### Patches
+
+- i18n: add missing Count unit translations (dev@acedata.cloud)
+- fix: poll for StoreKit product before failing (dev@acedata.cloud)
+- fix: mobile app-list Top Up entry + global card overflow (dev@acedata.cloud)
+
+## 3.278.16
+
+Fri, 19 Jun 2026 05:18:19 GMT
+
+### Patches
+
+- i18n: add missing Count unit translations (dev@acedata.cloud)
+
+## 3.278.15
+
+Fri, 19 Jun 2026 04:43:21 GMT
+
+### Patches
+
+- fix: iOS IAP uses global CdvPurchase + per-service top-up visibility (dev@acedata.cloud)
+- chore: update company address to Newark, DE (dev@acedata.cloud)
+
+## 3.278.14
+
+Thu, 18 Jun 2026 18:56:03 GMT
+
+### Patches
+
+- fix(console): vertically center sidebar tab icons (dev@acedata.cloud)
+
+## 3.278.13
+
+Thu, 18 Jun 2026 18:53:49 GMT
+
+### Patches
+
+- fix(console): card-based application list on mobile (dev@acedata.cloud)
+
+## 3.278.12
+
+Thu, 18 Jun 2026 18:36:11 GMT
+
+### Patches
+
+- fix: iOS top-up entry visibility + wallet-widget in-app navigation (dev@acedata.cloud)
+
+## 3.278.11
+
+Thu, 18 Jun 2026 18:12:19 GMT
+
+### Patches
+
+- fix: show global credits top-up entry on iOS (dev@acedata.cloud)
+
+## 3.278.10
+
+Thu, 18 Jun 2026 17:46:31 GMT
+
+### Patches
+
+- fix(coding-bridge): restore live streaming, pending AskUserQuestion prompts and provider availability after a reload/session restore (dev@acedata.cloud)
+
+## 3.278.9
+
+Thu, 18 Jun 2026 17:06:29 GMT
+
+### Patches
+
+- feat: Apple In-App Purchase for credits on iOS (dev@acedata.cloud)
+
+## 3.278.8
+
+Tue, 16 Jun 2026 18:09:10 GMT
+
+### Patches
+
+- fix(codingBridge): let the directory picker jump to any drive via an editable path input (cqc@cuiqingcai.com)
+
+## 3.278.7
+
+Tue, 16 Jun 2026 01:25:54 GMT
+
+### Patches
+
+- fix(ios): request canonical /auth/login/ so the native login iframe stops white-screening (ATS blocks the http downgrade 301) (dev@acedata.cloud)
+
+## 3.278.6
+
+Mon, 15 Jun 2026 17:17:03 GMT
+
+### Patches
+
+- refactor(x402): consume @acedatacloud/core/x402 pure primitives (dev@acedata.cloud)
+
+## 3.278.5
+
+Mon, 15 Jun 2026 17:16:00 GMT
+
+### Patches
+
+- refactor(x402): consume @acedatacloud/core/x402 pure primitives (dev@acedata.cloud)
+- refactor(operators): consume @acedatacloud/core BaseOperator CRUD base (dev@acedata.cloud)
+
+## 3.278.4
+
+Mon, 15 Jun 2026 17:15:29 GMT
+
+### Patches
+
+- refactor(operators): consume @acedatacloud/core BaseOperator CRUD base (dev@acedata.cloud)
+
+## 3.278.3
+
+Mon, 15 Jun 2026 17:12:57 GMT
+
+### Patches
+
+- consume @acedatacloud/core/code-snippet (dev@acedata.cloud)
+
+## 3.278.2
+
+Mon, 15 Jun 2026 17:04:38 GMT
+
+### Patches
+
+- consume @acedatacloud/core/pricing (dev@acedata.cloud)
+
+## 3.278.1
+
+Mon, 15 Jun 2026 14:55:08 GMT
+
+### Patches
+
+- consume @acedatacloud/core/i18n for locale loaders + setI18nLanguage (dev@acedata.cloud)
+
+## 3.278.0
+
+Mon, 15 Jun 2026 10:50:42 GMT
+
+### Minor changes
+
+- feat(ssg): SSR-safe foundation + features=ssr SSG (login page) (dev@acedata.cloud)
+
+## 3.277.9
+
+Mon, 15 Jun 2026 05:21:53 GMT
+
+### Patches
+
+- consume @acedatacloud/core for the http client (interceptor contract) (dev@acedata.cloud)
+
+## 3.277.8
+
+Mon, 15 Jun 2026 05:10:16 GMT
+
+### Patches
+
+- consume @acedatacloud/core for chunk-load recovery (dev@acedata.cloud)
+
+## 3.277.7
+
+Mon, 15 Jun 2026 01:37:31 GMT
+
+### Patches
+
+- fix(kling): repair Talking Photo i18n and require model so generation works (dev@acedata.cloud)
+
+## 3.277.6
+
+Sun, 14 Jun 2026 19:11:19 GMT
+
+### Patches
+
+- fix(grokvideo): correct logo icon and regenerate locale translations (cqc@cuiqingcai.com)
+
+## 3.277.5
+
+Sun, 14 Jun 2026 18:28:59 GMT
+
+### Patches
+
+- fix(codingBridge): let the directory picker jump to any drive via an editable path input (cqc@cuiqingcai.com)
+
+## 3.277.4
+
+Sun, 14 Jun 2026 16:04:58 GMT
+
+### Patches
+
+- feat(kling): Talking Photo tab (one-click image+audio to talking video) (dev@acedata.cloud)
+
+## 3.277.3
+
+Sun, 14 Jun 2026 07:05:14 GMT
+
+### Patches
+
+- style(nexior): make the empty-state magic-wand button a bit smaller (48px -> 40px) (dev@acedata.cloud)
+
+## 3.277.2
+
+Sun, 14 Jun 2026 06:15:04 GMT
+
+### Patches
+
+- feat(coding-bridge): adopt the provider's real session id as one identity so resuming a conversation reattaches to its live session (Stop button, typewriter, no cross-talk) instead of forking a parallel one (dev@acedata.cloud)
+
+## 3.277.1
+
+Sun, 14 Jun 2026 05:49:20 GMT
+
+### Patches
+
+- feat(coding-bridge): show Claude/Codex brand icons in history drawer instead of colored text tag (dev@acedata.cloud)
+
+## 3.277.0
+
+Sun, 14 Jun 2026 02:52:28 GMT
+
+### Minor changes
+
+- feat(coding-bridge): restore model/cwd/effort/edit-mode on reload from history and keep them editable per turn (cqcreer@gmail.com)
+
+## 3.276.14
+
+Sun, 14 Jun 2026 01:38:15 GMT
+
+### Patches
+
+- fix(preview): guard event.stopPropagation() against undefined in task previews (dev@acedata.cloud)
+- fix: 缩小空状态(NoTasks)中央圆形按钮及图标尺寸，统一全部服务面板 (cqcreer@gmail.com)
+- fix(attribution): serve App/Universal Link verification files statically and route /i/ landing via /api/v1 (fixes EdgeOne 423 loop + path allowlist) (dev@acedata.cloud)
+- feat(attribution): deferred-deep-link referral attribution for new iOS/Android installs (Play Install Referrer, iOS clipboard/fingerprint, Universal/App Links) (dev@acedata.cloud)
+
+## 3.276.7
+
+Sat, 13 Jun 2026 16:52:40 GMT
+
+### Patches
+
+- fix(ios): add camera/photo usage strings to stop Take Photo crash, and hide non-IAP paid catalog on iOS (App Store 2.1(a) + 3.1.1) (dev@acedata.cloud)
+
+## 3.276.6
+
+Sat, 13 Jun 2026 16:46:42 GMT
+
+### Patches
+
+- fix(auth): timeout + telemetry for Apple login to surface silent hangs (dev@acedata.cloud)
+
+## 3.276.5
+
+Sat, 13 Jun 2026 16:11:19 GMT
+
+### Patches
+
+- fix(android): raise Gradle heap to fix lint OOM on release builds (dev@acedata.cloud)
+
+## 3.276.4
+
+Sat, 13 Jun 2026 16:00:25 GMT
+
+### Patches
+
+- feat(ios): push notifications entitlement (dev@acedata.cloud)
+
+## 3.276.3
+
+Sat, 13 Jun 2026 15:41:29 GMT
+
+### Patches
+
+- fix(coding-bridge): cleaner loading state on the notification bell (dev@acedata.cloud)
+- feat(ios): register iOS native push as APNs (dev@acedata.cloud)
+
+## 3.276.2
+
+Sat, 13 Jun 2026 15:40:13 GMT
+
+### Patches
+
+- fix(coding-bridge): cleaner loading state on the notification bell (dev@acedata.cloud)
+
+## 3.276.1
+
+Sat, 13 Jun 2026 15:14:55 GMT
+
+### Patches
+
+- feat(android): Firebase config for Coding Bridge push (FCM) (dev@acedata.cloud)
+
+## 3.276.0
+
+Sat, 13 Jun 2026 15:10:51 GMT
+
+### Minor changes
+
+- feat(nexior): make the empty-state magic wand a clickable new-task button and hide the floating magic button while empty (dev@acedata.cloud)
+
+## 3.275.2
+
+Sat, 13 Jun 2026 15:08:26 GMT
+
+### Patches
+
+- fix(coding-bridge): use 16px font-size for the mobile composer textarea so iOS Safari no longer auto-zooms the page in on focus/send (dev@acedata.cloud)
+
+## 3.275.1
+
+Sat, 13 Jun 2026 15:03:17 GMT
+
+### Patches
+
+- fix(settings): stop leaking admin-only tabs to non-admins on mobile (dev@acedata.cloud)
+
+## 3.275.0
+
+Sat, 13 Jun 2026 14:14:54 GMT
+
+### Minor changes
+
+- feat(coding-bridge): notify the user when a session needs approval (in-page, Web Push, mobile push) (dev@acedata.cloud)
+
+## 3.274.3
+
+Sat, 13 Jun 2026 09:38:12 GMT
+
+### Patches
+
+- ci: enforce beachball change-file check in PR pipeline so every merge bumps, tags, and auto-publishes mobile test builds (cqcreer@gmail.com)
+
+## 3.274.2
+
+Wed, 10 Jun 2026 02:46:04 GMT
+
+### Patches
+
+- Cleanup: remove accidentally committed node_modules symlink and harden ignore rule (dev@acedata.cloud)
+- Coding Bridge: slash command menu lists all available commands (scrollable) instead of only the first 8 (dev@acedata.cloud)
+
+## 3.274.0
+
+Wed, 10 Jun 2026 01:24:39 GMT
+
+### Minor changes
+
+- Add end-to-end trace ids and a copyable diagnostic id strip to Coding Bridge (dev@acedata.cloud)
+
+## 3.273.0
+
+Tue, 09 Jun 2026 17:55:30 GMT
+
+### Minor changes
+
+- Stream Coding Bridge assistant text token-by-token (Claude native deltas + Codex typewriter) with a live caret (dev@acedata.cloud)
+
+## 3.272.1
+
+Tue, 09 Jun 2026 17:39:55 GMT
+
+### Patches
+
+- Allow AskUserQuestion cards to accept freeform input when tool payload omits options (dev@acedata.cloud)
+
+## 3.272.0
+
+Tue, 09 Jun 2026 16:44:17 GMT
+
+### Minor changes
+
+- Coding Bridge: autocomplete a node's runnable slash commands in the composer and show a friendly notice for commands that can't run remotely (dev@acedata.cloud)
+
+## 3.271.0
+
+Tue, 09 Jun 2026 16:30:52 GMT
+
+### Minor changes
+
+- Coding Bridge: show the model list on the first click and allow switching the model mid-session (dev@acedata.cloud)
+
+## 3.270.0
+
+Tue, 09 Jun 2026 16:24:34 GMT
+
+### Minor changes
+
+- Integrate the Coding Bridge working-directory browse button into the input as a suffix icon so it no longer looks detached (dev@acedata.cloud)
+
+## 3.269.0
+
+Tue, 09 Jun 2026 16:01:44 GMT
+
+### Minor changes
+
+- Show Claude and OpenAI brand marks for each Coding Bridge backend in the session composer (dev@acedata.cloud)
+
+## 3.268.0
+
+Tue, 09 Jun 2026 16:01:11 GMT
+
+### Minor changes
+
+- Show Claude and OpenAI brand marks for each Coding Bridge backend in the session composer (dev@acedata.cloud)
+
+## 3.267.0
+
+Tue, 09 Jun 2026 15:32:27 GMT
+
+### Minor changes
+
+- Render an interactive question card for Coding Bridge AskUserQuestion tool calls instead of raw JSON + deny-only (dev@acedata.cloud)
+
+## 3.266.0
+
+Tue, 09 Jun 2026 10:10:27 GMT
+
+### Minor changes
+
+- feat(coding-bridge): disable a backend whose CLI is not installed on the node (dev@acedata.cloud)
+
+## 3.265.0
+
+Tue, 09 Jun 2026 09:16:21 GMT
+
+### Minor changes
+
+- feat(coding-bridge): move composer controls below the input as inline pickers (dev@acedata.cloud)
+
+## 3.264.0
+
+Tue, 09 Jun 2026 02:42:41 GMT
+
+### Minor changes
+
+- feat(coding-bridge): polish composer settings and upload file attachments (dev@acedata.cloud)
+
+## 3.263.1
+
+Mon, 08 Jun 2026 18:26:15 GMT
+
+### Patches
+
+- Coding Bridge: render composer provider/model/effort/permission-mode options from the node's capabilities.get instead of hard-coding them (dev@acedata.cloud)
+
+## 3.263.0
+
+Mon, 08 Jun 2026 18:18:16 GMT
+
+### Minor changes
+
+- feat(coding-bridge): paste and attach images to coding sessions (dev@acedata.cloud)
+
+## 3.262.0
+
+Mon, 08 Jun 2026 18:14:16 GMT
+
+### Minor changes
+
+- Coding Bridge: remote working-directory picker (browse the device's filesystem to choose cwd) (dev@acedata.cloud)
+
+## 3.261.1
+
+Mon, 08 Jun 2026 18:06:54 GMT
+
+### Patches
+
+- remove the top navigation header from the mobile download page (use a header-less layout) (dev@acedata.cloud)
+
+## 3.261.0
+
+Mon, 08 Jun 2026 17:52:29 GMT
+
+### Minor changes
+
+- Coding Bridge: Claude/Codex backend switch and reasoning-effort selector (dev@acedata.cloud)
+- add a Coding Bridge entry to the sidebar navigation, gated by the codingBridge site feature with an admin settings toggle (disabled by default) (dev@acedata.cloud)
+
+## 3.259.2
+
+Mon, 08 Jun 2026 17:43:50 GMT
+
+### Patches
+
+- Fix shared (granted) application selection for task-based services: stop POSTing /credentials (404) and load tasks using the grantee's own credential (dev@acedata.cloud)
+
+## 3.259.1
+
+Mon, 08 Jun 2026 17:39:57 GMT
+
+### Patches
+
+- redesign the mobile download page to match the AceData brand and design system (teal accents, logo, dark mode) (dev@acedata.cloud)
+
+## 3.259.0
+
+Mon, 08 Jun 2026 17:35:57 GMT
+
+### Minor changes
+
+- Coding Bridge: larger IME-safe composer, model dropdown, and permission-mode selector (dev@acedata.cloud)
+
+## 3.258.6
+
+Mon, 08 Jun 2026 17:23:12 GMT
+
+### Patches
+
+- Render Coding Bridge assistant transcript text as markdown (dev@acedata.cloud)
+
+## 3.258.5
+
+Mon, 08 Jun 2026 17:11:52 GMT
+
+### Patches
+
+- make grantee "Shared" badge a solid warning pill for better visibility (dev@acedata.cloud)
+
+## 3.258.4
+
+Mon, 08 Jun 2026 17:10:59 GMT
+
+### Patches
+
+- Polish Coding Bridge transcript: terminal-style tool commands, bounded scroll for tool output (dev@acedata.cloud)
+- make grantee "Shared" badge a solid warning pill for better visibility (dev@acedata.cloud)
+
+## 3.258.3
+
+Mon, 08 Jun 2026 17:10:22 GMT
+
+### Patches
+
+- Polish Coding Bridge transcript: terminal-style tool commands, bounded scroll for tool output (dev@acedata.cloud)
+
+## 3.258.2
+
+Mon, 08 Jun 2026 16:51:45 GMT
+
+### Patches
+
+- fix(coding-bridge): register history actions so the Conversation History panel and Refresh work (dev@acedata.cloud)
+
+## 3.258.1
+
+Mon, 08 Jun 2026 16:17:55 GMT
+
+### Patches
+
+- Show effective balance and a Shared badge for granted (shared) applications (dev@acedata.cloud)
+
+## 3.258.0
+
+Mon, 08 Jun 2026 15:41:05 GMT
+
+### Minor changes
+
+- Sync and replay local Claude Code & Codex history in Coding Bridge (dev@acedata.cloud)
+
+## 3.257.0
+
+Mon, 08 Jun 2026 09:56:28 GMT
+
+### Minor changes
+
+- feat: add Coding Bridge remote agent control (device pairing + live agent session UI) (dev@acedata.cloud)
+
+## 3.256.1
+
+Sun, 07 Jun 2026 17:32:33 GMT
+
+### Patches
+
+- Let OpenAI Image requests omit size by default so edits can follow the reference image aspect ratio. (dev@acedata.cloud)
+
+## 3.256.0
+
+Sun, 07 Jun 2026 01:55:20 GMT
+
+### Minor changes
+
+- Restrict the in-app Delete account entry to iOS and require typed-username confirmation before deletion (dev@acedata.cloud)
+
+## 3.255.3
+
+Sun, 07 Jun 2026 00:37:40 GMT
+
+### Patches
+
+- iOS App Store rejection fixes: (a) gate the chat and floating-balance 'Top Up' buttons behind !isIOS() so they no longer appear unresponsive on iOS where IAP-less payment UI is hidden; (b) surface a real error toast when native Apple Sign In fails for a non-cancellation reason; (c) add an in-app 'Delete Account' menu item (Guideline 5.1.1(v)) that calls DELETE /users/me and logs the user out. (dev@acedata.cloud)
+
+## 3.255.2
+
+Fri, 05 Jun 2026 18:05:44 GMT
+
+### Patches
+
+- Fix OpenAI Image API code snippets to use the edits endpoint when reference images are present. (dev@acedata.cloud)
+
+## 3.255.1
+
+Sun, 31 May 2026 02:33:50 GMT
+
+### Patches
+
+- Fix application picker on every Nexior service page: (a) restore scope=GLOBAL on the cross-service getApplications call so other-service INDIVIDUAL apps (Wisdom, GLM, Kimi, ...) no longer leak into the picker; (b) migrate to the new PlatformBackend two-axis filter (PR #561): pass user_id='me' + affiliation=['owner','granted'] so apps granted to me actually surface alongside my owned ones, replacing the deprecated role / include_granted / roles= params. Regression originally introduced in #810. (dev@acedata.cloud)
+
+## 3.255.0
+
+Sat, 30 May 2026 15:51:25 GMT
+
+### Minor changes
+
+- Align Console usage list with PlatformFrontend (status code filter, CSV export, elapsed + balanceAfter columns, request/response detail dialog). (dev@acedata.cloud)
+
+## 3.254.0
+
+Sat, 30 May 2026 15:33:05 GMT
+
+### Minor changes
+
+- Add anonymous (no-login) order pay page at /orders/:id — parity with PlatformFrontend. (dev@acedata.cloud)
+
+## 3.253.1
+
+Sat, 30 May 2026 15:04:27 GMT
+
+### Patches
+
+- Align Console order detail with PlatformFrontend: tag-styled pay_way display and credits amount row. (dev@acedata.cloud)
+
+## 3.253.0
+
+Sat, 30 May 2026 14:34:01 GMT
+
+### Minor changes
+
+- feat(order-list): add summary cards and CSV export (parity with PlatformFrontend) (dev@acedata.cloud)
+
+## 3.252.0
+
+Sat, 30 May 2026 01:53:13 GMT
+
+### Minor changes
+
+- feat(android): native Stripe PaymentSheet via @capacitor-community/stripe (dev@acedata.cloud)
+
+## 3.251.0
+
+Fri, 29 May 2026 16:10:05 GMT
+
+### Minor changes
+
+- feat(webextrator): integrate WebExtrator with /webextrator page (render + extract modes) (dev@acedata.cloud)
+- feat(telemetry): integrate Tencent Cloud RUM (Aegis) for frontend errors, API speed, PV, and 6 business events (payment_initiated/failed/success, generation_submit/success/failed). No-op when VITE_RUM_PROJECT_ID is unset. (dev@acedata.cloud)
+- feat(seedance): surface doubao-seedance-2.0 / 2.0-fast in the model selector and enable the Generate Audio toggle for them (dev@acedata.cloud)
+- feat(settings): add Login Methods tab to site settings — admins can pick which authentication providers (email / phone / Google / GitHub / WeChat) are offered on the login page and which one is pre-selected as the default. Backs the existing site.auth.providers / site.auth.default_provider JSON schema in PlatformBackend. (dev@acedata.cloud)
+- feat(site): port auto-translate toggle to Nexior subsite settings (General/Title and SEO/Description), backed by /v1/translations/{enable,disable} (dev@acedata.cloud)
+- feat(site): add per-site primary colour picker in Settings → Site, stored in Site.metadata.primary_color (dev@acedata.cloud)
+- feat(midjourney): add V8.1 version support with HD-by-default and updated pricing in selectors (dev@acedata.cloud)
+- feat(fish): add Fish Audio TTS surface (constants, store, operator, /fish/tts page, side-nav entry) (dev@acedata.cloud)
+- feat(site): use vue-advanced-cropper for logo / favicon / WeChat QR uploads (port AuthFrontend ImageCropper) (dev@acedata.cloud)
+- feat(seedream): expand panel with watermark, seed, guidance scale, output format and richer size presets (dev@acedata.cloud)
+- feat(consent): show connector logo + localized name in consent card, pop a scope picker that calls AuthBackend's catalog install endpoint on Authorize, and refresh connection status after the OAuth round-trip so the card surfaces a Continue button once the connector is connected (dev@acedata.cloud)
+- Add standalone /connectors page with custom MCP servers and built-in provider directory (cqc@cuiqingcai.com)
+- feat(aichat2): render ask_user_question card and resume on submit (dev@acedata.cloud)
+- Connectors polish: BUILT-IN badge, icons, GitLab brand, wider cards (cqc@cuiqingcai.com)
+- feat(studio): serve nexior independently at studio.acedata.cloud (separate K8s stack + host-aware SEO) (dev@acedata.cloud)
+- Move subsite management into the user-settings dialog (official main host only); add one-click 'Build same site' button on About; scope BYOK credentials per Site via x-site-origin header (dev@acedata.cloud)
+- feat(chat): render aichat2 entity cards (audio/video/image/file) inline (cqc@cuiqingcai.com)
+- Inline source-citation chips with hover preview cards in chat answers (cqc@cuiqingcai.com)
+- feat(application): consume Credential-as-Authorization grants from backend (role=grantee handling, include_granted=true, 'Shared' badge) (dev@acedata.cloud)
+- Conversation list now scoped per scenario; URL reflects active conversation; lazy-load message history (dev@acedata.cloud)
+
+### Patches
+
+- fix(veo): group 16:9 and 9:16 cards next to each other instead of spreading to opposite edges (dev@acedata.cloud)
+- refactor(consent): drop catalog_identifier BC alias on IUserConnectionSummary (AuthBackend Stage 3 emits only connector_identifier). (dev@acedata.cloud)
+- fix(subsite): open subsite Manage in dialog via ?dialog=settings query instead of blank /settings page (dev@acedata.cloud)
+- fix(subsite): tighten open-subsite dialog UX — fixed width, hint copy, stacked primary buttons, drop redundant cancel (dev@acedata.cloud)
+- fix(subsite): inline open-URL choices into dialog footer; skip dialog when no custom domain (dev@acedata.cloud)
+- fix(suno): remove Pro tag from model dropdown options since all our users are Pro (dev@acedata.cloud)
+- refactor(chat): rename consent tool from `get_connector_status` to `request_user_consent` (dev@acedata.cloud)
+- fix(telemetry): use Aegis 'report id' instead of numeric 应用ID — RUM /collect/* was returning 403 because the numeric ID is not a valid SDK identifier (dev@acedata.cloud)
+- fix(ota): COS bucket lives in ap-beijing, not ap-hongkong (dev@acedata.cloud)
+- feat(custom-domain): clarify how to enter 'Host record' in DNS instructions (dev@acedata.cloud)
+- chore(release): bump to 3.35.3 for TestFlight + Play internal (dev@acedata.cloud)
+- chore: remove dead /chat/oauth/callback page and chat.connector.* i18n keys (account-level Connections live exclusively at auth.acedata.cloud) (dev@acedata.cloud)
+- refactor(settings): remove duplicate /site page; route subsite Manage and admin entry through /settings dialog (dev@acedata.cloud)
+- fix(ota): use COS global accelerate endpoint to avoid GH Actions->ap-beijing timeouts (dev@acedata.cloud)
+- feat(ota): integrate @capgo/capacitor-updater for COS-hosted live updates (dev@acedata.cloud)
+- ci(ota): add publish-ota workflow that builds dist + uploads bundle/manifests to COS for iOS and Android (dev@acedata.cloud)
+- feat(ios): hide all non-IAP payment UI on iOS surface (App Store Review Guideline 3.1.1) and register PrivacyInfo.xcprivacy for App Store submission (dev@acedata.cloud)
+- fix(midjourney): show frame thumbnails and request params on video tasks (dev@acedata.cloud)
+- fix(mobile): add top safe-area padding to mobile page bodies so content no longer overlaps the iOS Dynamic Island / notch and the Android status bar (battery / time / icons) (dev@acedata.cloud)
+- feat(chat): mark gpt-5.4-mini as free and default; drop gpt-5.4-nano (dev@acedata.cloud)
+- feat(chat): add gpt-5.4-nano model, mark as free and use as default (dev@acedata.cloud)
+- fix(user-center): hide "Mobile App" download entry in user dropdown when running on native iOS/Android (dev@acedata.cloud)
+- fix(chat): conversation id no longer dropped from URL on refresh — stop persisting derived `chat.modelGroup`, delete the redundant SidePanel watcher that hijacked `:id`, and stop ModelSelector from snapping `chat.model` back to first-of-group on every mount (dev@acedata.cloud)
+- fix(composer): use 16px font-size for the mobile chat textarea so iOS Safari no longer auto-zooms the page in on focus/send (dev@acedata.cloud)
+- fix(suno,producer): scale Weirdness / Style Influence / Audio Weight / Sound Strength / Lyrics Strength sliders to 0-1 to match the upstream API and avoid 'style_weight must be between 0-1' / 'weirdness_constraint must be between 0-1' errors (dev@acedata.cloud)
+- fix(suno): clamp song style description to 2 lines in the recent panel so long descriptions no longer dominate the list (dev@acedata.cloud)
+- fix(order/wechat): show mobile-friendly long-press QR when the WeChat pay dialog is opened inside the WeChat in-app browser (dev@acedata.cloud)
+- fix(openai-image): drop misleading 1.5x tier labels from gpt-image-2 size dropdown (dev@acedata.cloud)
+- Inline Skills and Connectors entries below the chat composer input (cqc@cuiqingcai.com)
+- perf(index): lazy-load landing-page images + alt text for a11y/SEO (cqc@cuiqingcai.com)
+- feat(application): show balance amount in the wallet pill in the top-right corner (dev@acedata.cloud)
+- fix(custom-domain): show friendly message when bound hostname is duplicated (code=duplication) (dev@acedata.cloud)
+- fix(ui): sidebar logo respects site.logo / site.favicon again (cqc@cuiqingcai.com)
+- fix(application): return fresh ref of preserved selection so balance reflects server truth (not a stale persisted snapshot) (dev@acedata.cloud)
+- Suno UI polish: shrink radio groups (Vocal Gender, Variation Type, Lyrics Mode) and Advanced Parameters inputs; restore visibility of Manage Voices button; align Artist Style select sizing; reduce lyrics textarea font size (dev@acedata.cloud)
+- fix(site): preserve transparency in favicon/logo cropper — encode PNG when source has alpha, swap dark preview for checkerboard (dev@acedata.cloud)
+- refactor(player): share Suno/Producer audio player via namespace prop + composable (cqc@cuiqingcai.com)
+- feat(chat): auto-resume consent card on OAuth return via ?consent&connector deep-link (dev@acedata.cloud)
+- feat(settings): move custom-domain entry into a dedicated subsite settings tab; remove per-row Domains button on the main site's My Subsites list (dev@acedata.cloud)
+- fix(chat): consolidate composer actions into + popover; fix file preview overlap (cqc@cuiqingcai.com)
+- fix(ApiCodeDialog): widen gap between API platform logo and label so the favicon no longer touches the text inside the el-button slot (dev@acedata.cloud)
+- Fix inviter_id binding through auth redirect on custom-domain (white-label) sites (cqc@cuiqingcai.com)
+- chore(capacitor): migrate Capacitor v7 → v8 — bump @capacitor/{cli,core,android,ios} to ^8.3.4, Node engine and CI/Dockerfile to 22, Android minSdk 24 / targetSdk 36 / Gradle 8.14.3 / google-services 4.4.4 / androidx + cordova-android bumps, add density to MainActivity configChanges. iOS already on deployment target 16.0 (no native change). (dev@acedata.cloud)
+- fix(suno/producer): release Audio element + listeners on track swap (cqc@cuiqingcai.com)
+- chore(subsite): drop dead parent-id defensive filter (dev@acedata.cloud)
+- Drop unused react/psl deps and switch to per-adapter Solana wallet imports (-367 packages in node_modules) (dev@acedata.cloud)
+- feat(chat): use external-link icon for skills/connections toolbar buttons (dev@acedata.cloud)
+- Suno UI follow-up: drop redundant vocal-gender wrapper margin, switch persona heading to span (match other sections), bump lyrics textarea font 12.5px -> 13px (dev@acedata.cloud)
+- Centralize webhook callback URL behind getWebhookCallbackUrl(service) helper (dev@acedata.cloud)
+- fix(android): enable edge-to-edge and replace deprecated cutout mode (dev@acedata.cloud)
+- Pin View code button to flex-start to fix vertical offset on result rows (dev@acedata.cloud)
+- fix logo style and navigator padding (cqc@cuiqingcai.com)
+- chore(subsite): list by origin suffix from backend (origin__endswith) (dev@acedata.cloud)
+- fix(top-header): keep external links inside in-app Browser on native (cqc@cuiqingcai.com)
+- fix(openaiimage): drop stale type filter so /openai-image task list renders (cqc@cuiqingcai.com)
+- Migrate all 14 task operators to BaseTaskOperator and all 14 task actions to createTaskActions factory (~2,700 LOC duplication eliminated) (dev@acedata.cloud)
+- Claim existing empty-admin sites during authenticated initialization. (cqc@cuiqingcai.com)
+- Centralize Capacitor surface checks behind isNative()/isIOS()/isAndroid() helpers (dev@acedata.cloud)
+- fix(chat): drive token-dependent init from credential watcher (root-cause refactor of #638) (dev@acedata.cloud)
+- feat(chat): enable image/file upload entry for Claude, Gemini, Grok-4 (cqc@cuiqingcai.com)
+- fix(application): respect user's wallet selection across page reloads (no longer auto-replace expired/exhausted current pick) (cqc@cuiqingcai.com)
+- feat(chat): update Claude model lineup to Opus 4.7, Sonnet 4.6, Haiku 4.5 (dev@acedata.cloud)
+- feat(midjourney): show elapsed time in task result alerts (dev@acedata.cloud)
+- fix(mobile): respect iOS safe-area insets across navigators, drawer buttons and the wallet pill (dev@acedata.cloud)
+- fix(mobile): hide secondary el-table columns and shrink Console scroll-panel padding so the order / usage / application list pages fit a 360px phone viewport (dev@acedata.cloud)
+- fix(mobile): allow pinch-zoom on web/Android by stripping the iOS-only viewport zoom-lock when not running inside Capacitor (dev@acedata.cloud)
+- fix(mobile): clean up window resize listeners in Main.vue and Console.vue so navigations stop leaking event handlers (dev@acedata.cloud)
+- fix(mobile): tighten chat Message author column and bubble padding on \<640px so phone messages stop wrapping single-word last lines (dev@acedata.cloud)
+- feat(prompt): autosize prompt textareas + fullscreen expand button across all generation pages (dev@acedata.cloud)
 
 ## 3.34.0
 

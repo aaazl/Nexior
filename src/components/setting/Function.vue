@@ -111,12 +111,16 @@ const FEATURE_KEYS = [
   'openaiimage',
   'seedream',
   'seedance',
+  'grokvideo',
+  'maestro',
+  'digitalhuman',
   'wan',
   'producer',
   'kimi',
   'serp',
   'fish',
-  'webextrator'
+  'webextrator',
+  'codingBridge'
 ];
 
 export default defineComponent({

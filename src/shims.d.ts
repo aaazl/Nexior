@@ -29,6 +29,21 @@ declare module '*.vue' {
   export default component;
 }
 
+// Native-only IAP plugin: dynamically imported on iOS, attaches a global
+// `CdvPurchase`. Declared loosely so the web/Android type-check passes
+// without the native package installed.
+declare module 'cordova-plugin-purchase';
+declare const CdvPurchase: any;
+
+// Injected by vite.config `define` for all surfaces (web/android/ios/desktop).
+// Holds the package.json version; used for the telemetry release tag and the
+// desktop version gate. Must be inside `declare global` — this file has
+// imports, so a bare top-level `declare const` would be module-scoped and not
+// visible from main.ts/versionGate.ts.
+declare global {
+  const __APP_VERSION__: string;
+}
+
 // declare namespace Intl {
 //   function getCanonicalLocales(locales: string | string[] | undefined): string[];
 // }

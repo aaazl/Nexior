@@ -163,6 +163,14 @@
     "message": "النموذج الأكثر تقدمًا حاليًا",
     "description": "وصف نموذج Gemini 3.0 Pro"
   },
+  "model.gemini31Pro": {
+    "message": "gemini-3.1-pro",
+    "description": "اسم النموذج للخدمة، أي Gemini 3.0 Pro"
+  },
+  "model.gemini31ProDescription": {
+    "message": "النموذج الأكثر تقدمًا حاليًا",
+    "description": "وصف نموذج Gemini 3.0 Pro"
+  },
   "model.gemini25Pro": {
     "message": "gemini-2.5-pro",
     "description": "اسم النموذج للخدمة، أي Gemini 2.5 Pro"
@@ -179,13 +187,21 @@
     "message": "نموذج أسرع وأخف",
     "description": "وصف نموذج Gemini 2.5 Flash"
   },
-  "model.claudeOpus47": {
-    "message": "claude-opus-4.7",
-    "description": "اسم النموذج للخدمة، أي Claude Opus 4.7"
+  "model.gemini35Flash": {
+    "message": "gemini-3.5-flash",
+    "description": "اسم النموذج للخدمة، أي Gemini 2.5 Flash"
   },
-  "model.claudeOpus47Description": {
+  "model.gemini35FlashDescription": {
+    "message": "نموذج أسرع وأخف",
+    "description": "وصف نموذج Gemini 2.5 Flash"
+  },
+  "model.claudeOpus48": {
+    "message": "claude-opus-4.8",
+    "description": "اسم نموذج الخدمة، وهو Claude Opus 4.8"
+  },
+  "model.claudeOpus48Description": {
     "message": "النموذج الأكثر تقدمًا حاليًا",
-    "description": "وصف نموذج Claude Opus 4.7"
+    "description": "وصف نموذج Claude Opus 4.8"
   },
   "model.claudeSonnet46": {
     "message": "كلود سونيت 4.6",
@@ -506,5 +522,213 @@
   "askUserQuestion.collapsedAnswerLabel": {
     "message": "إجابتك",
     "description": "نص احتياطي عند عدم القدرة على استخراج إجابة محددة من المخرجات التاريخية"
+  },
+  "consent.title": {
+    "message": "يتطلب تفويض الموصل",
+    "description": "عنوان بطاقة تفويض الموصل"
+  },
+  "consent.matchAny": {
+    "message": "اختر واحدًا فقط",
+    "description": "تسمية: يكفي اختيار أي موصل واحد من هذه المجموعة لتلبية الحاجة"
+  },
+  "consent.matchAll": {
+    "message": "يتطلب التفويض للجميع",
+    "description": "تسمية: جميع الموصلات في هذه المجموعة تتطلب التفويض"
+  },
+  "consent.authorize": {
+    "message": "تفويض",
+    "description": "زر التفويض، عند النقر عليه سيتم فتح صفحة تفويض جهة خارجية"
+  },
+  "consent.skip": {
+    "message": "تخطي التفويض",
+    "description": "زر لتخطي التفويض، بعد النقر سيستمر النموذج بدون هذا الموصل"
+  },
+  "consent.continue": {
+    "message": "متابعة",
+    "description": "زر المتابعة الذي يظهر بعد اكتشاف أن الموصل أصبح متصلاً بعد عودة OAuth؛ النقر يقدّم التفويض."
+  },
+  "consent.selectScopes": {
+    "message": "اختر نطاقات تفويض {provider}",
+    "description": "Title of the scope picker dialog opened from the consent card; {provider} is the upstream provider name (e.g. Gmail)."
+  },
+  "consent.selectScopesHint": {
+    "message": "اختر الأذونات التي ترغب في تفويضها. يمكنك اختيار أكثر من واحدة، وإذا لم يتم اختيار أي منها، سيتم منح معلومات تسجيل الدخول الأساسية فقط.",
+    "description": "Body copy explaining that the user can opt out of specific scopes; rendered above the checkbox group."
+  },
+  "consent.installFailed": {
+    "message": "فشل التفويض. يرجى المحاولة مرة أخرى.",
+    "description": "Toast shown when the AuthBackend install endpoint returns an error from the consent card."
+  },
+  "consent.statusConnected": {
+    "message": "متصل",
+    "description": "شارة الحالة للموصلات المتصلة"
+  },
+  "consent.statusUnconnected": {
+    "message": "غير متصل",
+    "description": "شارة الحالة للموصلات غير المتصلة (تظهر عند عدم وجود رابط تفويض)"
+  },
+  "consent.resolvedAuthorized": {
+    "message": "تم التفويض: {list}",
+    "description": "شرح أسفل البطاقة بعد إتمام التفويض من قبل المستخدم، {list} هي قائمة الموصلات المفوضة"
+  },
+  "consent.resolvedSkipped": {
+    "message": "تم تخطي تفويض الموصل",
+    "description": "شرح أسفل البطاقة بعد أن يتخطى المستخدم التفويض"
+  },
+  "scheduledTasks.navTitle": {
+    "message": "Scheduled Tasks"
+  },
+  "scheduledTasks.title": {
+    "message": "Scheduled Tasks"
+  },
+  "scheduledTasks.create": {
+    "message": "New"
+  },
+  "scheduledTasks.edit": {
+    "message": "Edit Task"
+  },
+  "scheduledTasks.empty": {
+    "message": "No scheduled tasks yet. Click \"New\" to create one."
+  },
+  "scheduledTasks.noRuns": {
+    "message": "No runs yet"
+  },
+  "scheduledTasks.loadError": {
+    "message": "Failed to load"
+  },
+  "scheduledTasks.deleteConfirm": {
+    "message": "Delete \"{name}\"? The task will stop running."
+  },
+  "scheduledTasks.viewResult": {
+    "message": "View Result"
+  },
+  "scheduledTasks.viewRuns": {
+    "message": "Run history"
+  },
+  "scheduledTasks.noConversation": {
+    "message": "لا توجد سجلات محادثة",
+    "description": "تشير إلى أن التشغيل غير مرتبط بمحادثة (نسخة قديمة من التشغيل)"
+  },
+  "scheduledTasks.jitterHint": {
+    "message": "±60s jitter"
+  },
+  "scheduledTasks.runCount": {
+    "message": "Ran {count} time(s)"
+  },
+  "scheduledTasks.state.enabled": {
+    "message": "Active"
+  },
+  "scheduledTasks.state.disabled": {
+    "message": "Paused"
+  },
+  "scheduledTasks.state.error": {
+    "message": "Error"
+  },
+  "scheduledTasks.run.queued": {
+    "message": "Queued"
+  },
+  "scheduledTasks.run.running": {
+    "message": "Running"
+  },
+  "scheduledTasks.run.success": {
+    "message": "Success"
+  },
+  "scheduledTasks.run.failed": {
+    "message": "Failed"
+  },
+  "scheduledTasks.run.needs_user_input": {
+    "message": "Needs action"
+  },
+  "scheduledTasks.scheduleType.daily": {
+    "message": "Daily"
+  },
+  "scheduledTasks.scheduleType.minutely": {
+    "message": "كل دقيقة"
+  },
+  "scheduledTasks.scheduleType.hourly": {
+    "message": "Hourly"
+  },
+  "scheduledTasks.scheduleType.weekly": {
+    "message": "Weekly"
+  },
+  "scheduledTasks.scheduleType.cron": {
+    "message": "Cron expression"
+  },
+  "scheduledTasks.form.name": {
+    "message": "Task name"
+  },
+  "scheduledTasks.form.namePlaceholder": {
+    "message": "e.g. Daily news summary"
+  },
+  "scheduledTasks.form.model": {
+    "message": "Model"
+  },
+  "scheduledTasks.form.prompt": {
+    "message": "Prompt"
+  },
+  "scheduledTasks.form.promptPlaceholder": {
+    "message": "Enter your scheduled question or instruction. Supports {'{{date}}'}, {'{{run_count}}'}, {'{{last_output}}'} variables."
+  },
+  "scheduledTasks.form.promptHint": {
+    "message": "Variables: {'{{date}}'} today, {'{{run_count}}'} run number, {'{{last_output}}'} last output snippet"
+  },
+  "scheduledTasks.form.schedule": {
+    "message": "Frequency"
+  },
+  "scheduledTasks.form.time": {
+    "message": "Time"
+  },
+  "scheduledTasks.form.weekday": {
+    "message": "Weekday"
+  },
+  "scheduledTasks.form.cron": {
+    "message": "Cron expression"
+  },
+  "scheduledTasks.form.skills": {
+    "message": "تفويض المهارات",
+    "description": "اختيار متعدد لتفويض المهارات في المهام المجدولة بدون تدخل بشري"
+  },
+  "scheduledTasks.form.skillsPlaceholder": {
+    "message": "اختر المهارات التي تسمح بتنفيذ هذه المهمة تلقائيًا",
+    "description": "نص العنصر النائب لتفويض المهارات"
+  },
+  "scheduledTasks.form.skillsHint": {
+    "message": "يمكن للمهارات المحددة تخطي التأكيد البشري عند تنفيذ المهام المجدولة في الخلفية؛ بينما المهارات غير المحددة لا تزال قادرة على المعاينة أو الانتظار للتأكيد.",
+    "description": "وصف تفويض المهارات"
+  },
+  "scheduledTasks.form.skillMissing": {
+    "message": "غير متصل",
+    "description": "تفتقر المهارة إلى الاتصال"
+  },
+  "scheduledTasks.form.mcpServers": {
+    "message": "تفويض MCP",
+    "description": "تفويض خادم MCP لمهام مجدولة بدون تدخل بشري، يمكن اختيار عدة خوادم."
+  },
+  "scheduledTasks.form.mcpServersPlaceholder": {
+    "message": "اختر خوادم MCP المسموح لها بتحميل هذه المهمة تلقائيًا",
+    "description": "نص توضيحي لتفويض خادم MCP."
+  },
+  "scheduledTasks.form.mcpServersHint": {
+    "message": "يمكن تحميل وتنفيذ خوادم MCP المختارة في خلفية المهام المجدولة؛ لن يتم تحميل خوادم MCP غير المختارة في وضع بدون تدخل بشري.",
+    "description": "شرح تفويض خادم MCP."
+  },
+  "scheduledTasks.form.skillsConfirmTitle": {
+    "message": "تأكيد التفويض بدون تدخل بشري",
+    "description": "عنوان تأكيد التفويض"
+  },
+  "scheduledTasks.form.skillsConfirm": {
+    "message": "ستسمح هذه المهمة لـ {count} مهارة بالتنفيذ في الخلفية دون تأكيد بشري: {skills}. قد ترسل هذه المهارات رسائل، أو تنشر محتوى، أو تكتب إلى خدمات خارجية، يرجى التأكيد.",
+    "description": "نص تأكيد التفويض"
+  },
+  "scheduledTasks.form.required": {
+    "message": "Please fill in task name and prompt"
+  },
+  "model.claudeOpus47": {
+    "message": "claude-opus-4.7",
+    "description": "اسم النموذج للخدمة، أي Claude Opus 4.7"
+  },
+  "model.claudeOpus47Description": {
+    "message": "النموذج الأكثر تقدمًا حاليًا",
+    "description": "وصف نموذج Claude Opus 4.7"
   }
 }

@@ -163,6 +163,14 @@
     "message": "現在最も先進的なモデル",
     "description": "Gemini 3.0 Proモデルの説明"
   },
+  "model.gemini31Pro": {
+    "message": "gemini-3.1-pro",
+    "description": "サービスのモデル名、すなわち Gemini 3.0 Pro"
+  },
+  "model.gemini31ProDescription": {
+    "message": "現在最も先進的なモデル",
+    "description": "Gemini 3.0 Proモデルの説明"
+  },
   "model.gemini25Pro": {
     "message": "gemini-2.5-pro",
     "description": "サービスのモデル名、すなわち Gemini 2.5 Pro"
@@ -179,13 +187,21 @@
     "message": "より速く、軽量なモデル",
     "description": "Gemini 2.5 Flashモデルの説明"
   },
-  "model.claudeOpus47": {
-    "message": "claude-opus-4.7",
-    "description": "サービスのモデル名、すなわち Claude Opus 4.7"
+  "model.gemini35Flash": {
+    "message": "gemini-3.5-flash",
+    "description": "サービスのモデル名、すなわち Gemini 2.5 Flash"
   },
-  "model.claudeOpus47Description": {
+  "model.gemini35FlashDescription": {
+    "message": "より速く、軽量なモデル",
+    "description": "Gemini 2.5 Flashモデルの説明"
+  },
+  "model.claudeOpus48": {
+    "message": "claude-opus-4.8",
+    "description": "サービスのモデル名、つまり Claude Opus 4.8"
+  },
+  "model.claudeOpus48Description": {
     "message": "現在最も先進的なモデル",
-    "description": "Claude Opus 4.7モデルの説明"
+    "description": "Claude Opus 4.8 モデルの説明"
   },
   "model.claudeSonnet46": {
     "message": "クラウド・ソネット4.6",
@@ -506,5 +522,213 @@
   "askUserQuestion.collapsedAnswerLabel": {
     "message": "あなたの回答",
     "description": "履歴出力から具体的な回答を抽出できない場合のフォールバック文"
+  },
+  "consent.title": {
+    "message": "コネクタ認可が必要",
+    "description": "コネクタ認可カードのタイトル"
+  },
+  "consent.matchAny": {
+    "message": "いずれかを選択",
+    "description": "ラベル：このグループのコネクタのいずれかを選択すれば要件を満たします"
+  },
+  "consent.matchAll": {
+    "message": "すべて認可が必要",
+    "description": "ラベル：このグループのコネクタすべてに認可が必要です"
+  },
+  "consent.authorize": {
+    "message": "認可する",
+    "description": "認可ボタン。クリックするとサードパーティの認可ページが開きます"
+  },
+  "consent.skip": {
+    "message": "あとで認可",
+    "description": "認可をスキップするボタン。スキップ後、モデルはそのコネクタなしで進行します"
+  },
+  "consent.continue": {
+    "message": "続ける",
+    "description": "OAuth 復帰後にコネクタが接続済みになったことを検知した際に表示する『続ける』ボタン。クリックすると認可を送信します。"
+  },
+  "consent.selectScopes": {
+    "message": "{provider}の権限範囲を選択",
+    "description": "Title of the scope picker dialog opened from the consent card; {provider} is the upstream provider name (e.g. Gmail)."
+  },
+  "consent.selectScopesHint": {
+    "message": "付与したい権限範囲を選択してください。複数選択可能で、未選択の場合は基本的なログイン情報のみが付与されます。",
+    "description": "Body copy explaining that the user can opt out of specific scopes; rendered above the checkbox group."
+  },
+  "consent.installFailed": {
+    "message": "認証に失敗しました。もう一度お試しください。",
+    "description": "Toast shown when the AuthBackend install endpoint returns an error from the consent card."
+  },
+  "consent.statusConnected": {
+    "message": "接続済み",
+    "description": "接続済みコネクタのステータスバッジ"
+  },
+  "consent.statusUnconnected": {
+    "message": "未接続",
+    "description": "未接続コネクタのステータスバッジ（認可リンクがない場合に表示）"
+  },
+  "consent.resolvedAuthorized": {
+    "message": "認可済み：{list}",
+    "description": "ユーザーが認可を完了した後のカード下部の説明。{list} は認可済みのコネクタ一覧です"
+  },
+  "consent.resolvedSkipped": {
+    "message": "コネクタ認可をスキップしました",
+    "description": "ユーザーが認可をスキップした後のカード下部の説明"
+  },
+  "scheduledTasks.navTitle": {
+    "message": "Scheduled Tasks"
+  },
+  "scheduledTasks.title": {
+    "message": "Scheduled Tasks"
+  },
+  "scheduledTasks.create": {
+    "message": "New"
+  },
+  "scheduledTasks.edit": {
+    "message": "Edit Task"
+  },
+  "scheduledTasks.empty": {
+    "message": "No scheduled tasks yet. Click \"New\" to create one."
+  },
+  "scheduledTasks.noRuns": {
+    "message": "No runs yet"
+  },
+  "scheduledTasks.loadError": {
+    "message": "Failed to load"
+  },
+  "scheduledTasks.deleteConfirm": {
+    "message": "Delete \"{name}\"? The task will stop running."
+  },
+  "scheduledTasks.viewResult": {
+    "message": "View Result"
+  },
+  "scheduledTasks.viewRuns": {
+    "message": "Run history"
+  },
+  "scheduledTasks.noConversation": {
+    "message": "対話記録がありません",
+    "description": "実行中のタスクに関連する対話がないことを示します（旧バージョンの実行）。"
+  },
+  "scheduledTasks.jitterHint": {
+    "message": "±60s jitter"
+  },
+  "scheduledTasks.runCount": {
+    "message": "Ran {count} time(s)"
+  },
+  "scheduledTasks.state.enabled": {
+    "message": "Active"
+  },
+  "scheduledTasks.state.disabled": {
+    "message": "Paused"
+  },
+  "scheduledTasks.state.error": {
+    "message": "Error"
+  },
+  "scheduledTasks.run.queued": {
+    "message": "Queued"
+  },
+  "scheduledTasks.run.running": {
+    "message": "Running"
+  },
+  "scheduledTasks.run.success": {
+    "message": "Success"
+  },
+  "scheduledTasks.run.failed": {
+    "message": "Failed"
+  },
+  "scheduledTasks.run.needs_user_input": {
+    "message": "Needs action"
+  },
+  "scheduledTasks.scheduleType.daily": {
+    "message": "Daily"
+  },
+  "scheduledTasks.scheduleType.minutely": {
+    "message": "毎分"
+  },
+  "scheduledTasks.scheduleType.hourly": {
+    "message": "Hourly"
+  },
+  "scheduledTasks.scheduleType.weekly": {
+    "message": "Weekly"
+  },
+  "scheduledTasks.scheduleType.cron": {
+    "message": "Cron expression"
+  },
+  "scheduledTasks.form.name": {
+    "message": "Task name"
+  },
+  "scheduledTasks.form.namePlaceholder": {
+    "message": "e.g. Daily news summary"
+  },
+  "scheduledTasks.form.model": {
+    "message": "Model"
+  },
+  "scheduledTasks.form.prompt": {
+    "message": "Prompt"
+  },
+  "scheduledTasks.form.promptPlaceholder": {
+    "message": "Enter your scheduled question or instruction. Supports {'{{date}}'}, {'{{run_count}}'}, {'{{last_output}}'} variables."
+  },
+  "scheduledTasks.form.promptHint": {
+    "message": "Variables: {'{{date}}'} today, {'{{run_count}}'} run number, {'{{last_output}}'} last output snippet"
+  },
+  "scheduledTasks.form.schedule": {
+    "message": "Frequency"
+  },
+  "scheduledTasks.form.time": {
+    "message": "Time"
+  },
+  "scheduledTasks.form.weekday": {
+    "message": "Weekday"
+  },
+  "scheduledTasks.form.cron": {
+    "message": "Cron expression"
+  },
+  "scheduledTasks.form.skills": {
+    "message": "権限を付与する Skills",
+    "description": "定期タスクの無人権限付与のための Skills の複数選択"
+  },
+  "scheduledTasks.form.skillsPlaceholder": {
+    "message": "このタスクの自動実行を許可する Skills を選択",
+    "description": "権限付与の skill プレースホルダー"
+  },
+  "scheduledTasks.form.skillsHint": {
+    "message": "選択した Skills は定期タスクのバックグラウンド実行時に人工確認をスキップできます；未選択の Skills はプレビューまたは確認待ちのままとなります。",
+    "description": "権限付与の skill 説明"
+  },
+  "scheduledTasks.form.skillMissing": {
+    "message": "未接続",
+    "description": "skill が接続されていません"
+  },
+  "scheduledTasks.form.mcpServers": {
+    "message": "MCPを承認",
+    "description": "定期タスクの無人運転用にMCPサーバーを複数選択する"
+  },
+  "scheduledTasks.form.mcpServersPlaceholder": {
+    "message": "このタスクが自動的に読み込むことを許可するMCPサーバーを選択",
+    "description": "MCPサーバーの承認用プレースホルダー"
+  },
+  "scheduledTasks.form.mcpServersHint": {
+    "message": "選択したMCPサーバーは定期タスクのバックエンドで読み込まれ、実行されます；未選択のMCPサーバーは無人運転モードでは読み込まれません。",
+    "description": "MCPサーバーの承認に関する説明"
+  },
+  "scheduledTasks.form.skillsConfirmTitle": {
+    "message": "無人権限付与の確認",
+    "description": "権限付与確認のタイトル"
+  },
+  "scheduledTasks.form.skillsConfirm": {
+    "message": "このタスクは {count} 個の Skill がバックグラウンドで実行される際に人工確認をスキップすることを許可します：{skills}。これらの Skill はメッセージを送信したり、コンテンツを公開したり、外部サービスに書き込んだりする可能性がありますので、ご確認ください。",
+    "description": "権限付与確認の本文"
+  },
+  "scheduledTasks.form.required": {
+    "message": "Please fill in task name and prompt"
+  },
+  "model.claudeOpus47": {
+    "message": "claude-opus-4.7",
+    "description": "サービスのモデル名、すなわち Claude Opus 4.7"
+  },
+  "model.claudeOpus47Description": {
+    "message": "現在最も先進的なモデル",
+    "description": "Claude Opus 4.7モデルの説明"
   }
 }

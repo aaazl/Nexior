@@ -163,6 +163,14 @@
     "message": "Modelo más avanzado actualmente",
     "description": "Descripción del modelo Gemini 3.0 Pro"
   },
+  "model.gemini31Pro": {
+    "message": "gemini-3.1-pro",
+    "description": "Nombre del modelo del servicio, es decir, Gemini 3.0 Pro"
+  },
+  "model.gemini31ProDescription": {
+    "message": "Modelo más avanzado actualmente",
+    "description": "Descripción del modelo Gemini 3.0 Pro"
+  },
   "model.gemini25Pro": {
     "message": "gemini-2.5-pro",
     "description": "Nombre del modelo del servicio, es decir, Gemini 2.5 Pro"
@@ -179,13 +187,21 @@
     "message": "Modelo más rápido y ligero",
     "description": "Descripción del modelo Gemini 2.5 Flash"
   },
-  "model.claudeOpus47": {
-    "message": "claude-opus-4.7",
-    "description": "Nombre del modelo del servicio, es decir, Claude Opus 4.7"
+  "model.gemini35Flash": {
+    "message": "gemini-3.5-flash",
+    "description": "Nombre del modelo del servicio, es decir, Gemini 2.5 Flash"
   },
-  "model.claudeOpus47Description": {
-    "message": "Modelo más avanzado actualmente",
-    "description": "Descripción del modelo Claude Opus 4.7"
+  "model.gemini35FlashDescription": {
+    "message": "Modelo más rápido y ligero",
+    "description": "Descripción del modelo Gemini 2.5 Flash"
+  },
+  "model.claudeOpus48": {
+    "message": "claude-opus-4.8",
+    "description": "Nombre del modelo del servicio, es decir, Claude Opus 4.8"
+  },
+  "model.claudeOpus48Description": {
+    "message": "El modelo más avanzado actualmente",
+    "description": "Descripción del modelo Claude Opus 4.8"
   },
   "model.claudeSonnet46": {
     "message": "claude-sonnet-4.6",
@@ -506,5 +522,213 @@
   "askUserQuestion.collapsedAnswerLabel": {
     "message": "Tu respuesta",
     "description": "Texto de respaldo cuando no se puede extraer una respuesta específica de la salida histórica"
+  },
+  "consent.title": {
+    "message": "Autorización de conectores requerida",
+    "description": "Título de la tarjeta de autorización del conector"
+  },
+  "consent.matchAny": {
+    "message": "Basta con uno",
+    "description": "Etiqueta: solo se necesita autorizar uno de los conectores de este grupo para cumplir el requisito"
+  },
+  "consent.matchAll": {
+    "message": "Se requiere toda la autorización",
+    "description": "Etiqueta: todos los conectores de este grupo requieren autorización"
+  },
+  "consent.authorize": {
+    "message": "Autorizar",
+    "description": "Botón de autorización; al hacer clic se abrirá la página de autorización de un tercero"
+  },
+  "consent.skip": {
+    "message": "Omitir autorización",
+    "description": "Botón para saltarse la autorización; tras hacerlo, el modelo continuará sin este conector"
+  },
+  "consent.continue": {
+    "message": "Continuar",
+    "description": "Botón Continuar que aparece tras detectar (post-OAuth) que el conector ya está conectado; al pulsarlo se envía la autorización."
+  },
+  "consent.selectScopes": {
+    "message": "Selecciona los ámbitos de autorización de {provider}",
+    "description": "Title of the scope picker dialog opened from the consent card; {provider} is the upstream provider name (e.g. Gmail)."
+  },
+  "consent.selectScopesHint": {
+    "message": "Selecciona los permisos que deseas autorizar. Puedes seleccionar múltiples, si no seleccionas, solo se otorgarán los datos básicos de inicio de sesión.",
+    "description": "Body copy explaining that the user can opt out of specific scopes; rendered above the checkbox group."
+  },
+  "consent.installFailed": {
+    "message": "La autorización falló. Por favor, inténtalo de nuevo.",
+    "description": "Toast shown when the AuthBackend install endpoint returns an error from the consent card."
+  },
+  "consent.statusConnected": {
+    "message": "Conectado",
+    "description": "Etiqueta de estado para un conector ya conectado"
+  },
+  "consent.statusUnconnected": {
+    "message": "No conectado",
+    "description": "Etiqueta de estado para un conector no conectado (se muestra cuando no hay enlace de autorización)"
+  },
+  "consent.resolvedAuthorized": {
+    "message": "Autorizado: {list}",
+    "description": "Indicador al pie de la tarjeta tras completar la autorización; {list} es la lista de conectores autorizados"
+  },
+  "consent.resolvedSkipped": {
+    "message": "Autorización de conectores omitida",
+    "description": "Indicador al pie de la tarjeta tras que el usuario omite la autorización"
+  },
+  "scheduledTasks.navTitle": {
+    "message": "Scheduled Tasks"
+  },
+  "scheduledTasks.title": {
+    "message": "Scheduled Tasks"
+  },
+  "scheduledTasks.create": {
+    "message": "New"
+  },
+  "scheduledTasks.edit": {
+    "message": "Edit Task"
+  },
+  "scheduledTasks.empty": {
+    "message": "No scheduled tasks yet. Click \"New\" to create one."
+  },
+  "scheduledTasks.noRuns": {
+    "message": "No runs yet"
+  },
+  "scheduledTasks.loadError": {
+    "message": "Failed to load"
+  },
+  "scheduledTasks.deleteConfirm": {
+    "message": "Delete \"{name}\"? The task will stop running."
+  },
+  "scheduledTasks.viewResult": {
+    "message": "View Result"
+  },
+  "scheduledTasks.viewRuns": {
+    "message": "Run history"
+  },
+  "scheduledTasks.noConversation": {
+    "message": "Sin registros de conversación",
+    "description": "Ejecutar sin conversación asociada (versión anterior de ejecución)"
+  },
+  "scheduledTasks.jitterHint": {
+    "message": "±60s jitter"
+  },
+  "scheduledTasks.runCount": {
+    "message": "Ran {count} time(s)"
+  },
+  "scheduledTasks.state.enabled": {
+    "message": "Active"
+  },
+  "scheduledTasks.state.disabled": {
+    "message": "Paused"
+  },
+  "scheduledTasks.state.error": {
+    "message": "Error"
+  },
+  "scheduledTasks.run.queued": {
+    "message": "Queued"
+  },
+  "scheduledTasks.run.running": {
+    "message": "Running"
+  },
+  "scheduledTasks.run.success": {
+    "message": "Success"
+  },
+  "scheduledTasks.run.failed": {
+    "message": "Failed"
+  },
+  "scheduledTasks.run.needs_user_input": {
+    "message": "Needs action"
+  },
+  "scheduledTasks.scheduleType.daily": {
+    "message": "Daily"
+  },
+  "scheduledTasks.scheduleType.minutely": {
+    "message": "Cada minuto"
+  },
+  "scheduledTasks.scheduleType.hourly": {
+    "message": "Hourly"
+  },
+  "scheduledTasks.scheduleType.weekly": {
+    "message": "Weekly"
+  },
+  "scheduledTasks.scheduleType.cron": {
+    "message": "Cron expression"
+  },
+  "scheduledTasks.form.name": {
+    "message": "Task name"
+  },
+  "scheduledTasks.form.namePlaceholder": {
+    "message": "e.g. Daily news summary"
+  },
+  "scheduledTasks.form.model": {
+    "message": "Model"
+  },
+  "scheduledTasks.form.prompt": {
+    "message": "Prompt"
+  },
+  "scheduledTasks.form.promptPlaceholder": {
+    "message": "Enter your scheduled question or instruction. Supports {'{{date}}'}, {'{{run_count}}'}, {'{{last_output}}'} variables."
+  },
+  "scheduledTasks.form.promptHint": {
+    "message": "Variables: {'{{date}}'} today, {'{{run_count}}'} run number, {'{{last_output}}'} last output snippet"
+  },
+  "scheduledTasks.form.schedule": {
+    "message": "Frequency"
+  },
+  "scheduledTasks.form.time": {
+    "message": "Time"
+  },
+  "scheduledTasks.form.weekday": {
+    "message": "Weekday"
+  },
+  "scheduledTasks.form.cron": {
+    "message": "Cron expression"
+  },
+  "scheduledTasks.form.skills": {
+    "message": "Autorizar Skills",
+    "description": "Selección múltiple de skills para la autorización de tareas programadas sin supervisión"
+  },
+  "scheduledTasks.form.skillsPlaceholder": {
+    "message": "Seleccionar Skills que permitan la ejecución automática de esta tarea",
+    "description": "Placeholder para la autorización de skills"
+  },
+  "scheduledTasks.form.skillsHint": {
+    "message": "Las Skills seleccionadas pueden omitir la confirmación manual al ejecutarse en segundo plano; las Skills no seleccionadas solo pueden previsualizar o esperar confirmación.",
+    "description": "Descripción de la autorización de skills"
+  },
+  "scheduledTasks.form.skillMissing": {
+    "message": "No conectado",
+    "description": "Falta la conexión de skill"
+  },
+  "scheduledTasks.form.mcpServers": {
+    "message": "Autorizar MCP",
+    "description": "Tarea programada para autorizar múltiples servidores MCP sin intervención."
+  },
+  "scheduledTasks.form.mcpServersPlaceholder": {
+    "message": "Selecciona los servidores MCP que permitirán la carga automática de esta tarea",
+    "description": "Placeholder para la autorización de servidores MCP."
+  },
+  "scheduledTasks.form.mcpServersHint": {
+    "message": "Los servidores MCP seleccionados se cargarán y ejecutarán en la tarea programada; los servidores MCP no seleccionados no se cargarán en modo desatendido.",
+    "description": "Explicación sobre la autorización de servidores MCP."
+  },
+  "scheduledTasks.form.skillsConfirmTitle": {
+    "message": "Confirmar autorización sin supervisión",
+    "description": "Título de la confirmación de autorización"
+  },
+  "scheduledTasks.form.skillsConfirm": {
+    "message": "Esta tarea permitirá que {count} Skills se ejecuten en segundo plano omitiendo la confirmación manual: {skills}. Estas Skills pueden enviar mensajes, publicar contenido o escribir en servicios externos, por favor confirme.",
+    "description": "Texto de confirmación de autorización"
+  },
+  "scheduledTasks.form.required": {
+    "message": "Please fill in task name and prompt"
+  },
+  "model.claudeOpus47": {
+    "message": "claude-opus-4.7",
+    "description": "Nombre del modelo del servicio, es decir, Claude Opus 4.7"
+  },
+  "model.claudeOpus47Description": {
+    "message": "Modelo más avanzado actualmente",
+    "description": "Descripción del modelo Claude Opus 4.7"
   }
 }
