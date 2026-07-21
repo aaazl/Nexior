@@ -55,6 +55,10 @@
     "message": "std per prestazioni, pro per qualità",
     "description": "Descrizione della modalità di movimento"
   },
+  "description.motionModel": {
+    "message": "Kling 3.0 offre una qualità superiore ma un prezzo al secondo più alto; Kling 2.6 è più conveniente.",
+    "description": "motion model version description"
+  },
   "description.keepOriginalSound": {
     "message": "Se attivato, mantiene l'audio originale del video di riferimento; se disattivato, il video in uscita non conterrà l'audio originale.",
     "description": "Descrizione per mantenere l'audio originale"
@@ -70,6 +74,10 @@
   "message.motionMissingInputs": {
     "message": "Carica sia l'immagine del personaggio che il video di riferimento.",
     "description": "Messaggio di avviso quando mancano input nel Controllo Movimento"
+  },
+  "message.motionPricingNote": {
+    "message": "Addebito al secondo del video generato; l'importo finale varia in base alla durata del video di riferimento.",
+    "description": "Explains that Motion Control is billed per second"
   },
   "inspiration.title": {
     "message": "Ispirazione e Preset",
@@ -415,6 +423,14 @@
     "message": "Modalità video",
     "description": "La modalità utilizzata per generare il video"
   },
+  "name.motionModel": {
+    "message": "Versione del modello",
+    "description": "The Kling model version used for motion control"
+  },
+  "name.perSecond": {
+    "message": "secondo",
+    "description": "Unit suffix for per-second pricing"
+  },
   "name.effect": {
     "message": "Effetto video",
     "description": "Nome del parametro di stile per passare tra diverse versioni o stili del modello"
@@ -754,5 +770,77 @@
   "message.uploadAudioError": {
     "message": "Caricamento audio non riuscito, riprova.",
     "description": "Talking Photo audio upload error"
+  },
+  "name.referenceVideo": {
+    "message": "Reference Video",
+    "description": "Form field label: reference/editable video for Omni video editing"
+  },
+  "description.omniReferenceVideo": {
+    "message": "Applicabile a Kling O1 e V3 Omni. Carica un MP4/MOV (720–2160px, 3–10 secondi, ≤200MB) per modificare o fare riferimento a un video esistente, le parole chiave verranno aggiunte automaticamente <<<video_1>>>.",
+    "description": "Testo di aiuto per il caricamento di video di riferimento Omni"
+  },
+  "name.referenceImages": {
+    "message": "Immagini di riferimento",
+    "description": "Etichetta del campo immagini di riferimento Omni"
+  },
+  "description.referenceImages": {
+    "message": "Applicabile a Kling O1 e V3 Omni. Puoi caricare fino a 7 immagini di riferimento; se è presente un video di riferimento, massimo 4 immagini. I segnaposto delle parole chiave verranno aggiunti automaticamente.",
+    "description": "Testo di aiuto per le immagini di riferimento Omni"
+  },
+  "button.uploadReferenceImages": {
+    "message": "Carica immagini",
+    "description": "Pulsante per caricare immagini di riferimento Omni"
+  },
+  "message.referenceImagesExceed": {
+    "message": "Puoi caricare ancora {count} immagini di riferimento.",
+    "description": "Messaggio sul numero di immagini di riferimento rimanenti"
+  },
+  "message.referenceImagesError": {
+    "message": "Caricamento delle immagini di riferimento fallito, riprova.",
+    "description": "Errore nel caricamento delle immagini di riferimento"
+  },
+  "name.referenceVideoType": {
+    "message": "Tipo di video",
+    "description": "Etichetta del tipo di video di riferimento"
+  },
+  "name.referenceVideoFeature": {
+    "message": "Riferimento caratteristiche",
+    "description": "Opzione per video di riferimento delle caratteristiche"
+  },
+  "name.referenceVideoBase": {
+    "message": "Modifica video originale",
+    "description": "Opzione di modifica video di base"
+  },
+  "message.referenceVideoImageLimit": {
+    "message": "Se è presente un video di riferimento, puoi supportare al massimo 4 immagini di riferimento, rimuovi prima le immagini in eccesso.",
+    "description": "Conflitto tra il numero di video di riferimento e immagini"
+  },
+  "message.referenceImagesTotalLimit": {
+    "message": "Questa richiesta supporta al massimo {count} immagini di riferimento, inclusi i fotogrammi iniziali e finali nel conteggio totale.",
+    "description": "Avviso sul limite totale delle immagini di riferimento."
+  },
+  "message.baseVideoFrameConflict": {
+    "message": "Il video di base in attesa di modifica non può essere utilizzato contemporaneamente con il fotogramma iniziale o finale.",
+    "description": "Avviso di conflitto tra video di base e fotogrammi iniziali o finali."
+  },
+  "button.uploadReferenceVideo": {
+    "message": "Upload Video",
+    "description": "Button to upload the reference video"
+  },
+  "message.referenceVideoExceed": {
+    "message": "You can upload a maximum of 1 reference video",
+    "description": "Error when more than one reference video is uploaded"
+  },
+  "message.referenceVideoError": {
+    "message": "Reference video upload failed, please try again later",
+    "description": "Error when the reference video upload fails"
+  },
+  "message.referenceVideoTypeFailed": {
+    "message": "Uploaded file must be in MP4 or MOV format!",
+    "description": "Error when the reference video is not MP4/MOV"
+  },
+  "message.referenceVideoSizeExceed": {
+    "message": "Uploaded file size cannot exceed 200MB!",
+    "description": "Error when the reference video exceeds 200MB"
   }
 }

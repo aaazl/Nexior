@@ -7,14 +7,17 @@ import i18n, { setI18nLanguage } from './i18n';
 import { I18N_DEFAULT_LOCALE } from '@/constants/i18n';
 import { handleChunkLoadError, initializeChunkLoadErrorHandler } from './utils/chunkLoadError';
 import { initTelemetry, setUser, captureError } from './plugins/telemetry';
+import '@acedatacloud/core/styles.css';
 import './assets/scss/style.scss';
 import './assets/css/tailwind.css';
+import '@acedatacloud/core/controls.css';
 import 'mac-scrollbar/dist/mac-scrollbar.css';
 import dayjs from './plugins/dayjs';
 import './plugins/font-awesome';
 import { MotionPlugin } from '@vueuse/motion';
 import { vLoading } from 'element-plus';
-import { getSurface, isNative, isDesktop } from '@/utils/surface';
+import CapabilityPresentation from '@/components/common/CapabilityPresentation.vue';
+import { getSurface, isNative, isDesktop, isMacOS, isWindows } from '@/utils/surface';
 import { resolveDeferredInviterId } from '@/utils/attribution';
 import { syncFeaturesFromUrl } from '@/utils/featureFlag';
 import { runVersionGate } from '@/utils/versionGate';
@@ -45,6 +48,7 @@ export const createApp = ViteSSG(App, { routes, base: import.meta.env.BASE_URL }
   app.use(i18n);
   app.use(MotionPlugin);
   app.use(dayjs, { formatString: 'YYYY-MM-DD HH:mm:ss' });
+  app.component('CapabilityPresentation', CapabilityPresentation);
   app.directive('loading', vLoading);
   setupRouterGuards(router);
   setActiveRouter(router);
@@ -70,6 +74,13 @@ export const createApp = ViteSSG(App, { routes, base: import.meta.env.BASE_URL }
   if (isNative()) {
     document.documentElement.classList.add('surface-native');
   }
+  // Desktop OS marker for CSS. Traffic-light vs Windows-controls layout differs
+  // enough (left-side inset vs right-side overlay) that per-OS rules are simpler
+  // than a runtime CSS var. Safe: isMacOS/isWindows return false off-desktop.
+  if (isDesktop()) {
+    if (isMacOS()) document.documentElement.classList.add('is-mac');
+    if (isWindows()) document.documentElement.classList.add('is-win');
+  }
   // Drop the iOS zoom-lock on web/Android (WCAG 1.4.4); native shells keep it.
   if (!Capacitor.isNativePlatform()) {
     const meta = document.querySelector('meta[name="viewport"]');
@@ -81,6 +92,15 @@ export const createApp = ViteSSG(App, { routes, base: import.meta.env.BASE_URL }
   const isRedirected = await initializeRedirect();
   if (isRedirected) {
     return;
+  }
+  // Android-only (full/sideload flavor): install the `window.localExec` bridge
+  // (Computer Use) so the shared aichat2 chat loop can drive phone-side
+  // `computer.*` tools, like the desktop Electron bridge. No-op on web/iOS/
+  // desktop. Compiled out of the Google Play build (VITE_COMPUTER_USE=false),
+  // which drops mobileLocalExec + the AccessibilityService plugin entirely.
+  if (import.meta.env.VITE_COMPUTER_USE !== 'false') {
+    const { installMobileLocalExec } = await import('@/utils/mobileLocalExec');
+    installMobileLocalExec();
   }
   await initializeCookies();
   await resolveDeferredInviterId();

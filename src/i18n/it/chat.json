@@ -224,7 +224,7 @@
     "description": "Nome del modello del servizio, ovvero Kimi K2.5"
   },
   "model.kimiK25Description": {
-    "message": "Modello all'avanguardia",
+    "message": "General-purpose K2 model for compatible workflows",
     "description": "Descrizione del modello Kimi K2.5"
   },
   "model.kimiK2Thinking": {
@@ -599,6 +599,18 @@
   "scheduledTasks.deleteConfirm": {
     "message": "Delete \"{name}\"? The task will stop running."
   },
+  "scheduledTasks.triggerNow": {
+    "message": "Run now",
+    "description": "Trigger the task immediately, out of schedule"
+  },
+  "scheduledTasks.triggerSuccess": {
+    "message": "Triggered. The result will appear in run history shortly.",
+    "description": "Manual trigger success"
+  },
+  "scheduledTasks.triggerError": {
+    "message": "Failed to trigger. Please try again later.",
+    "description": "Manual trigger error"
+  },
   "scheduledTasks.viewResult": {
     "message": "View Result"
   },
@@ -636,6 +648,45 @@
   "scheduledTasks.run.failed": {
     "message": "Failed"
   },
+  "scheduledTasks.run.reason.max_turns": {
+    "message": "Limite di passaggi raggiunto"
+  },
+  "scheduledTasks.run.reason.max_budget_usd": {
+    "message": "Limite di budget raggiunto"
+  },
+  "scheduledTasks.run.reason.tool_call_loop": {
+    "message": "Rilevato ciclo di chiamate agli strumenti"
+  },
+  "scheduledTasks.run.reason.prompt_too_long": {
+    "message": "Prompt troppo lungo"
+  },
+  "scheduledTasks.run.reason.aborted_streaming": {
+    "message": "Interrotto"
+  },
+  "scheduledTasks.run.reason.aborted_tools": {
+    "message": "Interrotto"
+  },
+  "scheduledTasks.run.reason.awaiting_user_input": {
+    "message": "In attesa del tuo input"
+  },
+  "scheduledTasks.run.reason.error": {
+    "message": "Errore"
+  },
+  "scheduledTasks.run.reason.unknown": {
+    "message": "Errore sconosciuto"
+  },
+  "scheduledTasks.run.reason.balance_insufficient": {
+    "message": "Saldo insufficiente"
+  },
+  "scheduledTasks.run.reason.unauthorized": {
+    "message": "Non autorizzato"
+  },
+  "scheduledTasks.run.reason.timeout": {
+    "message": "Timeout"
+  },
+  "scheduledTasks.run.reason.internal_error": {
+    "message": "Errore interno"
+  },
   "scheduledTasks.run.needs_user_input": {
     "message": "Needs action"
   },
@@ -653,6 +704,74 @@
   },
   "scheduledTasks.scheduleType.cron": {
     "message": "Cron expression"
+  },
+  "scheduledTasks.scheduleType.interval": {
+    "message": "Every",
+    "description": "Run at a fixed interval"
+  },
+  "scheduledTasks.form.intervalUnit.minute": {
+    "message": "minutes",
+    "description": "Interval unit: minutes"
+  },
+  "scheduledTasks.form.intervalUnit.hour": {
+    "message": "hours",
+    "description": "Interval unit: hours"
+  },
+  "scheduledTasks.form.intervalUnit.day": {
+    "message": "days",
+    "description": "Interval unit: days"
+  },
+  "scheduledTasks.form.hourlyMinute": {
+    "message": "At minute",
+    "description": "Which minute of each hour to run"
+  },
+  "scheduledTasks.form.hourlyMinuteHint": {
+    "message": "Which minute of each hour to run (0–59)",
+    "description": "Hourly minute hint"
+  },
+  "scheduledTasks.form.intervalHint": {
+    "message": "Runs once every fixed interval after the previous run (minimum 1 minute)",
+    "description": "Interval hint"
+  },
+  "scheduledTasks.form.cronHint": {
+    "message": "Standard 5-field cron expression: minute hour day month weekday",
+    "description": "Cron hint"
+  },
+  "scheduledTasks.form.schedulePreview": {
+    "message": "Runs {text}",
+    "description": "Schedule preview"
+  },
+  "scheduledTasks.humanize.everyNMinutes": {
+    "message": "every {n} min",
+    "description": "Human-readable: every N minutes"
+  },
+  "scheduledTasks.humanize.everyNHours": {
+    "message": "every {n} h",
+    "description": "Human-readable: every N hours"
+  },
+  "scheduledTasks.humanize.everyNDays": {
+    "message": "every {n} d",
+    "description": "Human-readable: every N days"
+  },
+  "scheduledTasks.humanize.hourlyAtMinute": {
+    "message": "hourly at minute {n}",
+    "description": "Human-readable: hourly at minute N"
+  },
+  "scheduledTasks.humanize.dailyAt": {
+    "message": "daily at {time}",
+    "description": "Human-readable: daily at time"
+  },
+  "scheduledTasks.humanize.weeklyAt": {
+    "message": "{weekday} at {time}",
+    "description": "Human-readable: weekly at weekday/time"
+  },
+  "scheduledTasks.humanize.cronRaw": {
+    "message": "Cron: {cron}",
+    "description": "Human-readable: raw cron"
+  },
+  "scheduledTasks.humanize.once": {
+    "message": "once at {time}",
+    "description": "Human-readable: once"
   },
   "scheduledTasks.form.name": {
     "message": "Task name"
@@ -712,6 +831,14 @@
     "message": "I server MCP selezionati possono essere caricati ed eseguiti in background per l'attività pianificata; i server MCP non selezionati non verranno caricati in modalità senza supervisione.",
     "description": "Spiegazione sull'autorizzazione dei server MCP."
   },
+  "scheduledTasks.form.maxTurns": {
+    "message": "Turni massimi",
+    "description": "Scheduled task per-run agent turn cap"
+  },
+  "scheduledTasks.form.maxTurnsHint": {
+    "message": "Numero massimo di turni dell'agente per esecuzione (1–50). Un limite troppo basso interrompe le attività in più passaggi (es. skill che eseguono più passaggi Bash/ricerca documenti) prima del completamento, senza risultato finale. Predefinito 50.",
+    "description": "Scheduled task per-run agent turn cap"
+  },
   "scheduledTasks.form.skillsConfirmTitle": {
     "message": "Conferma autorizzazione senza supervisione",
     "description": "Titolo di conferma autorizzazione"
@@ -720,8 +847,184 @@
     "message": "Questo compito permetterà a {count} Skills di eseguire in background senza conferma manuale: {skills}. Queste Skills potrebbero inviare messaggi, pubblicare contenuti o scrivere su servizi esterni, si prega di confermare.",
     "description": "Testo di conferma autorizzazione"
   },
+  "scheduledTasks.form.skillNotActiveTitle": {
+    "message": "Bind the skill first",
+    "description": "Dialog title shown when a scheduled-task authorized skill/MCP is not yet bound for the user."
+  },
+  "scheduledTasks.form.skillNotActiveMessage": {
+    "message": "The skill \"{name}\" is not bound or active in your account yet. Without binding it, the scheduled task may not be able to use it during unattended background runs. We recommend binding it first, or you can save anyway.",
+    "description": "Warning body; {name} is the skill/MCP name. Explains it is not bound and offers to save anyway."
+  },
+  "scheduledTasks.form.skillNotActiveForce": {
+    "message": "Save anyway",
+    "description": "Confirm button that saves the scheduled task anyway, bypassing the binding check (force)."
+  },
   "scheduledTasks.form.required": {
     "message": "Please fill in task name and prompt"
+  },
+  "artifacts.navTitle": {
+    "message": "Produzioni",
+    "description": "Voce di accesso alle produzioni nella barra laterale"
+  },
+  "artifacts.title": {
+    "message": "Le mie produzioni",
+    "description": "Titolo della pagina delle produzioni"
+  },
+  "artifacts.summaryTotal": {
+    "message": "In questa edizione ci sono state {count} produzioni",
+    "description": "Totale delle produzioni riassunte"
+  },
+  "artifacts.filterAll": {
+    "message": "Tutti",
+    "description": "Filtro per tipo di produzione - tutti"
+  },
+  "artifacts.empty": {
+    "message": "Non ci sono ancora produzioni. Lascia che l'AI ti aiuti a scrivere articoli, generare immagini o inviare email e le produzioni appariranno automaticamente qui.",
+    "description": "Messaggio che indica che non ci sono produzioni"
+  },
+  "artifacts.loadError": {
+    "message": "Caricamento della produzione fallito",
+    "description": "Messaggio di errore per il caricamento della produzione"
+  },
+  "artifacts.actionError": {
+    "message": "Operazione fallita, riprova",
+    "description": "Messaggio di errore per operazione di produzione"
+  },
+  "artifacts.open": {
+    "message": "Apri",
+    "description": "Pulsante per aprire il link originale della produzione"
+  },
+  "artifacts.hide": {
+    "message": "Nascondi",
+    "description": "Pulsante per nascondere la produzione"
+  },
+  "artifacts.delete": {
+    "message": "Elimina",
+    "description": "Pulsante per eliminare la produzione"
+  },
+  "artifacts.deleteConfirm": {
+    "message": "Sei sicuro di voler eliminare permanentemente questo record di produzione?",
+    "description": "Messaggio di conferma per l'eliminazione della produzione"
+  },
+  "artifacts.loadMore": {
+    "message": "Carica di più",
+    "description": "Pulsante per caricare più produzioni"
+  },
+  "artifacts.sourceAuto": {
+    "message": "Cattura automatica",
+    "description": "Etichetta per la fonte di cattura automatica"
+  },
+  "artifacts.kind.article": {
+    "message": "Articolo",
+    "description": "Tipo di produzione - articolo"
+  },
+  "artifacts.kind.image": {
+    "message": "Immagine",
+    "description": "Tipo di produzione - immagine"
+  },
+  "artifacts.kind.video": {
+    "message": "Video",
+    "description": "Tipo di produzione - video"
+  },
+  "artifacts.kind.audio": {
+    "message": "Audio",
+    "description": "Tipo di produzione - audio"
+  },
+  "artifacts.kind.document": {
+    "message": "Documento",
+    "description": "Tipo di produzione - documento"
+  },
+  "artifacts.kind.email": {
+    "message": "Email",
+    "description": "Tipo di produzione - email"
+  },
+  "artifacts.kind.message": {
+    "message": "Messaggio",
+    "description": "Tipo di produzione - messaggio"
+  },
+  "artifacts.kind.dataset": {
+    "message": "Dati",
+    "description": "Tipo di produzione - dati"
+  },
+  "artifacts.kind.link": {
+    "message": "Link",
+    "description": "Tipo di produzione - link"
+  },
+  "artifacts.kind.other": {
+    "message": "Altro",
+    "description": "Tipo di produzione - altro"
+  },
+  "share.menu": {
+    "message": "Condividi",
+    "description": "Voce di menu per aprire la finestra di dialogo di condivisione nella barra laterale/toolbar"
+  },
+  "share.dialogTitle": {
+    "message": "Condividi conversazione",
+    "description": "Titolo della finestra di dialogo per la condivisione della conversazione"
+  },
+  "share.description": {
+    "message": "Chiunque abbia il link può visualizzare questa conversazione, ma non può continuare a chattare.",
+    "description": "Spiega cosa succede dopo che la conversazione è stata condivisa"
+  },
+  "share.createLink": {
+    "message": "Crea link di condivisione",
+    "description": "Pulsante per creare un link di condivisione pubblico per la conversazione"
+  },
+  "share.copy": {
+    "message": "Copia link",
+    "description": "Pulsante per copiare il link di condivisione negli appunti"
+  },
+  "share.copied": {
+    "message": "Copiato",
+    "description": "Messaggio che appare brevemente sul pulsante dopo una copia riuscita"
+  },
+  "share.disable": {
+    "message": "Disattiva link",
+    "description": "Pulsante per revocare il link di condivisione e rendere l'URL non valido"
+  },
+  "share.disabled": {
+    "message": "Link di condivisione disattivato.",
+    "description": "Messaggio che appare dopo che il link di condivisione è stato disattivato"
+  },
+  "share.needLogin": {
+    "message": "Accedi prima e poi condividi questa conversazione.",
+    "description": "Messaggio per i visitatori non autenticati che tentano di condividere la conversazione"
+  },
+  "share.noConversation": {
+    "message": "Apri prima una conversazione, poi condividi.",
+    "description": "Messaggio quando si clicca sul pulsante di condivisione senza conversazioni attive"
+  },
+  "share.createFailed": {
+    "message": "Creazione del link di condivisione fallita, riprova più tardi.",
+    "description": "Messaggio di errore quando la creazione del link di condivisione fallisce"
+  },
+  "share.disableFailed": {
+    "message": "Disattivazione del link di condivisione fallita, riprova più tardi.",
+    "description": "Messaggio di errore quando la disattivazione del link di condivisione fallisce"
+  },
+  "share.startYourOwn": {
+    "message": "Inizia la mia conversazione",
+    "description": "Chiamata all'azione sulla pagina pubblica condivisa per guidare i visitatori anonimi alla home dell'app"
+  },
+  "share.unavailableTitle": {
+    "message": "Questa conversazione condivisa non è disponibile.",
+    "description": "Titolo della pagina pubblica condivisa quando il link è scaduto o non valido"
+  },
+  "share.unavailableHint": {
+    "message": "Il link potrebbe essere stato disattivato dall'altra parte, oppure l'URL è errato.",
+    "description": "Messaggio quando il link di condivisione è scaduto o non valido"
+  },
+  "share.viewOnly": {
+    "message": "Conversazione condivisa in sola lettura",
+    "description": "Etichetta sulla pagina pubblica condivisa che indica che la conversazione è in sola lettura"
+  },
+  "share.untitled": {
+    "message": "Conversazione senza titolo",
+    "description": "Testo segnaposto utilizzato quando la conversazione condivisa non ha un titolo"
+  },
+  "share.footerNote": {
+    "message": "Stai visualizzando una conversazione condivisa. Clicca sopra per chattare con l'AI.",
+    "description": "Spiegazione sotto la conversazione sulla pagina pubblica condivisa"
   },
   "model.claudeOpus47": {
     "message": "claude-opus-4.7",
@@ -730,5 +1033,81 @@
   "model.claudeOpus47Description": {
     "message": "Modello più avanzato attualmente disponibile",
     "description": "Descrizione del modello Claude Opus 4.7"
+  },
+  "artifacts.unhide": {
+    "message": "Unhide",
+    "description": "Restore a hidden artifact"
+  },
+  "artifacts.showHidden": {
+    "message": "Show hidden",
+    "description": "Toggle in the filter bar to include hidden artifacts"
+  },
+  "artifacts.hiddenBadge": {
+    "message": "Hidden",
+    "description": "Badge shown on artifacts that are currently hidden"
+  },
+  "scheduledTasks.run.reason.billing_gate_failed": {
+    "message": "Autorizzazione alla fatturazione non riuscita"
+  },
+  "browserTool.title": {
+    "message": "Browser activity",
+    "description": "Fallback title for a BrowserDevice tool activity"
+  },
+  "browserTool.state.choose_device": {
+    "message": "Choose a browser device"
+  },
+  "browserTool.state.device_offline": {
+    "message": "Browser device is offline"
+  },
+  "browserTool.state.awaiting_device": {
+    "message": "Waiting for browser device"
+  },
+  "browserTool.state.awaiting_local_approval": {
+    "message": "Waiting for approval on the browser device"
+  },
+  "browserTool.state.takeover_required": {
+    "message": "Take over on the browser device"
+  },
+  "browserTool.state.executing": {
+    "message": "Executing in browser"
+  },
+  "browserTool.state.completed": {
+    "message": "Completed"
+  },
+  "browserTool.state.denied": {
+    "message": "Denied on the browser device"
+  },
+  "browserTool.state.expired": {
+    "message": "Browser request expired"
+  },
+  "browserTool.state.cancel_too_late": {
+    "message": "Too late to cancel"
+  },
+  "scheduledTasks.run.waiting_for_device": {
+    "message": "Waiting for browser device"
+  },
+  "model.kimiK3": {
+    "message": "kimi-k3",
+    "description": "Name of Moonshot AI's Kimi K3 flagship model"
+  },
+  "model.kimiK3Description": {
+    "message": "Flagship reasoning and vision model with a 1M-token context window",
+    "description": "Description of the Kimi K3 model"
+  },
+  "model.kimiK26": {
+    "message": "kimi-k2.6",
+    "description": "Name of the Kimi K2.6 model"
+  },
+  "model.kimiK26Description": {
+    "message": "Reasoning and vision model for compatible K2 workflows",
+    "description": "Description of the Kimi K2.6 model"
+  },
+  "model.claudeFable5": {
+    "message": "claude-fable-5",
+    "description": "Name of Anthropic's Claude Fable 5 flagship model"
+  },
+  "model.claudeFable5Description": {
+    "message": "Flagship reasoning and vision model for long-horizon work with a 1M-token context window",
+    "description": "Description of the Claude Fable 5 model"
   }
 }

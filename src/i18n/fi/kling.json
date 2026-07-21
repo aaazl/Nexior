@@ -55,6 +55,10 @@
     "message": "std suorituskyky etusijalla, pro kuvanlaatu etusijalla",
     "description": "motion mode -kuvaus"
   },
+  "description.motionModel": {
+    "message": "Kling 3.0 on laadukkaampi mutta kalliimpi sekunnilta; Kling 2.6 on edullisempi.",
+    "description": "motion model version description"
+  },
   "description.keepOriginalSound": {
     "message": "Kun tämä on päällä, alkuperäinen ääni säilytetään viitevideosta; kun se on pois päältä, tuotetussa videossa ei ole alkuperäistä ääntä.",
     "description": "keep_original_sound -kuvaus"
@@ -70,6 +74,10 @@
   "message.motionMissingInputs": {
     "message": "Lataa sekä henkilökuva että liikevideo",
     "description": "Liikeohjauksen puuttuvista syötteistä ilmoittava viesti"
+  },
+  "message.motionPricingNote": {
+    "message": "Laskutetaan tuotetun videon sekunneilta; lopullinen summa riippuu viitevideon pituudesta.",
+    "description": "Explains that Motion Control is billed per second"
   },
   "inspiration.title": {
     "message": "Inspiraatio ja esiasetukset",
@@ -415,6 +423,14 @@
     "message": "Videotila",
     "description": "Videon luomiseen käytettävä tila"
   },
+  "name.motionModel": {
+    "message": "Mallin versio",
+    "description": "The Kling model version used for motion control"
+  },
+  "name.perSecond": {
+    "message": "sekunti",
+    "description": "Unit suffix for per-second pricing"
+  },
   "name.effect": {
     "message": "Videotehoste",
     "description": "Tyyliparametrin nimi, jota käytetään mallin eri versioiden tai tyylien välillä vaihtamiseen"
@@ -754,5 +770,77 @@
   "message.uploadAudioError": {
     "message": "Äänen lataus epäonnistui, yritä uudelleen.",
     "description": "Talking Photo audio upload error"
+  },
+  "name.referenceVideo": {
+    "message": "Reference Video",
+    "description": "Form field label: reference/editable video for Omni video editing"
+  },
+  "description.omniReferenceVideo": {
+    "message": "Sopii Kling O1:lle ja V3 Omni:lle. Lataa MP4/MOV (720–2160px, 3–10 sekuntia, ≤200MB) muokkausta tai olemassa olevan videon viitteenä varten, avainsanat lisätään automaattisesti <<<video_1>>>.",
+    "description": "Omni-viitevideon lataamisen ohjeet"
+  },
+  "name.referenceImages": {
+    "message": "Viitekuvat",
+    "description": "Omni-viitekuvien kenttälabel"
+  },
+  "description.referenceImages": {
+    "message": "Sopii Kling O1:lle ja V3 Omni:lle. Voit ladata enintään 7 viitekuvaa; jos viitevideo on olemassa, enintään 4 kuvaa. Avainsanat lisätään automaattisesti.",
+    "description": "Omni-viitekuvien ohjeet"
+  },
+  "button.uploadReferenceImages": {
+    "message": "Lataa kuvia",
+    "description": "Omni-viitekuvien latausnappi"
+  },
+  "message.referenceImagesExceed": {
+    "message": "Voit ladata vielä {count} viitekuvaa.",
+    "description": "Viitekuvien määrän ilmoitus"
+  },
+  "message.referenceImagesError": {
+    "message": "Viitekuvien lataaminen epäonnistui, yritä uudelleen.",
+    "description": "Viitekuvien latausvirhe"
+  },
+  "name.referenceVideoType": {
+    "message": "Videon käyttö",
+    "description": "Viitevideon tyyppilabel"
+  },
+  "name.referenceVideoFeature": {
+    "message": "Ominaisuusviite",
+    "description": "Ominaisuusviitevideon vaihtoehto"
+  },
+  "name.referenceVideoBase": {
+    "message": "Muokkaa alkuperäistä videota",
+    "description": "Perusvideon muokkausvaihtoehto"
+  },
+  "message.referenceVideoImageLimit": {
+    "message": "Jos viitevideo on olemassa, voit ladata enintään 4 viitekuvaa, poista ylimääräiset kuvat ensin.",
+    "description": "Viitevideon ja kuvien määrän ristiriita"
+  },
+  "message.referenceImagesTotalLimit": {
+    "message": "Tässä pyynnössä voi olla enintään {count} viitekuvaa, mukaan lukien ensimmäinen ja viimeinen kehys.",
+    "description": "Viitekuvien kokonaismäärän rajoitus."
+  },
+  "message.baseVideoFrameConflict": {
+    "message": "Odottavassa muokkauksessa oleva perusvideo ei voi olla samanaikaisesti käytössä ensimmäisessä tai viimeisessä kehyksessä.",
+    "description": "Perusvideon ja ensimmäisen/viimeisen kehyksen välinen konflikti."
+  },
+  "button.uploadReferenceVideo": {
+    "message": "Upload Video",
+    "description": "Button to upload the reference video"
+  },
+  "message.referenceVideoExceed": {
+    "message": "You can upload a maximum of 1 reference video",
+    "description": "Error when more than one reference video is uploaded"
+  },
+  "message.referenceVideoError": {
+    "message": "Reference video upload failed, please try again later",
+    "description": "Error when the reference video upload fails"
+  },
+  "message.referenceVideoTypeFailed": {
+    "message": "Uploaded file must be in MP4 or MOV format!",
+    "description": "Error when the reference video is not MP4/MOV"
+  },
+  "message.referenceVideoSizeExceed": {
+    "message": "Uploaded file size cannot exceed 200MB!",
+    "description": "Error when the reference video exceeds 200MB"
   }
 }

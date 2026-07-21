@@ -16,7 +16,7 @@
       :on-remove="onChange"
     >
       <el-button size="small" round>
-        <font-awesome-icon icon="fa-solid fa-paperclip" class="mr-1" />
+        <attachment-icon class="mr-1" :size="'1em' as any" aria-hidden="true" focusable="false" />
         {{ $t('maestro.button.uploadFiles') }}
       </el-button>
     </el-upload>
@@ -24,9 +24,9 @@
 </template>
 
 <script lang="ts">
+import { AttachmentIcon } from '@acedatacloud/core/icons/components';
 import { defineComponent } from 'vue';
 import { ElButton, ElUpload, ElMessage, UploadFiles, UploadFile } from 'element-plus';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { getBaseUrlPlatform } from '@/utils';
 import { MAESTRO_FILE_ACCEPT, MAESTRO_FILE_LIMIT } from '@/constants';
 
@@ -40,9 +40,9 @@ interface IData {
 export default defineComponent({
   name: 'MaestroFileUrlsInput',
   components: {
+    AttachmentIcon,
     ElUpload,
-    ElButton,
-    FontAwesomeIcon
+    ElButton
   },
   data(): IData {
     return {
@@ -57,6 +57,32 @@ export default defineComponent({
       return {
         Authorization: `Bearer ${this.$store.state.token.access}`
       };
+    },
+    value(): string[] {
+      return this.$store.state.maestro?.config?.file_urls || [];
+    }
+  },
+  watch: {
+    value: {
+      immediate: true,
+      handler(urls: string[]) {
+        const existingByUrl = new Map(
+          this.fileList.map((file) => [((file?.response as any)?.file_url as string) || file.url, file])
+        );
+        const synced = urls.map(
+          (url) =>
+            existingByUrl.get(url) ||
+            ({
+              name: url.split('/').pop() || url,
+              url,
+              status: 'success',
+              percentage: 100,
+              response: { file_url: url }
+            } as UploadFile)
+        );
+        const uploading = this.fileList.filter((file) => !((file?.response as any)?.file_url || file.url));
+        this.fileList = [...synced, ...uploading];
+      }
     }
   },
   methods: {
@@ -69,7 +95,7 @@ export default defineComponent({
     onChange() {
       // Only files that finished uploading have a response.file_url.
       const urls = this.fileList
-        .map((file: UploadFile) => (file?.response as any)?.file_url)
+        .map((file: UploadFile) => ((file?.response as any)?.file_url as string | undefined) || file.url)
         .filter((url: string | undefined): url is string => !!url);
       this.$store.commit('maestro/setConfig', {
         ...this.$store.state.maestro?.config,

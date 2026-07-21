@@ -4,18 +4,38 @@
       {{ $t('common.settings.localToolsDesktopOnly') }}
     </p>
     <template v-else>
+      <!-- Android: Computer Use system permission entry (Accessibility). This
+           is where the user pre-authorizes the service that lets the assistant
+           see + control the screen. -->
+      <section v-if="android">
+        <div class="section-head">
+          <h3>{{ $t('common.settings.localToolsPermsTitle') }}</h3>
+        </div>
+        <p class="muted">{{ $t('common.settings.localToolsAndroidPermHint') }}</p>
+        <div class="perm-row">
+          <span class="perm-name">{{ $t('common.settings.localToolsPermAccessibility') }}</span>
+          <el-tag size="small" :type="a11yEnabled ? 'success' : 'info'" effect="plain">
+            {{ a11yEnabled ? $t('common.settings.localToolsGranted') : $t('common.settings.localToolsNotGranted') }}
+          </el-tag>
+          <el-button size="small" type="primary" @click="openAndroidAccessibility">{{
+            $t('common.settings.localToolsOpen')
+          }}</el-button>
+        </div>
+      </section>
+
       <!-- Authorized folders -->
-      <section>
+      <section v-if="!android">
         <div class="section-head">
           <h3>{{ $t('common.settings.localToolsFoldersTitle') }}</h3>
-          <el-button size="small" type="primary" :icon="Plus" @click="addFolder">
+          <el-button size="small" type="primary" @click="addFolder">
+            <add-icon :size="'1em' as any" aria-hidden="true" focusable="false" />
             {{ $t('common.settings.localToolsAddFolder') }}
           </el-button>
         </div>
         <p class="muted">{{ $t('common.settings.localToolsFoldersHint') }}</p>
         <ul class="rows">
           <li v-for="(r, i) in roots" :key="r" class="row">
-            <font-awesome-icon icon="fa-solid fa-folder" class="row-icon" />
+            <folder-icon class="row-icon" :size="'1em' as any" aria-hidden="true" focusable="false" />
             <span class="path">{{ r }}</span>
             <el-button size="small" text type="danger" @click="removeRoot(i)">
               {{ $t('common.settings.localToolsRemove') }}
@@ -34,8 +54,79 @@
         </p>
       </section>
 
+      <!-- MCP servers (local stdio, Claude-Desktop style) -->
+      <section>
+        <div class="section-head">
+          <h3>{{ $t('common.settings.localToolsMcpTitle') }}</h3>
+          <el-button size="small" type="primary" @click="addMcp">
+            <add-icon :size="'1em' as any" aria-hidden="true" focusable="false" />
+            {{ $t('common.settings.localToolsMcpAdd') }}
+          </el-button>
+        </div>
+        <p class="muted">{{ $t('common.settings.localToolsMcpHint') }}</p>
+        <ul v-if="mcpServers.length" class="rows">
+          <li v-for="(m, i) in mcpServers" :key="m._uid" class="row mcp-row">
+            <div class="mcp-fields">
+              <div class="mcp-head">
+                <el-tag size="small" effect="plain" :type="mcpBadgeType(m.id)">{{ mcpBadgeText(m.id) }}</el-tag>
+                <span class="mcp-spacer" />
+                <el-switch
+                  v-model="m.enabled"
+                  size="small"
+                  :active-text="$t('common.settings.localToolsMcpEnabled')"
+                  inline-prompt
+                  @change="onToggleMcpEnabled(m)"
+                />
+                <el-button
+                  size="small"
+                  text
+                  :loading="mcpBusy === m.id"
+                  :disabled="!m.id || !m.command"
+                  @click="reconnectMcp(m)"
+                >
+                  {{ $t('common.settings.localToolsMcpReconnect') }}
+                </el-button>
+                <el-button size="small" text type="danger" @click="removeMcp(i)">
+                  {{ $t('common.settings.localToolsRemove') }}
+                </el-button>
+              </div>
+              <div class="mcp-grid">
+                <label class="mcp-flabel">{{ $t('common.settings.localToolsMcpName') }}</label>
+                <el-input v-model="m.id" :placeholder="$t('common.settings.localToolsMcpNamePlaceholder')" />
+                <label class="mcp-flabel">{{ $t('common.settings.localToolsMcpCommand') }}</label>
+                <el-input v-model="m.command" :placeholder="$t('common.settings.localToolsMcpCommandPlaceholder')" />
+                <label class="mcp-flabel top">{{ $t('common.settings.localToolsMcpArgs') }}</label>
+                <el-input
+                  v-model="m.argsText"
+                  type="textarea"
+                  :rows="2"
+                  :placeholder="$t('common.settings.localToolsMcpArgsHint')"
+                />
+                <label class="mcp-flabel top">{{ $t('common.settings.localToolsMcpEnv') }}</label>
+                <el-input
+                  v-model="m.envText"
+                  type="textarea"
+                  :rows="2"
+                  :placeholder="$t('common.settings.localToolsMcpEnvHint')"
+                />
+              </div>
+              <p v-if="mcpErrorFor(m.id)" class="mcp-row-error">{{ mcpErrorFor(m.id) }}</p>
+            </div>
+          </li>
+        </ul>
+        <p v-else class="muted">{{ $t('common.settings.localToolsMcpNoServers') }}</p>
+        <p class="muted mcp-platform-hint">{{ $t('common.settings.localToolsMcpPlatformHint') }}</p>
+        <div class="actions">
+          <el-button size="small" type="primary" :loading="savingMcp" @click="saveMcp">
+            {{ $t('common.settings.localToolsSave') }}
+          </el-button>
+          <span v-if="mcpSavedTip" class="muted saved-tip">{{ $t('common.settings.localToolsSaved') }}</span>
+          <span v-if="mcpError" class="mcp-error">{{ mcpError }}</span>
+        </div>
+      </section>
+
       <!-- Always-allowed (persistent consent grants) -->
-      <section v-if="grants !== null">
+      <section v-if="grants !== null && !android">
         <div class="section-head">
           <h3>{{ $t('common.settings.localToolsGrantsTitle') }}</h3>
           <el-button v-if="grants.length" size="small" text type="danger" @click="revokeAll">
@@ -45,7 +136,7 @@
         <p class="muted">{{ $t('common.settings.localToolsGrantsHint') }}</p>
         <ul class="rows">
           <li v-for="g in grants" :key="g.key" class="row">
-            <font-awesome-icon icon="fa-solid fa-shield-halved" class="row-icon" />
+            <security-icon class="row-icon" :size="'1em' as any" aria-hidden="true" focusable="false" />
             <span class="grant">
               <code class="grant-name">{{ g.name }}</code>
               <span class="grant-input">{{ g.input }}</span>
@@ -59,14 +150,20 @@
       </section>
 
       <!-- Built-in tools: per-tool "always allow (any input)" toggles -->
-      <section v-if="builtinTools.length">
+      <section v-if="builtinTools.length && !android">
         <div class="section-head">
           <h3>{{ $t('common.settings.localToolsBuiltinTitle') }}</h3>
         </div>
         <p class="muted">{{ $t('common.settings.localToolsBuiltinHint') }}</p>
         <ul class="rows">
           <li v-for="t in builtinTools" :key="t.name" class="row">
-            <font-awesome-icon :icon="builtinIcon(t.name)" class="row-icon" />
+            <component
+              :is="builtinIcon(t.name)"
+              class="row-icon"
+              :size="'1em' as any"
+              aria-hidden="true"
+              focusable="false"
+            />
             <span class="cu-action">
               <span class="cu-action-name">
                 <code class="grant-name">{{ t.name }}</code>
@@ -93,6 +190,17 @@
           <el-switch v-model="computerUse" :loading="savingCU" @change="onToggleComputerUse" />
         </div>
         <p class="muted">{{ $t('common.settings.localToolsComputerUseHint') }}</p>
+        <!-- Android: the switch means nothing unless the accessibility service
+             is actually running. Reflect the TRUE, live state + a fix button. -->
+        <div v-if="android && computerUse" class="perm-row cu-ready-row">
+          <span class="perm-name">{{ $t('common.settings.localToolsCuA11yLabel') }}</span>
+          <el-tag size="small" :type="a11yEnabled ? 'success' : 'danger'" effect="plain">
+            {{ a11yEnabled ? $t('common.settings.localToolsCuReady') : $t('common.settings.localToolsCuA11yMissing') }}
+          </el-tag>
+          <el-button v-if="!a11yEnabled" size="small" type="primary" @click="openAndroidAccessibility">
+            {{ $t('common.settings.localToolsOpen') }}
+          </el-button>
+        </div>
         <template v-if="computerTools.length">
           <div class="section-head sub">
             <h4>{{ $t('common.settings.localToolsCuActionsTitle') }}</h4>
@@ -103,7 +211,13 @@
           <p class="muted">{{ $t('common.settings.localToolsCuActionsHint') }}</p>
           <ul class="rows">
             <li v-for="t in computerTools" :key="t.name" class="row">
-              <font-awesome-icon :icon="cuIcon(t.name)" class="row-icon" />
+              <component
+                :is="cuIcon(t.name)"
+                class="row-icon"
+                :size="'1em' as any"
+                aria-hidden="true"
+                focusable="false"
+              />
               <span class="cu-action">
                 <span class="cu-action-name">{{ cuLabel(t.name) }}</span>
                 <span class="cu-action-desc">{{ t.description }}</span>
@@ -117,6 +231,49 @@
             </li>
           </ul>
         </template>
+      </section>
+
+      <!-- Android: install curated phone-automation skills (computer.* based) -->
+      <section v-if="android">
+        <div class="section-head">
+          <h3>{{ $t('common.settings.localToolsAndroidSkillsTitle') }}</h3>
+        </div>
+        <p class="muted">{{ $t('common.settings.localToolsAndroidSkillsHint') }}</p>
+        <ul class="rows">
+          <li v-if="xhsSkill" class="row">
+            <magic-icon class="row-icon" :size="'1em' as any" aria-hidden="true" focusable="false" />
+            <span class="cu-action">
+              <span class="cu-action-name">{{ $t('common.settings.localToolsAndroidSkillsXhsName') }}</span>
+              <span class="cu-action-desc">{{ $t('common.settings.localToolsAndroidSkillsXhsDesc') }}</span>
+            </span>
+            <el-tag v-if="xhsSkill.installed" size="small" type="success" effect="plain">
+              {{ $t('common.settings.localToolsAndroidSkillsInstalled') }}
+            </el-tag>
+            <el-button
+              v-else
+              size="small"
+              type="primary"
+              :loading="xhsInstalling"
+              :disabled="!canInstallXhs"
+              @click="installXhs"
+            >
+              {{ $t('common.settings.localToolsAndroidSkillsInstall') }}
+            </el-button>
+          </li>
+          <li v-else-if="xhsLoading" class="row muted empty">
+            {{ $t('common.settings.localToolsAndroidSkillsLoading') }}
+          </li>
+          <li v-else-if="!xhsError" class="row muted empty">
+            {{ $t('common.settings.localToolsAndroidSkillsUnavailable') }}
+          </li>
+        </ul>
+        <p v-if="xhsSkill && !xhsSkill.installed && !canInstallXhs" class="muted">
+          {{ $t('common.settings.localToolsAndroidSkillsNeedComputerUse') }}
+        </p>
+        <p v-if="xhsSkill && xhsSkill.installed" class="muted saved-tip">
+          {{ $t('common.settings.localToolsAndroidSkillsNextTurn') }}
+        </p>
+        <p v-if="xhsError" class="mcp-error">{{ xhsError }}</p>
       </section>
 
       <!-- macOS system permissions -->
@@ -164,11 +321,27 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { ElButton, ElTag, ElSwitch } from 'element-plus';
-import { Plus } from '@element-plus/icons-vue';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { localExec } from '@/utils/desktop';
+import {
+  AddIcon,
+  CameraIcon,
+  EditIcon,
+  FileIcon,
+  FolderIcon,
+  KeyboardIcon,
+  MagicIcon,
+  MoveIcon,
+  PointerIcon,
+  ScrollIcon,
+  SecurityIcon,
+  TerminalIcon
+} from '@acedatacloud/core/icons/components';
+import { defineComponent, type Component } from 'vue';
+import { ElButton, ElTag, ElSwitch, ElInput } from 'element-plus';
+import { localExec, type IMcpServerStatus } from '@/utils/desktop';
+import { isAndroid } from '@/utils/surface';
+import { httpClient } from '@/operators/common';
+import { getBaseUrlAuth } from '@/utils';
+import type { AxiosResponse } from 'axios';
 
 interface GrantRow {
   key: string;
@@ -176,14 +349,43 @@ interface GrantRow {
   input: string;
 }
 
+// One row from AuthBackend's public skill directory (subset of SkillSerializer).
+interface AndroidSkillRow {
+  id: string;
+  identifier: string;
+  name: string;
+  installed: boolean;
+  installable: boolean;
+}
+
+// Editable draft of one MCP server row. `args` / `env` are edited as free text
+// (one-per-line) and parsed into the array / record shape on save. `_uid` is a
+// stable render key so removing a middle row doesn't rebind inputs by index.
+interface McpDraft {
+  _uid: number;
+  id: string;
+  command: string;
+  argsText: string;
+  envText: string;
+  enabled: boolean;
+}
+
 export default defineComponent({
   name: 'LocalToolsSetting',
-  components: { ElButton, ElTag, ElSwitch, FontAwesomeIcon },
+  components: { AddIcon, ElButton, ElTag, ElSwitch, ElInput, FolderIcon, MagicIcon, SecurityIcon },
   data() {
     return {
-      Plus,
       roots: [] as string[],
       tools: [] as string[],
+      // Editable MCP server drafts (loaded from config, parsed back on save).
+      mcpServers: [] as McpDraft[],
+      mcpUid: 0,
+      // Live per-server connection status (id -> status), refreshed after save.
+      mcpStatuses: [] as IMcpServerStatus[],
+      mcpBusy: null as null | string,
+      savingMcp: false,
+      mcpSavedTip: false,
+      mcpError: '',
       grants: null as null | GrantRow[],
       perm: null as null | { mac: boolean; fullDisk: boolean; screen: string; mic: string; accessibility: boolean },
       computerUse: false,
@@ -200,12 +402,35 @@ export default defineComponent({
       preauthorizing: false,
       saving: false,
       savedTip: false,
-      cuOff: null as null | (() => void)
+      // Android: whether the Computer Use accessibility service is enabled.
+      a11yEnabled: false,
+      // Android: curated phone-automation skill (Xiaohongshu DM) + install state.
+      xhsSkill: null as null | AndroidSkillRow,
+      xhsLoading: false,
+      xhsInstalling: false,
+      xhsError: '',
+      onFocus: null as null | (() => void),
+      cuOff: null as null | (() => void),
+      // Android: interval that re-checks the REAL accessibility state while the
+      // page is visible, so the "usable" status stays honest even if the OS
+      // revokes the grant with this page open.
+      a11yPoll: null as null | number,
+      // Guards refreshA11y so overlapping poll / focus calls can't resolve out
+      // of order and write a stale a11yEnabled.
+      refreshingA11y: false
     };
   },
   computed: {
     desktop(): boolean {
       return !!localExec();
+    },
+    android(): boolean {
+      return isAndroid();
+    },
+    // Install only makes sense once the skill can run: accessibility granted AND
+    // Computer Use on. Gate the button on both.
+    canInstallXhs(): boolean {
+      return this.a11yEnabled && this.computerUse;
     }
   },
   async mounted() {
@@ -214,12 +439,39 @@ export default defineComponent({
     const cfg = await ex.getConfig();
     this.roots = cfg.roots;
     this.computerUse = cfg.computerUse === true;
+    this.mcpServers = (cfg.mcp ?? []).map((m) => ({
+      _uid: this.mcpUid++,
+      id: m.id,
+      command: m.command,
+      argsText: (m.args ?? []).join('\n'),
+      envText: Object.entries(m.env ?? {})
+        .map(([k, v]) => `${k}=${v}`)
+        .join('\n'),
+      enabled: m.enabled !== false
+    }));
+    this.mcpStatuses = (await ex.mcp?.status()) ?? [];
     this.tools = (await ex.listTools()).map((t) => t.name);
     this.computerTools = (await ex.computerTools?.()) ?? [];
     this.builtinTools = (await ex.builtinTools?.()) ?? [];
     const s = await ex.perm?.status();
     if (s?.mac) this.perm = s;
     await this.loadGrants();
+    if (this.android) {
+      await this.refreshA11y();
+      void this.fetchXhsSkill();
+      // Re-check the accessibility status when the user returns from system
+      // settings so the badge/toggles reflect it without a manual reload.
+      this.onFocus = () => {
+        if (document.visibilityState === 'visible') void this.refreshA11y();
+      };
+      document.addEventListener('visibilitychange', this.onFocus);
+      // Some OEM ROMs (e.g. Huawei) silently revoke an accessibility grant.
+      // Poll while visible so the "usable" status reflects reality, not just
+      // the last focus event.
+      this.a11yPoll = window.setInterval(() => {
+        if (document.visibilityState === 'visible') void this.refreshA11y();
+      }, 3000);
+    }
     // Reflect the global panic hotkey: keep the toggle in sync so a later Save
     // can't silently re-enable Computer Use after it was force-disabled.
     this.cuOff =
@@ -229,8 +481,69 @@ export default defineComponent({
   },
   beforeUnmount() {
     this.cuOff?.();
+    if (this.onFocus) document.removeEventListener('visibilitychange', this.onFocus);
+    if (this.a11yPoll) clearInterval(this.a11yPoll);
   },
   methods: {
+    async refreshA11y() {
+      // Serialize: a 3s poll and the visibilitychange handler can both call
+      // this; overlapping bridge reads could resolve out of order and write a
+      // stale a11yEnabled. One in-flight read at a time is enough.
+      if (this.refreshingA11y) return;
+      this.refreshingA11y = true;
+      try {
+        const s = await localExec()?.perm?.status();
+        this.a11yEnabled = s?.accessibility === true;
+      } finally {
+        this.refreshingA11y = false;
+      }
+    },
+    async openAndroidAccessibility() {
+      await localExec()?.perm?.openPane('accessibility');
+    },
+    // Fetch the curated Android skill (Xiaohongshu DM auto-reply) from
+    // AuthBackend's public skill directory to show its install state. Same auth +
+    // baseURL override the connector catalog cache uses.
+    async fetchXhsSkill() {
+      this.xhsLoading = true;
+      this.xhsError = '';
+      try {
+        const resp: AxiosResponse<{ items?: AndroidSkillRow[] }> = await httpClient.get('/skills/', {
+          baseURL: `${getBaseUrlAuth()}/api/v1`,
+          params: { q: 'xhs-dm', limit: 10 }
+        });
+        const items = Array.isArray(resp.data?.items) ? resp.data.items : [];
+        this.xhsSkill = items.find((s) => s.identifier?.endsWith('/xhs-dm')) ?? null;
+      } catch (e) {
+        console.warn('[LocalTools] fetch xhs skill failed', e);
+        this.xhsSkill = null;
+        this.xhsError = this.$t('common.settings.localToolsAndroidSkillsLoadFailed');
+      } finally {
+        this.xhsLoading = false;
+      }
+    },
+    // Install the curated skill into the user's account. Takes effect next chat
+    // turn (the worker reads /internal/v1/skills/active per turn). 409 = already
+    // installed, treated as success.
+    async installXhs() {
+      const skill = this.xhsSkill;
+      if (!skill || skill.installed) return;
+      this.xhsInstalling = true;
+      this.xhsError = '';
+      try {
+        await httpClient.post(`/skills/${skill.id}/install/`, {}, { baseURL: `${getBaseUrlAuth()}/api/v1` });
+        skill.installed = true;
+      } catch (e) {
+        const httpStatus = (e as { response?: { status?: number } })?.response?.status;
+        if (httpStatus === 409) {
+          skill.installed = true;
+        } else {
+          this.xhsError = this.$t('common.settings.localToolsAndroidSkillsInstallFailed');
+        }
+      } finally {
+        this.xhsInstalling = false;
+      }
+    },
     async loadGrants() {
       const ex = localExec();
       if (!ex?.grants) {
@@ -274,6 +587,133 @@ export default defineComponent({
     removeRoot(i: number) {
       this.roots.splice(i, 1);
     },
+    addMcp() {
+      this.mcpServers.push({ _uid: this.mcpUid++, id: '', command: '', argsText: '', envText: '', enabled: true });
+    },
+    removeMcp(i: number) {
+      this.mcpServers.splice(i, 1);
+    },
+    // Look up the live status of a draft by its (trimmed) id.
+    mcpStatusFor(id: string): IMcpServerStatus | undefined {
+      const key = id.trim();
+      return this.mcpStatuses.find((s) => s.id === key);
+    },
+    mcpBadgeType(id: string): 'success' | 'danger' | 'info' {
+      const s = this.mcpStatusFor(id)?.status;
+      if (s === 'connected') return 'success';
+      if (s === 'failed') return 'danger';
+      return 'info'; // disabled / unknown (not yet saved)
+    },
+    mcpBadgeText(id: string): string {
+      const st = this.mcpStatusFor(id);
+      if (this.mcpBusy === id.trim()) return this.$t('common.settings.localToolsMcpConnecting');
+      if (!st) return this.$t('common.settings.localToolsMcpNotSaved');
+      if (st.status === 'connected') return this.$t('common.settings.localToolsMcpConnected', { n: st.toolCount });
+      if (st.status === 'disabled') return this.$t('common.settings.localToolsMcpDisabled');
+      return this.$t('common.settings.localToolsMcpFailed');
+    },
+    mcpErrorFor(id: string): string {
+      const st = this.mcpStatusFor(id);
+      return st?.status === 'failed' && st.error ? st.error : '';
+    },
+    // Build + validate the McpServerConf[] payload from the drafts. Sets
+    // `mcpError` and returns null on the first invalid row.
+    buildMcpPayload():
+      | { id: string; command: string; args: string[]; env?: Record<string, string>; enabled?: boolean }[]
+      | null {
+      this.mcpError = '';
+      const mcp: { id: string; command: string; args: string[]; env?: Record<string, string>; enabled?: boolean }[] =
+        [];
+      const seen = new Set<string>();
+      for (const m of this.mcpServers) {
+        const id = m.id.trim();
+        const command = m.command.trim();
+        if (!id || !command) {
+          this.mcpError = this.$t('common.settings.localToolsMcpNameRequired');
+          return null;
+        }
+        // `id` becomes the `mcp.<id>.<tool>` route key — a dot would break the split.
+        if (!/^[A-Za-z0-9_-]+$/.test(id)) {
+          this.mcpError = this.$t('common.settings.localToolsMcpNameInvalid');
+          return null;
+        }
+        if (seen.has(id)) {
+          this.mcpError = this.$t('common.settings.localToolsMcpDuplicateName');
+          return null;
+        }
+        seen.add(id);
+        const args = m.argsText
+          .split('\n')
+          .map((s) => s.trim())
+          .filter(Boolean);
+        const env: Record<string, string> = {};
+        for (const line of m.envText.split('\n')) {
+          const t = line.trim();
+          if (!t) continue;
+          const eq = t.indexOf('=');
+          if (eq <= 0) continue;
+          env[t.slice(0, eq).trim()] = t.slice(eq + 1).trim();
+        }
+        const row: { id: string; command: string; args: string[]; env?: Record<string, string>; enabled?: boolean } = {
+          id,
+          command,
+          args,
+          enabled: m.enabled !== false
+        };
+        if (Object.keys(env).length) row.env = env;
+        mcp.push(row);
+      }
+      return mcp;
+    },
+    // Persist the MCP servers. The main process hot-reboots the MCP host, so the
+    // tools + per-server status update without a restart. Returns false when a
+    // row failed validation (nothing was saved) so callers can react.
+    async saveMcp(): Promise<boolean> {
+      const mcp = this.buildMcpPayload();
+      if (!mcp) return false;
+      this.savingMcp = true;
+      try {
+        const cur = await localExec()?.getConfig();
+        await localExec()?.saveConfig({ roots: cur?.roots ?? this.roots, mcp, computerUse: this.computerUse });
+        await this.refreshMcpStatus();
+        this.mcpSavedTip = true;
+        setTimeout(() => (this.mcpSavedTip = false), 2000);
+        return true;
+      } finally {
+        this.savingMcp = false;
+      }
+    },
+    // Re-fetch per-server status + the merged active-tools line.
+    async refreshMcpStatus() {
+      const ex = localExec();
+      if (!ex) return;
+      this.mcpStatuses = (await ex.mcp?.status()) ?? [];
+      this.tools = (await ex.listTools())?.map((t) => t.name) ?? this.tools;
+    },
+    // Toggling enable/disable persists immediately (needs a save+reboot to take
+    // effect). If another row is invalid the save is blocked, so revert the
+    // optimistic switch flip to keep the UI in sync with what's persisted.
+    async onToggleMcpEnabled(m: McpDraft) {
+      const ok = await this.saveMcp();
+      if (!ok) m.enabled = !m.enabled;
+    },
+    // "Test / Reconnect" one server: save first (so its latest edits apply),
+    // then re-spawn just it and show the fresh status/error.
+    async reconnectMcp(m: McpDraft) {
+      const id = m.id.trim();
+      if (!id || !m.command.trim()) return;
+      const mcp = this.buildMcpPayload();
+      if (!mcp) return;
+      this.mcpBusy = id;
+      try {
+        const cur = await localExec()?.getConfig();
+        await localExec()?.saveConfig({ roots: cur?.roots ?? this.roots, mcp, computerUse: this.computerUse });
+        await localExec()?.mcp?.reconnect(id);
+        await this.refreshMcpStatus();
+      } finally {
+        this.mcpBusy = null;
+      }
+    },
     async open(k: 'fullDisk' | 'screen' | 'accessibility') {
       await localExec()?.perm?.openPane(k);
     },
@@ -298,6 +738,16 @@ export default defineComponent({
         computerUse: val === true
       });
       this.savingCU = false;
+      // Turning the switch on is meaningless until the accessibility service is
+      // actually running. Read the REAL state directly (not the polled cache,
+      // which a concurrent refresh could overwrite) and — if it isn't running —
+      // jump straight to the system Accessibility settings so "on" is usable.
+      if (val === true && this.android) {
+        const s = await localExec()?.perm?.status();
+        const granted = s?.accessibility === true;
+        this.a11yEnabled = granted;
+        if (!granted) await this.openAndroidAccessibility();
+      }
     },
     // Pre-approve every computer.* action (persistent always-allow), enable
     // Computer Use, and trigger the macOS Screen Recording / Accessibility
@@ -344,16 +794,16 @@ export default defineComponent({
       const label = this.$t(key);
       return label === key ? name.replace(/^computer\./, '') : label;
     },
-    cuIcon(name: string): string {
-      const map: Record<string, string> = {
-        screenshot: 'fa-solid fa-camera',
-        click: 'fa-solid fa-arrow-pointer',
-        move: 'fa-solid fa-up-down-left-right',
-        type: 'fa-solid fa-keyboard',
-        key: 'fa-solid fa-keyboard',
-        scroll: 'fa-solid fa-arrows-up-down'
+    cuIcon(name: string): Component {
+      const map: Record<string, Component> = {
+        screenshot: CameraIcon,
+        click: PointerIcon,
+        move: MoveIcon,
+        type: KeyboardIcon,
+        key: KeyboardIcon,
+        scroll: ScrollIcon
       };
-      return map[name.replace(/^computer\./, '')] ?? 'fa-solid fa-shield-halved';
+      return map[name.replace(/^computer\./, '')] ?? SecurityIcon;
     },
     cuSuffix(name: string): string {
       const s = name.replace(/^computer\./, '');
@@ -381,12 +831,12 @@ export default defineComponent({
         this.builtinBusy = null;
       }
     },
-    builtinIcon(name: string): string {
-      if (name === 'shell.run_command') return 'fa-solid fa-terminal';
-      if (name === 'fs.write_file') return 'fa-solid fa-pen';
-      if (name === 'fs.read_file') return 'fa-solid fa-file';
-      if (name === 'fs.list_dir') return 'fa-solid fa-folder';
-      return 'fa-solid fa-shield-halved';
+    builtinIcon(name: string): Component {
+      if (name === 'shell.run_command') return TerminalIcon;
+      if (name === 'fs.write_file') return EditIcon;
+      if (name === 'fs.read_file') return FileIcon;
+      if (name === 'fs.list_dir') return FolderIcon;
+      return SecurityIcon;
     },
     async revoke(key: string) {
       await localExec()?.grants?.revoke(key);
@@ -438,6 +888,57 @@ export default defineComponent({
 .cu-action-desc {
   color: var(--el-text-color-secondary, #909399);
   font-size: 12px;
+}
+.mcp-row {
+  align-items: flex-start;
+  padding: 16px;
+  background: var(--el-fill-color-lighter, #fafafa);
+}
+.mcp-fields {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+.mcp-grid {
+  display: grid;
+  grid-template-columns: 100px minmax(0, 1fr);
+  gap: 10px 12px;
+  align-items: center;
+}
+.mcp-flabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--el-text-color-secondary, #909399);
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+.mcp-flabel.top {
+  align-self: start;
+  padding-top: 8px;
+}
+.mcp-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.mcp-spacer {
+  flex: 1;
+}
+.mcp-row-error {
+  margin: 0;
+  color: var(--el-color-danger, #f56c6c);
+  font-size: 12px;
+  word-break: break-word;
+}
+.mcp-platform-hint {
+  margin-top: 4px;
+  line-height: 1.5;
+}
+.mcp-error {
+  color: var(--el-color-danger, #f56c6c);
+  font-size: 13px;
 }
 .muted {
   color: var(--el-text-color-secondary, #909399);
@@ -510,5 +1011,8 @@ export default defineComponent({
 .perm-name {
   flex: 1;
   font-size: 14px;
+}
+.cu-ready-row {
+  margin-top: 4px;
 }
 </style>

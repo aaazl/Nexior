@@ -144,7 +144,7 @@
     "description": "Naziv modela usluge, tj. Grok 4"
   },
   "model.grok4Description": {
-    "message": "Trenutno najnapredniji model",
+    "message": "General-purpose K2 model for compatible workflows",
     "description": "Opis Grok 4 modela"
   },
   "model.grok3": {
@@ -599,6 +599,18 @@
   "scheduledTasks.deleteConfirm": {
     "message": "Delete \"{name}\"? The task will stop running."
   },
+  "scheduledTasks.triggerNow": {
+    "message": "Run now",
+    "description": "Trigger the task immediately, out of schedule"
+  },
+  "scheduledTasks.triggerSuccess": {
+    "message": "Triggered. The result will appear in run history shortly.",
+    "description": "Manual trigger success"
+  },
+  "scheduledTasks.triggerError": {
+    "message": "Failed to trigger. Please try again later.",
+    "description": "Manual trigger error"
+  },
   "scheduledTasks.viewResult": {
     "message": "View Result"
   },
@@ -636,6 +648,45 @@
   "scheduledTasks.run.failed": {
     "message": "Failed"
   },
+  "scheduledTasks.run.reason.max_turns": {
+    "message": "Достигнут лимит корака"
+  },
+  "scheduledTasks.run.reason.max_budget_usd": {
+    "message": "Достигнут лимит буџета"
+  },
+  "scheduledTasks.run.reason.tool_call_loop": {
+    "message": "Откривена петља позива алата"
+  },
+  "scheduledTasks.run.reason.prompt_too_long": {
+    "message": "Упит је предугачак"
+  },
+  "scheduledTasks.run.reason.aborted_streaming": {
+    "message": "Прекинуто"
+  },
+  "scheduledTasks.run.reason.aborted_tools": {
+    "message": "Прекинуто"
+  },
+  "scheduledTasks.run.reason.awaiting_user_input": {
+    "message": "Чека се ваш унос"
+  },
+  "scheduledTasks.run.reason.error": {
+    "message": "Грешка"
+  },
+  "scheduledTasks.run.reason.unknown": {
+    "message": "Непозната грешка"
+  },
+  "scheduledTasks.run.reason.balance_insufficient": {
+    "message": "Недовољно средстава"
+  },
+  "scheduledTasks.run.reason.unauthorized": {
+    "message": "Неовлашћено"
+  },
+  "scheduledTasks.run.reason.timeout": {
+    "message": "Истекло време"
+  },
+  "scheduledTasks.run.reason.internal_error": {
+    "message": "Интерна грешка"
+  },
   "scheduledTasks.run.needs_user_input": {
     "message": "Needs action"
   },
@@ -653,6 +704,74 @@
   },
   "scheduledTasks.scheduleType.cron": {
     "message": "Cron expression"
+  },
+  "scheduledTasks.scheduleType.interval": {
+    "message": "Every",
+    "description": "Run at a fixed interval"
+  },
+  "scheduledTasks.form.intervalUnit.minute": {
+    "message": "minutes",
+    "description": "Interval unit: minutes"
+  },
+  "scheduledTasks.form.intervalUnit.hour": {
+    "message": "hours",
+    "description": "Interval unit: hours"
+  },
+  "scheduledTasks.form.intervalUnit.day": {
+    "message": "days",
+    "description": "Interval unit: days"
+  },
+  "scheduledTasks.form.hourlyMinute": {
+    "message": "At minute",
+    "description": "Which minute of each hour to run"
+  },
+  "scheduledTasks.form.hourlyMinuteHint": {
+    "message": "Which minute of each hour to run (0–59)",
+    "description": "Hourly minute hint"
+  },
+  "scheduledTasks.form.intervalHint": {
+    "message": "Runs once every fixed interval after the previous run (minimum 1 minute)",
+    "description": "Interval hint"
+  },
+  "scheduledTasks.form.cronHint": {
+    "message": "Standard 5-field cron expression: minute hour day month weekday",
+    "description": "Cron hint"
+  },
+  "scheduledTasks.form.schedulePreview": {
+    "message": "Runs {text}",
+    "description": "Schedule preview"
+  },
+  "scheduledTasks.humanize.everyNMinutes": {
+    "message": "every {n} min",
+    "description": "Human-readable: every N minutes"
+  },
+  "scheduledTasks.humanize.everyNHours": {
+    "message": "every {n} h",
+    "description": "Human-readable: every N hours"
+  },
+  "scheduledTasks.humanize.everyNDays": {
+    "message": "every {n} d",
+    "description": "Human-readable: every N days"
+  },
+  "scheduledTasks.humanize.hourlyAtMinute": {
+    "message": "hourly at minute {n}",
+    "description": "Human-readable: hourly at minute N"
+  },
+  "scheduledTasks.humanize.dailyAt": {
+    "message": "daily at {time}",
+    "description": "Human-readable: daily at time"
+  },
+  "scheduledTasks.humanize.weeklyAt": {
+    "message": "{weekday} at {time}",
+    "description": "Human-readable: weekly at weekday/time"
+  },
+  "scheduledTasks.humanize.cronRaw": {
+    "message": "Cron: {cron}",
+    "description": "Human-readable: raw cron"
+  },
+  "scheduledTasks.humanize.once": {
+    "message": "once at {time}",
+    "description": "Human-readable: once"
   },
   "scheduledTasks.form.name": {
     "message": "Task name"
@@ -712,6 +831,14 @@
     "message": "Izabrani MCP serveri će se učitati i izvršiti u pozadini zadatka; neizabrani MCP serveri neće se učitati u režimu bez nadzora.",
     "description": "Objašnjenje ovlašćenja za MCP servere."
   },
+  "scheduledTasks.form.maxTurns": {
+    "message": "Максималан број корака",
+    "description": "Scheduled task per-run agent turn cap"
+  },
+  "scheduledTasks.form.maxTurnsHint": {
+    "message": "Максималан број корака агента по покретању (1–50). Превише низак лимит принудно зауставља вишекорачне задатке (нпр. вештине које изврше неколико Bash/претрага корака) пре завршетка, без коначног резултата. Подразумевано 50.",
+    "description": "Scheduled task per-run agent turn cap"
+  },
   "scheduledTasks.form.skillsConfirmTitle": {
     "message": "Потврда овлашћења без надзора",
     "description": "Наслов за потврду овлашћења"
@@ -720,8 +847,184 @@
     "message": "Овај задатак ће дозволити {count} Skill да се извршавају у позадини без људске потврде: {skills}. Ови Skill могу слати поруке, објављивати садржај или писати у спољне услуге, молимо потврдите.",
     "description": "Текст за потврду овлашћења"
   },
+  "scheduledTasks.form.skillNotActiveTitle": {
+    "message": "Bind the skill first",
+    "description": "Dialog title shown when a scheduled-task authorized skill/MCP is not yet bound for the user."
+  },
+  "scheduledTasks.form.skillNotActiveMessage": {
+    "message": "The skill \"{name}\" is not bound or active in your account yet. Without binding it, the scheduled task may not be able to use it during unattended background runs. We recommend binding it first, or you can save anyway.",
+    "description": "Warning body; {name} is the skill/MCP name. Explains it is not bound and offers to save anyway."
+  },
+  "scheduledTasks.form.skillNotActiveForce": {
+    "message": "Save anyway",
+    "description": "Confirm button that saves the scheduled task anyway, bypassing the binding check (force)."
+  },
   "scheduledTasks.form.required": {
     "message": "Please fill in task name and prompt"
+  },
+  "artifacts.navTitle": {
+    "message": "Производи",
+    "description": "Наслов у бочној траци за производе"
+  },
+  "artifacts.title": {
+    "message": "Моји производи",
+    "description": "Наслов странице производа"
+  },
+  "artifacts.summaryTotal": {
+    "message": "У овом периоду је створено {count} производа",
+    "description": "Укупни број производа"
+  },
+  "artifacts.filterAll": {
+    "message": "Све",
+    "description": "Филтер типова производа - све"
+  },
+  "artifacts.empty": {
+    "message": "Нема ниједног производа. Када AI помогне да напишете чланак, генеришете слике или пошаљете е-пошту, производи ће се аутоматски појавити овде.",
+    "description": "Порука када нема производа"
+  },
+  "artifacts.loadError": {
+    "message": "Неуспешно учитавање производа",
+    "description": "Порука о грешци при учитавању производа"
+  },
+  "artifacts.actionError": {
+    "message": "Операција је失败，请重试",
+    "description": "Порука о грешци у операцији"
+  },
+  "artifacts.open": {
+    "message": "Отвори",
+    "description": "Дугме за отварање оригиналне везе производа"
+  },
+  "artifacts.hide": {
+    "message": "Сакриј",
+    "description": "Дугме за сакривање производа"
+  },
+  "artifacts.delete": {
+    "message": "Избриши",
+    "description": "Дугме за брисање"
+  },
+  "artifacts.deleteConfirm": {
+    "message": "Да ли сте сигурни да желите трајно да избришете овај запис?",
+    "description": "Потврда за брисање"
+  },
+  "artifacts.loadMore": {
+    "message": "Учитај више",
+    "description": "Дугме за учитавање више производа"
+  },
+  "artifacts.sourceAuto": {
+    "message": "Аутоматско хватање",
+    "description": "Ознака за аутоматско хватање извора"
+  },
+  "artifacts.kind.article": {
+    "message": "Чланак",
+    "description": "Тип производа - чланак"
+  },
+  "artifacts.kind.image": {
+    "message": "Слика",
+    "description": "Тип производа - слика"
+  },
+  "artifacts.kind.video": {
+    "message": "Видео",
+    "description": "Тип производа - видео"
+  },
+  "artifacts.kind.audio": {
+    "message": "Аудио",
+    "description": "Тип производа - аудио"
+  },
+  "artifacts.kind.document": {
+    "message": "Документ",
+    "description": "Тип производа - документ"
+  },
+  "artifacts.kind.email": {
+    "message": "Е-пошта",
+    "description": "Тип производа - е-пошта"
+  },
+  "artifacts.kind.message": {
+    "message": "Порука",
+    "description": "Тип производа - порука"
+  },
+  "artifacts.kind.dataset": {
+    "message": "Податак",
+    "description": "Тип производа - податак"
+  },
+  "artifacts.kind.link": {
+    "message": "Линк",
+    "description": "Тип производа - линк"
+  },
+  "artifacts.kind.other": {
+    "message": "Друго",
+    "description": "Тип производа - друго"
+  },
+  "share.menu": {
+    "message": "Дели",
+    "description": "Ставка менија за отварање дијалога за дељење у бочној траци/алатној траци"
+  },
+  "share.dialogTitle": {
+    "message": "Дели разговор",
+    "description": "Наслов дијалога за дељење"
+  },
+  "share.description": {
+    "message": "Сваки ко добије линк може видети овај разговор, али не може наставити ћаскање.",
+    "description": "Објашњава шта се дешава када се разговор дели"
+  },
+  "share.createLink": {
+    "message": "Креирај линк за дељење",
+    "description": "Дугме за креирање јавног линка за дељење разговора"
+  },
+  "share.copy": {
+    "message": "Копирај линк",
+    "description": "Дугме за копирање линка за дељење у клипборду"
+  },
+  "share.copied": {
+    "message": "Копирано",
+    "description": "Кратка порука која се појављује на дугмету након успешног копирања"
+  },
+  "share.disable": {
+    "message": "Деактивирај линк",
+    "description": "Дугме за повлачење линка за дељење и онемогућавање URL-а"
+  },
+  "share.disabled": {
+    "message": "Линк за дељење је деактивиран.",
+    "description": "Порука након деактивирања линка за дељење"
+  },
+  "share.needLogin": {
+    "message": "Молимо вас да се прво пријавите, а затим делите овај разговор.",
+    "description": "Порука за посетиоце који нису пријављени када покушају да деле разговор"
+  },
+  "share.noConversation": {
+    "message": "Молимо вас да прво отворите разговор пре него што делите.",
+    "description": "Порука када се кликне на дугме за дељење без активног разговора"
+  },
+  "share.createFailed": {
+    "message": "Неуспело креирање линка за дељење, покушајте поново касније.",
+    "description": "Порука о грешци када креирање линка за дељење не успе"
+  },
+  "share.disableFailed": {
+    "message": "Неуспело деактивирање линка за дељење, покушајте поново касније.",
+    "description": "Порука о грешци када деактивирање линка за дељење не успе"
+  },
+  "share.startYourOwn": {
+    "message": "Идите да започнете свој разговор",
+    "description": "Позив на акцију на јавној страници за усмеравање анонимних посетилаца на почетну страницу апликације"
+  },
+  "share.unavailableTitle": {
+    "message": "Овај дељени разговор није доступан.",
+    "description": "Наслов јавне странице када је линк за дељење неважећи или неактиван"
+  },
+  "share.unavailableHint": {
+    "message": "Други корисник је можда деактивирао линк или је URL погрешан.",
+    "description": "Порука када је линк за дељење неважећи или неактиван"
+  },
+  "share.viewOnly": {
+    "message": "Само за читање дељеног разговора",
+    "description": "Ознака на јавној страници која указује да је разговор само за читање"
+  },
+  "share.untitled": {
+    "message": "Неназван разговор",
+    "description": "Текст који се користи када разговор за дељење нема наслов"
+  },
+  "share.footerNote": {
+    "message": "Гледате део дељеног разговора. Кликните горе да бисте сами ћаскали са AI.",
+    "description": "Објашњење испод разговора на јавној страници"
   },
   "model.claudeOpus47": {
     "message": "claude-opus-4.7",
@@ -730,5 +1033,81 @@
   "model.claudeOpus47Description": {
     "message": "Trenutno najnapredniji model",
     "description": "Opis Claude Opus 4.7 modela"
+  },
+  "artifacts.unhide": {
+    "message": "Unhide",
+    "description": "Restore a hidden artifact"
+  },
+  "artifacts.showHidden": {
+    "message": "Show hidden",
+    "description": "Toggle in the filter bar to include hidden artifacts"
+  },
+  "artifacts.hiddenBadge": {
+    "message": "Hidden",
+    "description": "Badge shown on artifacts that are currently hidden"
+  },
+  "scheduledTasks.run.reason.billing_gate_failed": {
+    "message": "Ауторизација наплате није успела"
+  },
+  "browserTool.title": {
+    "message": "Browser activity",
+    "description": "Fallback title for a BrowserDevice tool activity"
+  },
+  "browserTool.state.choose_device": {
+    "message": "Choose a browser device"
+  },
+  "browserTool.state.device_offline": {
+    "message": "Browser device is offline"
+  },
+  "browserTool.state.awaiting_device": {
+    "message": "Waiting for browser device"
+  },
+  "browserTool.state.awaiting_local_approval": {
+    "message": "Waiting for approval on the browser device"
+  },
+  "browserTool.state.takeover_required": {
+    "message": "Take over on the browser device"
+  },
+  "browserTool.state.executing": {
+    "message": "Executing in browser"
+  },
+  "browserTool.state.completed": {
+    "message": "Completed"
+  },
+  "browserTool.state.denied": {
+    "message": "Denied on the browser device"
+  },
+  "browserTool.state.expired": {
+    "message": "Browser request expired"
+  },
+  "browserTool.state.cancel_too_late": {
+    "message": "Too late to cancel"
+  },
+  "scheduledTasks.run.waiting_for_device": {
+    "message": "Waiting for browser device"
+  },
+  "model.kimiK3": {
+    "message": "kimi-k3",
+    "description": "Name of Moonshot AI's Kimi K3 flagship model"
+  },
+  "model.kimiK3Description": {
+    "message": "Flagship reasoning and vision model with a 1M-token context window",
+    "description": "Description of the Kimi K3 model"
+  },
+  "model.kimiK26": {
+    "message": "kimi-k2.6",
+    "description": "Name of the Kimi K2.6 model"
+  },
+  "model.kimiK26Description": {
+    "message": "Reasoning and vision model for compatible K2 workflows",
+    "description": "Description of the Kimi K2.6 model"
+  },
+  "model.claudeFable5": {
+    "message": "claude-fable-5",
+    "description": "Name of Anthropic's Claude Fable 5 flagship model"
+  },
+  "model.claudeFable5Description": {
+    "message": "Flagship reasoning and vision model for long-horizon work with a 1M-token context window",
+    "description": "Description of the Claude Fable 5 model"
   }
 }

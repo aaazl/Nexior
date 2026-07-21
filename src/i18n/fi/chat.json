@@ -224,7 +224,7 @@
     "description": "Palvelun mallin nimi, eli Kimi K2.5"
   },
   "model.kimiK25Description": {
-    "message": "Tällä hetkellä huipputason malli",
+    "message": "General-purpose K2 model for compatible workflows",
     "description": "Kimi K2.5 mallin kuvaus"
   },
   "model.kimiK2Thinking": {
@@ -599,6 +599,18 @@
   "scheduledTasks.deleteConfirm": {
     "message": "Delete \"{name}\"? The task will stop running."
   },
+  "scheduledTasks.triggerNow": {
+    "message": "Run now",
+    "description": "Trigger the task immediately, out of schedule"
+  },
+  "scheduledTasks.triggerSuccess": {
+    "message": "Triggered. The result will appear in run history shortly.",
+    "description": "Manual trigger success"
+  },
+  "scheduledTasks.triggerError": {
+    "message": "Failed to trigger. Please try again later.",
+    "description": "Manual trigger error"
+  },
   "scheduledTasks.viewResult": {
     "message": "View Result"
   },
@@ -636,6 +648,45 @@
   "scheduledTasks.run.failed": {
     "message": "Failed"
   },
+  "scheduledTasks.run.reason.max_turns": {
+    "message": "Vaiheiden yläraja saavutettu"
+  },
+  "scheduledTasks.run.reason.max_budget_usd": {
+    "message": "Budjettiraja saavutettu"
+  },
+  "scheduledTasks.run.reason.tool_call_loop": {
+    "message": "Työkalukutsujen silmukka havaittu"
+  },
+  "scheduledTasks.run.reason.prompt_too_long": {
+    "message": "Kehote liian pitkä"
+  },
+  "scheduledTasks.run.reason.aborted_streaming": {
+    "message": "Keskeytetty"
+  },
+  "scheduledTasks.run.reason.aborted_tools": {
+    "message": "Keskeytetty"
+  },
+  "scheduledTasks.run.reason.awaiting_user_input": {
+    "message": "Odotetaan syötettäsi"
+  },
+  "scheduledTasks.run.reason.error": {
+    "message": "Virhe"
+  },
+  "scheduledTasks.run.reason.unknown": {
+    "message": "Tuntematon virhe"
+  },
+  "scheduledTasks.run.reason.balance_insufficient": {
+    "message": "Riittämätön saldo"
+  },
+  "scheduledTasks.run.reason.unauthorized": {
+    "message": "Ei valtuutettu"
+  },
+  "scheduledTasks.run.reason.timeout": {
+    "message": "Aikakatkaisu"
+  },
+  "scheduledTasks.run.reason.internal_error": {
+    "message": "Sisäinen virhe"
+  },
   "scheduledTasks.run.needs_user_input": {
     "message": "Needs action"
   },
@@ -653,6 +704,74 @@
   },
   "scheduledTasks.scheduleType.cron": {
     "message": "Cron expression"
+  },
+  "scheduledTasks.scheduleType.interval": {
+    "message": "Every",
+    "description": "Run at a fixed interval"
+  },
+  "scheduledTasks.form.intervalUnit.minute": {
+    "message": "minutes",
+    "description": "Interval unit: minutes"
+  },
+  "scheduledTasks.form.intervalUnit.hour": {
+    "message": "hours",
+    "description": "Interval unit: hours"
+  },
+  "scheduledTasks.form.intervalUnit.day": {
+    "message": "days",
+    "description": "Interval unit: days"
+  },
+  "scheduledTasks.form.hourlyMinute": {
+    "message": "At minute",
+    "description": "Which minute of each hour to run"
+  },
+  "scheduledTasks.form.hourlyMinuteHint": {
+    "message": "Which minute of each hour to run (0–59)",
+    "description": "Hourly minute hint"
+  },
+  "scheduledTasks.form.intervalHint": {
+    "message": "Runs once every fixed interval after the previous run (minimum 1 minute)",
+    "description": "Interval hint"
+  },
+  "scheduledTasks.form.cronHint": {
+    "message": "Standard 5-field cron expression: minute hour day month weekday",
+    "description": "Cron hint"
+  },
+  "scheduledTasks.form.schedulePreview": {
+    "message": "Runs {text}",
+    "description": "Schedule preview"
+  },
+  "scheduledTasks.humanize.everyNMinutes": {
+    "message": "every {n} min",
+    "description": "Human-readable: every N minutes"
+  },
+  "scheduledTasks.humanize.everyNHours": {
+    "message": "every {n} h",
+    "description": "Human-readable: every N hours"
+  },
+  "scheduledTasks.humanize.everyNDays": {
+    "message": "every {n} d",
+    "description": "Human-readable: every N days"
+  },
+  "scheduledTasks.humanize.hourlyAtMinute": {
+    "message": "hourly at minute {n}",
+    "description": "Human-readable: hourly at minute N"
+  },
+  "scheduledTasks.humanize.dailyAt": {
+    "message": "daily at {time}",
+    "description": "Human-readable: daily at time"
+  },
+  "scheduledTasks.humanize.weeklyAt": {
+    "message": "{weekday} at {time}",
+    "description": "Human-readable: weekly at weekday/time"
+  },
+  "scheduledTasks.humanize.cronRaw": {
+    "message": "Cron: {cron}",
+    "description": "Human-readable: raw cron"
+  },
+  "scheduledTasks.humanize.once": {
+    "message": "once at {time}",
+    "description": "Human-readable: once"
   },
   "scheduledTasks.form.name": {
     "message": "Task name"
@@ -712,6 +831,14 @@
     "message": "Valitut MCP-palvelimet voidaan ladata ja suorittaa aikataulutettujen tehtävien taustalla; valitsemattomia MCP-palvelimia ei ladata valvonnasta vapaassa tilassa.",
     "description": "Valtuutuksen MCP-palvelimista selitys"
   },
+  "scheduledTasks.form.maxTurns": {
+    "message": "Kierrosten enimmäismäärä",
+    "description": "Scheduled task per-run agent turn cap"
+  },
+  "scheduledTasks.form.maxTurnsHint": {
+    "message": "Agentin kierrosten enimmäismäärä per ajo (1–50). Liian pieni raja pysäyttää monivaiheiset tehtävät (esim. taidot, jotka suorittavat useita Bash-/dokumenttihakuvaiheita) ennen valmistumista ilman lopputulosta. Oletus 50.",
+    "description": "Scheduled task per-run agent turn cap"
+  },
   "scheduledTasks.form.skillsConfirmTitle": {
     "message": "Vahvista automaattinen valtuutus",
     "description": "Valtuutuksen vahvistuksen otsikko"
@@ -720,8 +847,184 @@
     "message": "Tämä tehtävä sallii {count} taidon suorittaa taustalla ilman manuaalista vahvistusta: {skills}. Nämä taidot voivat lähettää viestejä, julkaista sisältöä tai kirjoittaa ulkoisiin palveluihin, vahvista tämä.",
     "description": "Valtuutuksen vahvistusteksti"
   },
+  "scheduledTasks.form.skillNotActiveTitle": {
+    "message": "Bind the skill first",
+    "description": "Dialog title shown when a scheduled-task authorized skill/MCP is not yet bound for the user."
+  },
+  "scheduledTasks.form.skillNotActiveMessage": {
+    "message": "The skill \"{name}\" is not bound or active in your account yet. Without binding it, the scheduled task may not be able to use it during unattended background runs. We recommend binding it first, or you can save anyway.",
+    "description": "Warning body; {name} is the skill/MCP name. Explains it is not bound and offers to save anyway."
+  },
+  "scheduledTasks.form.skillNotActiveForce": {
+    "message": "Save anyway",
+    "description": "Confirm button that saves the scheduled task anyway, bypassing the binding check (force)."
+  },
   "scheduledTasks.form.required": {
     "message": "Please fill in task name and prompt"
+  },
+  "artifacts.navTitle": {
+    "message": "Tuotokset",
+    "description": "Sivupalkin tuotosten sisäänkäynti"
+  },
+  "artifacts.title": {
+    "message": "Omat tuotokset",
+    "description": "Tuotossivun otsikko"
+  },
+  "artifacts.summaryTotal": {
+    "message": "Tällä kertaa tuotoksia yhteensä {count} kappaletta",
+    "description": "Tuotosten yhteenvedon kokonaismäärä"
+  },
+  "artifacts.filterAll": {
+    "message": "Kaikki",
+    "description": "Tuotostyyppien suodatus - kaikki"
+  },
+  "artifacts.empty": {
+    "message": "Ei vielä mitään tuotoksia. Anna AI:n auttaa sinua kirjoittamaan artikkeleita, luomaan kuvia tai lähettämään sähköposteja, niin tuotokset ilmestyvät tänne automaattisesti.",
+    "description": "Tuotokset ovat tyhjät ilmoitus"
+  },
+  "artifacts.loadError": {
+    "message": "Tuotosten lataaminen epäonnistui",
+    "description": "Tuotosten latausvirheen ilmoitus"
+  },
+  "artifacts.actionError": {
+    "message": "Toiminto epäonnistui, yritä uudelleen",
+    "description": "Tuotteen toimintavirheen ilmoitus"
+  },
+  "artifacts.open": {
+    "message": "Avaa",
+    "description": "Avaa tuotteen alkuperäinen linkkipainike"
+  },
+  "artifacts.hide": {
+    "message": "Piilota",
+    "description": "Tuotteen piilottamispainike"
+  },
+  "artifacts.delete": {
+    "message": "Poista",
+    "description": "Tuotteen poistopainike"
+  },
+  "artifacts.deleteConfirm": {
+    "message": "Haluatko varmasti poistaa tämän tuotteen pysyvästi?",
+    "description": "Tuotteen poistamisen vahvistusilmoitus"
+  },
+  "artifacts.loadMore": {
+    "message": "Lataa lisää",
+    "description": "Lisää tuotoksia lataava painike"
+  },
+  "artifacts.sourceAuto": {
+    "message": "Automaattinen tallennus",
+    "description": "Automaattisen tallennuksen lähteen merkintä"
+  },
+  "artifacts.kind.article": {
+    "message": "Artikkeli",
+    "description": "Tuotostyyppi - artikkeli"
+  },
+  "artifacts.kind.image": {
+    "message": "Kuva",
+    "description": "Tuotostyyppi - kuva"
+  },
+  "artifacts.kind.video": {
+    "message": "Video",
+    "description": "Tuotostyyppi - video"
+  },
+  "artifacts.kind.audio": {
+    "message": "Ääni",
+    "description": "Tuotostyyppi - ääni"
+  },
+  "artifacts.kind.document": {
+    "message": "Dokumentti",
+    "description": "Tuotostyyppi - dokumentti"
+  },
+  "artifacts.kind.email": {
+    "message": "Sähköposti",
+    "description": "Tuotostyyppi - sähköposti"
+  },
+  "artifacts.kind.message": {
+    "message": "Viesti",
+    "description": "Tuotostyyppi - viesti"
+  },
+  "artifacts.kind.dataset": {
+    "message": "Tietoaineisto",
+    "description": "Tuotostyyppi - tietoaineisto"
+  },
+  "artifacts.kind.link": {
+    "message": "Linkki",
+    "description": "Tuotostyyppi - linkki"
+  },
+  "artifacts.kind.other": {
+    "message": "Muu",
+    "description": "Tuotostyyppi - muu"
+  },
+  "share.menu": {
+    "message": "Jaa",
+    "description": "Valikkokohta, joka avaa jakamisdialogin sivupalkissa/työkalupalkissa"
+  },
+  "share.dialogTitle": {
+    "message": "Jaa keskustelu",
+    "description": "Jakamisdialogin otsikko"
+  },
+  "share.description": {
+    "message": "Kuka tahansa, joka saa linkin, voi nähdä tämän keskustelun, mutta ei voi jatkaa keskustelua.",
+    "description": "Selittää, mitä tapahtuu, kun keskustelu jaetaan"
+  },
+  "share.createLink": {
+    "message": "Luo jakamislinkki",
+    "description": "Painike, joka luo julkisen jakamislinkin keskustelulle"
+  },
+  "share.copy": {
+    "message": "Kopioi linkki",
+    "description": "Painike, joka kopioi jakamislinkin leikepöydälle"
+  },
+  "share.copied": {
+    "message": "Kopioitu",
+    "description": "Lyhyt ilmoitus, joka näkyy painikkeessa kopioinnin onnistumisen jälkeen"
+  },
+  "share.disable": {
+    "message": "Poista linkin käyttö",
+    "description": "Painike, joka peruuttaa jakamislinkin ja tekee URL-osoitteesta voimattoman"
+  },
+  "share.disabled": {
+    "message": "Jakamislinkki on poistettu käytöstä.",
+    "description": "Ilmoitus, kun jakamislinkki on poistettu käytöstä"
+  },
+  "share.needLogin": {
+    "message": "Kirjaudu ensin sisään, ennen kuin jaat tämän keskustelun.",
+    "description": "Ilmoitus, kun kirjautumattomat kävijät yrittävät jakaa keskustelua"
+  },
+  "share.noConversation": {
+    "message": "Avaa ensin keskustelu ennen jakamista.",
+    "description": "Ilmoitus, kun jakamispainiketta klikataan ilman aktiivista keskustelua"
+  },
+  "share.createFailed": {
+    "message": "Jakamislinkin luominen epäonnistui, yritä myöhemmin uudelleen.",
+    "description": "Virheilmoitus, kun jakamislinkin luominen epäonnistuu"
+  },
+  "share.disableFailed": {
+    "message": "Jakamislinkin poistaminen epäonnistui, yritä myöhemmin uudelleen.",
+    "description": "Virheilmoitus, kun jakamislinkin poistaminen epäonnistuu"
+  },
+  "share.startYourOwn": {
+    "message": "Aloita oma keskusteluni",
+    "description": "Toimintakehotus jaetulla julkisella sivulla, joka ohjaa nimettömiä kävijöitä sovelluksen etusivulle"
+  },
+  "share.unavailableTitle": {
+    "message": "Tämä jaettu keskustelu ei ole käytettävissä.",
+    "description": "Jakamislinkin voimattomuuden tai virheellisyyden ilmoitus jaetun julkisen sivun otsikossa"
+  },
+  "share.unavailableHint": {
+    "message": "Vastaanottaja on saattanut poistaa linkin käytöstä tai URL-osoite on virheellinen.",
+    "description": "Ilmoitus, kun jakamislinkki on voimaton tai virheellinen"
+  },
+  "share.viewOnly": {
+    "message": "Vain luku -jaettu keskustelu",
+    "description": "Tunniste, joka osoittaa, että keskustelu on vain luku -jaetulla julkisella sivulla"
+  },
+  "share.untitled": {
+    "message": "Nimeämätön keskustelu",
+    "description": "Paikkamerkki, jota käytetään, kun jaettavalla keskustelulla ei ole otsikkoa"
+  },
+  "share.footerNote": {
+    "message": "Olet katsomassa jaettua keskustelua. Klikkaa ylhäältä keskustellaksesi itse AI:n kanssa.",
+    "description": "Selitys jaetun julkisen sivun keskustelun alapuolella"
   },
   "model.claudeOpus47": {
     "message": "claude-opus-4.7",
@@ -730,5 +1033,81 @@
   "model.claudeOpus47Description": {
     "message": "Tällä hetkellä edistyksellisin malli",
     "description": "Claude Opus 4.7 -mallin kuvaus"
+  },
+  "artifacts.unhide": {
+    "message": "Unhide",
+    "description": "Restore a hidden artifact"
+  },
+  "artifacts.showHidden": {
+    "message": "Show hidden",
+    "description": "Toggle in the filter bar to include hidden artifacts"
+  },
+  "artifacts.hiddenBadge": {
+    "message": "Hidden",
+    "description": "Badge shown on artifacts that are currently hidden"
+  },
+  "scheduledTasks.run.reason.billing_gate_failed": {
+    "message": "Laskutuksen valtuutus epäonnistui"
+  },
+  "browserTool.title": {
+    "message": "Browser activity",
+    "description": "Fallback title for a BrowserDevice tool activity"
+  },
+  "browserTool.state.choose_device": {
+    "message": "Choose a browser device"
+  },
+  "browserTool.state.device_offline": {
+    "message": "Browser device is offline"
+  },
+  "browserTool.state.awaiting_device": {
+    "message": "Waiting for browser device"
+  },
+  "browserTool.state.awaiting_local_approval": {
+    "message": "Waiting for approval on the browser device"
+  },
+  "browserTool.state.takeover_required": {
+    "message": "Take over on the browser device"
+  },
+  "browserTool.state.executing": {
+    "message": "Executing in browser"
+  },
+  "browserTool.state.completed": {
+    "message": "Completed"
+  },
+  "browserTool.state.denied": {
+    "message": "Denied on the browser device"
+  },
+  "browserTool.state.expired": {
+    "message": "Browser request expired"
+  },
+  "browserTool.state.cancel_too_late": {
+    "message": "Too late to cancel"
+  },
+  "scheduledTasks.run.waiting_for_device": {
+    "message": "Waiting for browser device"
+  },
+  "model.kimiK3": {
+    "message": "kimi-k3",
+    "description": "Name of Moonshot AI's Kimi K3 flagship model"
+  },
+  "model.kimiK3Description": {
+    "message": "Flagship reasoning and vision model with a 1M-token context window",
+    "description": "Description of the Kimi K3 model"
+  },
+  "model.kimiK26": {
+    "message": "kimi-k2.6",
+    "description": "Name of the Kimi K2.6 model"
+  },
+  "model.kimiK26Description": {
+    "message": "Reasoning and vision model for compatible K2 workflows",
+    "description": "Description of the Kimi K2.6 model"
+  },
+  "model.claudeFable5": {
+    "message": "claude-fable-5",
+    "description": "Name of Anthropic's Claude Fable 5 flagship model"
+  },
+  "model.claudeFable5Description": {
+    "message": "Flagship reasoning and vision model for long-horizon work with a 1M-token context window",
+    "description": "Description of the Claude Fable 5 model"
   }
 }

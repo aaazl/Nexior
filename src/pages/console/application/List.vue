@@ -12,7 +12,7 @@
             <el-skeleton v-if="loading" />
             <div v-else class="summary-card">
               <div class="icon-wrapper">
-                <font-awesome-icon icon="fa-solid fa-cubes-stacked" />
+                <applications-icon :size="'1em' as any" aria-hidden="true" focusable="false" />
               </div>
               <p class="label">
                 {{ $t('application.title.count') }}
@@ -31,7 +31,7 @@
               <div class="summary-card min-w-0 flex-1">
                 <div class="flex justify-start items-center gap-2 mb-2 w-full">
                   <div class="icon-wrapper !mb-0">
-                    <font-awesome-icon icon="fa-solid fa-wallet" />
+                    <wallet-icon :size="'1em' as any" aria-hidden="true" focusable="false" />
                   </div>
                   <span class="text-[var(--el-text-color-regular)] text-[14px] truncate">
                     {{ $t('application.field.id') }}: {{ globalApplications?.[0]?.id }}
@@ -53,7 +53,7 @@
               </div>
               <div class="flex flex-col items-end gap-2 shrink-0">
                 <el-button class="!m-0 !px-2" size="small" round @click="onGoUsage(globalApplications?.[0])">
-                  <font-awesome-icon icon="fa-solid fa-chart-line" class="mr-1 text-[12px]" />
+                  <analytics-icon class="mr-1 text-[12px]" :size="'1em' as any" aria-hidden="true" focusable="false" />
                   {{ $t('application.button.usage') }}
                 </el-button>
                 <el-button
@@ -64,7 +64,7 @@
                   size="small"
                   @click="onBuyMore(globalApplications?.[0])"
                 >
-                  <font-awesome-icon icon="fa-solid fa-coins" class="mr-1 text-[12px]" />
+                  <credits-icon class="mr-1 text-[12px]" :size="'1em' as any" aria-hidden="true" focusable="false" />
                   {{ $t('application.button.buyMore') }}
                 </el-button>
               </div>
@@ -166,7 +166,12 @@
                 <template #default="scope">
                   <div class="flex flex-wrap items-center justify-end gap-1">
                     <el-button class="!m-0 !px-2" size="small" round @click="onGoUsage(scope?.row)">
-                      <font-awesome-icon icon="fa-solid fa-chart-line" class="mr-1 text-[12px]" />
+                      <analytics-icon
+                        class="mr-1 text-[12px]"
+                        :size="'1em' as any"
+                        aria-hidden="true"
+                        focusable="false"
+                      />
                       {{ $t('application.button.usage') }}
                     </el-button>
                     <el-button
@@ -177,7 +182,12 @@
                       size="small"
                       @click="onBuyMore(scope?.row)"
                     >
-                      <font-awesome-icon icon="fa-solid fa-coins" class="mr-1 text-[12px]" />
+                      <credits-icon
+                        class="mr-1 text-[12px]"
+                        :size="'1em' as any"
+                        aria-hidden="true"
+                        focusable="false"
+                      />
                       {{ $t('application.button.buyMore') }}
                     </el-button>
                   </div>
@@ -232,7 +242,12 @@
                 </div>
                 <div class="flex items-center justify-end gap-2 mt-3">
                   <el-button class="!m-0 !px-3" size="small" round @click="onGoUsage(app)">
-                    <font-awesome-icon icon="fa-solid fa-chart-line" class="mr-1 text-[12px]" />
+                    <analytics-icon
+                      class="mr-1 text-[12px]"
+                      :size="'1em' as any"
+                      aria-hidden="true"
+                      focusable="false"
+                    />
                     {{ $t('application.button.usage') }}
                   </el-button>
                   <el-button
@@ -243,7 +258,7 @@
                     size="small"
                     @click="onBuyMore(app)"
                   >
-                    <font-awesome-icon icon="fa-solid fa-coins" class="mr-1 text-[12px]" />
+                    <credits-icon class="mr-1 text-[12px]" :size="'1em' as any" aria-hidden="true" focusable="false" />
                     {{ $t('application.button.buyMore') }}
                   </el-button>
                 </div>
@@ -270,9 +285,10 @@
 </template>
 
 <script lang="ts">
+import { AnalyticsIcon, ApplicationsIcon, CreditsIcon, WalletIcon } from '@acedatacloud/core/icons/components';
 import { defineComponent } from 'vue';
 import { applicationOperator } from '@/operators';
-import Pagination from '@/components/common/Pagination.vue';
+import { Pagination } from '@acedatacloud/core/components';
 import CopyToClipboard from '@/components/common/CopyToClipboard.vue';
 import {
   ElTable,
@@ -288,7 +304,7 @@ import {
   ElMessage
 } from 'element-plus';
 import { ROUTE_CONSOLE_APPLICATION_EXTRA, ROUTE_CONSOLE_USAGE_LIST } from '@/router/constants';
-import { isIOS } from '@/utils';
+import { isIOS, isRechargeDisabled } from '@/utils';
 import {
   IApplication,
   IApplicationListResponse,
@@ -298,7 +314,6 @@ import {
   IService,
   IServiceType
 } from '@/models';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 interface IData {
   individualApplications: IApplication[];
@@ -322,6 +337,10 @@ interface IData {
 export default defineComponent({
   name: 'ConsoleApplicationList',
   components: {
+    AnalyticsIcon,
+    ApplicationsIcon,
+    CreditsIcon,
+    WalletIcon,
     Pagination,
     CopyToClipboard,
     ElTable,
@@ -333,8 +352,7 @@ export default defineComponent({
     ElSwitch,
     ElEmpty,
     ElTableColumn,
-    ElCard,
-    FontAwesomeIcon
+    ElCard
   },
   data(): IData {
     return {
@@ -367,6 +385,9 @@ export default defineComponent({
     // the mapped consumable packages), so its top-up entry is shown on every
     // surface. The card itself is still gated on having a global application.
     showGlobalPayment(): boolean {
+      if (isRechargeDisabled(this.$store.getters.site)) {
+        return false;
+      }
       return true;
     }
   },
@@ -385,6 +406,9 @@ export default defineComponent({
     // A per-service app row shows "Buy More" on every surface, but on iOS
     // only when it has an Apple-buyable package (apple_product_id mapped).
     rowCanPay(application: IApplication): boolean {
+      if (isRechargeDisabled(this.$store.getters.site)) {
+        return false;
+      }
       if (!isIOS()) {
         return true;
       }
@@ -512,13 +536,19 @@ export default defineComponent({
   .icon-wrapper {
     height: 40px;
     width: 40px;
-    line-height: 40px;
+    display: grid;
+    place-items: center;
     border-radius: 50%;
     background-color: var(--el-bg-color-page);
-    text-align: center;
     margin-bottom: 6px;
     color: var(--el-color-primary);
     flex-shrink: 0;
+
+    :deep(svg) {
+      display: block;
+      width: 18px;
+      height: 18px;
+    }
   }
   .label {
     color: var(--el-text-color-regular);
@@ -531,7 +561,8 @@ export default defineComponent({
     font-size: 30px;
     margin: 0;
     line-height: 36px;
-    word-break: break-all;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
   }
   .description {
     color: var(--el-text-color-secondary);

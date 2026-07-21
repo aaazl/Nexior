@@ -1,9 +1,12 @@
 <template>
-  <el-row class="header" :class="{ 'desktop-chrome': isDesktopChrome, 'is-mac': isMacChrome }">
-    <el-col :md="4" :xs="24" class="brand-col">
+  <el-row class="header" :class="{ 'desktop-chrome': isDesktopChrome, 'is-mac': isMacChrome, 'home-only': isHome }">
+    <el-col v-if="isHome" :span="24" class="brand-col">
       <logo @click="onHome" />
     </el-col>
-    <el-col :md="16" :xs="13">
+    <el-col v-else :md="4" :xs="24" class="brand-col">
+      <logo @click="onHome" />
+    </el-col>
+    <el-col v-if="!isHome" :md="16" :xs="13">
       <el-menu :default-active="active" mode="horizontal" class="menu" :ellipsis="true" @select="onSelect">
         <el-sub-menu :index="products">
           <template #title>{{ $t('common.nav.products') }}</template>
@@ -16,13 +19,13 @@
           <el-menu-item v-if="site?.features?.qrart?.enabled" v-t="'index.title.qrart'" index="/qrart"></el-menu-item>
           <el-menu-item v-if="site?.features?.suno?.enabled" v-t="'index.title.suno'" index="/suno"></el-menu-item>
           <el-menu-item v-if="site?.features?.luma?.enabled" v-t="'index.title.luma'" index="/luma"></el-menu-item>
-          <el-menu-item
-            v-if="site?.features?.headshots?.enabled"
-            v-t="'index.title.headshots'"
-            index="/headshots"
-          ></el-menu-item>
         </el-sub-menu>
-        <el-menu-item v-t="'common.nav.mobileApp'" @route="undefined" @click="onDownload"></el-menu-item>
+        <el-menu-item
+          v-if="isMainOfficialHost"
+          v-t="'common.nav.mobileApp'"
+          @route="undefined"
+          @click="onDownload"
+        ></el-menu-item>
         <el-menu-item
           v-t="'common.nav.apiPlatform'"
           @route="undefined"
@@ -40,7 +43,7 @@
         ></el-menu-item>
       </el-menu>
     </el-col>
-    <el-col :md="4" :xs="11">
+    <el-col v-if="!isHome" :md="4" :xs="11">
       <div v-if="!authenticated" class="mt-4 pr-10">
         <el-button type="primary" class="float-right" size="small" round @click="onLogin">{{
           $t('common.button.login')
@@ -69,8 +72,8 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import defaultAvatar from '@/assets/images/avatar.png';
-import { getBaseUrlAuth, withCurrentUserIdAndSite } from '@/utils';
-import { ROUTE_AUTH_LOGIN, ROUTE_CONSOLE_ROOT, ROUTE_DOWNLOAD, ROUTE_INDEX } from '@/router';
+import { getBaseUrlAuth, withCurrentUserIdAndSite, isMainOfficial } from '@/utils';
+import { ROUTE_CONSOLE_ROOT, ROUTE_DOWNLOAD, ROUTE_INDEX } from '@/router';
 import { ElCol, ElRow, ElDropdown, ElMenu, ElSubMenu, ElMenuItem, ElDropdownItem, ElButton } from 'element-plus';
 import Logo from './Logo.vue';
 import { Browser } from '@capacitor/browser';
@@ -105,11 +108,18 @@ export default defineComponent({
     active() {
       return this.$route.matched?.[0]?.path;
     },
+    isHome() {
+      return this.$route.name === ROUTE_INDEX;
+    },
     user() {
       return this.$store.getters?.user;
     },
     authenticated() {
       return this.$store.getters?.authenticated;
+    },
+    // The mobile-app download page only exists on the official main host.
+    isMainOfficialHost() {
+      return isMainOfficial();
     },
     // Frameless desktop: make the header a drag handle; macOS needs left inset
     // so the logo clears the traffic lights.
@@ -147,9 +157,7 @@ export default defineComponent({
       });
     },
     onLogin() {
-      this.$router.push({
-        name: ROUTE_AUTH_LOGIN
-      });
+      this.$store.dispatch('login', { redirect: this.$route.fullPath });
     },
     onDownload() {
       this.$router.push({
@@ -181,9 +189,7 @@ $height: 64px;
 .header {
   z-index: 999;
   width: 100%;
-  background: rgba(var(--el-bg-color-rgb, 255, 255, 255), 0.8);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: var(--el-bg-color);
   border-bottom: 1px solid var(--app-border-subtle);
   position: sticky;
   top: 0;
@@ -201,14 +207,29 @@ $height: 64px;
   // opt out. macOS insets the brand col past the traffic lights.
   &.desktop-chrome {
     -webkit-app-region: drag;
-    a, button, .el-menu, .el-dropdown, .avatar, .console,
-    .locale, language-selector, dark-selector, .el-switch, [role='button'] {
+    a,
+    button,
+    .el-menu,
+    .el-dropdown,
+    .avatar,
+    .console,
+    .locale,
+    language-selector,
+    dark-selector,
+    .el-switch,
+    [role='button'] {
       -webkit-app-region: no-drag;
     }
   }
   &.is-mac .brand-col {
     justify-content: flex-start;
     padding-left: 84px; // clear the macOS traffic lights (x:16 + 3 dots)
+  }
+
+  &.home-only .brand-col {
+    justify-content: center;
+    padding-right: 0;
+    padding-left: 0;
   }
 
   .el-menu.menu {
@@ -277,7 +298,7 @@ $height: 64px;
 }
 
 html.dark .header {
-  background: rgba(11, 13, 23, 0.8);
+  background: #0b0d17;
   border-bottom-color: var(--app-glass-border);
 }
 

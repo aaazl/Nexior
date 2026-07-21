@@ -144,7 +144,7 @@
     "description": "Όνομα του μοντέλου υπηρεσίας, δηλαδή Grok 4"
   },
   "model.grok4Description": {
-    "message": "Το πιο προηγμένο μοντέλο αυτή τη στιγμή",
+    "message": "General-purpose K2 model for compatible workflows",
     "description": "Περιγραφή του μοντέλου Grok 4"
   },
   "model.grok3": {
@@ -599,6 +599,18 @@
   "scheduledTasks.deleteConfirm": {
     "message": "Delete \"{name}\"? The task will stop running."
   },
+  "scheduledTasks.triggerNow": {
+    "message": "Run now",
+    "description": "Trigger the task immediately, out of schedule"
+  },
+  "scheduledTasks.triggerSuccess": {
+    "message": "Triggered. The result will appear in run history shortly.",
+    "description": "Manual trigger success"
+  },
+  "scheduledTasks.triggerError": {
+    "message": "Failed to trigger. Please try again later.",
+    "description": "Manual trigger error"
+  },
   "scheduledTasks.viewResult": {
     "message": "View Result"
   },
@@ -636,6 +648,45 @@
   "scheduledTasks.run.failed": {
     "message": "Failed"
   },
+  "scheduledTasks.run.reason.max_turns": {
+    "message": "Επιτεύχθηκε το όριο βημάτων"
+  },
+  "scheduledTasks.run.reason.max_budget_usd": {
+    "message": "Επιτεύχθηκε το όριο προϋπολογισμού"
+  },
+  "scheduledTasks.run.reason.tool_call_loop": {
+    "message": "Εντοπίστηκε βρόχος κλήσεων εργαλείων"
+  },
+  "scheduledTasks.run.reason.prompt_too_long": {
+    "message": "Πολύ μεγάλο prompt"
+  },
+  "scheduledTasks.run.reason.aborted_streaming": {
+    "message": "Διακόπηκε"
+  },
+  "scheduledTasks.run.reason.aborted_tools": {
+    "message": "Διακόπηκε"
+  },
+  "scheduledTasks.run.reason.awaiting_user_input": {
+    "message": "Αναμονή για την εισαγωγή σας"
+  },
+  "scheduledTasks.run.reason.error": {
+    "message": "Σφάλμα"
+  },
+  "scheduledTasks.run.reason.unknown": {
+    "message": "Άγνωστο σφάλμα"
+  },
+  "scheduledTasks.run.reason.balance_insufficient": {
+    "message": "Ανεπαρκές υπόλοιπο"
+  },
+  "scheduledTasks.run.reason.unauthorized": {
+    "message": "Μη εξουσιοδοτημένο"
+  },
+  "scheduledTasks.run.reason.timeout": {
+    "message": "Λήξη χρόνου"
+  },
+  "scheduledTasks.run.reason.internal_error": {
+    "message": "Εσωτερικό σφάλμα"
+  },
   "scheduledTasks.run.needs_user_input": {
     "message": "Needs action"
   },
@@ -653,6 +704,74 @@
   },
   "scheduledTasks.scheduleType.cron": {
     "message": "Cron expression"
+  },
+  "scheduledTasks.scheduleType.interval": {
+    "message": "Every",
+    "description": "Run at a fixed interval"
+  },
+  "scheduledTasks.form.intervalUnit.minute": {
+    "message": "minutes",
+    "description": "Interval unit: minutes"
+  },
+  "scheduledTasks.form.intervalUnit.hour": {
+    "message": "hours",
+    "description": "Interval unit: hours"
+  },
+  "scheduledTasks.form.intervalUnit.day": {
+    "message": "days",
+    "description": "Interval unit: days"
+  },
+  "scheduledTasks.form.hourlyMinute": {
+    "message": "At minute",
+    "description": "Which minute of each hour to run"
+  },
+  "scheduledTasks.form.hourlyMinuteHint": {
+    "message": "Which minute of each hour to run (0–59)",
+    "description": "Hourly minute hint"
+  },
+  "scheduledTasks.form.intervalHint": {
+    "message": "Runs once every fixed interval after the previous run (minimum 1 minute)",
+    "description": "Interval hint"
+  },
+  "scheduledTasks.form.cronHint": {
+    "message": "Standard 5-field cron expression: minute hour day month weekday",
+    "description": "Cron hint"
+  },
+  "scheduledTasks.form.schedulePreview": {
+    "message": "Runs {text}",
+    "description": "Schedule preview"
+  },
+  "scheduledTasks.humanize.everyNMinutes": {
+    "message": "every {n} min",
+    "description": "Human-readable: every N minutes"
+  },
+  "scheduledTasks.humanize.everyNHours": {
+    "message": "every {n} h",
+    "description": "Human-readable: every N hours"
+  },
+  "scheduledTasks.humanize.everyNDays": {
+    "message": "every {n} d",
+    "description": "Human-readable: every N days"
+  },
+  "scheduledTasks.humanize.hourlyAtMinute": {
+    "message": "hourly at minute {n}",
+    "description": "Human-readable: hourly at minute N"
+  },
+  "scheduledTasks.humanize.dailyAt": {
+    "message": "daily at {time}",
+    "description": "Human-readable: daily at time"
+  },
+  "scheduledTasks.humanize.weeklyAt": {
+    "message": "{weekday} at {time}",
+    "description": "Human-readable: weekly at weekday/time"
+  },
+  "scheduledTasks.humanize.cronRaw": {
+    "message": "Cron: {cron}",
+    "description": "Human-readable: raw cron"
+  },
+  "scheduledTasks.humanize.once": {
+    "message": "once at {time}",
+    "description": "Human-readable: once"
   },
   "scheduledTasks.form.name": {
     "message": "Task name"
@@ -712,6 +831,14 @@
     "message": "Οι επιλεγμένοι MCP Servers μπορούν να φορτωθούν και να εκτελούνται στο παρασκήνιο του προγραμματισμένου καθήκοντος. Οι μη επιλεγμένοι MCP Servers δεν θα φορτωθούν σε λειτουργία χωρίς επίβλεψη.",
     "description": "Επεξήγηση για την εξουσιοδότηση MCP server"
   },
+  "scheduledTasks.form.maxTurns": {
+    "message": "Μέγιστος αριθμός γύρων",
+    "description": "Scheduled task per-run agent turn cap"
+  },
+  "scheduledTasks.form.maxTurnsHint": {
+    "message": "Μέγιστοι γύροι πράκτορα ανά εκτέλεση (1–50). Πολύ χαμηλό όριο διακόπτει βίαια πολυβηματικές εργασίες (π.χ. skills με πολλά βήματα Bash/αναζήτησης) πριν ολοκληρωθούν, χωρίς τελικό αποτέλεσμα. Προεπιλογή 50.",
+    "description": "Scheduled task per-run agent turn cap"
+  },
   "scheduledTasks.form.skillsConfirmTitle": {
     "message": "Επιβεβαίωση Αυτόματης Εξουσιοδότησης",
     "description": "Τίτλος επιβεβαίωσης εξουσιοδότησης"
@@ -720,8 +847,184 @@
     "message": "Αυτή η εργασία θα επιτρέψει σε {count} Δεξιότητες να παρακάμψουν την ανθρώπινη επιβεβαίωση στο παρασκήνιο: {skills}. Αυτές οι Δεξιότητες μπορεί να στείλουν μηνύματα, να δημοσιεύσουν περιεχόμενο ή να γράψουν σε εξωτερικές υπηρεσίες, παρακαλώ επιβεβαιώστε.",
     "description": "Κείμενο επιβεβαίωσης εξουσιοδότησης"
   },
+  "scheduledTasks.form.skillNotActiveTitle": {
+    "message": "Bind the skill first",
+    "description": "Dialog title shown when a scheduled-task authorized skill/MCP is not yet bound for the user."
+  },
+  "scheduledTasks.form.skillNotActiveMessage": {
+    "message": "The skill \"{name}\" is not bound or active in your account yet. Without binding it, the scheduled task may not be able to use it during unattended background runs. We recommend binding it first, or you can save anyway.",
+    "description": "Warning body; {name} is the skill/MCP name. Explains it is not bound and offers to save anyway."
+  },
+  "scheduledTasks.form.skillNotActiveForce": {
+    "message": "Save anyway",
+    "description": "Confirm button that saves the scheduled task anyway, bypassing the binding check (force)."
+  },
   "scheduledTasks.form.required": {
     "message": "Please fill in task name and prompt"
+  },
+  "artifacts.navTitle": {
+    "message": "Παραγωγές",
+    "description": "Είσοδος παραγωγής στην πλαϊνή μπάρα"
+  },
+  "artifacts.title": {
+    "message": "Οι παραγωγές μου",
+    "description": "Τίτλος σελίδας παραγωγής"
+  },
+  "artifacts.summaryTotal": {
+    "message": "Συνολικά {count} παραγωγές αυτή την περίοδο",
+    "description": "Συνολικός αριθμός παραγωγών"
+  },
+  "artifacts.filterAll": {
+    "message": "Όλα",
+    "description": "Φίλτρο τύπου παραγωγής - όλα"
+  },
+  "artifacts.empty": {
+    "message": "Δεν υπάρχει καμία παραγωγή ακόμα. Αφήστε την AI να σας βοηθήσει να δημοσιεύσετε άρθρα, να δημιουργήσετε εικόνες ή να στείλετε email και οι παραγωγές θα εμφανιστούν εδώ αυτόματα.",
+    "description": "Μήνυμα όταν δεν υπάρχουν παραγωγές"
+  },
+  "artifacts.loadError": {
+    "message": "Αποτυχία φόρτωσης παραγωγής",
+    "description": "Μήνυμα σφάλματος φόρτωσης παραγωγής"
+  },
+  "artifacts.actionError": {
+    "message": "Η ενέργεια απέτυχε, παρακαλώ δοκιμάστε ξανά",
+    "description": "Μήνυμα σφάλματος για αποτυχία ενέργειας"
+  },
+  "artifacts.open": {
+    "message": "Άνοιγμα",
+    "description": "Κουμπί για άνοιγμα του αρχικού συνδέσμου παραγωγής"
+  },
+  "artifacts.hide": {
+    "message": "Απόκρυψη",
+    "description": "Κουμπί απόκρυψης παραγωγής"
+  },
+  "artifacts.delete": {
+    "message": "Διαγραφή",
+    "description": "Κουμπί διαγραφής"
+  },
+  "artifacts.deleteConfirm": {
+    "message": "Είστε σίγουροι ότι θέλετε να διαγράψετε μόνιμα αυτή την εγγραφή;",
+    "description": "Επιβεβαίωση διαγραφής"
+  },
+  "artifacts.loadMore": {
+    "message": "Φόρτωση περισσότερων",
+    "description": "Κουμπί φόρτωσης περισσότερων παραγωγών"
+  },
+  "artifacts.sourceAuto": {
+    "message": "Αυτόματη καταγραφή",
+    "description": "Ετικέτα αυτόματης καταγραφής πηγής"
+  },
+  "artifacts.kind.article": {
+    "message": "Άρθρο",
+    "description": "Τύπος παραγωγής - άρθρο"
+  },
+  "artifacts.kind.image": {
+    "message": "Εικόνα",
+    "description": "Τύπος παραγωγής - εικόνα"
+  },
+  "artifacts.kind.video": {
+    "message": "Βίντεο",
+    "description": "Τύπος παραγωγής - βίντεο"
+  },
+  "artifacts.kind.audio": {
+    "message": "Ήχος",
+    "description": "Τύπος παραγωγής - ήχος"
+  },
+  "artifacts.kind.document": {
+    "message": "Έγγραφο",
+    "description": "Τύπος παραγωγής - έγγραφο"
+  },
+  "artifacts.kind.email": {
+    "message": "Email",
+    "description": "Τύπος παραγωγής - email"
+  },
+  "artifacts.kind.message": {
+    "message": "Μήνυμα",
+    "description": "Τύπος παραγωγής - μήνυμα"
+  },
+  "artifacts.kind.dataset": {
+    "message": "Δεδομένα",
+    "description": "Τύπος παραγωγής - δεδομένα"
+  },
+  "artifacts.kind.link": {
+    "message": "Σύνδεσμος",
+    "description": "Τύπος παραγωγής - σύνδεσμος"
+  },
+  "artifacts.kind.other": {
+    "message": "Άλλο",
+    "description": "Τύπος παραγωγής - άλλο"
+  },
+  "share.menu": {
+    "message": "Κοινοποίηση",
+    "description": "Στοιχείο μενού για το άνοιγμα του παραθύρου κοινοποίησης στη sidebar/toolbar."
+  },
+  "share.dialogTitle": {
+    "message": "Κοινοποίηση συνομιλίας",
+    "description": "Τίτλος του παραθύρου κοινοποίησης συνομιλίας."
+  },
+  "share.description": {
+    "message": "Οποιοσδήποτε έχει τον σύνδεσμο μπορεί να δει αυτή τη συνομιλία, αλλά δεν μπορεί να συνεχίσει τη συνομιλία.",
+    "description": "Εξηγεί τι θα συμβεί όταν η συνομιλία κοινοποιηθεί."
+  },
+  "share.createLink": {
+    "message": "Δημιουργία συνδέσμου κοινοποίησης",
+    "description": "Κουμπί για τη δημιουργία δημόσιου συνδέσμου κοινοποίησης για τη συνομιλία."
+  },
+  "share.copy": {
+    "message": "Αντιγραφή συνδέσμου",
+    "description": "Κουμπί για την αντιγραφή του συνδέσμου κοινοποίησης στο πρόχειρο."
+  },
+  "share.copied": {
+    "message": "Αντιγράφηκε",
+    "description": "Μήνυμα που εμφανίζεται προσωρινά στο κουμπί μετά την επιτυχή αντιγραφή."
+  },
+  "share.disable": {
+    "message": "Απενεργοποίηση συνδέσμου",
+    "description": "Κουμπί για την ανάκληση του συνδέσμου κοινοποίησης, καθιστώντας το URL ανενεργό."
+  },
+  "share.disabled": {
+    "message": "Ο σύνδεσμος κοινοποίησης έχει απενεργοποιηθεί.",
+    "description": "Μήνυμα που εμφανίζεται μετά την απενεργοποίηση του συνδέσμου κοινοποίησης."
+  },
+  "share.needLogin": {
+    "message": "Παρακαλώ συνδεθείτε πρώτα και μετά κοινοποιήστε αυτή τη συνομιλία.",
+    "description": "Μήνυμα για επισκέπτες που προσπαθούν να κοινοποιήσουν τη συνομιλία χωρίς να είναι συνδεδεμένοι."
+  },
+  "share.noConversation": {
+    "message": "Παρακαλώ ανοίξτε μια συνομιλία πριν κοινοποιήσετε.",
+    "description": "Μήνυμα όταν πατάτε το κουμπί κοινοποίησης χωρίς ενεργή συνομιλία."
+  },
+  "share.createFailed": {
+    "message": "Αποτυχία δημιουργίας συνδέσμου κοινοποίησης, παρακαλώ δοκιμάστε ξανά αργότερα.",
+    "description": "Μήνυμα σφάλματος όταν αποτυγχάνει η δημιουργία συνδέσμου κοινοποίησης."
+  },
+  "share.disableFailed": {
+    "message": "Αποτυχία απενεργοποίησης συνδέσμου κοινοποίησης, παρακαλώ δοκιμάστε ξανά αργότερα.",
+    "description": "Μήνυμα σφάλματος όταν αποτυγχάνει η απενεργοποίηση του συνδέσμου κοινοποίησης."
+  },
+  "share.startYourOwn": {
+    "message": "Πηγαίνετε να ξεκινήσετε τη δική μου συνομιλία",
+    "description": "Κάλεσμα για δράση στη δημόσια σελίδα κοινοποίησης, καθοδηγώντας ανώνυμους επισκέπτες στην αρχική σελίδα της εφαρμογής."
+  },
+  "share.unavailableTitle": {
+    "message": "Αυτή η κοινοποιημένη συνομιλία δεν είναι διαθέσιμη.",
+    "description": "Τίτλος της δημόσιας σελίδας κοινοποίησης όταν ο σύνδεσμος είναι ανενεργός ή μη έγκυρος."
+  },
+  "share.unavailableHint": {
+    "message": "Ο άλλος μπορεί να έχει απενεργοποιήσει τον σύνδεσμο ή το URL είναι λανθασμένο.",
+    "description": "Μήνυμα όταν ο σύνδεσμος κοινοποίησης είναι ανενεργός ή μη έγκυρος."
+  },
+  "share.viewOnly": {
+    "message": "Μόνο για ανάγνωση κοινοποιημένη συνομιλία",
+    "description": "Ετικέτα που δηλώνει ότι η συνομιλία είναι μόνο για ανάγνωση στη δημόσια σελίδα κοινοποίησης."
+  },
+  "share.untitled": {
+    "message": "Μη ονομασμένη συνομιλία",
+    "description": "Χρησιμοποιούμενο placeholder όταν η συνομιλία που κοινοποιείται δεν έχει τίτλο."
+  },
+  "share.footerNote": {
+    "message": "Βρίσκεστε σε μια κοινοποιημένη συνομιλία. Κάντε κλικ παραπάνω για να συνομιλήσετε με τον AI.",
+    "description": "Επεξήγηση κάτω από τη δημόσια σελίδα συνομιλίας."
   },
   "model.claudeOpus47": {
     "message": "claude-opus-4.7",
@@ -730,5 +1033,81 @@
   "model.claudeOpus47Description": {
     "message": "Το πιο προηγμένο μοντέλο αυτή τη στιγμή",
     "description": "Περιγραφή του μοντέλου Claude Opus 4.7"
+  },
+  "artifacts.unhide": {
+    "message": "Unhide",
+    "description": "Restore a hidden artifact"
+  },
+  "artifacts.showHidden": {
+    "message": "Show hidden",
+    "description": "Toggle in the filter bar to include hidden artifacts"
+  },
+  "artifacts.hiddenBadge": {
+    "message": "Hidden",
+    "description": "Badge shown on artifacts that are currently hidden"
+  },
+  "scheduledTasks.run.reason.billing_gate_failed": {
+    "message": "Η εξουσιοδότηση χρέωσης απέτυχε"
+  },
+  "browserTool.title": {
+    "message": "Browser activity",
+    "description": "Fallback title for a BrowserDevice tool activity"
+  },
+  "browserTool.state.choose_device": {
+    "message": "Choose a browser device"
+  },
+  "browserTool.state.device_offline": {
+    "message": "Browser device is offline"
+  },
+  "browserTool.state.awaiting_device": {
+    "message": "Waiting for browser device"
+  },
+  "browserTool.state.awaiting_local_approval": {
+    "message": "Waiting for approval on the browser device"
+  },
+  "browserTool.state.takeover_required": {
+    "message": "Take over on the browser device"
+  },
+  "browserTool.state.executing": {
+    "message": "Executing in browser"
+  },
+  "browserTool.state.completed": {
+    "message": "Completed"
+  },
+  "browserTool.state.denied": {
+    "message": "Denied on the browser device"
+  },
+  "browserTool.state.expired": {
+    "message": "Browser request expired"
+  },
+  "browserTool.state.cancel_too_late": {
+    "message": "Too late to cancel"
+  },
+  "scheduledTasks.run.waiting_for_device": {
+    "message": "Waiting for browser device"
+  },
+  "model.kimiK3": {
+    "message": "kimi-k3",
+    "description": "Name of Moonshot AI's Kimi K3 flagship model"
+  },
+  "model.kimiK3Description": {
+    "message": "Flagship reasoning and vision model with a 1M-token context window",
+    "description": "Description of the Kimi K3 model"
+  },
+  "model.kimiK26": {
+    "message": "kimi-k2.6",
+    "description": "Name of the Kimi K2.6 model"
+  },
+  "model.kimiK26Description": {
+    "message": "Reasoning and vision model for compatible K2 workflows",
+    "description": "Description of the Kimi K2.6 model"
+  },
+  "model.claudeFable5": {
+    "message": "claude-fable-5",
+    "description": "Name of Anthropic's Claude Fable 5 flagship model"
+  },
+  "model.claudeFable5Description": {
+    "message": "Flagship reasoning and vision model for long-horizon work with a 1M-token context window",
+    "description": "Description of the Claude Fable 5 model"
   }
 }

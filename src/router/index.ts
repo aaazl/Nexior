@@ -2,6 +2,7 @@ import { type RouteLocationGeneric, type Router } from 'vue-router';
 import store from '@/store';
 import auth from './auth';
 import console from './console';
+import home from './home';
 import grok from './grok';
 import gemini from './gemini';
 import claude from './claude';
@@ -19,11 +20,11 @@ import kling from './kling';
 import veo from './veo';
 import sora from './sora';
 import maestro from './maestro';
+import poivelle from './poivelle';
 import digitalhuman from './digitalhuman';
 import pixverse from './pixverse';
 import flux from './flux';
 import hailuo from './hailuo';
-import headshots from './headshots';
 import suno from './suno';
 import producer from './producer';
 import nanobanana from './nanobanana';
@@ -31,12 +32,14 @@ import openaiimage from './openaiimage';
 import seedream from './seedream';
 import seedance from './seedance';
 import grokvideo from './grokvideo';
+import omni from './omni';
 import serp from './serp';
 import wan from './wan';
 import fish from './fish';
 import webextrator from './webextrator';
 import codingBridge from './codingBridge';
 import settings from './settings';
+import share from './share';
 
 import {
   ROUTE_CHATGPT_CONVERSATION_NEW,
@@ -54,12 +57,14 @@ import {
   ROUTE_PRODUCER_INDEX,
   ROUTE_SEEDANCE_INDEX,
   ROUTE_GROKVIDEO_INDEX,
+  ROUTE_OMNI_INDEX,
   ROUTE_LUMA_INDEX,
   ROUTE_HAILUO_INDEX,
   ROUTE_KLING_INDEX,
   ROUTE_VEO_INDEX,
   ROUTE_SORA_INDEX,
   ROUTE_MAESTRO_INDEX,
+  ROUTE_POIVELLE_INDEX,
   ROUTE_DIGITALHUMAN_INDEX,
   ROUTE_PIXVERSE_INDEX,
   ROUTE_WAN_INDEX,
@@ -71,6 +76,7 @@ import {
 import { getCookie } from 'typescript-cookie';
 import { I18N_DEFAULT_LOCALE } from '@/constants/i18n';
 import { getLocale, setI18nLanguage } from '@/i18n';
+import { isIframeLoginEnabled } from '@/utils/loginMethod';
 import { updateSeo, setWebApplicationSchema, setOrganization, resetSeo } from '@/utils/seo';
 import { ensureStoreModule } from '@/store/lazy';
 import { evaluateUserIdGuard } from '@/utils/crossSiteUser';
@@ -83,7 +89,7 @@ import { isNative, isDesktop } from '@/utils/surface';
 // popup). Everything else (AI service pages, home) is browsable as a guest;
 // login is deferred until they actually start an operation. Keep this list in
 // sync when adding account/billing-style routes.
-const AUTH_REQUIRED_PREFIXES = ['/console', '/distribution', '/settings', '/coding-bridge'];
+const AUTH_REQUIRED_PREFIXES = ['/console', '/distribution', '/settings', '/coding-bridge', '/poivelle'];
 
 const requiresLogin = (path: string): boolean =>
   AUTH_REQUIRED_PREFIXES.some((prefix) => path === prefix || path.startsWith(`${prefix}/`));
@@ -145,12 +151,6 @@ const ROUTE_SEO: Record<string, { title: string; description: string; keywords: 
     keywords: ['QR Art', 'AI QR Code', 'QR Code Generator', 'Artistic QR'],
     category: 'AI Image Generation'
   },
-  headshots: {
-    title: 'AI Headshots',
-    description: 'Generate professional AI headshots — perfect for LinkedIn, resumes, and business profiles.',
-    keywords: ['AI Headshots', 'Professional Photos', 'AI Portrait', 'LinkedIn Photo'],
-    category: 'AI Image Generation'
-  },
   nanobanana: {
     title: 'NanoBanana',
     description: 'Generate and edit AI images with NanoBanana — powered by Gemini for creative image generation.',
@@ -187,6 +187,13 @@ const ROUTE_SEO: Record<string, { title: string; description: string; keywords: 
       'Turn any article or topic into a captioned short video — script, visuals, voiceover and music, fully automated.',
     keywords: ['Maestro', 'AI Video', 'Article to Video', 'Faceless Video', 'Short Video Generator'],
     category: 'AI Video Generation'
+  },
+  poivelle: {
+    title: 'Poivelle',
+    description:
+      'Direct AI film production through a canonical project graph, shared by human editors, skills, agents, and production tools.',
+    keywords: ['Poivelle', 'AI Film Studio', 'AI Storyboard', 'AI Video Production', 'Creative Agent'],
+    category: 'AI Creative Production'
   },
   'digital-human': {
     title: 'Digital Human',
@@ -235,6 +242,13 @@ const ROUTE_SEO: Record<string, { title: string; description: string; keywords: 
     title: 'Grok Imagine Video',
     description: 'Generate AI videos with Grok Imagine — text-to-video and image-to-video by xAI.',
     keywords: ['Grok', 'Grok Imagine', 'AI Video', 'Text to Video', 'Image to Video', 'xAI'],
+    category: 'AI Video Generation'
+  },
+  omni: {
+    title: 'Omni Video',
+    description:
+      'Generate and edit AI videos with Omni (omni-flash) — text-to-video, image-to-video and video editing.',
+    keywords: ['Omni', 'omni-flash', 'AI Video', 'Text to Video', 'Image to Video', 'Video Editing', 'Gemini'],
     category: 'AI Video Generation'
   },
   wan: {
@@ -318,19 +332,21 @@ const FEATURE_ROUTE_PRIORITY: Array<[string, string]> = [
   ['veo', ROUTE_VEO_INDEX],
   ['sora', ROUTE_SORA_INDEX],
   ['maestro', ROUTE_MAESTRO_INDEX],
+  ['poivelle', ROUTE_POIVELLE_INDEX],
   ['digitalhuman', ROUTE_DIGITALHUMAN_INDEX],
   ['kling', ROUTE_KLING_INDEX],
   ['luma', ROUTE_LUMA_INDEX],
   ['hailuo', ROUTE_HAILUO_INDEX],
   ['seedance', ROUTE_SEEDANCE_INDEX],
   ['grokvideo', ROUTE_GROKVIDEO_INDEX],
+  ['omni', ROUTE_OMNI_INDEX],
   ['pixverse', ROUTE_PIXVERSE_INDEX],
   ['wan', ROUTE_WAN_INDEX],
   ['serp', ROUTE_SERP_INDEX],
   ['webextrator', ROUTE_WEBEXTRATOR_INDEX]
 ];
 
-const getDefaultRoute = (): { name: string } => {
+export const getDefaultRoute = (): { name: string } => {
   const features = (store.state.site?.features ?? {}) as Record<string, { enabled?: boolean } | undefined>;
   for (const [key, name] of FEATURE_ROUTE_PRIORITY) {
     if (features[key]?.enabled) {
@@ -350,6 +366,7 @@ export const routes = [
     path: '/',
     redirect: (to: RouteLocationGeneric) => ({ ...getDefaultRoute(), query: to.query })
   },
+  home,
   order,
   console,
   auth,
@@ -366,11 +383,11 @@ export const routes = [
   veo,
   sora,
   maestro,
+  poivelle,
   digitalhuman,
   pixverse,
   flux,
   hailuo,
-  headshots,
   suno,
   producer,
   nanobanana,
@@ -378,6 +395,7 @@ export const routes = [
   seedream,
   seedance,
   grokvideo,
+  omni,
   serp,
   wan,
   fish,
@@ -387,6 +405,7 @@ export const routes = [
   distribution,
   download,
   settings,
+  share,
   {
     // Standalone full-screen 404 — no header/footer chrome.
     path: '/:pathMatch(.*)*',
@@ -409,7 +428,7 @@ export function setupRouterGuards(router: Router) {
     handleChunkLoadError(error);
   });
 
-  router.beforeEach(async (to, _from, next) => {
+  router.beforeEach(async (to, from, next) => {
     // SSG build navigates the router to render each route; no cookies/i18n DOM
     // then, so skip the client-only guard body and just proceed.
     if (import.meta.env.SSR) {
@@ -427,6 +446,10 @@ export function setupRouterGuards(router: Router) {
     }
     if (decision.kind === 'mismatch') {
       // Helper has already triggered a full-page SSO redirect; abort.
+      if (isIframeLoginEnabled() && !from.name) {
+        const { user_id: _userId, ...query } = to.query;
+        return next({ ...getDefaultRoute(), query, replace: true });
+      }
       return next(false);
     }
 
@@ -435,8 +458,11 @@ export function setupRouterGuards(router: Router) {
     // page whose data calls 401 and spins forever. The login flow preserves the
     // intended destination so they return here after authenticating.
     if (!store.getters.authenticated && requiresLogin(to.path)) {
-      if (isNative() || isDesktop()) {
-        store.dispatch('login');
+      if (isNative() || isDesktop() || isIframeLoginEnabled()) {
+        store.dispatch('login', { redirect: to.fullPath });
+        if (!from.name) {
+          return next({ ...getDefaultRoute(), query: to.query, replace: true });
+        }
       } else {
         loginRedirect({ redirect: to.fullPath });
       }

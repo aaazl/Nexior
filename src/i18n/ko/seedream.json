@@ -167,6 +167,10 @@
     "message": "doubao-seedream-5.0",
     "description": "SeeDream 5.0 모델 옵션 (그룹 이미지 및 스트리밍 출력 지원)"
   },
+  "model.seedream50pro": {
+    "message": "doubao-seedream-5.0-pro",
+    "description": "SeeDream 5.0 Pro model option (flagship single image; no image sets / streaming / web search)"
+  },
   "name.maxImages": {
     "message": "이미지 수",
     "description": "그룹 이미지 생성의 이미지 수 (max_images)"
@@ -214,5 +218,13 @@
   "size.adaptive": {
     "message": "자동 맞춤 (참조 이미지와 동일)",
     "description": "adaptive 옵션 라벨"
+  },
+  "name.action": {
+    "message": "Action",
+    "description": "Generate or edit action selector"
+  },
+  "message.referenceImageRequired": {
+    "message": "Upload at least one reference image to use Edit mode.",
+    "description": "Validation shown when Edit mode has no reference image"
   }
 }

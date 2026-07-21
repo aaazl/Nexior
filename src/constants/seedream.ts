@@ -5,6 +5,7 @@ export const SEEDREAM_LOGO = 'https://cdn.acedata.cloud/9egrbn.png';
 export const SEEDREAM_MODEL_4_0 = 'doubao-seedream-4-0-250828';
 export const SEEDREAM_MODEL_4_5 = 'doubao-seedream-4-5-251128';
 export const SEEDREAM_MODEL_5_0 = 'doubao-seedream-5-0-260128';
+export const SEEDREAM_MODEL_5_0_PRO = 'doubao-seedream-5-0-pro-260628';
 export const SEEDREAM_MODEL_3_0_T2I = 'doubao-seedream-3-0-t2i-250415';
 export const SEEDREAM_MODEL_SEEDEDIT_3_0_I2I = 'doubao-seededit-3-0-i2i-250628';
 
@@ -17,8 +18,6 @@ export const SEEDREAM_SIZE_4K = '4K';
 export const SEEDREAM_SIZE_ADAPTIVE = 'adaptive';
 
 export const SEEDREAM_DEFAULT_SIZE = SEEDREAM_SIZE_2K;
-
-export const SEEDREAM_DEFAULT_WATERMARK = false;
 
 // Common explicit width×height presets (aspect ratio + pixel dimensions).
 // The Volcengine LAS API accepts any `<width>x<height>` string in addition to
@@ -57,6 +56,7 @@ export const SEEDREAM_MAX_IMAGES_LIMIT = 15;
 export const SEEDREAM_DEFAULT_MAX_IMAGES = 1;
 
 export const SEEDREAM_MODEL_FULL_TO_SHORT: Record<string, string> = {
+  [SEEDREAM_MODEL_5_0_PRO]: 'doubao-seedream-5.0-pro',
   [SEEDREAM_MODEL_5_0]: 'doubao-seedream-5.0',
   [SEEDREAM_MODEL_4_5]: 'doubao-seedream-4.5',
   [SEEDREAM_MODEL_4_0]: 'doubao-seedream-4.0',

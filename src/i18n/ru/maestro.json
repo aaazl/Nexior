@@ -27,6 +27,50 @@
     "message": "Причина ошибки",
     "description": "Причина ошибки"
   },
+  "name.mode": {
+    "message": "Режим",
+    "description": "Режим генерации / действие"
+  },
+  "option.action.generate": {
+    "message": "Сгенерировать",
+    "description": "Опция действия генерации"
+  },
+  "option.action.remix": {
+    "message": "Ремикс",
+    "description": "Опция действия ремикса"
+  },
+  "option.action.edit": {
+    "message": "Редактировать",
+    "description": "Опция действия редактирования"
+  },
+  "option.action.extend": {
+    "message": "Продлить",
+    "description": "Опция действия продления"
+  },
+  "step.plan": {
+    "message": "План и раскадровка",
+    "description": "Pipeline step: plan"
+  },
+  "step.source": {
+    "message": "Сбор материалов",
+    "description": "Pipeline step: source media"
+  },
+  "step.voice": {
+    "message": "Озвучивание",
+    "description": "Pipeline step: voiceover"
+  },
+  "step.compose": {
+    "message": "Сборка сцен",
+    "description": "Pipeline step: compose"
+  },
+  "step.render": {
+    "message": "Рендеринг видео",
+    "description": "Pipeline step: render"
+  },
+  "step.deliver": {
+    "message": "Публикация",
+    "description": "Pipeline step: deliver"
+  },
   "name.prompt": {
     "message": "Подсказка",
     "description": "Поле подсказки"
@@ -163,6 +207,166 @@
     "message": "Пока нет видео — создайте ваше первое слева.",
     "description": "Нет задач"
   },
+  "name.scenario": {
+    "message": "Тип видео",
+    "description": "Video type field"
+  },
+  "description.scenario": {
+    "message": "Включите настройку, чтобы выбрать тип видео. Если она выключена, Maestro решит автоматически.",
+    "description": "Scenario field help"
+  },
+  "option.scenario.auto": {
+    "message": "Авто · пусть решает Maestro",
+    "description": "Auto scenario option"
+  },
+  "option.scenario.narrated": {
+    "message": "Озвученный многосценный видео",
+    "description": "Опция озвученного видео с несколькими сценами"
+  },
+  "option.scenario.drama": {
+    "message": "Короткая драма",
+    "description": "Short drama scenario option"
+  },
+  "option.scenario.avatar": {
+    "message": "Цифровой человек · Озвучка",
+    "description": "Опция сценария с аватаром / говорящей головой"
+  },
+  "option.scenario.captions": {
+    "message": "Добавить субтитры",
+    "description": "Add-captions scenario option"
+  },
+  "message.captionsNeedVideo": {
+    "message": "Кинетические субтитры работают с уже существующим видео с говорящим — сначала загрузите его выше.",
+    "description": "Warning shown when captions video type is selected but no source video is uploaded"
+  },
+  "name.style": {
+    "message": "Визуальный стиль",
+    "description": "Поле визуального стиля"
+  },
+  "description.style": {
+    "message": "Включите настройку, чтобы выбрать или ввести визуальный стиль. Если она выключена, Maestro решит автоматически.",
+    "description": "Помощь по полю стиля"
+  },
+  "option.style.auto": {
+    "message": "Авто · Без дополнительных указаний",
+    "description": "Опция автоматического стиля"
+  },
+  "option.style.cinematic": {
+    "message": "Кинематографический",
+    "description": "Опция кинематографического стиля"
+  },
+  "option.style.glass": {
+    "message": "Frosted Glass",
+    "description": "Frosted glass style option"
+  },
+  "option.style.luxury": {
+    "message": "Luxury",
+    "description": "Luxury style option"
+  },
+  "option.style.swiss": {
+    "message": "Swiss Grid",
+    "description": "Swiss grid style option"
+  },
+  "option.style.modern": {
+    "message": "Modern",
+    "description": "Modern style option"
+  },
+  "option.style.editorial": {
+    "message": "Editorial",
+    "description": "Editorial style option"
+  },
+  "option.style.warm": {
+    "message": "Warm",
+    "description": "Warm style option"
+  },
+  "option.style.vibrant": {
+    "message": "Vibrant",
+    "description": "Vibrant style option"
+  },
+  "option.style.neon": {
+    "message": "Неон",
+    "description": "Опция неонового стиля"
+  },
+  "option.style.mono": {
+    "message": "Monochrome",
+    "description": "Monochrome style option"
+  },
+  "option.style.pastel": {
+    "message": "Pastel",
+    "description": "Pastel style option"
+  },
+  "option.style.bold": {
+    "message": "Bold Type",
+    "description": "Bold type style option"
+  },
+  "option.style.industrial": {
+    "message": "Industrial",
+    "description": "Industrial style option"
+  },
+  "option.style.futuristic": {
+    "message": "Futuristic",
+    "description": "Futuristic style option"
+  },
+  "option.style.retro": {
+    "message": "Retro Film",
+    "description": "Retro film style option"
+  },
+  "name.voice": {
+    "message": "Тембр голоса",
+    "description": "Поле для выбора тембра голоса"
+  },
+  "button.preview": {
+    "message": "Прослушать",
+    "description": "Кнопка предварительного прослушивания / воспроизведения образца"
+  },
+  "description.voice": {
+    "message": "Включите настройку, чтобы выбрать тембр голоса. Если она выключена, Maestro подберёт его автоматически. Тембр не зависит от языка, его можно прослушать.",
+    "description": "Помощь по полю выбора голоса"
+  },
+  "option.voice.auto": {
+    "message": "Авто · Подбор от Maestro",
+    "description": "Опция автоматического голоса"
+  },
+  "option.voice.warm-female": {
+    "message": "Теплый женский голос",
+    "description": "Опция теплого женского голоса"
+  },
+  "option.voice.bright-female": {
+    "message": "Яркий женский голос",
+    "description": "Опция яркого женского голоса"
+  },
+  "option.voice.anchor-female": {
+    "message": "Женский голос ведущей",
+    "description": "Опция женского голоса ведущей"
+  },
+  "option.voice.clean-female": {
+    "message": "Чистый женский голос",
+    "description": "Опция чистого женского голоса"
+  },
+  "option.voice.calm-male": {
+    "message": "Спокойный мужской голос",
+    "description": "Опция спокойного мужского голоса"
+  },
+  "option.voice.deep-male": {
+    "message": "Глубокий мужской голос",
+    "description": "Опция глубокого мужского голоса"
+  },
+  "option.voice.documentary-male": {
+    "message": "Документальный мужской голос",
+    "description": "Опция документального мужского голоса"
+  },
+  "option.voice.energetic-male": {
+    "message": "Энергичный мужской голос",
+    "description": "Опция энергичного мужского голоса"
+  },
+  "option.voice.storyteller-male": {
+    "message": "Нарратор мужского голоса",
+    "description": "Опция мужского голоса рассказчика"
+  },
+  "option.scenario.slideshow": {
+    "message": "Слайд-шоу",
+    "description": "Опция сценария слайд-шоу"
+  },
   "name.sourceType": {
     "message": "Тип источника",
     "description": "Поле типа источника"
@@ -222,5 +426,65 @@
   "message.downloadVideo": {
     "message": "Скачать сгенерированное видео",
     "description": "Подсказка для скачивания"
+  },
+  "option.scenario.general": {
+    "message": "Реальные кадры",
+    "description": "Footage piece scenario option"
+  },
+  "option.scenario.explainer": {
+    "message": "Объяснение",
+    "description": "Explainer scenario option"
+  },
+  "option.scenario.product": {
+    "message": "Промо продукта",
+    "description": "Product promo scenario option"
+  },
+  "option.scenario.website": {
+    "message": "Сайт в видео",
+    "description": "Website-to-video scenario option"
+  },
+  "option.scenario.slides": {
+    "message": "Слайд-шоу",
+    "description": "Slideshow scenario option"
+  },
+  "option.scenario.changelog": {
+    "message": "Список изменений (PR)",
+    "description": "Changelog scenario option"
+  },
+  "name.customize": {
+    "message": "Настроить",
+    "description": "Optional creative controls toggle"
+  },
+  "description.customize.auto": {
+    "message": "Авто · Maestro выбирает тип видео, визуальный стиль и тембр голоса.",
+    "description": "Customization disabled state"
+  },
+  "description.customize.manual": {
+    "message": "Выберите тип видео, визуальный стиль и тембр голоса.",
+    "description": "Customization enabled state"
+  },
+  "name.primaryLanguage": {
+    "message": "Primary language",
+    "description": "Primary output language field"
+  },
+  "name.additionalLanguages": {
+    "message": "Additional languages (optional)",
+    "description": "Additional output languages field"
+  },
+  "placeholder.additionalLanguages": {
+    "message": "Add output languages",
+    "description": "Additional languages placeholder"
+  },
+  "name.customizeScenario": {
+    "message": "Настроить тип видео",
+    "description": "Video type customization toggle"
+  },
+  "name.customizeStyle": {
+    "message": "Настроить визуальный стиль",
+    "description": "Visual style customization toggle"
+  },
+  "name.customizeVoice": {
+    "message": "Настроить тембр голоса",
+    "description": "Voice timbre customization toggle"
   }
 }

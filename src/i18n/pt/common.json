@@ -655,10 +655,6 @@
     "message": "Configurações",
     "description": "Texto na barra de navegação do site para exibir a página de configurações"
   },
-  "nav.headshots": {
-    "message": "Foto de Identidade AI",
-    "description": "Texto na barra de navegação do site para exibir a página de configuração do site"
-  },
   "nav.more": {
     "message": "Mais",
     "description": "Texto na barra de navegação do site para expandir mais serviços"
@@ -744,7 +740,7 @@
     "description": "Endereço da empresa"
   },
   "about.email": {
-    "message": "office@acedata.cloud",
+    "message": "office{'@'}acedata.cloud",
     "description": "E-mail da empresa"
   },
   "about.link1": {
@@ -807,6 +803,30 @@
     "message": "Tema",
     "description": "Título da seção de configurações de tema na página de configurações"
   },
+  "settings.sendShortcut": {
+    "message": "Enviar mensagem",
+    "description": "Title of the send-message shortcut row in General settings: choose Enter or modifier+Enter to send."
+  },
+  "sendShortcut.enter": {
+    "message": "Enviar com Enter",
+    "description": "Send-shortcut option: press Enter to send the message."
+  },
+  "sendShortcut.modEnter": {
+    "message": "Enviar com {key} + Enter",
+    "description": "Send-shortcut option: press the platform modifier (⌘ or Ctrl) plus Enter to send. {key} is the modifier symbol."
+  },
+  "settings.loginMode": {
+    "message": "Modo de login",
+    "description": "Login-mode row title in general settings"
+  },
+  "loginMode.iframe": {
+    "message": "Pop-up incorporado",
+    "description": "Login mode option: embedded iframe popup"
+  },
+  "loginMode.redirect": {
+    "message": "Redirecionamento de página inteira",
+    "description": "Login mode option: full-page redirect"
+  },
   "settings.seo": {
     "message": "Configurações de SEO",
     "description": "Título da seção de configurações de SEO na página de configurações"
@@ -820,16 +840,52 @@
     "description": "Título da seção de configurações de distribuição na página de configurações"
   },
   "settings.function": {
-    "message": "Configurações de Funcionalidade",
-    "description": "Título da seção de configurações de funcionalidade na página de configurações"
+    "message": "Recursos",
+    "description": "Title for the site capabilities section in the settings page"
   },
   "settings.auth": {
-    "message": "Método de Login",
+    "message": "Autenticação",
     "description": "Título da aba 'Método de Login' na barra lateral da página de configurações — configura os métodos de login permitidos e o método de login padrão do site, visível apenas para administradores do site."
   },
   "settings.apiKey": {
     "message": "Chave da API",
     "description": "Rótulo da Chave da API na barra lateral da página de configurações - gerenciamento da Chave da API do provedor de serviços upstream (BYOK)"
+  },
+  "settings.memory": {
+    "message": "Memória",
+    "description": "Configura o rótulo 'Memória' na barra lateral da janela de configurações, onde o usuário pode visualizar e gerenciar as informações que o assistente lembra sobre si."
+  },
+  "settings.memoryIntro": {
+    "message": "O assistente lembrará informações úteis que você menciona nas conversas, proporcionando respostas mais personalizadas em diferentes diálogos. Você tem controle total — pode visualizar o conteúdo salvo e excluir partes que não deseja que ele lembre.",
+    "description": "Texto de introdução no topo da aba de configurações de memória."
+  },
+  "settings.memoryNeedsChat": {
+    "message": "Por favor, inicie uma conversa para ativar a funcionalidade de memória.",
+    "description": "Exibido na aba de configurações de memória quando o aplicativo de chat/token ainda não foi carregado."
+  },
+  "settings.memoryStored": {
+    "message": "Memórias salvas",
+    "description": "Título da seção acima da lista de itens de memória armazenados."
+  },
+  "settings.memoryEmpty": {
+    "message": "Nenhuma memória salva até o momento. À medida que você utiliza, o assistente lembrará de preferências e informações duradouras aqui.",
+    "description": "Estado vazio exibido quando o usuário não tem memórias armazenadas."
+  },
+  "settings.memoryForget": {
+    "message": "Esquecer",
+    "description": "Botão para excluir uma única memória na linha do item de memória."
+  },
+  "settings.memoryClearAll": {
+    "message": "Limpar tudo",
+    "description": "Botão para excluir todas as memórias armazenadas de uma só vez."
+  },
+  "settings.memoryClearConfirm": {
+    "message": "Isso irá excluir permanentemente todas as informações que o assistente lembra sobre você e não pode ser desfeito.",
+    "description": "Conteúdo da janela de confirmação antes de limpar todas as memórias."
+  },
+  "settings.memoryError": {
+    "message": "A operação falhou, por favor, tente novamente.",
+    "description": "Mensagem de erro exibida quando a operação de exclusão/limpeza de memória falha."
   },
   "field.operations": {
     "message": "Operações",
@@ -951,8 +1007,68 @@
     "message": "Let the AI see your screen and control the mouse and keyboard on this computer. Off by default — turn it on only when you need it. On macOS, grant Screen Recording and Accessibility permissions below. Each action still asks for your confirmation.",
     "description": "Help text under the Computer Use toggle."
   },
+  "settings.localToolsAndroidSkillsTitle": {
+    "message": "Habilidades de Automação do Telefone",
+    "description": "Título para a seção exclusiva do Android que instala habilidades que controlam aplicativos no telefone via Operação do Computador."
+  },
+  "settings.localToolsAndroidSkillsHint": {
+    "message": "Instale habilidades que permitem ao assistente operar aplicativos nativos. Elas funcionam através da 'Operação do Computador', então, primeiro, conceda permissões de acessibilidade acima e ative a operação do computador. Cada ação ainda seguirá suas configurações de confirmação de operação do computador.",
+    "description": "Texto de ajuda sob o título de habilidades de automação do telefone."
+  },
+  "settings.localToolsAndroidSkillsXhsName": {
+    "message": "Resposta Automática de Mensagens Diretas do Xiaohongshu",
+    "description": "Nome exibido da habilidade de resposta automática de mensagens diretas do Xiaohongshu (RED)."
+  },
+  "settings.localToolsAndroidSkillsXhsDesc": {
+    "message": "Leia novas mensagens diretas no App Xiaohongshu e redija respostas, que serão confirmadas antes do envio.",
+    "description": "Descrição em uma linha da habilidade de DM do Xiaohongshu."
+  },
+  "settings.localToolsAndroidSkillsInstall": {
+    "message": "Instalar",
+    "description": "Botão que instala a habilidade na conta do usuário."
+  },
+  "settings.localToolsAndroidSkillsInstalled": {
+    "message": "Instalado",
+    "description": "Etiqueta exibida quando a habilidade já está instalada."
+  },
+  "settings.localToolsAndroidSkillsLoading": {
+    "message": "Carregando habilidades disponíveis...",
+    "description": "Placeholder enquanto o diretório de habilidades está sendo buscado."
+  },
+  "settings.localToolsAndroidSkillsUnavailable": {
+    "message": "Nenhuma habilidade de telefone disponível para instalação.",
+    "description": "Estado vazio quando nenhuma habilidade de telefone instalável é encontrada."
+  },
+  "settings.localToolsAndroidSkillsNeedComputerUse": {
+    "message": "Antes de instalar, conceda permissões de acessibilidade e ative a operação do computador acima.",
+    "description": "Dica exibida quando o botão de instalação está desativado devido à falta de pré-requisitos."
+  },
+  "settings.localToolsAndroidSkillsNextTurn": {
+    "message": "Instalado, estará ativo na sua próxima conversa.",
+    "description": "Confirmação exibida após uma instalação bem-sucedida."
+  },
+  "settings.localToolsAndroidSkillsInstallFailed": {
+    "message": "Instalação falhou, por favor, tente novamente.",
+    "description": "Erro exibido quando a solicitação de instalação falha."
+  },
+  "settings.localToolsAndroidSkillsLoadFailed": {
+    "message": "Falha ao carregar habilidades disponíveis, por favor, tente novamente.",
+    "description": "Erro exibido quando a busca pelo diretório de habilidades falha."
+  },
   "settings.localToolsPreauthorizeAll": "Pré-aprovar todas as ações do computador",
   "settings.localToolsPreauthorizeHint": "Permite de uma vez captura de tela, clique, digitação, teclas e todas as ações, e solicita as permissões do sistema necessárias.",
+  "settings.localToolsCuA11yLabel": {
+    "message": "Serviço de Acessibilidade",
+    "description": "Etiqueta na linha de status de Usabilidade do Uso do Computador, indicando se o serviço de acessibilidade está realmente em execução."
+  },
+  "settings.localToolsCuReady": {
+    "message": "Pronto, disponível",
+    "description": "Status verde exibido quando o serviço de acessibilidade está em execução e o Uso do Computador está realmente disponível."
+  },
+  "settings.localToolsCuA11yMissing": {
+    "message": "Desativado, Uso do Computador indisponível",
+    "description": "Aviso vermelho exibido quando o interruptor está ativado, mas o serviço de acessibilidade não está em execução."
+  },
   "settings.localToolsCuActionsTitle": "Permitir ações individuais",
   "settings.localToolsCuActionsHint": "Ative apenas as ações que você aceita que a IA execute sem perguntar toda vez. Cada uma continua revogável aqui.",
   "settings.localToolsCuScreenshot": "Captura de tela",
@@ -979,6 +1095,98 @@
   "settings.localToolsSave": {
     "message": "Salvar",
     "description": "Save the authorized folders."
+  },
+  "settings.localToolsMcpTitle": {
+    "message": "MCP servers",
+    "description": "Section title for local MCP server configuration in Local Tools settings."
+  },
+  "settings.localToolsMcpHint": {
+    "message": "Connect local MCP servers over stdio. Their tools become available to the AI, gated by the same per-call confirmation. Changes take effect immediately.",
+    "description": "Explains what local MCP servers do and that changes apply without a restart."
+  },
+  "settings.localToolsMcpAdd": {
+    "message": "Add server",
+    "description": "Button to add a new local MCP server row."
+  },
+  "settings.localToolsMcpName": {
+    "message": "Name",
+    "description": "Label for the MCP server name/id field."
+  },
+  "settings.localToolsMcpCommand": {
+    "message": "Command",
+    "description": "Label for the MCP server launch command field."
+  },
+  "settings.localToolsMcpArgs": {
+    "message": "Arguments",
+    "description": "Label for the MCP server command arguments field."
+  },
+  "settings.localToolsMcpArgsHint": {
+    "message": "One argument per line.",
+    "description": "Placeholder/hint for the MCP arguments textarea."
+  },
+  "settings.localToolsMcpEnv": {
+    "message": "Environment",
+    "description": "Label for the MCP server environment variables field."
+  },
+  "settings.localToolsMcpEnvHint": {
+    "message": "One KEY=VALUE per line.",
+    "description": "Placeholder/hint for the MCP environment variables textarea."
+  },
+  "settings.localToolsMcpNoServers": {
+    "message": "No MCP servers configured.",
+    "description": "Empty state shown when no MCP servers are configured."
+  },
+  "settings.localToolsMcpNamePlaceholder": {
+    "message": "e.g. filesystem",
+    "description": "Placeholder for the MCP server name input."
+  },
+  "settings.localToolsMcpCommandPlaceholder": {
+    "message": "e.g. npx",
+    "description": "Placeholder for the MCP server command input."
+  },
+  "settings.localToolsMcpNameRequired": {
+    "message": "Each server needs a name and a command.",
+    "description": "Validation error when a server row is missing a name or command."
+  },
+  "settings.localToolsMcpDuplicateName": {
+    "message": "Server names must be unique.",
+    "description": "Validation error when two servers share the same name."
+  },
+  "settings.localToolsMcpNameInvalid": {
+    "message": "Name may only contain letters, numbers, hyphens and underscores.",
+    "description": "Validation error when a server name contains invalid characters."
+  },
+  "settings.localToolsMcpEnabled": {
+    "message": "On",
+    "description": "Toggle label to enable/disable a local MCP server."
+  },
+  "settings.localToolsMcpReconnect": {
+    "message": "Test / Reconnect",
+    "description": "Button to re-spawn one MCP server and refresh its status."
+  },
+  "settings.localToolsMcpConnecting": {
+    "message": "Connecting…",
+    "description": "Badge while an MCP server is being (re)connected."
+  },
+  "settings.localToolsMcpNotSaved": {
+    "message": "Not saved yet",
+    "description": "Badge for an MCP server row that hasn't been saved/connected yet."
+  },
+  "settings.localToolsMcpConnected": {
+    "message": "Connected · {n} tools",
+    "description": "Badge when an MCP server connected; {n} is the tool count."
+  },
+  "settings.localToolsMcpDisabled": {
+    "message": "Disabled",
+    "description": "Badge when an MCP server is turned off."
+  },
+  "settings.localToolsMcpFailed": {
+    "message": "Failed to connect",
+    "description": "Badge when an MCP server failed to start; the reason is shown below."
+  },
+  "settings.localToolsMcpPlatformHint": {
+    "message": "Tip: use a command on your PATH such as npx or uvx (e.g. npx -y {'@'}modelcontextprotocol/server-filesystem ~/Documents). On Windows, npx/node resolve automatically. If a server shows \"spawn … ENOENT\", set the command to a full path.",
+    "description": "Cross-platform hint for configuring the MCP launch command."
   },
   "settings.localToolsSaved": {
     "message": "Salvo",
@@ -1087,6 +1295,86 @@
   "settings.contactUs": {
     "message": "Fale Conosco",
     "description": "Texto do botão para entrar em contato com o suporte"
+  },
+  "settings.contactSupport": {
+    "message": "Contatar suporte",
+    "description": "Section title on the About page listing the site owner's customer-service channels"
+  },
+  "settings.contactSupportTip": {
+    "message": "Fale com nossa equipe de suporte por qualquer um dos canais abaixo.",
+    "description": "Subtitle under the support contacts section on the About page"
+  },
+  "settings.contactInvalidUrl": {
+    "message": "{field} deve ser um link http(s) válido",
+    "description": "Validation error shown when a contact URL is not a valid http(s) link"
+  },
+  "settings.contactInvalidPhone": {
+    "message": "Insira um número de telefone válido",
+    "description": "Validation error shown when the phone number is invalid"
+  },
+  "settings.contactInvalidEmail": {
+    "message": "Insira um endereço de e-mail válido",
+    "description": "Validation error shown when the email address is invalid"
+  },
+  "settings.contactType": {
+    "message": "Tipo",
+    "description": "Placeholder for the contact type picker in the editor"
+  },
+  "settings.contactType_phone": {
+    "message": "Telefone",
+    "description": "Display name for the phone contact type"
+  },
+  "settings.contactType_email": {
+    "message": "E-mail",
+    "description": "Display name for the email contact type"
+  },
+  "settings.contactType_website": {
+    "message": "Site",
+    "description": "Display name for the website contact type"
+  },
+  "settings.contactType_wechat": {
+    "message": "WeChat",
+    "description": "Display name for the WeChat contact type"
+  },
+  "settings.contactLabelPlaceholder": {
+    "message": "Rótulo (opcional), ex.: Vendas",
+    "description": "Placeholder for the optional contact label input"
+  },
+  "settings.contactValuePlaceholder": {
+    "message": "Conta / texto exibido",
+    "description": "Placeholder for the generic contact value input"
+  },
+  "settings.contactQr": {
+    "message": "QR code",
+    "description": "Label for a contact's QR-code image"
+  },
+  "settings.contactQrTip": {
+    "message": "Envie um QR code que os usuários possam escanear.",
+    "description": "Tip for the contact QR-code uploader"
+  },
+  "settings.contactAdd": {
+    "message": "Adicionar contato",
+    "description": "Button to add another contact entry"
+  },
+  "settings.contactEditorHint": {
+    "message": "Escolha um tipo por canal e preencha ao menos um valor, link ou QR. Adicione quantos quiser.",
+    "description": "Hint at the top of the contacts editor dialog"
+  },
+  "settings.contactInvalidType": {
+    "message": "O tipo só pode conter minúsculas, dígitos, '-' e '_'",
+    "description": "Validation error for an invalid contact type slug"
+  },
+  "settings.contactRowNeedsValue": {
+    "message": "Cada contato precisa de ao menos um valor, link ou QR code",
+    "description": "Validation error when a contact row has no value/url/qr"
+  },
+  "settings.contactInvalidValue": {
+    "message": "Um campo de contato é inválido ou muito longo",
+    "description": "Validation error when a contact value/label is invalid or too long"
+  },
+  "settings.contactTooMany": {
+    "message": "Você pode adicionar no máximo {max} contatos",
+    "description": "Validation error when too many contacts are added"
   },
   "message.viewOnGithub": {
     "message": "Ver no GitHub",
@@ -1219,5 +1507,140 @@
   "nav.digitalhuman": {
     "message": "Digital Human",
     "description": "Text in the website navigation bar for the Digital Human talking-head page"
+  },
+  "settings.localToolsAndroidPermHint": {
+    "message": "Enable the accessibility service so the assistant can see and control your screen. You can pre-authorize individual actions below.",
+    "description": "Hint for the Android Computer Use accessibility permission section in Settings."
+  },
+  "settings.cuConsentTitle": {
+    "message": "Allow action?",
+    "description": "Title of the on-demand consent dialog shown when the assistant requests a screen action."
+  },
+  "settings.cuConsentMessage": {
+    "message": "The assistant wants to run \"{action}\" on your phone. Allow it?",
+    "description": "Body of the on-demand consent dialog; {action} is the computer.* action name."
+  },
+  "settings.cuConsentAllow": {
+    "message": "Allow once",
+    "description": "Allow button of the on-demand consent dialog."
+  },
+  "settings.cuConsentAlways": {
+    "message": "Always allow",
+    "description": "Always-allow button of the on-demand consent dialog; persists a grant so this action never prompts again."
+  },
+  "settings.cuConsentDeny": {
+    "message": "Deny",
+    "description": "Deny button of the on-demand consent dialog."
+  },
+  "settings.siteServices": {
+    "message": "Preço"
+  },
+  "settings.memoryEnabled": {
+    "message": "Use memory",
+    "description": "Title for the switch that controls whether chats use saved memory and learn new memory"
+  },
+  "settings.memoryEnabledHint": {
+    "message": "When off, saved memories are not used and new chats do not create memories. Existing memories are kept.",
+    "description": "Behavior explanation shown below the memory switch"
+  },
+  "nav.omni": {
+    "message": "Omni Video",
+    "description": "Nav label for the Omni video module"
+  },
+  "settings.memoryImport": {
+    "message": "Import",
+    "description": "Button that opens the memory import dialog"
+  },
+  "settings.memoryImportTitle": {
+    "message": "Import memory from another AI",
+    "description": "Title of the memory import dialog"
+  },
+  "settings.memoryImportExportStep": {
+    "message": "1. Ask your current AI to export its memory",
+    "description": "First step heading in the memory import dialog"
+  },
+  "settings.memoryImportPrompt": {
+    "message": "I'm moving to another AI service. List every saved memory and durable context you have learned about me. Put everything in one code block, with exactly one memory per line. Format each line as: [date saved, if available] - memory content. Include response preferences, personal details, projects, goals, tools, languages, frameworks, and corrections I have made. Preserve my words where possible. Do not include secrets or sensitive information.",
+    "description": "Prompt users copy into another AI service to export memories"
+  },
+  "settings.memoryImportCopy": {
+    "message": "Copy prompt",
+    "description": "Button that copies the memory export prompt"
+  },
+  "settings.memoryImportCopied": {
+    "message": "Prompt copied",
+    "description": "Toast shown after copying the memory export prompt"
+  },
+  "settings.memoryImportPasteStep": {
+    "message": "2. Paste the exported memory",
+    "description": "Second step heading in the memory import dialog"
+  },
+  "settings.memoryImportPlaceholder": {
+    "message": "Paste the memory text returned by ChatGPT, Claude, Gemini, or another AI…",
+    "description": "Placeholder for pasted memory export text"
+  },
+  "settings.memoryImportSubmit": {
+    "message": "Add to memory",
+    "description": "Button that submits pasted memories for import"
+  },
+  "settings.memoryImportSuccess": {
+    "message": "Imported {count} memory entries",
+    "description": "Success toast after importing memory; count is the number of accepted entries"
+  },
+  "settings.memoryImportPartial": {
+    "message": "Processed {processed} entries; {rejected} unsafe or invalid entries were skipped.",
+    "description": "Warning shown after a partial memory import"
+  },
+  "settings.memoryImportInvalid": {
+    "message": "No memory could be imported. Make sure memory is on and paste one plain fact per line.",
+    "description": "Actionable error shown when the memory import request is invalid"
+  },
+  "settings.memoryImportInProgress": {
+    "message": "A memory import is already running. Keep this dialog open and try again shortly.",
+    "description": "Warning shown when another memory import job is active"
+  },
+  "message.mediaPreviewUnavailable": {
+    "message": "Preview unavailable",
+    "description": "Media preview could not be loaded"
+  },
+  "button.send": {
+    "message": "Send",
+    "description": "Accessible label for sending content"
+  },
+  "button.stop": {
+    "message": "Stop",
+    "description": "Accessible label for stopping an operation"
+  },
+  "button.openMenu": {
+    "message": "Open menu",
+    "description": "Accessible label for opening a navigation or configuration menu"
+  },
+  "button.more": {
+    "message": "More actions",
+    "description": "Accessible label for opening an actions menu"
+  },
+  "button.remove": {
+    "message": "Remove",
+    "description": "Accessible label for removing an item"
+  },
+  "player.previous": {
+    "message": "Previous track",
+    "description": "Accessible label for the previous-track player button"
+  },
+  "player.play": {
+    "message": "Play",
+    "description": "Accessible label for the player play button"
+  },
+  "player.pause": {
+    "message": "Pause",
+    "description": "Accessible label for the player pause button"
+  },
+  "player.next": {
+    "message": "Next track",
+    "description": "Accessible label for the next-track player button"
+  },
+  "player.volume": {
+    "message": "Volume",
+    "description": "Accessible label for the player volume control"
   }
 }

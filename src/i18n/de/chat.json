@@ -144,7 +144,7 @@
     "description": "Name des Modells des Dienstes, d.h. Grok 4"
   },
   "model.grok4Description": {
-    "message": "Aktuell das fortschrittlichste Modell",
+    "message": "General-purpose K2 model for compatible workflows",
     "description": "Beschreibung des Grok 4-Modells"
   },
   "model.grok3": {
@@ -599,6 +599,18 @@
   "scheduledTasks.deleteConfirm": {
     "message": "Delete \"{name}\"? The task will stop running."
   },
+  "scheduledTasks.triggerNow": {
+    "message": "Run now",
+    "description": "Trigger the task immediately, out of schedule"
+  },
+  "scheduledTasks.triggerSuccess": {
+    "message": "Triggered. The result will appear in run history shortly.",
+    "description": "Manual trigger success"
+  },
+  "scheduledTasks.triggerError": {
+    "message": "Failed to trigger. Please try again later.",
+    "description": "Manual trigger error"
+  },
   "scheduledTasks.viewResult": {
     "message": "View Result"
   },
@@ -636,6 +648,45 @@
   "scheduledTasks.run.failed": {
     "message": "Failed"
   },
+  "scheduledTasks.run.reason.max_turns": {
+    "message": "Schrittlimit erreicht"
+  },
+  "scheduledTasks.run.reason.max_budget_usd": {
+    "message": "Budgetlimit erreicht"
+  },
+  "scheduledTasks.run.reason.tool_call_loop": {
+    "message": "Tool-Aufruf-Schleife erkannt"
+  },
+  "scheduledTasks.run.reason.prompt_too_long": {
+    "message": "Prompt zu lang"
+  },
+  "scheduledTasks.run.reason.aborted_streaming": {
+    "message": "Unterbrochen"
+  },
+  "scheduledTasks.run.reason.aborted_tools": {
+    "message": "Unterbrochen"
+  },
+  "scheduledTasks.run.reason.awaiting_user_input": {
+    "message": "Warten auf Ihre Eingabe"
+  },
+  "scheduledTasks.run.reason.error": {
+    "message": "Fehler"
+  },
+  "scheduledTasks.run.reason.unknown": {
+    "message": "Unbekannter Fehler"
+  },
+  "scheduledTasks.run.reason.balance_insufficient": {
+    "message": "Unzureichendes Guthaben"
+  },
+  "scheduledTasks.run.reason.unauthorized": {
+    "message": "Nicht autorisiert"
+  },
+  "scheduledTasks.run.reason.timeout": {
+    "message": "Zeitüberschreitung"
+  },
+  "scheduledTasks.run.reason.internal_error": {
+    "message": "Interner Fehler"
+  },
   "scheduledTasks.run.needs_user_input": {
     "message": "Needs action"
   },
@@ -653,6 +704,74 @@
   },
   "scheduledTasks.scheduleType.cron": {
     "message": "Cron expression"
+  },
+  "scheduledTasks.scheduleType.interval": {
+    "message": "Every",
+    "description": "Run at a fixed interval"
+  },
+  "scheduledTasks.form.intervalUnit.minute": {
+    "message": "minutes",
+    "description": "Interval unit: minutes"
+  },
+  "scheduledTasks.form.intervalUnit.hour": {
+    "message": "hours",
+    "description": "Interval unit: hours"
+  },
+  "scheduledTasks.form.intervalUnit.day": {
+    "message": "days",
+    "description": "Interval unit: days"
+  },
+  "scheduledTasks.form.hourlyMinute": {
+    "message": "At minute",
+    "description": "Which minute of each hour to run"
+  },
+  "scheduledTasks.form.hourlyMinuteHint": {
+    "message": "Which minute of each hour to run (0–59)",
+    "description": "Hourly minute hint"
+  },
+  "scheduledTasks.form.intervalHint": {
+    "message": "Runs once every fixed interval after the previous run (minimum 1 minute)",
+    "description": "Interval hint"
+  },
+  "scheduledTasks.form.cronHint": {
+    "message": "Standard 5-field cron expression: minute hour day month weekday",
+    "description": "Cron hint"
+  },
+  "scheduledTasks.form.schedulePreview": {
+    "message": "Runs {text}",
+    "description": "Schedule preview"
+  },
+  "scheduledTasks.humanize.everyNMinutes": {
+    "message": "every {n} min",
+    "description": "Human-readable: every N minutes"
+  },
+  "scheduledTasks.humanize.everyNHours": {
+    "message": "every {n} h",
+    "description": "Human-readable: every N hours"
+  },
+  "scheduledTasks.humanize.everyNDays": {
+    "message": "every {n} d",
+    "description": "Human-readable: every N days"
+  },
+  "scheduledTasks.humanize.hourlyAtMinute": {
+    "message": "hourly at minute {n}",
+    "description": "Human-readable: hourly at minute N"
+  },
+  "scheduledTasks.humanize.dailyAt": {
+    "message": "daily at {time}",
+    "description": "Human-readable: daily at time"
+  },
+  "scheduledTasks.humanize.weeklyAt": {
+    "message": "{weekday} at {time}",
+    "description": "Human-readable: weekly at weekday/time"
+  },
+  "scheduledTasks.humanize.cronRaw": {
+    "message": "Cron: {cron}",
+    "description": "Human-readable: raw cron"
+  },
+  "scheduledTasks.humanize.once": {
+    "message": "once at {time}",
+    "description": "Human-readable: once"
   },
   "scheduledTasks.form.name": {
     "message": "Task name"
@@ -712,6 +831,14 @@
     "message": "Die ausgewählten MCP-Server können im Hintergrund der geplanten Aufgaben geladen und ausgeführt werden; nicht ausgewählte MCP-Server werden im unbeaufsichtigten Modus nicht geladen.",
     "description": "Erläuterung zur Autorisierung von MCP-Servern."
   },
+  "scheduledTasks.form.maxTurns": {
+    "message": "Maximale Runden",
+    "description": "Scheduled task per-run agent turn cap"
+  },
+  "scheduledTasks.form.maxTurnsHint": {
+    "message": "Maximale Agenten-Runden pro Lauf (1–50). Ein zu niedriges Limit stoppt mehrstufige Aufgaben (z. B. Skills mit mehreren Bash-/Doku-Schritten) vorzeitig ab, ohne Endergebnis. Standard 50.",
+    "description": "Scheduled task per-run agent turn cap"
+  },
   "scheduledTasks.form.skillsConfirmTitle": {
     "message": "Bestätigung der unbeaufsichtigten Autorisierung",
     "description": "Titel der Bestätigung der Autorisierung"
@@ -720,8 +847,184 @@
     "message": "Diese Aufgabe erlaubt {count} Skills, im Hintergrund ohne manuelle Bestätigung auszuführen: {skills}. Diese Skills können Nachrichten senden, Inhalte veröffentlichen oder in externe Dienste schreiben, bitte bestätigen Sie.",
     "description": "Text zur Bestätigung der Autorisierung"
   },
+  "scheduledTasks.form.skillNotActiveTitle": {
+    "message": "Bind the skill first",
+    "description": "Dialog title shown when a scheduled-task authorized skill/MCP is not yet bound for the user."
+  },
+  "scheduledTasks.form.skillNotActiveMessage": {
+    "message": "The skill \"{name}\" is not bound or active in your account yet. Without binding it, the scheduled task may not be able to use it during unattended background runs. We recommend binding it first, or you can save anyway.",
+    "description": "Warning body; {name} is the skill/MCP name. Explains it is not bound and offers to save anyway."
+  },
+  "scheduledTasks.form.skillNotActiveForce": {
+    "message": "Save anyway",
+    "description": "Confirm button that saves the scheduled task anyway, bypassing the binding check (force)."
+  },
   "scheduledTasks.form.required": {
     "message": "Please fill in task name and prompt"
+  },
+  "artifacts.navTitle": {
+    "message": "Ausgaben",
+    "description": "Navigationsüberschrift für Ausgaben im Seitenmenü"
+  },
+  "artifacts.title": {
+    "message": "Meine Ausgaben",
+    "description": "Titel der Ausgabenseite"
+  },
+  "artifacts.summaryTotal": {
+    "message": "In dieser Ausgabe wurden insgesamt {count} erstellt",
+    "description": "Zusammenfassung der Gesamtanzahl der Ausgaben"
+  },
+  "artifacts.filterAll": {
+    "message": "Alle",
+    "description": "Filter für alle Ausgabetypen"
+  },
+  "artifacts.empty": {
+    "message": "Es gibt noch keine Ausgaben. Lassen Sie die KI Artikel verfassen, Bilder generieren oder E-Mails senden, dann erscheinen die Ausgaben hier automatisch.",
+    "description": "Hinweis, dass keine Ausgaben vorhanden sind"
+  },
+  "artifacts.loadError": {
+    "message": "Laden der Ausgaben fehlgeschlagen",
+    "description": "Hinweis auf einen Fehler beim Laden der Ausgaben"
+  },
+  "artifacts.actionError": {
+    "message": "Aktion fehlgeschlagen, bitte erneut versuchen",
+    "description": "Hinweis auf einen Fehler bei der Ausführung der Aktion"
+  },
+  "artifacts.open": {
+    "message": "Öffnen",
+    "description": "Button zum Öffnen des Originallinks der Ausgabe"
+  },
+  "artifacts.hide": {
+    "message": "Ausblenden",
+    "description": "Button zum Ausblenden von Ausgaben"
+  },
+  "artifacts.delete": {
+    "message": "Löschen",
+    "description": "Button zum Löschen von Ausgaben"
+  },
+  "artifacts.deleteConfirm": {
+    "message": "Möchten Sie diesen Ausgabepost wirklich dauerhaft löschen?",
+    "description": "Bestätigungsaufforderung zum Löschen einer Ausgabe"
+  },
+  "artifacts.loadMore": {
+    "message": "Mehr laden",
+    "description": "Button zum Laden weiterer Ausgaben"
+  },
+  "artifacts.sourceAuto": {
+    "message": "Automatische Erfassung",
+    "description": "Kennzeichnung der Quelle für die automatische Erfassung"
+  },
+  "artifacts.kind.article": {
+    "message": "Artikel",
+    "description": "Ausgabetyp - Artikel"
+  },
+  "artifacts.kind.image": {
+    "message": "Bild",
+    "description": "Ausgabetyp - Bild"
+  },
+  "artifacts.kind.video": {
+    "message": "Video",
+    "description": "Ausgabetyp - Video"
+  },
+  "artifacts.kind.audio": {
+    "message": "Audio",
+    "description": "Ausgabetyp - Audio"
+  },
+  "artifacts.kind.document": {
+    "message": "Dokument",
+    "description": "Ausgabetyp - Dokument"
+  },
+  "artifacts.kind.email": {
+    "message": "E-Mail",
+    "description": "Ausgabetyp - E-Mail"
+  },
+  "artifacts.kind.message": {
+    "message": "Nachricht",
+    "description": "Ausgabetyp - Nachricht"
+  },
+  "artifacts.kind.dataset": {
+    "message": "Daten",
+    "description": "Ausgabetyp - Daten"
+  },
+  "artifacts.kind.link": {
+    "message": "Link",
+    "description": "Ausgabetyp - Link"
+  },
+  "artifacts.kind.other": {
+    "message": "Sonstiges",
+    "description": "Ausgabetyp - Sonstiges"
+  },
+  "share.menu": {
+    "message": "Teilen",
+    "description": "Menüpunkt zum Öffnen des Dialogfensters zum Teilen in der Seitenleiste/Werkzeugleiste"
+  },
+  "share.dialogTitle": {
+    "message": "Gespräch teilen",
+    "description": "Titel des Dialogfensters zum Teilen von Gesprächen"
+  },
+  "share.description": {
+    "message": "Jeder, der den Link hat, kann dieses Gespräch einsehen, aber nicht weiter chatten.",
+    "description": "Erklärung, was passiert, wenn das Gespräch geteilt wird"
+  },
+  "share.createLink": {
+    "message": "Freigabelink erstellen",
+    "description": "Button zum Erstellen eines öffentlichen Freigabelinks für das Gespräch"
+  },
+  "share.copy": {
+    "message": "Link kopieren",
+    "description": "Button zum Kopieren des Freigabelinks in die Zwischenablage"
+  },
+  "share.copied": {
+    "message": "Kopiert",
+    "description": "Kurze Meldung, die nach erfolgreichem Kopieren auf dem Button erscheint"
+  },
+  "share.disable": {
+    "message": "Link deaktivieren",
+    "description": "Button zum Widerrufen des Freigabelinks und Ungültigmachen der URL"
+  },
+  "share.disabled": {
+    "message": "Freigabelink wurde deaktiviert.",
+    "description": "Hinweis, nachdem der Freigabelink deaktiviert wurde"
+  },
+  "share.needLogin": {
+    "message": "Bitte zuerst einloggen und dann dieses Gespräch teilen.",
+    "description": "Hinweis für nicht eingeloggte Besucher, die versuchen, ein Gespräch zu teilen"
+  },
+  "share.noConversation": {
+    "message": "Bitte öffnen Sie zuerst ein Gespräch, bevor Sie teilen.",
+    "description": "Hinweis, wenn der Teilen-Button ohne aktives Gespräch geklickt wird"
+  },
+  "share.createFailed": {
+    "message": "Erstellen des Freigabelinks fehlgeschlagen, bitte später erneut versuchen.",
+    "description": "Fehlermeldung, wenn das Erstellen des Freigabelinks fehlschlägt"
+  },
+  "share.disableFailed": {
+    "message": "Deaktivieren des Freigabelinks fehlgeschlagen, bitte später erneut versuchen.",
+    "description": "Fehlermeldung, wenn das Deaktivieren des Freigabelinks fehlschlägt"
+  },
+  "share.startYourOwn": {
+    "message": "Mein eigenes Gespräch starten",
+    "description": "Handlungsaufforderung auf der öffentlichen Seite, um anonyme Besucher zur App-Startseite zu leiten"
+  },
+  "share.unavailableTitle": {
+    "message": "Dieses geteilte Gespräch ist nicht verfügbar.",
+    "description": "Titel der öffentlichen Seite, wenn der Freigabelink ungültig oder nicht verfügbar ist"
+  },
+  "share.unavailableHint": {
+    "message": "Der Link wurde möglicherweise deaktiviert oder die URL ist ungültig.",
+    "description": "Hinweis, wenn der Freigabelink ungültig oder nicht verfügbar ist"
+  },
+  "share.viewOnly": {
+    "message": "Nur-Lese-Freigabe des Gesprächs",
+    "description": "Label auf der öffentlichen Seite, das anzeigt, dass das Gespräch nur lesbar ist"
+  },
+  "share.untitled": {
+    "message": "Unbenanntes Gespräch",
+    "description": "Platzhaltertext für ein freigegebenes Gespräch ohne Titel"
+  },
+  "share.footerNote": {
+    "message": "Sie sehen ein freigegebenes Gespräch. Klicken Sie oben, um selbst mit der KI zu chatten.",
+    "description": "Hinweis unter dem freigegebenen Gespräch auf der öffentlichen Seite"
   },
   "model.claudeOpus47": {
     "message": "claude-opus-4.7",
@@ -730,5 +1033,81 @@
   "model.claudeOpus47Description": {
     "message": "Aktuell das fortschrittlichste Modell",
     "description": "Beschreibung des Claude Opus 4.7-Modells"
+  },
+  "artifacts.unhide": {
+    "message": "Unhide",
+    "description": "Restore a hidden artifact"
+  },
+  "artifacts.showHidden": {
+    "message": "Show hidden",
+    "description": "Toggle in the filter bar to include hidden artifacts"
+  },
+  "artifacts.hiddenBadge": {
+    "message": "Hidden",
+    "description": "Badge shown on artifacts that are currently hidden"
+  },
+  "scheduledTasks.run.reason.billing_gate_failed": {
+    "message": "Autorisierung der Abrechnung fehlgeschlagen"
+  },
+  "browserTool.title": {
+    "message": "Browser activity",
+    "description": "Fallback title for a BrowserDevice tool activity"
+  },
+  "browserTool.state.choose_device": {
+    "message": "Choose a browser device"
+  },
+  "browserTool.state.device_offline": {
+    "message": "Browser device is offline"
+  },
+  "browserTool.state.awaiting_device": {
+    "message": "Waiting for browser device"
+  },
+  "browserTool.state.awaiting_local_approval": {
+    "message": "Waiting for approval on the browser device"
+  },
+  "browserTool.state.takeover_required": {
+    "message": "Take over on the browser device"
+  },
+  "browserTool.state.executing": {
+    "message": "Executing in browser"
+  },
+  "browserTool.state.completed": {
+    "message": "Completed"
+  },
+  "browserTool.state.denied": {
+    "message": "Denied on the browser device"
+  },
+  "browserTool.state.expired": {
+    "message": "Browser request expired"
+  },
+  "browserTool.state.cancel_too_late": {
+    "message": "Too late to cancel"
+  },
+  "scheduledTasks.run.waiting_for_device": {
+    "message": "Waiting for browser device"
+  },
+  "model.kimiK3": {
+    "message": "kimi-k3",
+    "description": "Name of Moonshot AI's Kimi K3 flagship model"
+  },
+  "model.kimiK3Description": {
+    "message": "Flagship reasoning and vision model with a 1M-token context window",
+    "description": "Description of the Kimi K3 model"
+  },
+  "model.kimiK26": {
+    "message": "kimi-k2.6",
+    "description": "Name of the Kimi K2.6 model"
+  },
+  "model.kimiK26Description": {
+    "message": "Reasoning and vision model for compatible K2 workflows",
+    "description": "Description of the Kimi K2.6 model"
+  },
+  "model.claudeFable5": {
+    "message": "claude-fable-5",
+    "description": "Name of Anthropic's Claude Fable 5 flagship model"
+  },
+  "model.claudeFable5Description": {
+    "message": "Flagship reasoning and vision model for long-horizon work with a 1M-token context window",
+    "description": "Description of the Claude Fable 5 model"
   }
 }

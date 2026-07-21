@@ -55,6 +55,10 @@
     "message": "std — пріоритет продуктивності, pro — пріоритет якості",
     "description": "motion mode 说明"
   },
+  "description.motionModel": {
+    "message": "Kling 3.0 забезпечує вищу якість, але вищу ціну за секунду; Kling 2.6 економніший.",
+    "description": "motion model version description"
+  },
   "description.keepOriginalSound": {
     "message": "Увімкнено — зберегти оригінальний звук відео; вимкнено — без звуку",
     "description": "keep_original_sound 说明"
@@ -70,6 +74,10 @@
   "message.motionMissingInputs": {
     "message": "Завантажте зображення персонажа та відео руху",
     "description": "Motion Control 缺少输入时的提示"
+  },
+  "message.motionPricingNote": {
+    "message": "Оплата за секунду згенерованого відео; підсумкова сума залежить від довжини еталонного відео.",
+    "description": "Explains that Motion Control is billed per second"
   },
   "inspiration.title": {
     "message": "Ідеї та шаблони",
@@ -415,6 +423,14 @@
     "message": "Режим відео",
     "description": "Режим, який використовується для генерації відео"
   },
+  "name.motionModel": {
+    "message": "Версія моделі",
+    "description": "The Kling model version used for motion control"
+  },
+  "name.perSecond": {
+    "message": "секунда",
+    "description": "Unit suffix for per-second pricing"
+  },
   "name.effect": {
     "message": "Ефект відео",
     "description": "Назва параметра стилю, що використовується для перемикання між різними версіями або стилями моделі"
@@ -754,5 +770,77 @@
   "message.uploadAudioError": {
     "message": "Не вдалося завантажити аудіо, повторіть спробу.",
     "description": "Talking Photo audio upload error"
+  },
+  "name.referenceVideo": {
+    "message": "Reference Video",
+    "description": "Form field label: reference/editable video for Omni video editing"
+  },
+  "description.omniReferenceVideo": {
+    "message": "Для Kling O1 та V3 Omni. Завантажте MP4/MOV (720–2160px, 3–10 секунд, ≤200MB) для редагування або як посилання на вже існуюче відео, підказки будуть автоматично додані <<<video_1>>>.",
+    "description": "Допоміжний текст для завантаження Omni референсного відео"
+  },
+  "name.referenceImages": {
+    "message": "Референсні зображення",
+    "description": "Мітка поля для референсних зображень Omni"
+  },
+  "description.referenceImages": {
+    "message": "Для Kling O1 та V3 Omni. Максимум можна завантажити 7 референсних зображень; якщо є референсне відео, максимум 4 зображення. Підказки з посиланнями будуть автоматично додані.",
+    "description": "Допоміжний текст для референсних зображень Omni"
+  },
+  "button.uploadReferenceImages": {
+    "message": "Завантажити зображення",
+    "description": "Кнопка для завантаження Omni референсних зображень"
+  },
+  "message.referenceImagesExceed": {
+    "message": "Можна завантажити ще {count} референсних зображень.",
+    "description": "Підказка щодо кількості референсних зображень"
+  },
+  "message.referenceImagesError": {
+    "message": "Не вдалося завантажити референсні зображення, будь ласка, спробуйте ще раз.",
+    "description": "Помилка завантаження референсних зображень"
+  },
+  "name.referenceVideoType": {
+    "message": "Призначення відео",
+    "description": "Мітка типу референсного відео"
+  },
+  "name.referenceVideoFeature": {
+    "message": "Референсні особливості",
+    "description": "Опція для референсного відео з особливостями"
+  },
+  "name.referenceVideoBase": {
+    "message": "Редагувати оригінальне відео",
+    "description": "Основні опції редагування відео"
+  },
+  "message.referenceVideoImageLimit": {
+    "message": "Якщо є референсне відео, підтримується максимум 4 референсних зображення, будь ласка, спочатку видаліть зайві зображення.",
+    "description": "Конфлікт між кількістю референсного відео та зображень"
+  },
+  "message.referenceImagesTotalLimit": {
+    "message": "Цей запит підтримує максимум {count} зображень для посилання, перша та остання рамки також враховуються в загальній кількості.",
+    "description": "Попередження про обмеження загальної кількості зображень для посилання."
+  },
+  "message.baseVideoFrameConflict": {
+    "message": "Базове відео не може використовуватися одночасно з першою або останньою рамкою.",
+    "description": "Попередження про конфлікт між базовим відео та першою або останньою рамкою."
+  },
+  "button.uploadReferenceVideo": {
+    "message": "Upload Video",
+    "description": "Button to upload the reference video"
+  },
+  "message.referenceVideoExceed": {
+    "message": "You can upload a maximum of 1 reference video",
+    "description": "Error when more than one reference video is uploaded"
+  },
+  "message.referenceVideoError": {
+    "message": "Reference video upload failed, please try again later",
+    "description": "Error when the reference video upload fails"
+  },
+  "message.referenceVideoTypeFailed": {
+    "message": "Uploaded file must be in MP4 or MOV format!",
+    "description": "Error when the reference video is not MP4/MOV"
+  },
+  "message.referenceVideoSizeExceed": {
+    "message": "Uploaded file size cannot exceed 200MB!",
+    "description": "Error when the reference video exceeds 200MB"
   }
 }

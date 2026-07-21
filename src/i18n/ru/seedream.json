@@ -167,6 +167,10 @@
     "message": "doubao-seedream-5.0",
     "description": "Опция модели SeeDream 5.0 (поддерживает групповые и потоковые выводы)"
   },
+  "model.seedream50pro": {
+    "message": "doubao-seedream-5.0-pro",
+    "description": "SeeDream 5.0 Pro model option (flagship single image; no image sets / streaming / web search)"
+  },
   "name.maxImages": {
     "message": "Количество изображений",
     "description": "Количество изображений для групповой генерации (max_images)"
@@ -214,5 +218,13 @@
   "size.adaptive": {
     "message": "Адаптивно (соответствует образцу)",
     "description": "Метка опции adaptive"
+  },
+  "name.action": {
+    "message": "Action",
+    "description": "Generate or edit action selector"
+  },
+  "message.referenceImageRequired": {
+    "message": "Upload at least one reference image to use Edit mode.",
+    "description": "Validation shown when Edit mode has no reference image"
   }
 }

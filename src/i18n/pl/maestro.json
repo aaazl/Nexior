@@ -27,6 +27,50 @@
     "message": "Powód niepowodzenia",
     "description": "Powód niepowodzenia"
   },
+  "name.mode": {
+    "message": "Tryb",
+    "description": "Tryb generacji / akcja"
+  },
+  "option.action.generate": {
+    "message": "Generuj",
+    "description": "Opcja akcji generowania"
+  },
+  "option.action.remix": {
+    "message": "Remiksuj",
+    "description": "Opcja akcji remiksowania"
+  },
+  "option.action.edit": {
+    "message": "Edytuj",
+    "description": "Opcja akcji edytowania"
+  },
+  "option.action.extend": {
+    "message": "Rozszerz",
+    "description": "Opcja akcji rozszerzania"
+  },
+  "step.plan": {
+    "message": "Plan i storyboard",
+    "description": "Pipeline step: plan"
+  },
+  "step.source": {
+    "message": "Zbieranie materiałów",
+    "description": "Pipeline step: source media"
+  },
+  "step.voice": {
+    "message": "Narracja",
+    "description": "Pipeline step: voiceover"
+  },
+  "step.compose": {
+    "message": "Komponowanie scen",
+    "description": "Pipeline step: compose"
+  },
+  "step.render": {
+    "message": "Renderowanie wideo",
+    "description": "Pipeline step: render"
+  },
+  "step.deliver": {
+    "message": "Dostarczenie",
+    "description": "Pipeline step: deliver"
+  },
   "name.prompt": {
     "message": "Słowo kluczowe",
     "description": "Pole prompt"
@@ -163,6 +207,166 @@
     "message": "Brak wideo — stwórz swoje pierwsze po lewej stronie.",
     "description": "Brak zadań"
   },
+  "name.scenario": {
+    "message": "Typ wideo",
+    "description": "Video type field"
+  },
+  "description.scenario": {
+    "message": "Włącz dostosowanie, aby wybrać typ wideo. Po wyłączeniu Maestro zdecyduje automatycznie.",
+    "description": "Scenario field help"
+  },
+  "option.scenario.auto": {
+    "message": "Automatyczny · niech zdecyduje Maestro",
+    "description": "Auto scenario option"
+  },
+  "option.scenario.narrated": {
+    "message": "Narracja z ilustracjami",
+    "description": "Opcja wideo z narracją w wielu scenach"
+  },
+  "option.scenario.drama": {
+    "message": "Krótki dramat",
+    "description": "Short drama scenario option"
+  },
+  "option.scenario.avatar": {
+    "message": "Cyfrowa postać · Mówca",
+    "description": "Opcja scenariusza z awatarem / mówiącą głową"
+  },
+  "option.scenario.captions": {
+    "message": "Dodaj napisy",
+    "description": "Add-captions scenario option"
+  },
+  "message.captionsNeedVideo": {
+    "message": "Napisy kinetyczne działają na istniejącym filmie z mówiącą osobą — najpierw prześlij go powyżej.",
+    "description": "Warning shown when captions video type is selected but no source video is uploaded"
+  },
+  "name.style": {
+    "message": "Styl wizualny",
+    "description": "Pole stylu wizualnego"
+  },
+  "description.style": {
+    "message": "Włącz dostosowanie, aby wybrać lub wpisać styl wizualny. Po wyłączeniu Maestro zdecyduje automatycznie.",
+    "description": "Pomoc dotycząca pola stylu"
+  },
+  "option.style.auto": {
+    "message": "Automatycznie · Bez dodatkowego określenia",
+    "description": "Opcja stylu automatycznego"
+  },
+  "option.style.cinematic": {
+    "message": "Filmowy",
+    "description": "Opcja stylu filmowego"
+  },
+  "option.style.glass": {
+    "message": "Frosted Glass",
+    "description": "Frosted glass style option"
+  },
+  "option.style.luxury": {
+    "message": "Luxury",
+    "description": "Luxury style option"
+  },
+  "option.style.swiss": {
+    "message": "Swiss Grid",
+    "description": "Swiss grid style option"
+  },
+  "option.style.modern": {
+    "message": "Modern",
+    "description": "Modern style option"
+  },
+  "option.style.editorial": {
+    "message": "Editorial",
+    "description": "Editorial style option"
+  },
+  "option.style.warm": {
+    "message": "Warm",
+    "description": "Warm style option"
+  },
+  "option.style.vibrant": {
+    "message": "Vibrant",
+    "description": "Vibrant style option"
+  },
+  "option.style.neon": {
+    "message": "Neonowy",
+    "description": "Opcja stylu neonowego"
+  },
+  "option.style.mono": {
+    "message": "Monochrome",
+    "description": "Monochrome style option"
+  },
+  "option.style.pastel": {
+    "message": "Pastel",
+    "description": "Pastel style option"
+  },
+  "option.style.bold": {
+    "message": "Bold Type",
+    "description": "Bold type style option"
+  },
+  "option.style.industrial": {
+    "message": "Industrial",
+    "description": "Industrial style option"
+  },
+  "option.style.futuristic": {
+    "message": "Futuristic",
+    "description": "Futuristic style option"
+  },
+  "option.style.retro": {
+    "message": "Retro Film",
+    "description": "Retro film style option"
+  },
+  "name.voice": {
+    "message": "Ton głosu",
+    "description": "Pole tonu głosu"
+  },
+  "button.preview": {
+    "message": "Podgląd",
+    "description": "Przycisk do podglądu głosu / odtwarzania próbki"
+  },
+  "description.voice": {
+    "message": "Włącz dostosowanie, aby wybrać ton głosu. Po wyłączeniu Maestro dobierze go automatycznie. Ton jest niezależny od języka i można go odsłuchać.",
+    "description": "Pomoc dotycząca pola głosu"
+  },
+  "option.voice.auto": {
+    "message": "Automatycznie · dopasowane przez Maestro",
+    "description": "Opcja automatycznego głosu"
+  },
+  "option.voice.warm-female": {
+    "message": "Ciepły głos żeński",
+    "description": "Opcja ciepłego głosu żeńskiego"
+  },
+  "option.voice.bright-female": {
+    "message": "Jasny głos żeński",
+    "description": "Opcja jasnego głosu żeńskiego"
+  },
+  "option.voice.anchor-female": {
+    "message": "Głos żeński prowadzącego",
+    "description": "Opcja głosu żeńskiego prowadzącego"
+  },
+  "option.voice.clean-female": {
+    "message": "Czysty głos żeński",
+    "description": "Opcja czystego głosu żeńskiego"
+  },
+  "option.voice.calm-male": {
+    "message": "Spokojny głos męski",
+    "description": "Opcja spokojnego głosu męskiego"
+  },
+  "option.voice.deep-male": {
+    "message": "Głęboki głos męski",
+    "description": "Opcja głębokiego głosu męskiego"
+  },
+  "option.voice.documentary-male": {
+    "message": "Głos męski narratora",
+    "description": "Opcja głosu męskiego narratora"
+  },
+  "option.voice.energetic-male": {
+    "message": "Energetyczny głos męski",
+    "description": "Opcja energetycznego głosu męskiego"
+  },
+  "option.voice.storyteller-male": {
+    "message": "Głos męski narratora",
+    "description": "Opcja głosu męskiego narratora"
+  },
+  "option.scenario.slideshow": {
+    "message": "Pokaz slajdów",
+    "description": "Opcja scenariusza pokazu slajdów"
+  },
   "name.sourceType": {
     "message": "Typ źródła",
     "description": "Pole typu źródła"
@@ -222,5 +426,65 @@
   "message.downloadVideo": {
     "message": "Pobierz wygenerowane wideo",
     "description": "Podpowiedź do pobierania"
+  },
+  "option.scenario.general": {
+    "message": "Ujęcia rzeczywiste",
+    "description": "Footage piece scenario option"
+  },
+  "option.scenario.explainer": {
+    "message": "Objaśnienie",
+    "description": "Explainer scenario option"
+  },
+  "option.scenario.product": {
+    "message": "Promocja produktu",
+    "description": "Product promo scenario option"
+  },
+  "option.scenario.website": {
+    "message": "Strona na wideo",
+    "description": "Website-to-video scenario option"
+  },
+  "option.scenario.slides": {
+    "message": "Pokaz slajdów",
+    "description": "Slideshow scenario option"
+  },
+  "option.scenario.changelog": {
+    "message": "Lista zmian (PR)",
+    "description": "Changelog scenario option"
+  },
+  "name.customize": {
+    "message": "Dostosuj",
+    "description": "Optional creative controls toggle"
+  },
+  "description.customize.auto": {
+    "message": "Automatycznie · Maestro wybiera typ wideo, styl wizualny i ton głosu.",
+    "description": "Customization disabled state"
+  },
+  "description.customize.manual": {
+    "message": "Wybierz typ wideo, styl wizualny i ton głosu.",
+    "description": "Customization enabled state"
+  },
+  "name.primaryLanguage": {
+    "message": "Primary language",
+    "description": "Primary output language field"
+  },
+  "name.additionalLanguages": {
+    "message": "Additional languages (optional)",
+    "description": "Additional output languages field"
+  },
+  "placeholder.additionalLanguages": {
+    "message": "Add output languages",
+    "description": "Additional languages placeholder"
+  },
+  "name.customizeScenario": {
+    "message": "Dostosuj typ wideo",
+    "description": "Video type customization toggle"
+  },
+  "name.customizeStyle": {
+    "message": "Dostosuj styl wizualny",
+    "description": "Visual style customization toggle"
+  },
+  "name.customizeVoice": {
+    "message": "Dostosuj ton głosu",
+    "description": "Voice timbre customization toggle"
   }
 }

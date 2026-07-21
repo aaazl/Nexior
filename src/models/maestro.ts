@@ -1,6 +1,11 @@
 export type IMaestroAction = 'generate' | 'remix' | 'edit' | 'extend';
 
 export interface IMaestroConfig {
+  /** Legacy in-memory flag; normalized into the three field flags. */
+  customization_enabled?: boolean;
+  scenario_customization_enabled?: boolean;
+  style_customization_enabled?: boolean;
+  voice_customization_enabled?: boolean;
   prompt?: string;
   action?: IMaestroAction;
   ref_task_id?: string;
@@ -9,10 +14,19 @@ export interface IMaestroConfig {
   aspect?: string; // '9:16' | '16:9' | '1:1'
   duration?: number;
   quality?: string; // 'draft' | 'standard' | 'premium'
+  scenario?: string; // 'auto' | 'narrated' | 'drama' | 'avatar' | 'captions'
+  style?: string; // freeform visual hint (e.g. 'auto' | 'cinematic' | 'minimal' | 'neon' | 'corporate'); orthogonal to scenario
+  voice?: string; // narration timbre: 'auto' (director picks) | a preset key (constants) | a 32-hex Fish reference_id
   callback_url?: string;
 }
 
-export type IMaestroGenerateRequest = IMaestroConfig;
+export type IMaestroGenerateRequest = Omit<
+  IMaestroConfig,
+  | 'customization_enabled'
+  | 'scenario_customization_enabled'
+  | 'style_customization_enabled'
+  | 'voice_customization_enabled'
+>;
 
 export interface IMaestroVariant {
   lang?: string;
@@ -35,11 +49,24 @@ export interface IMaestroProject {
   outputs?: string[];
 }
 
+// Live per-frame render telemetry (worker parses it from the HyperFrames render output) so the
+// UI can move the bar and show "1194/2388 frames" during a long render instead of freezing.
+export interface IMaestroRender {
+  percent?: number;
+  frames_done?: number;
+  frames_total?: number;
+}
+
 export interface IMaestroData {
   variants?: IMaestroVariant[];
   project?: IMaestroProject;
   progress?: IMaestroProgress[];
   stage?: string;
+  percent?: number;
+  // Latest "what the agent is doing right now" one-liner (the director's own narration), shown as
+  // the live detail under the active step so a long stage exposes real, moving progress.
+  activity?: string;
+  render?: IMaestroRender;
 }
 
 export interface IMaestroGenerateResponse {
@@ -60,6 +87,7 @@ export interface IMaestroAgentStats {
 
 export interface IMaestroTask {
   id: string;
+  trace_id?: string;
   status?: string;
   created_at?: number;
   elapsed?: number;

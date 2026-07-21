@@ -55,6 +55,10 @@
     "message": "std für Leistung, pro für Bildqualität",
     "description": "Beschreibung für motion mode"
   },
+  "description.motionModel": {
+    "message": "Kling 3.0 bietet höhere Qualität, aber einen höheren Preis pro Sekunde; Kling 2.6 ist preisgünstiger.",
+    "description": "motion model version description"
+  },
   "description.keepOriginalSound": {
     "message": "Aktiviert, um den Originalton des Referenzvideos beizubehalten; deaktiviert, um das Ausgangsvideo ohne Originalton zu erstellen.",
     "description": "Beschreibung für keep_original_sound"
@@ -70,6 +74,10 @@
   "message.motionMissingInputs": {
     "message": "Bitte lade sowohl das Personenbild als auch das Referenzvideo hoch.",
     "description": "Hinweis bei fehlenden Eingaben in der Bewegungssteuerung"
+  },
+  "message.motionPricingNote": {
+    "message": "Abrechnung pro Sekunde des generierten Videos; der Endbetrag richtet sich nach der Länge des Referenzvideos.",
+    "description": "Explains that Motion Control is billed per second"
   },
   "inspiration.title": {
     "message": "Inspiration und Voreinstellungen",
@@ -415,6 +423,14 @@
     "message": "Videomodus",
     "description": "Der Modus, der zur Erstellung des Videos verwendet wird"
   },
+  "name.motionModel": {
+    "message": "Modellversion",
+    "description": "The Kling model version used for motion control"
+  },
+  "name.perSecond": {
+    "message": "Sekunde",
+    "description": "Unit suffix for per-second pricing"
+  },
   "name.effect": {
     "message": "Videoeffekt",
     "description": "Name des Stilparameters, um zwischen verschiedenen Versionen oder Stilen des Modells zu wechseln"
@@ -754,5 +770,77 @@
   "message.uploadAudioError": {
     "message": "Audio-Upload fehlgeschlagen, bitte erneut versuchen.",
     "description": "Talking Photo audio upload error"
+  },
+  "name.referenceVideo": {
+    "message": "Reference Video",
+    "description": "Form field label: reference/editable video for Omni video editing"
+  },
+  "description.omniReferenceVideo": {
+    "message": "Für Kling O1 und V3 Omni. Laden Sie ein MP4/MOV (720–2160px, 3–10 Sekunden, ≤200MB) für die Bearbeitung oder als Referenz für vorhandenes Video hoch, Stichwörter werden automatisch hinzugefügt <<<video_1>>>.",
+    "description": "Hilfetext zum Hochladen von Omni Referenzvideos"
+  },
+  "name.referenceImages": {
+    "message": "Referenzbilder",
+    "description": "Feldbezeichnung für Omni Referenzbilder"
+  },
+  "description.referenceImages": {
+    "message": "Für Kling O1 und V3 Omni. Maximal 7 Referenzbilder hochladen; bei vorhandenem Referenzvideo maximal 4 Bilder. Stichwortverweise werden automatisch hinzugefügt.",
+    "description": "Hilfetext zu Omni Referenzbildern"
+  },
+  "button.uploadReferenceImages": {
+    "message": "Bilder hochladen",
+    "description": "Button zum Hochladen von Omni Referenzbildern"
+  },
+  "message.referenceImagesExceed": {
+    "message": "Es können noch {count} Referenzbilder hochgeladen werden.",
+    "description": "Hinweis zur Anzahl der Referenzbilder"
+  },
+  "message.referenceImagesError": {
+    "message": "Hochladen der Referenzbilder fehlgeschlagen, bitte versuchen Sie es erneut.",
+    "description": "Fehler beim Hochladen der Referenzbilder"
+  },
+  "name.referenceVideoType": {
+    "message": "Videonutzung",
+    "description": "Bezeichnung für den Typ des Referenzvideos"
+  },
+  "name.referenceVideoFeature": {
+    "message": "Merkmalsreferenz",
+    "description": "Option für Referenzvideos zu Merkmalen"
+  },
+  "name.referenceVideoBase": {
+    "message": "Originalvideo bearbeiten",
+    "description": "Basisoptionen zur Videobearbeitung"
+  },
+  "message.referenceVideoImageLimit": {
+    "message": "Bei vorhandenem Referenzvideo sind maximal 4 Referenzbilder erlaubt, bitte entfernen Sie überschüssige Bilder.",
+    "description": "Konflikt zwischen Anzahl der Referenzvideos und -bilder"
+  },
+  "message.referenceImagesTotalLimit": {
+    "message": "Diese Anfrage unterstützt maximal {count} Referenzbilder, wobei der erste und letzte Frame ebenfalls in die Gesamtzahl einfließen.",
+    "description": "Hinweis auf die Begrenzung der Gesamtzahl der Referenzbilder."
+  },
+  "message.baseVideoFrameConflict": {
+    "message": "Das zu bearbeitende Basisvideo kann nicht gleichzeitig mit dem ersten oder letzten Frame verwendet werden.",
+    "description": "Hinweis auf Konflikt zwischen Basisvideo und ersten/letzten Frames."
+  },
+  "button.uploadReferenceVideo": {
+    "message": "Upload Video",
+    "description": "Button to upload the reference video"
+  },
+  "message.referenceVideoExceed": {
+    "message": "You can upload a maximum of 1 reference video",
+    "description": "Error when more than one reference video is uploaded"
+  },
+  "message.referenceVideoError": {
+    "message": "Reference video upload failed, please try again later",
+    "description": "Error when the reference video upload fails"
+  },
+  "message.referenceVideoTypeFailed": {
+    "message": "Uploaded file must be in MP4 or MOV format!",
+    "description": "Error when the reference video is not MP4/MOV"
+  },
+  "message.referenceVideoSizeExceed": {
+    "message": "Uploaded file size cannot exceed 200MB!",
+    "description": "Error when the reference video exceeds 200MB"
   }
 }

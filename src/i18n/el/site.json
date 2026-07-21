@@ -39,6 +39,30 @@
     "message": "ID Διαχειριστών Ιστοσελίδας",
     "description": "展示在编辑框的标题"
   },
+  "field.contacts": {
+    "message": "Στοιχεία υποστήριξης",
+    "description": "Field title for the customer-service contacts in site settings"
+  },
+  "field.markupRatio": {
+    "message": "Ενιαία προσαύξηση για όλο τον ιστότοπο",
+    "description": "Ρυθμίσεις ιστότοπου: το ποσοστό προσαύξησης που εφαρμόζεται σε όλα τα πακέτα φόρτισης του ιστότοπου (ποσοστό)"
+  },
+  "message.markupRatioTip": {
+    "message": "Ορίστε ενιαία προσαύξηση για όλες τις υπηρεσίες αυτού του ιστοτόπου (0%–500%). Μια προσαρμοσμένη προσαύξηση ανά υπηρεσία παρακάτω υπερισχύει αυτής της τιμής.",
+    "description": "Κείμενο περιγραφής για την ρύθμιση ποσοστού προσαύξησης"
+  },
+  "message.markupExample": {
+    "message": "Παράδειγμα: επίσημη τιμή {from} → τιμή πώλησής σας {to}",
+    "description": "Ρεαλιστικό παράδειγμα κάτω από την ρύθμιση ποσοστού προσαύξησης, όπου {from} είναι η επίσημη τιμή και {to} είναι η τιμή πώλησης μετά την προσαύξηση"
+  },
+  "field.disableRecharge": {
+    "message": "Απενεργοποίηση επαναφόρτισης",
+    "description": "Site settings: when on, hide all recharge/top-up entries on this site"
+  },
+  "message.disableRechargeTip": {
+    "message": "Όταν είναι ενεργοποιημένο, όλα τα κουμπιά επαναφόρτισης αποκρύπτονται σε αυτόν τον ιστότοπο και οι χρήστες δεν μπορούν πλέον να ανανεώσουν το υπόλοιπό τους.",
+    "description": "Help text for the disable-recharge toggle"
+  },
   "field.distributionDefaultInviterId": {
     "message": "ID Προεπιλεγμένου Προσκαλέσματος",
     "description": "展示在编辑框的标题"
@@ -78,6 +102,102 @@
   "field.authProvider_wechat": {
     "message": "WeChat",
     "description": "Όνομα τρόπου σύνδεσης: Σύνδεση μέσω τρίτου μέρους WeChat"
+  },
+  "field.authSmsWebhook": {
+    "message": "Custom SMS Sender",
+    "description": "Site settings / login: title for the site's own custom SMS verification-code delivery webhook"
+  },
+  "message.authSmsWebhookTip": {
+    "message": "When enabled, this site's phone verification codes are sent through your own endpoint under your own signature; disable it to use the platform default. Requires the phone-number login provider to be enabled.",
+    "description": "Explains the custom SMS sender webhook"
+  },
+  "placeholder.authSmsWebhookUrl": {
+    "message": "https://your-domain/sms-webhook",
+    "description": "Placeholder for the SMS webhook URL input"
+  },
+  "placeholder.authSmsWebhookSecret": {
+    "message": "Signing secret (leave blank to keep unchanged)",
+    "description": "Placeholder for the SMS webhook signing secret input; write-only, blank keeps existing"
+  },
+  "field.authSmsWebhookEnable": {
+    "message": "Use a custom sender",
+    "description": "Label next to the custom SMS sender toggle"
+  },
+  "field.authSmsWebhookDoc": {
+    "message": "View docs",
+    "description": "Link that opens the SMS webhook spec dialog"
+  },
+  "field.authSmsWebhookTest": {
+    "message": "Test",
+    "description": "Button that opens the SMS webhook test dialog"
+  },
+  "message.authSmsWebhookNeedsPhone": {
+    "message": "Enable the phone-number login provider first to configure a custom SMS sender.",
+    "description": "Tooltip shown when the toggle is disabled because phone login is off"
+  },
+  "field.authSmsWebhookDocTitle": {
+    "message": "Custom SMS Sender · Webhook spec",
+    "description": "Title of the SMS webhook spec dialog"
+  },
+  "message.authSmsWebhookDocIntro": {
+    "message": "This site sends a signed HTTPS POST to the URL you provide; your service is responsible for delivering the SMS. Your endpoint must meet the following requirements:",
+    "description": "Intro paragraph of the SMS webhook spec dialog"
+  },
+  "field.authSmsWebhookDocRequest": {
+    "message": "Request",
+    "description": "Heading: request section of the SMS webhook spec"
+  },
+  "message.authSmsWebhookDocRequest": {
+    "message": "Method POST, Content-Type application/json. purpose is one of login / register / test (test is a connectivity probe — you may skip actually sending). The request body looks like:",
+    "description": "Describes the request method and body of the SMS webhook"
+  },
+  "field.authSmsWebhookDocHeaders": {
+    "message": "Signature verification",
+    "description": "Heading: signature section of the SMS webhook spec"
+  },
+  "message.authSmsWebhookDocHeaders": {
+    "message": "Each request carries the headers below. Verify with your signing secret using HMAC-SHA256 per the Standard Webhooks spec and compare in constant time:",
+    "description": "Describes signature verification for the SMS webhook"
+  },
+  "field.authSmsWebhookDocResponse": {
+    "message": "Response",
+    "description": "Heading: response section of the SMS webhook spec"
+  },
+  "message.authSmsWebhookDocResponse": {
+    "message": "Return 2xx on success. To signal failure explicitly, return HTTP 200 with a JSON body whose success field is false (see the example below). Respond within 5 seconds.",
+    "description": "Describes the expected response of the SMS webhook"
+  },
+  "field.authSmsWebhookTestTitle": {
+    "message": "Test custom SMS sender",
+    "description": "Title of the SMS webhook test dialog"
+  },
+  "field.authSmsWebhookTestRegion": {
+    "message": "Country/region code",
+    "description": "Label for the region-code field in the test dialog"
+  },
+  "field.authSmsWebhookTestNumber": {
+    "message": "Test phone number (optional)",
+    "description": "Label for the phone-number field in the test dialog"
+  },
+  "field.authSmsWebhookTestSend": {
+    "message": "Send test",
+    "description": "Button that sends the SMS webhook test request"
+  },
+  "message.authSmsWebhookTestOk": {
+    "message": "The test request was delivered to your endpoint successfully.",
+    "description": "Success message after a webhook test"
+  },
+  "message.authSmsWebhookTestFailed": {
+    "message": "Test failed. Check the URL, signing secret, and your endpoint's response.",
+    "description": "Failure message after a webhook test"
+  },
+  "field.authSmsWebhookDisableTitle": {
+    "message": "Disable custom SMS sender",
+    "description": "Title of the confirm dialog shown when disabling the custom SMS sender"
+  },
+  "message.authSmsWebhookDisableConfirm": {
+    "message": "Disabling this deletes the saved sender URL and signing secret (the secret cannot be recovered), and this site falls back to the platform default signature. Disable it?",
+    "description": "Body of the confirm dialog shown when disabling the custom SMS sender"
   },
   "field.featuresChat": {
     "message": "Chat",
@@ -145,10 +265,6 @@
   },
   "field.featuresHailuo": {
     "message": "Hailuo",
-    "description": "展示在编辑框的标题"
-  },
-  "field.featuresHeadshots": {
-    "message": "AI Φωτογραφίες Ταυτότητας",
     "description": "展示在编辑框的标题"
   },
   "field.featuresSuno": {
@@ -222,6 +338,10 @@
   "title.editAdmins": {
     "message": "Επεξεργασία Διαχειριστών",
     "description": "展示在编辑框的标题"
+  },
+  "title.editContacts": {
+    "message": "Επεξεργασία στοιχείων υποστήριξης",
+    "description": "Title of the edit-support-contacts dialog"
   },
   "title.featuresConfig": {
     "message": "Ρύθμιση Λειτουργιών",
@@ -431,6 +551,14 @@
     "message": "Μπορείτε να προσθέσετε ή να αφαιρέσετε ID διαχειριστών εδώ. Μπορείτε να δείτε τα ID χρηστών στο https://auth.acedata.cloud",
     "description": "Προτροπή για τους διαχειριστές του ιστότοπου"
   },
+  "message.contactsTip": {
+    "message": "Συμπληρώστε τα στοιχεία εξυπηρέτησης (Discord, X, WeChat, τηλέφωνο, email). Εμφανίζονται στη σελίδα «Σχετικά» για να επικοινωνούν οι χρήστες.",
+    "description": "Tip for the support-contacts field"
+  },
+  "message.contactsEmpty": {
+    "message": "Δεν έχει οριστεί",
+    "description": "Placeholder shown when no support contact has been filled in"
+  },
   "message.keywordsTip": {
     "message": "Λέξεις-κλειδιά του ιστότοπου, βρίσκονται στα μεταδεδομένα του ιστότοπου, για SEO βελτιστοποίηση.",
     "description": "Προτροπή για τις λέξεις-κλειδιά του ιστότοπου"
@@ -444,124 +572,120 @@
     "description": "Περιγραφή της λειτουργίας Chat"
   },
   "message.featuresGrok": {
-    "message": "Ενεργοποιήστε ή απενεργοποιήστε τη λειτουργία Grok.",
-    "description": "Περιγραφή της λειτουργίας Grok"
+    "message": "Βοηθός xAI για γνώση σε πραγματικό χρόνο, συλλογισμό, γραφή και προγραμματισμό.",
+    "description": "Σύντομη εισαγωγή δυνατοτήτων: Βοηθός xAI για γνώση σε πραγματικό χρόνο, συλλογισμό, γραφή και προγραμματισμό."
   },
   "message.featuresGrokvideo": {
-    "message": "Ενεργοποιήστε ή απενεργοποιήστε το module λειτουργίας Grok Video.",
-    "description": "Περιγραφή της λειτουργίας Grok Video"
+    "message": "Δημιουργία βίντεο xAI για σύντομα κλιπ από prompt κειμένου ή εικόνες αναφοράς.",
+    "description": "Σύντομη εισαγωγή δυνατοτήτων: Δημιουργία βίντεο xAI για σύντομα κλιπ από prompt κειμένου ή εικόνες αναφοράς."
   },
   "message.featuresMaestro": {
-    "message": "Ενεργοποιήστε ή απενεργοποιήστε το module λειτουργίας Maestro.",
-    "description": "Περιγραφή της λειτουργίας Maestro"
+    "message": "Παράγει ολοκληρωμένα βίντεο από μια ιδέα, με σχεδιασμό, αφήγηση, σκηνές και παράδοση.",
+    "description": "Σύντομη εισαγωγή δυνατοτήτων: Παράγει ολοκληρωμένα βίντεο από μια ιδέα, με σχεδιασμό, αφήγηση, σκηνές και παράδοση."
   },
   "message.featuresDigitalhuman": {
-    "message": "Enable or disable the Digital Human feature module.",
-    "description": "Description of the Digital Human feature"
+    "message": "Δημιουργήστε βίντεο με ομιλούν πρόσωπο και συνθετική ομιλία με φυσικό συγχρονισμό χειλιών.",
+    "description": "Σύντομη εισαγωγή δυνατοτήτων: Δημιουργήστε βίντεο με ομιλούν πρόσωπο και συνθετική ομιλία με φυσικό συγχρονισμό χειλιών."
   },
   "message.featuresDeepseek": {
-    "message": "Ενεργοποιήστε ή απενεργοποιήστε τη λειτουργία Deepseek.",
-    "description": "Περιγραφή της λειτουργίας Deepseek"
+    "message": "Βοηθός DeepSeek για προχωρημένο συλλογισμό, προγραμματισμό, μαθηματικά και καθημερινές ερωτήσεις.",
+    "description": "Σύντομη εισαγωγή δυνατοτήτων: Βοηθός DeepSeek για προχωρημένο συλλογισμό, προγραμματισμό, μαθηματικά και καθημερινές ερωτήσεις."
   },
   "message.featuresChatgpt": {
-    "message": "Ενεργοποιήστε ή απενεργοποιήστε τη λειτουργία ChatGPT.",
-    "description": "Περιγραφή της λειτουργίας ChatGPT"
+    "message": "Βοηθός OpenAI για γραφή, συλλογισμό, προγραμματισμό και πολυτροπικές συνομιλίες.",
+    "description": "Σύντομη εισαγωγή δυνατοτήτων: Βοηθός OpenAI για γραφή, συλλογισμό, προγραμματισμό και πολυτροπικές συνομιλίες."
   },
   "message.featuresMidjourney": {
-    "message": "Ενεργοποιήστε ή απενεργοποιήστε τη λειτουργία Midjourney.",
-    "description": "Περιγραφή της λειτουργίας Midjourney"
+    "message": "Δημιουργήστε καλαίσθητες εικόνες και δημιουργικές παραλλαγές από κείμενο ή οπτικές αναφορές.",
+    "description": "Σύντομη εισαγωγή δυνατοτήτων: Δημιουργήστε καλαίσθητες εικόνες και δημιουργικές παραλλαγές από κείμενο ή οπτικές αναφορές."
   },
   "message.featuresChatdoc": {
     "message": "Ενεργοποιήστε ή απενεργοποιήστε τη λειτουργία Chatdoc.",
     "description": "Περιγραφή της λειτουργίας Chatdoc"
   },
   "message.featuresQrart": {
-    "message": "Ενεργοποιήστε ή απενεργοποιήστε τη λειτουργία Qrart.",
-    "description": "Περιγραφή της λειτουργίας Qrart"
+    "message": "Μετατρέψτε συνδέσμους σε σαρωσιμους καλλιτεχνικούς κώδικες QR με προσαρμοσμένα στυλ και εικόνες.",
+    "description": "Σύντομη εισαγωγή δυνατοτήτων: Μετατρέψτε συνδέσμους σε σαρωσιμους καλλιτεχνικούς κώδικες QR με προσαρμοσμένα στυλ και εικόνες."
   },
   "message.featuresVeo": {
-    "message": "Ενεργοποιήστε ή απενεργοποιήστε τη λειτουργία Veo.",
-    "description": "Περιγραφή της λειτουργίας Veo"
+    "message": "Δημιουργία βίντεο της Google για κινηματογραφικά κλιπ με ισχυρό έλεγχο prompt και κίνησης.",
+    "description": "Σύντομη εισαγωγή δυνατοτήτων: Δημιουργία βίντεο της Google για κινηματογραφικά κλιπ με ισχυρό έλεγχο prompt και κίνησης."
   },
   "message.featuresSora": {
-    "message": "Ενεργοποιήστε ή απενεργοποιήστε τη λειτουργία Sora.",
-    "description": "Περιγραφή της λειτουργίας Sora"
+    "message": "Δημιουργία βίντεο OpenAI για ρεαλιστικές σκηνές, αφήγηση και οπτικές μεταμορφώσεις.",
+    "description": "Σύντομη εισαγωγή δυνατοτήτων: Δημιουργία βίντεο OpenAI για ρεαλιστικές σκηνές, αφήγηση και οπτικές μεταμορφώσεις."
   },
   "message.featuresSuno": {
-    "message": "Ενεργοποίηση ή απενεργοποίηση της λειτουργίας Suno.",
-    "description": "Περιγραφή της λειτουργίας Suno"
+    "message": "Δημιουργήστε ολοκληρωμένα τραγούδια, στίχους, φωνητικά και ορχηστρικά μέρη από ένα prompt.",
+    "description": "Σύντομη εισαγωγή δυνατοτήτων: Δημιουργήστε ολοκληρωμένα τραγούδια, στίχους, φωνητικά και ορχηστρικά μέρη από ένα prompt."
   },
   "message.featuresPixverse": {
-    "message": "Ενεργοποίηση ή απενεργοποίηση της λειτουργίας Pixverse.",
-    "description": "Περιγραφή της λειτουργίας Pixverse"
+    "message": "Δημιουργήστε στυλιζαρισμένα βίντεο από prompts και εικόνες με πρότυπα και εφέ.",
+    "description": "Σύντομη εισαγωγή δυνατοτήτων: Δημιουργήστε στυλιζαρισμένα βίντεο από prompts και εικόνες με πρότυπα και εφέ."
   },
   "message.featuresFlux": {
-    "message": "Ενεργοποίηση ή απενεργοποίηση της λειτουργίας FLux.",
-    "description": "Περιγραφή της λειτουργίας FLux"
+    "message": "Δημιουργήστε λεπτομερείς εικόνες και επεξεργαστείτε υπάρχοντα οπτικά με οδηγίες φυσικής γλώσσας.",
+    "description": "Σύντομη εισαγωγή δυνατοτήτων: Δημιουργήστε λεπτομερείς εικόνες και επεξεργαστείτε υπάρχοντα οπτικά με οδηγίες φυσικής γλώσσας."
   },
   "message.featuresNanobanana": {
-    "message": "Ενεργοποίηση ή απενεργοποίηση της λειτουργίας Nano Banana.",
-    "description": "Περιγραφή της λειτουργίας Nano Banana"
+    "message": "Δημιουργία και επεξεργασία εικόνων με την υποστήριξη Google και ακριβή τήρηση οδηγιών.",
+    "description": "Σύντομη εισαγωγή δυνατοτήτων: Δημιουργία και επεξεργασία εικόνων με την υποστήριξη Google και ακριβή τήρηση οδηγιών."
   },
   "message.featuresOpenaiimage": {
-    "message": "Ενεργοποίηση ή απενεργοποίηση της λειτουργίας OpenAI εικόνας.",
-    "description": "Περιγραφή της λειτουργίας OpenAI εικόνας"
+    "message": "Δημιουργία και επεξεργασία εικόνων OpenAI για καλαίσθητα οπτικά, κείμενο και συνθέσεις.",
+    "description": "Σύντομη εισαγωγή δυνατοτήτων: Δημιουργία και επεξεργασία εικόνων OpenAI για καλαίσθητα οπτικά, κείμενο και συνθέσεις."
   },
   "message.featuresSeedream": {
-    "message": "Ενεργοποίηση ή απενεργοποίηση της λειτουργίας SeeDream.",
-    "description": "Περιγραφή της λειτουργίας SeeDream"
+    "message": "Δημιουργία και επεξεργασία εικόνων ByteDance για υψηλής ποιότητας δημιουργικά οπτικά.",
+    "description": "Σύντομη εισαγωγή δυνατοτήτων: Δημιουργία και επεξεργασία εικόνων ByteDance για υψηλής ποιότητας δημιουργικά οπτικά."
   },
   "message.featuresSeedance": {
-    "message": "Ενεργοποίηση ή απενεργοποίηση της λειτουργίας SeeDance.",
-    "description": "Περιγραφή της λειτουργίας SeeDance"
+    "message": "Δημιουργία βίντεο ByteDance για δυναμικές σκηνές, κίνηση κάμερας και προαιρετικό ήχο.",
+    "description": "Σύντομη εισαγωγή δυνατοτήτων: Δημιουργία βίντεο ByteDance για δυναμικές σκηνές, κίνηση κάμερας και προαιρετικό ήχο."
   },
   "message.featuresWan": {
-    "message": "Ενεργοποίηση ή απενεργοποίηση της λειτουργίας Wan.",
-    "description": "Περιγραφή της λειτουργίας Wan"
+    "message": "Δημιουργία βίντεο Alibaba από κείμενο, εικόνες ή αναφορές σε πολλαπλές αναλύσεις.",
+    "description": "Σύντομη εισαγωγή δυνατοτήτων: Δημιουργία βίντεο Alibaba από κείμενο, εικόνες ή αναφορές σε πολλαπλές αναλύσεις."
   },
   "message.featuresProducer": {
-    "message": "Ενεργοποίηση ή απενεργοποίηση της λειτουργίας Producer.",
-    "description": "Περιγραφή της λειτουργίας Producer"
+    "message": "Δημιουργήστε τραγούδια, διασκευές, επεκτάσεις και φωνητικές ή ορχηστρικές παραλλαγές.",
+    "description": "Σύντομη εισαγωγή δυνατοτήτων: Δημιουργήστε τραγούδια, διασκευές, επεκτάσεις και φωνητικές ή ορχηστρικές παραλλαγές."
   },
   "message.featuresKimi": {
-    "message": "Ενεργοποίηση ή απενεργοποίηση της λειτουργίας Kimi.",
-    "description": "Περιγραφή της λειτουργίας Kimi"
+    "message": "Βοηθός Moonshot AI για έρευνα μεγάλου πλαισίου, συλλογισμό, γραφή και προγραμματισμό.",
+    "description": "Σύντομη εισαγωγή δυνατοτήτων: Βοηθός Moonshot AI για έρευνα μεγάλου πλαισίου, συλλογισμό, γραφή και προγραμματισμό."
   },
   "message.featuresSerp": {
-    "message": "Ενεργοποίηση ή απενεργοποίηση της λειτουργίας SERP.",
-    "description": "Περιγραφή της λειτουργίας SERP"
+    "message": "Αναζητήστε στο δ��αδίκτυο, σε εικόνες, ειδήσεις, χάρτες και βίντεο με δομημένα αποτελέσματα Google.",
+    "description": "Σύντομη εισαγωγή δυνατοτήτων: Αναζητήστε στο διαδίκτυο, σε εικόνες, ειδήσεις, χάρτες και βίντεο με δομημένα αποτελέσματα Google."
   },
   "message.featuresFish": {
-    "message": "Ενεργοποιήστε ή απενεργοποιήστε τη λειτουργία Ήχου Ψαριών.",
-    "description": "Περιγραφή της λειτουργίας Ήχου Ψαριών"
+    "message": "Δημιουργήστε φυσική ομιλία και κλωνοποιήστε φωνές για πολυγλωσσική παραγωγή ήχου.",
+    "description": "Σύντομη εισαγωγή δυνατοτήτων: Δημιουργήστε φυσική ομιλία και κλωνοποιήστε φωνές για πολυγλωσσική παραγωγή ήχου."
   },
   "message.featuresCodingBridge": {
-    "message": "Enable or disable the Coding Bridge feature module.",
-    "description": "Description of the Coding Bridge feature"
+    "message": "Συνδέστε βοηθούς κώδικα AI με τοπικά έργα για καθοδηγούμενες ροές ανάπτυξης.",
+    "description": "Σύντομη εισαγωγή δυνατοτήτων: Συνδέστε βοηθούς κώδικα AI με τοπικά έργα για καθοδηγούμενες ροές ανάπτυξης."
   },
   "message.featuresWebextrator": {
-    "message": "Enable or disable the WebExtrator feature module.",
-    "description": "Description of the WebExtrator feature"
+    "message": "Εξαγάγετε καθαρό, δομημένο περιεχόμενο και δεδομένα από ιστοσελίδες.",
+    "description": "Σύντομη εισαγωγή δυνατοτήτων: Εξαγάγετε καθαρό, δομημένο περιεχόμενο και δεδομένα από ιστοσελίδες."
   },
   "message.featuresLuma": {
-    "message": "Ενεργοποίηση ή απενεργοποίηση της λειτουργίας Luma.",
-    "description": "Περιγραφή της λειτουργίας Luma"
+    "message": "Δημιουργήστε κινηματογραφικά βίντεο από κείμενο ή εικόνες με φυσική κίνηση.",
+    "description": "Σύντομη εισαγωγή δυνατοτήτων: Δημιουργήστε κινηματογραφικά βίντεο από κείμενο ή εικόνες με φυσική κίνηση."
   },
   "message.featuresPika": {
-    "message": "Ενεργοποίηση ή απενεργοποίηση της λειτουργίας Pika.",
-    "description": "Περιγραφή της λειτουργίας Pika"
+    "message": "Δημιουργήστε και επεξεργαστείτε σύντομα δημιουργικά βίντεο με εφέ, σκηνές και μεταμορφώσεις.",
+    "description": "Σύντομη εισαγωγή δυνατοτήτων: Δημιουργήστε και επεξεργαστείτε σύντομα δημιουργικά βίντεο με εφέ, σκηνές και μεταμορφώσεις."
   },
   "message.featuresKling": {
-    "message": "Ενεργοποίηση ή απενεργοποίηση της λειτουργίας Kling.",
-    "description": "Περιγραφή της λειτουργίας Kling"
+    "message": "Δημιουργήστε βίντεο υψηλής ποιότητας από κείμενο, εικόνες ή αναφορές κίνησης.",
+    "description": "Σύντομη εισαγωγή δυνατοτήτων: Δημιουργήστε βίντεο υψηλής ποιότητας από κείμενο, εικόνες ή αναφορές κίνησης."
   },
   "message.featuresHailuo": {
-    "message": "Ενεργοποίηση ή απενεργοποίηση της λειτουργίας Hailuo.",
-    "description": "Περιγραφή της λειτουργίας Hailuo"
-  },
-  "message.featuresHeadshots": {
-    "message": "Ενεργοποίηση ή απενεργοποίηση της λειτουργίας AI ταυτότητας.",
-    "description": "Περιγραφή της λειτουργίας AI ταυτότητας"
+    "message": "Δημιουργήστε εκφραστικά βίντεο από κείμενο ή εικόνες με ομαλή κίνηση χαρακτήρων.",
+    "description": "Σύντομη εισαγωγή δυνατοτήτων: Δημιουργήστε εκφραστικά βίντεο από κείμενο ή εικόνες με ομαλή κίνηση χαρακτήρων."
   },
   "message.featuresSupport": {
     "message": "Ενεργοποίηση ή απενεργοποίηση υποστήριξης πελατών.",
@@ -592,16 +716,16 @@
     "description": "Εμφανίζεται ως τίτλος στο πλαίσιο επεξεργασίας"
   },
   "message.featuresGemini": {
-    "message": "Ενεργοποίηση ή απενεργοποίηση της λειτουργίας Gemini.",
-    "description": "Περιγραφή της λειτουργίας Gemini"
+    "message": "Βοηθός Google για συλλογισμό μεγάλου πλαισίου, έρευνα, προγραμματισμό και πολυτροπική εργασία.",
+    "description": "Σύντομη εισαγωγή δυνατοτήτων: Βοηθός Google για συλλογισμό μεγάλου πλαισίου, έρευνα, προγραμματισμό και πολυτροπική εργασία."
   },
   "field.featuresClaude": {
     "message": "Claude",
     "description": "Εμφανίζεται ως τίτλος στο πλαίσιο επεξεργασίας"
   },
   "message.featuresClaude": {
-    "message": "Ενεργοποίηση ή απενεργοποίηση της λειτουργίας Claude.",
-    "description": "Περιγραφή της λειτουργίας Claude"
+    "message": "Βοηθός Anthropic για προσεκτικό συλλογισμό, γραφή, προγραμματισμό και ανάλυση εγγράφων.",
+    "description": "Σύντομη εισαγωγή δυνατοτήτων: Βοηθός Anthropic για προσεκτικό συλλογισμό, γραφή, προγραμματισμό και ανάλυση εγγράφων."
   },
   "placeholder.admins": {
     "message": "Εισάγετε το ID χρήστη διαχειριστή",
@@ -658,5 +782,200 @@
   "autoTranslate.error": {
     "message": "Η εναλλαγή αυτόματης μετάφρασης απέτυχε, δοκιμάστε ξανά",
     "description": "Fallback error toast when the enable/disable HTTP call fails with no detail"
+  },
+  "services.title": {
+    "message": "Προσαρμοσμένη προσαύξηση & εμφάνιση ανά υπηρεσία"
+  },
+  "services.tip": {
+    "message": "Απόκρυψη, μετονομασία, τιμολόγηση ή αναδιάταξη μεμονωμένων υπηρεσιών. Ένα κενό περιθώριο κληρονομεί την προεπιλογή του ιστότοπου. Η διαγραφή γραμμής επαναφέρει τις προεπιλογές."
+  },
+  "services.addButton": {
+    "message": "Προσθήκη"
+  },
+  "services.empty": {
+    "message": "Καμία παράκαμψη — κάθε υπηρεσία χρησιμοποιεί τις προεπιλογές της."
+  },
+  "services.field.service": {
+    "message": "Υπηρεσία"
+  },
+  "services.field.visible": {
+    "message": "Ορατό"
+  },
+  "services.field.customMarkupRatio": {
+    "message": "Προσαρμοσμένη προσαύξηση ανά υπηρεσία"
+  },
+  "services.field.displayTitle": {
+    "message": "Εμφανιζόμενο όνομα"
+  },
+  "services.field.displaySummary": {
+    "message": "Εμφανιζόμενη περίληψη"
+  },
+  "services.field.sortOrder": {
+    "message": "Σειρά"
+  },
+  "services.field.action": {
+    "message": "Ενέργειες"
+  },
+  "services.status.visible": {
+    "message": "Εμφανίζεται"
+  },
+  "services.status.hidden": {
+    "message": "Κρυφό"
+  },
+  "services.status.inherit": {
+    "message": "Κληρονομείται"
+  },
+  "services.dialog.create": {
+    "message": "Προσθήκη παράκαμψης υπηρεσίας"
+  },
+  "services.dialog.edit": {
+    "message": "Επεξεργασία παράκαμψης υπηρεσίας"
+  },
+  "services.placeholder.service": {
+    "message": "Επιλέξτε υπηρεσία από τον κατάλογο"
+  },
+  "services.placeholder.markup": {
+    "message": "Αφήστε το κενό για κληρονομιά της προεπιλογής"
+  },
+  "services.placeholder.displayTitle": {
+    "message": "Αφήστε κενό για χρήση του ονόματος καταλόγου"
+  },
+  "services.placeholder.displaySummary": {
+    "message": "Αφήστε κενό για χρήση της περιγραφής καταλόγου"
+  },
+  "services.tip.visible": {
+    "message": "Όταν είναι ανενεργό, η υπηρεσία κρύβεται στην αρχική (όσοι την έχουν διατηρούν πρόσβαση)."
+  },
+  "services.tip.markup": {
+    "message": "0% = τιμή πλατφόρμας· 0,5 = +50%· έως +500%. Κενό = προεπιλογή ιστότοπου."
+  },
+  "services.tip.sortOrder": {
+    "message": "Οι μικρότεροι αριθμοί προηγούνται."
+  },
+  "services.preview.sampleLabel": {
+    "message": "Δείγμα βασικής τιμής"
+  },
+  "services.preview.inherit": {
+    "message": "(κληρονομεί την προεπιλεγμένη προσαύξηση {percent})"
+  },
+  "services.message.alreadyOverridden": {
+    "message": "Έχει ήδη προστεθεί"
+  },
+  "services.message.serviceRequired": {
+    "message": "Επιλέξτε πρώτα μια υπηρεσία"
+  },
+  "services.message.saved": {
+    "message": "Αποθηκεύτηκε"
+  },
+  "services.message.deleted": {
+    "message": "Διαγράφηκε"
+  },
+  "services.message.deleteConfirm": {
+    "message": "Διαγραφή παράκαμψης για «{name}»; Η υπηρεσία επιστρέφει στις προεπιλογές."
+  },
+  "services.message.saveFailed": {
+    "message": "Αποτυχία αποθήκευσης, δοκιμάστε ξανά"
+  },
+  "services.message.deleteFailed": {
+    "message": "Αποτυχία διαγραφής, δοκιμάστε ξανά"
+  },
+  "services.message.fetchFailed": {
+    "message": "Αποτυχία φόρτωσης παρακάμψεων υπηρεσίας"
+  },
+  "field.featuresOmni": {
+    "message": "Omni",
+    "description": "Εμφανίζεται ως τίτλος στο πλαίσιο επεξεργασίας"
+  },
+  "message.featuresOmni": {
+    "message": "Δημιουργήστε ή επεξεργαστείτε βίντεο με μοντέλα Omni από κείμενο, εικόνες και αναφορές βίντεο.",
+    "description": "Δημιουργήστε ή επεξεργαστείτε βίντεο με μοντέλα Omni από κείμενο, εικόνες και αναφορές βίντεο."
+  },
+  "capabilityOverride.edit": {
+    "message": "Customize app",
+    "description": "Tooltip and accessible label for editing a capability app name and icon"
+  },
+  "capabilityOverride.dialogTitle": {
+    "message": "Customize {name}",
+    "description": "Dialog title; {name} is the platform-default capability app name"
+  },
+  "capabilityOverride.displayName": {
+    "message": "Custom name",
+    "description": "Field label for a per-site capability app display name"
+  },
+  "capabilityOverride.displayNameTip": {
+    "message": "Leave blank to use {name}. Save once before enabling automatic translation.",
+    "description": "Help text; {name} is the platform-default capability app name"
+  },
+  "capabilityOverride.icon": {
+    "message": "Custom icon",
+    "description": "Field label for a per-site capability app icon"
+  },
+  "capabilityOverride.defaultIcon": {
+    "message": "Default",
+    "description": "Label above the platform-default capability icon preview"
+  },
+  "capabilityOverride.currentIcon": {
+    "message": "Current",
+    "description": "Label above the effective capability icon preview"
+  },
+  "capabilityOverride.replaceIcon": {
+    "message": "Replace icon",
+    "description": "Command to upload a replacement capability icon"
+  },
+  "capabilityOverride.uploadIcon": {
+    "message": "Upload icon",
+    "description": "Command to upload the first custom capability icon"
+  },
+  "capabilityOverride.useDefaultIcon": {
+    "message": "Use default icon",
+    "description": "Command to clear the custom icon draft"
+  },
+  "capabilityOverride.iconTip": {
+    "message": "PNG, JPEG, or WebP. The image is cropped to a square; transparent PNG is preserved.",
+    "description": "Capability icon upload requirements"
+  },
+  "capabilityOverride.editIcon": {
+    "message": "Edit app icon",
+    "description": "Title of the capability icon cropper dialog"
+  },
+  "capabilityOverride.resetAll": {
+    "message": "Restore defaults",
+    "description": "Command that removes both custom name and icon"
+  },
+  "capabilityOverride.empty": {
+    "message": "Enter a custom name or upload an icon first.",
+    "description": "Warning when attempting to create an empty override"
+  },
+  "capabilityOverride.saved": {
+    "message": "App customization saved",
+    "description": "Success message after saving a capability override"
+  },
+  "capabilityOverride.savedEnableTranslation": {
+    "message": "Saved. You can now enable automatic translation for the custom name.",
+    "description": "Success message after first save creates an override ID"
+  },
+  "capabilityOverride.saveFailed": {
+    "message": "Failed to save app customization",
+    "description": "Fallback error for capability override writes"
+  },
+  "capabilityOverride.resetConfirm": {
+    "message": "Restore the default name and icon for {name}?",
+    "description": "Confirmation message; {name} is the platform-default capability app name"
+  },
+  "capabilityOverride.resetDone": {
+    "message": "Default name and icon restored",
+    "description": "Success message after deleting a capability override"
+  },
+  "capabilityOverride.fetchFailed": {
+    "message": "Failed to load app customizations",
+    "description": "Error shown when capability override management rows cannot be loaded"
+  },
+  "field.featuresPoivelle": {
+    "message": "Poivelle",
+    "description": "Displayed as the title in the editing box"
+  },
+  "message.featuresPoivelle": {
+    "message": "Direct professional AI film production through a shared project graph, storyboard, timeline, review, and skill-agent workflow.",
+    "description": "Concise capability introduction: Direct professional AI film production through a shared project graph, storyboard, timeline, review, and skill-agent workflow."
   }
 }

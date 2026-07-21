@@ -27,6 +27,50 @@
     "message": "Razón del fallo",
     "description": "Razón del fallo"
   },
+  "name.mode": {
+    "message": "Modo",
+    "description": "Modo de generación / acción"
+  },
+  "option.action.generate": {
+    "message": "Generar",
+    "description": "Opción de acción para generar"
+  },
+  "option.action.remix": {
+    "message": "Remixar",
+    "description": "Opción de acción para remixar"
+  },
+  "option.action.edit": {
+    "message": "Editar",
+    "description": "Opción de acción para editar"
+  },
+  "option.action.extend": {
+    "message": "Extender",
+    "description": "Opción de acción para extender"
+  },
+  "step.plan": {
+    "message": "Plan y guion gráfico",
+    "description": "Pipeline step: plan"
+  },
+  "step.source": {
+    "message": "Reunir material",
+    "description": "Pipeline step: source media"
+  },
+  "step.voice": {
+    "message": "Voz en off",
+    "description": "Pipeline step: voiceover"
+  },
+  "step.compose": {
+    "message": "Componer escenas",
+    "description": "Pipeline step: compose"
+  },
+  "step.render": {
+    "message": "Renderizar vídeo",
+    "description": "Pipeline step: render"
+  },
+  "step.deliver": {
+    "message": "Entregar",
+    "description": "Pipeline step: deliver"
+  },
   "name.prompt": {
     "message": "Palabra clave",
     "description": "Campo de solicitud"
@@ -163,6 +207,166 @@
     "message": "No hay videos aún — crea el tuyo primero a la izquierda.",
     "description": "Sin tareas"
   },
+  "name.scenario": {
+    "message": "Tipo de vídeo",
+    "description": "Video type field"
+  },
+  "description.scenario": {
+    "message": "Activa la personalización para elegir el tipo de vídeo; déjala desactivada para que Maestro decida automáticamente.",
+    "description": "Scenario field help"
+  },
+  "option.scenario.auto": {
+    "message": "Automático · que decida Maestro",
+    "description": "Auto scenario option"
+  },
+  "option.scenario.narrated": {
+    "message": "Video narrado con imágenes",
+    "description": "Opción de video narrado de múltiples escenas"
+  },
+  "option.scenario.drama": {
+    "message": "Drama corto",
+    "description": "Short drama scenario option"
+  },
+  "option.scenario.avatar": {
+    "message": "Avatar · Locución",
+    "description": "Opción de escenario de avatar / cabeza hablante"
+  },
+  "option.scenario.captions": {
+    "message": "Añadir subtítulos",
+    "description": "Add-captions scenario option"
+  },
+  "message.captionsNeedVideo": {
+    "message": "Los subtítulos cinéticos funcionan sobre un vídeo de locutor existente: sube uno arriba primero.",
+    "description": "Warning shown when captions video type is selected but no source video is uploaded"
+  },
+  "name.style": {
+    "message": "Estilo visual",
+    "description": "Campo de estilo visual"
+  },
+  "description.style": {
+    "message": "Activa la personalización para elegir o escribir el estilo visual; déjala desactivada para que Maestro decida automáticamente.",
+    "description": "Ayuda para el campo de estilo"
+  },
+  "option.style.auto": {
+    "message": "Automático · Sin especificar adicionalmente",
+    "description": "Opción de estilo automático"
+  },
+  "option.style.cinematic": {
+    "message": "Estilo cinematográfico",
+    "description": "Opción de estilo cinematográfico"
+  },
+  "option.style.glass": {
+    "message": "Frosted Glass",
+    "description": "Frosted glass style option"
+  },
+  "option.style.luxury": {
+    "message": "Luxury",
+    "description": "Luxury style option"
+  },
+  "option.style.swiss": {
+    "message": "Swiss Grid",
+    "description": "Swiss grid style option"
+  },
+  "option.style.modern": {
+    "message": "Modern",
+    "description": "Modern style option"
+  },
+  "option.style.editorial": {
+    "message": "Editorial",
+    "description": "Editorial style option"
+  },
+  "option.style.warm": {
+    "message": "Warm",
+    "description": "Warm style option"
+  },
+  "option.style.vibrant": {
+    "message": "Vibrant",
+    "description": "Vibrant style option"
+  },
+  "option.style.neon": {
+    "message": "Estilo neón",
+    "description": "Opción de estilo neón"
+  },
+  "option.style.mono": {
+    "message": "Monochrome",
+    "description": "Monochrome style option"
+  },
+  "option.style.pastel": {
+    "message": "Pastel",
+    "description": "Pastel style option"
+  },
+  "option.style.bold": {
+    "message": "Bold Type",
+    "description": "Bold type style option"
+  },
+  "option.style.industrial": {
+    "message": "Industrial",
+    "description": "Industrial style option"
+  },
+  "option.style.futuristic": {
+    "message": "Futuristic",
+    "description": "Futuristic style option"
+  },
+  "option.style.retro": {
+    "message": "Retro Film",
+    "description": "Retro film style option"
+  },
+  "name.voice": {
+    "message": "Tono de voz",
+    "description": "Campo de tono de voz"
+  },
+  "button.preview": {
+    "message": "Vista previa",
+    "description": "Botón de vista previa de voz / reproducir muestra"
+  },
+  "description.voice": {
+    "message": "Activa la personalización para elegir el tono de voz; déjala desactivada para que Maestro lo elija automáticamente. El tono es independiente del idioma y puedes pulsar el botón de reproducción para escucharlo.",
+    "description": "Ayuda del campo de voz"
+  },
+  "option.voice.auto": {
+    "message": "Automático · Coincide con Maestro",
+    "description": "Opción de voz automática"
+  },
+  "option.voice.warm-female": {
+    "message": "Voz femenina cálida",
+    "description": "Opción de voz femenina cálida"
+  },
+  "option.voice.bright-female": {
+    "message": "Voz femenina brillante",
+    "description": "Opción de voz femenina brillante"
+  },
+  "option.voice.anchor-female": {
+    "message": "Voz femenina de ancla",
+    "description": "Opción de voz femenina de ancla"
+  },
+  "option.voice.clean-female": {
+    "message": "Voz femenina clara",
+    "description": "Opción de voz femenina clara"
+  },
+  "option.voice.calm-male": {
+    "message": "Voz masculina tranquila",
+    "description": "Opción de voz masculina tranquila"
+  },
+  "option.voice.deep-male": {
+    "message": "Voz masculina profunda",
+    "description": "Opción de voz masculina profunda"
+  },
+  "option.voice.documentary-male": {
+    "message": "Voz masculina de documental",
+    "description": "Opción de voz masculina de documental"
+  },
+  "option.voice.energetic-male": {
+    "message": "Voz masculina enérgica",
+    "description": "Opción de voz masculina enérgica"
+  },
+  "option.voice.storyteller-male": {
+    "message": "Voz masculina narradora",
+    "description": "Opción de voz masculina narradora"
+  },
+  "option.scenario.slideshow": {
+    "message": "Presentación de diapositivas",
+    "description": "Opción de escenario de presentación de diapositivas"
+  },
   "name.sourceType": {
     "message": "Tipo de origen",
     "description": "Campo de tipo de origen"
@@ -222,5 +426,65 @@
   "message.downloadVideo": {
     "message": "Descargar el video generado",
     "description": "Tooltip de descarga"
+  },
+  "option.scenario.general": {
+    "message": "Secuencia real",
+    "description": "Footage piece scenario option"
+  },
+  "option.scenario.explainer": {
+    "message": "Explicativo",
+    "description": "Explainer scenario option"
+  },
+  "option.scenario.product": {
+    "message": "Promoción de producto",
+    "description": "Product promo scenario option"
+  },
+  "option.scenario.website": {
+    "message": "Web a vídeo",
+    "description": "Website-to-video scenario option"
+  },
+  "option.scenario.slides": {
+    "message": "Presentación",
+    "description": "Slideshow scenario option"
+  },
+  "option.scenario.changelog": {
+    "message": "Registro de cambios (PR)",
+    "description": "Changelog scenario option"
+  },
+  "name.customize": {
+    "message": "Personalizar",
+    "description": "Optional creative controls toggle"
+  },
+  "description.customize.auto": {
+    "message": "Automático · Maestro decide el tipo de vídeo, el estilo visual y el tono de voz.",
+    "description": "Customization disabled state"
+  },
+  "description.customize.manual": {
+    "message": "Elige el tipo de vídeo, el estilo visual y el tono de voz.",
+    "description": "Customization enabled state"
+  },
+  "name.primaryLanguage": {
+    "message": "Primary language",
+    "description": "Primary output language field"
+  },
+  "name.additionalLanguages": {
+    "message": "Additional languages (optional)",
+    "description": "Additional output languages field"
+  },
+  "placeholder.additionalLanguages": {
+    "message": "Add output languages",
+    "description": "Additional languages placeholder"
+  },
+  "name.customizeScenario": {
+    "message": "Personalizar tipo de vídeo",
+    "description": "Video type customization toggle"
+  },
+  "name.customizeStyle": {
+    "message": "Personalizar estilo visual",
+    "description": "Visual style customization toggle"
+  },
+  "name.customizeVoice": {
+    "message": "Personalizar tono de voz",
+    "description": "Voice timbre customization toggle"
   }
 }

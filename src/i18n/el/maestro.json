@@ -27,6 +27,50 @@
     "message": "Λόγος αποτυχίας",
     "description": "Λόγος αποτυχίας"
   },
+  "name.mode": {
+    "message": "Λειτουργία",
+    "description": "Λειτουργία / ενέργεια δημιουργίας"
+  },
+  "option.action.generate": {
+    "message": "Δημιουργία",
+    "description": "Επιλογή ενέργειας δημιουργίας"
+  },
+  "option.action.remix": {
+    "message": "Remix",
+    "description": "Επιλογή ενέργειας remix"
+  },
+  "option.action.edit": {
+    "message": "Επεξεργασία",
+    "description": "Επιλογή ενέργειας επεξεργασίας"
+  },
+  "option.action.extend": {
+    "message": "Επέκταση",
+    "description": "Επιλογή ενέργειας επέκτασης"
+  },
+  "step.plan": {
+    "message": "Σχεδιασμός & στορίμπορντ",
+    "description": "Pipeline step: plan"
+  },
+  "step.source": {
+    "message": "Συλλογή πολυμέσων",
+    "description": "Pipeline step: source media"
+  },
+  "step.voice": {
+    "message": "Αφήγηση",
+    "description": "Pipeline step: voiceover"
+  },
+  "step.compose": {
+    "message": "Σύνθεση σκηνών",
+    "description": "Pipeline step: compose"
+  },
+  "step.render": {
+    "message": "Απόδοση βίντεο",
+    "description": "Pipeline step: render"
+  },
+  "step.deliver": {
+    "message": "Παράδοση",
+    "description": "Pipeline step: deliver"
+  },
   "name.prompt": {
     "message": "Προτροπή",
     "description": "Πεδίο προτροπής"
@@ -163,6 +207,166 @@
     "message": "Δεν υπάρχουν βίντεο — Δημιουργήστε το πρώτο σας αριστερά.",
     "description": "Χωρίς εργασίες"
   },
+  "name.scenario": {
+    "message": "Τύπος βίντεο",
+    "description": "Video type field"
+  },
+  "description.scenario": {
+    "message": "Ενεργοποιήστε την προσαρμογή για να επιλέξετε τύπο βίντεο· αφήστε την απενεργοποιημένη για να αποφασίσει αυτόματα το Maestro.",
+    "description": "Scenario field help"
+  },
+  "option.scenario.auto": {
+    "message": "Αυτόματο · ας αποφασίσει το Maestro",
+    "description": "Auto scenario option"
+  },
+  "option.scenario.narrated": {
+    "message": "Βίντεο με αφήγηση",
+    "description": "Επιλογή βίντεο με αφήγηση πολλαπλών σκηνών"
+  },
+  "option.scenario.drama": {
+    "message": "Σύντομο δράμα",
+    "description": "Short drama scenario option"
+  },
+  "option.scenario.avatar": {
+    "message": "Ψηφιακός άνθρωπος · Ομιλία",
+    "description": "Επιλογή σεναρίου με avatar / ομιλητή"
+  },
+  "option.scenario.captions": {
+    "message": "Προσθήκη υπότιτλων",
+    "description": "Add-captions scenario option"
+  },
+  "message.captionsNeedVideo": {
+    "message": "Οι κινητικοί υπότιτλοι εφαρμόζονται σε υπάρχον βίντεο ομιλητή — ανεβάστε πρώτα ένα παραπάνω.",
+    "description": "Warning shown when captions video type is selected but no source video is uploaded"
+  },
+  "name.style": {
+    "message": "Οπτικός στυλ",
+    "description": "Πεδίο οπτικού στυλ"
+  },
+  "description.style": {
+    "message": "Ενεργοποιήστε την προσαρμογή για να επιλέξετε ή να εισαγάγετε οπτικό στυλ· αφήστε την απενεργοποιημένη για να αποφασίσει αυτόματα το Maestro.",
+    "description": "Βοήθεια πεδίου στυλ"
+  },
+  "option.style.auto": {
+    "message": "Αυτόματο · Χωρίς επιπλέον καθορισμό",
+    "description": "Επιλογή αυτόματου στυλ"
+  },
+  "option.style.cinematic": {
+    "message": "Κινηματογραφικό",
+    "description": "Επιλογή κινηματογραφικού στυλ"
+  },
+  "option.style.glass": {
+    "message": "Frosted Glass",
+    "description": "Frosted glass style option"
+  },
+  "option.style.luxury": {
+    "message": "Luxury",
+    "description": "Luxury style option"
+  },
+  "option.style.swiss": {
+    "message": "Swiss Grid",
+    "description": "Swiss grid style option"
+  },
+  "option.style.modern": {
+    "message": "Modern",
+    "description": "Modern style option"
+  },
+  "option.style.editorial": {
+    "message": "Editorial",
+    "description": "Editorial style option"
+  },
+  "option.style.warm": {
+    "message": "Warm",
+    "description": "Warm style option"
+  },
+  "option.style.vibrant": {
+    "message": "Vibrant",
+    "description": "Vibrant style option"
+  },
+  "option.style.neon": {
+    "message": "Νεον",
+    "description": "Επιλογή στυλ νεον"
+  },
+  "option.style.mono": {
+    "message": "Monochrome",
+    "description": "Monochrome style option"
+  },
+  "option.style.pastel": {
+    "message": "Pastel",
+    "description": "Pastel style option"
+  },
+  "option.style.bold": {
+    "message": "Bold Type",
+    "description": "Bold type style option"
+  },
+  "option.style.industrial": {
+    "message": "Industrial",
+    "description": "Industrial style option"
+  },
+  "option.style.futuristic": {
+    "message": "Futuristic",
+    "description": "Futuristic style option"
+  },
+  "option.style.retro": {
+    "message": "Retro Film",
+    "description": "Retro film style option"
+  },
+  "name.voice": {
+    "message": "Τόνος φωνής",
+    "description": "Πεδίο τόνου φωνής"
+  },
+  "button.preview": {
+    "message": "Δείγμα",
+    "description": "Κουμπί προεπισκόπησης φωνής / αναπαραγωγής δείγματος"
+  },
+  "description.voice": {
+    "message": "Ενεργοποιήστε την προσαρμογή για να επιλέξετε τόνο φωνής· διαφορετικά το Maestro επιλέγει αυτόματα. Ο τόνος είναι ανεξάρτητος από τη γλώσσα και μπορείτε να τον ακούσετε με την αναπαραγωγή.",
+    "description": "Βοήθεια πεδίου φωνής"
+  },
+  "option.voice.auto": {
+    "message": "Αυτόματα · Αντιστοίχιση από τον Maestro",
+    "description": "Αυτόματη επιλογή φωνής"
+  },
+  "option.voice.warm-female": {
+    "message": "Ζεστή γυναικεία φωνή",
+    "description": "Επιλογή ζεστής γυναικείας φωνής"
+  },
+  "option.voice.bright-female": {
+    "message": "Φωτεινή γυναικεία φωνή",
+    "description": "Επιλογή φωτεινής γυναικείας φωνής"
+  },
+  "option.voice.anchor-female": {
+    "message": "Γυναικεία φωνή παρουσιαστή",
+    "description": "Επιλογή γυναικείας φωνής παρουσιαστή"
+  },
+  "option.voice.clean-female": {
+    "message": "Καθαρή γυναικεία φωνή",
+    "description": "Επιλογή καθαρής γυναικείας φωνής"
+  },
+  "option.voice.calm-male": {
+    "message": "Ήρεμη ανδρική φωνή",
+    "description": "Επιλογή ήρεμης ανδρικής φωνής"
+  },
+  "option.voice.deep-male": {
+    "message": "Βαθιά ανδρική φωνή",
+    "description": "Επιλογή βαθιάς ανδρικής φωνής"
+  },
+  "option.voice.documentary-male": {
+    "message": "Αφήγηση ανδρικής φωνής",
+    "description": "Επιλογή ανδρικής φωνής για ντοκιμαντέρ"
+  },
+  "option.voice.energetic-male": {
+    "message": "Ενεργητική ανδρική φωνή",
+    "description": "Επιλογή ενεργητικής ανδρικής φωνής"
+  },
+  "option.voice.storyteller-male": {
+    "message": "Αφηγηματική ανδρική φωνή",
+    "description": "Επιλογή αφηγηματικής ανδρικής φωνής"
+  },
+  "option.scenario.slideshow": {
+    "message": "Παρουσίαση διαφανειών",
+    "description": "Επιλογή σεναρίου παρουσίασης διαφανειών"
+  },
   "name.sourceType": {
     "message": "Τύπος πηγής",
     "description": "Πεδίο τύπου πηγής"
@@ -222,5 +426,65 @@
   "message.downloadVideo": {
     "message": "Κατέβασμα του παραγόμενου βίντεο",
     "description": "Tooltip για κατέβασμα"
+  },
+  "option.scenario.general": {
+    "message": "Πραγματικά πλάνα",
+    "description": "Footage piece scenario option"
+  },
+  "option.scenario.explainer": {
+    "message": "Επεξηγηματικό",
+    "description": "Explainer scenario option"
+  },
+  "option.scenario.product": {
+    "message": "Προώθηση προϊόντος",
+    "description": "Product promo scenario option"
+  },
+  "option.scenario.website": {
+    "message": "Ιστότοπος σε βίντεο",
+    "description": "Website-to-video scenario option"
+  },
+  "option.scenario.slides": {
+    "message": "Παρουσίαση διαφανειών",
+    "description": "Slideshow scenario option"
+  },
+  "option.scenario.changelog": {
+    "message": "Αρχείο αλλαγών (PR)",
+    "description": "Changelog scenario option"
+  },
+  "name.customize": {
+    "message": "Προσαρμογή",
+    "description": "Optional creative controls toggle"
+  },
+  "description.customize.auto": {
+    "message": "Αυτόματο · Το Maestro επιλέγει τον τύπο βίντεο, το οπτικό στυλ και τον τόνο φωνής.",
+    "description": "Customization disabled state"
+  },
+  "description.customize.manual": {
+    "message": "Επιλέξτε τον τύπο βίντεο, το οπτικό στυλ και τον τόνο φωνής.",
+    "description": "Customization enabled state"
+  },
+  "name.primaryLanguage": {
+    "message": "Primary language",
+    "description": "Primary output language field"
+  },
+  "name.additionalLanguages": {
+    "message": "Additional languages (optional)",
+    "description": "Additional output languages field"
+  },
+  "placeholder.additionalLanguages": {
+    "message": "Add output languages",
+    "description": "Additional languages placeholder"
+  },
+  "name.customizeScenario": {
+    "message": "Προσαρμογή τύπου βίντεο",
+    "description": "Video type customization toggle"
+  },
+  "name.customizeStyle": {
+    "message": "Προσαρμογή οπτικού στυλ",
+    "description": "Visual style customization toggle"
+  },
+  "name.customizeVoice": {
+    "message": "Προσαρμογή τόνου φωνής",
+    "description": "Voice timbre customization toggle"
   }
 }

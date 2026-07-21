@@ -207,10 +207,11 @@ export default defineComponent({
       // free-credit grant. No localStorage gate needed.
       const globalApp = this.$store.state.applications?.[0];
       const credits = Math.floor(globalApp?.remaining_amount ?? 0);
+      const brand = this.$store.state.site?.title || 'AceData';
       const message =
         credits > 0
-          ? this.$t('application.message.welcomeWithCredits', { credits })
-          : this.$t('application.message.welcomeNoCredits');
+          ? this.$t('application.message.welcomeWithCredits', { credits, brand })
+          : this.$t('application.message.welcomeNoCredits', { brand });
       ElMessage({ message: message as string, type: 'success', duration: 6000, showClose: true });
     }
   }
@@ -241,6 +242,14 @@ export default defineComponent({
 // Keep the wallet / balance pill below native status bars.
 .status-floating {
   top: calc(0.5rem + var(--app-safe-area-top));
+}
+
+// Desktop: push the pill below the 40px titleBarOverlay so it doesn't overlap
+// the window drag region visually. Keep the right offset at the base value
+// (`right-2` = 0.5rem) — the min/max/close buttons occupy top 0..40px, so a
+// pill starting at top: 44px sits *below* them, not next to them.
+html.surface-desktop .status-floating {
+  top: 44px;
 }
 
 @media (max-width: 767px) {

@@ -39,6 +39,30 @@
     "message": "ID amministratori del sito",
     "description": "Mostrato nel campo di modifica del titolo"
   },
+  "field.contacts": {
+    "message": "Contatti di assistenza",
+    "description": "Field title for the customer-service contacts in site settings"
+  },
+  "field.markupRatio": {
+    "message": "Sovrapprezzo uniforme per l'intero sito",
+    "description": "Impostazioni del sito: percentuale di sovrapprezzo uniforme per tutti i pacchetti di ricarica su questo sito (percentuale)"
+  },
+  "message.markupRatioTip": {
+    "message": "Imposta un sovrapprezzo uniforme per tutti i servizi di questo sito (0%–500%). Un sovrapprezzo personalizzato per servizio configurato sotto sostituisce questo valore.",
+    "description": "Testo esplicativo per l'impostazione della percentuale di sovrapprezzo"
+  },
+  "message.markupExample": {
+    "message": "Esempio: prezzo ufficiale {from} → tuo prezzo {to}",
+    "description": "Esempio in tempo reale sotto l'impostazione della percentuale di sovrapprezzo, {from} è il prezzo ufficiale, {to} è il prezzo dopo il sovrapprezzo"
+  },
+  "field.disableRecharge": {
+    "message": "Disattiva ricarica",
+    "description": "Site settings: when on, hide all recharge/top-up entries on this site"
+  },
+  "message.disableRechargeTip": {
+    "message": "Se attivato, tutti i pulsanti di ricarica vengono nascosti su questo sito e gli utenti non possono più ricaricare il loro saldo.",
+    "description": "Help text for the disable-recharge toggle"
+  },
   "field.distributionDefaultInviterId": {
     "message": "ID invitante predefinito",
     "description": "Mostrato nel campo di modifica del titolo"
@@ -78,6 +102,102 @@
   "field.authProvider_wechat": {
     "message": "WeChat",
     "description": "Nome del metodo di accesso: accesso di terze parti tramite WeChat"
+  },
+  "field.authSmsWebhook": {
+    "message": "Custom SMS Sender",
+    "description": "Site settings / login: title for the site's own custom SMS verification-code delivery webhook"
+  },
+  "message.authSmsWebhookTip": {
+    "message": "When enabled, this site's phone verification codes are sent through your own endpoint under your own signature; disable it to use the platform default. Requires the phone-number login provider to be enabled.",
+    "description": "Explains the custom SMS sender webhook"
+  },
+  "placeholder.authSmsWebhookUrl": {
+    "message": "https://your-domain/sms-webhook",
+    "description": "Placeholder for the SMS webhook URL input"
+  },
+  "placeholder.authSmsWebhookSecret": {
+    "message": "Signing secret (leave blank to keep unchanged)",
+    "description": "Placeholder for the SMS webhook signing secret input; write-only, blank keeps existing"
+  },
+  "field.authSmsWebhookEnable": {
+    "message": "Use a custom sender",
+    "description": "Label next to the custom SMS sender toggle"
+  },
+  "field.authSmsWebhookDoc": {
+    "message": "View docs",
+    "description": "Link that opens the SMS webhook spec dialog"
+  },
+  "field.authSmsWebhookTest": {
+    "message": "Test",
+    "description": "Button that opens the SMS webhook test dialog"
+  },
+  "message.authSmsWebhookNeedsPhone": {
+    "message": "Enable the phone-number login provider first to configure a custom SMS sender.",
+    "description": "Tooltip shown when the toggle is disabled because phone login is off"
+  },
+  "field.authSmsWebhookDocTitle": {
+    "message": "Custom SMS Sender · Webhook spec",
+    "description": "Title of the SMS webhook spec dialog"
+  },
+  "message.authSmsWebhookDocIntro": {
+    "message": "This site sends a signed HTTPS POST to the URL you provide; your service is responsible for delivering the SMS. Your endpoint must meet the following requirements:",
+    "description": "Intro paragraph of the SMS webhook spec dialog"
+  },
+  "field.authSmsWebhookDocRequest": {
+    "message": "Request",
+    "description": "Heading: request section of the SMS webhook spec"
+  },
+  "message.authSmsWebhookDocRequest": {
+    "message": "Method POST, Content-Type application/json. purpose is one of login / register / test (test is a connectivity probe — you may skip actually sending). The request body looks like:",
+    "description": "Describes the request method and body of the SMS webhook"
+  },
+  "field.authSmsWebhookDocHeaders": {
+    "message": "Signature verification",
+    "description": "Heading: signature section of the SMS webhook spec"
+  },
+  "message.authSmsWebhookDocHeaders": {
+    "message": "Each request carries the headers below. Verify with your signing secret using HMAC-SHA256 per the Standard Webhooks spec and compare in constant time:",
+    "description": "Describes signature verification for the SMS webhook"
+  },
+  "field.authSmsWebhookDocResponse": {
+    "message": "Response",
+    "description": "Heading: response section of the SMS webhook spec"
+  },
+  "message.authSmsWebhookDocResponse": {
+    "message": "Return 2xx on success. To signal failure explicitly, return HTTP 200 with a JSON body whose success field is false (see the example below). Respond within 5 seconds.",
+    "description": "Describes the expected response of the SMS webhook"
+  },
+  "field.authSmsWebhookTestTitle": {
+    "message": "Test custom SMS sender",
+    "description": "Title of the SMS webhook test dialog"
+  },
+  "field.authSmsWebhookTestRegion": {
+    "message": "Country/region code",
+    "description": "Label for the region-code field in the test dialog"
+  },
+  "field.authSmsWebhookTestNumber": {
+    "message": "Test phone number (optional)",
+    "description": "Label for the phone-number field in the test dialog"
+  },
+  "field.authSmsWebhookTestSend": {
+    "message": "Send test",
+    "description": "Button that sends the SMS webhook test request"
+  },
+  "message.authSmsWebhookTestOk": {
+    "message": "The test request was delivered to your endpoint successfully.",
+    "description": "Success message after a webhook test"
+  },
+  "message.authSmsWebhookTestFailed": {
+    "message": "Test failed. Check the URL, signing secret, and your endpoint's response.",
+    "description": "Failure message after a webhook test"
+  },
+  "field.authSmsWebhookDisableTitle": {
+    "message": "Disable custom SMS sender",
+    "description": "Title of the confirm dialog shown when disabling the custom SMS sender"
+  },
+  "message.authSmsWebhookDisableConfirm": {
+    "message": "Disabling this deletes the saved sender URL and signing secret (the secret cannot be recovered), and this site falls back to the platform default signature. Disable it?",
+    "description": "Body of the confirm dialog shown when disabling the custom SMS sender"
   },
   "field.featuresChat": {
     "message": "Chat",
@@ -145,10 +265,6 @@
   },
   "field.featuresHailuo": {
     "message": "Hailuo",
-    "description": "Mostrato nel campo di modifica del titolo"
-  },
-  "field.featuresHeadshots": {
-    "message": "Foto identificativa AI",
     "description": "Mostrato nel campo di modifica del titolo"
   },
   "field.featuresSuno": {
@@ -222,6 +338,10 @@
   "title.editAdmins": {
     "message": "Modifica amministratori",
     "description": "Mostrato nel campo di modifica del titolo"
+  },
+  "title.editContacts": {
+    "message": "Modifica contatti di assistenza",
+    "description": "Title of the edit-support-contacts dialog"
   },
   "title.featuresConfig": {
     "message": "Configurazione funzionalità",
@@ -431,6 +551,14 @@
     "message": "Puoi aggiungere o rimuovere ID amministratori qui. Puoi visualizzare gli ID utente su https://auth.acedata.cloud",
     "description": "Messaggio di avviso per gli amministratori del sito"
   },
+  "message.contactsTip": {
+    "message": "Inserisci i contatti del servizio clienti (Discord, X, WeChat, telefono, email). Compaiono nella pagina Informazioni così gli utenti possono contattarti.",
+    "description": "Tip for the support-contacts field"
+  },
+  "message.contactsEmpty": {
+    "message": "Non impostato",
+    "description": "Placeholder shown when no support contact has been filled in"
+  },
   "message.keywordsTip": {
     "message": "Parole chiave del sito, presenti nei metadati del sito, utili per l'ottimizzazione SEO.",
     "description": "Messaggio di avviso per le parole chiave del sito"
@@ -444,124 +572,120 @@
     "description": "Descrizione della funzionalità Chat"
   },
   "message.featuresGrok": {
-    "message": "Attiva o disattiva il modulo funzionalità Grok.",
-    "description": "Descrizione della funzionalità Grok"
+    "message": "Assistente xAI per conoscenze in tempo reale, ragionamento, scrittura e programmazione.",
+    "description": "Concise capability introduction: xAI assistant for real-time knowledge, reasoning, writing, and coding."
   },
   "message.featuresGrokvideo": {
-    "message": "Abilita o disabilita il modulo funzionale Grok Video.",
-    "description": "Descrizione della funzionalità Grok Video"
+    "message": "Generazione video xAI per clip brevi da prompt di testo o immagini di riferimento.",
+    "description": "Concise capability introduction: xAI video generation for short clips from text prompts or reference images."
   },
   "message.featuresMaestro": {
-    "message": "Abilita o disabilita il modulo funzionale Maestro.",
-    "description": "Descrizione della funzionalità Maestro"
+    "message": "Produce video completi a partire da un’idea, inclusi pianificazione, voce narrante, scene e consegna.",
+    "description": "Concise capability introduction: Produce complete videos from an idea, including planning, voiceover, scenes, and delivery."
   },
   "message.featuresDigitalhuman": {
-    "message": "Enable or disable the Digital Human feature module.",
-    "description": "Description of the Digital Human feature"
+    "message": "Crea video con volto parlante e voce sintetizzata con sincronizzazione labiale naturale.",
+    "description": "Concise capability introduction: Create talking-head videos with synthesized speech and natural lip sync."
   },
   "message.featuresDeepseek": {
-    "message": "Attiva o disattiva il modulo funzionalità Deepseek.",
-    "description": "Descrizione della funzionalità Deepseek"
+    "message": "Assistente DeepSeek per ragionamento avanzato, programmazione, matematica e domande quotidiane.",
+    "description": "Concise capability introduction: DeepSeek assistant for advanced reasoning, coding, math, and everyday questions."
   },
   "message.featuresChatgpt": {
-    "message": "Attiva o disattiva il modulo funzionalità ChatGPT.",
-    "description": "Descrizione della funzionalità ChatGPT"
+    "message": "Assistente OpenAI per scrittura, ragionamento, programmazione e conversazioni multimodali.",
+    "description": "Concise capability introduction: OpenAI assistant for writing, reasoning, coding, and multimodal conversations."
   },
   "message.featuresMidjourney": {
-    "message": "Attiva o disattiva il modulo funzionalità Midjourney.",
-    "description": "Descrizione della funzionalità Midjourney"
+    "message": "Crea immagini curate e varianti creative a partire da testo o riferimenti visivi.",
+    "description": "Concise capability introduction: Create polished images and creative variations from text or visual references."
   },
   "message.featuresChatdoc": {
     "message": "Attiva o disattiva il modulo funzionalità Chatdoc.",
     "description": "Descrizione della funzionalità Chatdoc"
   },
   "message.featuresQrart": {
-    "message": "Attiva o disattiva il modulo funzionalità Qrart.",
-    "description": "Descrizione della funzionalità Qrart"
+    "message": "Trasforma i link in codici QR artistici e scansionabili con stili e immagini personalizzati.",
+    "description": "Concise capability introduction: Turn links into scannable artistic QR codes with custom styles and imagery."
   },
   "message.featuresVeo": {
-    "message": "Attiva o disattiva il modulo funzionalità Veo.",
-    "description": "Descrizione della funzionalità Veo"
+    "message": "Generazione video di Google per clip cinematografiche con forte controllo su prompt e movimento.",
+    "description": "Concise capability introduction: Google video generation for cinematic clips with strong prompt and motion control."
   },
   "message.featuresSora": {
-    "message": "Attiva o disattiva il modulo funzionalità Sora.",
-    "description": "Descrizione della funzionalità Sora"
+    "message": "Generazione video OpenAI per scene realistiche, storytelling e trasformazioni visive.",
+    "description": "Concise capability introduction: OpenAI video generation for realistic scenes, storytelling, and visual transformations."
   },
   "message.featuresSuno": {
-    "message": "Attiva o disattiva il modulo funzionale Suno.",
-    "description": "Descrizione della funzionalità Suno"
+    "message": "Genera brani completi, testi, voci e basi strumentali a partire da un prompt.",
+    "description": "Concise capability introduction: Generate complete songs, lyrics, vocals, and instrumentals from a prompt."
   },
   "message.featuresPixverse": {
-    "message": "Attiva o disattiva il modulo funzionale Pixverse.",
-    "description": "Descrizione della funzionalità Pixverse"
+    "message": "Genera video stilizzati da prompt e immagini con modelli ed effetti.",
+    "description": "Concise capability introduction: Generate stylized videos from prompts and images with templates and effects."
   },
   "message.featuresFlux": {
-    "message": "Attiva o disattiva il modulo funzionale FLux.",
-    "description": "Descrizione della funzionalità FLux"
+    "message": "Crea immagini dettagliate e modifica elementi visivi esistenti con istruzioni in linguaggio naturale.",
+    "description": "Concise capability introduction: Create detailed images and edit existing visuals with natural-language instructions."
   },
   "message.featuresNanobanana": {
-    "message": "Attiva o disattiva il modulo funzionale Nano Banana.",
-    "description": "Descrizione della funzionalità Nano Banana"
+    "message": "Generazione e modifica immagini con tecnologia Google e grande precisione nel seguire le istruzioni.",
+    "description": "Concise capability introduction: Google-powered image generation and editing with precise instruction following."
   },
   "message.featuresOpenaiimage": {
-    "message": "Attiva o disattiva il modulo funzionale OpenAI Immagine.",
-    "description": "Descrizione della funzionalità OpenAI Immagine"
+    "message": "Generazione e modifica immagini OpenAI per visuali, testi e composizioni curate.",
+    "description": "Concise capability introduction: OpenAI image generation and editing for polished visuals, text, and compositions."
   },
   "message.featuresSeedream": {
-    "message": "Attiva o disattiva il modulo funzionale SeeDream.",
-    "description": "Descrizione della funzionalità SeeDream"
+    "message": "Generazione e modifica immagini ByteDance per visuali creative di alta qualità.",
+    "description": "Concise capability introduction: ByteDance image generation and editing for high-quality creative visuals."
   },
   "message.featuresSeedance": {
-    "message": "Attiva o disattiva il modulo funzionale SeeDance.",
-    "description": "Descrizione della funzionalità SeeDance"
+    "message": "Generazione video ByteDance per scene dinamiche, movimento di camera e audio opzionale.",
+    "description": "Concise capability introduction: ByteDance video generation for dynamic scenes, camera motion, and optional audio."
   },
   "message.featuresWan": {
-    "message": "Attiva o disattiva il modulo funzionale Wan.",
-    "description": "Descrizione della funzionalità Wan"
+    "message": "Generazione video Alibaba da testo, immagini o riferimenti in più risoluzioni.",
+    "description": "Concise capability introduction: Alibaba video generation from text, images, or references at multiple resolutions."
   },
   "message.featuresProducer": {
-    "message": "Attiva o disattiva il modulo funzionale Producer.",
-    "description": "Descrizione della funzionalità Producer"
+    "message": "Crea brani, cover, estensioni e varianti vocali o strumentali.",
+    "description": "Concise capability introduction: Create songs, covers, extensions, and vocal or instrumental variations."
   },
   "message.featuresKimi": {
-    "message": "Attiva o disattiva il modulo funzionale Kimi.",
-    "description": "Descrizione della funzionalità Kimi"
+    "message": "Assistente Moonshot AI per ricerca su contesti lunghi, ragionamento, scrittura e programmazione.",
+    "description": "Concise capability introduction: Moonshot AI assistant for long-context research, reasoning, writing, and coding."
   },
   "message.featuresSerp": {
-    "message": "Attiva o disattiva il modulo funzionale SERP.",
-    "description": "Descrizione della funzionalità SERP"
+    "message": "Cerca sul web, tra immagini, notizie, mappe e video con risultati Google strutturati.",
+    "description": "Concise capability introduction: Search the web, images, news, maps, and videos with structured Google results."
   },
   "message.featuresFish": {
-    "message": "Attiva o disattiva il modulo Fish Audio.",
-    "description": "Descrizione della funzionalità Fish Audio"
+    "message": "Genera voce naturale e clona voci per la produzione audio multilingue.",
+    "description": "Concise capability introduction: Generate natural speech and clone voices for multilingual audio production."
   },
   "message.featuresCodingBridge": {
-    "message": "Enable or disable the Coding Bridge feature module.",
-    "description": "Description of the Coding Bridge feature"
+    "message": "Collega gli assistenti di programmazione AI ai progetti locali per flussi di sviluppo guidati.",
+    "description": "Concise capability introduction: Connect AI coding assistants to local projects for guided development workflows."
   },
   "message.featuresWebextrator": {
-    "message": "Enable or disable the WebExtrator feature module.",
-    "description": "Description of the WebExtrator feature"
+    "message": "Estrae contenuti e dati puliti e strutturati dalle pagine web.",
+    "description": "Concise capability introduction: Extract clean, structured content and data from web pages."
   },
   "message.featuresLuma": {
-    "message": "Attiva o disattiva il modulo funzionale Luma.",
-    "description": "Descrizione della funzionalità Luma"
+    "message": "Crea video cinematografici da testo o immagini con movimento naturale.",
+    "description": "Concise capability introduction: Create cinematic videos from text or images with natural motion."
   },
   "message.featuresPika": {
-    "message": "Attiva o disattiva il modulo funzionale Pika.",
-    "description": "Descrizione della funzionalità Pika"
+    "message": "Genera e modifica brevi video creativi con effetti, scene e trasformazioni.",
+    "description": "Concise capability introduction: Generate and edit short creative videos with effects, scenes, and transformations."
   },
   "message.featuresKling": {
-    "message": "Attiva o disattiva il modulo funzionale Kling.",
-    "description": "Descrizione della funzionalità Kling"
+    "message": "Crea video di alta qualità da testo, immagini o riferimenti di movimento.",
+    "description": "Concise capability introduction: Create high-quality videos from text, images, or motion references."
   },
   "message.featuresHailuo": {
-    "message": "Attiva o disattiva il modulo funzionale Hailuo.",
-    "description": "Descrizione della funzionalità Hailuo"
-  },
-  "message.featuresHeadshots": {
-    "message": "Attiva o disattiva il modulo funzionale Foto ID AI.",
-    "description": "Descrizione della funzionalità Foto ID AI"
+    "message": "Genera video espressivi da testo o immagini con movimenti fluidi dei personaggi.",
+    "description": "Concise capability introduction: Generate expressive videos from text or images with smooth character motion."
   },
   "message.featuresSupport": {
     "message": "Attiva o disattiva il supporto clienti",
@@ -592,16 +716,16 @@
     "description": "Visualizzato come titolo nella casella di modifica"
   },
   "message.featuresGemini": {
-    "message": "Attiva o disattiva il modulo funzionale Gemini.",
-    "description": "Descrizione della funzionalità Gemini"
+    "message": "Assistente Google per ragionamento su contesti lunghi, ricerca, programmazione e lavoro multimodale.",
+    "description": "Concise capability introduction: Google assistant for long-context reasoning, research, coding, and multimodal work."
   },
   "field.featuresClaude": {
     "message": "Claude",
     "description": "Visualizzato come titolo nella casella di modifica"
   },
   "message.featuresClaude": {
-    "message": "Attiva o disattiva il modulo funzionale Claude.",
-    "description": "Descrizione della funzionalità Claude"
+    "message": "Assistente Anthropic per ragionamento accurato, scrittura, programmazione e analisi di documenti.",
+    "description": "Concise capability introduction: Anthropic assistant for careful reasoning, writing, coding, and document analysis."
   },
   "placeholder.admins": {
     "message": "Inserisci l'ID utente amministratore",
@@ -658,5 +782,200 @@
   "autoTranslate.error": {
     "message": "Impossibile cambiare la traduzione automatica, riprova",
     "description": "Fallback error toast when the enable/disable HTTP call fails with no detail"
+  },
+  "services.title": {
+    "message": "Sovrapprezzo personalizzato e visualizzazione per servizio"
+  },
+  "services.tip": {
+    "message": "Nascondi, rinomina, prezza o riordina singoli servizi. Un ricarico vuoto eredita il valore predefinito del sito. Eliminare una riga ripristina i valori del catalogo."
+  },
+  "services.addButton": {
+    "message": "Aggiungi"
+  },
+  "services.empty": {
+    "message": "Nessuna sovrascrittura — ogni servizio usa i valori predefiniti."
+  },
+  "services.field.service": {
+    "message": "Servizio"
+  },
+  "services.field.visible": {
+    "message": "Visibile"
+  },
+  "services.field.customMarkupRatio": {
+    "message": "Sovrapprezzo personalizzato per servizio"
+  },
+  "services.field.displayTitle": {
+    "message": "Nome visualizzato"
+  },
+  "services.field.displaySummary": {
+    "message": "Riepilogo visualizzato"
+  },
+  "services.field.sortOrder": {
+    "message": "Ordine"
+  },
+  "services.field.action": {
+    "message": "Azioni"
+  },
+  "services.status.visible": {
+    "message": "Mostrato"
+  },
+  "services.status.hidden": {
+    "message": "Nascosto"
+  },
+  "services.status.inherit": {
+    "message": "Ereditato"
+  },
+  "services.dialog.create": {
+    "message": "Aggiungi sovrascrittura servizio"
+  },
+  "services.dialog.edit": {
+    "message": "Modifica sovrascrittura servizio"
+  },
+  "services.placeholder.service": {
+    "message": "Scegli un servizio dal catalogo"
+  },
+  "services.placeholder.markup": {
+    "message": "Lascia vuoto per ereditare il valore del sito"
+  },
+  "services.placeholder.displayTitle": {
+    "message": "Lascia vuoto per usare il nome del catalogo"
+  },
+  "services.placeholder.displaySummary": {
+    "message": "Lascia vuoto per usare la descrizione del catalogo"
+  },
+  "services.tip.visible": {
+    "message": "Se disattivato, il servizio è nascosto in home (chi lo possiede mantiene l'accesso)."
+  },
+  "services.tip.markup": {
+    "message": "0% = prezzo piattaforma; 0,5 = +50%; fino a +500%. Vuoto = valore del sito."
+  },
+  "services.tip.sortOrder": {
+    "message": "I numeri più bassi vengono prima."
+  },
+  "services.preview.sampleLabel": {
+    "message": "Prezzo base di esempio"
+  },
+  "services.preview.inherit": {
+    "message": "(eredita il ricarico predefinito del sito {percent})"
+  },
+  "services.message.alreadyOverridden": {
+    "message": "Già aggiunto"
+  },
+  "services.message.serviceRequired": {
+    "message": "Seleziona prima un servizio"
+  },
+  "services.message.saved": {
+    "message": "Salvato"
+  },
+  "services.message.deleted": {
+    "message": "Eliminato"
+  },
+  "services.message.deleteConfirm": {
+    "message": "Eliminare la sovrascrittura di «{name}»? Il servizio torna ai valori del catalogo."
+  },
+  "services.message.saveFailed": {
+    "message": "Salvataggio non riuscito, riprova"
+  },
+  "services.message.deleteFailed": {
+    "message": "Eliminazione non riuscita, riprova"
+  },
+  "services.message.fetchFailed": {
+    "message": "Impossibile caricare le sovrascritture dei servizi"
+  },
+  "field.featuresOmni": {
+    "message": "Omni",
+    "description": "Visualizzato come titolo nella casella di modifica"
+  },
+  "message.featuresOmni": {
+    "message": "Genera o modifica video con i modelli Omni a partire da testo, immagini e riferimenti video.",
+    "description": "Genera o modifica video con i modelli Omni a partire da testo, immagini e riferimenti video."
+  },
+  "capabilityOverride.edit": {
+    "message": "Customize app",
+    "description": "Tooltip and accessible label for editing a capability app name and icon"
+  },
+  "capabilityOverride.dialogTitle": {
+    "message": "Customize {name}",
+    "description": "Dialog title; {name} is the platform-default capability app name"
+  },
+  "capabilityOverride.displayName": {
+    "message": "Custom name",
+    "description": "Field label for a per-site capability app display name"
+  },
+  "capabilityOverride.displayNameTip": {
+    "message": "Leave blank to use {name}. Save once before enabling automatic translation.",
+    "description": "Help text; {name} is the platform-default capability app name"
+  },
+  "capabilityOverride.icon": {
+    "message": "Custom icon",
+    "description": "Field label for a per-site capability app icon"
+  },
+  "capabilityOverride.defaultIcon": {
+    "message": "Default",
+    "description": "Label above the platform-default capability icon preview"
+  },
+  "capabilityOverride.currentIcon": {
+    "message": "Current",
+    "description": "Label above the effective capability icon preview"
+  },
+  "capabilityOverride.replaceIcon": {
+    "message": "Replace icon",
+    "description": "Command to upload a replacement capability icon"
+  },
+  "capabilityOverride.uploadIcon": {
+    "message": "Upload icon",
+    "description": "Command to upload the first custom capability icon"
+  },
+  "capabilityOverride.useDefaultIcon": {
+    "message": "Use default icon",
+    "description": "Command to clear the custom icon draft"
+  },
+  "capabilityOverride.iconTip": {
+    "message": "PNG, JPEG, or WebP. The image is cropped to a square; transparent PNG is preserved.",
+    "description": "Capability icon upload requirements"
+  },
+  "capabilityOverride.editIcon": {
+    "message": "Edit app icon",
+    "description": "Title of the capability icon cropper dialog"
+  },
+  "capabilityOverride.resetAll": {
+    "message": "Restore defaults",
+    "description": "Command that removes both custom name and icon"
+  },
+  "capabilityOverride.empty": {
+    "message": "Enter a custom name or upload an icon first.",
+    "description": "Warning when attempting to create an empty override"
+  },
+  "capabilityOverride.saved": {
+    "message": "App customization saved",
+    "description": "Success message after saving a capability override"
+  },
+  "capabilityOverride.savedEnableTranslation": {
+    "message": "Saved. You can now enable automatic translation for the custom name.",
+    "description": "Success message after first save creates an override ID"
+  },
+  "capabilityOverride.saveFailed": {
+    "message": "Failed to save app customization",
+    "description": "Fallback error for capability override writes"
+  },
+  "capabilityOverride.resetConfirm": {
+    "message": "Restore the default name and icon for {name}?",
+    "description": "Confirmation message; {name} is the platform-default capability app name"
+  },
+  "capabilityOverride.resetDone": {
+    "message": "Default name and icon restored",
+    "description": "Success message after deleting a capability override"
+  },
+  "capabilityOverride.fetchFailed": {
+    "message": "Failed to load app customizations",
+    "description": "Error shown when capability override management rows cannot be loaded"
+  },
+  "field.featuresPoivelle": {
+    "message": "Poivelle",
+    "description": "Displayed as the title in the editing box"
+  },
+  "message.featuresPoivelle": {
+    "message": "Direct professional AI film production through a shared project graph, storyboard, timeline, review, and skill-agent workflow.",
+    "description": "Concise capability introduction: Direct professional AI film production through a shared project graph, storyboard, timeline, review, and skill-agent workflow."
   }
 }

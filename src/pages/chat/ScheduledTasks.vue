@@ -3,8 +3,8 @@
     <div class="inner">
       <div class="header">
         <h2 class="title">{{ $t('chat.scheduledTasks.title') }}</h2>
-        <el-button type="primary" round @click="showCreateDialog = true">
-          <font-awesome-icon icon="fa-solid fa-plus" class="icon" />
+        <el-button type="primary" round :disabled="saving" @click="openCreate">
+          <add-icon :size="16" class="icon" aria-hidden="true" focusable="false" />
           {{ $t('chat.scheduledTasks.create') }}
         </el-button>
       </div>
@@ -23,12 +23,39 @@
                   :model-value="task.state === 'enabled'"
                   @change="(v: string | number | boolean) => toggleState(task, v === true)"
                 />
-                <el-button text class="icon-action" @click="openEdit(task)">
-                  <font-awesome-icon icon="fa-solid fa-pen" />
-                </el-button>
-                <el-button text type="danger" class="icon-action" @click="confirmDelete(task)">
-                  <font-awesome-icon icon="fa-solid fa-trash" />
-                </el-button>
+                <el-tooltip :content="$t('chat.scheduledTasks.triggerNow')" placement="top">
+                  <el-button
+                    text
+                    class="icon-action"
+                    :loading="triggeringId === task.id"
+                    :aria-label="$t('chat.scheduledTasks.triggerNow')"
+                    :title="$t('chat.scheduledTasks.triggerNow')"
+                    @click="triggerNow(task)"
+                  >
+                    <play-icon
+                      v-if="triggeringId !== task.id"
+                      :size="'1em' as any"
+                      aria-hidden="true"
+                      focusable="false"
+                    />
+                  </el-button>
+                </el-tooltip>
+                <el-tooltip :content="$t('common.button.edit')" placement="top">
+                  <el-button text class="icon-action" :aria-label="$t('common.button.edit')" @click="openEdit(task)">
+                    <edit-icon :size="16" aria-hidden="true" focusable="false" />
+                  </el-button>
+                </el-tooltip>
+                <el-tooltip :content="$t('common.button.delete')" placement="top">
+                  <el-button
+                    text
+                    type="danger"
+                    class="icon-action"
+                    :aria-label="$t('common.button.delete')"
+                    @click="confirmDelete(task)"
+                  >
+                    <delete-icon :size="16" aria-hidden="true" focusable="false" />
+                  </el-button>
+                </el-tooltip>
               </div>
             </div>
             <div class="task-meta">
@@ -36,11 +63,11 @@
                 {{ $t(`chat.scheduledTasks.state.${task.state}`) }}
               </el-tag>
               <span class="meta-chip">
-                <font-awesome-icon icon="fa-solid fa-clock" class="meta-icon" />
+                <time-icon class="meta-icon" :size="'1em' as any" aria-hidden="true" focusable="false" />
                 {{ scheduleLabel(task.schedule) }}
               </span>
               <span class="meta-chip">
-                <font-awesome-icon icon="fa-solid fa-brain" class="meta-icon" />
+                <ai-icon class="meta-icon" :size="'1em' as any" aria-hidden="true" focusable="false" />
                 {{ task.template.model }}
               </span>
             </div>
@@ -50,13 +77,13 @@
             </div>
             <div class="task-footer">
               <span class="run-count">
-                <font-awesome-icon icon="fa-solid fa-arrows-rotate" class="footer-icon" />
+                <refresh-icon :size="16" class="footer-icon" aria-hidden="true" focusable="false" />
                 {{ $t('chat.scheduledTasks.runCount', { count: task.run_count }) }}
               </span>
-              <span v-if="task.last_error" class="error-hint">{{ task.last_error }}</span>
+              <span v-if="task.last_error" class="error-hint">{{ errorCodeText(task.last_error) }}</span>
               <span class="open-hint">
                 {{ $t('chat.scheduledTasks.viewRuns') }}
-                <font-awesome-icon icon="fa-solid fa-chevron-right" />
+                <expand-right-icon :size="'1em' as any" aria-hidden="true" focusable="false" />
               </span>
             </div>
           </el-card>
@@ -114,7 +141,13 @@
             </div>
           </div>
           <div class="run-action">
-            <font-awesome-icon v-if="run.conversation_id" icon="fa-solid fa-chevron-right" class="run-arrow" />
+            <expand-right-icon
+              v-if="run.conversation_id"
+              class="run-arrow"
+              :size="'1em' as any"
+              aria-hidden="true"
+              focusable="false"
+            />
             <span v-else class="run-noconv">{{ $t('chat.scheduledTasks.noConversation') }}</span>
           </div>
         </div>
@@ -130,9 +163,15 @@
       :title="editingTask ? $t('chat.scheduledTasks.edit') : $t('chat.scheduledTasks.create')"
       width="540px"
       :close-on-click-modal="false"
+      :close-on-press-escape="!saving"
+      :show-close="!saving"
       class="scheduled-task-dialog"
     >
       <el-form :model="form" label-width="92px">
+        <el-form-item :label="$t('chat.scheduledTasks.form.name')">
+          <el-input v-model="form.name" :placeholder="$t('chat.scheduledTasks.form.namePlaceholder')" maxlength="80" />
+        </el-form-item>
+
         <el-form-item :label="$t('chat.scheduledTasks.form.prompt')" required>
           <el-input
             v-model="form.question"
@@ -153,12 +192,37 @@
 
         <el-form-item :label="$t('chat.scheduledTasks.form.schedule')">
           <el-radio-group v-model="form.scheduleType">
-            <el-radio value="minutely">{{ $t('chat.scheduledTasks.scheduleType.minutely') }}</el-radio>
-            <el-radio value="daily">{{ $t('chat.scheduledTasks.scheduleType.daily') }}</el-radio>
+            <el-radio value="interval">{{ $t('chat.scheduledTasks.scheduleType.interval') }}</el-radio>
             <el-radio value="hourly">{{ $t('chat.scheduledTasks.scheduleType.hourly') }}</el-radio>
+            <el-radio value="daily">{{ $t('chat.scheduledTasks.scheduleType.daily') }}</el-radio>
             <el-radio value="weekly">{{ $t('chat.scheduledTasks.scheduleType.weekly') }}</el-radio>
             <el-radio value="cron">{{ $t('chat.scheduledTasks.scheduleType.cron') }}</el-radio>
           </el-radio-group>
+          <div v-if="schedulePreview" class="schedule-preview">
+            <time-icon class="preview-icon" :size="'1em' as any" aria-hidden="true" focusable="false" />
+            {{ $t('chat.scheduledTasks.form.schedulePreview', { text: schedulePreview }) }}
+          </div>
+        </el-form-item>
+
+        <el-form-item v-if="form.scheduleType === 'interval'" :label="$t('chat.scheduledTasks.scheduleType.interval')">
+          <el-input-number
+            v-model="form.intervalValue"
+            :min="1"
+            :max="intervalMax"
+            :step="1"
+            controls-position="right"
+          />
+          <el-select v-model="form.intervalUnit" style="width: 110px; margin-left: 8px">
+            <el-option :label="$t('chat.scheduledTasks.form.intervalUnit.minute')" value="minute" />
+            <el-option :label="$t('chat.scheduledTasks.form.intervalUnit.hour')" value="hour" />
+            <el-option :label="$t('chat.scheduledTasks.form.intervalUnit.day')" value="day" />
+          </el-select>
+          <div class="hint">{{ $t('chat.scheduledTasks.form.intervalHint') }}</div>
+        </el-form-item>
+
+        <el-form-item v-if="form.scheduleType === 'hourly'" :label="$t('chat.scheduledTasks.form.hourlyMinute')">
+          <el-input-number v-model="form.hourlyMinute" :min="0" :max="59" :step="1" controls-position="right" />
+          <div class="hint">{{ $t('chat.scheduledTasks.form.hourlyMinuteHint') }}</div>
         </el-form-item>
 
         <el-form-item v-if="form.scheduleType === 'daily'" :label="$t('chat.scheduledTasks.form.time')">
@@ -175,6 +239,7 @@
 
         <el-form-item v-if="form.scheduleType === 'cron'" :label="$t('chat.scheduledTasks.form.cron')">
           <el-input v-model="form.cronExpr" placeholder="0 9 * * *" />
+          <div class="hint">{{ $t('chat.scheduledTasks.form.cronHint') }}</div>
         </el-form-item>
 
         <el-form-item :label="$t('chat.scheduledTasks.form.skills')">
@@ -228,10 +293,15 @@
           </el-select>
           <div class="hint">{{ $t('chat.scheduledTasks.form.mcpServersHint') }}</div>
         </el-form-item>
+
+        <el-form-item :label="$t('chat.scheduledTasks.form.maxTurns')">
+          <el-input-number v-model="form.maxTurns" :min="1" :max="50" :step="1" controls-position="right" />
+          <div class="hint">{{ $t('chat.scheduledTasks.form.maxTurnsHint') }}</div>
+        </el-form-item>
       </el-form>
 
       <template #footer>
-        <el-button @click="showCreateDialog = false">{{ $t('common.button.cancel') }}</el-button>
+        <el-button :disabled="saving" @click="closeTaskDialog">{{ $t('common.button.cancel') }}</el-button>
         <el-button type="primary" :loading="saving" @click="saveTask">
           {{ $t('common.button.confirm') }}
         </el-button>
@@ -241,8 +311,8 @@
 </template>
 
 <script lang="ts">
+import { AiIcon, ExpandRightIcon, PlayIcon, TimeIcon } from '@acedatacloud/core/icons/components';
 import { defineComponent } from 'vue';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import {
   ElButton,
   ElCard,
@@ -250,6 +320,7 @@ import {
   ElEmpty,
   ElSwitch,
   ElTag,
+  ElTooltip,
   ElDrawer,
   ElDialog,
   ElForm,
@@ -261,44 +332,69 @@ import {
   ElRadioGroup,
   ElRadio,
   ElTimePicker,
+  ElInputNumber,
   ElMessage,
   ElMessageBox
 } from 'element-plus';
-import Pagination from '@/components/common/Pagination.vue';
+import { Pagination } from '@acedatacloud/core/components';
+import { AddIcon } from '@acedatacloud/core/icons/add';
+import { DeleteIcon } from '@acedatacloud/core/icons/delete';
+import { EditIcon } from '@acedatacloud/core/icons/edit';
+import { RefreshIcon } from '@acedatacloud/core/icons/refresh';
 import {
   scheduledTasksOperator,
   IScheduledTask,
   IScheduledRun,
   IScheduleSpec,
   IAuthorizableSkill,
-  IAuthorizableMcpServer
+  IAuthorizableMcpServer,
+  ScheduledTaskPayload,
+  IScheduledTaskCapabilityDetail,
+  extractSkillNotActive
 } from '@/operators/scheduledTasks';
 import { CHAT_MODEL_GROUPS, CHAT_MODEL_NAME_GPT_5_4_MINI } from '@/constants';
 import { IChatModelGroup } from '@/models';
 
 const USER_TZ = Intl.DateTimeFormat().resolvedOptions().timeZone || 'Asia/Shanghai';
 
+// Default agent turn budget for a scheduled task run. Mirrors the worker's
+// DEFAULT_SCHEDULED_MAX_TURNS; the worker clamps to [1, 50] regardless.
+const DEFAULT_SCHEDULED_MAX_TURNS = 50;
+
 interface TaskForm {
+  name: string;
   question: string;
   model: string;
-  scheduleType: 'minutely' | 'daily' | 'hourly' | 'weekly' | 'cron';
+  scheduleType: 'interval' | 'hourly' | 'daily' | 'weekly' | 'cron';
+  intervalValue: number;
+  intervalUnit: 'minute' | 'hour' | 'day';
+  hourlyMinute: number;
   dailyTime: string;
   weekday: number;
   cronExpr: string;
   authorizedSkills: string[];
   authorizedMcpServers: string[];
+  maxTurns: number;
 }
 
 export default defineComponent({
   name: 'ScheduledTasks',
   components: {
-    FontAwesomeIcon,
+    AiIcon,
+    ExpandRightIcon,
+    PlayIcon,
+    TimeIcon,
+    AddIcon,
+    DeleteIcon,
+    EditIcon,
+    RefreshIcon,
     ElButton,
     ElCard,
     ElSkeleton,
     ElEmpty,
     ElSwitch,
     ElTag,
+    ElTooltip,
     ElDrawer,
     ElDialog,
     ElForm,
@@ -310,6 +406,7 @@ export default defineComponent({
     ElRadioGroup,
     ElRadio,
     ElTimePicker,
+    ElInputNumber,
     Pagination
   },
   data() {
@@ -326,6 +423,7 @@ export default defineComponent({
       editingTask: null as IScheduledTask | null,
       authorizableSkills: [] as IAuthorizableSkill[],
       authorizableMcpServers: [] as IAuthorizableMcpServer[],
+      triggeringId: '' as string,
       weekdays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
       page: 1,
       pageSize: 6,
@@ -352,6 +450,18 @@ export default defineComponent({
     pagedRuns(): IScheduledRun[] {
       const start = (this.runPage - 1) * this.runPageSize;
       return this.runs.slice(start, start + this.runPageSize);
+    },
+    // Sensible upper bound for the interval number input, per selected unit.
+    intervalMax(): number {
+      return this.form.intervalUnit === 'minute' ? 1440 : this.form.intervalUnit === 'hour' ? 720 : 365;
+    },
+    // Live human-readable summary of the schedule the form currently builds.
+    schedulePreview(): string {
+      try {
+        return this.humanizeSchedule(this.buildSchedule());
+      } catch {
+        return '';
+      }
     }
   },
   async mounted() {
@@ -360,17 +470,22 @@ export default defineComponent({
   methods: {
     emptyForm(): TaskForm {
       return {
+        name: '',
         question: '',
         model: CHAT_MODEL_NAME_GPT_5_4_MINI,
         scheduleType: 'daily',
+        intervalValue: 4,
+        intervalUnit: 'hour',
+        hourlyMinute: 0,
         dailyTime: '09:00',
         weekday: 1,
         cronExpr: '0 9 * * *',
         authorizedSkills: [],
-        authorizedMcpServers: []
+        authorizedMcpServers: [],
+        maxTurns: DEFAULT_SCHEDULED_MAX_TURNS
       };
     },
-    // The task name is no longer a separate field — derive a short label from the prompt.
+    // Fallback label when the user leaves the name field blank — derive from the prompt.
     deriveName(question: string): string {
       const firstLine = (question || '').trim().split('\n')[0].trim();
       return firstLine.length > 40 ? `${firstLine.slice(0, 40)}…` : firstLine || 'Scheduled Task';
@@ -406,36 +521,64 @@ export default defineComponent({
     onRunPageChange(p: number) {
       this.runPage = p;
     },
+    openCreate() {
+      if (this.saving) return;
+      this.editingTask = null;
+      this.form = this.emptyForm();
+      this.showCreateDialog = true;
+    },
+    closeTaskDialog() {
+      if (this.saving) return;
+      this.showCreateDialog = false;
+    },
     openEdit(task: IScheduledTask) {
       this.editingTask = task;
       const s = task.schedule;
       let scheduleType: TaskForm['scheduleType'] = 'cron';
+      let intervalValue = 4;
+      let intervalUnit: TaskForm['intervalUnit'] = 'hour';
+      let hourlyMinute = 0;
       let dailyTime = '09:00';
       let cronExpr = '0 9 * * *';
       let weekday = 1;
       if (s.type === 'cron') {
         cronExpr = s.cron;
-        const parts = s.cron.split(' ');
-        if (parts.length === 5) {
-          const [min, hour, , , dow] = parts;
-          if (dow === '*' && !isNaN(Number(hour))) {
-            scheduleType = 'daily';
-            dailyTime = `${hour.padStart(2, '0')}:${min.padStart(2, '0')}`;
-          } else if (!isNaN(Number(dow))) {
-            scheduleType = 'weekly';
-            weekday = Number(dow);
-            dailyTime = `${hour.padStart(2, '0')}:${min.padStart(2, '0')}`;
-          }
+        const [min, hour, dom, mon, dow] = s.cron.split(/\s+/);
+        const isNum = (v: string) => /^\d+$/.test(v);
+        if (dom === '*' && mon === '*' && dow === '*' && hour === '*' && isNum(min)) {
+          // "M * * * *" → at minute M of every hour.
+          scheduleType = 'hourly';
+          hourlyMinute = Number(min);
+        } else if (dom === '*' && mon === '*' && dow === '*' && isNum(hour) && isNum(min)) {
+          scheduleType = 'daily';
+          dailyTime = `${hour.padStart(2, '0')}:${min.padStart(2, '0')}`;
+        } else if (dom === '*' && mon === '*' && isNum(dow) && isNum(hour) && isNum(min)) {
+          scheduleType = 'weekly';
+          weekday = Number(dow);
+          dailyTime = `${hour.padStart(2, '0')}:${min.padStart(2, '0')}`;
         }
       } else if (s.type === 'interval') {
-        if (s.interval_seconds === 60) scheduleType = 'minutely';
-        else if (s.interval_seconds === 3600) scheduleType = 'hourly';
-        else scheduleType = 'cron';
+        scheduleType = 'interval';
+        const sec = s.interval_seconds;
+        if (sec % 86400 === 0) {
+          intervalUnit = 'day';
+          intervalValue = sec / 86400;
+        } else if (sec % 3600 === 0) {
+          intervalUnit = 'hour';
+          intervalValue = sec / 3600;
+        } else {
+          intervalUnit = 'minute';
+          intervalValue = Math.max(1, Math.round(sec / 60));
+        }
       }
       this.form = {
+        name: task.name,
         question: task.template.question,
         model: task.template.model,
         scheduleType,
+        intervalValue,
+        intervalUnit,
+        hourlyMinute,
         dailyTime,
         weekday,
         cronExpr,
@@ -446,18 +589,23 @@ export default defineComponent({
         authorizedMcpServers:
           task.unattended_policy?.mode === 'allow_selected' || task.unattended_policy?.mode === 'allow_selected_skills'
             ? task.unattended_policy.allowed_mcp_servers || []
-            : []
+            : [],
+        maxTurns: task.template.max_turns ?? DEFAULT_SCHEDULED_MAX_TURNS
       };
       this.showCreateDialog = true;
       void this.loadAuthorizableSkills();
     },
     buildSchedule(): IScheduleSpec {
-      const { scheduleType, dailyTime, weekday, cronExpr } = this.form;
-      if (scheduleType === 'minutely') {
-        return { type: 'interval', interval_seconds: 60, tz: USER_TZ };
+      const { scheduleType, intervalValue, intervalUnit, hourlyMinute, dailyTime, weekday, cronExpr } = this.form;
+      if (scheduleType === 'interval') {
+        const unitSeconds = intervalUnit === 'day' ? 86400 : intervalUnit === 'hour' ? 3600 : 60;
+        // Scheduler's finest cadence is 60s; guard against sub-minute intervals.
+        const seconds = Math.max(60, Math.round(intervalValue) * unitSeconds);
+        return { type: 'interval', interval_seconds: seconds, tz: USER_TZ };
       }
       if (scheduleType === 'hourly') {
-        return { type: 'interval', interval_seconds: 3600, tz: USER_TZ };
+        const m = Math.min(59, Math.max(0, Math.round(hourlyMinute)));
+        return { type: 'cron', cron: `${m} * * * *`, tz: USER_TZ };
       }
       if (scheduleType === 'daily') {
         const [h, m] = dailyTime.split(':');
@@ -474,52 +622,115 @@ export default defineComponent({
         ElMessage.warning(this.$t('chat.scheduledTasks.form.required') as string);
         return;
       }
-      this.saving = true;
-      try {
-        if (this.form.authorizedSkills.length > 0 || this.form.authorizedMcpServers.length > 0) {
-          await ElMessageBox.confirm(this.authorizationConfirmText(), this.$t('chat.scheduledTasks.form.skillsConfirmTitle') as string, {
-            type: 'warning',
-            confirmButtonText: this.$t('common.button.confirm') as string,
-            cancelButtonText: this.$t('common.button.cancel') as string
-          });
+      if (this.form.authorizedSkills.length > 0 || this.form.authorizedMcpServers.length > 0) {
+        try {
+          await ElMessageBox.confirm(
+            this.authorizationConfirmText(),
+            this.$t('chat.scheduledTasks.form.skillsConfirmTitle') as string,
+            {
+              type: 'warning',
+              confirmButtonText: this.$t('common.button.confirm') as string,
+              cancelButtonText: this.$t('common.button.cancel') as string
+            }
+          );
+        } catch {
+          // User declined the skill/MCP authorization warning — abort quietly,
+          // it is a cancellation, not an error.
+          return;
         }
-        const authorizedSkills = [...this.form.authorizedSkills];
-        const authorizedMcpServers = [...this.form.authorizedMcpServers];
-        const payload = {
-          name: this.deriveName(this.form.question),
-          schedule: this.buildSchedule(),
-          template: {
-            model: this.form.model,
-            question: this.form.question,
-            skills: authorizedSkills,
-            mcp_servers: authorizedMcpServers
-          },
-          unattended_policy: authorizedSkills.length || authorizedMcpServers.length
+      }
+      const authorizedSkills = [...this.form.authorizedSkills];
+      const authorizedMcpServers = [...this.form.authorizedMcpServers];
+      const payload: ScheduledTaskPayload = {
+        name: this.form.name.trim() || this.deriveName(this.form.question),
+        schedule: this.buildSchedule(),
+        template: {
+          model: this.form.model,
+          question: this.form.question,
+          skills: authorizedSkills,
+          mcp_servers: authorizedMcpServers,
+          max_turns: this.form.maxTurns
+        },
+        unattended_policy:
+          authorizedSkills.length || authorizedMcpServers.length
             ? {
                 mode: 'allow_selected' as const,
                 allowed_skills: authorizedSkills,
                 allowed_mcp_servers: authorizedMcpServers
               }
             : { mode: 'deny_all' as const, allowed_skills: [], allowed_mcp_servers: [] }
-        };
+      };
+      await this.submitTask(payload, false);
+    },
+    async submitTask(payload: ScheduledTaskPayload, force: boolean) {
+      this.saving = true;
+      // A pending "skill not bound" prompt to raise AFTER `saving` is reset,
+      // so the confirm dialog is interactive rather than stuck behind a spinner.
+      let notActive: IScheduledTaskCapabilityDetail | null = null;
+      try {
         if (this.editingTask) {
-          await scheduledTasksOperator.updateTask(this.token!, this.editingTask.id, payload);
+          const editId = this.editingTask.id;
+          const updated = await scheduledTasksOperator.updateTask(this.token!, editId, payload, force);
+          // Patch the edited row in place — no full reload / skeleton flash.
+          const idx = this.tasks.findIndex((t) => t.id === editId);
+          if (idx !== -1) this.tasks[idx] = updated;
         } else {
-          await scheduledTasksOperator.createTask(this.token!, payload);
+          const created = await scheduledTasksOperator.createTask(this.token!, payload, force);
+          // Prepend the newcomer (backend lists newest-first) and jump to page 1.
+          this.tasks = [created, ...this.tasks];
+          this.page = 1;
         }
-        ElMessage.success(this.$t('chat.scheduledTasks.create') as string + ' OK');
+        ElMessage.success((this.$t('chat.scheduledTasks.create') as string) + ' OK');
         this.showCreateDialog = false;
         this.editingTask = null;
         this.form = this.emptyForm();
-        await this.loadTasks();
-      } catch {
-        ElMessage.error(this.$t('chat.scheduledTasks.loadError') as string);
+      } catch (error) {
+        // On an already-forced retry, don't loop on the same gate — surface it.
+        notActive = force ? null : extractSkillNotActive(error);
+        if (!notActive) {
+          ElMessage.error(this.$t('chat.scheduledTasks.loadError') as string);
+        }
       } finally {
         this.saving = false;
       }
+      if (notActive) {
+        const proceed = await this.confirmForceSkill(notActive);
+        if (proceed) await this.submitTask(payload, true);
+      }
+    },
+    async confirmForceSkill(detail: IScheduledTaskCapabilityDetail): Promise<boolean> {
+      const name = this.capabilityLabel(detail.slug);
+      try {
+        await ElMessageBox.confirm(
+          this.$t('chat.scheduledTasks.form.skillNotActiveMessage', { name }) as string,
+          this.$t('chat.scheduledTasks.form.skillNotActiveTitle') as string,
+          {
+            type: 'warning',
+            confirmButtonText: this.$t('chat.scheduledTasks.form.skillNotActiveForce') as string,
+            cancelButtonText: this.$t('common.button.cancel') as string
+          }
+        );
+        return true;
+      } catch {
+        return false;
+      }
+    },
+    // Resolve a capability slug to a human label, falling back to the raw slug
+    // (a not-bound skill won't be in the authorizable lists).
+    capabilityLabel(slug: string): string {
+      const skill = this.authorizableSkills.find((s) => s.slug === slug);
+      if (skill) return skill.name || skill.slug;
+      const mcp = this.authorizableMcpServers.find((s) => s.slug === slug);
+      if (mcp) return mcp.name || mcp.slug;
+      return slug;
     },
     async loadAuthorizableSkills(force = false) {
-      if (!this.token || this.skillsLoading || (!force && (this.authorizableSkills.length || this.authorizableMcpServers.length))) return;
+      if (
+        !this.token ||
+        this.skillsLoading ||
+        (!force && (this.authorizableSkills.length || this.authorizableMcpServers.length))
+      )
+        return;
       this.skillsLoading = true;
       try {
         const capabilities = await scheduledTasksOperator.listAuthorizableCapabilities(this.token);
@@ -557,18 +768,50 @@ export default defineComponent({
       }) as string;
     },
     async toggleState(task: IScheduledTask, enabled: boolean) {
-      await scheduledTasksOperator.updateTask(this.token!, task.id, {
-        state: enabled ? 'enabled' : 'disabled'
-      });
-      await this.loadTasks();
+      const idx = this.tasks.findIndex((t) => t.id === task.id);
+      const nextState = enabled ? 'enabled' : 'disabled';
+      // Reflect the switch immediately and patch just this row in place — no
+      // full-list reload / skeleton flash. Revert if the backend rejects it.
+      if (idx !== -1) this.tasks[idx] = { ...task, state: nextState };
+      try {
+        const updated = await scheduledTasksOperator.updateTask(this.token!, task.id, { state: nextState });
+        if (idx !== -1) this.tasks[idx] = updated;
+      } catch {
+        if (idx !== -1) this.tasks[idx] = { ...task, state: task.state };
+        ElMessage.error(this.$t('chat.scheduledTasks.loadError') as string);
+      }
+    },
+    async triggerNow(task: IScheduledTask) {
+      if (this.triggeringId) return;
+      this.triggeringId = task.id;
+      try {
+        await scheduledTasksOperator.triggerTask(this.token!, task.id);
+        ElMessage.success(this.$t('chat.scheduledTasks.triggerSuccess') as string);
+        // If the run-history drawer is open on this task, refresh it so the
+        // freshly-queued run shows up right away.
+        if (this.showRunHistory && this.selectedTask?.id === task.id) {
+          this.runs = await scheduledTasksOperator.listRuns(this.token!, task.id);
+          this.runPage = 1;
+        }
+      } catch {
+        ElMessage.error(this.$t('chat.scheduledTasks.triggerError') as string);
+      } finally {
+        this.triggeringId = '';
+      }
     },
     async confirmDelete(task: IScheduledTask) {
-      await ElMessageBox.confirm(
-        this.$t('chat.scheduledTasks.deleteConfirm', { name: task.name }) as string,
-        { type: 'warning' }
-      );
-      await scheduledTasksOperator.deleteTask(this.token!, task.id);
-      await this.loadTasks();
+      await ElMessageBox.confirm(this.$t('chat.scheduledTasks.deleteConfirm', { name: task.name }) as string, {
+        type: 'warning'
+      });
+      try {
+        await scheduledTasksOperator.deleteTask(this.token!, task.id);
+        // Drop the row locally — no full reload / skeleton flash.
+        this.tasks = this.tasks.filter((t) => t.id !== task.id);
+        const maxPage = Math.max(1, Math.ceil(this.tasks.length / this.pageSize));
+        if (this.page > maxPage) this.page = maxPage;
+      } catch {
+        ElMessage.error(this.$t('chat.scheduledTasks.loadError') as string);
+      }
     },
     openRun(run: IScheduledRun) {
       if (!run.conversation_id) return;
@@ -589,12 +832,42 @@ export default defineComponent({
       return status === 'success' ? 'success' : status === 'failed' ? 'danger' : 'warning';
     },
     runErrorText(run: IScheduledRun) {
-      return run.error_message || run.error_code?.replace(/_/g, ' ') || '';
+      if (run.error_message) return run.error_message;
+      const code = run.error_code;
+      if (!code) return '';
+      return this.errorCodeText(code);
+    },
+    errorCodeText(code: string) {
+      const key = `chat.scheduledTasks.run.reason.${code}`;
+      return (this as any).$te(key) ? (this.$t(key) as string) : code.replace(/_/g, ' ');
+    },
+    // Turn any backend schedule spec into a localized, human-readable phrase.
+    humanizeSchedule(s: IScheduleSpec): string {
+      const t = (k: string, p?: Record<string, unknown>) =>
+        this.$t(`chat.scheduledTasks.humanize.${k}`, p ?? {}) as string;
+      if (s.type === 'interval') {
+        const sec = s.interval_seconds;
+        if (sec % 86400 === 0) return t('everyNDays', { n: sec / 86400 });
+        if (sec % 3600 === 0) return t('everyNHours', { n: sec / 3600 });
+        return t('everyNMinutes', { n: Math.round(sec / 60) });
+      }
+      if (s.type === 'cron') {
+        const [min, hour, dom, mon, dow] = s.cron.split(/\s+/);
+        const isNum = (v: string) => /^\d+$/.test(v);
+        if (dom === '*' && mon === '*' && dow === '*' && hour === '*' && isNum(min)) {
+          return t('hourlyAtMinute', { n: Number(min) });
+        }
+        const time = isNum(hour) && isNum(min) ? `${hour.padStart(2, '0')}:${min.padStart(2, '0')}` : '';
+        if (time && dom === '*' && mon === '*' && dow === '*') return t('dailyAt', { time });
+        if (time && dom === '*' && mon === '*' && isNum(dow)) {
+          return t('weeklyAt', { weekday: this.weekdays[Number(dow)] ?? dow, time });
+        }
+        return t('cronRaw', { cron: s.cron });
+      }
+      return t('once', { time: new Date(s.at * 1000).toLocaleString() });
     },
     scheduleLabel(s: IScheduleSpec) {
-      if (s.type === 'interval') return `每 ${s.interval_seconds / 60} 分钟`;
-      if (s.type === 'cron') return `Cron: ${s.cron}`;
-      return `一次性: ${new Date(s.at * 1000).toLocaleString()}`;
+      return this.humanizeSchedule(s);
     },
     formatTime(ts: number) {
       return new Date(ts * 1000).toLocaleString();
@@ -607,7 +880,7 @@ export default defineComponent({
 .scheduled-tasks {
   height: 100%;
   overflow-y: auto;
-  background: var(--app-bg-section);
+  background-color: var(--el-bg-color-page) !important;
 }
 .inner {
   max-width: 880px;
@@ -629,6 +902,11 @@ export default defineComponent({
 .header .icon {
   margin-right: 6px;
 }
+@media (max-width: 767px) {
+  .inner {
+    padding-top: 56px;
+  }
+}
 .loading-block {
   padding: 12px 4px;
 }
@@ -639,18 +917,10 @@ export default defineComponent({
 }
 .task-card {
   border-radius: 16px;
-  border: 1px solid var(--app-border-subtle, var(--el-border-color-light));
+  border: none;
   cursor: pointer;
-  transition:
-    transform 0.16s ease,
-    box-shadow 0.16s ease,
-    border-color 0.16s ease;
   :deep(.el-card__body) {
     padding: 16px 18px;
-  }
-  &:hover {
-    transform: translateY(-2px);
-    border-color: var(--el-border-color);
   }
 }
 .task-top {
@@ -662,19 +932,24 @@ export default defineComponent({
 }
 .task-name {
   font-weight: 600;
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.4;
   color: var(--el-text-color-primary);
   word-break: break-word;
 }
 .task-actions {
   display: flex;
-  gap: 2px;
+  gap: 0;
   align-items: center;
   flex-shrink: 0;
 }
+/* Element Plus adds a 12px left margin between adjacent buttons; drop it so the
+   row is driven purely by the flex gap above. */
+.task-actions .el-button + .el-button {
+  margin-left: 0;
+}
 .icon-action {
-  padding: 6px 8px;
+  padding: 6px 5px;
 }
 .task-meta {
   display: flex;
@@ -886,16 +1161,51 @@ export default defineComponent({
 .hint {
   font-size: 11px;
   color: var(--el-text-color-secondary);
-  margin-top: 4px;
+  margin-top: 6px;
+  line-height: 1.5;
+  /* el-form-item content is flex-wrap; force the hint onto its own line
+     instead of cramming beside a narrow number input. */
+  flex-basis: 100%;
 }
 .jitter-hint {
   font-size: 11px;
   color: var(--el-text-color-secondary);
   margin-left: 8px;
 }
-.skill-option { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-width: 0; }
-.skill-option-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.skill-option-missing { flex-shrink: 0; font-size: 11px; color: var(--el-text-color-secondary); }
+.schedule-preview {
+  flex-basis: 100%;
+  width: fit-content;
+  margin-top: 12px;
+  padding: 7px 12px;
+  border-radius: 8px;
+  background: var(--el-fill-color-light);
+  font-size: 12px;
+  color: var(--el-text-color-regular);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.preview-icon {
+  color: var(--el-color-primary);
+}
+.skill-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-width: 0;
+}
+.skill-option-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.skill-option-missing {
+  flex-shrink: 0;
+  font-size: 11px;
+  color: var(--el-text-color-secondary);
+}
 </style>
 
 <style lang="scss">

@@ -200,7 +200,7 @@
     "description": "Modellnamnet för tjänsten, det vill säga Claude Opus 4.8"
   },
   "model.claudeOpus48Description": {
-    "message": "För närvarande den mest avancerade modellen",
+    "message": "General-purpose K2 model for compatible workflows",
     "description": "Beskrivning av modellen Claude Opus 4.8"
   },
   "model.claudeSonnet46": {
@@ -599,6 +599,18 @@
   "scheduledTasks.deleteConfirm": {
     "message": "Delete \"{name}\"? The task will stop running."
   },
+  "scheduledTasks.triggerNow": {
+    "message": "Run now",
+    "description": "Trigger the task immediately, out of schedule"
+  },
+  "scheduledTasks.triggerSuccess": {
+    "message": "Triggered. The result will appear in run history shortly.",
+    "description": "Manual trigger success"
+  },
+  "scheduledTasks.triggerError": {
+    "message": "Failed to trigger. Please try again later.",
+    "description": "Manual trigger error"
+  },
   "scheduledTasks.viewResult": {
     "message": "View Result"
   },
@@ -636,6 +648,45 @@
   "scheduledTasks.run.failed": {
     "message": "Failed"
   },
+  "scheduledTasks.run.reason.max_turns": {
+    "message": "Stegsgräns uppnådd"
+  },
+  "scheduledTasks.run.reason.max_budget_usd": {
+    "message": "Budgetgräns uppnådd"
+  },
+  "scheduledTasks.run.reason.tool_call_loop": {
+    "message": "Loop för verktygsanrop upptäckt"
+  },
+  "scheduledTasks.run.reason.prompt_too_long": {
+    "message": "Prompten är för lång"
+  },
+  "scheduledTasks.run.reason.aborted_streaming": {
+    "message": "Avbruten"
+  },
+  "scheduledTasks.run.reason.aborted_tools": {
+    "message": "Avbruten"
+  },
+  "scheduledTasks.run.reason.awaiting_user_input": {
+    "message": "Väntar på din inmatning"
+  },
+  "scheduledTasks.run.reason.error": {
+    "message": "Fel"
+  },
+  "scheduledTasks.run.reason.unknown": {
+    "message": "Okänt fel"
+  },
+  "scheduledTasks.run.reason.balance_insufficient": {
+    "message": "Otillräckligt saldo"
+  },
+  "scheduledTasks.run.reason.unauthorized": {
+    "message": "Obehörig"
+  },
+  "scheduledTasks.run.reason.timeout": {
+    "message": "Tidsgräns överskriden"
+  },
+  "scheduledTasks.run.reason.internal_error": {
+    "message": "Internt fel"
+  },
   "scheduledTasks.run.needs_user_input": {
     "message": "Needs action"
   },
@@ -653,6 +704,74 @@
   },
   "scheduledTasks.scheduleType.cron": {
     "message": "Cron expression"
+  },
+  "scheduledTasks.scheduleType.interval": {
+    "message": "Every",
+    "description": "Run at a fixed interval"
+  },
+  "scheduledTasks.form.intervalUnit.minute": {
+    "message": "minutes",
+    "description": "Interval unit: minutes"
+  },
+  "scheduledTasks.form.intervalUnit.hour": {
+    "message": "hours",
+    "description": "Interval unit: hours"
+  },
+  "scheduledTasks.form.intervalUnit.day": {
+    "message": "days",
+    "description": "Interval unit: days"
+  },
+  "scheduledTasks.form.hourlyMinute": {
+    "message": "At minute",
+    "description": "Which minute of each hour to run"
+  },
+  "scheduledTasks.form.hourlyMinuteHint": {
+    "message": "Which minute of each hour to run (0–59)",
+    "description": "Hourly minute hint"
+  },
+  "scheduledTasks.form.intervalHint": {
+    "message": "Runs once every fixed interval after the previous run (minimum 1 minute)",
+    "description": "Interval hint"
+  },
+  "scheduledTasks.form.cronHint": {
+    "message": "Standard 5-field cron expression: minute hour day month weekday",
+    "description": "Cron hint"
+  },
+  "scheduledTasks.form.schedulePreview": {
+    "message": "Runs {text}",
+    "description": "Schedule preview"
+  },
+  "scheduledTasks.humanize.everyNMinutes": {
+    "message": "every {n} min",
+    "description": "Human-readable: every N minutes"
+  },
+  "scheduledTasks.humanize.everyNHours": {
+    "message": "every {n} h",
+    "description": "Human-readable: every N hours"
+  },
+  "scheduledTasks.humanize.everyNDays": {
+    "message": "every {n} d",
+    "description": "Human-readable: every N days"
+  },
+  "scheduledTasks.humanize.hourlyAtMinute": {
+    "message": "hourly at minute {n}",
+    "description": "Human-readable: hourly at minute N"
+  },
+  "scheduledTasks.humanize.dailyAt": {
+    "message": "daily at {time}",
+    "description": "Human-readable: daily at time"
+  },
+  "scheduledTasks.humanize.weeklyAt": {
+    "message": "{weekday} at {time}",
+    "description": "Human-readable: weekly at weekday/time"
+  },
+  "scheduledTasks.humanize.cronRaw": {
+    "message": "Cron: {cron}",
+    "description": "Human-readable: raw cron"
+  },
+  "scheduledTasks.humanize.once": {
+    "message": "once at {time}",
+    "description": "Human-readable: once"
   },
   "scheduledTasks.form.name": {
     "message": "Task name"
@@ -712,6 +831,14 @@
     "message": "Valda MCP-servrar kan laddas och utföras i den schemalagda uppgiften; icke-valda MCP-servrar kommer inte att laddas i obevakad läge.",
     "description": "Förklaring av auktorisering av MCP-servrar"
   },
+  "scheduledTasks.form.maxTurns": {
+    "message": "Max antal turer",
+    "description": "Scheduled task per-run agent turn cap"
+  },
+  "scheduledTasks.form.maxTurnsHint": {
+    "message": "Högsta antal agentturer per körning (1–50). En för låg gräns stoppar flerstegsuppgifter (t.ex. färdigheter som kör flera Bash-/dokumentsöksteg) innan de är klara, utan slutresultat. Standard 50.",
+    "description": "Scheduled task per-run agent turn cap"
+  },
   "scheduledTasks.form.skillsConfirmTitle": {
     "message": "Bekräfta obevakad auktorisering",
     "description": "Titel för auktoriseringsbekräftelse"
@@ -720,8 +847,184 @@
     "message": "Denna uppgift kommer att tillåta {count} Skills att köras i bakgrunden utan manuell bekräftelse: {skills}. Dessa Skills kan skicka meddelanden, publicera innehåll eller skriva till externa tjänster, vänligen bekräfta.",
     "description": "Text för auktoriseringsbekräftelse"
   },
+  "scheduledTasks.form.skillNotActiveTitle": {
+    "message": "Bind the skill first",
+    "description": "Dialog title shown when a scheduled-task authorized skill/MCP is not yet bound for the user."
+  },
+  "scheduledTasks.form.skillNotActiveMessage": {
+    "message": "The skill \"{name}\" is not bound or active in your account yet. Without binding it, the scheduled task may not be able to use it during unattended background runs. We recommend binding it first, or you can save anyway.",
+    "description": "Warning body; {name} is the skill/MCP name. Explains it is not bound and offers to save anyway."
+  },
+  "scheduledTasks.form.skillNotActiveForce": {
+    "message": "Save anyway",
+    "description": "Confirm button that saves the scheduled task anyway, bypassing the binding check (force)."
+  },
   "scheduledTasks.form.required": {
     "message": "Please fill in task name and prompt"
+  },
+  "artifacts.navTitle": {
+    "message": "Utdata",
+    "description": "Sidofältets ingång för utdata"
+  },
+  "artifacts.title": {
+    "message": "Mina utdata",
+    "description": "Titel på utdata sidan"
+  },
+  "artifacts.summaryTotal": {
+    "message": "Totalt har {count} utdata producerats",
+    "description": "Sammanfattning av det totala antalet utdata"
+  },
+  "artifacts.filterAll": {
+    "message": "Alla",
+    "description": "Filtrering av utdata typ - alla"
+  },
+  "artifacts.empty": {
+    "message": "Det finns inga utdata ännu. Låt AI hjälpa dig att publicera artiklar, generera bilder eller skicka e-post, så kommer utdata automatiskt att visas här.",
+    "description": "Meddelande när det inte finns några utdata"
+  },
+  "artifacts.loadError": {
+    "message": "Misslyckades med att ladda utdata",
+    "description": "Felmeddelande för att ladda utdata"
+  },
+  "artifacts.actionError": {
+    "message": "Åtgärden misslyckades, vänligen försök igen",
+    "description": "Felmeddelande för utdataåtgärd"
+  },
+  "artifacts.open": {
+    "message": "Öppna",
+    "description": "Knapp för att öppna den ursprungliga länken till utdata"
+  },
+  "artifacts.hide": {
+    "message": "Dölj",
+    "description": "Knapp för att dölja utdata"
+  },
+  "artifacts.delete": {
+    "message": "Ta bort",
+    "description": "Knapp för att ta bort utdata"
+  },
+  "artifacts.deleteConfirm": {
+    "message": "Vill du verkligen permanent ta bort denna utdata post?",
+    "description": "Bekräftelsemeddelande för att ta bort utdata"
+  },
+  "artifacts.loadMore": {
+    "message": "Ladda mer",
+    "description": "Knapp för att ladda fler utdata"
+  },
+  "artifacts.sourceAuto": {
+    "message": "Automatisk fångst",
+    "description": "Markering för automatisk fångst av källa"
+  },
+  "artifacts.kind.article": {
+    "message": "Artikel",
+    "description": "Utdata typ - artikel"
+  },
+  "artifacts.kind.image": {
+    "message": "Bild",
+    "description": "Utdata typ - bild"
+  },
+  "artifacts.kind.video": {
+    "message": "Video",
+    "description": "Utdata typ - video"
+  },
+  "artifacts.kind.audio": {
+    "message": "Ljud",
+    "description": "Utdata typ - ljud"
+  },
+  "artifacts.kind.document": {
+    "message": "Dokument",
+    "description": "Utdata typ - dokument"
+  },
+  "artifacts.kind.email": {
+    "message": "E-post",
+    "description": "Utdata typ - e-post"
+  },
+  "artifacts.kind.message": {
+    "message": "Meddelande",
+    "description": "Utdata typ - meddelande"
+  },
+  "artifacts.kind.dataset": {
+    "message": "Data",
+    "description": "Utdata typ - data"
+  },
+  "artifacts.kind.link": {
+    "message": "Länk",
+    "description": "Utdata typ - länk"
+  },
+  "artifacts.kind.other": {
+    "message": "Annat",
+    "description": "Utdata typ - annat"
+  },
+  "share.menu": {
+    "message": "Dela",
+    "description": "Menyalternativet för att öppna delningsdialogrutan i sidofältet/verktygsfältet"
+  },
+  "share.dialogTitle": {
+    "message": "Dela konversation",
+    "description": "Titeln på delningsdialogrutan"
+  },
+  "share.description": {
+    "message": "Alla som har länken kan se denna konversation, men kan inte fortsätta chatta.",
+    "description": "Förklarar vad som händer när konversationen delas"
+  },
+  "share.createLink": {
+    "message": "Skapa delningslänk",
+    "description": "Knappen för att skapa en offentlig delningslänk för konversationen"
+  },
+  "share.copy": {
+    "message": "Kopiera länk",
+    "description": "Knappen för att kopiera delningslänken till urklipp"
+  },
+  "share.copied": {
+    "message": "Kopierad",
+    "description": "En kort meddelande som visas på knappen efter att kopieringen har lyckats"
+  },
+  "share.disable": {
+    "message": "Inaktivera länk",
+    "description": "Knappen för att återkalla delningslänken och göra URL:en ogiltig"
+  },
+  "share.disabled": {
+    "message": "Delningslänken har inaktiverats.",
+    "description": "Meddelandet som visas efter att delningslänken har inaktiverats"
+  },
+  "share.needLogin": {
+    "message": "Logga in först innan du delar denna konversation.",
+    "description": "Meddelandet när en icke-inloggad besökare försöker dela en konversation"
+  },
+  "share.noConversation": {
+    "message": "Öppna en konversation först innan du delar.",
+    "description": "Meddelandet när delningsknappen klickas utan aktiv konversation"
+  },
+  "share.createFailed": {
+    "message": "Misslyckades med att skapa delningslänk, försök igen senare.",
+    "description": "Felmeddelande vid misslyckande att skapa delningslänk"
+  },
+  "share.disableFailed": {
+    "message": "Misslyckades med att inaktivera delningslänk, försök igen senare.",
+    "description": "Felmeddelande vid misslyckande att inaktivera delningslänk"
+  },
+  "share.startYourOwn": {
+    "message": "Starta min egen konversation",
+    "description": "Call-to-action på den delade offentliga sidan för att leda anonyma besökare till appens startsida"
+  },
+  "share.unavailableTitle": {
+    "message": "Denna delade konversation är inte tillgänglig.",
+    "description": "Titeln på den delade offentliga sidan när delningslänken är ogiltig eller inte tillgänglig"
+  },
+  "share.unavailableHint": {
+    "message": "Länken kan ha inaktiverats av den andra parten, eller så är URL:en felaktig.",
+    "description": "Meddelandet när delningslänken är ogiltig eller inte tillgänglig"
+  },
+  "share.viewOnly": {
+    "message": "Endast läsning delad konversation",
+    "description": "Etikett som anger att konversationen är endast läsbar på den delade offentliga sidan"
+  },
+  "share.untitled": {
+    "message": "Obenämnd konversation",
+    "description": "Platsinnehåll som används när den delade konversationen saknar titel"
+  },
+  "share.footerNote": {
+    "message": "Du tittar på en delad konversation. Klicka ovan för att chatta med AI själv.",
+    "description": "Förklarande text under den delade offentliga sidan"
   },
   "model.claudeOpus47": {
     "message": "claude-opus-4.7",
@@ -730,5 +1033,81 @@
   "model.claudeOpus47Description": {
     "message": "Den mest avancerade modellen hittills",
     "description": "Beskrivning av Claude Opus 4.7-modellen"
+  },
+  "artifacts.unhide": {
+    "message": "Unhide",
+    "description": "Restore a hidden artifact"
+  },
+  "artifacts.showHidden": {
+    "message": "Show hidden",
+    "description": "Toggle in the filter bar to include hidden artifacts"
+  },
+  "artifacts.hiddenBadge": {
+    "message": "Hidden",
+    "description": "Badge shown on artifacts that are currently hidden"
+  },
+  "scheduledTasks.run.reason.billing_gate_failed": {
+    "message": "Faktureringsauktoriseringen misslyckades"
+  },
+  "browserTool.title": {
+    "message": "Browser activity",
+    "description": "Fallback title for a BrowserDevice tool activity"
+  },
+  "browserTool.state.choose_device": {
+    "message": "Choose a browser device"
+  },
+  "browserTool.state.device_offline": {
+    "message": "Browser device is offline"
+  },
+  "browserTool.state.awaiting_device": {
+    "message": "Waiting for browser device"
+  },
+  "browserTool.state.awaiting_local_approval": {
+    "message": "Waiting for approval on the browser device"
+  },
+  "browserTool.state.takeover_required": {
+    "message": "Take over on the browser device"
+  },
+  "browserTool.state.executing": {
+    "message": "Executing in browser"
+  },
+  "browserTool.state.completed": {
+    "message": "Completed"
+  },
+  "browserTool.state.denied": {
+    "message": "Denied on the browser device"
+  },
+  "browserTool.state.expired": {
+    "message": "Browser request expired"
+  },
+  "browserTool.state.cancel_too_late": {
+    "message": "Too late to cancel"
+  },
+  "scheduledTasks.run.waiting_for_device": {
+    "message": "Waiting for browser device"
+  },
+  "model.kimiK3": {
+    "message": "kimi-k3",
+    "description": "Name of Moonshot AI's Kimi K3 flagship model"
+  },
+  "model.kimiK3Description": {
+    "message": "Flagship reasoning and vision model with a 1M-token context window",
+    "description": "Description of the Kimi K3 model"
+  },
+  "model.kimiK26": {
+    "message": "kimi-k2.6",
+    "description": "Name of the Kimi K2.6 model"
+  },
+  "model.kimiK26Description": {
+    "message": "Reasoning and vision model for compatible K2 workflows",
+    "description": "Description of the Kimi K2.6 model"
+  },
+  "model.claudeFable5": {
+    "message": "claude-fable-5",
+    "description": "Name of Anthropic's Claude Fable 5 flagship model"
+  },
+  "model.claudeFable5Description": {
+    "message": "Flagship reasoning and vision model for long-horizon work with a 1M-token context window",
+    "description": "Description of the Claude Fable 5 model"
   }
 }

@@ -23,7 +23,7 @@
       </div>
     </el-dialog>
     <button type="button" class="entry" :title="balanceTitle" @click="visible = true">
-      <font-awesome-icon icon="fa-solid fa-wallet" class="entry-icon" />
+      <wallet-icon class="entry-icon" :size="'1em' as any" aria-hidden="true" focusable="false" />
       <span class="entry-amount">{{ balanceText }}</span>
       <span class="entry-unit">{{ balanceUnit }}</span>
     </button>
@@ -31,13 +31,13 @@
 </template>
 
 <script lang="ts">
+import { WalletIcon } from '@acedatacloud/core/icons/components';
 import { defineComponent } from 'vue';
 import { ElDialog } from 'element-plus';
 import { IApplicationType, IApplication, IService } from '@/models';
 import { ROUTE_CONSOLE_APPLICATION_EXTRA, ROUTE_CONSOLE_USAGE_LIST } from '@/router';
 import ApplicationInfo from './Info.vue';
 import { isNative } from '@/utils';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 export interface IData {
   visible: boolean;
   applicationType: typeof IApplicationType;
@@ -46,8 +46,8 @@ export interface IData {
 export default defineComponent({
   name: 'ApplicationStatus',
   components: {
+    WalletIcon,
     ElDialog,
-    FontAwesomeIcon,
     ApplicationInfo
   },
   props: {
@@ -139,6 +139,8 @@ export default defineComponent({
   font-size: 13px;
   line-height: 1;
   cursor: pointer;
+  // Ensure clicks work when this pill sits inside the desktop drag region.
+  -webkit-app-region: no-drag;
   transition:
     border-color 0.18s ease,
     box-shadow 0.18s ease,

@@ -224,7 +224,7 @@
     "description": "Назва моделі сервісу, тобто Kimi K2.5"
   },
   "model.kimiK25Description": {
-    "message": "Найсучасніша модель",
+    "message": "General-purpose K2 model for compatible workflows",
     "description": "Опис моделі Kimi K2.5"
   },
   "model.kimiK2Thinking": {
@@ -599,6 +599,18 @@
   "scheduledTasks.deleteConfirm": {
     "message": "Delete \"{name}\"? The task will stop running."
   },
+  "scheduledTasks.triggerNow": {
+    "message": "Run now",
+    "description": "Trigger the task immediately, out of schedule"
+  },
+  "scheduledTasks.triggerSuccess": {
+    "message": "Triggered. The result will appear in run history shortly.",
+    "description": "Manual trigger success"
+  },
+  "scheduledTasks.triggerError": {
+    "message": "Failed to trigger. Please try again later.",
+    "description": "Manual trigger error"
+  },
   "scheduledTasks.viewResult": {
     "message": "View Result"
   },
@@ -636,6 +648,45 @@
   "scheduledTasks.run.failed": {
     "message": "Failed"
   },
+  "scheduledTasks.run.reason.max_turns": {
+    "message": "Досягнуто ліміт кроків"
+  },
+  "scheduledTasks.run.reason.max_budget_usd": {
+    "message": "Досягнуто ліміт бюджету"
+  },
+  "scheduledTasks.run.reason.tool_call_loop": {
+    "message": "Виявлено цикл викликів інструментів"
+  },
+  "scheduledTasks.run.reason.prompt_too_long": {
+    "message": "Запит надто довгий"
+  },
+  "scheduledTasks.run.reason.aborted_streaming": {
+    "message": "Перервано"
+  },
+  "scheduledTasks.run.reason.aborted_tools": {
+    "message": "Перервано"
+  },
+  "scheduledTasks.run.reason.awaiting_user_input": {
+    "message": "Очікування вашого вводу"
+  },
+  "scheduledTasks.run.reason.error": {
+    "message": "Помилка"
+  },
+  "scheduledTasks.run.reason.unknown": {
+    "message": "Невідома помилка"
+  },
+  "scheduledTasks.run.reason.balance_insufficient": {
+    "message": "Недостатньо коштів"
+  },
+  "scheduledTasks.run.reason.unauthorized": {
+    "message": "Не авторизовано"
+  },
+  "scheduledTasks.run.reason.timeout": {
+    "message": "Час очікування вичерпано"
+  },
+  "scheduledTasks.run.reason.internal_error": {
+    "message": "Внутрішня помилка"
+  },
   "scheduledTasks.run.needs_user_input": {
     "message": "Needs action"
   },
@@ -653,6 +704,74 @@
   },
   "scheduledTasks.scheduleType.cron": {
     "message": "Cron expression"
+  },
+  "scheduledTasks.scheduleType.interval": {
+    "message": "Every",
+    "description": "Run at a fixed interval"
+  },
+  "scheduledTasks.form.intervalUnit.minute": {
+    "message": "minutes",
+    "description": "Interval unit: minutes"
+  },
+  "scheduledTasks.form.intervalUnit.hour": {
+    "message": "hours",
+    "description": "Interval unit: hours"
+  },
+  "scheduledTasks.form.intervalUnit.day": {
+    "message": "days",
+    "description": "Interval unit: days"
+  },
+  "scheduledTasks.form.hourlyMinute": {
+    "message": "At minute",
+    "description": "Which minute of each hour to run"
+  },
+  "scheduledTasks.form.hourlyMinuteHint": {
+    "message": "Which minute of each hour to run (0–59)",
+    "description": "Hourly minute hint"
+  },
+  "scheduledTasks.form.intervalHint": {
+    "message": "Runs once every fixed interval after the previous run (minimum 1 minute)",
+    "description": "Interval hint"
+  },
+  "scheduledTasks.form.cronHint": {
+    "message": "Standard 5-field cron expression: minute hour day month weekday",
+    "description": "Cron hint"
+  },
+  "scheduledTasks.form.schedulePreview": {
+    "message": "Runs {text}",
+    "description": "Schedule preview"
+  },
+  "scheduledTasks.humanize.everyNMinutes": {
+    "message": "every {n} min",
+    "description": "Human-readable: every N minutes"
+  },
+  "scheduledTasks.humanize.everyNHours": {
+    "message": "every {n} h",
+    "description": "Human-readable: every N hours"
+  },
+  "scheduledTasks.humanize.everyNDays": {
+    "message": "every {n} d",
+    "description": "Human-readable: every N days"
+  },
+  "scheduledTasks.humanize.hourlyAtMinute": {
+    "message": "hourly at minute {n}",
+    "description": "Human-readable: hourly at minute N"
+  },
+  "scheduledTasks.humanize.dailyAt": {
+    "message": "daily at {time}",
+    "description": "Human-readable: daily at time"
+  },
+  "scheduledTasks.humanize.weeklyAt": {
+    "message": "{weekday} at {time}",
+    "description": "Human-readable: weekly at weekday/time"
+  },
+  "scheduledTasks.humanize.cronRaw": {
+    "message": "Cron: {cron}",
+    "description": "Human-readable: raw cron"
+  },
+  "scheduledTasks.humanize.once": {
+    "message": "once at {time}",
+    "description": "Human-readable: once"
   },
   "scheduledTasks.form.name": {
     "message": "Task name"
@@ -712,6 +831,14 @@
     "message": "Вибрані сервери MCP можуть бути завантажені та виконані в фоновому режимі завдання; невибрані сервери MCP не будуть завантажені в безлюдному режимі.",
     "description": "Пояснення авторизації серверів MCP"
   },
+  "scheduledTasks.form.maxTurns": {
+    "message": "Максимум ходів",
+    "description": "Scheduled task per-run agent turn cap"
+  },
+  "scheduledTasks.form.maxTurnsHint": {
+    "message": "Максимальна кількість ходів агента за запуск (1–50). Надто низький ліміт примусово зупиняє багатокрокові завдання (наприклад, навички, що виконують кілька кроків Bash/пошуку в документах) до завершення, без кінцевого результату. За замовчуванням 50.",
+    "description": "Scheduled task per-run agent turn cap"
+  },
   "scheduledTasks.form.skillsConfirmTitle": {
     "message": "Підтвердження авторизації без нагляду",
     "description": "Заголовок підтвердження авторизації"
@@ -720,8 +847,184 @@
     "message": "Це завдання дозволить {count} навичкам виконуватись у фоновому режимі без підтвердження: {skills}. Ці навички можуть надсилати повідомлення, публікувати контент або записувати в зовнішні сервіси, будь ласка, підтверджте.",
     "description": "Текст підтвердження авторизації"
   },
+  "scheduledTasks.form.skillNotActiveTitle": {
+    "message": "Bind the skill first",
+    "description": "Dialog title shown when a scheduled-task authorized skill/MCP is not yet bound for the user."
+  },
+  "scheduledTasks.form.skillNotActiveMessage": {
+    "message": "The skill \"{name}\" is not bound or active in your account yet. Without binding it, the scheduled task may not be able to use it during unattended background runs. We recommend binding it first, or you can save anyway.",
+    "description": "Warning body; {name} is the skill/MCP name. Explains it is not bound and offers to save anyway."
+  },
+  "scheduledTasks.form.skillNotActiveForce": {
+    "message": "Save anyway",
+    "description": "Confirm button that saves the scheduled task anyway, bypassing the binding check (force)."
+  },
   "scheduledTasks.form.required": {
     "message": "Please fill in task name and prompt"
+  },
+  "artifacts.navTitle": {
+    "message": "Артефакти",
+    "description": "Вхід до артефактів в бічній панелі"
+  },
+  "artifacts.title": {
+    "message": "Мої артефакти",
+    "description": "Заголовок сторінки артефактів"
+  },
+  "artifacts.summaryTotal": {
+    "message": "Цього разу створено {count} артефактів",
+    "description": "Загальна кількість артефактів"
+  },
+  "artifacts.filterAll": {
+    "message": "Усе",
+    "description": "Фільтр типів артефактів - усе"
+  },
+  "artifacts.empty": {
+    "message": "Ще немає жодного артефакту. Дайте AI допомогти вам написати статтю, згенерувати зображення або надіслати електронну пошту, після чого артефакти автоматично з'являться тут.",
+    "description": "Повідомлення про те, що артефакти відсутні"
+  },
+  "artifacts.loadError": {
+    "message": "Не вдалося завантажити артефакти",
+    "description": "Повідомлення про помилку завантаження артефактів"
+  },
+  "artifacts.actionError": {
+    "message": "Операція не вдалася, будь ласка, спробуйте ще раз",
+    "description": "Повідомлення про помилку операції"
+  },
+  "artifacts.open": {
+    "message": "Відкрити",
+    "description": "Кнопка для відкриття оригінального посилання артефакту"
+  },
+  "artifacts.hide": {
+    "message": "Сховати",
+    "description": "Кнопка для приховування артефакту"
+  },
+  "artifacts.delete": {
+    "message": "Видалити",
+    "description": "Кнопка для видалення артефакту"
+  },
+  "artifacts.deleteConfirm": {
+    "message": "Ви впевнені, що хочете назавжди видалити цей запис артефакту?",
+    "description": "Підтвердження видалення артефакту"
+  },
+  "artifacts.loadMore": {
+    "message": "Завантажити більше",
+    "description": "Кнопка для завантаження додаткових артефактів"
+  },
+  "artifacts.sourceAuto": {
+    "message": "Автоматичне захоплення",
+    "description": "Позначка для автоматичного захоплення джерела"
+  },
+  "artifacts.kind.article": {
+    "message": "Стаття",
+    "description": "Тип артефакту - стаття"
+  },
+  "artifacts.kind.image": {
+    "message": "Зображення",
+    "description": "Тип артефакту - зображення"
+  },
+  "artifacts.kind.video": {
+    "message": "Відео",
+    "description": "Тип артефакту - відео"
+  },
+  "artifacts.kind.audio": {
+    "message": "Аудіо",
+    "description": "Тип артефакту - аудіо"
+  },
+  "artifacts.kind.document": {
+    "message": "Документ",
+    "description": "Тип артефакту - документ"
+  },
+  "artifacts.kind.email": {
+    "message": "Електронна пошта",
+    "description": "Тип артефакту - електронна пошта"
+  },
+  "artifacts.kind.message": {
+    "message": "Повідомлення",
+    "description": "Тип артефакту - повідомлення"
+  },
+  "artifacts.kind.dataset": {
+    "message": "Дані",
+    "description": "Тип артефакту - дані"
+  },
+  "artifacts.kind.link": {
+    "message": "Посилання",
+    "description": "Тип артефакту - посилання"
+  },
+  "artifacts.kind.other": {
+    "message": "Інше",
+    "description": "Тип артефакту - інше"
+  },
+  "share.menu": {
+    "message": "Поділитися",
+    "description": "Елемент меню для відкриття діалогового вікна спільного доступу в бічній панелі/інструментах"
+  },
+  "share.dialogTitle": {
+    "message": "Поділитися розмовою",
+    "description": "Заголовок діалогового вікна для спільного доступу"
+  },
+  "share.description": {
+    "message": "Будь-хто, хто отримає посилання, зможе переглядати цю розмову, але не зможе продовжити спілкування.",
+    "description": "Пояснення того, що відбувається після спільного доступу до розмови"
+  },
+  "share.createLink": {
+    "message": "Створити посилання для спільного доступу",
+    "description": "Кнопка для створення публічного посилання для спільного доступу до розмови"
+  },
+  "share.copy": {
+    "message": "Скопіювати посилання",
+    "description": "Кнопка для копіювання посилання на спільний доступ у буфер обміну"
+  },
+  "share.copied": {
+    "message": "Скопійовано",
+    "description": "Тимчасове повідомлення, що з'являється на кнопці після успішного копіювання"
+  },
+  "share.disable": {
+    "message": "Деактивувати посилання",
+    "description": "Кнопка для відкликання посилання для спільного доступу, щоб URL став недійсним"
+  },
+  "share.disabled": {
+    "message": "Посилання для спільного доступу деактивовано.",
+    "description": "Повідомлення після деактивації посилання для спільного доступу"
+  },
+  "share.needLogin": {
+    "message": "Будь ласка, спочатку увійдіть, а потім поділіться цією розмовою.",
+    "description": "Повідомлення для відвідувачів, які намагаються поділитися розмовою без входу в систему"
+  },
+  "share.noConversation": {
+    "message": "Спочатку відкрийте розмову, а потім поділіться нею.",
+    "description": "Повідомлення при натисканні кнопки спільного доступу без активної розмови"
+  },
+  "share.createFailed": {
+    "message": "Не вдалося створити посилання для спільного доступу, спробуйте ще раз пізніше.",
+    "description": "Повідомлення про помилку при створенні посилання для спільного доступу"
+  },
+  "share.disableFailed": {
+    "message": "Не вдалося деактивувати посилання для спільного доступу, спробуйте ще раз пізніше.",
+    "description": "Повідомлення про помилку при деактивації посилання для спільного доступу"
+  },
+  "share.startYourOwn": {
+    "message": "Почати власну розмову",
+    "description": "Заклик до дії на публічній сторінці спільного доступу, що направляє анонімних відвідувачів на головну сторінку програми"
+  },
+  "share.unavailableTitle": {
+    "message": "Ця спільна розмова недоступна.",
+    "description": "Заголовок на публічній сторінці спільного доступу, коли посилання стало недійсним або недоступним"
+  },
+  "share.unavailableHint": {
+    "message": "Інша сторона, можливо, вже деактивувала посилання, або URL є недійсним.",
+    "description": "Повідомлення, коли посилання для спільного доступу стало недійсним або недоступним"
+  },
+  "share.viewOnly": {
+    "message": "Тільки для перегляду спільна розмова",
+    "description": "Мітка на публічній сторінці спільного доступу, що вказує на те, що розмова тільки для перегляду"
+  },
+  "share.untitled": {
+    "message": "Без назви",
+    "description": "Заповнювальний текст, коли спільна розмова не має назви"
+  },
+  "share.footerNote": {
+    "message": "Ви переглядаєте частину спільної розмови. Натисніть вище, щоб самостійно поспілкуватися з AI.",
+    "description": "Опис під розмовою на публічній сторінці спільного доступу"
   },
   "model.claudeOpus47": {
     "message": "claude-opus-4.7",
@@ -730,5 +1033,81 @@
   "model.claudeOpus47Description": {
     "message": "Найсучасніша модель на сьогодні",
     "description": "Опис моделі Claude Opus 4.7"
+  },
+  "artifacts.unhide": {
+    "message": "Unhide",
+    "description": "Restore a hidden artifact"
+  },
+  "artifacts.showHidden": {
+    "message": "Show hidden",
+    "description": "Toggle in the filter bar to include hidden artifacts"
+  },
+  "artifacts.hiddenBadge": {
+    "message": "Hidden",
+    "description": "Badge shown on artifacts that are currently hidden"
+  },
+  "scheduledTasks.run.reason.billing_gate_failed": {
+    "message": "Не вдалося авторизувати оплату"
+  },
+  "browserTool.title": {
+    "message": "Browser activity",
+    "description": "Fallback title for a BrowserDevice tool activity"
+  },
+  "browserTool.state.choose_device": {
+    "message": "Choose a browser device"
+  },
+  "browserTool.state.device_offline": {
+    "message": "Browser device is offline"
+  },
+  "browserTool.state.awaiting_device": {
+    "message": "Waiting for browser device"
+  },
+  "browserTool.state.awaiting_local_approval": {
+    "message": "Waiting for approval on the browser device"
+  },
+  "browserTool.state.takeover_required": {
+    "message": "Take over on the browser device"
+  },
+  "browserTool.state.executing": {
+    "message": "Executing in browser"
+  },
+  "browserTool.state.completed": {
+    "message": "Completed"
+  },
+  "browserTool.state.denied": {
+    "message": "Denied on the browser device"
+  },
+  "browserTool.state.expired": {
+    "message": "Browser request expired"
+  },
+  "browserTool.state.cancel_too_late": {
+    "message": "Too late to cancel"
+  },
+  "scheduledTasks.run.waiting_for_device": {
+    "message": "Waiting for browser device"
+  },
+  "model.kimiK3": {
+    "message": "kimi-k3",
+    "description": "Name of Moonshot AI's Kimi K3 flagship model"
+  },
+  "model.kimiK3Description": {
+    "message": "Flagship reasoning and vision model with a 1M-token context window",
+    "description": "Description of the Kimi K3 model"
+  },
+  "model.kimiK26": {
+    "message": "kimi-k2.6",
+    "description": "Name of the Kimi K2.6 model"
+  },
+  "model.kimiK26Description": {
+    "message": "Reasoning and vision model for compatible K2 workflows",
+    "description": "Description of the Kimi K2.6 model"
+  },
+  "model.claudeFable5": {
+    "message": "claude-fable-5",
+    "description": "Name of Anthropic's Claude Fable 5 flagship model"
+  },
+  "model.claudeFable5Description": {
+    "message": "Flagship reasoning and vision model for long-horizon work with a 1M-token context window",
+    "description": "Description of the Claude Fable 5 model"
   }
 }

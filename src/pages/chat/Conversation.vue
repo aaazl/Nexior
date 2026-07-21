@@ -7,24 +7,49 @@
           <byok-badge class="byok-badge" />
         </div>
         <div class="toolbar-actions">
-          <el-tooltip v-if="false" :content="$t('chat.agent.tooltip')" placement="bottom">
-            <el-button class="toolbar-btn" text @click="agentManagerVisible = true">
-              <font-awesome-icon icon="fa-solid fa-desktop" />
-              <span v-if="agentConnected" class="agent-dot"></span>
+          <el-tooltip v-if="conversationId" :content="$t('chat.share.menu')" placement="bottom">
+            <el-button
+              class="toolbar-btn"
+              text
+              :aria-label="$t('chat.share.menu')"
+              :title="$t('chat.share.menu')"
+              @click="shareDialogVisible = true"
+            >
+              <share-icon :size="'1em' as any" aria-hidden="true" focusable="false" />
             </el-button>
           </el-tooltip>
         </div>
       </div>
-      <desktop-agent-manager
-        v-if="agentManagerVisible"
-        v-model="agentManagerVisible"
-        :connected="agentConnected"
-        :agent-name="agentName"
-        :tool-count="agentToolCount"
-        :connected-at="agentConnectedAt"
+      <share-conversation-dialog
+        v-model="shareDialogVisible"
+        :conversation-id="conversationId"
+        :share-id="conversation?.share_id"
+        @update:share-id="onShareIdUpdated"
       />
-      <div :class="{ dialogue: true, empty: messages.length === 0 }">
-        <div v-if="messages.length > 0" class="messages">
+      <div :class="{ dialogue: true, empty: messages.length === 0 && !restoringConversation }">
+        <div
+          v-if="restoringConversation"
+          class="conversation-loading"
+          role="status"
+          aria-live="polite"
+          :aria-label="$t('common.status.loading')"
+        >
+          <div class="conversation-loading-label">
+            <span class="conversation-loading-spinner" aria-hidden="true"></span>
+            <span>{{ $t('common.status.loading') }}</span>
+          </div>
+          <el-skeleton v-for="item in 3" :key="item" animated class="conversation-loading-row">
+            <template #template>
+              <el-skeleton-item variant="circle" class="conversation-loading-avatar" />
+              <div class="conversation-loading-content">
+                <el-skeleton-item variant="text" :style="{ width: item === 2 ? '42%' : '68%' }" />
+                <el-skeleton-item variant="text" :style="{ width: item === 2 ? '72%' : '88%' }" />
+                <el-skeleton-item variant="text" :style="{ width: item === 2 ? '56%' : '61%' }" />
+              </div>
+            </template>
+          </el-skeleton>
+        </div>
+        <div v-else-if="messages.length > 0" class="messages">
           <message
             v-for="(message, messageIndex) in messages"
             :key="messageIndex"
@@ -61,6 +86,7 @@
 </template>
 
 <script lang="ts">
+import { ShareIcon } from '@acedatacloud/core/icons/components';
 import axios from 'axios';
 import { defineComponent } from 'vue';
 import Message from '@/components/chat/Message.vue';
@@ -75,27 +101,30 @@ import {
 } from '@/models';
 import Composer from '@/components/chat/Composer.vue';
 import ModelSelector from '@/components/chat/ModelSelector.vue';
-import DesktopAgentManager from '@/components/chat/DesktopAgentManager.vue';
 import BYOKBadge from '@/components/chat/BYOKBadge.vue';
+import ShareConversationDialog from '@/components/chat/ShareConversationDialog.vue';
 import { ERROR_CODE_CANCELED, ERROR_CODE_NOT_APPLIED, ERROR_CODE_UNKNOWN } from '@/constants/errorCode';
 import { Status } from '@/models';
 import Disclaimer from '@/components/chat/Disclaimer.vue';
 import ConnectorStrip from '@/components/chat/ConnectorStrip.vue';
 import Layout from '@/layouts/Chat.vue';
 import { isImageUrl } from '@/utils/is';
-import { isDesktop } from '@/utils/surface';
+import { supportsClientTools } from '@/utils/surface';
 import { ensureLoggedIn } from '@/utils/login';
 import { localExec, type LocalToolSpec } from '@/utils/desktop';
+import { getBaseUrlPlatform } from '@/utils';
 import { IAskUserQuestionPayload, IChatMessageContentItem, IConsentRequestPayload } from '@/models';
 import {
   buildAuthorizedConsentOutput,
   findPendingConsentBlock,
   parseConsentReturnFromQuery,
+  repairInstallReturnToUrl,
   type IConsentReturn
 } from '@/components/chat/consentReturn';
-import { chatOperator, agentOperator } from '@/operators';
-import { ElTooltip, ElButton } from 'element-plus';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { hasLoadedConversationMessages } from '@/components/chat/conversationRestore';
+import { reduceBrowserToolExecution } from '@/utils/browserToolExecution';
+import { chatOperator } from '@/operators';
+import { ElButton, ElSkeleton, ElSkeletonItem, ElTooltip } from 'element-plus';
 
 export interface IData {
   drawer: boolean;
@@ -111,11 +140,8 @@ export interface IData {
   answering: boolean;
   messages: IChatMessage[];
   canceler: AbortController | undefined;
-  agentManagerVisible: boolean;
-  agentConnected: boolean;
-  agentName: string;
-  agentToolCount: number;
-  agentConnectedAt: string;
+  shareDialogVisible: boolean;
+  restoringConversationId: string | undefined;
   /**
    * Set right before pushing the URL for a freshly-completed chat so the
    * `conversationId` watcher can recognise the change as “already loaded
@@ -149,17 +175,19 @@ export interface IData {
 export default defineComponent({
   name: 'ChatConversation',
   components: {
+    ShareIcon,
     Composer,
     Disclaimer,
     ConnectorStrip,
     ModelSelector,
-    DesktopAgentManager,
     'byok-badge': BYOKBadge,
+    ShareConversationDialog,
     Message,
     Layout,
-    ElTooltip,
     ElButton,
-    FontAwesomeIcon
+    ElSkeleton,
+    ElSkeletonItem,
+    ElTooltip
   },
   data(): IData {
     return {
@@ -172,11 +200,8 @@ export default defineComponent({
       upload: false,
       answering: false,
       canceler: undefined,
-      agentManagerVisible: false,
-      agentConnected: false,
-      agentName: '',
-      agentToolCount: 0,
-      agentConnectedAt: '',
+      shareDialogVisible: false,
+      restoringConversationId: undefined,
       skipNextRestoreId: undefined,
       messages: [],
       pendingConsentReturn: null
@@ -197,6 +222,9 @@ export default defineComponent({
         (conversation: IChatConversation) => conversation.id === this.conversationId
       );
     },
+    restoringConversation(): boolean {
+      return !!this.conversationId && this.restoringConversationId === this.conversationId;
+    },
     service() {
       return this.$store.state.chat.service;
     },
@@ -209,6 +237,9 @@ export default defineComponent({
     credential() {
       return this.$store.state.chat?.credential;
     },
+    memoryEnabled(): boolean {
+      return this.$store.state.chat?.memoryEnabled !== false;
+    },
     needApply() {
       return this.$store.state.chat.status.getApplications === Status.Success && !this.application;
     },
@@ -219,6 +250,7 @@ export default defineComponent({
       return this.$store.state.chat.status.getApplications === Status.Request;
     },
     ready(): boolean {
+      if (this.restoringConversation) return false;
       // Guests may compose & "send" — the submit handler triggers login
       // (deferred auth), so the composer must not be disabled for them.
       if (!this.$store.getters.authenticated) {
@@ -263,7 +295,6 @@ export default defineComponent({
           await this.$store.dispatch('chat/getConversations');
         }
         await this.onRestoreCurrentConversation();
-        this.onCheckAgentStatus();
       }
     },
     // URL is the source of truth for which conversation is open. Side-
@@ -306,18 +337,25 @@ export default defineComponent({
     await this.onGetApplication();
     this.onConsumePendingDraft();
     this.onApplyQueryFromUrl();
-    if (isDesktop()) {
+    if (supportsClientTools()) {
       this.localTools = (await localExec()?.listTools()) ?? [];
     }
   },
   methods: {
     resetConversation() {
+      this.restoringConversationId = undefined;
       this.messages = [];
       this.question = '';
       this.references = [];
       // Drop any deferred desktop client tool from a prior turn so a new chat
       // never auto-runs a stale tool against the wrong conversation.
       this.pendingClientTools = [];
+    },
+    onShareIdUpdated(shareId?: string) {
+      // Keep the store conversation in sync so the dialog reopens with the
+      // current link (or the "create" state after revoking).
+      if (!this.conversation) return;
+      this.$store.dispatch('chat/setConversation', { ...this.conversation, share_id: shareId });
     },
     // Idempotent restore for the URL-pinned conversation. Bails on
     // missing token (credential.token watcher will retry), missing :id
@@ -331,19 +369,6 @@ export default defineComponent({
         return;
       }
       await this.onRestoreConversation(id);
-    },
-    async onCheckAgentStatus() {
-      const token = this.credential?.token;
-      if (!token) return;
-      try {
-        const { data } = await agentOperator.status(token);
-        this.agentConnected = data?.connected === true;
-        this.agentName = data?.name || '';
-        this.agentToolCount = data?.tool_count || 0;
-        this.agentConnectedAt = data?.connected_at || '';
-      } catch {
-        this.agentConnected = false;
-      }
     },
     /**
      * Restore the unsubmitted composer draft after a route-level
@@ -597,18 +622,28 @@ export default defineComponent({
       //    Side-panel summaries do NOT include `messages`, so we always
       //    need a `retrieve` call the first time a conversation is opened.
       let conversation: IChatConversation | undefined = this.conversations?.find((c: IChatConversation) => c.id === id);
-      if (!conversation || !conversation.messages) {
-        const fetched = await this.$store.dispatch('chat/getConversation', id);
-        if (fetched) conversation = fetched;
+      const needsFetch = !hasLoadedConversationMessages(conversation);
+      if (needsFetch) {
+        this.messages = [];
+        this.restoringConversationId = id;
       }
-      // 2. Switch model + model group to whatever this conversation used.
-      const model = conversation?.model;
-      const targetModel = CHAT_MODELS.find((m) => m.name === model);
-      const targetModelGroup = CHAT_MODEL_GROUPS.find((g) => g.name === targetModel?.modelGroup);
-      if (targetModelGroup) this.$store.dispatch('chat/setModelGroup', targetModelGroup);
-      if (targetModel) this.$store.dispatch('chat/setModel', targetModel);
-      this.messages = conversation?.messages || [];
-      this.onScrollDown();
+      try {
+        if (needsFetch) {
+          const fetched = await this.$store.dispatch('chat/getConversation', id);
+          if (fetched) conversation = fetched;
+        }
+        if (this.conversationId !== id) return;
+        // 2. Switch model + model group to whatever this conversation used.
+        const model = conversation?.model;
+        const targetModel = CHAT_MODELS.find((m) => m.name === model);
+        const targetModelGroup = CHAT_MODEL_GROUPS.find((g) => g.name === targetModel?.modelGroup);
+        if (targetModelGroup) this.$store.dispatch('chat/setModelGroup', targetModelGroup);
+        if (targetModel) this.$store.dispatch('chat/setModel', targetModel);
+        this.messages = conversation?.messages || [];
+        this.onScrollDown();
+      } finally {
+        if (this.restoringConversationId === id) this.restoringConversationId = undefined;
+      }
     },
     async onChangeConversation(id?: string) {
       console.log('onChangeConversation in conversation', id);
@@ -628,6 +663,7 @@ export default defineComponent({
       await this.$router.push(this.conversationsPath(target));
     },
     async onSubmit() {
+      if (this.restoringConversation) return;
       // Deferred auth: a guest hitting send is sent to login here, before we
       // mutate `messages`, so they return to a clean composer post-login.
       if (!ensureLoggedIn()) {
@@ -675,7 +711,7 @@ export default defineComponent({
       // very next message. Without this, `localTools` is cached from mount and a
       // disabled tool would keep being advertised as `client_tools` — wasting
       // prompt tokens — until the chat remounts.
-      if (isDesktop()) {
+      if (supportsClientTools()) {
         this.localTools = (await localExec()?.listTools()) ?? [];
       }
       console.debug('start to get answer', this.messages);
@@ -754,6 +790,13 @@ export default defineComponent({
       const lastAssistant = [...this.messages].reverse().find((m) => m.role === ROLE_ASSISTANT);
       if (lastAssistant && Array.isArray(lastAssistant.content)) {
         const content = lastAssistant.content as IChatMessageContentItem[];
+        // Collect tool-result screenshots here and append them AFTER folding
+        // every block, so they trail the tool_use blocks in the exact order
+        // the worker persists them (the worker buffers image blocks and pushes
+        // them once, post-loop — see conversations.ts). Interleaving per result
+        // would reorder images vs a reload when several parallel client tools
+        // return screenshots.
+        const imageBlocks: IChatMessageContentItem[] = [];
         for (const tr of toolResults) {
           const block = content.find((b) => b.type === 'tool_use' && b.tool_id === tr.tool_use_id);
           if (block) {
@@ -762,7 +805,26 @@ export default defineComponent({
             if (tr.is_error) block.is_error = true;
             delete block.pending_question;
           }
+          // Mirror the worker: a tool-result image (e.g. a computer.screenshot)
+          // is persisted as a trailing `image_url` block on the pause message,
+          // so a reload shows it. Buffer the same block locally so the live
+          // stream matches the reloaded view instead of only appearing after
+          // refresh. Idempotent by tool_use_id (a re-resume must not duplicate).
+          // Gate on the SAME validation the worker applies before persisting
+          // (`isValidResultImage`): if the worker would reject the value it
+          // won't persist it, so appending it locally would show live but
+          // vanish on reload — an inverse mismatch. Validating here keeps the
+          // two views identical and blocks any non-image URL from the <img>.
+          if (tr.image && this._isValidResultImage(tr.image)) {
+            const alt = `${tr.tool_use_id} screenshot`;
+            const already = content.some((b) => b.type === 'image_url' && b.alt === alt);
+            const buffered = imageBlocks.some((b) => b.alt === alt);
+            if (!already && !buffered) {
+              imageBlocks.push({ type: 'image_url', image_url: { url: tr.image }, alt });
+            }
+          }
         }
+        if (imageBlocks.length) content.push(...imageBlocks);
       }
       // Push fresh pending assistant message for the resumed turn.
       this.messages.push({
@@ -828,7 +890,7 @@ export default defineComponent({
         inputSchema: Record<string, unknown>;
       }[];
     } {
-      if (!isDesktop() || !this.localTools.length) return {};
+      if (!supportsClientTools() || !this.localTools.length) return {};
       return {
         client_tools: this._wiredTools().map(({ spec, wire }) => ({
           name: wire,
@@ -907,17 +969,68 @@ export default defineComponent({
         // denied, path outside allowed roots) resume as a tool ERROR, not a
         // successful output the model would trust. `image` (e.g. a
         // computer.screenshot) is forwarded so the worker can show the model
-        // the screen as a vision input.
+        // the screen as a vision input — hosted as a short URL (like a normal
+        // user-attached image) rather than an inline multi-MB base64 data-uri.
+        const image = r.image ? (await this._hostToolResultImage(r.image)) || r.image : undefined;
         results.push({
           tool_use_id: p.toolId,
           output: r.output,
           ...(r.is_error ? { is_error: true } : {}),
-          ...(r.image ? { image: r.image } : {})
+          ...(image ? { image } : {})
         });
       }
       // Stop pressed while the last tool was running → don't resume the turn.
       if (runId !== undefined && runId !== this.clientToolRunId) return;
       this._resumeWithToolResults(results, conversationId);
+    },
+    /**
+     * Mirror of the aichat2 worker's `isValidResultImage` guard. The worker
+     * persists a tool-result screenshot as an `image_url` block ONLY when the
+     * value is a whitespace-free `https://` URL or a base64 raster
+     * `data:image/(png|jpeg|webp)` URI within the size cap; anything else it
+     * silently drops. The local fold gates on the same rule so the live view
+     * shows exactly what a reload would (no inverse mismatch) and no non-image
+     * URL ever reaches the `<img>` sink. Keep in sync with the worker.
+     */
+    _isValidResultImage(s: string): boolean {
+      const MAX_RESULT_IMAGE_CHARS = 6_000_000;
+      if (!s || s.length > MAX_RESULT_IMAGE_CHARS) return false;
+      if (s.startsWith('https://')) return !/\s/.test(s);
+      return /^data:image\/(png|jpe?g|webp);base64,[A-Za-z0-9+/]+={0,2}$/.test(s);
+    },
+    /**
+     * Host a tool-result image (e.g. a computer.screenshot) on the platform
+     * file store and return its short public URL — exactly how a normal
+     * user-attached image is sent. A screenshot returned inline as a multi-MB
+     * base64 `data:` URI otherwise bloats every stored message + upstream
+     * request (and a single one can dwarf the model's context budget). No-op
+     * for a value that is already an https URL. Returns null on any failure so
+     * the caller keeps the inline image as a fallback.
+     */
+    async _hostToolResultImage(image: string): Promise<string | null> {
+      if (!image || !image.startsWith('data:')) return image || null;
+      const accessToken = this.$store.getters.token?.access;
+      if (!accessToken) return null;
+      try {
+        const blob = await (await fetch(image)).blob();
+        const ext = (blob.type.split('/')[1] || 'png').split(';')[0];
+        const fd = new FormData();
+        fd.append('file', blob, `screenshot.${ext}`);
+        // Raw fetch (not the shared axios client, which forces a JSON
+        // content-type): the browser sets the multipart boundary itself.
+        const resp = await fetch(`${getBaseUrlPlatform()}/api/v1/files/`, {
+          method: 'POST',
+          headers: { Authorization: `Bearer ${accessToken}` },
+          body: fd
+        });
+        if (!resp.ok) return null;
+        const data = await resp.json();
+        const url = data?.file_url || data?.data?.file_url;
+        return typeof url === 'string' && url ? url : null;
+      } catch (e) {
+        console.warn('[computer-use] screenshot upload failed; sending inline', e);
+        return null;
+      }
     },
     /**
      * Visual-only "skip" of an ask_user_question card. Marks the pending
@@ -1006,7 +1119,12 @@ export default defineComponent({
         console.warn('authorize click with no install_url', payload);
         return;
       }
-      window.location.href = url;
+      // The worker builds the install `return_to` as `/chat/c/<conv>` —
+      // a path Nexior does not serve — so a cookie/BYOC bind that returns
+      // there 404s. Rewrite it to the current group's real conversation
+      // route before handing off to AuthFrontend.
+      const prefix = this.$route.matched[0]?.path ?? '';
+      window.location.href = repairInstallReturnToUrl(url, prefix);
     },
     /**
      * Stash any ``?consent=<rid>&connector=<id>`` pair on
@@ -1091,6 +1209,10 @@ export default defineComponent({
       // Track content parts for tool-calling interleaving
       const contentParts: IChatMessageContentItem[] = [];
       const toolMap = new Map<string, IChatMessageContentItem>();
+      const pendingBrowserUpdates = new Map<
+        string,
+        Pick<IChatMessageContentItem, 'execution_state' | 'execution_sequence' | 'origin'>
+      >();
       let currentText = '';
       // The aichat2 operator emits `response.answer` as the full
       // accumulated text since the start of the turn. Whenever we flush
@@ -1100,13 +1222,25 @@ export default defineComponent({
       // *remaining* text instead of duplicating everything we already
       // pushed.
       let answerOffset = 0;
-
       chatOperator
         .chatConversation(body, {
           token,
           stream: (response: IChatConversationResponse) => {
             console.debug('stream response', response);
             const lastMessage = this.messages[targetIndex];
+            const browserToolItem = response.tool_id ? toolMap.get(response.tool_id) : undefined;
+            if (response.tool_id && response.execution === 'browser' && response.execution_state && !browserToolItem) {
+              const pending = pendingBrowserUpdates.get(response.tool_id) ?? {};
+              pendingBrowserUpdates.set(response.tool_id, reduceBrowserToolExecution(pending, response));
+            }
+            if (
+              browserToolItem &&
+              response.execution_state &&
+              (response.execution === 'browser' || browserToolItem.execution === 'browser')
+            ) {
+              browserToolItem.execution = 'browser';
+              Object.assign(browserToolItem, reduceBrowserToolExecution(browserToolItem, response));
+            }
 
             // Handle tool-calling events
             if (response.type === 'thinking' && response.content) {
@@ -1116,35 +1250,75 @@ export default defineComponent({
               const target = this.messages[targetIndex];
               target.thinking = (target.thinking ?? '') + response.content;
             } else if (response.type === 'tool_use_start' && response.tool_id) {
-              // Flush any accumulated text before tool
-              if (currentText) {
-                contentParts.push({ type: 'text', text: currentText });
-                currentText = '';
-                answerOffset = response.answer?.length ?? 0;
+              // The worker announces a tool call the instant its name is known
+              // (arguments may still be streaming) and then re-emits
+              // tool_use_start once with the full parsed input / execution.
+              // UPSERT by tool_id so the two starts merge into ONE block
+              // instead of rendering a duplicate.
+              let toolItem = toolMap.get(response.tool_id);
+              if (toolItem) {
+                if (response.tool_name) toolItem.tool_name = response.tool_name;
+                if (response.tool_display_name) toolItem.tool_display_name = response.tool_display_name;
+                if (response.execution) toolItem.execution = response.execution;
+                if (response.execution === 'browser') {
+                  Object.assign(toolItem, reduceBrowserToolExecution(toolItem, response));
+                  const pending = pendingBrowserUpdates.get(response.tool_id);
+                  if (pending) {
+                    Object.assign(toolItem, reduceBrowserToolExecution(toolItem, pending));
+                    pendingBrowserUpdates.delete(response.tool_id);
+                  }
+                }
+                if (response.input && Object.keys(response.input).length > 0) {
+                  toolItem.input = response.input;
+                }
+              } else {
+                // Flush any accumulated text before the new tool block.
+                if (currentText) {
+                  contentParts.push({ type: 'text', text: currentText });
+                  currentText = '';
+                  answerOffset = response.answer?.length ?? 0;
+                }
+                toolItem = {
+                  type: 'tool_use',
+                  tool_id: response.tool_id,
+                  tool_name: response.tool_name,
+                  tool_display_name: response.tool_display_name,
+                  execution: response.execution,
+                  ...(response.execution === 'browser' ? reduceBrowserToolExecution({}, response) : {}),
+                  input: response.input,
+                  status: 'running'
+                };
+                contentParts.push(toolItem);
+                toolMap.set(response.tool_id, toolItem);
               }
-              const toolItem: IChatMessageContentItem = {
-                type: 'tool_use',
-                tool_id: response.tool_id,
-                tool_name: response.tool_name,
-                tool_display_name: response.tool_display_name,
-                input: response.input,
-                status: 'running'
-              };
-              contentParts.push(toolItem);
-              toolMap.set(response.tool_id, toolItem);
               // Desktop: defer the local run until this paused stream fully
               // finalizes (so this.conversationId + route are settled for a
               // brand-new chat and the `answering` flag isn't cleared
               // mid-resume). The model can fan out several client tools in one
               // turn, so we QUEUE them and run all on finalize, resuming with
-              // every result in one request.
-              if (isDesktop() && response.execution === 'client') {
+              // every result in one request. The `execution:'client'` class
+              // arrives on the re-affirm start (not the early announce), so
+              // guard against double-enqueue across the two starts.
+              if (
+                supportsClientTools() &&
+                response.execution === 'client' &&
+                !this.pendingClientTools.some((t) => t.toolId === response.tool_id)
+              ) {
                 toolItem.status = 'awaiting_input';
                 this.pendingClientTools.push({
                   toolId: response.tool_id,
                   name: response.tool_name || '',
                   input: response.input || {}
                 });
+              }
+            } else if (response.type === 'tool_progress' && response.tool_id) {
+              // The worker streams the tool-call arguments text as the model
+              // writes it. Surface it live on the running block so the user
+              // sees the command/script being composed instead of a frozen
+              // screen while a large tool call is generated.
+              const toolItem = toolMap.get(response.tool_id);
+              if (toolItem) {
+                toolItem.input_stream = (toolItem.input_stream ?? '') + (response.progress ?? '');
               }
             } else if (response.type === 'tool_result' && response.tool_id) {
               const toolItem = toolMap.get(response.tool_id);
@@ -1153,6 +1327,9 @@ export default defineComponent({
                 toolItem.is_error = response.is_error;
                 toolItem.duration_ms = response.duration_ms;
                 toolItem.status = 'done';
+                // The full parsed `input` is set by now; drop the raw
+                // streaming args so the block renders structured input.
+                delete toolItem.input_stream;
                 // Strip stale pending_question after fold (defensive — the
                 // worker shouldn't emit tool_result for an awaiting block,
                 // but if it does, the card must collapse cleanly).
@@ -1390,16 +1567,6 @@ export default defineComponent({
     color: var(--el-color-primary);
   }
 
-  .agent-dot {
-    position: absolute;
-    top: 2px;
-    right: -2px;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--el-color-success);
-  }
-
   .external-icon {
     font-size: 9px;
     opacity: 0.55;
@@ -1470,6 +1637,49 @@ export default defineComponent({
       margin-bottom: 15px;
     }
   }
+  .conversation-loading {
+    width: 100%;
+    max-width: 800px;
+    margin: 72px auto 0;
+    padding: 0 12px;
+    flex: 1;
+  }
+  .conversation-loading-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+    color: var(--el-text-color-secondary);
+    font-size: 13px;
+  }
+  .conversation-loading-spinner {
+    width: 14px;
+    height: 14px;
+    border: 2px solid var(--el-border-color);
+    border-top-color: var(--el-color-primary);
+    border-radius: 50%;
+    animation: conversation-loading-spin 0.8s linear infinite;
+  }
+  .conversation-loading-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 32px;
+    --el-skeleton-color: color-mix(in srgb, var(--el-text-color-primary) 16%, transparent);
+    --el-skeleton-to-color: color-mix(in srgb, var(--el-text-color-primary) 28%, transparent);
+  }
+  .conversation-loading-avatar {
+    width: 30px;
+    height: 30px;
+    flex: 0 0 30px;
+  }
+  .conversation-loading-content {
+    width: min(620px, calc(100% - 44px));
+    padding-top: 2px;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
   .starter {
     height: fit-content;
     overflow: hidden;
@@ -1478,6 +1688,12 @@ export default defineComponent({
       width: 100%;
       padding: 0 12px 8px;
     }
+  }
+}
+
+@keyframes conversation-loading-spin {
+  to {
+    transform: rotate(360deg);
   }
 }
 

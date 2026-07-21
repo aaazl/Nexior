@@ -20,8 +20,9 @@ export interface IKlingReferenceVideo {
   keep_original_sound?: 'yes' | 'no';
 }
 
-export interface IKlingElementRef {
-  element_id?: string;
+export interface IKlingReferenceImage {
+  image_url: string;
+  type?: 'first_frame' | 'end_frame';
 }
 
 export type IKlingTaskType = 'videos' | 'motion' | 'talking-photo';
@@ -30,6 +31,7 @@ export interface IKlingMotionConfig {
   prompt?: string;
   image_url?: string;
   video_url?: string;
+  model_name?: 'kling-v2-6' | 'kling-v3';
   character_orientation?: 'image' | 'video';
   mode?: 'std' | 'pro';
   keep_original_sound?: 'yes' | 'no';
@@ -41,6 +43,7 @@ export interface IKlingMotionRequest {
   prompt?: string;
   image_url?: string;
   video_url?: string;
+  model_name?: 'kling-v2-6' | 'kling-v3';
   character_orientation?: 'image' | 'video';
   mode?: 'std' | 'pro';
   keep_original_sound?: 'yes' | 'no';
@@ -88,7 +91,7 @@ export interface IKlingConfig {
   callback_url?: string;
   async?: boolean;
   generate_audio?: boolean;
-  element_list?: IKlingElementRef[];
+  image_list?: IKlingReferenceImage[];
   video_list?: IKlingReferenceVideo[];
 }
 
@@ -97,6 +100,7 @@ export interface IKlingGenerateRequest {
   mode?: string;
   model?: string;
   video_id?: string;
+  video_url?: string;
   prompt?: string;
   start_image_url?: string;
   end_image_url?: string;
@@ -108,7 +112,7 @@ export interface IKlingGenerateRequest {
   callback_url?: string;
   async?: boolean;
   generate_audio?: boolean;
-  element_list?: IKlingElementRef[];
+  image_list?: IKlingReferenceImage[];
   video_list?: IKlingReferenceVideo[];
 }
 export interface IKlingVideo {
@@ -139,7 +143,7 @@ export interface IKlingTask {
   created_at?: number;
   elapsed?: number;
   type?: IKlingTaskType;
-  request?: IKlingGenerateRequest & IKlingMotionRequest;
+  request?: Partial<IKlingGenerateRequest & IKlingMotionRequest & IKlingTalkingPhotoRequest>;
   response?: IKlingGenerateResponse;
 }
 

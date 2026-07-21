@@ -144,7 +144,7 @@
     "description": "서비스의 모델 이름, 즉 Grok 4"
   },
   "model.grok4Description": {
-    "message": "현재 가장 진보된 모델",
+    "message": "General-purpose K2 model for compatible workflows",
     "description": "Grok 4 모델의 설명"
   },
   "model.grok3": {
@@ -599,6 +599,18 @@
   "scheduledTasks.deleteConfirm": {
     "message": "Delete \"{name}\"? The task will stop running."
   },
+  "scheduledTasks.triggerNow": {
+    "message": "Run now",
+    "description": "Trigger the task immediately, out of schedule"
+  },
+  "scheduledTasks.triggerSuccess": {
+    "message": "Triggered. The result will appear in run history shortly.",
+    "description": "Manual trigger success"
+  },
+  "scheduledTasks.triggerError": {
+    "message": "Failed to trigger. Please try again later.",
+    "description": "Manual trigger error"
+  },
   "scheduledTasks.viewResult": {
     "message": "View Result"
   },
@@ -636,6 +648,45 @@
   "scheduledTasks.run.failed": {
     "message": "Failed"
   },
+  "scheduledTasks.run.reason.max_turns": {
+    "message": "단계 한도 도달"
+  },
+  "scheduledTasks.run.reason.max_budget_usd": {
+    "message": "예산 한도 도달"
+  },
+  "scheduledTasks.run.reason.tool_call_loop": {
+    "message": "도구 호출 루프 감지됨"
+  },
+  "scheduledTasks.run.reason.prompt_too_long": {
+    "message": "프롬프트가 너무 김"
+  },
+  "scheduledTasks.run.reason.aborted_streaming": {
+    "message": "중단됨"
+  },
+  "scheduledTasks.run.reason.aborted_tools": {
+    "message": "중단됨"
+  },
+  "scheduledTasks.run.reason.awaiting_user_input": {
+    "message": "입력 대기 중"
+  },
+  "scheduledTasks.run.reason.error": {
+    "message": "오류"
+  },
+  "scheduledTasks.run.reason.unknown": {
+    "message": "알 수 없는 오류"
+  },
+  "scheduledTasks.run.reason.balance_insufficient": {
+    "message": "잔액 부족"
+  },
+  "scheduledTasks.run.reason.unauthorized": {
+    "message": "권한 없음"
+  },
+  "scheduledTasks.run.reason.timeout": {
+    "message": "시간 초과"
+  },
+  "scheduledTasks.run.reason.internal_error": {
+    "message": "내부 오류"
+  },
   "scheduledTasks.run.needs_user_input": {
     "message": "Needs action"
   },
@@ -653,6 +704,74 @@
   },
   "scheduledTasks.scheduleType.cron": {
     "message": "Cron expression"
+  },
+  "scheduledTasks.scheduleType.interval": {
+    "message": "Every",
+    "description": "Run at a fixed interval"
+  },
+  "scheduledTasks.form.intervalUnit.minute": {
+    "message": "minutes",
+    "description": "Interval unit: minutes"
+  },
+  "scheduledTasks.form.intervalUnit.hour": {
+    "message": "hours",
+    "description": "Interval unit: hours"
+  },
+  "scheduledTasks.form.intervalUnit.day": {
+    "message": "days",
+    "description": "Interval unit: days"
+  },
+  "scheduledTasks.form.hourlyMinute": {
+    "message": "At minute",
+    "description": "Which minute of each hour to run"
+  },
+  "scheduledTasks.form.hourlyMinuteHint": {
+    "message": "Which minute of each hour to run (0–59)",
+    "description": "Hourly minute hint"
+  },
+  "scheduledTasks.form.intervalHint": {
+    "message": "Runs once every fixed interval after the previous run (minimum 1 minute)",
+    "description": "Interval hint"
+  },
+  "scheduledTasks.form.cronHint": {
+    "message": "Standard 5-field cron expression: minute hour day month weekday",
+    "description": "Cron hint"
+  },
+  "scheduledTasks.form.schedulePreview": {
+    "message": "Runs {text}",
+    "description": "Schedule preview"
+  },
+  "scheduledTasks.humanize.everyNMinutes": {
+    "message": "every {n} min",
+    "description": "Human-readable: every N minutes"
+  },
+  "scheduledTasks.humanize.everyNHours": {
+    "message": "every {n} h",
+    "description": "Human-readable: every N hours"
+  },
+  "scheduledTasks.humanize.everyNDays": {
+    "message": "every {n} d",
+    "description": "Human-readable: every N days"
+  },
+  "scheduledTasks.humanize.hourlyAtMinute": {
+    "message": "hourly at minute {n}",
+    "description": "Human-readable: hourly at minute N"
+  },
+  "scheduledTasks.humanize.dailyAt": {
+    "message": "daily at {time}",
+    "description": "Human-readable: daily at time"
+  },
+  "scheduledTasks.humanize.weeklyAt": {
+    "message": "{weekday} at {time}",
+    "description": "Human-readable: weekly at weekday/time"
+  },
+  "scheduledTasks.humanize.cronRaw": {
+    "message": "Cron: {cron}",
+    "description": "Human-readable: raw cron"
+  },
+  "scheduledTasks.humanize.once": {
+    "message": "once at {time}",
+    "description": "Human-readable: once"
   },
   "scheduledTasks.form.name": {
     "message": "Task name"
@@ -712,6 +831,14 @@
     "message": "선택한 MCP 서버는 정기 작업 백그라운드에서 로드 및 실행됩니다; 선택하지 않은 MCP 서버는 무인 모드에서 로드되지 않습니다.",
     "description": "MCP 서버 권한 부여 설명"
   },
+  "scheduledTasks.form.maxTurns": {
+    "message": "최대 턴 수",
+    "description": "Scheduled task per-run agent turn cap"
+  },
+  "scheduledTasks.form.maxTurnsHint": {
+    "message": "실행당 허용되는 최대 에이전트 턴 수(1–50). 한도가 너무 낮으면 여러 단계 작업(예: Bash/문서 조회를 여러 번 실행하는 스킬)이 완료되기 전에 강제 중지되어 최종 결과가 남지 않습니다. 기본값 50.",
+    "description": "Scheduled task per-run agent turn cap"
+  },
   "scheduledTasks.form.skillsConfirmTitle": {
     "message": "무인 권한 부여 확인",
     "description": "권한 부여 확인 제목"
@@ -720,8 +847,184 @@
     "message": "이 작업은 {count}개의 Skill이 백그라운드에서 실행될 때 인적 확인을 건너뛰도록 허용합니다: {skills}입니다. 이 Skill은 메시지를 보내거나 콘텐츠를 게시하거나 외부 서비스에 기록할 수 있으니 확인해 주세요.",
     "description": "권한 부여 확인 본문"
   },
+  "scheduledTasks.form.skillNotActiveTitle": {
+    "message": "Bind the skill first",
+    "description": "Dialog title shown when a scheduled-task authorized skill/MCP is not yet bound for the user."
+  },
+  "scheduledTasks.form.skillNotActiveMessage": {
+    "message": "The skill \"{name}\" is not bound or active in your account yet. Without binding it, the scheduled task may not be able to use it during unattended background runs. We recommend binding it first, or you can save anyway.",
+    "description": "Warning body; {name} is the skill/MCP name. Explains it is not bound and offers to save anyway."
+  },
+  "scheduledTasks.form.skillNotActiveForce": {
+    "message": "Save anyway",
+    "description": "Confirm button that saves the scheduled task anyway, bypassing the binding check (force)."
+  },
   "scheduledTasks.form.required": {
     "message": "Please fill in task name and prompt"
+  },
+  "artifacts.navTitle": {
+    "message": "출력",
+    "description": "사이드바 출력 항목"
+  },
+  "artifacts.title": {
+    "message": "내 출력",
+    "description": "출력 페이지 제목"
+  },
+  "artifacts.summaryTotal": {
+    "message": "이번 기간에 생성된 출력 {count} 항목",
+    "description": "출력 요약 총 수"
+  },
+  "artifacts.filterAll": {
+    "message": "전체",
+    "description": "출력 유형 필터 - 전체"
+  },
+  "artifacts.empty": {
+    "message": "아직 출력이 없습니다. AI에게 글을 작성하거나 이미지를 생성하거나 이메일을 보내면 출력이 자동으로 여기에 나타납니다.",
+    "description": "출력이 비어있음을 알리는 메시지"
+  },
+  "artifacts.loadError": {
+    "message": "출력 로드 실패",
+    "description": "출력 로드 오류 알림"
+  },
+  "artifacts.actionError": {
+    "message": "작업 실패, 다시 시도해 주세요",
+    "description": "작업 오류 알림"
+  },
+  "artifacts.open": {
+    "message": "열기",
+    "description": "출력 원본 링크를 여는 버튼"
+  },
+  "artifacts.hide": {
+    "message": "숨기기",
+    "description": "출력을 숨기는 버튼"
+  },
+  "artifacts.delete": {
+    "message": "삭제",
+    "description": "출력을 삭제하는 버튼"
+  },
+  "artifacts.deleteConfirm": {
+    "message": "이 출력을 영구적으로 삭제하시겠습니까?",
+    "description": "출력 삭제 확인 알림"
+  },
+  "artifacts.loadMore": {
+    "message": "더 보기",
+    "description": "더 많은 출력을 로드하는 버튼"
+  },
+  "artifacts.sourceAuto": {
+    "message": "자동 캡처",
+    "description": "자동 캡처 출처 표시"
+  },
+  "artifacts.kind.article": {
+    "message": "기사",
+    "description": "출력 유형 - 기사"
+  },
+  "artifacts.kind.image": {
+    "message": "이미지",
+    "description": "출력 유형 - 이미지"
+  },
+  "artifacts.kind.video": {
+    "message": "비디오",
+    "description": "출력 유형 - 비디오"
+  },
+  "artifacts.kind.audio": {
+    "message": "오디오",
+    "description": "출력 유형 - 오디오"
+  },
+  "artifacts.kind.document": {
+    "message": "문서",
+    "description": "출력 유형 - 문서"
+  },
+  "artifacts.kind.email": {
+    "message": "이메일",
+    "description": "출력 유형 - 이메일"
+  },
+  "artifacts.kind.message": {
+    "message": "메시지",
+    "description": "출력 유형 - 메시지"
+  },
+  "artifacts.kind.dataset": {
+    "message": "데이터",
+    "description": "출력 유형 - 데이터"
+  },
+  "artifacts.kind.link": {
+    "message": "링크",
+    "description": "출력 유형 - 링크"
+  },
+  "artifacts.kind.other": {
+    "message": "기타",
+    "description": "출력 유형 - 기타"
+  },
+  "share.menu": {
+    "message": "공유",
+    "description": "사이드바/툴바에서 대화 공유 창을 여는 메뉴 항목"
+  },
+  "share.dialogTitle": {
+    "message": "대화 공유",
+    "description": "대화 공유 창의 제목"
+  },
+  "share.description": {
+    "message": "링크를 가진 누구나 이 대화를 볼 수 있지만, 채팅을 계속할 수는 없습니다.",
+    "description": "대화가 공유된 후 발생하는 일에 대한 설명"
+  },
+  "share.createLink": {
+    "message": "공유 링크 생성",
+    "description": "대화를 위한 공개 공유 링크를 생성하는 버튼"
+  },
+  "share.copy": {
+    "message": "링크 복사",
+    "description": "공유 링크를 클립보드에 복사하는 버튼"
+  },
+  "share.copied": {
+    "message": "복사됨",
+    "description": "복사 성공 후 버튼에 잠시 나타나는 알림"
+  },
+  "share.disable": {
+    "message": "링크 비활성화",
+    "description": "공유 링크를 철회하여 해당 URL을 무효화하는 버튼"
+  },
+  "share.disabled": {
+    "message": "공유 링크가 비활성화되었습니다.",
+    "description": "공유 링크가 비활성화된 후의 알림"
+  },
+  "share.needLogin": {
+    "message": "먼저 로그인한 후 이 대화를 공유해 주세요.",
+    "description": "로그인하지 않은 방문자가 대화를 공유하려 할 때의 알림"
+  },
+  "share.noConversation": {
+    "message": "먼저 대화를 열고 공유해 주세요.",
+    "description": "활성 대화가 없을 때 공유 버튼을 클릭할 때의 알림"
+  },
+  "share.createFailed": {
+    "message": "공유 링크 생성 실패, 나중에 다시 시도해 주세요.",
+    "description": "공유 링크 생성 실패에 대한 오류 알림"
+  },
+  "share.disableFailed": {
+    "message": "공유 링크 비활성화 실패, 나중에 다시 시도해 주세요.",
+    "description": "공유 링크 비활성화 실패에 대한 오류 알림"
+  },
+  "share.startYourOwn": {
+    "message": "내 대화를 시작하러 가기",
+    "description": "공유 공개 페이지에서 익명 방문자를 애플리케이션 홈으로 안내하는 행동 촉구"
+  },
+  "share.unavailableTitle": {
+    "message": "이 공유 대화는 사용할 수 없습니다.",
+    "description": "공유 링크가 무효이거나 유효하지 않을 때 공유 공개 페이지의 제목"
+  },
+  "share.unavailableHint": {
+    "message": "상대방이 링크를 비활성화했거나 URL이 잘못되었습니다.",
+    "description": "공유 링크가 무효이거나 유효하지 않을 때의 알림"
+  },
+  "share.viewOnly": {
+    "message": "읽기 전용 공유 대화",
+    "description": "공유 공개 페이지에서 대화가 읽기 전용임을 나타내는 태그"
+  },
+  "share.untitled": {
+    "message": "제목 없는 대화",
+    "description": "공유 대화에 제목이 없을 때 사용하는 자리 표시자 문구"
+  },
+  "share.footerNote": {
+    "message": "공유된 대화를 보고 있습니다. 위를 클릭하여 AI와 대화해 보세요.",
+    "description": "공유 공개 페이지 대화 하단의 설명"
   },
   "model.claudeOpus47": {
     "message": "claude-opus-4.7",
@@ -730,5 +1033,81 @@
   "model.claudeOpus47Description": {
     "message": "현재 가장 진보된 모델",
     "description": "Claude Opus 4.7 모델의 설명"
+  },
+  "artifacts.unhide": {
+    "message": "Unhide",
+    "description": "Restore a hidden artifact"
+  },
+  "artifacts.showHidden": {
+    "message": "Show hidden",
+    "description": "Toggle in the filter bar to include hidden artifacts"
+  },
+  "artifacts.hiddenBadge": {
+    "message": "Hidden",
+    "description": "Badge shown on artifacts that are currently hidden"
+  },
+  "scheduledTasks.run.reason.billing_gate_failed": {
+    "message": "결제 인증에 실패했습니다"
+  },
+  "browserTool.title": {
+    "message": "Browser activity",
+    "description": "Fallback title for a BrowserDevice tool activity"
+  },
+  "browserTool.state.choose_device": {
+    "message": "Choose a browser device"
+  },
+  "browserTool.state.device_offline": {
+    "message": "Browser device is offline"
+  },
+  "browserTool.state.awaiting_device": {
+    "message": "Waiting for browser device"
+  },
+  "browserTool.state.awaiting_local_approval": {
+    "message": "Waiting for approval on the browser device"
+  },
+  "browserTool.state.takeover_required": {
+    "message": "Take over on the browser device"
+  },
+  "browserTool.state.executing": {
+    "message": "Executing in browser"
+  },
+  "browserTool.state.completed": {
+    "message": "Completed"
+  },
+  "browserTool.state.denied": {
+    "message": "Denied on the browser device"
+  },
+  "browserTool.state.expired": {
+    "message": "Browser request expired"
+  },
+  "browserTool.state.cancel_too_late": {
+    "message": "Too late to cancel"
+  },
+  "scheduledTasks.run.waiting_for_device": {
+    "message": "Waiting for browser device"
+  },
+  "model.kimiK3": {
+    "message": "kimi-k3",
+    "description": "Name of Moonshot AI's Kimi K3 flagship model"
+  },
+  "model.kimiK3Description": {
+    "message": "Flagship reasoning and vision model with a 1M-token context window",
+    "description": "Description of the Kimi K3 model"
+  },
+  "model.kimiK26": {
+    "message": "kimi-k2.6",
+    "description": "Name of the Kimi K2.6 model"
+  },
+  "model.kimiK26Description": {
+    "message": "Reasoning and vision model for compatible K2 workflows",
+    "description": "Description of the Kimi K2.6 model"
+  },
+  "model.claudeFable5": {
+    "message": "claude-fable-5",
+    "description": "Name of Anthropic's Claude Fable 5 flagship model"
+  },
+  "model.claudeFable5Description": {
+    "message": "Flagship reasoning and vision model for long-horizon work with a 1M-token context window",
+    "description": "Description of the Claude Fable 5 model"
   }
 }

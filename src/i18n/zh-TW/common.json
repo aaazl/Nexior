@@ -655,10 +655,6 @@
     "message": "設定",
     "description": "網站導航欄中的文本，用於顯示設定頁面"
   },
-  "nav.headshots": {
-    "message": "AI證件照",
-    "description": "網站導航欄中的文本，用於顯示站點配置頁面"
-  },
   "nav.more": {
     "message": "更多",
     "description": "網站導航欄中的文本，用於展開更多服務"
@@ -744,7 +740,7 @@
     "description": "公司的地址"
   },
   "about.email": {
-    "message": "office@acedata.cloud",
+    "message": "office{'@'}acedata.cloud",
     "description": "公司的電子郵件"
   },
   "about.link1": {
@@ -807,6 +803,30 @@
     "message": "主題",
     "description": "設置頁面中的主題設置部分的標題"
   },
+  "settings.sendShortcut": {
+    "message": "傳送訊息快捷鍵",
+    "description": "設定頁面中的傳送訊息快捷鍵列標題：選擇按 Enter 傳送還是按修飾鍵+Enter 傳送"
+  },
+  "sendShortcut.enter": {
+    "message": "Enter 傳送",
+    "description": "傳送快捷鍵選項：按 Enter 鍵直接傳送訊息"
+  },
+  "sendShortcut.modEnter": {
+    "message": "{key} + Enter 傳送",
+    "description": "傳送快捷鍵選項：按修飾鍵（⌘ 或 Ctrl）加 Enter 傳送訊息，{key} 是平台修飾鍵符號"
+  },
+  "settings.loginMode": {
+    "message": "登入方式",
+    "description": "Login-mode row title in general settings"
+  },
+  "loginMode.iframe": {
+    "message": "彈窗嵌入",
+    "description": "Login mode option: embedded iframe popup"
+  },
+  "loginMode.redirect": {
+    "message": "整頁跳轉",
+    "description": "Login mode option: full-page redirect"
+  },
   "settings.seo": {
     "message": "SEO設置",
     "description": "設置頁面中的SEO設置部分的標題"
@@ -820,16 +840,52 @@
     "description": "設置頁面中的分發設置部分的標題"
   },
   "settings.function": {
-    "message": "功能設置",
-    "description": "設置頁面中的功能設置部分的標題"
+    "message": "功能",
+    "description": "Title for the site capabilities section in the settings page"
   },
   "settings.auth": {
-    "message": "登入方式",
+    "message": "認證",
     "description": "設定頁面側邊欄的『登入方式』標籤標題——配置本站允許使用的登入方式及預設登入方式，僅站點管理員可見"
   },
   "settings.apiKey": {
     "message": "API金鑰",
     "description": "設置頁面側邊欄的 API 金鑰標籤——用戶自帶（BYOK）的上游服務商 API 金鑰管理"
+  },
+  "settings.memory": {
+    "message": "記憶",
+    "description": "設定彈窗側邊欄的「記憶」標籤，使用者在此查看和管理助手記住的關於自己的資訊"
+  },
+  "settings.memoryIntro": {
+    "message": "助手會記住你在對話中提到的有用資訊，從而在不同對話裡給出更貼合你的個性化回覆。你擁有完全的控制權——可以查看已保存的內容，並刪除不希望它記住的部分。",
+    "description": "記憶設定標籤頁頂部的介紹文字"
+  },
+  "settings.memoryNeedsChat": {
+    "message": "請先開始一次對話以啟用記憶功能。",
+    "description": "當聊天應用/令牌尚未加載時，在記憶設定標籤頁顯示"
+  },
+  "settings.memoryStored": {
+    "message": "已保存的記憶",
+    "description": "已儲存記憶條目列表上方的分區標題"
+  },
+  "settings.memoryEmpty": {
+    "message": "暫無保存的記憶。隨著你的使用，助手會在這裡記住持久的偏好和資訊。",
+    "description": "使用者沒有任何已儲存記憶時顯示的空狀態"
+  },
+  "settings.memoryForget": {
+    "message": "忘記",
+    "description": "記憶條目行上刪除該單條記憶的按鈕"
+  },
+  "settings.memoryClearAll": {
+    "message": "清空全部",
+    "description": "一次性刪除所有已儲存記憶的按鈕"
+  },
+  "settings.memoryClearConfirm": {
+    "message": "這將永久刪除助手記住的關於你的所有資訊，且無法撤銷。",
+    "description": "清空全部記憶前的確認彈窗內容"
+  },
+  "settings.memoryError": {
+    "message": "操作失敗，請重試。",
+    "description": "記憶刪除/清空操作失敗時顯示的錯誤提示"
   },
   "field.operations": {
     "message": "操作",
@@ -951,8 +1007,68 @@
     "message": "讓 AI 看到你的螢幕並控制本機的滑鼠和鍵盤。預設關閉，按需開啟。macOS 上需在下方授予「螢幕錄製」和「輔助使用」權限。每個操作仍會請求你的確認。",
     "description": "Help text under the Computer Use toggle."
   },
+  "settings.localToolsAndroidSkillsTitle": {
+    "message": "手機自動化技能",
+    "description": "安裝通過電腦操作驅動手機應用的技能的 Android 專用部分的標題。"
+  },
+  "settings.localToolsAndroidSkillsHint": {
+    "message": "安裝能讓助手操作本機 App 的技能。它們透過「電腦操作」運行，請先在上方授予無障礙權限並開啟電腦操作。每步動作仍遵循你的電腦操作確認設定。",
+    "description": "在手機自動化技能標題下的幫助文字。"
+  },
+  "settings.localToolsAndroidSkillsXhsName": {
+    "message": "小紅書私信自動回覆",
+    "description": "小紅書（RED）私信自動回覆技能的顯示名稱。"
+  },
+  "settings.localToolsAndroidSkillsXhsDesc": {
+    "message": "讀取小紅書 App 裡的新私信並起草回覆，發送前會先請你確認。",
+    "description": "小紅書私信技能的一行描述。"
+  },
+  "settings.localToolsAndroidSkillsInstall": {
+    "message": "安裝",
+    "description": "安裝技能到用戶帳戶的按鈕。"
+  },
+  "settings.localToolsAndroidSkillsInstalled": {
+    "message": "已安裝",
+    "description": "當技能已經安裝時顯示的標籤。"
+  },
+  "settings.localToolsAndroidSkillsLoading": {
+    "message": "正在加載可用技能……",
+    "description": "在獲取技能目錄時的佔位符。"
+  },
+  "settings.localToolsAndroidSkillsUnavailable": {
+    "message": "暫無可安裝的手機技能。",
+    "description": "當未找到可安裝的手機技能時的空狀態。"
+  },
+  "settings.localToolsAndroidSkillsNeedComputerUse": {
+    "message": "安裝前請先授予無障礙權限並在上方開啟電腦操作。",
+    "description": "當安裝按鈕因缺少前置條件而被禁用時顯示的提示。"
+  },
+  "settings.localToolsAndroidSkillsNextTurn": {
+    "message": "已安裝，將在你下次對話時生效。",
+    "description": "成功安裝後顯示的確認信息。"
+  },
+  "settings.localToolsAndroidSkillsInstallFailed": {
+    "message": "安裝失敗，請重試。",
+    "description": "當安裝請求失敗時顯示的錯誤信息。"
+  },
+  "settings.localToolsAndroidSkillsLoadFailed": {
+    "message": "加載可用技能失敗，請重試。",
+    "description": "當獲取技能目錄失敗時顯示的錯誤信息。"
+  },
   "settings.localToolsPreauthorizeAll": "預先允許所有電腦操作",
   "settings.localToolsPreauthorizeHint": "一次性允許截圖、點擊、輸入、按鍵等所有電腦操作，並觸發所需的系統權限。",
+  "settings.localToolsCuA11yLabel": {
+    "message": "無障礙服務",
+    "description": "Computer Use 可用性狀態行的標籤，指示無障礙服務是否真正在運行。"
+  },
+  "settings.localToolsCuReady": {
+    "message": "已就緒，可用",
+    "description": "無障礙服務已運行、Computer Use 真正可用時顯示的綠色狀態。"
+  },
+  "settings.localToolsCuA11yMissing": {
+    "message": "未開啟，Computer Use 暫不可用",
+    "description": "開關已打開但無障礙服務沒有運行時顯示的紅色警告。"
+  },
   "settings.localToolsCuActionsTitle": "逐項允許操作",
   "settings.localToolsCuActionsHint": "只開啟你願意讓 AI 免確認執行的操作，其餘仍會逐次詢問。每一項都可在此撤銷。",
   "settings.localToolsCuScreenshot": "截圖",
@@ -979,6 +1095,98 @@
   "settings.localToolsSave": {
     "message": "儲存",
     "description": "Save the authorized folders."
+  },
+  "settings.localToolsMcpTitle": {
+    "message": "MCP servers",
+    "description": "Section title for local MCP server configuration in Local Tools settings."
+  },
+  "settings.localToolsMcpHint": {
+    "message": "Connect local MCP servers over stdio. Their tools become available to the AI, gated by the same per-call confirmation. Changes take effect immediately.",
+    "description": "Explains what local MCP servers do and that changes apply without a restart."
+  },
+  "settings.localToolsMcpAdd": {
+    "message": "Add server",
+    "description": "Button to add a new local MCP server row."
+  },
+  "settings.localToolsMcpName": {
+    "message": "Name",
+    "description": "Label for the MCP server name/id field."
+  },
+  "settings.localToolsMcpCommand": {
+    "message": "Command",
+    "description": "Label for the MCP server launch command field."
+  },
+  "settings.localToolsMcpArgs": {
+    "message": "Arguments",
+    "description": "Label for the MCP server command arguments field."
+  },
+  "settings.localToolsMcpArgsHint": {
+    "message": "One argument per line.",
+    "description": "Placeholder/hint for the MCP arguments textarea."
+  },
+  "settings.localToolsMcpEnv": {
+    "message": "Environment",
+    "description": "Label for the MCP server environment variables field."
+  },
+  "settings.localToolsMcpEnvHint": {
+    "message": "One KEY=VALUE per line.",
+    "description": "Placeholder/hint for the MCP environment variables textarea."
+  },
+  "settings.localToolsMcpNoServers": {
+    "message": "No MCP servers configured.",
+    "description": "Empty state shown when no MCP servers are configured."
+  },
+  "settings.localToolsMcpNamePlaceholder": {
+    "message": "e.g. filesystem",
+    "description": "Placeholder for the MCP server name input."
+  },
+  "settings.localToolsMcpCommandPlaceholder": {
+    "message": "e.g. npx",
+    "description": "Placeholder for the MCP server command input."
+  },
+  "settings.localToolsMcpNameRequired": {
+    "message": "Each server needs a name and a command.",
+    "description": "Validation error when a server row is missing a name or command."
+  },
+  "settings.localToolsMcpDuplicateName": {
+    "message": "Server names must be unique.",
+    "description": "Validation error when two servers share the same name."
+  },
+  "settings.localToolsMcpNameInvalid": {
+    "message": "Name may only contain letters, numbers, hyphens and underscores.",
+    "description": "Validation error when a server name contains invalid characters."
+  },
+  "settings.localToolsMcpEnabled": {
+    "message": "On",
+    "description": "Toggle label to enable/disable a local MCP server."
+  },
+  "settings.localToolsMcpReconnect": {
+    "message": "Test / Reconnect",
+    "description": "Button to re-spawn one MCP server and refresh its status."
+  },
+  "settings.localToolsMcpConnecting": {
+    "message": "Connecting…",
+    "description": "Badge while an MCP server is being (re)connected."
+  },
+  "settings.localToolsMcpNotSaved": {
+    "message": "Not saved yet",
+    "description": "Badge for an MCP server row that hasn't been saved/connected yet."
+  },
+  "settings.localToolsMcpConnected": {
+    "message": "Connected · {n} tools",
+    "description": "Badge when an MCP server connected; {n} is the tool count."
+  },
+  "settings.localToolsMcpDisabled": {
+    "message": "Disabled",
+    "description": "Badge when an MCP server is turned off."
+  },
+  "settings.localToolsMcpFailed": {
+    "message": "Failed to connect",
+    "description": "Badge when an MCP server failed to start; the reason is shown below."
+  },
+  "settings.localToolsMcpPlatformHint": {
+    "message": "Tip: use a command on your PATH such as npx or uvx (e.g. npx -y {'@'}modelcontextprotocol/server-filesystem ~/Documents). On Windows, npx/node resolve automatically. If a server shows \"spawn … ENOENT\", set the command to a full path.",
+    "description": "Cross-platform hint for configuring the MCP launch command."
   },
   "settings.localToolsSaved": {
     "message": "已儲存",
@@ -1087,6 +1295,86 @@
   "settings.contactUs": {
     "message": "聯繫客服",
     "description": "聯繫客服按鈕的文本"
+  },
+  "settings.contactSupport": {
+    "message": "聯絡客服",
+    "description": "Section title on the About page listing the site owner's customer-service channels"
+  },
+  "settings.contactSupportTip": {
+    "message": "可透過以下任一方式聯絡我們的客服。",
+    "description": "Subtitle under the support contacts section on the About page"
+  },
+  "settings.contactInvalidUrl": {
+    "message": "{field} 需要是有效的 http(s) 連結",
+    "description": "Validation error shown when a contact URL is not a valid http(s) link"
+  },
+  "settings.contactInvalidPhone": {
+    "message": "請輸入有效的電話號碼",
+    "description": "Validation error shown when the phone number is invalid"
+  },
+  "settings.contactInvalidEmail": {
+    "message": "請輸入有效的郵箱地址",
+    "description": "Validation error shown when the email address is invalid"
+  },
+  "settings.contactType": {
+    "message": "類型",
+    "description": "Placeholder for the contact type picker in the editor"
+  },
+  "settings.contactType_phone": {
+    "message": "電話",
+    "description": "Display name for the phone contact type"
+  },
+  "settings.contactType_email": {
+    "message": "郵箱",
+    "description": "Display name for the email contact type"
+  },
+  "settings.contactType_website": {
+    "message": "網站",
+    "description": "Display name for the website contact type"
+  },
+  "settings.contactType_wechat": {
+    "message": "微信",
+    "description": "Display name for the WeChat contact type"
+  },
+  "settings.contactLabelPlaceholder": {
+    "message": "備註（可選），如：售前",
+    "description": "Placeholder for the optional contact label input"
+  },
+  "settings.contactValuePlaceholder": {
+    "message": "帳號 / 顯示文字",
+    "description": "Placeholder for the generic contact value input"
+  },
+  "settings.contactQr": {
+    "message": "二維碼",
+    "description": "Label for a contact's QR-code image"
+  },
+  "settings.contactQrTip": {
+    "message": "上傳一張二維碼，使用者掃碼即可加你。",
+    "description": "Tip for the contact QR-code uploader"
+  },
+  "settings.contactAdd": {
+    "message": "新增聯絡方式",
+    "description": "Button to add another contact entry"
+  },
+  "settings.contactEditorHint": {
+    "message": "為每個管道選擇類型，並至少填寫 值 / 連結 / 二維碼 之一；可新增多條。",
+    "description": "Hint at the top of the contacts editor dialog"
+  },
+  "settings.contactInvalidType": {
+    "message": "類型只能包含小寫字母、數字、- 和 _",
+    "description": "Validation error for an invalid contact type slug"
+  },
+  "settings.contactRowNeedsValue": {
+    "message": "每條聯絡方式至少填寫 值、連結 或 二維碼 之一",
+    "description": "Validation error when a contact row has no value/url/qr"
+  },
+  "settings.contactInvalidValue": {
+    "message": "聯絡方式內容無效或過長",
+    "description": "Validation error when a contact value/label is invalid or too long"
+  },
+  "settings.contactTooMany": {
+    "message": "最多可新增 {max} 條聯絡方式",
+    "description": "Validation error when too many contacts are added"
   },
   "message.viewOnGithub": {
     "message": "在 GitHub 上查看",
@@ -1219,5 +1507,140 @@
   "nav.digitalhuman": {
     "message": "數字人",
     "description": "Text in the website navigation bar for the Digital Human talking-head page"
+  },
+  "settings.localToolsAndroidPermHint": {
+    "message": "Enable the accessibility service so the assistant can see and control your screen. You can pre-authorize individual actions below.",
+    "description": "Hint for the Android Computer Use accessibility permission section in Settings."
+  },
+  "settings.cuConsentTitle": {
+    "message": "Allow action?",
+    "description": "Title of the on-demand consent dialog shown when the assistant requests a screen action."
+  },
+  "settings.cuConsentMessage": {
+    "message": "The assistant wants to run \"{action}\" on your phone. Allow it?",
+    "description": "Body of the on-demand consent dialog; {action} is the computer.* action name."
+  },
+  "settings.cuConsentAllow": {
+    "message": "Allow once",
+    "description": "Allow button of the on-demand consent dialog."
+  },
+  "settings.cuConsentAlways": {
+    "message": "Always allow",
+    "description": "Always-allow button of the on-demand consent dialog; persists a grant so this action never prompts again."
+  },
+  "settings.cuConsentDeny": {
+    "message": "Deny",
+    "description": "Deny button of the on-demand consent dialog."
+  },
+  "settings.siteServices": {
+    "message": "價格"
+  },
+  "settings.memoryEnabled": {
+    "message": "Use memory",
+    "description": "Title for the switch that controls whether chats use saved memory and learn new memory"
+  },
+  "settings.memoryEnabledHint": {
+    "message": "When off, saved memories are not used and new chats do not create memories. Existing memories are kept.",
+    "description": "Behavior explanation shown below the memory switch"
+  },
+  "nav.omni": {
+    "message": "Omni 视频",
+    "description": "Omni 视频模块的导航标签"
+  },
+  "settings.memoryImport": {
+    "message": "Import",
+    "description": "Button that opens the memory import dialog"
+  },
+  "settings.memoryImportTitle": {
+    "message": "Import memory from another AI",
+    "description": "Title of the memory import dialog"
+  },
+  "settings.memoryImportExportStep": {
+    "message": "1. Ask your current AI to export its memory",
+    "description": "First step heading in the memory import dialog"
+  },
+  "settings.memoryImportPrompt": {
+    "message": "I'm moving to another AI service. List every saved memory and durable context you have learned about me. Put everything in one code block, with exactly one memory per line. Format each line as: [date saved, if available] - memory content. Include response preferences, personal details, projects, goals, tools, languages, frameworks, and corrections I have made. Preserve my words where possible. Do not include secrets or sensitive information.",
+    "description": "Prompt users copy into another AI service to export memories"
+  },
+  "settings.memoryImportCopy": {
+    "message": "Copy prompt",
+    "description": "Button that copies the memory export prompt"
+  },
+  "settings.memoryImportCopied": {
+    "message": "Prompt copied",
+    "description": "Toast shown after copying the memory export prompt"
+  },
+  "settings.memoryImportPasteStep": {
+    "message": "2. Paste the exported memory",
+    "description": "Second step heading in the memory import dialog"
+  },
+  "settings.memoryImportPlaceholder": {
+    "message": "Paste the memory text returned by ChatGPT, Claude, Gemini, or another AI…",
+    "description": "Placeholder for pasted memory export text"
+  },
+  "settings.memoryImportSubmit": {
+    "message": "Add to memory",
+    "description": "Button that submits pasted memories for import"
+  },
+  "settings.memoryImportSuccess": {
+    "message": "Imported {count} memory entries",
+    "description": "Success toast after importing memory; count is the number of accepted entries"
+  },
+  "settings.memoryImportPartial": {
+    "message": "Processed {processed} entries; {rejected} unsafe or invalid entries were skipped.",
+    "description": "Warning shown after a partial memory import"
+  },
+  "settings.memoryImportInvalid": {
+    "message": "No memory could be imported. Make sure memory is on and paste one plain fact per line.",
+    "description": "Actionable error shown when the memory import request is invalid"
+  },
+  "settings.memoryImportInProgress": {
+    "message": "A memory import is already running. Keep this dialog open and try again shortly.",
+    "description": "Warning shown when another memory import job is active"
+  },
+  "message.mediaPreviewUnavailable": {
+    "message": "Preview unavailable",
+    "description": "Media preview could not be loaded"
+  },
+  "button.send": {
+    "message": "Send",
+    "description": "Accessible label for sending content"
+  },
+  "button.stop": {
+    "message": "Stop",
+    "description": "Accessible label for stopping an operation"
+  },
+  "button.openMenu": {
+    "message": "Open menu",
+    "description": "Accessible label for opening a navigation or configuration menu"
+  },
+  "button.more": {
+    "message": "More actions",
+    "description": "Accessible label for opening an actions menu"
+  },
+  "button.remove": {
+    "message": "Remove",
+    "description": "Accessible label for removing an item"
+  },
+  "player.previous": {
+    "message": "Previous track",
+    "description": "Accessible label for the previous-track player button"
+  },
+  "player.play": {
+    "message": "Play",
+    "description": "Accessible label for the player play button"
+  },
+  "player.pause": {
+    "message": "Pause",
+    "description": "Accessible label for the player pause button"
+  },
+  "player.next": {
+    "message": "Next track",
+    "description": "Accessible label for the next-track player button"
+  },
+  "player.volume": {
+    "message": "Volume",
+    "description": "Accessible label for the player volume control"
   }
 }

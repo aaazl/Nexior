@@ -655,10 +655,6 @@
     "message": "設定",
     "description": "ウェブサイトのナビゲーションバーのテキストで、設定ページを表示するためのものです。"
   },
-  "nav.headshots": {
-    "message": "AI証明写真",
-    "description": "ウェブサイトのナビゲーションバーのテキストで、サイト設定ページを表示するためのものです。"
-  },
   "nav.more": {
     "message": "もっと見る",
     "description": "ウェブサイトのナビゲーションバーのテキストで、より多くのサービスを展開するためのものです。"
@@ -744,7 +740,7 @@
     "description": "会社の住所"
   },
   "about.email": {
-    "message": "office@acedata.cloud",
+    "message": "office{'@'}acedata.cloud",
     "description": "会社の電子メール"
   },
   "about.link1": {
@@ -807,6 +803,30 @@
     "message": "テーマ",
     "description": "設定ページのテーマ設定部分のタイトル"
   },
+  "settings.sendShortcut": {
+    "message": "メッセージ送信",
+    "description": "Title of the send-message shortcut row in General settings: choose Enter or modifier+Enter to send."
+  },
+  "sendShortcut.enter": {
+    "message": "Enter で送信",
+    "description": "Send-shortcut option: press Enter to send the message."
+  },
+  "sendShortcut.modEnter": {
+    "message": "{key} + Enter で送信",
+    "description": "Send-shortcut option: press the platform modifier (⌘ or Ctrl) plus Enter to send. {key} is the modifier symbol."
+  },
+  "settings.loginMode": {
+    "message": "ログイン方式",
+    "description": "Login-mode row title in general settings"
+  },
+  "loginMode.iframe": {
+    "message": "埋め込みポップアップ",
+    "description": "Login mode option: embedded iframe popup"
+  },
+  "loginMode.redirect": {
+    "message": "ページ全体のリダイレクト",
+    "description": "Login mode option: full-page redirect"
+  },
   "settings.seo": {
     "message": "SEO設定",
     "description": "設定ページのSEO設定部分のタイトル"
@@ -820,16 +840,52 @@
     "description": "設定ページの配信設定部分のタイトル"
   },
   "settings.function": {
-    "message": "機能設定",
-    "description": "設定ページの機能設定部分のタイトル"
+    "message": "機能",
+    "description": "設定ページのサイト機能セクションのタイトル"
   },
   "settings.auth": {
-    "message": "ログイン方法",
+    "message": "認証",
     "description": "設定ページのサイドバーの『ログイン方法』タブのタイトル——このサイトで許可されているログイン方法とデフォルトのログイン方法を設定します。サイト管理者のみが表示可能です。"
   },
   "settings.apiKey": {
     "message": "APIキー",
     "description": "設定ページのサイドバーのAPIキーラベル - ユーザー持参（BYOK）の上流サービスプロバイダーAPIキー管理"
+  },
+  "settings.memory": {
+    "message": "記憶",
+    "description": "設定ポップアップサイドバーの「記憶」タブ。ユーザーはここでアシスタントが覚えている自分に関する情報を確認・管理します。"
+  },
+  "settings.memoryIntro": {
+    "message": "アシスタントは、あなたが対話中に言及した有用な情報を記憶し、異なる対話でよりあなたに合ったパーソナライズされた返信を提供します。あなたは完全なコントロールを持っており、保存された内容を確認し、覚えてほしくない部分を削除できます。",
+    "description": "記憶設定タブの上部にある紹介文です。"
+  },
+  "settings.memoryNeedsChat": {
+    "message": "記憶機能を有効にするには、まず対話を開始してください。",
+    "description": "チャットアプリ/トークンがまだ読み込まれていない場合、記憶設定タブに表示されます。"
+  },
+  "settings.memoryStored": {
+    "message": "保存された記憶",
+    "description": "保存された記憶エントリーリストの上部にあるセクションタイトルです。"
+  },
+  "settings.memoryEmpty": {
+    "message": "保存された記憶はありません。使用するにつれて、アシスタントはここに持続的な好みや情報を記憶します。",
+    "description": "ユーザーに保存された記憶がない場合に表示される空の状態です。"
+  },
+  "settings.memoryForget": {
+    "message": "忘れる",
+    "description": "記憶エントリー行上でその単一の記憶を削除するボタンです。"
+  },
+  "settings.memoryClearAll": {
+    "message": "すべてクリア",
+    "description": "保存されたすべての記憶を一度に削除するボタンです。"
+  },
+  "settings.memoryClearConfirm": {
+    "message": "これにより、アシスタントがあなたについて覚えているすべての情報が永久に削除され、元に戻すことはできません。",
+    "description": "すべての記憶をクリアする前の確認ポップアップの内容です。"
+  },
+  "settings.memoryError": {
+    "message": "操作に失敗しました。再試行してください。",
+    "description": "記憶の削除/クリア操作が失敗したときに表示されるエラーメッセージです。"
   },
   "field.operations": {
     "message": "操作",
@@ -951,8 +1007,68 @@
     "message": "Let the AI see your screen and control the mouse and keyboard on this computer. Off by default — turn it on only when you need it. On macOS, grant Screen Recording and Accessibility permissions below. Each action still asks for your confirmation.",
     "description": "Help text under the Computer Use toggle."
   },
+  "settings.localToolsAndroidSkillsTitle": {
+    "message": "電話自動化スキル",
+    "description": "コンピュータ操作を介して電話のアプリを操作するスキルをインストールするAndroid専用セクションの見出し。"
+  },
+  "settings.localToolsAndroidSkillsHint": {
+    "message": "アシスタントがローカルアプリを操作するためのスキルをインストールします。これらは「コンピュータ操作」で実行されるため、上部でアクセシビリティ権限を付与し、コンピュータ操作を有効にしてください。各アクションは、あなたのコンピュータ操作確認設定に従います。",
+    "description": "電話自動化スキルの見出しの下にあるヘルプテキスト。"
+  },
+  "settings.localToolsAndroidSkillsXhsName": {
+    "message": "小紅書ダイレクトメッセージ自動返信",
+    "description": "小紅書（RED）のダイレクトメッセージ自動返信スキルの表示名。"
+  },
+  "settings.localToolsAndroidSkillsXhsDesc": {
+    "message": "小紅書アプリ内の新しいダイレクトメッセージを読み取り、返信を下書きします。送信前に確認を求めます。",
+    "description": "小紅書のDMスキルの一行説明。"
+  },
+  "settings.localToolsAndroidSkillsInstall": {
+    "message": "インストール",
+    "description": "ユーザーのアカウントにスキルをインストールするボタン。"
+  },
+  "settings.localToolsAndroidSkillsInstalled": {
+    "message": "インストール済み",
+    "description": "スキルがすでにインストールされているときに表示されるタグ。"
+  },
+  "settings.localToolsAndroidSkillsLoading": {
+    "message": "利用可能なスキルを読み込んでいます……",
+    "description": "スキルディレクトリが取得されている間のプレースホルダー。"
+  },
+  "settings.localToolsAndroidSkillsUnavailable": {
+    "message": "インストール可能な電話スキルはありません。",
+    "description": "インストール可能な電話スキルが見つからないときの空の状態。"
+  },
+  "settings.localToolsAndroidSkillsNeedComputerUse": {
+    "message": "インストールする前に、アクセシビリティ権限を付与し、上部でコンピュータ操作を有効にしてください。",
+    "description": "前提条件が不足しているためインストールボタンが無効になっているときに表示されるヒント。"
+  },
+  "settings.localToolsAndroidSkillsNextTurn": {
+    "message": "インストール済みです。次回の会話で有効になります。",
+    "description": "インストールが成功した後に表示される確認メッセージ。"
+  },
+  "settings.localToolsAndroidSkillsInstallFailed": {
+    "message": "インストールに失敗しました。再試行してください。",
+    "description": "インストールリクエストが失敗したときに表示されるエラー。"
+  },
+  "settings.localToolsAndroidSkillsLoadFailed": {
+    "message": "利用可能なスキルの読み込みに失敗しました。再試行してください。",
+    "description": "スキルディレクトリの取得に失敗したときに表示されるエラー。"
+  },
   "settings.localToolsPreauthorizeAll": "すべてのコンピュータ操作を事前に許可",
   "settings.localToolsPreauthorizeHint": "スクリーンショット、クリック、入力、キー操作などすべての操作を一度に許可し、必要なシステム権限を要求します。",
+  "settings.localToolsCuA11yLabel": {
+    "message": "アクセシビリティサービス",
+    "description": "Computer Useの可用性状態行のラベルで、アクセシビリティサービスが実際に動作しているかどうかを示します。"
+  },
+  "settings.localToolsCuReady": {
+    "message": "準備完了、利用可能",
+    "description": "アクセシビリティサービスが動作しており、Computer Useが実際に利用可能なときに表示される緑の状態です。"
+  },
+  "settings.localToolsCuA11yMissing": {
+    "message": "未起動、Computer Useは利用できません",
+    "description": "スイッチがオンになっているが、アクセシビリティサービスが動作していないときに表示される赤い警告です。"
+  },
   "settings.localToolsCuActionsTitle": "操作を個別に許可",
   "settings.localToolsCuActionsHint": "毎回確認せずに AI に実行させてよい操作だけをオンにします。各項目はここでいつでも取り消せます。",
   "settings.localToolsCuScreenshot": "スクリーンショット",
@@ -979,6 +1095,98 @@
   "settings.localToolsSave": {
     "message": "保存",
     "description": "Save the authorized folders."
+  },
+  "settings.localToolsMcpTitle": {
+    "message": "MCP servers",
+    "description": "Section title for local MCP server configuration in Local Tools settings."
+  },
+  "settings.localToolsMcpHint": {
+    "message": "Connect local MCP servers over stdio. Their tools become available to the AI, gated by the same per-call confirmation. Changes take effect immediately.",
+    "description": "Explains what local MCP servers do and that changes apply without a restart."
+  },
+  "settings.localToolsMcpAdd": {
+    "message": "Add server",
+    "description": "Button to add a new local MCP server row."
+  },
+  "settings.localToolsMcpName": {
+    "message": "Name",
+    "description": "Label for the MCP server name/id field."
+  },
+  "settings.localToolsMcpCommand": {
+    "message": "Command",
+    "description": "Label for the MCP server launch command field."
+  },
+  "settings.localToolsMcpArgs": {
+    "message": "Arguments",
+    "description": "Label for the MCP server command arguments field."
+  },
+  "settings.localToolsMcpArgsHint": {
+    "message": "One argument per line.",
+    "description": "Placeholder/hint for the MCP arguments textarea."
+  },
+  "settings.localToolsMcpEnv": {
+    "message": "Environment",
+    "description": "Label for the MCP server environment variables field."
+  },
+  "settings.localToolsMcpEnvHint": {
+    "message": "One KEY=VALUE per line.",
+    "description": "Placeholder/hint for the MCP environment variables textarea."
+  },
+  "settings.localToolsMcpNoServers": {
+    "message": "No MCP servers configured.",
+    "description": "Empty state shown when no MCP servers are configured."
+  },
+  "settings.localToolsMcpNamePlaceholder": {
+    "message": "e.g. filesystem",
+    "description": "Placeholder for the MCP server name input."
+  },
+  "settings.localToolsMcpCommandPlaceholder": {
+    "message": "e.g. npx",
+    "description": "Placeholder for the MCP server command input."
+  },
+  "settings.localToolsMcpNameRequired": {
+    "message": "Each server needs a name and a command.",
+    "description": "Validation error when a server row is missing a name or command."
+  },
+  "settings.localToolsMcpDuplicateName": {
+    "message": "Server names must be unique.",
+    "description": "Validation error when two servers share the same name."
+  },
+  "settings.localToolsMcpNameInvalid": {
+    "message": "Name may only contain letters, numbers, hyphens and underscores.",
+    "description": "Validation error when a server name contains invalid characters."
+  },
+  "settings.localToolsMcpEnabled": {
+    "message": "On",
+    "description": "Toggle label to enable/disable a local MCP server."
+  },
+  "settings.localToolsMcpReconnect": {
+    "message": "Test / Reconnect",
+    "description": "Button to re-spawn one MCP server and refresh its status."
+  },
+  "settings.localToolsMcpConnecting": {
+    "message": "Connecting…",
+    "description": "Badge while an MCP server is being (re)connected."
+  },
+  "settings.localToolsMcpNotSaved": {
+    "message": "Not saved yet",
+    "description": "Badge for an MCP server row that hasn't been saved/connected yet."
+  },
+  "settings.localToolsMcpConnected": {
+    "message": "Connected · {n} tools",
+    "description": "Badge when an MCP server connected; {n} is the tool count."
+  },
+  "settings.localToolsMcpDisabled": {
+    "message": "Disabled",
+    "description": "Badge when an MCP server is turned off."
+  },
+  "settings.localToolsMcpFailed": {
+    "message": "Failed to connect",
+    "description": "Badge when an MCP server failed to start; the reason is shown below."
+  },
+  "settings.localToolsMcpPlatformHint": {
+    "message": "Tip: use a command on your PATH such as npx or uvx (e.g. npx -y {'@'}modelcontextprotocol/server-filesystem ~/Documents). On Windows, npx/node resolve automatically. If a server shows \"spawn … ENOENT\", set the command to a full path.",
+    "description": "Cross-platform hint for configuring the MCP launch command."
   },
   "settings.localToolsSaved": {
     "message": "保存しました",
@@ -1087,6 +1295,86 @@
   "settings.contactUs": {
     "message": "カスタマーサポートに連絡",
     "description": "カスタマーサポートボタンのテキスト"
+  },
+  "settings.contactSupport": {
+    "message": "サポートに問い合わせ",
+    "description": "Section title on the About page listing the site owner's customer-service channels"
+  },
+  "settings.contactSupportTip": {
+    "message": "以下のいずれかのチャネルからサポートチームにご連絡ください。",
+    "description": "Subtitle under the support contacts section on the About page"
+  },
+  "settings.contactInvalidUrl": {
+    "message": "{field} は有効な http(s) リンクである必要があります",
+    "description": "Validation error shown when a contact URL is not a valid http(s) link"
+  },
+  "settings.contactInvalidPhone": {
+    "message": "有効な電話番号を入力してください",
+    "description": "Validation error shown when the phone number is invalid"
+  },
+  "settings.contactInvalidEmail": {
+    "message": "有効なメールアドレスを入力してください",
+    "description": "Validation error shown when the email address is invalid"
+  },
+  "settings.contactType": {
+    "message": "種類",
+    "description": "Placeholder for the contact type picker in the editor"
+  },
+  "settings.contactType_phone": {
+    "message": "電話",
+    "description": "Display name for the phone contact type"
+  },
+  "settings.contactType_email": {
+    "message": "メール",
+    "description": "Display name for the email contact type"
+  },
+  "settings.contactType_website": {
+    "message": "ウェブサイト",
+    "description": "Display name for the website contact type"
+  },
+  "settings.contactType_wechat": {
+    "message": "WeChat",
+    "description": "Display name for the WeChat contact type"
+  },
+  "settings.contactLabelPlaceholder": {
+    "message": "ラベル（任意）例：営業",
+    "description": "Placeholder for the optional contact label input"
+  },
+  "settings.contactValuePlaceholder": {
+    "message": "アカウント / 表示テキスト",
+    "description": "Placeholder for the generic contact value input"
+  },
+  "settings.contactQr": {
+    "message": "QRコード",
+    "description": "Label for a contact's QR-code image"
+  },
+  "settings.contactQrTip": {
+    "message": "QRコードをアップロードすると、ユーザーはスキャンして追加できます。",
+    "description": "Tip for the contact QR-code uploader"
+  },
+  "settings.contactAdd": {
+    "message": "連絡先を追加",
+    "description": "Button to add another contact entry"
+  },
+  "settings.contactEditorHint": {
+    "message": "各チャネルの種類を選び、値・リンク・QRのいずれかを入力してください。複数追加できます。",
+    "description": "Hint at the top of the contacts editor dialog"
+  },
+  "settings.contactInvalidType": {
+    "message": "種類は英小文字・数字・- ・_ のみ使用できます",
+    "description": "Validation error for an invalid contact type slug"
+  },
+  "settings.contactRowNeedsValue": {
+    "message": "各連絡先には値・リンク・QRのいずれかが必要です",
+    "description": "Validation error when a contact row has no value/url/qr"
+  },
+  "settings.contactInvalidValue": {
+    "message": "連絡先の入力が無効か長すぎます",
+    "description": "Validation error when a contact value/label is invalid or too long"
+  },
+  "settings.contactTooMany": {
+    "message": "連絡先は最大 {max} 件まで追加できます",
+    "description": "Validation error when too many contacts are added"
   },
   "message.viewOnGithub": {
     "message": "GitHubで見る",
@@ -1219,5 +1507,140 @@
   "nav.digitalhuman": {
     "message": "Digital Human",
     "description": "Text in the website navigation bar for the Digital Human talking-head page"
+  },
+  "settings.localToolsAndroidPermHint": {
+    "message": "Enable the accessibility service so the assistant can see and control your screen. You can pre-authorize individual actions below.",
+    "description": "Hint for the Android Computer Use accessibility permission section in Settings."
+  },
+  "settings.cuConsentTitle": {
+    "message": "Allow action?",
+    "description": "Title of the on-demand consent dialog shown when the assistant requests a screen action."
+  },
+  "settings.cuConsentMessage": {
+    "message": "The assistant wants to run \"{action}\" on your phone. Allow it?",
+    "description": "Body of the on-demand consent dialog; {action} is the computer.* action name."
+  },
+  "settings.cuConsentAllow": {
+    "message": "Allow once",
+    "description": "Allow button of the on-demand consent dialog."
+  },
+  "settings.cuConsentAlways": {
+    "message": "Always allow",
+    "description": "Always-allow button of the on-demand consent dialog; persists a grant so this action never prompts again."
+  },
+  "settings.cuConsentDeny": {
+    "message": "Deny",
+    "description": "Deny button of the on-demand consent dialog."
+  },
+  "settings.siteServices": {
+    "message": "価格"
+  },
+  "settings.memoryEnabled": {
+    "message": "Use memory",
+    "description": "Title for the switch that controls whether chats use saved memory and learn new memory"
+  },
+  "settings.memoryEnabledHint": {
+    "message": "When off, saved memories are not used and new chats do not create memories. Existing memories are kept.",
+    "description": "Behavior explanation shown below the memory switch"
+  },
+  "nav.omni": {
+    "message": "Omni Video",
+    "description": "Nav label for the Omni video module"
+  },
+  "settings.memoryImport": {
+    "message": "Import",
+    "description": "Button that opens the memory import dialog"
+  },
+  "settings.memoryImportTitle": {
+    "message": "Import memory from another AI",
+    "description": "Title of the memory import dialog"
+  },
+  "settings.memoryImportExportStep": {
+    "message": "1. Ask your current AI to export its memory",
+    "description": "First step heading in the memory import dialog"
+  },
+  "settings.memoryImportPrompt": {
+    "message": "I'm moving to another AI service. List every saved memory and durable context you have learned about me. Put everything in one code block, with exactly one memory per line. Format each line as: [date saved, if available] - memory content. Include response preferences, personal details, projects, goals, tools, languages, frameworks, and corrections I have made. Preserve my words where possible. Do not include secrets or sensitive information.",
+    "description": "Prompt users copy into another AI service to export memories"
+  },
+  "settings.memoryImportCopy": {
+    "message": "Copy prompt",
+    "description": "Button that copies the memory export prompt"
+  },
+  "settings.memoryImportCopied": {
+    "message": "Prompt copied",
+    "description": "Toast shown after copying the memory export prompt"
+  },
+  "settings.memoryImportPasteStep": {
+    "message": "2. Paste the exported memory",
+    "description": "Second step heading in the memory import dialog"
+  },
+  "settings.memoryImportPlaceholder": {
+    "message": "Paste the memory text returned by ChatGPT, Claude, Gemini, or another AI…",
+    "description": "Placeholder for pasted memory export text"
+  },
+  "settings.memoryImportSubmit": {
+    "message": "Add to memory",
+    "description": "Button that submits pasted memories for import"
+  },
+  "settings.memoryImportSuccess": {
+    "message": "Imported {count} memory entries",
+    "description": "Success toast after importing memory; count is the number of accepted entries"
+  },
+  "settings.memoryImportPartial": {
+    "message": "Processed {processed} entries; {rejected} unsafe or invalid entries were skipped.",
+    "description": "Warning shown after a partial memory import"
+  },
+  "settings.memoryImportInvalid": {
+    "message": "No memory could be imported. Make sure memory is on and paste one plain fact per line.",
+    "description": "Actionable error shown when the memory import request is invalid"
+  },
+  "settings.memoryImportInProgress": {
+    "message": "A memory import is already running. Keep this dialog open and try again shortly.",
+    "description": "Warning shown when another memory import job is active"
+  },
+  "message.mediaPreviewUnavailable": {
+    "message": "Preview unavailable",
+    "description": "Media preview could not be loaded"
+  },
+  "button.send": {
+    "message": "Send",
+    "description": "Accessible label for sending content"
+  },
+  "button.stop": {
+    "message": "Stop",
+    "description": "Accessible label for stopping an operation"
+  },
+  "button.openMenu": {
+    "message": "Open menu",
+    "description": "Accessible label for opening a navigation or configuration menu"
+  },
+  "button.more": {
+    "message": "More actions",
+    "description": "Accessible label for opening an actions menu"
+  },
+  "button.remove": {
+    "message": "Remove",
+    "description": "Accessible label for removing an item"
+  },
+  "player.previous": {
+    "message": "Previous track",
+    "description": "Accessible label for the previous-track player button"
+  },
+  "player.play": {
+    "message": "Play",
+    "description": "Accessible label for the player play button"
+  },
+  "player.pause": {
+    "message": "Pause",
+    "description": "Accessible label for the player pause button"
+  },
+  "player.next": {
+    "message": "Next track",
+    "description": "Accessible label for the next-track player button"
+  },
+  "player.volume": {
+    "message": "Volume",
+    "description": "Accessible label for the player volume control"
   }
 }

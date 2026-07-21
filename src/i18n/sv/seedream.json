@@ -167,6 +167,10 @@
     "message": "doubao-seedream-5.0",
     "description": "Val av SeeDream 5.0-modell (stöder bildserie och strömmande utdata)"
   },
+  "model.seedream50pro": {
+    "message": "doubao-seedream-5.0-pro",
+    "description": "SeeDream 5.0 Pro model option (flagship single image; no image sets / streaming / web search)"
+  },
   "name.maxImages": {
     "message": "Antal bilder",
     "description": "Antal bilder som genereras i en bildserie (max_images)"
@@ -214,5 +218,13 @@
   "size.adaptive": {
     "message": "Adaptiv (samma som referensbild)",
     "description": "Etikett för adaptive-valet"
+  },
+  "name.action": {
+    "message": "Action",
+    "description": "Generate or edit action selector"
+  },
+  "message.referenceImageRequired": {
+    "message": "Upload at least one reference image to use Edit mode.",
+    "description": "Validation shown when Edit mode has no reference image"
   }
 }

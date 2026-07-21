@@ -1,6 +1,6 @@
 {
   "name": "@acedatacloud/nexior",
-  "version": "3.303.0",
+  "version": "3.330.2",
   "author": "Ace Data Cloud <office@acedata.cloud>",
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
     "pack:ios": "npm run build:ios && npx cap copy ios",
     "build:electron": "cross-env VITE_SURFACE=desktop vue-tsc -b && cross-env VITE_SURFACE=desktop vite build",
     "compile:electron": "tsc -p electron/tsconfig.json",
+    "rebuild:electron": "node scripts/electron-rebuild-native.js",
     "pack:electron": "npm run build:electron && npm run compile:electron && node scripts/copy-renderer.js && electron-builder",
     "start:electron": "npm run compile:electron && node scripts/copy-renderer.js && electron electron/dist/main.js",
     "sync-version": "node scripts/sync-native-version.js",
@@ -40,7 +41,7 @@
     "build:ssg": "cross-env VITE_SURFACE=web vite-ssg build"
   },
   "dependencies": {
-    "@acedatacloud/core": "^0.8.1",
+    "@acedatacloud/core": "^0.18.0",
     "@capacitor-community/apple-sign-in": "^7.1.0",
     "@capacitor-community/stripe": "^8.1.1",
     "@capacitor/app": "^8.0.1",
@@ -58,10 +59,8 @@
     "@fingerprintjs/fingerprintjs": "^4.5.1",
     "@fortawesome/fontawesome-svg-core": "^7.2.0",
     "@fortawesome/free-brands-svg-icons": "^6.2.1",
-    "@fortawesome/free-regular-svg-icons": "^6.2.1",
-    "@fortawesome/free-solid-svg-icons": "^6.2.1",
     "@fortawesome/vue-fontawesome": "^3.0.2",
-    "@icon-park/vue-next": "^1.3.6",
+    "@lucide/vue": "1.23.0",
     "@mdit/plugin-katex": "^0.23.1",
     "@skjnldsv/vue-plyr": "^7.5.0",
     "@solana/wallet-adapter-base": "^0.9.27",
@@ -112,6 +111,7 @@
     "@capacitor/cli": "^8.3.4",
     "@capacitor/core": "^8.4.0",
     "@capacitor/ios": "^8.4.0",
+    "@electron/rebuild": "^4.1.0",
     "@playwright/test": "^1.61.0",
     "@rollup/plugin-replace": "^6.0.2",
     "@types/file-saver": "^2.0.7",

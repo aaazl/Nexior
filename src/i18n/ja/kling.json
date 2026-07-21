@@ -55,6 +55,10 @@
     "message": "stdは性能優先、proは画質優先",
     "description": "motion mode 説明"
   },
+  "description.motionModel": {
+    "message": "Kling 3.0 は高画質ですが秒単価も高く、Kling 2.6 はコストパフォーマンスに優れます。",
+    "description": "motion model version description"
+  },
   "description.keepOriginalSound": {
     "message": "オンにすると参照動画の元音声を保持します。オフにすると出力動画には元の音声が含まれません。",
     "description": "keep_original_sound 説明"
@@ -70,6 +74,10 @@
   "message.motionMissingInputs": {
     "message": "人物画像と動作参照動画を同時にアップロードしてください。",
     "description": "Motion Control 入力が不足している時のメッセージ"
+  },
+  "message.motionPricingNote": {
+    "message": "生成された動画の秒数で課金され、最終金額は参照動画の長さに応じて変動します。",
+    "description": "Explains that Motion Control is billed per second"
   },
   "inspiration.title": {
     "message": "インスピレーションとプリセット",
@@ -415,6 +423,14 @@
     "message": "ビデオモード",
     "description": "生成するビデオに使用されるモード"
   },
+  "name.motionModel": {
+    "message": "モデルバージョン",
+    "description": "The Kling model version used for motion control"
+  },
+  "name.perSecond": {
+    "message": "秒",
+    "description": "Unit suffix for per-second pricing"
+  },
   "name.effect": {
     "message": "ビデオ効果",
     "description": "異なるバージョンやスタイルのモデル間で切り替えるためのスタイルパラメータの名前"
@@ -754,5 +770,77 @@
   "message.uploadAudioError": {
     "message": "音声のアップロードに失敗しました。もう一度お試しください。",
     "description": "Talking Photo audio upload error"
+  },
+  "name.referenceVideo": {
+    "message": "Reference Video",
+    "description": "Form field label: reference/editable video for Omni video editing"
+  },
+  "description.omniReferenceVideo": {
+    "message": "Kling O1 と V3 Omni に対応しています。編集または既存の動画の参考用に MP4/MOV（720–2160px、3–10 秒、≤200MB）をアップロードすると、プロンプトが自動的に <<<video_1>>> 追加されます。",
+    "description": "Omni 参考動画アップロードのヘルプテキスト"
+  },
+  "name.referenceImages": {
+    "message": "参考画像",
+    "description": "Omni 参考画像フィールドラベル"
+  },
+  "description.referenceImages": {
+    "message": "Kling O1 と V3 Omni に対応しています。最大 7 枚の参考画像をアップロードできます。参考動画がある場合は最大 4 枚です。プロンプト引用マークが自動的に追加されます。",
+    "description": "Omni 参考画像のヘルプテキスト"
+  },
+  "button.uploadReferenceImages": {
+    "message": "画像をアップロード",
+    "description": "Omni 参考画像をアップロードするボタン"
+  },
+  "message.referenceImagesExceed": {
+    "message": "あと {count} 枚の参考画像をアップロードできます。",
+    "description": "参考画像の数に関するヒント"
+  },
+  "message.referenceImagesError": {
+    "message": "参考画像のアップロードに失敗しました。再試行してください。",
+    "description": "参考画像アップロードエラー"
+  },
+  "name.referenceVideoType": {
+    "message": "動画の用途",
+    "description": "参考動画タイプラベル"
+  },
+  "name.referenceVideoFeature": {
+    "message": "特徴参考",
+    "description": "特徴参考動画オプション"
+  },
+  "name.referenceVideoBase": {
+    "message": "元の動画を編集",
+    "description": "基本的な動画編集オプション"
+  },
+  "message.referenceVideoImageLimit": {
+    "message": "参考動画がある場合、最大 4 枚の参考画像をサポートしています。余分な画像を削除してください。",
+    "description": "参考動画と画像の数の衝突"
+  },
+  "message.referenceImagesTotalLimit": {
+    "message": "このリクエストでは最大 {count} 枚の参考画像をサポートしており、先頭フレームと末尾フレームも総数に含まれます。",
+    "description": "参考画像の総数制限に関する警告"
+  },
+  "message.baseVideoFrameConflict": {
+    "message": "編集中の基本動画は、先頭フレームまたは末尾フレームと同時に使用できません。",
+    "description": "基本動画と先頭・末尾フレームの衝突に関する警告"
+  },
+  "button.uploadReferenceVideo": {
+    "message": "Upload Video",
+    "description": "Button to upload the reference video"
+  },
+  "message.referenceVideoExceed": {
+    "message": "You can upload a maximum of 1 reference video",
+    "description": "Error when more than one reference video is uploaded"
+  },
+  "message.referenceVideoError": {
+    "message": "Reference video upload failed, please try again later",
+    "description": "Error when the reference video upload fails"
+  },
+  "message.referenceVideoTypeFailed": {
+    "message": "Uploaded file must be in MP4 or MOV format!",
+    "description": "Error when the reference video is not MP4/MOV"
+  },
+  "message.referenceVideoSizeExceed": {
+    "message": "Uploaded file size cannot exceed 200MB!",
+    "description": "Error when the reference video exceeds 200MB"
   }
 }

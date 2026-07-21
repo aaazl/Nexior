@@ -123,19 +123,51 @@
         />
       </div>
     </section>
+
+    <section class="settings-item">
+      <div class="settings-label">
+        <p class="settings-title">{{ $t('site.field.contacts') }}</p>
+        <p class="settings-tip">
+          {{ $t('site.message.contactsTip') }}
+        </p>
+      </div>
+      <div class="settings-content">
+        <div v-if="hasContacts" class="contacts-summary">
+          <el-tag v-for="(c, i) in contacts" :key="i" size="small" round class="contact-chip">
+            <font-awesome-icon v-if="contactUsesFontAwesome(c.type)" :icon="contactIconFor(c.type)" class="chip-icon" />
+            <component
+              :is="contactIconFor(c.type)"
+              v-else
+              class="chip-icon"
+              :size="'1em' as any"
+              aria-hidden="true"
+              focusable="false"
+            />
+            {{ contactSummary(c) }}
+          </el-tag>
+        </div>
+        <span v-else class="settings-value">{{ $t('site.message.contactsEmpty') }}</span>
+        <edit-contacts :model-value="contacts" :title="$t('site.title.editContacts')" @confirm="onSaveContacts" />
+      </div>
+    </section>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { ElButton, ElColorPicker, ElImage } from 'element-plus';
+import { ElButton, ElColorPicker, ElImage, ElTag } from 'element-plus';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import EditText from '@/components/site/EditText.vue';
 import EditImage from '@/components/site/EditImage.vue';
 import EditUsers from '@/components/site/EditUsers.vue';
+import EditContacts from '@/components/site/EditContacts.vue';
 import UserChip from '@/components/site/UserChip.vue';
 import AutoTranslateToggle from '@/components/site/AutoTranslateToggle.vue';
 import SectionNotice from '@/components/setting/SectionNotice.vue';
 import { siteOperator } from '@/operators';
+import { getBrandContacts, hasBrandContacts, toWritableSitePayload } from '@/utils';
+import { contactIcon, contactBrand, contactTypeI18nKey, contactUsesFontAwesome } from '@/utils/contactTypes';
+import { ISiteContact } from '@/models';
 import { DEFAULT_PRIMARY_COLOR, applyAccentColor } from '@/utils/theme';
 
 // A small curated palette to make picking a "good" colour easy. The picker
@@ -159,11 +191,14 @@ export default defineComponent({
     EditText,
     EditImage,
     EditUsers,
+    EditContacts,
     UserChip,
     AutoTranslateToggle,
     ElButton,
     ElColorPicker,
     ElImage,
+    ElTag,
+    FontAwesomeIcon,
     SectionNotice
   },
   data() {
@@ -195,18 +230,50 @@ export default defineComponent({
     hasCustomPrimaryColor(): boolean {
       const c = this.storedPrimaryColor;
       return !!c && c.toLowerCase() !== DEFAULT_PRIMARY_COLOR.toLowerCase();
+    },
+    contacts(): ISiteContact[] {
+      return getBrandContacts(this.site);
+    },
+    hasContacts(): boolean {
+      return hasBrandContacts(this.site);
     }
   },
   methods: {
+    contactUsesFontAwesome,
+    contactIconFor(type: string) {
+      return contactIcon(type);
+    },
+    contactSummary(c: ISiteContact): string {
+      // Short chip label: prefer the owner's label, then the value, then a
+      // brand/type name.
+      if (c.label) return c.label;
+      if (c.value) return c.value;
+      const brand = contactBrand(c.type);
+      if (brand) return brand;
+      const key = contactTypeI18nKey(c.type);
+      return key ? (this.$t(key) as string) : c.type;
+    },
     onSave(data: any) {
       const payload = {
-        ...this.site,
+        ...toWritableSitePayload(this.site),
         ...data
       };
       siteOperator.update(this.site?.id, payload).then(() => {
         console.debug('getSite for id', this.site?.id);
         this.$store.dispatch('getSite');
       });
+    },
+    onSaveContacts(contacts: ISiteContact[]) {
+      // Merge into the existing branding so other white-label keys
+      // (company / links / hide_*) are preserved. Drop the key entirely
+      // when cleared so ``Site.branding`` stays tidy.
+      const branding = { ...(this.site?.branding || {}) };
+      if (Array.isArray(contacts) && contacts.length > 0) {
+        branding.contacts = contacts;
+      } else {
+        delete branding.contacts;
+      }
+      this.onSave({ branding });
     },
     onTranslationChanged() {
       // Toggle endpoints mutate the row server-side; refresh so the
@@ -271,6 +338,23 @@ export default defineComponent({
 
 .admins-chip {
   max-width: 100%;
+}
+
+.contacts-summary {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
+  max-width: 100%;
+
+  .contact-chip {
+    max-width: 100%;
+
+    .chip-icon {
+      margin-right: 5px;
+      font-size: 11px;
+    }
+  }
 }
 
 .primary-color-content {

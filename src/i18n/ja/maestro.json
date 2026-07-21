@@ -27,6 +27,50 @@
     "message": "失敗理由",
     "description": "失敗の理由"
   },
+  "name.mode": {
+    "message": "モード",
+    "description": "生成モード / アクション"
+  },
+  "option.action.generate": {
+    "message": "生成",
+    "description": "生成アクションオプション"
+  },
+  "option.action.remix": {
+    "message": "リミックス",
+    "description": "リミックスアクションオプション"
+  },
+  "option.action.edit": {
+    "message": "編集",
+    "description": "編集アクションオプション"
+  },
+  "option.action.extend": {
+    "message": "延長",
+    "description": "延長アクションオプション"
+  },
+  "step.plan": {
+    "message": "企画・絵コンテ",
+    "description": "Pipeline step: plan"
+  },
+  "step.source": {
+    "message": "素材の収集",
+    "description": "Pipeline step: source media"
+  },
+  "step.voice": {
+    "message": "ナレーション生成",
+    "description": "Pipeline step: voiceover"
+  },
+  "step.compose": {
+    "message": "シーン編集",
+    "description": "Pipeline step: compose"
+  },
+  "step.render": {
+    "message": "動画レンダリング",
+    "description": "Pipeline step: render"
+  },
+  "step.deliver": {
+    "message": "配信",
+    "description": "Pipeline step: deliver"
+  },
   "name.prompt": {
     "message": "プロンプト",
     "description": "プロンプトフィールド"
@@ -163,6 +207,166 @@
     "message": "まだ動画がありません — 左側で最初の動画を作成しましょう。",
     "description": "タスクがないことを示すメッセージ"
   },
+  "name.scenario": {
+    "message": "動画タイプ",
+    "description": "Video type field"
+  },
+  "description.scenario": {
+    "message": "カスタマイズをオンにすると動画タイプを選択できます。オフの場合は Maestro が自動で決定します。",
+    "description": "Scenario field help"
+  },
+  "option.scenario.auto": {
+    "message": "自動 · Maestro に任せる",
+    "description": "Auto scenario option"
+  },
+  "option.scenario.narrated": {
+    "message": "図文ナレーションの完成品",
+    "description": "ナレーション付きマルチシーンビデオオプション"
+  },
+  "option.scenario.drama": {
+    "message": "ショートドラマ",
+    "description": "Short drama scenario option"
+  },
+  "option.scenario.avatar": {
+    "message": "デジタル人 · ナレーション",
+    "description": "アバター / トーキングヘッドシナリオオプション"
+  },
+  "option.scenario.captions": {
+    "message": "字幕を追加",
+    "description": "Add-captions scenario option"
+  },
+  "message.captionsNeedVideo": {
+    "message": "キネティック字幕は既存のトーキングヘッド動画に適用します。まず上で動画をアップロードしてください。",
+    "description": "Warning shown when captions video type is selected but no source video is uploaded"
+  },
+  "name.style": {
+    "message": "ビジュアルスタイル",
+    "description": "ビジュアルスタイルフィールド"
+  },
+  "description.style": {
+    "message": "カスタマイズをオンにするとビジュアルスタイルを選択または入力できます。オフの場合は Maestro が自動で決定します。",
+    "description": "スタイルフィールドのヘルプ"
+  },
+  "option.style.auto": {
+    "message": "自動 · 追加指定なし",
+    "description": "自動スタイルオプション"
+  },
+  "option.style.cinematic": {
+    "message": "映画的",
+    "description": "シネマティックスタイルオプション"
+  },
+  "option.style.glass": {
+    "message": "Frosted Glass",
+    "description": "Frosted glass style option"
+  },
+  "option.style.luxury": {
+    "message": "Luxury",
+    "description": "Luxury style option"
+  },
+  "option.style.swiss": {
+    "message": "Swiss Grid",
+    "description": "Swiss grid style option"
+  },
+  "option.style.modern": {
+    "message": "Modern",
+    "description": "Modern style option"
+  },
+  "option.style.editorial": {
+    "message": "Editorial",
+    "description": "Editorial style option"
+  },
+  "option.style.warm": {
+    "message": "Warm",
+    "description": "Warm style option"
+  },
+  "option.style.vibrant": {
+    "message": "Vibrant",
+    "description": "Vibrant style option"
+  },
+  "option.style.neon": {
+    "message": "ネオン",
+    "description": "ネオンスタイルオプション"
+  },
+  "option.style.mono": {
+    "message": "Monochrome",
+    "description": "Monochrome style option"
+  },
+  "option.style.pastel": {
+    "message": "Pastel",
+    "description": "Pastel style option"
+  },
+  "option.style.bold": {
+    "message": "Bold Type",
+    "description": "Bold type style option"
+  },
+  "option.style.industrial": {
+    "message": "Industrial",
+    "description": "Industrial style option"
+  },
+  "option.style.futuristic": {
+    "message": "Futuristic",
+    "description": "Futuristic style option"
+  },
+  "option.style.retro": {
+    "message": "Retro Film",
+    "description": "Retro film style option"
+  },
+  "name.voice": {
+    "message": "ナレーション音色",
+    "description": "音声音色フィールド"
+  },
+  "button.preview": {
+    "message": "試聴",
+    "description": "音声プレビュー / サンプル再生ボタン"
+  },
+  "description.voice": {
+    "message": "カスタマイズをオンにするとナレーション音色を選択できます。オフの場合は Maestro が自動で選びます。音色は言語に依存せず、再生ボタンを押して試聴できます。",
+    "description": "音声フィールドのヘルプ"
+  },
+  "option.voice.auto": {
+    "message": "自動 · Maestro によるマッチ",
+    "description": "自動音声オプション"
+  },
+  "option.voice.warm-female": {
+    "message": "優しい女性の声",
+    "description": "優しい女性の音声オプション"
+  },
+  "option.voice.bright-female": {
+    "message": "明るい女性の声",
+    "description": "明るい女性の音声オプション"
+  },
+  "option.voice.anchor-female": {
+    "message": "女性アナウンサーの声",
+    "description": "女性アナウンサーの音声オプション"
+  },
+  "option.voice.clean-female": {
+    "message": "澄んだ女性の声",
+    "description": "澄んだ女性の音声オプション"
+  },
+  "option.voice.calm-male": {
+    "message": "落ち着いた男性の声",
+    "description": "落ち着いた男性の音声オプション"
+  },
+  "option.voice.deep-male": {
+    "message": "深い男性の声",
+    "description": "深い男性の音声オプション"
+  },
+  "option.voice.documentary-male": {
+    "message": "ドキュメンタリー男性の声",
+    "description": "ドキュメンタリー男性の音声オプション"
+  },
+  "option.voice.energetic-male": {
+    "message": "エネルギッシュな男性の声",
+    "description": "エネルギッシュな男性の音声オプション"
+  },
+  "option.voice.storyteller-male": {
+    "message": "語り手の男性の声",
+    "description": "語り手男性の音声オプション"
+  },
+  "option.scenario.slideshow": {
+    "message": "スライドショー",
+    "description": "スライドショーシナリオオプション"
+  },
   "name.sourceType": {
     "message": "ソースタイプ",
     "description": "ソースタイプフィールド"
@@ -222,5 +426,65 @@
   "message.downloadVideo": {
     "message": "生成された動画をダウンロード",
     "description": "ダウンロードツールチップ"
+  },
+  "option.scenario.general": {
+    "message": "実写映像",
+    "description": "Footage piece scenario option"
+  },
+  "option.scenario.explainer": {
+    "message": "解説動画",
+    "description": "Explainer scenario option"
+  },
+  "option.scenario.product": {
+    "message": "商品PR",
+    "description": "Product promo scenario option"
+  },
+  "option.scenario.website": {
+    "message": "ウェブサイト動画化",
+    "description": "Website-to-video scenario option"
+  },
+  "option.scenario.slides": {
+    "message": "スライドショー",
+    "description": "Slideshow scenario option"
+  },
+  "option.scenario.changelog": {
+    "message": "変更履歴 (PR)",
+    "description": "Changelog scenario option"
+  },
+  "name.customize": {
+    "message": "カスタマイズ",
+    "description": "Optional creative controls toggle"
+  },
+  "description.customize.auto": {
+    "message": "自動 · 動画タイプ、ビジュアルスタイル、ナレーション音色は Maestro が決定します。",
+    "description": "Customization disabled state"
+  },
+  "description.customize.manual": {
+    "message": "動画タイプ、ビジュアルスタイル、ナレーション音色を選択します。",
+    "description": "Customization enabled state"
+  },
+  "name.primaryLanguage": {
+    "message": "Primary language",
+    "description": "Primary output language field"
+  },
+  "name.additionalLanguages": {
+    "message": "Additional languages (optional)",
+    "description": "Additional output languages field"
+  },
+  "placeholder.additionalLanguages": {
+    "message": "Add output languages",
+    "description": "Additional languages placeholder"
+  },
+  "name.customizeScenario": {
+    "message": "動画タイプをカスタマイズ",
+    "description": "Video type customization toggle"
+  },
+  "name.customizeStyle": {
+    "message": "ビジュアルスタイルをカスタマイズ",
+    "description": "Visual style customization toggle"
+  },
+  "name.customizeVoice": {
+    "message": "ナレーション音色をカスタマイズ",
+    "description": "Voice timbre customization toggle"
   }
 }

@@ -16,9 +16,12 @@ import {
   CHAT_MODEL_NAME_GEMINI_3_0_PRO,
   CHAT_MODEL_NAME_GEMINI_3_1_PRO,
   CHAT_MODEL_NAME_GEMINI_3_5_FLASH,
+  CHAT_MODEL_NAME_CLAUDE_FABLE_5,
   CHAT_MODEL_NAME_CLAUDE_OPUS_4_8,
   CHAT_MODEL_NAME_CLAUDE_SONNET_4_6,
   CHAT_MODEL_NAME_CLAUDE_HAIKU_4_5,
+  CHAT_MODEL_NAME_KIMI_K3,
+  CHAT_MODEL_NAME_KIMI_K2_6,
   CHAT_MODEL_NAME_KIMI_K2_5,
   CHAT_MODEL_NAME_KIMI_K2_THINKING,
   CHAT_MODEL_NAME_KIMI_K2_THINKING_TURBO,
@@ -41,9 +44,12 @@ export type IChatModelName =
   | typeof CHAT_MODEL_NAME_GEMINI_3_5_FLASH
   | typeof CHAT_MODEL_NAME_GEMINI_2_5_PRO
   | typeof CHAT_MODEL_NAME_GEMINI_2_5_FLASH
+  | typeof CHAT_MODEL_NAME_CLAUDE_FABLE_5
   | typeof CHAT_MODEL_NAME_CLAUDE_OPUS_4_8
   | typeof CHAT_MODEL_NAME_CLAUDE_SONNET_4_6
   | typeof CHAT_MODEL_NAME_CLAUDE_HAIKU_4_5
+  | typeof CHAT_MODEL_NAME_KIMI_K3
+  | typeof CHAT_MODEL_NAME_KIMI_K2_6
   | typeof CHAT_MODEL_NAME_KIMI_K2_5
   | typeof CHAT_MODEL_NAME_KIMI_K2_THINKING
   | typeof CHAT_MODEL_NAME_KIMI_K2_THINKING_TURBO
@@ -87,6 +93,20 @@ export enum IChatMessageState {
   FAILED = 'failed'
 }
 
+export type IChatToolExecution = 'client' | 'server' | 'browser';
+
+export type IBrowserToolExecutionState =
+  | 'choose_device'
+  | 'device_offline'
+  | 'awaiting_device'
+  | 'awaiting_local_approval'
+  | 'takeover_required'
+  | 'executing'
+  | 'completed'
+  | 'denied'
+  | 'expired'
+  | 'cancel_too_late';
+
 export interface IChatMessageContentItem {
   type: string;
   text?: string;
@@ -94,14 +114,26 @@ export interface IChatMessageContentItem {
   file_url?: { url: string } | string;
   name?: string;
   mimeType?: string;
+  // Alt text for an `image_url` block. The aichat2 worker sets this on a
+  // tool-result screenshot (`<tool_id> screenshot`); the frontend reuses it as
+  // a dedupe key when folding the same block locally on client-tool resume.
+  alt?: string;
   // Tool-calling fields (type='tool_use')
   tool_id?: string;
   tool_name?: string;
   tool_display_name?: string;
+  execution?: IChatToolExecution;
+  execution_state?: IBrowserToolExecutionState;
+  execution_sequence?: number;
+  origin?: string;
   input?: Record<string, unknown>;
   output?: string;
   is_error?: boolean;
   duration_ms?: number;
+  // Raw tool-call arguments text streamed by the worker (`tool_progress`
+  // events) while the model is still writing the call. Shown live on the
+  // running block until the full parsed `input` arrives at finalize.
+  input_stream?: string;
   // `awaiting_input` is set on a `tool_use` block when the worker pauses the
   // turn for a user reply (see `ask_user_question` tool). `output` is absent
   // until the user submits an answer, which folds the block back to `done`.
@@ -267,6 +299,15 @@ export interface IChatConversation {
   editing?: boolean;
   new?: boolean;
   updated_at?: number;
+  /**
+   * Public share token when the owner has shared this conversation (via the
+   * `share` action), else absent. Present on side-panel summaries so the UI
+   * can show a "shared" affordance and build the /share/<id> link without a
+   * second round-trip. Cleared by `unshare`.
+   */
+  share_id?: string;
+  /** Unix seconds when the share snapshot was last (re)generated. */
+  shared_at?: number;
 }
 
 export interface IChatConversationOptions {
@@ -312,12 +353,20 @@ export interface IChatConversationResponse {
   tool_id?: string;
   tool_name?: string;
   tool_display_name?: string;
-  // 'client' ⇒ desktop runs this tool locally; worker pauses awaiting tool_results.
-  execution?: 'client' | 'server';
+  // 'client' runs in the desktop bridge; 'browser' is observed here but runs
+  // on the selected BrowserDevice, never in this chat client.
+  execution?: IChatToolExecution;
+  execution_state?: IBrowserToolExecutionState;
+  execution_sequence?: number;
+  origin?: string;
   input?: Record<string, unknown>;
   output?: string;
   is_error?: boolean;
   duration_ms?: number;
+  // Incremental tool-call arguments text (`type === 'tool_progress'`),
+  // streamed as the model writes a (possibly large) tool call so the UI
+  // isn't frozen while it's composed.
+  progress?: string;
   content?: string;
   artifact?: {
     type: string;
@@ -351,7 +400,15 @@ export enum IChatConversationAction {
   RETRIEVE = 'retrieve',
   UPDATE = 'update',
   DELETE = 'delete',
-  RETRIEVE_BATCH = 'retrieve_batch'
+  RETRIEVE_BATCH = 'retrieve_batch',
+  SHARE = 'share',
+  UNSHARE = 'unshare'
+}
+
+export interface IChatShareResponse {
+  id?: string;
+  share_id?: string;
+  shared_at?: number;
 }
 
 // ===== Tool Calling Types (aichat2 orchestrator) =====

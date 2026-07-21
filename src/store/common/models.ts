@@ -13,7 +13,6 @@ import { IDigitalHumanState } from '../digitalhuman/models';
 import { IPixverseState } from '../pixverse/models';
 import { IFluxState } from '../flux/models';
 import { IHailuoState } from '../hailuo/models';
-import { IHeadshotsState } from '../headshots/models';
 import { ISunoState } from '../suno/models';
 import { IProducerState } from '../producer/models';
 import { INanobananaState } from '../nanobanana/models';
@@ -21,6 +20,7 @@ import { IOpenAIImageState } from '../openaiimage/models';
 import { ISeedreamState } from '../seedream/models';
 import { ISeedanceState } from '../seedance/models';
 import { IGrokVideoState } from '../grokvideo/models';
+import { IOmniState } from '../omni/models';
 import { ISerpState } from '../serp/models';
 import { IWanState } from '../wan/models';
 import { IFishState } from '../fish/models';
@@ -40,6 +40,8 @@ export interface ICommonState {
   auth: {
     flow: 'popup' | 'redirect';
     visible: boolean;
+    redirect?: string;
+    action?: 'login' | 'logout';
   };
   exchange:
     | {
@@ -71,7 +73,6 @@ export interface IAppState {
   pixverse: IPixverseState;
   flux: IFluxState;
   hailuo: IHailuoState;
-  headshots: IHeadshotsState;
   suno: ISunoState;
   producer: IProducerState;
   nanobanana: INanobananaState;
@@ -79,6 +80,7 @@ export interface IAppState {
   seedream: ISeedreamState;
   seedance: ISeedanceState;
   grokvideo: IGrokVideoState;
+  omni: IOmniState;
   serp: ISerpState;
   wan: IWanState;
   fish: IFishState;

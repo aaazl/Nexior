@@ -4,7 +4,7 @@
     <div v-else class="conversations">
       <div class="conversation" @click="onNewConversation">
         <div class="icons">
-          <font-awesome-icon icon="fa-solid fa-plus" class="icon" />
+          <add-icon class="icon" :size="'1em' as any" aria-hidden="true" focusable="false" />
         </div>
         <div class="title">
           {{ $t('chat.message.startNewChat') }}
@@ -12,10 +12,18 @@
       </div>
       <div class="conversation" @click="onScheduledTasks">
         <div class="icons">
-          <font-awesome-icon icon="fa-solid fa-clock" class="icon" />
+          <time-icon class="icon" :size="'1em' as any" aria-hidden="true" focusable="false" />
         </div>
         <div class="title">
           {{ $t('chat.scheduledTasks.navTitle') }}
+        </div>
+      </div>
+      <div class="conversation" @click="onArtifacts">
+        <div class="icons">
+          <file-archive-icon class="icon" :size="'1em' as any" aria-hidden="true" focusable="false" />
+        </div>
+        <div class="title">
+          {{ $t('chat.artifacts.navTitle') }}
         </div>
       </div>
       <div v-for="(group, groupKey) in conversationGroups" :key="groupKey" class="group">
@@ -38,17 +46,30 @@
               :teleported="true"
               @command="(command) => onConversationCommand(command, conversation)"
             >
-              <span class="more" @click.stop>
-                <font-awesome-icon icon="fa-solid fa-ellipsis" />
+              <span
+                class="more"
+                role="button"
+                tabindex="0"
+                :aria-label="$t('common.button.more')"
+                :title="$t('common.button.more')"
+                @click.stop
+                @keydown.enter.stop
+                @keydown.space.prevent.stop
+              >
+                <more-icon :size="'1em' as any" aria-hidden="true" focusable="false" />
               </span>
               <template #dropdown>
                 <el-dropdown-menu>
                   <el-dropdown-item command="rename" @click.stop>
-                    <font-awesome-icon icon="fa-solid fa-pen-to-square" class="mr-2" />
+                    <edit-icon class="mr-2" :size="'1em' as any" aria-hidden="true" focusable="false" />
                     重命名
                   </el-dropdown-item>
+                  <el-dropdown-item command="share" @click.stop>
+                    <share-icon class="mr-2" :size="'1em' as any" aria-hidden="true" focusable="false" />
+                    {{ $t('chat.share.menu') }}
+                  </el-dropdown-item>
                   <el-dropdown-item command="delete" @click.stop>
-                    <font-awesome-icon icon="fa-solid fa-trash" class="mr-2" />
+                    <delete-icon class="mr-2" :size="'1em' as any" aria-hidden="true" focusable="false" />
                     {{ $t('common.button.delete') }}
                   </el-dropdown-item>
                 </el-dropdown-menu>
@@ -83,10 +104,26 @@
         </el-button>
       </template>
     </el-dialog>
+
+    <share-conversation-dialog
+      v-model="shareDialogVisible"
+      :conversation-id="actingConversation?.id"
+      :share-id="actingConversation?.share_id"
+      @update:share-id="onShareIdUpdated"
+    />
   </div>
 </template>
 
 <script lang="ts">
+import {
+  AddIcon,
+  DeleteIcon,
+  EditIcon,
+  FileArchiveIcon,
+  MoreIcon,
+  ShareIcon,
+  TimeIcon
+} from '@acedatacloud/core/icons/components';
 import { defineComponent } from 'vue';
 import {
   ElSkeleton,
@@ -98,25 +135,32 @@ import {
   ElDropdownMenu,
   ElMessage
 } from 'element-plus';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { chatOperator } from '@/operators';
 import { IChatConversation } from '@/models';
 import { Status } from '@/models';
-import { ROUTE_CHAT_SCHEDULED_TASKS } from '@/router/constants';
+import { ROUTE_CHAT_SCHEDULED_TASKS, ROUTE_CHAT_ARTIFACTS } from '@/router/constants';
+import ShareConversationDialog from './ShareConversationDialog.vue';
 
-type ConversationCommand = 'rename' | 'delete';
+type ConversationCommand = 'rename' | 'delete' | 'share';
 
 export default defineComponent({
   name: 'SidePanel',
   components: {
+    AddIcon,
+    DeleteIcon,
+    EditIcon,
+    FileArchiveIcon,
+    MoreIcon,
+    ShareIcon,
+    TimeIcon,
     ElInput,
     ElButton,
     ElDialog,
     ElDropdown,
     ElDropdownItem,
     ElDropdownMenu,
-    FontAwesomeIcon,
-    ElSkeleton
+    ElSkeleton,
+    ShareConversationDialog
   },
   props: {},
   emits: ['change-conversation'],
@@ -124,6 +168,7 @@ export default defineComponent({
     return {
       renameDialogVisible: false,
       deleteDialogVisible: false,
+      shareDialogVisible: false,
       actingConversation: undefined as IChatConversation | undefined,
       renameDraft: '',
       renameSubmitting: false,
@@ -199,6 +244,9 @@ export default defineComponent({
     onScheduledTasks() {
       this.$router.push({ name: ROUTE_CHAT_SCHEDULED_TASKS });
     },
+    onArtifacts() {
+      this.$router.push({ name: ROUTE_CHAT_ARTIFACTS });
+    },
     onClickConversation(id?: string) {
       console.debug('onClickConversation in side panel', id);
       this.$emit('change-conversation', id);
@@ -215,7 +263,20 @@ export default defineComponent({
         this.openRenameDialog(conversation);
       } else if (command === 'delete') {
         this.openDeleteDialog(conversation);
+      } else if (command === 'share') {
+        this.openShareDialog(conversation);
       }
+    },
+    openShareDialog(conversation: IChatConversation) {
+      this.actingConversation = conversation;
+      this.shareDialogVisible = true;
+    },
+    onShareIdUpdated(shareId?: string) {
+      // Reflect the new share state on the sidebar row + store so reopening
+      // the dialog shows the correct link without a refetch.
+      if (!this.actingConversation) return;
+      this.actingConversation.share_id = shareId;
+      this.$store.dispatch('chat/setConversation', { ...this.actingConversation, share_id: shareId });
     },
     openRenameDialog(conversation: IChatConversation) {
       this.actingConversation = conversation;
@@ -298,7 +359,7 @@ export default defineComponent({
   flex-direction: column;
   align-items: flex-end;
   padding: 12px;
-  width: 260px;
+  width: 100%;
   height: 100%;
   border-right: none;
 
@@ -355,14 +416,21 @@ export default defineComponent({
       }
 
       .icons {
-        width: 30px;
-        padding-left: 10px;
+        display: flex;
+        flex: 0 0 30px;
+        align-items: center;
+        justify-content: center;
+        align-self: stretch;
+        line-height: 1;
+
         .icon {
+          display: block;
           font-size: 14px;
         }
       }
       .title {
         flex: 1;
+        min-width: 0;
         font-size: 14px;
         line-height: 40px;
         overflow: hidden;

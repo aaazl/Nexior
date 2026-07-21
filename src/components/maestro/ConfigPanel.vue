@@ -4,7 +4,7 @@
       <!-- Remix banner: iterating on a previous video -->
       <el-alert v-if="isRemixing" :closable="false" type="info" class="mb-5">
         <p class="text-xs mb-1">
-          <font-awesome-icon icon="fa-solid fa-wand-magic-sparkles" class="mr-1" />
+          <magic-icon class="mr-1" :size="'1em' as any" aria-hidden="true" focusable="false" />
           {{ $t('maestro.name.remixing') }}: {{ refTaskId }}
         </p>
         <el-button size="small" text @click="onClearRemix">{{ $t('maestro.button.cancelRemix') }}</el-button>
@@ -35,15 +35,37 @@
           <h2 class="field-title font-bold">{{ $t('maestro.name.langs') }}</h2>
           <info-icon :content="$t('maestro.description.langs')" class="ml-1" />
         </div>
-        <el-select
-          v-model="langs"
-          multiple
-          collapse-tags
-          :placeholder="$t('maestro.placeholder.select')"
-          class="w-full"
-        >
-          <el-option v-for="l in MAESTRO_ALLOWED_LANGS" :key="l" :label="l" :value="l" />
-        </el-select>
+        <div class="language-picker">
+          <label class="language-role language-role--primary">
+            <span class="language-role-label">{{ $t('maestro.name.primaryLanguage') }}</span>
+            <el-select v-model="primaryLanguage" class="w-full">
+              <el-option
+                v-for="option in languageOptions"
+                :key="option.value"
+                :label="option.label"
+                :value="option.value"
+              />
+            </el-select>
+          </label>
+          <label class="language-role">
+            <span class="language-role-label">{{ $t('maestro.name.additionalLanguages') }}</span>
+            <el-select
+              v-model="additionalLanguages"
+              multiple
+              collapse-tags
+              collapse-tags-tooltip
+              :placeholder="$t('maestro.placeholder.additionalLanguages')"
+              class="w-full"
+            >
+              <el-option
+                v-for="option in additionalLanguageOptions"
+                :key="option.value"
+                :label="option.label"
+                :value="option.value"
+              />
+            </el-select>
+          </label>
+        </div>
       </div>
 
       <!-- Aspect ratio -->
@@ -104,12 +126,120 @@
           />
         </el-select>
       </div>
+
+      <!-- Scenario (video type) -->
+      <div class="custom-field">
+        <div class="custom-field-header mb-2">
+          <div class="field-head">
+            <h2 class="field-title font-bold">{{ $t('maestro.name.customizeScenario') }}</h2>
+            <info-icon :content="$t('maestro.description.scenario')" class="ml-1" />
+          </div>
+          <el-switch v-model="scenarioCustomizationEnabled" :aria-label="$t('maestro.name.customizeScenario')" />
+        </div>
+        <div
+          class="scenario-cards"
+          :class="{ 'is-disabled': !scenarioCustomizationEnabled }"
+          role="radiogroup"
+          :aria-label="$t('maestro.name.scenario')"
+          :aria-disabled="!scenarioCustomizationEnabled"
+        >
+          <div
+            v-for="s in MAESTRO_ALLOWED_SCENARIOS"
+            :key="s"
+            class="scenario-card"
+            :class="{
+              active: scenarioCustomizationEnabled && scenario === s,
+              disabled: !scenarioCustomizationEnabled
+            }"
+            role="radio"
+            :aria-checked="scenarioCustomizationEnabled && scenario === s"
+            :aria-disabled="!scenarioCustomizationEnabled"
+            :aria-label="$t(`maestro.option.scenario.${s}`)"
+            :tabindex="scenarioCustomizationEnabled ? 0 : -1"
+            @click="scenarioCustomizationEnabled && (scenario = s)"
+            @keydown.enter.prevent="scenarioCustomizationEnabled && (scenario = s)"
+            @keydown.space.prevent="scenarioCustomizationEnabled && (scenario = s)"
+          >
+            <div class="scenario-thumb">
+              <img :src="MAESTRO_SCENARIO_THUMBNAILS[s]" :alt="$t(`maestro.option.scenario.${s}`)" loading="lazy" />
+            </div>
+            <p class="scenario-name">{{ $t(`maestro.option.scenario.${s}`) }}</p>
+          </div>
+        </div>
+        <el-alert
+          v-if="needsVideoUpload"
+          :title="$t('maestro.message.captionsNeedVideo')"
+          type="warning"
+          :closable="false"
+          show-icon
+          class="mt-2"
+        />
+      </div>
+
+      <!-- Style (visual direction) -->
+      <div class="custom-field">
+        <div class="custom-field-header mb-2">
+          <div class="field-head">
+            <h2 class="field-title font-bold">{{ $t('maestro.name.customizeStyle') }}</h2>
+            <info-icon :content="$t('maestro.description.style')" class="ml-1" />
+          </div>
+          <el-switch v-model="styleCustomizationEnabled" :aria-label="$t('maestro.name.customizeStyle')" />
+        </div>
+        <el-select
+          v-model="style"
+          class="w-full"
+          filterable
+          allow-create
+          default-first-option
+          :disabled="!styleCustomizationEnabled"
+          :aria-label="$t('maestro.name.customizeStyle')"
+          :placeholder="$t('maestro.placeholder.select')"
+        >
+          <el-option v-for="s in MAESTRO_ALLOWED_STYLES" :key="s" :label="$t(`maestro.option.style.${s}`)" :value="s" />
+        </el-select>
+      </div>
+
+      <!-- Voice (narration timbre) + preview -->
+      <div class="custom-field">
+        <div class="custom-field-header mb-2">
+          <div class="field-head">
+            <h2 class="field-title font-bold">{{ $t('maestro.name.customizeVoice') }}</h2>
+            <info-icon :content="$t('maestro.description.voice')" class="ml-1" />
+          </div>
+          <el-switch v-model="voiceCustomizationEnabled" :aria-label="$t('maestro.name.customizeVoice')" />
+        </div>
+        <div class="voice-row">
+          <el-select
+            v-model="voice"
+            class="voice-select"
+            :disabled="!voiceCustomizationEnabled"
+            :aria-label="$t('maestro.name.customizeVoice')"
+            :placeholder="$t('maestro.placeholder.select')"
+          >
+            <el-option
+              v-for="v in MAESTRO_ALLOWED_VOICES"
+              :key="v.key"
+              :label="$t(`maestro.option.voice.${v.key}`)"
+              :value="v.key"
+            />
+          </el-select>
+          <el-button
+            class="voice-play"
+            :disabled="!voiceCustomizationEnabled || !currentSample"
+            :title="$t('maestro.button.preview')"
+            :aria-label="$t('maestro.button.preview')"
+            @click="onToggleSample"
+          >
+            <pause-icon v-if="playing" :size="'1em' as any" aria-hidden="true" focusable="false" />
+            <play-icon v-else :size="'1em' as any" aria-hidden="true" focusable="false" />
+          </el-button>
+        </div>
+      </div>
     </div>
 
     <div class="flex flex-col items-center justify-center px-5 pb-5">
-      <consumption :value="consumption" :service="service" />
       <el-button type="primary" class="btn w-full" round :disabled="!canGenerate" @click="onGenerate">
-        <font-awesome-icon icon="fa-solid fa-magic" class="mr-2" />
+        <magic-icon class="mr-2" :size="'1em' as any" aria-hidden="true" focusable="false" />
         {{ $t('maestro.button.generate') }}
       </el-button>
     </div>
@@ -117,16 +247,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { ElButton, ElSelect, ElOption, ElInputNumber, ElAlert } from 'element-plus';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import Consumption from '../common/Consumption.vue';
+import { MagicIcon, PauseIcon, PlayIcon } from '@acedatacloud/core/icons/components';
+import { defineComponent, markRaw } from 'vue';
+import { ElButton, ElSelect, ElOption, ElInputNumber, ElAlert, ElSwitch } from 'element-plus';
 import InfoIcon from '@/components/common/InfoIcon.vue';
 import PromptTextarea from '@/components/common/PromptTextarea.vue';
 import FileUrlsInput from './config/FileUrlsInput.vue';
-import { getConsumption } from '@/utils';
 import {
-  MAESTRO_ALLOWED_LANGS,
   MAESTRO_ALLOWED_ASPECTS,
   MAESTRO_MIN_DURATION,
   MAESTRO_MAX_DURATION,
@@ -135,9 +262,24 @@ import {
   MAESTRO_DEFAULT_ASPECT,
   MAESTRO_DEFAULT_DURATION,
   MAESTRO_ALLOWED_QUALITIES,
-  MAESTRO_DEFAULT_QUALITY
+  MAESTRO_DEFAULT_QUALITY,
+  MAESTRO_ALLOWED_SCENARIOS,
+  MAESTRO_SCENARIO_THUMBNAILS,
+  MAESTRO_UPLOAD_REQUIRED_SCENARIOS,
+  MAESTRO_ALLOWED_STYLES,
+  MAESTRO_DEFAULT_STYLE,
+  MAESTRO_ALLOWED_VOICES,
+  MAESTRO_DEFAULT_VOICE
 } from '@/constants';
 import { IMaestroConfig } from '@/models';
+import { isVideoUrl } from '@/utils/is';
+import {
+  getMaestroLanguageOptions,
+  normalizeMaestroLanguages,
+  setMaestroAdditionalLanguages,
+  setMaestroPrimaryLanguage,
+  type IMaestroLanguageOption
+} from '@/utils/maestroLanguages';
 
 // Preview rectangle dimensions (px) for each aspect-ratio chip.
 const RATIO_PREVIEW: Record<string, { width: number; height: number }> = {
@@ -149,24 +291,31 @@ const RATIO_PREVIEW: Record<string, { width: number; height: number }> = {
 export default defineComponent({
   name: 'ConfigPanel',
   components: {
+    MagicIcon,
     ElButton,
     ElSelect,
     ElOption,
     ElInputNumber,
     ElAlert,
-    Consumption,
+    ElSwitch,
     InfoIcon,
+    PauseIcon,
+    PlayIcon,
     PromptTextarea,
-    FileUrlsInput,
-    FontAwesomeIcon
+    FileUrlsInput
   },
   emits: ['generate'],
   data() {
     return {
-      MAESTRO_ALLOWED_LANGS,
       MAESTRO_MIN_DURATION,
       MAESTRO_MAX_DURATION,
-      MAESTRO_ALLOWED_QUALITIES
+      MAESTRO_ALLOWED_QUALITIES,
+      MAESTRO_ALLOWED_SCENARIOS,
+      MAESTRO_SCENARIO_THUMBNAILS,
+      MAESTRO_ALLOWED_STYLES,
+      MAESTRO_ALLOWED_VOICES,
+      playing: false,
+      audioEl: null as HTMLAudioElement | null
     };
   },
   computed: {
@@ -182,9 +331,6 @@ export default defineComponent({
         ...(RATIO_PREVIEW[value] ?? { width: 20, height: 20 })
       }));
     },
-    consumption() {
-      return getConsumption(this.config, this.service?.cost);
-    },
     isRemixing(): boolean {
       const action = this.config?.action;
       return !!action && action !== MAESTRO_DEFAULT_ACTION && !!this.config?.ref_task_id;
@@ -192,8 +338,15 @@ export default defineComponent({
     refTaskId(): string | undefined {
       return this.config?.ref_task_id;
     },
+    needsVideoUpload(): boolean {
+      if (!this.scenarioCustomizationEnabled) return false;
+      const scenario = this.config?.scenario;
+      if (!scenario || !MAESTRO_UPLOAD_REQUIRED_SCENARIOS.includes(scenario)) return false;
+      // captions post-processes a talking-head clip, so a video (not an image/audio) must be uploaded.
+      return !(this.config?.file_urls || []).some((u) => isVideoUrl(u));
+    },
     canGenerate(): boolean {
-      return !!this.prompt?.trim();
+      return !!this.prompt?.trim() && !this.needsVideoUpload;
     },
     prompt: {
       get(): string | undefined {
@@ -205,11 +358,32 @@ export default defineComponent({
     },
     langs: {
       get(): string[] {
-        return this.config?.langs || [];
+        return normalizeMaestroLanguages(this.config?.langs);
       },
       set(val: string[]) {
-        // keep at least the primary language so billing/render always has one
-        this.update({ langs: val.length ? val : MAESTRO_DEFAULT_LANGS });
+        this.update({ langs: normalizeMaestroLanguages(val) });
+      }
+    },
+    languageOptions(): IMaestroLanguageOption[] {
+      return getMaestroLanguageOptions(this.$i18n.locale);
+    },
+    additionalLanguageOptions(): IMaestroLanguageOption[] {
+      return this.languageOptions.filter((option) => option.value !== this.primaryLanguage);
+    },
+    primaryLanguage: {
+      get(): string {
+        return this.langs[0] || MAESTRO_DEFAULT_LANGS[0];
+      },
+      set(val: string) {
+        this.update({ langs: setMaestroPrimaryLanguage(this.langs, val) });
+      }
+    },
+    additionalLanguages: {
+      get(): string[] {
+        return this.langs.slice(1);
+      },
+      set(val: string[]) {
+        this.update({ langs: setMaestroAdditionalLanguages(this.langs, val) });
       }
     },
     aspect: {
@@ -238,16 +412,81 @@ export default defineComponent({
       set(val: string) {
         this.update({ quality: val });
       }
+    },
+    scenarioCustomizationEnabled: {
+      get(): boolean {
+        return this.config?.scenario_customization_enabled ?? false;
+      },
+      set(val: boolean) {
+        this.update({ scenario_customization_enabled: val });
+      }
+    },
+    styleCustomizationEnabled: {
+      get(): boolean {
+        return this.config?.style_customization_enabled ?? false;
+      },
+      set(val: boolean) {
+        this.update({ style_customization_enabled: val });
+      }
+    },
+    voiceCustomizationEnabled: {
+      get(): boolean {
+        return this.config?.voice_customization_enabled ?? false;
+      },
+      set(val: boolean) {
+        if (!val) this.stopSample();
+        this.update({ voice_customization_enabled: val });
+      }
+    },
+    scenario: {
+      get(): string | undefined {
+        return this.config?.scenario;
+      },
+      set(val: string) {
+        this.update({ scenario: val });
+      }
+    },
+    style: {
+      get(): string | undefined {
+        return this.config?.style;
+      },
+      set(val: string) {
+        const normalized = val?.trim();
+        this.update({ style: !normalized || normalized.toLowerCase() === 'auto' ? MAESTRO_DEFAULT_STYLE : normalized });
+      }
+    },
+    voice: {
+      get(): string | undefined {
+        return this.config?.voice;
+      },
+      set(val: string) {
+        this.stopSample();
+        this.update({ voice: val || MAESTRO_DEFAULT_VOICE });
+      }
+    },
+    currentSample(): string | undefined {
+      return MAESTRO_ALLOWED_VOICES.find((v) => v.key === this.voice)?.sample;
+    }
+  },
+  watch: {
+    voiceCustomizationEnabled(enabled: boolean) {
+      if (!enabled) this.stopSample();
+    },
+    voice() {
+      this.stopSample();
     }
   },
   mounted() {
     this.update({
       action: this.config?.action ?? MAESTRO_DEFAULT_ACTION,
-      langs: this.config?.langs?.length ? this.config.langs : MAESTRO_DEFAULT_LANGS,
+      langs: normalizeMaestroLanguages(this.config?.langs),
       aspect: this.config?.aspect ?? MAESTRO_DEFAULT_ASPECT,
       duration: this.config?.duration ?? MAESTRO_DEFAULT_DURATION,
       quality: this.config?.quality ?? MAESTRO_DEFAULT_QUALITY
     });
+  },
+  beforeUnmount() {
+    this.stopSample();
   },
   methods: {
     update(patch: Partial<IMaestroConfig>) {
@@ -258,6 +497,38 @@ export default defineComponent({
     },
     onClearRemix() {
       this.update({ action: MAESTRO_DEFAULT_ACTION, ref_task_id: undefined });
+    },
+    onToggleSample() {
+      const src = this.currentSample;
+      if (!src) return;
+      if (!this.audioEl) {
+        this.audioEl = markRaw(new Audio());
+        this.audioEl.addEventListener('ended', () => {
+          this.playing = false;
+        });
+      }
+      if (this.playing) {
+        this.audioEl.pause();
+        this.playing = false;
+        return;
+      }
+      if (this.audioEl.src !== src) this.audioEl.src = src;
+      this.audioEl.currentTime = 0;
+      this.audioEl
+        .play()
+        .then(() => {
+          this.playing = true;
+        })
+        .catch(() => {
+          this.playing = false;
+        });
+    },
+    stopSample() {
+      if (this.audioEl) {
+        this.audioEl.pause();
+        this.audioEl.currentTime = 0;
+      }
+      this.playing = false;
     },
     onGenerate() {
       this.$emit('generate');
@@ -287,6 +558,54 @@ export default defineComponent({
 }
 .field-control {
   width: 168px;
+}
+.custom-field {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--el-border-color-lighter);
+}
+.custom-field-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.language-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.language-role {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.language-role-label {
+  color: var(--el-text-color-secondary);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+.language-role--primary {
+  .language-role-label {
+    color: var(--el-color-primary);
+  }
+
+  :deep(.el-select__wrapper:not(.is-focused)) {
+    box-shadow: 0 0 0 1px var(--el-color-primary-light-5) inset;
+  }
+}
+.voice-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+.voice-select {
+  flex: 1;
+}
+.voice-play {
+  flex: 0 0 auto;
 }
 .ratio-items {
   display: flex;
@@ -345,6 +664,75 @@ export default defineComponent({
 
     .ratio-rect {
       border-color: var(--el-color-primary);
+    }
+  }
+}
+.scenario-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+
+  &.is-disabled {
+    opacity: 0.55;
+  }
+}
+.scenario-card {
+  border: 1px solid var(--el-border-color);
+  background-color: var(--el-fill-color-lighter);
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+
+  .scenario-thumb {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    background-color: var(--el-fill-color);
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      // Portrait crop anchored to the top so the subject's head is always
+      // visible (thumbnails are portrait photos; a centered 16:9 crop hid the face).
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+  }
+
+  .scenario-name {
+    font-size: 11px;
+    line-height: 1.25;
+    margin: 0;
+    padding: 5px 4px;
+    text-align: center;
+    color: var(--el-text-color-primary);
+  }
+
+  &:hover {
+    border-color: var(--el-color-primary-light-5);
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+  }
+
+  &:focus-visible {
+    outline: none;
+    border-color: var(--el-color-primary);
+    box-shadow: 0 0 0 2px var(--el-color-primary-light-7);
+  }
+
+  &.active {
+    border-color: var(--el-color-primary);
+    box-shadow: 0 0 0 1px var(--el-color-primary);
+
+    .scenario-name {
+      color: var(--el-color-primary);
+      font-weight: 600;
     }
   }
 }

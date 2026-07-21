@@ -1,6 +1,7 @@
 <template>
   <el-config-provider :locale="epLocale">
     <auth-panel v-if="authPopup" />
+    <desktop-drag-bar />
     <router-view />
     <el-tag v-if="isTest" size="large" class="fixed bottom-4 right-4 z-50" type="warning">
       {{ $t('index.button.testEnv') }}
@@ -12,6 +13,7 @@
 import { defineComponent } from 'vue';
 import { ElConfigProvider, ElTag } from 'element-plus';
 import AuthPanel from './components/common/AuthPanel.vue';
+import DesktopDragBar from './components/common/DesktopDragBar.vue';
 import { isTest } from '@/constants/endpoint';
 import { getLocale } from './i18n';
 import { App as CapApp } from '@capacitor/app';
@@ -48,7 +50,8 @@ export default defineComponent({
   components: {
     ElConfigProvider,
     ElTag,
-    AuthPanel
+    AuthPanel,
+    DesktopDragBar
   },
   data() {
     return {
@@ -134,21 +137,14 @@ export default defineComponent({
     const authenticated = !!this.$store.state.token.access && !!this.$store.state.user?.id;
     console.debug('App mounted, authenticated:', authenticated);
     if (!authenticated) {
-      if (isNative() || isDesktop()) {
-        // On native AND desktop, just reset state and show the in-app login
-        // popup. Don't dispatch 'logout' which would navigate the window to an
-        // external auth URL — on desktop the app://bundle window can't return.
-        this.$store.dispatch('resetAll');
-        this.$store.dispatch('login');
-      } else {
-        // Web: deferred auth. Guests may browse service pages, models and
-        // pricing without logging in — the login flow is triggered lazily the
-        // moment they start a real operation (see `ensureLoggedIn`). So we
-        // only clear any stale (logged-out) state here and DON'T bounce to
-        // login. `resetAll` also drops any leftover credential so a guest can
-        // never reuse a previous session's token.
-        this.$store.dispatch('resetAll');
-      }
+      // Deferred auth on ALL surfaces (web, native, desktop). Guests may browse
+      // service pages, models and pricing without logging in — login is
+      // triggered lazily the moment they start a real operation (see
+      // `ensureLoggedIn`, which shows the in-app popup on native/desktop and a
+      // redirect on web). So we only clear any stale (logged-out) state here
+      // and DON'T bounce to login. `resetAll` also drops any leftover
+      // credential so a guest can never reuse a previous session's token.
+      this.$store.dispatch('resetAll');
     }
   },
   beforeUnmount() {

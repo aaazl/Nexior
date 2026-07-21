@@ -39,6 +39,30 @@
     "message": "站點管理員 ID",
     "description": "展示在編輯框的標題"
   },
+  "field.contacts": {
+    "message": "客服聯絡方式",
+    "description": "Field title for the customer-service contacts in site settings"
+  },
+  "field.markupRatio": {
+    "message": "全站統一加價比例",
+    "description": "站點設置：對本站所有充值套餐統一加價的比例（百分比）"
+  },
+  "message.markupRatioTip": {
+    "message": "設定本站所有服務的統一加價比例（0%～500%）。下方「單個服務自訂加價」會覆蓋此值。",
+    "description": "加價比例設置項的說明文字"
+  },
+  "message.markupExample": {
+    "message": "示例：官方價 {from} → 你的售價 {to}",
+    "description": "加價比例設置項下方的實時示例，{from} 是官方原價，{to} 是加價後的售價"
+  },
+  "field.disableRecharge": {
+    "message": "停用儲值",
+    "description": "Site settings: when on, hide all recharge/top-up entries on this site"
+  },
+  "message.disableRechargeTip": {
+    "message": "啟用後，本站將隱藏所有儲值/購買按鈕，使用者無法自行儲值額度。",
+    "description": "Help text for the disable-recharge toggle"
+  },
   "field.distributionDefaultInviterId": {
     "message": "默認邀請人 ID",
     "description": "展示在編輯框的標題"
@@ -78,6 +102,102 @@
   "field.authProvider_wechat": {
     "message": "微信",
     "description": "登入方式名稱：微信第三方登入"
+  },
+  "field.authSmsWebhook": {
+    "message": "Custom SMS Sender",
+    "description": "Site settings / login: title for the site's own custom SMS verification-code delivery webhook"
+  },
+  "message.authSmsWebhookTip": {
+    "message": "When enabled, this site's phone verification codes are sent through your own endpoint under your own signature; disable it to use the platform default. Requires the phone-number login provider to be enabled.",
+    "description": "Explains the custom SMS sender webhook"
+  },
+  "placeholder.authSmsWebhookUrl": {
+    "message": "https://your-domain/sms-webhook",
+    "description": "Placeholder for the SMS webhook URL input"
+  },
+  "placeholder.authSmsWebhookSecret": {
+    "message": "Signing secret (leave blank to keep unchanged)",
+    "description": "Placeholder for the SMS webhook signing secret input; write-only, blank keeps existing"
+  },
+  "field.authSmsWebhookEnable": {
+    "message": "Use a custom sender",
+    "description": "Label next to the custom SMS sender toggle"
+  },
+  "field.authSmsWebhookDoc": {
+    "message": "View docs",
+    "description": "Link that opens the SMS webhook spec dialog"
+  },
+  "field.authSmsWebhookTest": {
+    "message": "Test",
+    "description": "Button that opens the SMS webhook test dialog"
+  },
+  "message.authSmsWebhookNeedsPhone": {
+    "message": "Enable the phone-number login provider first to configure a custom SMS sender.",
+    "description": "Tooltip shown when the toggle is disabled because phone login is off"
+  },
+  "field.authSmsWebhookDocTitle": {
+    "message": "Custom SMS Sender · Webhook spec",
+    "description": "Title of the SMS webhook spec dialog"
+  },
+  "message.authSmsWebhookDocIntro": {
+    "message": "This site sends a signed HTTPS POST to the URL you provide; your service is responsible for delivering the SMS. Your endpoint must meet the following requirements:",
+    "description": "Intro paragraph of the SMS webhook spec dialog"
+  },
+  "field.authSmsWebhookDocRequest": {
+    "message": "Request",
+    "description": "Heading: request section of the SMS webhook spec"
+  },
+  "message.authSmsWebhookDocRequest": {
+    "message": "Method POST, Content-Type application/json. purpose is one of login / register / test (test is a connectivity probe — you may skip actually sending). The request body looks like:",
+    "description": "Describes the request method and body of the SMS webhook"
+  },
+  "field.authSmsWebhookDocHeaders": {
+    "message": "Signature verification",
+    "description": "Heading: signature section of the SMS webhook spec"
+  },
+  "message.authSmsWebhookDocHeaders": {
+    "message": "Each request carries the headers below. Verify with your signing secret using HMAC-SHA256 per the Standard Webhooks spec and compare in constant time:",
+    "description": "Describes signature verification for the SMS webhook"
+  },
+  "field.authSmsWebhookDocResponse": {
+    "message": "Response",
+    "description": "Heading: response section of the SMS webhook spec"
+  },
+  "message.authSmsWebhookDocResponse": {
+    "message": "Return 2xx on success. To signal failure explicitly, return HTTP 200 with a JSON body whose success field is false (see the example below). Respond within 5 seconds.",
+    "description": "Describes the expected response of the SMS webhook"
+  },
+  "field.authSmsWebhookTestTitle": {
+    "message": "Test custom SMS sender",
+    "description": "Title of the SMS webhook test dialog"
+  },
+  "field.authSmsWebhookTestRegion": {
+    "message": "Country/region code",
+    "description": "Label for the region-code field in the test dialog"
+  },
+  "field.authSmsWebhookTestNumber": {
+    "message": "Test phone number (optional)",
+    "description": "Label for the phone-number field in the test dialog"
+  },
+  "field.authSmsWebhookTestSend": {
+    "message": "Send test",
+    "description": "Button that sends the SMS webhook test request"
+  },
+  "message.authSmsWebhookTestOk": {
+    "message": "The test request was delivered to your endpoint successfully.",
+    "description": "Success message after a webhook test"
+  },
+  "message.authSmsWebhookTestFailed": {
+    "message": "Test failed. Check the URL, signing secret, and your endpoint's response.",
+    "description": "Failure message after a webhook test"
+  },
+  "field.authSmsWebhookDisableTitle": {
+    "message": "Disable custom SMS sender",
+    "description": "Title of the confirm dialog shown when disabling the custom SMS sender"
+  },
+  "message.authSmsWebhookDisableConfirm": {
+    "message": "Disabling this deletes the saved sender URL and signing secret (the secret cannot be recovered), and this site falls back to the platform default signature. Disable it?",
+    "description": "Body of the confirm dialog shown when disabling the custom SMS sender"
   },
   "field.featuresChat": {
     "message": "聊天",
@@ -145,10 +265,6 @@
   },
   "field.featuresHailuo": {
     "message": "Hailuo",
-    "description": "展示在編輯框的標題"
-  },
-  "field.featuresHeadshots": {
-    "message": "AI 證件照",
     "description": "展示在編輯框的標題"
   },
   "field.featuresSuno": {
@@ -222,6 +338,10 @@
   "title.editAdmins": {
     "message": "編輯管理員",
     "description": "展示在編輯框的標題"
+  },
+  "title.editContacts": {
+    "message": "編輯客服聯絡方式",
+    "description": "Title of the edit-support-contacts dialog"
   },
   "title.featuresConfig": {
     "message": "功能配置",
@@ -431,6 +551,14 @@
     "message": "可在此處增刪管理員 ID，可到 https://auth.acedata.cloud 查看用戶 ID",
     "description": "站點管理員的提示"
   },
+  "message.contactsTip": {
+    "message": "填寫客服聯絡方式（Discord、X、微信、電話、郵箱），將顯示在「關於」頁面中，方便使用者聯絡你。",
+    "description": "Tip for the support-contacts field"
+  },
+  "message.contactsEmpty": {
+    "message": "尚未設定",
+    "description": "Placeholder shown when no support contact has been filled in"
+  },
   "message.keywordsTip": {
     "message": "站點關鍵詞，位於站點元信息中，用於站點 SEO 優化。",
     "description": "站點關鍵詞的提示"
@@ -444,124 +572,120 @@
     "description": "Chat 功能的描述"
   },
   "message.featuresGrok": {
-    "message": "開啟或關閉 Grok 功能模塊。",
-    "description": "Grok 功能的描述"
+    "message": "xAI 助理，提供即時知識、推理、寫作與程式開發能力。",
+    "description": "Concise capability introduction: xAI assistant for real-time knowledge, reasoning, writing, and coding."
   },
   "message.featuresGrokvideo": {
-    "message": "啟用或禁用 Grok 視頻功能模組。",
-    "description": "Grok 視頻功能的描述"
+    "message": "xAI 影片生成，可由文字提示或參考圖片製作短片。",
+    "description": "Concise capability introduction: xAI video generation for short clips from text prompts or reference images."
   },
   "message.featuresMaestro": {
-    "message": "啟用或禁用 Maestro 功能模組。",
-    "description": "Maestro 功能的描述"
+    "message": "可從概念出發製作完整影片，涵蓋規劃、旁白、場景與成片交付。",
+    "description": "Concise capability introduction: Produce complete videos from an idea, including planning, voiceover, scenes, and delivery."
   },
   "message.featuresDigitalhuman": {
-    "message": "啟用或停用數字人功能模組。",
-    "description": "Description of the Digital Human feature"
+    "message": "可製作口播影片，支援合成語音與自然唇形同步。",
+    "description": "Concise capability introduction: Create talking-head videos with synthesized speech and natural lip sync."
   },
   "message.featuresDeepseek": {
-    "message": "開啟或關閉 Deepseek 功能模塊。",
-    "description": "Deepseek 功能的描述"
+    "message": "DeepSeek 助理，適合進階推理、程式開發、數學與日常問答。",
+    "description": "Concise capability introduction: DeepSeek assistant for advanced reasoning, coding, math, and everyday questions."
   },
   "message.featuresChatgpt": {
-    "message": "開啟或關閉 ChatGPT 功能模塊。",
-    "description": "ChatGPT 功能的描述"
+    "message": "OpenAI 助理，適合寫作、推理、程式開發與多模態對話。",
+    "description": "Concise capability introduction: OpenAI assistant for writing, reasoning, coding, and multimodal conversations."
   },
   "message.featuresMidjourney": {
-    "message": "開啟或關閉 Midjourney 功能模塊。",
-    "description": "Midjourney 功能的描述"
+    "message": "可依文字或視覺參考，生成精緻圖片與多種創意變化。",
+    "description": "Concise capability introduction: Create polished images and creative variations from text or visual references."
   },
   "message.featuresChatdoc": {
     "message": "開啟或關閉 Chatdoc 功能模塊。",
     "description": "Chatdoc 功能的描述"
   },
   "message.featuresQrart": {
-    "message": "開啟或關閉 Qrart 功能模塊。",
-    "description": "Qrart 功能的描述"
+    "message": "將連結轉換為可掃描的藝術 QR Code，並支援自訂風格與圖像。",
+    "description": "Concise capability introduction: Turn links into scannable artistic QR codes with custom styles and imagery."
   },
   "message.featuresVeo": {
-    "message": "開啟或關閉 Veo 功能模塊。",
-    "description": "Veo 功能的描述"
+    "message": "Google 影片生成，適合具電影感的片段，並提供強大的提示詞與動作控制。",
+    "description": "Concise capability introduction: Google video generation for cinematic clips with strong prompt and motion control."
   },
   "message.featuresSora": {
-    "message": "開啟或關閉 Sora 功能模塊。",
-    "description": "Sora 功能的描述"
+    "message": "OpenAI 影片生成，適合真實場景、敘事內容與視覺轉換。",
+    "description": "Concise capability introduction: OpenAI video generation for realistic scenes, storytelling, and visual transformations."
   },
   "message.featuresSuno": {
-    "message": "開啟或關閉 Suno 功能模組。",
-    "description": "Suno 功能的描述"
+    "message": "可依提示詞生成完整歌曲、歌詞、演唱與伴奏。",
+    "description": "Concise capability introduction: Generate complete songs, lyrics, vocals, and instrumentals from a prompt."
   },
   "message.featuresPixverse": {
-    "message": "開啟或關閉 Pixverse 功能模組。",
-    "description": "Pixverse 功能的描述"
+    "message": "可依提示詞與圖片生成風格化影片，並支援範本與特效。",
+    "description": "Concise capability introduction: Generate stylized videos from prompts and images with templates and effects."
   },
   "message.featuresFlux": {
-    "message": "開啟或關閉 FLux 功能模組。",
-    "description": "FLux 功能的描述"
+    "message": "可生成細緻圖片，並以自然語言指令編輯既有視覺內容。",
+    "description": "Concise capability introduction: Create detailed images and edit existing visuals with natural-language instructions."
   },
   "message.featuresNanobanana": {
-    "message": "開啟或關閉 Nano Banana 功能模組。",
-    "description": "Nano Banana 功能的描述"
+    "message": "由 Google 提供的圖片生成與編輯，擅長精準遵循指令。",
+    "description": "Concise capability introduction: Google-powered image generation and editing with precise instruction following."
   },
   "message.featuresOpenaiimage": {
-    "message": "開啟或關閉 OpenAI 圖像功能模組。",
-    "description": "OpenAI 圖像功能的描述"
+    "message": "OpenAI 圖片生成與編輯，適合精緻視覺、文字與構圖。",
+    "description": "Concise capability introduction: OpenAI image generation and editing for polished visuals, text, and compositions."
   },
   "message.featuresSeedream": {
-    "message": "開啟或關閉 SeeDream 功能模組。",
-    "description": "SeeDream 功能的描述"
+    "message": "ByteDance 圖片生成與編輯，可產出高品質創意視覺。",
+    "description": "Concise capability introduction: ByteDance image generation and editing for high-quality creative visuals."
   },
   "message.featuresSeedance": {
-    "message": "啟用或禁用 SeeDance 功能模組。",
-    "description": "SeeDance 功能的描述"
+    "message": "ByteDance 影片生成，適合動態場景、鏡頭運動與可選音訊。",
+    "description": "Concise capability introduction: ByteDance video generation for dynamic scenes, camera motion, and optional audio."
   },
   "message.featuresWan": {
-    "message": "開啟或關閉 Wan 功能模組。",
-    "description": "Wan 功能的描述"
+    "message": "Alibaba 影片生成，可依文字、圖片或參考素材輸出多種解析度。",
+    "description": "Concise capability introduction: Alibaba video generation from text, images, or references at multiple resolutions."
   },
   "message.featuresProducer": {
-    "message": "開啟或關閉 Producer 功能模組。",
-    "description": "Producer 功能的描述"
+    "message": "可製作歌曲、翻唱、延伸版，��及人聲或純樂器變化。",
+    "description": "Concise capability introduction: Create songs, covers, extensions, and vocal or instrumental variations."
   },
   "message.featuresKimi": {
-    "message": "開啟或關閉 Kimi 功能模組。",
-    "description": "Kimi 功能的描述"
+    "message": "Moonshot AI 助理，適合長上下文研究、推理、寫作與程式開發。",
+    "description": "Concise capability introduction: Moonshot AI assistant for long-context research, reasoning, writing, and coding."
   },
   "message.featuresSerp": {
-    "message": "開啟或關閉 SERP 功能模組。",
-    "description": "SERP 功能的描述"
+    "message": "可搜尋網頁、圖片、新聞、地圖與影片，並提供結構化 Google 結果。",
+    "description": "Concise capability introduction: Search the web, images, news, maps, and videos with structured Google results."
   },
   "message.featuresFish": {
-    "message": "打開或關閉魚音頻功能模塊。",
-    "description": "魚音頻功能的描述"
+    "message": "可生成自然語音，並進行多語言音訊製作與聲音複製。",
+    "description": "Concise capability introduction: Generate natural speech and clone voices for multilingual audio production."
   },
   "message.featuresCodingBridge": {
-    "message": "Enable or disable the Coding Bridge feature module.",
-    "description": "Description of the Coding Bridge feature"
+    "message": "可將 AI 程式開發助理連接到本地專案，支援引導式開發流程。",
+    "description": "Concise capability introduction: Connect AI coding assistants to local projects for guided development workflows."
   },
   "message.featuresWebextrator": {
-    "message": "Enable or disable the WebExtrator feature module.",
-    "description": "Description of the WebExtrator feature"
+    "message": "可從網頁擷取乾淨、結構化的內容與資料。",
+    "description": "Concise capability introduction: Extract clean, structured content and data from web pages."
   },
   "message.featuresLuma": {
-    "message": "開啟或關閉 Luma 功能模組。",
-    "description": "Luma 功能的描述"
+    "message": "可將文字或圖片轉成具電影感、動作自然的影片。",
+    "description": "Concise capability introduction: Create cinematic videos from text or images with natural motion."
   },
   "message.featuresPika": {
-    "message": "開啟或關閉 Pika 功能模組。",
-    "description": "Pika 功能的描述"
+    "message": "可生成並編輯短篇創意影片，支援特效、場景與轉換效果。",
+    "description": "Concise capability introduction: Generate and edit short creative videos with effects, scenes, and transformations."
   },
   "message.featuresKling": {
-    "message": "開啟或關閉 Kling 功能模組。",
-    "description": "Kling 功能的描述"
+    "message": "可依文字、圖片或動作參考，生成高品質影片。",
+    "description": "Concise capability introduction: Create high-quality videos from text, images, or motion references."
   },
   "message.featuresHailuo": {
-    "message": "開啟或關閉 Hailuo 功能模組。",
-    "description": "Hailuo 功能的描述"
-  },
-  "message.featuresHeadshots": {
-    "message": "開啟或關閉 AI 證件照 功能模組。",
-    "description": "AI 證件照 功能的描述"
+    "message": "可依文字或圖片生成富有表現力的影片，角色動作流暢自然。",
+    "description": "Concise capability introduction: Generate expressive videos from text or images with smooth character motion."
   },
   "message.featuresSupport": {
     "message": "開啟或關閉客服支持",
@@ -592,16 +716,16 @@
     "description": "在編輯框中顯示的標題"
   },
   "message.featuresGemini": {
-    "message": "開啟或關閉 Gemini 功能模組。",
-    "description": "Gemini 功能的描述"
+    "message": "Google 助理，適合長上下文推理、研究、程式開發與多模態工作。",
+    "description": "Concise capability introduction: Google assistant for long-context reasoning, research, coding, and multimodal work."
   },
   "field.featuresClaude": {
     "message": "Claude",
     "description": "在編輯框中顯示的標題"
   },
   "message.featuresClaude": {
-    "message": "開啟或關閉 Claude 功能模組。",
-    "description": "Claude 功能的描述"
+    "message": "Anthropic 助理，擅長嚴謹推理、寫作、程式開發與文件分析。",
+    "description": "Concise capability introduction: Anthropic assistant for careful reasoning, writing, coding, and document analysis."
   },
   "placeholder.admins": {
     "message": "請輸入管理員用戶 ID",
@@ -658,5 +782,200 @@
   "autoTranslate.error": {
     "message": "切換自動翻譯失敗，請稍後重試",
     "description": "Fallback error toast when the enable/disable HTTP call fails with no detail"
+  },
+  "services.title": {
+    "message": "單個服務自訂加價與展示"
+  },
+  "services.tip": {
+    "message": "針對單一服務隱藏、改名、單獨定價或排序。留空的加價將繼承本站預設加價。刪除某列後該服務恢復預設顯示。"
+  },
+  "services.addButton": {
+    "message": "新增服務覆蓋"
+  },
+  "services.empty": {
+    "message": "尚無服務覆蓋，所有服務沿用目錄預設展示與定價。"
+  },
+  "services.field.service": {
+    "message": "服務"
+  },
+  "services.field.visible": {
+    "message": "可見"
+  },
+  "services.field.customMarkupRatio": {
+    "message": "單個服務自訂加價"
+  },
+  "services.field.displayTitle": {
+    "message": "顯示名稱"
+  },
+  "services.field.displaySummary": {
+    "message": "展示簡介"
+  },
+  "services.field.sortOrder": {
+    "message": "排序"
+  },
+  "services.field.action": {
+    "message": "操作"
+  },
+  "services.status.visible": {
+    "message": "顯示"
+  },
+  "services.status.hidden": {
+    "message": "隱藏"
+  },
+  "services.status.inherit": {
+    "message": "繼承"
+  },
+  "services.dialog.create": {
+    "message": "新增服務覆蓋"
+  },
+  "services.dialog.edit": {
+    "message": "編輯服務覆蓋"
+  },
+  "services.placeholder.service": {
+    "message": "從服務目錄中選擇一個服務"
+  },
+  "services.placeholder.markup": {
+    "message": "留空則繼承本站預設加價"
+  },
+  "services.placeholder.displayTitle": {
+    "message": "留空則使用目錄中的原名稱"
+  },
+  "services.placeholder.displaySummary": {
+    "message": "留空則使用目錄中的原描述"
+  },
+  "services.tip.visible": {
+    "message": "關閉後該服務在本站首頁隱藏（已擁有的使用者仍可存取）。"
+  },
+  "services.tip.markup": {
+    "message": "0% 按平台原價；0.5 即 +50%；上限 500%。留空則繼承本站預設加價。"
+  },
+  "services.tip.sortOrder": {
+    "message": "數字越小越靠前。"
+  },
+  "services.preview.sampleLabel": {
+    "message": "範例原價"
+  },
+  "services.preview.inherit": {
+    "message": "（已繼承本站預設加價 {percent}）"
+  },
+  "services.message.alreadyOverridden": {
+    "message": "已覆蓋"
+  },
+  "services.message.serviceRequired": {
+    "message": "請先選擇一個服務"
+  },
+  "services.message.saved": {
+    "message": "已儲存"
+  },
+  "services.message.deleted": {
+    "message": "已刪除"
+  },
+  "services.message.deleteConfirm": {
+    "message": "確定要刪除「{name}」的覆蓋設定嗎？刪除後該服務恢復預設展示與定價。"
+  },
+  "services.message.saveFailed": {
+    "message": "儲存失敗，請稍後重試"
+  },
+  "services.message.deleteFailed": {
+    "message": "刪除失敗，請稍後重試"
+  },
+  "services.message.fetchFailed": {
+    "message": "載入服務覆蓋失敗"
+  },
+  "field.featuresOmni": {
+    "message": "Omni",
+    "description": "顯示為編輯框中的標題"
+  },
+  "message.featuresOmni": {
+    "message": "使用 Omni 模型，根據文字、圖片和影片參考生成或編輯影片。",
+    "description": "使用 Omni 模型，根據文字、圖片和影片參考生成或編輯影片。"
+  },
+  "capabilityOverride.edit": {
+    "message": "Customize app",
+    "description": "Tooltip and accessible label for editing a capability app name and icon"
+  },
+  "capabilityOverride.dialogTitle": {
+    "message": "Customize {name}",
+    "description": "Dialog title; {name} is the platform-default capability app name"
+  },
+  "capabilityOverride.displayName": {
+    "message": "Custom name",
+    "description": "Field label for a per-site capability app display name"
+  },
+  "capabilityOverride.displayNameTip": {
+    "message": "Leave blank to use {name}. Save once before enabling automatic translation.",
+    "description": "Help text; {name} is the platform-default capability app name"
+  },
+  "capabilityOverride.icon": {
+    "message": "Custom icon",
+    "description": "Field label for a per-site capability app icon"
+  },
+  "capabilityOverride.defaultIcon": {
+    "message": "Default",
+    "description": "Label above the platform-default capability icon preview"
+  },
+  "capabilityOverride.currentIcon": {
+    "message": "Current",
+    "description": "Label above the effective capability icon preview"
+  },
+  "capabilityOverride.replaceIcon": {
+    "message": "Replace icon",
+    "description": "Command to upload a replacement capability icon"
+  },
+  "capabilityOverride.uploadIcon": {
+    "message": "Upload icon",
+    "description": "Command to upload the first custom capability icon"
+  },
+  "capabilityOverride.useDefaultIcon": {
+    "message": "Use default icon",
+    "description": "Command to clear the custom icon draft"
+  },
+  "capabilityOverride.iconTip": {
+    "message": "PNG, JPEG, or WebP. The image is cropped to a square; transparent PNG is preserved.",
+    "description": "Capability icon upload requirements"
+  },
+  "capabilityOverride.editIcon": {
+    "message": "Edit app icon",
+    "description": "Title of the capability icon cropper dialog"
+  },
+  "capabilityOverride.resetAll": {
+    "message": "Restore defaults",
+    "description": "Command that removes both custom name and icon"
+  },
+  "capabilityOverride.empty": {
+    "message": "Enter a custom name or upload an icon first.",
+    "description": "Warning when attempting to create an empty override"
+  },
+  "capabilityOverride.saved": {
+    "message": "App customization saved",
+    "description": "Success message after saving a capability override"
+  },
+  "capabilityOverride.savedEnableTranslation": {
+    "message": "Saved. You can now enable automatic translation for the custom name.",
+    "description": "Success message after first save creates an override ID"
+  },
+  "capabilityOverride.saveFailed": {
+    "message": "Failed to save app customization",
+    "description": "Fallback error for capability override writes"
+  },
+  "capabilityOverride.resetConfirm": {
+    "message": "Restore the default name and icon for {name}?",
+    "description": "Confirmation message; {name} is the platform-default capability app name"
+  },
+  "capabilityOverride.resetDone": {
+    "message": "Default name and icon restored",
+    "description": "Success message after deleting a capability override"
+  },
+  "capabilityOverride.fetchFailed": {
+    "message": "Failed to load app customizations",
+    "description": "Error shown when capability override management rows cannot be loaded"
+  },
+  "field.featuresPoivelle": {
+    "message": "Poivelle",
+    "description": "Displayed as the title in the editing box"
+  },
+  "message.featuresPoivelle": {
+    "message": "Direct professional AI film production through a shared project graph, storyboard, timeline, review, and skill-agent workflow.",
+    "description": "Concise capability introduction: Direct professional AI film production through a shared project graph, storyboard, timeline, review, and skill-agent workflow."
   }
 }

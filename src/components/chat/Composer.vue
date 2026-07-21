@@ -46,7 +46,7 @@
       class="input"
       :placeholder="$t('chat.message.newMessagePlaceholder')"
       :style="{ height: inputHeight }"
-      @keydown.enter.exact="onEnterKey"
+      @keydown.enter="onEnterKey"
       @input="adjustTextareaHeight"
     ></textarea>
     <div class="tools">
@@ -60,30 +60,32 @@
         -->
         <span class="btn-plus-trigger">
           <el-tooltip class="box-item" effect="dark" :content="$t('chat.composer.addAction')" placement="top">
-            <span
+            <button
+              type="button"
               :class="{ btn: true, 'btn-plus': true, disabled: answering }"
-              :aria-disabled="answering"
-              role="button"
+              :disabled="answering"
+              :aria-label="$t('chat.composer.addAction')"
+              :title="$t('chat.composer.addAction')"
             >
-              <font-awesome-icon icon="fa-solid fa-plus" class="icon icon-plus" />
-            </span>
+              <add-icon class="icon icon-plus" :size="'1em' as any" aria-hidden="true" focusable="false" />
+            </button>
           </el-tooltip>
         </span>
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item :disabled="(!isFileSupported && !isImageSupported) || answering" @click="onTriggerUpload">
-              <font-awesome-icon icon="fa-regular fa-file-alt" class="menu-icon" />
+              <file-text-icon class="menu-icon" :size="'1em' as any" aria-hidden="true" focusable="false" />
               <span>{{ $t('chat.composer.addFiles') }}</span>
             </el-dropdown-item>
             <el-dropdown-item @click="onOpenSkills">
-              <font-awesome-icon icon="fa-solid fa-wand-magic-sparkles" class="menu-icon" />
+              <magic-icon class="menu-icon" :size="'1em' as any" aria-hidden="true" focusable="false" />
               <span>{{ $t('chat.composer.skills') }}</span>
-              <font-awesome-icon icon="fa-solid fa-up-right-from-square" class="menu-external" />
+              <external-link-icon class="menu-external" :size="'1em' as any" aria-hidden="true" focusable="false" />
             </el-dropdown-item>
             <el-dropdown-item @click="onOpenConnections">
-              <font-awesome-icon icon="fa-solid fa-plug" class="menu-icon" />
+              <connection-icon class="menu-icon" :size="'1em' as any" aria-hidden="true" focusable="false" />
               <span>{{ $t('chat.composer.connections') }}</span>
-              <font-awesome-icon icon="fa-solid fa-up-right-from-square" class="menu-external" />
+              <external-link-icon class="menu-external" :size="'1em' as any" aria-hidden="true" focusable="false" />
             </el-dropdown-item>
           </el-dropdown-menu>
         </template>
@@ -95,38 +97,61 @@
         :content="$t('realtime.callTooltip')"
         placement="top"
       >
-        <span :class="{ btn: true, 'btn-voice': true }" role="button" @click="onStartCall">
-          <font-awesome-icon icon="fa-solid fa-microphone" class="icon icon-voice" />
+        <span
+          :class="{ btn: true, 'btn-voice': true }"
+          role="button"
+          tabindex="0"
+          :aria-label="$t('realtime.callTooltip')"
+          :title="$t('realtime.callTooltip')"
+          @click="onStartCall"
+          @keydown.enter.prevent="onStartCall"
+          @keydown.space.prevent="onStartCall"
+        >
+          <microphone-icon class="icon icon-voice" :size="'1em' as any" aria-hidden="true" focusable="false" />
         </span>
       </el-tooltip>
     </div>
     <el-button
       :disabled="answering || !questionValue || uploading || !ready"
       type="primary"
+      :aria-label="$t('common.button.send')"
+      :title="$t('common.button.send')"
       :class="{
         btn: true,
         'btn-send': true
       }"
       @click="onSubmit"
     >
-      <font-awesome-icon icon="fa-solid fa-arrow-up" class="icon icon-send" />
+      <up-icon class="icon icon-send" :size="'1em' as any" aria-hidden="true" focusable="false" />
     </el-button>
     <el-button
       v-show="answering"
       :disabled="!answering"
       type="primary"
+      :aria-label="$t('common.button.stop')"
+      :title="$t('common.button.stop')"
       :class="{
         btn: true,
         'btn-stop': true
       }"
       @click="onStop"
     >
-      <font-awesome-icon icon="fa-solid fa-stop" class="icon icon-stop" />
+      <stop-icon class="icon icon-stop" :size="'1em' as any" aria-hidden="true" focusable="false" />
     </el-button>
   </div>
 </template>
 
 <script lang="ts">
+import {
+  AddIcon,
+  ConnectionIcon,
+  ExternalLinkIcon,
+  FileTextIcon,
+  MagicIcon,
+  MicrophoneIcon,
+  StopIcon,
+  UpIcon
+} from '@acedatacloud/core/icons/components';
 import { defineComponent } from 'vue';
 import {
   ElMessage,
@@ -139,7 +164,6 @@ import {
   ElDropdownMenu,
   ElDropdownItem
 } from 'element-plus';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { IChatModel, IChatReference } from '@/models';
 import {
   getBaseUrlPlatform,
@@ -148,6 +172,7 @@ import {
   uploadTrackerMixin,
   withCurrentUserIdAndSite
 } from '@/utils';
+import { getSendShortcut } from '@/utils/composer';
 import FilePreview from '@/components/common/FilePreview.vue';
 import ImagePreview from '@/components/common/ImagePreview.vue';
 import { ROUTE_CHATGPT_CALL } from '@/router/constants';
@@ -155,10 +180,17 @@ import { ROUTE_CHATGPT_CALL } from '@/router/constants';
 export default defineComponent({
   name: 'Composer',
   components: {
+    AddIcon,
+    ConnectionIcon,
+    ExternalLinkIcon,
+    FileTextIcon,
+    MagicIcon,
+    MicrophoneIcon,
+    StopIcon,
+    UpIcon,
     FilePreview,
     ImagePreview,
     ElTooltip,
-    FontAwesomeIcon,
     ElUpload,
     ElButton,
     ElDropdown,
@@ -234,10 +266,12 @@ export default defineComponent({
       return out;
     },
     uploading() {
-      // if at least file is uploading, return true
-      return !!this.fileList.find(
-        (file) => file.percentage !== undefined && file.percentage >= 0 && file.percentage < 100
-      );
+      // Gate on the reliable `status` field, NOT `percentage`. A tiny file (e.g. a
+      // .txt) can finish so fast the browser fires no final progress event, so
+      // element-plus leaves `percentage` < 100 on a fully-uploaded file — which
+      // used to pin `uploading` true and grey the send button forever. Failed
+      // uploads are auto-removed by element-plus, so only in-flight files count.
+      return this.fileList.some((file) => file.status === 'ready' || file.status === 'uploading');
     },
     extensions() {
       if (this.isFileSupported === false && this.isImageSupported === true) {
@@ -303,11 +337,24 @@ export default defineComponent({
       this.$emit('submit');
     },
     onEnterKey(e: KeyboardEvent) {
-      // Avoid submitting while an IME (e.g. Chinese/Japanese/Korean) is
-      // composing — pressing Enter to confirm the IME candidate must NOT
-      // send the message. `isComposing` is true during composition; some
-      // browsers also report keyCode 229 for the same state.
+      // Never send while an IME is composing (Enter confirms the candidate).
       if (e.isComposing || e.keyCode === 229) {
+        return;
+      }
+      // Shift+Enter always inserts a newline.
+      if (e.shiftKey) {
+        return;
+      }
+      const withMod = e.metaKey || e.ctrlKey;
+      const shouldSend =
+        getSendShortcut() === 'mod-enter'
+          ? // ⌘/Ctrl+Enter sends; plain or Alt+Enter inserts a newline.
+            withMod
+          : // Plain Enter sends; any modifier (⌘/Ctrl/Alt) inserts a newline,
+            // preserving the previous @keydown.enter.exact behaviour.
+            !withMod && !e.altKey;
+      if (!shouldSend) {
+        // Let the keystroke insert a newline instead of sending.
         return;
       }
       e.preventDefault();
@@ -371,7 +418,11 @@ textarea.input {
   font-family: var(--el-font-family);
   padding-top: 6px;
 }
-textarea.input:focus {
+/* The composer wrapper shows focus via its own :focus-within border, so the
+   native textarea must not also get the shared-adapter :focus-visible outline
+   (@acedatacloud/core controls.css). Match html:root body to beat its specificity. */
+html:root body textarea.input:focus,
+html:root body textarea.input:focus-visible {
   outline: none;
 }
 .composer {
@@ -540,8 +591,9 @@ textarea.input:focus {
     border-radius: 50%;
     width: 36px;
     height: 36px;
-    line-height: 36px;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 16px;
     transition: box-shadow 0.2s ease;
     &:hover:not(:disabled) {

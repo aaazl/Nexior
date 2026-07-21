@@ -39,6 +39,30 @@
     "message": "معرفات مديري الموقع",
     "description": "عرض في مربع التحرير"
   },
+  "field.contacts": {
+    "message": "جهات اتصال الدعم",
+    "description": "Field title for the customer-service contacts in site settings"
+  },
+  "field.markupRatio": {
+    "message": "نسبة زيادة موحدة للموقع بأكمله",
+    "description": "إعدادات الموقع: النسبة الموحدة لزيادة الأسعار لجميع باقات الشحن في هذا الموقع (كنسبة مئوية)"
+  },
+  "message.markupRatioTip": {
+    "message": "حدّد نسبة زيادة موحدة لجميع خدمات هذا الموقع (0%–500%). تتجاوز نسبة الزيادة المخصصة لخدمة واحدة أدناه هذه القيمة.",
+    "description": "加价比例设置项的说明文字"
+  },
+  "message.markupExample": {
+    "message": "مثال: السعر الرسمي {from} → سعر البيع الخاص بك {to}",
+    "description": "مثال حي أسفل إعداد نسبة الزيادة، {from} هو السعر الرسمي الأصلي، و{to} هو السعر بعد الزيادة"
+  },
+  "field.disableRecharge": {
+    "message": "تعطيل إعادة الشحن",
+    "description": "Site settings: when on, hide all recharge/top-up entries on this site"
+  },
+  "message.disableRechargeTip": {
+    "message": "عند التفعيل، يتم إخفاء جميع أزرار إعادة الشحن في هذا الموقع ولا يمكن للمستخدمين إعادة شحن رصيدهم.",
+    "description": "Help text for the disable-recharge toggle"
+  },
   "field.distributionDefaultInviterId": {
     "message": "معرف المدعو الافتراضي",
     "description": "عرض في مربع التحرير"
@@ -78,6 +102,102 @@
   "field.authProvider_wechat": {
     "message": "WeChat",
     "description": "اسم طريقة تسجيل الدخول: تسجيل الدخول عبر WeChat كطرف ثالث"
+  },
+  "field.authSmsWebhook": {
+    "message": "Custom SMS Sender",
+    "description": "Site settings / login: title for the site's own custom SMS verification-code delivery webhook"
+  },
+  "message.authSmsWebhookTip": {
+    "message": "When enabled, this site's phone verification codes are sent through your own endpoint under your own signature; disable it to use the platform default. Requires the phone-number login provider to be enabled.",
+    "description": "Explains the custom SMS sender webhook"
+  },
+  "placeholder.authSmsWebhookUrl": {
+    "message": "https://your-domain/sms-webhook",
+    "description": "Placeholder for the SMS webhook URL input"
+  },
+  "placeholder.authSmsWebhookSecret": {
+    "message": "Signing secret (leave blank to keep unchanged)",
+    "description": "Placeholder for the SMS webhook signing secret input; write-only, blank keeps existing"
+  },
+  "field.authSmsWebhookEnable": {
+    "message": "Use a custom sender",
+    "description": "Label next to the custom SMS sender toggle"
+  },
+  "field.authSmsWebhookDoc": {
+    "message": "View docs",
+    "description": "Link that opens the SMS webhook spec dialog"
+  },
+  "field.authSmsWebhookTest": {
+    "message": "Test",
+    "description": "Button that opens the SMS webhook test dialog"
+  },
+  "message.authSmsWebhookNeedsPhone": {
+    "message": "Enable the phone-number login provider first to configure a custom SMS sender.",
+    "description": "Tooltip shown when the toggle is disabled because phone login is off"
+  },
+  "field.authSmsWebhookDocTitle": {
+    "message": "Custom SMS Sender · Webhook spec",
+    "description": "Title of the SMS webhook spec dialog"
+  },
+  "message.authSmsWebhookDocIntro": {
+    "message": "This site sends a signed HTTPS POST to the URL you provide; your service is responsible for delivering the SMS. Your endpoint must meet the following requirements:",
+    "description": "Intro paragraph of the SMS webhook spec dialog"
+  },
+  "field.authSmsWebhookDocRequest": {
+    "message": "Request",
+    "description": "Heading: request section of the SMS webhook spec"
+  },
+  "message.authSmsWebhookDocRequest": {
+    "message": "Method POST, Content-Type application/json. purpose is one of login / register / test (test is a connectivity probe — you may skip actually sending). The request body looks like:",
+    "description": "Describes the request method and body of the SMS webhook"
+  },
+  "field.authSmsWebhookDocHeaders": {
+    "message": "Signature verification",
+    "description": "Heading: signature section of the SMS webhook spec"
+  },
+  "message.authSmsWebhookDocHeaders": {
+    "message": "Each request carries the headers below. Verify with your signing secret using HMAC-SHA256 per the Standard Webhooks spec and compare in constant time:",
+    "description": "Describes signature verification for the SMS webhook"
+  },
+  "field.authSmsWebhookDocResponse": {
+    "message": "Response",
+    "description": "Heading: response section of the SMS webhook spec"
+  },
+  "message.authSmsWebhookDocResponse": {
+    "message": "Return 2xx on success. To signal failure explicitly, return HTTP 200 with a JSON body whose success field is false (see the example below). Respond within 5 seconds.",
+    "description": "Describes the expected response of the SMS webhook"
+  },
+  "field.authSmsWebhookTestTitle": {
+    "message": "Test custom SMS sender",
+    "description": "Title of the SMS webhook test dialog"
+  },
+  "field.authSmsWebhookTestRegion": {
+    "message": "Country/region code",
+    "description": "Label for the region-code field in the test dialog"
+  },
+  "field.authSmsWebhookTestNumber": {
+    "message": "Test phone number (optional)",
+    "description": "Label for the phone-number field in the test dialog"
+  },
+  "field.authSmsWebhookTestSend": {
+    "message": "Send test",
+    "description": "Button that sends the SMS webhook test request"
+  },
+  "message.authSmsWebhookTestOk": {
+    "message": "The test request was delivered to your endpoint successfully.",
+    "description": "Success message after a webhook test"
+  },
+  "message.authSmsWebhookTestFailed": {
+    "message": "Test failed. Check the URL, signing secret, and your endpoint's response.",
+    "description": "Failure message after a webhook test"
+  },
+  "field.authSmsWebhookDisableTitle": {
+    "message": "Disable custom SMS sender",
+    "description": "Title of the confirm dialog shown when disabling the custom SMS sender"
+  },
+  "message.authSmsWebhookDisableConfirm": {
+    "message": "Disabling this deletes the saved sender URL and signing secret (the secret cannot be recovered), and this site falls back to the platform default signature. Disable it?",
+    "description": "Body of the confirm dialog shown when disabling the custom SMS sender"
   },
   "field.featuresChat": {
     "message": "دردشة",
@@ -145,10 +265,6 @@
   },
   "field.featuresHailuo": {
     "message": "هاي لو",
-    "description": "عرض في مربع التحرير"
-  },
-  "field.featuresHeadshots": {
-    "message": "صور هوية بالذكاء الاصطناعي",
     "description": "عرض في مربع التحرير"
   },
   "field.featuresSuno": {
@@ -222,6 +338,10 @@
   "title.editAdmins": {
     "message": "تحرير المدراء",
     "description": "عرض في مربع التحرير"
+  },
+  "title.editContacts": {
+    "message": "تحرير جهات اتصال الدعم",
+    "description": "Title of the edit-support-contacts dialog"
   },
   "title.featuresConfig": {
     "message": "إعدادات الميزات",
@@ -431,6 +551,14 @@
     "message": "يمكنك إضافة أو حذف معرفات المديرين هنا، يمكنك زيارة https://auth.acedata.cloud لرؤية معرفات المستخدمين",
     "description": "تنبيه مديري الموقع"
   },
+  "message.contactsTip": {
+    "message": "أدخل جهات اتصال خدمة العملاء (Discord وX وWeChat والهاتف والبريد). تظهر في صفحة \"حول\" ليتواصل معك المستخدمون.",
+    "description": "Tip for the support-contacts field"
+  },
+  "message.contactsEmpty": {
+    "message": "لم يُضبط",
+    "description": "Placeholder shown when no support contact has been filled in"
+  },
   "message.keywordsTip": {
     "message": "كلمات مفتاحية للموقع، موجودة في المعلومات الوصفية للموقع، تستخدم لتحسين SEO للموقع.",
     "description": "تنبيه كلمات مفتاحية للموقع"
@@ -444,124 +572,120 @@
     "description": "وصف وظيفة الدردشة"
   },
   "message.featuresGrok": {
-    "message": "تفعيل أو تعطيل وحدة وظيفة جروك.",
-    "description": "وصف وظيفة جروك"
+    "message": "مساعد xAI للمعرفة اللحظية والاستدلال والكتابة والبرمجة.",
+    "description": "Concise capability introduction: xAI assistant for real-time knowledge, reasoning, writing, and coding."
   },
   "message.featuresGrokvideo": {
-    "message": "قم بتمكين أو تعطيل وحدة ميزات فيديو غروك.",
-    "description": "وصف ميزة فيديو غروك"
+    "message": "توليد فيديو من xAI لمقاطع قصيرة من أوامر نصية أو صور مرجعية.",
+    "description": "Concise capability introduction: xAI video generation for short clips from text prompts or reference images."
   },
   "message.featuresMaestro": {
-    "message": "قم بتمكين أو تعطيل وحدة ميزات مايسترو.",
-    "description": "وصف ميزة مايسترو"
+    "message": "أنتج فيديوهات كاملة من الفكرة، بما في ذلك التخطيط والتعليق الصوتي والمشاهد والتسليم.",
+    "description": "Concise capability introduction: Produce complete videos from an idea, including planning, voiceover, scenes, and delivery."
   },
   "message.featuresDigitalhuman": {
-    "message": "Enable or disable the Digital Human feature module.",
-    "description": "Description of the Digital Human feature"
+    "message": "أنشئ فيديوهات بوجه متحدث مع صوت مُركّب ومزامنة شفاه طبيعية.",
+    "description": "Concise capability introduction: Create talking-head videos with synthesized speech and natural lip sync."
   },
   "message.featuresDeepseek": {
-    "message": "تفعيل أو تعطيل وحدة وظيفة ديبسيك.",
-    "description": "وصف وظيفة ديبسيك"
+    "message": "مساعد DeepSeek للاستدلال المتقدم والبرمجة والرياضيات والأسئلة اليومية.",
+    "description": "Concise capability introduction: DeepSeek assistant for advanced reasoning, coding, math, and everyday questions."
   },
   "message.featuresChatgpt": {
-    "message": "تفعيل أو تعطيل وحدة وظيفة ChatGPT.",
-    "description": "وصف وظيفة ChatGPT"
+    "message": "مساعد OpenAI للكتابة والاستدلال والبرمجة والمحادثات متعددة الوسائط.",
+    "description": "Concise capability introduction: OpenAI assistant for writing, reasoning, coding, and multimodal conversations."
   },
   "message.featuresMidjourney": {
-    "message": "تفعيل أو تعطيل وحدة وظيفة ميدجورني.",
-    "description": "وصف وظيفة ميدجورني"
+    "message": "أنشئ صورًا متقنة وتنوعات إبداعية من النصوص أو المراجع البصرية.",
+    "description": "Concise capability introduction: Create polished images and creative variations from text or visual references."
   },
   "message.featuresChatdoc": {
     "message": "تفعيل أو تعطيل وحدة وظيفة Chatdoc.",
     "description": "وصف وظيفة Chatdoc"
   },
   "message.featuresQrart": {
-    "message": "تفعيل أو تعطيل وحدة وظيفة Qrart.",
-    "description": "وصف وظيفة Qrart"
+    "message": "حوّل الروابط إلى رموز QR فنية قابلة للمسح مع أنماط وصور مخصصة.",
+    "description": "Concise capability introduction: Turn links into scannable artistic QR codes with custom styles and imagery."
   },
   "message.featuresVeo": {
-    "message": "تفعيل أو تعطيل وحدة وظيفة فيو.",
-    "description": "وصف وظيفة فيو"
+    "message": "توليد فيديو من Google لمقاطع سينمائية مع تحكم قوي في الأوامر والحركة.",
+    "description": "Concise capability introduction: Google video generation for cinematic clips with strong prompt and motion control."
   },
   "message.featuresSora": {
-    "message": "تفعيل أو تعطيل وحدة وظيفة سورا.",
-    "description": "وصف وظيفة سورا"
+    "message": "توليد فيديو من OpenAI لمشاهد واقعية وسرد قصصي وتحويلات بصرية.",
+    "description": "Concise capability introduction: OpenAI video generation for realistic scenes, storytelling, and visual transformations."
   },
   "message.featuresSuno": {
-    "message": "قم بتفعيل أو تعطيل وحدة ميزات Suno.",
-    "description": "وصف ميزة Suno"
+    "message": "أنشئ أغانٍ كاملة وكلمات وغناءً وآلات موسيقية من وصف نصي.",
+    "description": "Concise capability introduction: Generate complete songs, lyrics, vocals, and instrumentals from a prompt."
   },
   "message.featuresPixverse": {
-    "message": "قم بتفعيل أو تعطيل وحدة ميزات Pixverse.",
-    "description": "وصف ميزة Pixverse"
+    "message": "أنشئ مقاطع فيديو بأسلوب بصري من الأوامر والصور مع قوالب ومؤثرات.",
+    "description": "Concise capability introduction: Generate stylized videos from prompts and images with templates and effects."
   },
   "message.featuresFlux": {
-    "message": "قم بتفعيل أو تعطيل وحدة ميزات FLux.",
-    "description": "وصف ميزة FLux"
+    "message": "أنشئ صورًا تفصيلية وعدّل المرئيات الحالية بتعليمات بلغة طبيعية.",
+    "description": "Concise capability introduction: Create detailed images and edit existing visuals with natural-language instructions."
   },
   "message.featuresNanobanana": {
-    "message": "قم بتفعيل أو تعطيل وحدة ميزات Nano Banana.",
-    "description": "وصف ميزة Nano Banana"
+    "message": "توليد وتحرير صور مدعوم من Google مع دقة عالية في اتباع التعليمات.",
+    "description": "Concise capability introduction: Google-powered image generation and editing with precise instruction following."
   },
   "message.featuresOpenaiimage": {
-    "message": "قم بتفعيل أو تعطيل وحدة ميزات OpenAI للصور.",
-    "description": "وصف ميزة OpenAI للصور"
+    "message": "توليد وتحرير صور من OpenAI لمرئيات متقنة ونصوص وتكوينات.",
+    "description": "Concise capability introduction: OpenAI image generation and editing for polished visuals, text, and compositions."
   },
   "message.featuresSeedream": {
-    "message": "قم بتفعيل أو تعطيل وحدة ميزات SeeDream.",
-    "description": "وصف ميزة SeeDream"
+    "message": "توليد وتحرير صور من ByteDance لمرئيات إبداعية عالية الجودة.",
+    "description": "Concise capability introduction: ByteDance image generation and editing for high-quality creative visuals."
   },
   "message.featuresSeedance": {
-    "message": "قم بتفعيل أو تعطيل وحدة ميزات SeeDance.",
-    "description": "وصف ميزة SeeDance"
+    "message": "توليد فيديو من ByteDance لمشاهد ديناميكية وحركة كاميرا وصوت اختياري.",
+    "description": "Concise capability introduction: ByteDance video generation for dynamic scenes, camera motion, and optional audio."
   },
   "message.featuresWan": {
-    "message": "قم بتفعيل أو تعطيل وحدة ميزات Wan.",
-    "description": "وصف ميزة Wan"
+    "message": "توليد فيديو من Alibaba من النصوص أو الصور أو المراجع بدقات متعددة.",
+    "description": "Concise capability introduction: Alibaba video generation from text, images, or references at multiple resolutions."
   },
   "message.featuresProducer": {
-    "message": "قم بتفعيل أو تعطيل وحدة ميزات Producer.",
-    "description": "وصف ميزة Producer"
+    "message": "أنشئ أغانٍ وكفرات وامتدادات وتنوعات صوتية أو آلية.",
+    "description": "Concise capability introduction: Create songs, covers, extensions, and vocal or instrumental variations."
   },
   "message.featuresKimi": {
-    "message": "قم بتفعيل أو تعطيل وحدة ميزات Kimi.",
-    "description": "وصف ميزة Kimi"
+    "message": "مساعد Moonshot AI للبحث طويل السياق والاستدلال والكتابة والبرمجة.",
+    "description": "Concise capability introduction: Moonshot AI assistant for long-context research, reasoning, writing, and coding."
   },
   "message.featuresSerp": {
-    "message": "قم بتفعيل أو تعطيل وحدة ميزات SERP.",
-    "description": "وصف ميزة SERP"
+    "message": "ابحث في الويب والصور والأخبار والخرائط والفيديوهات بنتائج Google منظمة.",
+    "description": "Concise capability introduction: Search the web, images, news, maps, and videos with structured Google results."
   },
   "message.featuresFish": {
-    "message": "قم بتشغيل أو إيقاف وحدة ميزة صوت السمك.",
-    "description": "وصف ميزة صوت السمك"
+    "message": "أنشئ صوتًا طبيعيًا وقلّد الأصوات لإنتاج صوتي متعدد اللغات.",
+    "description": "Concise capability introduction: Generate natural speech and clone voices for multilingual audio production."
   },
   "message.featuresCodingBridge": {
-    "message": "Enable or disable the Coding Bridge feature module.",
-    "description": "Description of the Coding Bridge feature"
+    "message": "اربط مساعدين البرمجة بالذكاء الاصطناعي بالمشروعات المحلية لتدفقات تطوير موجهة.",
+    "description": "Concise capability introduction: Connect AI coding assistants to local projects for guided development workflows."
   },
   "message.featuresWebextrator": {
-    "message": "Enable or disable the WebExtrator feature module.",
-    "description": "Description of the WebExtrator feature"
+    "message": "استخرج محتوى وبيانات نظيفة ومنظمة من صفحات الويب.",
+    "description": "Concise capability introduction: Extract clean, structured content and data from web pages."
   },
   "message.featuresLuma": {
-    "message": "قم بتفعيل أو تعطيل وحدة ميزات Luma.",
-    "description": "وصف ميزة Luma"
+    "message": "أنشئ مقاطع فيديو سينمائية من النصوص أو الصور بحركة طبيعية.",
+    "description": "Concise capability introduction: Create cinematic videos from text or images with natural motion."
   },
   "message.featuresPika": {
-    "message": "قم بتفعيل أو تعطيل وحدة ميزات Pika.",
-    "description": "وصف ميزة Pika"
+    "message": "أنشئ وعدّل مقاطع فيديو قصيرة وإبداعية مع مؤثرات ومشاهد وتحولات.",
+    "description": "Concise capability introduction: Generate and edit short creative videos with effects, scenes, and transformations."
   },
   "message.featuresKling": {
-    "message": "قم بتفعيل أو تعطيل وحدة ميزات Kling.",
-    "description": "وصف ميزة Kling"
+    "message": "أنشئ مقاطع فيديو عالية الجودة من النصوص أو الصور أو مراجع الحركة.",
+    "description": "Concise capability introduction: Create high-quality videos from text, images, or motion references."
   },
   "message.featuresHailuo": {
-    "message": "قم بتفعيل أو تعطيل وحدة ميزات Hailuo.",
-    "description": "وصف ميزة Hailuo"
-  },
-  "message.featuresHeadshots": {
-    "message": "قم بتفعيل أو تعطيل وحدة ميزات صور الهوية AI.",
-    "description": "وصف ميزة صور الهوية AI"
+    "message": "أنشئ مقاطع فيديو تعبيرية من النصوص أو الصور مع حركة شخصية سلسة.",
+    "description": "Concise capability introduction: Generate expressive videos from text or images with smooth character motion."
   },
   "message.featuresSupport": {
     "message": "قم بتفعيل أو تعطيل دعم العملاء",
@@ -592,16 +716,16 @@
     "description": "يظهر كعنوان في صندوق التحرير"
   },
   "message.featuresGemini": {
-    "message": "قم بتفعيل أو تعطيل وحدة ميزات Gemini.",
-    "description": "وصف ميزة Gemini"
+    "message": "مساعد Google للاستدلال طويل السياق والبحث والبرمجة والعمل متعدد الوسائط.",
+    "description": "Concise capability introduction: Google assistant for long-context reasoning, research, coding, and multimodal work."
   },
   "field.featuresClaude": {
     "message": "كلود",
     "description": "يظهر كعنوان في صندوق التحرير"
   },
   "message.featuresClaude": {
-    "message": "قم بتفعيل أو تعطيل وحدة ميزات Claude.",
-    "description": "وصف ميزة Claude"
+    "message": "مساعد Anthropic للاستدلال الدقيق والكتابة والبرمجة وتحليل المستندات.",
+    "description": "Concise capability introduction: Anthropic assistant for careful reasoning, writing, coding, and document analysis."
   },
   "placeholder.admins": {
     "message": "أدخل معرف مستخدم المسؤول",
@@ -658,5 +782,200 @@
   "autoTranslate.error": {
     "message": "فشل تبديل الترجمة التلقائية، يُرجى المحاولة مرة أخرى",
     "description": "Fallback error toast when the enable/disable HTTP call fails with no detail"
+  },
+  "services.title": {
+    "message": "الزيادة المخصصة والعرض لكل خدمة"
+  },
+  "services.tip": {
+    "message": "إخفاء الخدمات الفردية أو إعادة تسميتها أو تخصيص نسبة الزيادة أو إعادة ترتيبها. إذا تُركت نسبة الزيادة فارغة فستَرث القيمة الافتراضية للموقع. حذف صف يعيد الخدمة إلى إعدادات الكتالوج."
+  },
+  "services.addButton": {
+    "message": "إضافة"
+  },
+  "services.empty": {
+    "message": "لا توجد تجاوزات — كل خدمة تستخدم إعداداتها الافتراضية."
+  },
+  "services.field.service": {
+    "message": "الخدمة"
+  },
+  "services.field.visible": {
+    "message": "مرئي"
+  },
+  "services.field.customMarkupRatio": {
+    "message": "زيادة مخصصة لخدمة واحدة"
+  },
+  "services.field.displayTitle": {
+    "message": "الاسم المعروض"
+  },
+  "services.field.displaySummary": {
+    "message": "الملخص المعروض"
+  },
+  "services.field.sortOrder": {
+    "message": "الترتيب"
+  },
+  "services.field.action": {
+    "message": "إجراءات"
+  },
+  "services.status.visible": {
+    "message": "معروض"
+  },
+  "services.status.hidden": {
+    "message": "مخفي"
+  },
+  "services.status.inherit": {
+    "message": "موروث"
+  },
+  "services.dialog.create": {
+    "message": "إضافة تجاوز للخدمة"
+  },
+  "services.dialog.edit": {
+    "message": "تعديل تجاوز الخدمة"
+  },
+  "services.placeholder.service": {
+    "message": "اختر خدمة من الكتالوج"
+  },
+  "services.placeholder.markup": {
+    "message": "اتركه فارغًا لوراثة إعداد الموقع الافتراضي"
+  },
+  "services.placeholder.displayTitle": {
+    "message": "اتركه فارغًا لاستخدام اسم الكتالوج"
+  },
+  "services.placeholder.displaySummary": {
+    "message": "اتركه فارغًا لاستخدام وصف الكتالوج"
+  },
+  "services.tip.visible": {
+    "message": "عند الإيقاف تُخفى الخدمة على الصفحة الرئيسية (يحتفظ من يملكها بالوصول)."
+  },
+  "services.tip.markup": {
+    "message": "0% سعر المنصة؛ 0.5 يعني +50%؛ حتى +500%. فارغ = افتراضي الموقع."
+  },
+  "services.tip.sortOrder": {
+    "message": "الأرقام الأصغر تظهر أولًا."
+  },
+  "services.preview.sampleLabel": {
+    "message": "سعر أساسي كمثال"
+  },
+  "services.preview.inherit": {
+    "message": "(يرث نسبة الزيادة الافتراضية للموقع {percent})"
+  },
+  "services.message.alreadyOverridden": {
+    "message": "مضاف بالفعل"
+  },
+  "services.message.serviceRequired": {
+    "message": "يرجى اختيار خدمة أولاً"
+  },
+  "services.message.saved": {
+    "message": "تم الحفظ"
+  },
+  "services.message.deleted": {
+    "message": "تم الحذف"
+  },
+  "services.message.deleteConfirm": {
+    "message": "حذف تجاوز «{name}»؟ ستعود الخدمة إلى إعدادات الكتالوج."
+  },
+  "services.message.saveFailed": {
+    "message": "فشل الحفظ، حاول مرة أخرى"
+  },
+  "services.message.deleteFailed": {
+    "message": "فشل الحذف، حاول مرة أخرى"
+  },
+  "services.message.fetchFailed": {
+    "message": "فشل تحميل تجاوزات الخدمة"
+  },
+  "field.featuresOmni": {
+    "message": "Omni",
+    "description": "يُعرض كعنوان في مربع التحرير"
+  },
+  "message.featuresOmni": {
+    "message": "أنشئ مقاطع فيديو أو حرّرها باستخدام نماذج Omni انطلاقًا من النصوص والصور ومراجع الفيديو.",
+    "description": "أنشئ مقاطع فيديو أو حرّرها باستخدام نماذج Omni انطلاقًا من النصوص والصور ومراجع الفيديو."
+  },
+  "capabilityOverride.edit": {
+    "message": "Customize app",
+    "description": "Tooltip and accessible label for editing a capability app name and icon"
+  },
+  "capabilityOverride.dialogTitle": {
+    "message": "Customize {name}",
+    "description": "Dialog title; {name} is the platform-default capability app name"
+  },
+  "capabilityOverride.displayName": {
+    "message": "Custom name",
+    "description": "Field label for a per-site capability app display name"
+  },
+  "capabilityOverride.displayNameTip": {
+    "message": "Leave blank to use {name}. Save once before enabling automatic translation.",
+    "description": "Help text; {name} is the platform-default capability app name"
+  },
+  "capabilityOverride.icon": {
+    "message": "Custom icon",
+    "description": "Field label for a per-site capability app icon"
+  },
+  "capabilityOverride.defaultIcon": {
+    "message": "Default",
+    "description": "Label above the platform-default capability icon preview"
+  },
+  "capabilityOverride.currentIcon": {
+    "message": "Current",
+    "description": "Label above the effective capability icon preview"
+  },
+  "capabilityOverride.replaceIcon": {
+    "message": "Replace icon",
+    "description": "Command to upload a replacement capability icon"
+  },
+  "capabilityOverride.uploadIcon": {
+    "message": "Upload icon",
+    "description": "Command to upload the first custom capability icon"
+  },
+  "capabilityOverride.useDefaultIcon": {
+    "message": "Use default icon",
+    "description": "Command to clear the custom icon draft"
+  },
+  "capabilityOverride.iconTip": {
+    "message": "PNG, JPEG, or WebP. The image is cropped to a square; transparent PNG is preserved.",
+    "description": "Capability icon upload requirements"
+  },
+  "capabilityOverride.editIcon": {
+    "message": "Edit app icon",
+    "description": "Title of the capability icon cropper dialog"
+  },
+  "capabilityOverride.resetAll": {
+    "message": "Restore defaults",
+    "description": "Command that removes both custom name and icon"
+  },
+  "capabilityOverride.empty": {
+    "message": "Enter a custom name or upload an icon first.",
+    "description": "Warning when attempting to create an empty override"
+  },
+  "capabilityOverride.saved": {
+    "message": "App customization saved",
+    "description": "Success message after saving a capability override"
+  },
+  "capabilityOverride.savedEnableTranslation": {
+    "message": "Saved. You can now enable automatic translation for the custom name.",
+    "description": "Success message after first save creates an override ID"
+  },
+  "capabilityOverride.saveFailed": {
+    "message": "Failed to save app customization",
+    "description": "Fallback error for capability override writes"
+  },
+  "capabilityOverride.resetConfirm": {
+    "message": "Restore the default name and icon for {name}?",
+    "description": "Confirmation message; {name} is the platform-default capability app name"
+  },
+  "capabilityOverride.resetDone": {
+    "message": "Default name and icon restored",
+    "description": "Success message after deleting a capability override"
+  },
+  "capabilityOverride.fetchFailed": {
+    "message": "Failed to load app customizations",
+    "description": "Error shown when capability override management rows cannot be loaded"
+  },
+  "field.featuresPoivelle": {
+    "message": "Poivelle",
+    "description": "Displayed as the title in the editing box"
+  },
+  "message.featuresPoivelle": {
+    "message": "Direct professional AI film production through a shared project graph, storyboard, timeline, review, and skill-agent workflow.",
+    "description": "Concise capability introduction: Direct professional AI film production through a shared project graph, storyboard, timeline, review, and skill-agent workflow."
   }
 }

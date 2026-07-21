@@ -39,6 +39,30 @@
     "message": "사이트 관리자 ID",
     "description": "편집 상자에 표시되는 제목"
   },
+  "field.contacts": {
+    "message": "고객지원 연락처",
+    "description": "Field title for the customer-service contacts in site settings"
+  },
+  "field.markupRatio": {
+    "message": "사이트 전체 공통 가산율",
+    "description": "사이트 설정: 본 사이트의 모든 충전 패키지에 대해 통일된 가산 비율(백분율)"
+  },
+  "message.markupRatioTip": {
+    "message": "이 사이트의 모든 서비스에 공통 가산율을 설정합니다(0%~500%). 아래의 서비스별 맞춤 가산율을 설정하면 이 값보다 우선합니다.",
+    "description": "가산 비율 설정 항목에 대한 설명 텍스트입니다."
+  },
+  "message.markupExample": {
+    "message": "예시: 공식 가격 {from} → 당신의 판매가 {to}",
+    "description": "가산 비율 설정 항목 아래의 실시간 예시로, {from}은 공식 원가이고, {to}는 가산된 판매가입니다."
+  },
+  "field.disableRecharge": {
+    "message": "충전 비활성화",
+    "description": "Site settings: when on, hide all recharge/top-up entries on this site"
+  },
+  "message.disableRechargeTip": {
+    "message": "활성화하면 이 사이트의 모든 충전 버튼이 숨겨지고 사용자가 잔액을 충전할 수 없습니다.",
+    "description": "Help text for the disable-recharge toggle"
+  },
   "field.distributionDefaultInviterId": {
     "message": "기본 초대자 ID",
     "description": "편집 상자에 표시되는 제목"
@@ -78,6 +102,102 @@
   "field.authProvider_wechat": {
     "message": "WeChat",
     "description": "로그인 방식 이름: WeChat 제3자 로그인"
+  },
+  "field.authSmsWebhook": {
+    "message": "Custom SMS Sender",
+    "description": "Site settings / login: title for the site's own custom SMS verification-code delivery webhook"
+  },
+  "message.authSmsWebhookTip": {
+    "message": "When enabled, this site's phone verification codes are sent through your own endpoint under your own signature; disable it to use the platform default. Requires the phone-number login provider to be enabled.",
+    "description": "Explains the custom SMS sender webhook"
+  },
+  "placeholder.authSmsWebhookUrl": {
+    "message": "https://your-domain/sms-webhook",
+    "description": "Placeholder for the SMS webhook URL input"
+  },
+  "placeholder.authSmsWebhookSecret": {
+    "message": "Signing secret (leave blank to keep unchanged)",
+    "description": "Placeholder for the SMS webhook signing secret input; write-only, blank keeps existing"
+  },
+  "field.authSmsWebhookEnable": {
+    "message": "Use a custom sender",
+    "description": "Label next to the custom SMS sender toggle"
+  },
+  "field.authSmsWebhookDoc": {
+    "message": "View docs",
+    "description": "Link that opens the SMS webhook spec dialog"
+  },
+  "field.authSmsWebhookTest": {
+    "message": "Test",
+    "description": "Button that opens the SMS webhook test dialog"
+  },
+  "message.authSmsWebhookNeedsPhone": {
+    "message": "Enable the phone-number login provider first to configure a custom SMS sender.",
+    "description": "Tooltip shown when the toggle is disabled because phone login is off"
+  },
+  "field.authSmsWebhookDocTitle": {
+    "message": "Custom SMS Sender · Webhook spec",
+    "description": "Title of the SMS webhook spec dialog"
+  },
+  "message.authSmsWebhookDocIntro": {
+    "message": "This site sends a signed HTTPS POST to the URL you provide; your service is responsible for delivering the SMS. Your endpoint must meet the following requirements:",
+    "description": "Intro paragraph of the SMS webhook spec dialog"
+  },
+  "field.authSmsWebhookDocRequest": {
+    "message": "Request",
+    "description": "Heading: request section of the SMS webhook spec"
+  },
+  "message.authSmsWebhookDocRequest": {
+    "message": "Method POST, Content-Type application/json. purpose is one of login / register / test (test is a connectivity probe — you may skip actually sending). The request body looks like:",
+    "description": "Describes the request method and body of the SMS webhook"
+  },
+  "field.authSmsWebhookDocHeaders": {
+    "message": "Signature verification",
+    "description": "Heading: signature section of the SMS webhook spec"
+  },
+  "message.authSmsWebhookDocHeaders": {
+    "message": "Each request carries the headers below. Verify with your signing secret using HMAC-SHA256 per the Standard Webhooks spec and compare in constant time:",
+    "description": "Describes signature verification for the SMS webhook"
+  },
+  "field.authSmsWebhookDocResponse": {
+    "message": "Response",
+    "description": "Heading: response section of the SMS webhook spec"
+  },
+  "message.authSmsWebhookDocResponse": {
+    "message": "Return 2xx on success. To signal failure explicitly, return HTTP 200 with a JSON body whose success field is false (see the example below). Respond within 5 seconds.",
+    "description": "Describes the expected response of the SMS webhook"
+  },
+  "field.authSmsWebhookTestTitle": {
+    "message": "Test custom SMS sender",
+    "description": "Title of the SMS webhook test dialog"
+  },
+  "field.authSmsWebhookTestRegion": {
+    "message": "Country/region code",
+    "description": "Label for the region-code field in the test dialog"
+  },
+  "field.authSmsWebhookTestNumber": {
+    "message": "Test phone number (optional)",
+    "description": "Label for the phone-number field in the test dialog"
+  },
+  "field.authSmsWebhookTestSend": {
+    "message": "Send test",
+    "description": "Button that sends the SMS webhook test request"
+  },
+  "message.authSmsWebhookTestOk": {
+    "message": "The test request was delivered to your endpoint successfully.",
+    "description": "Success message after a webhook test"
+  },
+  "message.authSmsWebhookTestFailed": {
+    "message": "Test failed. Check the URL, signing secret, and your endpoint's response.",
+    "description": "Failure message after a webhook test"
+  },
+  "field.authSmsWebhookDisableTitle": {
+    "message": "Disable custom SMS sender",
+    "description": "Title of the confirm dialog shown when disabling the custom SMS sender"
+  },
+  "message.authSmsWebhookDisableConfirm": {
+    "message": "Disabling this deletes the saved sender URL and signing secret (the secret cannot be recovered), and this site falls back to the platform default signature. Disable it?",
+    "description": "Body of the confirm dialog shown when disabling the custom SMS sender"
   },
   "field.featuresChat": {
     "message": "채팅",
@@ -145,10 +265,6 @@
   },
   "field.featuresHailuo": {
     "message": "Hailuo",
-    "description": "편집 상자에 표시되는 제목"
-  },
-  "field.featuresHeadshots": {
-    "message": "AI 증명사진",
     "description": "편집 상자에 표시되는 제목"
   },
   "field.featuresSuno": {
@@ -222,6 +338,10 @@
   "title.editAdmins": {
     "message": "관리자 편집",
     "description": "편집 상자에 표시되는 제목"
+  },
+  "title.editContacts": {
+    "message": "고객지원 연락처 편집",
+    "description": "Title of the edit-support-contacts dialog"
   },
   "title.featuresConfig": {
     "message": "기능 설정",
@@ -431,6 +551,14 @@
     "message": "여기에서 관리자 ID를 추가하거나 삭제할 수 있으며, https://auth.acedata.cloud에서 사용자 ID를 확인할 수 있습니다.",
     "description": "사이트 관리자에 대한 안내"
   },
+  "message.contactsTip": {
+    "message": "고객지원 연락처(Discord, X, 위챗, 전화, 이메일)를 입력하세요. 정보 페이지에 표시되어 사용자가 연락할 수 있습니다.",
+    "description": "Tip for the support-contacts field"
+  },
+  "message.contactsEmpty": {
+    "message": "설정 안 됨",
+    "description": "Placeholder shown when no support contact has been filled in"
+  },
   "message.keywordsTip": {
     "message": "사이트 키워드, 사이트 메타 정보에 위치하며, 사이트 SEO 최적화에 사용됩니다.",
     "description": "사이트 키워드에 대한 안내"
@@ -444,124 +572,120 @@
     "description": "Chat 기능에 대한 설명"
   },
   "message.featuresGrok": {
-    "message": "Grok 기능 모듈을 켜거나 끕니다.",
-    "description": "Grok 기능에 대한 설명"
+    "message": "실시간 지식, 추론, 글쓰기, 코딩을 지원하는 xAI 비서.",
+    "description": "실시간 지식, 추론, 글쓰기, 코딩을 지원하는 xAI 비서."
   },
   "message.featuresGrokvideo": {
-    "message": "Grok 비디오 기능 모듈을 활성화하거나 비활성화합니다.",
-    "description": "Grok 비디오 기능에 대한 설명입니다."
+    "message": "텍스트 프롬프트나 참조 이미지를 바탕으로 짧은 영상을 만드는 xAI 영상 생성 기능입니다.",
+    "description": "텍스트 프롬프트나 참조 이미지를 바탕으로 짧은 영상을 만드는 xAI 영상 생성 기능입니다."
   },
   "message.featuresMaestro": {
-    "message": "Maestro 기능 모듈을 활성화하거나 비활성화합니다.",
-    "description": "Maestro 기능에 대한 설명입니다."
+    "message": "아이디어를 바탕으로 기획, 나레이션, 장면 구성, 완성본 전달까지 포함한 영상을 제작합니다.",
+    "description": "아이디어를 바탕으로 기획, 나레이션, 장면 구성, 완성본 전달까지 포함한 영상을 제작합니다."
   },
   "message.featuresDigitalhuman": {
-    "message": "Enable or disable the Digital Human feature module.",
-    "description": "Description of the Digital Human feature"
+    "message": "합성 음성과 자연스러운 립싱크로 말하는 얼굴 영상을 만듭니다.",
+    "description": "합성 음성과 자��스러운 립싱크로 말하는 얼굴 영상을 만듭니다."
   },
   "message.featuresDeepseek": {
-    "message": "Deepseek 기능 모듈을 켜거나 끕니다.",
-    "description": "Deepseek 기능에 대한 설명"
+    "message": "고급 추론, 코딩, 수학, 일상 질문을 지원하는 DeepSeek 비서.",
+    "description": "고급 추론, 코딩, 수학, 일상 질문을 지원하는 DeepSeek 비서."
   },
   "message.featuresChatgpt": {
-    "message": "ChatGPT 기능 모듈을 켜거나 끕니다.",
-    "description": "ChatGPT 기능에 대한 설명"
+    "message": "글쓰기, 추론, 코딩, 멀티모달 대화를 지원하는 OpenAI 비서.",
+    "description": "글쓰기, 추론, 코딩, 멀티모달 대화를 지원하는 OpenAI 비서."
   },
   "message.featuresMidjourney": {
-    "message": "Midjourney 기능 모듈을 켜거나 끕니다.",
-    "description": "Midjourney 기능에 대한 설명"
+    "message": "텍스트나 시각 자료를 바탕으로 완성도 높은 이미지와 다양한 변형을 생성합니다.",
+    "description": "텍스트나 시각 자료를 바탕으로 완성도 높은 이미지와 다양한 변형을 생성합니다."
   },
   "message.featuresChatdoc": {
     "message": "Chatdoc 기능 모듈을 켜거나 끕니다.",
     "description": "Chatdoc 기능에 대한 설명"
   },
   "message.featuresQrart": {
-    "message": "Qrart 기능 모듈을 켜거나 끕니다.",
-    "description": "Qrart 기능에 대한 설명"
+    "message": "링크를 스캔 가능한 예술적 QR 코드로 바꾸고, 스타일과 이미지를 자유롭게 적용합니다.",
+    "description": "링크를 스캔 가능한 예술적 QR 코드로 바꾸고, 스타일과 이미지를 자유롭게 적용합니다."
   },
   "message.featuresVeo": {
-    "message": "Veo 기능 모듈을 켜거나 끕니다.",
-    "description": "Veo 기능에 대한 설명"
+    "message": "강한 프롬프트 제어와 동작 제어로 시네마틱 클립을 만드는 Google 영상 생성.",
+    "description": "강한 프롬프트 제어와 동작 제어로 시네마틱 클립을 만드는 Google 영상 생성."
   },
   "message.featuresSora": {
-    "message": "Sora 기능 모듈을 켜거나 끕니다.",
-    "description": "Sora 기능에 대한 설명"
+    "message": "현실적인 장면, 스토리텔링, 시각적 변형을 만드는 OpenAI 영상 생성.",
+    "description": "현실적인 장면, 스토리텔링, 시각적 변형을 만드는 OpenAI 영상 생성."
   },
   "message.featuresSuno": {
-    "message": "Suno 기능 모듈을 켜거나 끕니다.",
-    "description": "Suno 기능의 설명"
+    "message": "프롬프트를 바탕으로 완성된 노래, 가사, 보컬, 연주를 생성합니다.",
+    "description": "프롬프트를 바탕으로 완성된 노래, 가사, 보컬, 연주를 생성합니다."
   },
   "message.featuresPixverse": {
-    "message": "Pixverse 기능 모듈을 켜거나 끕니다.",
-    "description": "Pixverse 기능의 설명"
+    "message": "프롬프트와 이미지를 바탕으로 템플릿과 효과가 있는 스타일리시한 영상을 생성합니다.",
+    "description": "프롬프트와 이미지를 바탕으로 템플릿과 효과가 있는 스타일리시한 영상을 생성합니다."
   },
   "message.featuresFlux": {
-    "message": "FLux 기능 모듈을 켜거나 끕니다.",
-    "description": "FLux 기능의 설명"
+    "message": "자연어 지시로 정교한 이미지를 만들고 기존 시각 자료를 편집합니다.",
+    "description": "자연어 지시로 정교한 이미지를 만들고 기존 시각 자료를 편집합니다."
   },
   "message.featuresNanobanana": {
-    "message": "Nano Banana 기능 모듈을 켜거나 끕니다.",
-    "description": "Nano Banana 기능의 설명"
+    "message": "정교한 지시를 잘 따르는 Google 기반 이미지 생성 및 편집 기능입니다.",
+    "description": "정교한 지시를 잘 따르는 Google 기반 이미지 생성 및 편집 기능입니다."
   },
   "message.featuresOpenaiimage": {
-    "message": "OpenAI 이미지 기능 모듈을 켜거나 끕니다.",
-    "description": "OpenAI 이미지 기능의 설명"
+    "message": "세련된 비주얼, 텍스트, 구성을 위한 OpenAI 이미지 생성 및 편집 기능입니다.",
+    "description": "세련된 비주얼, 텍스트, 구성을 위한 OpenAI 이미지 생성 및 편집 기능입니다."
   },
   "message.featuresSeedream": {
-    "message": "SeeDream 기능 모듈을 켜거나 끕니다.",
-    "description": "SeeDream 기능의 설명"
+    "message": "고품질의 창의적인 비주얼을 만드는 ByteDance 이미지 생성 및 편집 기능입니다.",
+    "description": "고품질의 창의적인 비주얼을 만드는 ByteDance 이미지 생성 및 편집 기능입니다."
   },
   "message.featuresSeedance": {
-    "message": "SeeDance 기능 모듈을 활성화하거나 비활성화합니다.",
-    "description": "SeeDance 기능의 설명"
+    "message": "다양한 해상도에서 역동적인 장면, 카메라 움직임, 선택적 오디오를 만드는 ByteDance 영상 생성 기능입니다.",
+    "description": "다양한 해상도에서 역동적인 장면, 카메라 움직임, 선택적 오디오를 만드는 ByteDance 영상 생성 기능입니다."
   },
   "message.featuresWan": {
-    "message": "Wan 기능 모듈을 켜거나 끕니다.",
-    "description": "Wan 기능의 설명"
+    "message": "텍스트, 이미지, 참조 자료를 바탕으로 다양한 해상도의 Alibaba 영상 생성 기능입니다.",
+    "description": "텍스트, 이미지, 참조 자료를 바탕으로 다양한 해상도의 Alibaba 영상 생성 기능입니다."
   },
   "message.featuresProducer": {
-    "message": "Producer 기능 모듈을 켜거나 끕니다.",
-    "description": "Producer 기능의 설명"
+    "message": "곡, 커버, 확장, 보컬 또는 기악 변형을 생성합니다.",
+    "description": "곡, 커버, 확장, 보컬 또는 기악 변형을 생성합니다."
   },
   "message.featuresKimi": {
-    "message": "Kimi 기능 모듈을 켜거나 끕니다.",
-    "description": "Kimi 기능의 설명"
+    "message": "긴 문맥의 조사, 추론, 글쓰기, 코딩을 지원하는 Moonshot AI 비서.",
+    "description": "긴 문맥의 조사, 추론, 글쓰기, 코딩을 지원하는 Moonshot AI 비서."
   },
   "message.featuresSerp": {
-    "message": "SERP 기능 모듈을 켜거나 끕니다.",
-    "description": "SERP 기능의 설명"
+    "message": "구조화된 Google 결과로 웹, 이미지, 뉴스, 지도, 동영상을 검색합니다.",
+    "description": "구조화된 Google 결과로 웹, 이미지, 뉴스, 지도, 동영상을 검색합니다."
   },
   "message.featuresFish": {
-    "message": "물고기 오디오 기능 모듈을 켜거나 끕니다.",
-    "description": "물고기 오디오 기능에 대한 설명"
+    "message": "자연스러운 음성을 생성하고 음성을 복제해 다국어 오디오 제작을 지원합니다.",
+    "description": "자연스러운 음성을 생성하고 음성을 복제해 다국어 오디오 제작을 지원합니다."
   },
   "message.featuresCodingBridge": {
-    "message": "Enable or disable the Coding Bridge feature module.",
-    "description": "Description of the Coding Bridge feature"
+    "message": "AI 코딩 비서를 로컬 프로젝트에 연결해 안내형 개발 흐름을 지원합니다.",
+    "description": "AI 코딩 비서를 로컬 프로젝트에 연결해 안내형 개발 흐름을 지원합니다."
   },
   "message.featuresWebextrator": {
-    "message": "Enable or disable the WebExtrator feature module.",
-    "description": "Description of the WebExtrator feature"
+    "message": "웹페이지에서 깔끔하게 구조화된 콘텐츠와 데이터를 추출합니다.",
+    "description": "웹페이지에서 깔끔하게 구조화된 콘텐츠와 데이터를 추출합니다."
   },
   "message.featuresLuma": {
-    "message": "Luma 기능 모듈을 켜거나 끕니다.",
-    "description": "Luma 기능의 설명"
+    "message": "텍스트나 이미지로 자연스러운 움직임의 시네마틱 영상을 만듭니다.",
+    "description": "텍스트나 이미지로 자연스러운 움직임의 시네마틱 영상을 만듭니다."
   },
   "message.featuresPika": {
-    "message": "Pika 기능 모듈을 켜거나 끕니다.",
-    "description": "Pika 기능의 설명"
+    "message": "효과, 장면, 변형을 활용해 짧고 창의적인 영상을 생성하고 편집합니다.",
+    "description": "효과, 장면, 변형을 활용해 짧고 창의적인 영상을 생성하고 편집합니다."
   },
   "message.featuresKling": {
-    "message": "Kling 기능 모듈을 켜거나 끕니다.",
-    "description": "Kling 기능의 설명"
+    "message": "텍스트, 이미지, 동작 참조를 바탕으로 고품질 영상을 만듭니다.",
+    "description": "텍스트, 이미지, 동작 참조를 바탕으로 고품질 영상을 만듭니다."
   },
   "message.featuresHailuo": {
-    "message": "Hailuo 기능 모듈을 켜거나 끕니다.",
-    "description": "Hailuo 기능의 설명"
-  },
-  "message.featuresHeadshots": {
-    "message": "AI 증명사진 기능 모듈을 켜거나 끕니다.",
-    "description": "AI 증명사진 기능의 설명"
+    "message": "텍스트나 이미지로 표정이 살아 있는 영상을 만들고, 부드러운 캐릭터 움직임을 구현합니다.",
+    "description": "텍스트나 이미지로 표정이 살아 있는 영상을 만들고, 부드러운 캐릭터 움직임을 구현합니다."
   },
   "message.featuresSupport": {
     "message": "고객 지원을 켜거나 끕니다.",
@@ -592,16 +716,16 @@
     "description": "편집 상자에 제목으로 표시됨"
   },
   "message.featuresGemini": {
-    "message": "Gemini 기능 모듈을 활성화하거나 비활성화합니다.",
-    "description": "Gemini 기능의 설명"
+    "message": "긴 문맥 추론, 조사, 코딩, 멀티모달 작업을 지원하는 Google 비서.",
+    "description": "긴 문맥 추론, 조사, 코딩, 멀티모달 작업을 지원하는 Google 비서."
   },
   "field.featuresClaude": {
     "message": "Claude",
     "description": "편집 상자에 제목으로 표시됨"
   },
   "message.featuresClaude": {
-    "message": "Claude 기능 모듈을 활성화하거나 비활성화합니다.",
-    "description": "Claude 기능의 설명"
+    "message": "신중한 추론, 글쓰기, 코딩, 문서 분석을 지원하는 Anthropic 비서.",
+    "description": "신중한 추론, 글쓰기, 코딩, 문서 분석을 지원하는 Anthropic 비서."
   },
   "placeholder.admins": {
     "message": "관리자 사용자 ID를 입력하세요.",
@@ -658,5 +782,200 @@
   "autoTranslate.error": {
     "message": "자동 번역을 전환하지 못했습니다. 다시 시도해 주세요",
     "description": "Fallback error toast when the enable/disable HTTP call fails with no detail"
+  },
+  "services.title": {
+    "message": "서비스별 맞춤 가산 및 표시"
+  },
+  "services.tip": {
+    "message": "개별 서비스를 숨기거나 이름 변경, 개별 가격, 정렬할 수 있습니다. 가산을 비우면 사이트 기본값을 상속합니다. 행을 삭제하면 기본 표시로 돌아갑니다."
+  },
+  "services.addButton": {
+    "message": "재정의 추가"
+  },
+  "services.empty": {
+    "message": "재정의가 없습니다. 모든 서비스가 기본값을 사용합니다."
+  },
+  "services.field.service": {
+    "message": "서비스"
+  },
+  "services.field.visible": {
+    "message": "표시"
+  },
+  "services.field.customMarkupRatio": {
+    "message": "서비스별 맞춤 가산율"
+  },
+  "services.field.displayTitle": {
+    "message": "표시 이름"
+  },
+  "services.field.displaySummary": {
+    "message": "표시 요약"
+  },
+  "services.field.sortOrder": {
+    "message": "정렬"
+  },
+  "services.field.action": {
+    "message": "작업"
+  },
+  "services.status.visible": {
+    "message": "표시됨"
+  },
+  "services.status.hidden": {
+    "message": "숨김"
+  },
+  "services.status.inherit": {
+    "message": "상속"
+  },
+  "services.dialog.create": {
+    "message": "서비스 재정의 추가"
+  },
+  "services.dialog.edit": {
+    "message": "서비스 재정의 편집"
+  },
+  "services.placeholder.service": {
+    "message": "카탈로그에서 서비스 선택"
+  },
+  "services.placeholder.markup": {
+    "message": "비우면 사이트 기본값 상속"
+  },
+  "services.placeholder.displayTitle": {
+    "message": "비우면 카탈로그 이름 사용"
+  },
+  "services.placeholder.displaySummary": {
+    "message": "비우면 카탈로그 설명 사용"
+  },
+  "services.tip.visible": {
+    "message": "끄면 이 사이트 홈에서 숨겨집니다(이미 보유한 사용자는 계속 이용 가능)."
+  },
+  "services.tip.markup": {
+    "message": "0%는 플랫폼 원가, 0.5는 +50%, 최대 500%. 비우면 사이트 기본값 상속."
+  },
+  "services.tip.sortOrder": {
+    "message": "숫자가 작을수록 먼저 표시."
+  },
+  "services.preview.sampleLabel": {
+    "message": "예시 원가"
+  },
+  "services.preview.inherit": {
+    "message": "(사이트 기본 가산 {percent} 상속)"
+  },
+  "services.message.alreadyOverridden": {
+    "message": "이미 추가됨"
+  },
+  "services.message.serviceRequired": {
+    "message": "먼저 서비스를 선택하세요"
+  },
+  "services.message.saved": {
+    "message": "저장됨"
+  },
+  "services.message.deleted": {
+    "message": "삭제됨"
+  },
+  "services.message.deleteConfirm": {
+    "message": "'{name}' 재정의를 삭제할까요? 기본 표시와 가격으로 돌아갑니다."
+  },
+  "services.message.saveFailed": {
+    "message": "저장 실패, 나중에 다시 시도하세요"
+  },
+  "services.message.deleteFailed": {
+    "message": "삭제 실패, 나중에 다시 시도하세요"
+  },
+  "services.message.fetchFailed": {
+    "message": "서비스 재정의를 불러오지 못했습니다"
+  },
+  "field.featuresOmni": {
+    "message": "Omni",
+    "description": "편집 상자의 제목으로 표시"
+  },
+  "message.featuresOmni": {
+    "message": "Omni 모델로 텍스트, 이미지, 동영상 참조를 바탕으로 동영상을 생성하거나 편집합니다.",
+    "description": "Omni 모델로 텍스트, 이미지, 동영상 참조를 바탕으로 동영상을 생성하거나 편집합니다."
+  },
+  "capabilityOverride.edit": {
+    "message": "Customize app",
+    "description": "Tooltip and accessible label for editing a capability app name and icon"
+  },
+  "capabilityOverride.dialogTitle": {
+    "message": "Customize {name}",
+    "description": "Dialog title; {name} is the platform-default capability app name"
+  },
+  "capabilityOverride.displayName": {
+    "message": "Custom name",
+    "description": "Field label for a per-site capability app display name"
+  },
+  "capabilityOverride.displayNameTip": {
+    "message": "Leave blank to use {name}. Save once before enabling automatic translation.",
+    "description": "Help text; {name} is the platform-default capability app name"
+  },
+  "capabilityOverride.icon": {
+    "message": "Custom icon",
+    "description": "Field label for a per-site capability app icon"
+  },
+  "capabilityOverride.defaultIcon": {
+    "message": "Default",
+    "description": "Label above the platform-default capability icon preview"
+  },
+  "capabilityOverride.currentIcon": {
+    "message": "Current",
+    "description": "Label above the effective capability icon preview"
+  },
+  "capabilityOverride.replaceIcon": {
+    "message": "Replace icon",
+    "description": "Command to upload a replacement capability icon"
+  },
+  "capabilityOverride.uploadIcon": {
+    "message": "Upload icon",
+    "description": "Command to upload the first custom capability icon"
+  },
+  "capabilityOverride.useDefaultIcon": {
+    "message": "Use default icon",
+    "description": "Command to clear the custom icon draft"
+  },
+  "capabilityOverride.iconTip": {
+    "message": "PNG, JPEG, or WebP. The image is cropped to a square; transparent PNG is preserved.",
+    "description": "Capability icon upload requirements"
+  },
+  "capabilityOverride.editIcon": {
+    "message": "Edit app icon",
+    "description": "Title of the capability icon cropper dialog"
+  },
+  "capabilityOverride.resetAll": {
+    "message": "Restore defaults",
+    "description": "Command that removes both custom name and icon"
+  },
+  "capabilityOverride.empty": {
+    "message": "Enter a custom name or upload an icon first.",
+    "description": "Warning when attempting to create an empty override"
+  },
+  "capabilityOverride.saved": {
+    "message": "App customization saved",
+    "description": "Success message after saving a capability override"
+  },
+  "capabilityOverride.savedEnableTranslation": {
+    "message": "Saved. You can now enable automatic translation for the custom name.",
+    "description": "Success message after first save creates an override ID"
+  },
+  "capabilityOverride.saveFailed": {
+    "message": "Failed to save app customization",
+    "description": "Fallback error for capability override writes"
+  },
+  "capabilityOverride.resetConfirm": {
+    "message": "Restore the default name and icon for {name}?",
+    "description": "Confirmation message; {name} is the platform-default capability app name"
+  },
+  "capabilityOverride.resetDone": {
+    "message": "Default name and icon restored",
+    "description": "Success message after deleting a capability override"
+  },
+  "capabilityOverride.fetchFailed": {
+    "message": "Failed to load app customizations",
+    "description": "Error shown when capability override management rows cannot be loaded"
+  },
+  "field.featuresPoivelle": {
+    "message": "Poivelle",
+    "description": "Displayed as the title in the editing box"
+  },
+  "message.featuresPoivelle": {
+    "message": "Direct professional AI film production through a shared project graph, storyboard, timeline, review, and skill-agent workflow.",
+    "description": "Concise capability introduction: Direct professional AI film production through a shared project graph, storyboard, timeline, review, and skill-agent workflow."
   }
 }

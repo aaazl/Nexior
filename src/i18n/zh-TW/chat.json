@@ -144,7 +144,7 @@
     "description": "服务的模型名称，即 Grok 4"
   },
   "model.grok4Description": {
-    "message": "目前最先進的模型",
+    "message": "General-purpose K2 model for compatible workflows",
     "description": "Grok 4 模型的描述"
   },
   "model.grok3": {
@@ -599,6 +599,18 @@
   "scheduledTasks.deleteConfirm": {
     "message": "Delete \"{name}\"? The task will stop running."
   },
+  "scheduledTasks.triggerNow": {
+    "message": "立即觸發",
+    "description": "手動立刻執行一次任務"
+  },
+  "scheduledTasks.triggerSuccess": {
+    "message": "已觸發，稍後可在執行記錄中查看結果。",
+    "description": "手動觸發成功提示"
+  },
+  "scheduledTasks.triggerError": {
+    "message": "觸發失敗，請稍後重試。",
+    "description": "手動觸發失敗提示"
+  },
   "scheduledTasks.viewResult": {
     "message": "View Result"
   },
@@ -636,6 +648,45 @@
   "scheduledTasks.run.failed": {
     "message": "Failed"
   },
+  "scheduledTasks.run.reason.max_turns": {
+    "message": "達到步數上限"
+  },
+  "scheduledTasks.run.reason.max_budget_usd": {
+    "message": "達到預算上限"
+  },
+  "scheduledTasks.run.reason.tool_call_loop": {
+    "message": "偵測到工具呼叫迴圈"
+  },
+  "scheduledTasks.run.reason.prompt_too_long": {
+    "message": "提示詞過長"
+  },
+  "scheduledTasks.run.reason.aborted_streaming": {
+    "message": "已中斷"
+  },
+  "scheduledTasks.run.reason.aborted_tools": {
+    "message": "已中斷"
+  },
+  "scheduledTasks.run.reason.awaiting_user_input": {
+    "message": "等待你的輸入"
+  },
+  "scheduledTasks.run.reason.error": {
+    "message": "發生錯誤"
+  },
+  "scheduledTasks.run.reason.unknown": {
+    "message": "未知錯誤"
+  },
+  "scheduledTasks.run.reason.balance_insufficient": {
+    "message": "餘額不足"
+  },
+  "scheduledTasks.run.reason.unauthorized": {
+    "message": "未授權"
+  },
+  "scheduledTasks.run.reason.timeout": {
+    "message": "逾時"
+  },
+  "scheduledTasks.run.reason.internal_error": {
+    "message": "內部錯誤"
+  },
   "scheduledTasks.run.needs_user_input": {
     "message": "Needs action"
   },
@@ -653,6 +704,74 @@
   },
   "scheduledTasks.scheduleType.cron": {
     "message": "Cron expression"
+  },
+  "scheduledTasks.scheduleType.interval": {
+    "message": "每隔",
+    "description": "每隔固定間隔執行"
+  },
+  "scheduledTasks.form.intervalUnit.minute": {
+    "message": "分鐘",
+    "description": "間隔單位：分鐘"
+  },
+  "scheduledTasks.form.intervalUnit.hour": {
+    "message": "小時",
+    "description": "間隔單位：小時"
+  },
+  "scheduledTasks.form.intervalUnit.day": {
+    "message": "天",
+    "description": "間隔單位：天"
+  },
+  "scheduledTasks.form.hourlyMinute": {
+    "message": "觸發分鐘",
+    "description": "每小時第幾分鐘觸發"
+  },
+  "scheduledTasks.form.hourlyMinuteHint": {
+    "message": "每小時的第幾分鐘觸發（0–59）",
+    "description": "每小時分鐘說明"
+  },
+  "scheduledTasks.form.intervalHint": {
+    "message": "從上次執行起，每隔固定時間執行一次（最短 1 分鐘）",
+    "description": "固定間隔說明"
+  },
+  "scheduledTasks.form.cronHint": {
+    "message": "標準 5 段 Cron 運算式：分 時 日 月 週",
+    "description": "Cron 說明"
+  },
+  "scheduledTasks.form.schedulePreview": {
+    "message": "執行頻率：{text}",
+    "description": "頻率預覽"
+  },
+  "scheduledTasks.humanize.everyNMinutes": {
+    "message": "每 {n} 分鐘",
+    "description": "人類可讀：每 N 分鐘"
+  },
+  "scheduledTasks.humanize.everyNHours": {
+    "message": "每 {n} 小時",
+    "description": "人類可讀：每 N 小時"
+  },
+  "scheduledTasks.humanize.everyNDays": {
+    "message": "每 {n} 天",
+    "description": "人類可讀：每 N 天"
+  },
+  "scheduledTasks.humanize.hourlyAtMinute": {
+    "message": "每小時第 {n} 分鐘",
+    "description": "人類可讀：每小時第 N 分鐘"
+  },
+  "scheduledTasks.humanize.dailyAt": {
+    "message": "每天 {time}",
+    "description": "人類可讀：每天某時刻"
+  },
+  "scheduledTasks.humanize.weeklyAt": {
+    "message": "每週 {weekday} {time}",
+    "description": "人類可讀：每週某天某時刻"
+  },
+  "scheduledTasks.humanize.cronRaw": {
+    "message": "Cron：{cron}",
+    "description": "人類可讀：原始 Cron"
+  },
+  "scheduledTasks.humanize.once": {
+    "message": "一次性 {time}",
+    "description": "人類可讀：一次性"
   },
   "scheduledTasks.form.name": {
     "message": "Task name"
@@ -712,6 +831,14 @@
     "message": "選中的 MCP Servers 可在定時任務後台加載並執行；未選中的 MCP Servers 不會在無人值守模式下加載。",
     "description": "授權 MCP server 說明"
   },
+  "scheduledTasks.form.maxTurns": {
+    "message": "最大輪次",
+    "description": "Scheduled task per-run agent turn cap"
+  },
+  "scheduledTasks.form.maxTurnsHint": {
+    "message": "任務單次執行允許的最大對話輪次（1–50）。上限太低會讓多步驟任務（如需多次執行 Bash、查文件的技能）在完成前被強制停止、沒有最終結果。預設 50。",
+    "description": "Scheduled task per-run agent turn cap"
+  },
   "scheduledTasks.form.skillsConfirmTitle": {
     "message": "確認無人值守授權",
     "description": "授權確認標題"
@@ -720,8 +847,184 @@
     "message": "此任務將允許 {count} 個 Skill 在後台執行時跳過人工確認：{skills}。這些 Skill 可能會發送消息、發布內容或寫入外部服務，請確認。",
     "description": "授權確認正文"
   },
+  "scheduledTasks.form.skillNotActiveTitle": {
+    "message": "Bind the skill first",
+    "description": "Dialog title shown when a scheduled-task authorized skill/MCP is not yet bound for the user."
+  },
+  "scheduledTasks.form.skillNotActiveMessage": {
+    "message": "The skill \"{name}\" is not bound or active in your account yet. Without binding it, the scheduled task may not be able to use it during unattended background runs. We recommend binding it first, or you can save anyway.",
+    "description": "Warning body; {name} is the skill/MCP name. Explains it is not bound and offers to save anyway."
+  },
+  "scheduledTasks.form.skillNotActiveForce": {
+    "message": "Save anyway",
+    "description": "Confirm button that saves the scheduled task anyway, bypassing the binding check (force)."
+  },
   "scheduledTasks.form.required": {
     "message": "Please fill in task name and prompt"
+  },
+  "artifacts.navTitle": {
+    "message": "產出",
+    "description": "側邊欄產出入口"
+  },
+  "artifacts.title": {
+    "message": "我的產出",
+    "description": "產出頁面標題"
+  },
+  "artifacts.summaryTotal": {
+    "message": "本期共产出 {count} 项",
+    "description": "產出彙總總數"
+  },
+  "artifacts.filterAll": {
+    "message": "全部",
+    "description": "產出類型篩選-全部"
+  },
+  "artifacts.empty": {
+    "message": "還沒有任何產出。讓 AI 幫你發文章、生成圖片或發送郵件後，產出會自動出現在這裡。",
+    "description": "產出為空提示"
+  },
+  "artifacts.loadError": {
+    "message": "加載產出失敗",
+    "description": "加載產出錯誤提示"
+  },
+  "artifacts.actionError": {
+    "message": "操作失敗，請重試",
+    "description": "產出操作錯誤提示"
+  },
+  "artifacts.open": {
+    "message": "打開",
+    "description": "打開產出原鏈接按鈕"
+  },
+  "artifacts.hide": {
+    "message": "隱藏",
+    "description": "隱藏產出按鈕"
+  },
+  "artifacts.delete": {
+    "message": "刪除",
+    "description": "刪除產出按鈕"
+  },
+  "artifacts.deleteConfirm": {
+    "message": "確定要永久刪除這條產出記錄嗎？",
+    "description": "刪除產出確認提示"
+  },
+  "artifacts.loadMore": {
+    "message": "加載更多",
+    "description": "加載更多產出按鈕"
+  },
+  "artifacts.sourceAuto": {
+    "message": "自動捕獲",
+    "description": "自動捕獲來源標記"
+  },
+  "artifacts.kind.article": {
+    "message": "文章",
+    "description": "產出類型-文章"
+  },
+  "artifacts.kind.image": {
+    "message": "圖片",
+    "description": "產出類型-圖片"
+  },
+  "artifacts.kind.video": {
+    "message": "視頻",
+    "description": "產出類型-視頻"
+  },
+  "artifacts.kind.audio": {
+    "message": "音頻",
+    "description": "產出類型-音頻"
+  },
+  "artifacts.kind.document": {
+    "message": "文件",
+    "description": "產出類型-文件"
+  },
+  "artifacts.kind.email": {
+    "message": "郵件",
+    "description": "產出類型-郵件"
+  },
+  "artifacts.kind.message": {
+    "message": "消息",
+    "description": "產出類型-消息"
+  },
+  "artifacts.kind.dataset": {
+    "message": "數據",
+    "description": "產出類型-數據"
+  },
+  "artifacts.kind.link": {
+    "message": "鏈接",
+    "description": "產出類型-鏈接"
+  },
+  "artifacts.kind.other": {
+    "message": "其他",
+    "description": "產出類型-其他"
+  },
+  "share.menu": {
+    "message": "分享",
+    "description": "側邊欄/工具欄中打開分享對話框的菜單項"
+  },
+  "share.dialogTitle": {
+    "message": "分享對話",
+    "description": "分享對話框的標題"
+  },
+  "share.description": {
+    "message": "任何拿到連結的人都可以查看此對話，但無法繼續聊天。",
+    "description": "解釋對話被分享後會發生什麼"
+  },
+  "share.createLink": {
+    "message": "創建分享連結",
+    "description": "為對話創建公開分享連結的按鈕"
+  },
+  "share.copy": {
+    "message": "複製連結",
+    "description": "把分享連結複製到剪貼板的按鈕"
+  },
+  "share.copied": {
+    "message": "已複製",
+    "description": "複製成功後短暫出現在按鈕上的提示"
+  },
+  "share.disable": {
+    "message": "停用連結",
+    "description": "撤銷分享連結，讓該 URL 失效的按鈕"
+  },
+  "share.disabled": {
+    "message": "分享連結已停用。",
+    "description": "分享連結被停用後的提示"
+  },
+  "share.needLogin": {
+    "message": "請先登錄，然後再分享此對話。",
+    "description": "未登錄訪客嘗試分享對話時的提示"
+  },
+  "share.noConversation": {
+    "message": "請先打開一個對話，再進行分享。",
+    "description": "沒有活躍對話時點擊分享按鈕的提示"
+  },
+  "share.createFailed": {
+    "message": "創建分享連結失敗，請稍後再試。",
+    "description": "創建分享連結失敗的錯誤提示"
+  },
+  "share.disableFailed": {
+    "message": "停用分享連結失敗，請稍後再試。",
+    "description": "停用分享連結失敗的錯誤提示"
+  },
+  "share.startYourOwn": {
+    "message": "去開啟我自己的對話",
+    "description": "分享公開頁面上的行動號召，把匿名訪客引導到應用首頁"
+  },
+  "share.unavailableTitle": {
+    "message": "此分享對話不可用。",
+    "description": "分享連結失效或無效時分享公開頁面的標題"
+  },
+  "share.unavailableHint": {
+    "message": "對方可能已經停用了連結，或者 URL 有誤。",
+    "description": "分享連結失效或無效時的提示"
+  },
+  "share.viewOnly": {
+    "message": "只讀分享對話",
+    "description": "分享公開頁面上表明對話只讀的標籤"
+  },
+  "share.untitled": {
+    "message": "未命名對話",
+    "description": "分享對話沒有標題時使用的佔位文案"
+  },
+  "share.footerNote": {
+    "message": "您正在查看一段分享的對話。點擊上方即可自己與 AI 對話。",
+    "description": "分享公開頁面對話下方的說明"
   },
   "model.claudeOpus47": {
     "message": "claude-opus-4.7",
@@ -730,5 +1033,81 @@
   "model.claudeOpus47Description": {
     "message": "目前最先進的模型",
     "description": "Claude Opus 4.7 模型的描述"
+  },
+  "artifacts.unhide": {
+    "message": "Unhide",
+    "description": "Restore a hidden artifact"
+  },
+  "artifacts.showHidden": {
+    "message": "Show hidden",
+    "description": "Toggle in the filter bar to include hidden artifacts"
+  },
+  "artifacts.hiddenBadge": {
+    "message": "Hidden",
+    "description": "Badge shown on artifacts that are currently hidden"
+  },
+  "scheduledTasks.run.reason.billing_gate_failed": {
+    "message": "計費授權失敗"
+  },
+  "browserTool.title": {
+    "message": "Browser activity",
+    "description": "Fallback title for a BrowserDevice tool activity"
+  },
+  "browserTool.state.choose_device": {
+    "message": "Choose a browser device"
+  },
+  "browserTool.state.device_offline": {
+    "message": "Browser device is offline"
+  },
+  "browserTool.state.awaiting_device": {
+    "message": "Waiting for browser device"
+  },
+  "browserTool.state.awaiting_local_approval": {
+    "message": "Waiting for approval on the browser device"
+  },
+  "browserTool.state.takeover_required": {
+    "message": "Take over on the browser device"
+  },
+  "browserTool.state.executing": {
+    "message": "Executing in browser"
+  },
+  "browserTool.state.completed": {
+    "message": "Completed"
+  },
+  "browserTool.state.denied": {
+    "message": "Denied on the browser device"
+  },
+  "browserTool.state.expired": {
+    "message": "Browser request expired"
+  },
+  "browserTool.state.cancel_too_late": {
+    "message": "Too late to cancel"
+  },
+  "scheduledTasks.run.waiting_for_device": {
+    "message": "Waiting for browser device"
+  },
+  "model.kimiK3": {
+    "message": "kimi-k3",
+    "description": "Name of Moonshot AI's Kimi K3 flagship model"
+  },
+  "model.kimiK3Description": {
+    "message": "Flagship reasoning and vision model with a 1M-token context window",
+    "description": "Description of the Kimi K3 model"
+  },
+  "model.kimiK26": {
+    "message": "kimi-k2.6",
+    "description": "Name of the Kimi K2.6 model"
+  },
+  "model.kimiK26Description": {
+    "message": "Reasoning and vision model for compatible K2 workflows",
+    "description": "Description of the Kimi K2.6 model"
+  },
+  "model.claudeFable5": {
+    "message": "claude-fable-5",
+    "description": "Name of Anthropic's Claude Fable 5 flagship model"
+  },
+  "model.claudeFable5Description": {
+    "message": "Flagship reasoning and vision model for long-horizon work with a 1M-token context window",
+    "description": "Description of the Claude Fable 5 model"
   }
 }
